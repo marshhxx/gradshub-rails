@@ -17,3 +17,5 @@
 
 # IDE files
 *.ini
+.idea/*
+.keep
