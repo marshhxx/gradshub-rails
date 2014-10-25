@@ -1,0 +1,8 @@
+{
+  "name": "dsl-generated dependencies",
+  "dependencies": {
+    "angular": "v1.2.25",
+    "angular-route": "latest",
+    "angular-resource": "latest"
+  }
+}
