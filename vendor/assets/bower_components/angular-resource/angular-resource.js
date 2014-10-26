@@ -92,11 +92,11 @@ function shallowClearAndCopy(src, dst) {
  *
  * @param {string} url A parametrized URL template with parameters prefixed by `:` as in
  *   `/user/:username`. If you are using a URL with a port number (e.g.
- *   `http://example.com:8080/api`), it will be respected.
+ *   `http://home.com:8080/api`), it will be respected.
  *
  *   If you are using a url with a suffix, just add the suffix, like this:
- *   `$resource('http://example.com/resource.json')` or `$resource('http://example.com/:id.json')`
- *   or even `$resource('http://example.com/resource/:resource_id.:format')`
+ *   `$resource('http://home.com/resource.json')` or `$resource('http://home.com/:id.json')`
+ *   or even `$resource('http://home.com/resource/:resource_id.:format')`
  *   If the parameter before the suffix is empty, :resource_id in this case, then the `/.` will be
  *   collapsed down to a single `.`.  If you need this sequence to appear and not collapse then you
  *   can escape it with `/\.`.
@@ -113,7 +113,7 @@ function shallowClearAndCopy(src, dst) {
  *
  *   If the parameter value is prefixed with `@` then the value for that parameter will be extracted
  *   from the corresponding property on the `data` object (provided when calling an action method).  For
- *   example, if the `defaultParam` object is `{someParam: '@someProp'}` then the value of `someParam`
+ *   home, if the `defaultParam` object is `{someParam: '@someProp'}` then the value of `someParam`
  *   will be `data.someProp`.
  *
  * @param {Object.<Object>=} actions Hash with declaration of custom action that should extend
@@ -239,7 +239,7 @@ function shallowClearAndCopy(src, dst) {
  *      rejection), `false` before that. Knowing if the Resource has been resolved is useful in
  *      data-binding.
  *
- * @example
+ * @home
  *
  * # Credit card resource
  *
@@ -297,7 +297,7 @@ function shallowClearAndCopy(src, dst) {
  *
  * It's worth noting that the success callback for `get`, `query` and other methods gets passed
  * in the response that came from the server as well as $http header getter function, so one
- * could rewrite the above example and get access to http headers as:
+ * could rewrite the above home and get access to http headers as:
  *
    ```js
      var User = $resource('/user/:userId', {userId:'@id'});
@@ -321,7 +321,7 @@ function shallowClearAndCopy(src, dst) {
    ```
 
  * # Creating a custom 'PUT' request
- * In this example we create a custom method on our resource to make a PUT request
+ * In this home we create a custom method on our resource to make a PUT request
  * ```js
  *    var app = angular.module('app', ['ngResource', 'ngRoute']);
  *

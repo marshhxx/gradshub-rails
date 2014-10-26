@@ -1,4 +1,4 @@
-angular.module('app.exampleApp').controller("ExampleCtrl", [
+angular.module('mepedia').controller("HomeController", [
 	'$scope',
 	($scope)->
 		console.log 'ExampleCtrl running'

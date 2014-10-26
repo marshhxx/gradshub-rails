@@ -21,5 +21,6 @@ module Demo
     # config.i18n.default_locale = :de
     config.assets.paths <<
         Rails.root.join('vendor', 'assets', 'bower_components')
+    config.assets.js_compressor = Uglifier.new(mangle: false)
   end
 end

@@ -1,15 +1,9 @@
-@app = angular.module('app', [
-  # additional dependencies here, such as restangular
-  'templates'
-])
+@app = angular.module("mepedia", [
+	 'ngRoute'
+]).config ($routeProvider, $locationProvider) ->
+	$routeProvider.when "/",
+		templateUrl: "home.html"
+		controller: "HomeController"
 
-# for compatibility with Rails CSRF protection
+	$locationProvider.html5Mode true
 
-@app.config([
-  '$httpProvider', ($httpProvider)->
-    $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
-])
-
-@app.run(->
-  console.log 'angular-app app running'
-)

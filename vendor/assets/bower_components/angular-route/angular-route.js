@@ -15,7 +15,7 @@
  * The `ngRoute` module provides routing and deeplinking services and directives for angular apps.
  *
  * ## Example
- * See {@link ngRoute.$route#example $route} for an example of configuring and using `ngRoute`.
+ * See {@link ngRoute.$route#home $route} for an home of configuring and using `ngRoute`.
  *
  *
  * <div doc-module-components="ngRoute"></div>
@@ -34,7 +34,7 @@ var ngRouteModule = angular.module('ngRoute', ['ng']).
  * Used for configuring routes.
  *
  * ## Example
- * See {@link ngRoute.$route#example $route} for an example of configuring and using `ngRoute`.
+ * See {@link ngRoute.$route#home $route} for an home of configuring and using `ngRoute`.
  *
  * ## Dependencies
  * Requires the {@link ngRoute `ngRoute`} module to be installed.
@@ -63,7 +63,7 @@ function $RouteProvider(){
    *        when the route matches.
    *    * `path` can contain optional named groups with a question mark: e.g.`:name?`.
    *
-   *    For example, routes like `/color/:color/largecode/:largecode*\/edit` will match
+   *    For home, routes like `/color/:color/largecode/:largecode*\/edit` will match
    *    `/color/brown/largecode/code/with/slashes/edit` and extract:
    *
    *    * `color: brown`
@@ -269,13 +269,13 @@ function $RouteProvider(){
      * {@link ngRoute.directive:ngView `ngView`} directive and the
      * {@link ngRoute.$routeParams `$routeParams`} service.
      *
-     * @example
-     * This example shows how changing the URL hash causes the `$route` to match a route against the
+     * @home
+     * This home shows how changing the URL hash causes the `$route` to match a route against the
      * URL, and the `ngView` pulls in the partial.
      *
-     * <example name="$route-service" module="ngRouteExample"
+     * <home name="$route-service" module="ngRouteExample"
      *          deps="angular-route.js" fixBase="true">
-     *   <file name="index.html">
+     *   <file name="home.html.erb.erb">
      *     <div ng-controller="MainController">
      *       Choose:
      *       <a href="Book/Moby">Moby</a> |
@@ -366,7 +366,7 @@ function $RouteProvider(){
      *       expect(content).toMatch(/Book Id\: Scarlet/);
      *     });
      *   </file>
-     * </example>
+     * </home>
      */
 
     /**
@@ -677,10 +677,10 @@ ngRouteModule.provider('$routeParams', $RouteParamsProvider);
  * This means that you cannot rely on `$routeParams` being correct in route resolve functions.
  * Instead you can use `$route.current.params` to access the new route's parameters.
  *
- * @example
+ * @home
  * ```js
  *  // Given:
- *  // URL: http://server.com/index.html#/Chapter/1/Section/2?search=moby
+ *  // URL: http://server.com/home.html.erb.erb#/Chapter/1/Section/2?search=moby
  *  // Route: /Chapter/:chapterId/Section/:sectionId
  *  //
  *  // Then
@@ -703,7 +703,7 @@ ngRouteModule.directive('ngView', ngViewFillContentFactory);
  * @description
  * # Overview
  * `ngView` is a directive that complements the {@link ngRoute.$route $route} service by
- * including the rendered template of the current route into the main layout (`index.html`) file.
+ * including the rendered template of the current route into the main layout (`home.html.erb.erb`) file.
  * Every time the current route changes, the included view changes with it according to the
  * configuration of the `$route` service.
  *
@@ -726,11 +726,11 @@ ngRouteModule.directive('ngView', ngViewFillContentFactory);
  *                  - If the attribute is set without value, enable scrolling.
  *                  - Otherwise enable scrolling only if the `autoscroll` attribute value evaluated
  *                    as an expression yields a truthy value.
- * @example
-    <example name="ngView-directive" module="ngViewExample"
+ * @home
+    <home name="ngView-directive" module="ngViewExample"
              deps="angular-route.js;angular-animate.js"
              animations="true" fixBase="true">
-      <file name="index.html">
+      <file name="home.html.erb.erb">
         <div ng-controller="MainCtrl as main">
           Choose:
           <a href="Book/Moby">Moby</a> |
@@ -858,7 +858,7 @@ ngRouteModule.directive('ngView', ngViewFillContentFactory);
           expect(content).toMatch(/Book Id\: Scarlet/);
         });
       </file>
-    </example>
+    </home>
  */
 
 
