@@ -1,9 +1,9 @@
-@app = angular.module("mepedia", [
-	 'ngRoute'
-]).config ($routeProvider, $locationProvider) ->
-	$routeProvider.when "/",
-		templateUrl: "home.html"
+angular.module("mepedia", ["ui.router", "templates"]).config ($stateProvider, $urlRouterProvider) ->
+	$urlRouterProvider.otherwise "/"
+	$stateProvider.state("home",
+		url: "/"
+		templateUrl: "angular-app/templates/home.html"
 		controller: "HomeController"
-
-	$locationProvider.html5Mode true
+	).state "about", {}
+	return
 

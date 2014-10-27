@@ -1,4 +1,4 @@
 asset 'angular', '1.3'
-asset 'angular-route'
+asset 'angular-ui-router'
 asset 'angular-resource'
 
