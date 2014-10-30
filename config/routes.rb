@@ -1,9 +1,16 @@
+require 'api_constraints'
+
 Demo::Application.routes.draw do
+  devise_for :users, :class_name => 'User'
   root 'home#index'
   get '*path' => 'home#index'
 
-  namespace :api do
-    resources :users
+  namespace :api, defaults: {format: 'json'} do
+    scope module: :v1, constraints: ApiConstraints.new(version: 1) do
+    # We are going to list our resources here
+      resources :users, :only => [:show, :create, :update, :destroy]
+      resources :sessions, :only => [:create, :destroy]
+    end
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
