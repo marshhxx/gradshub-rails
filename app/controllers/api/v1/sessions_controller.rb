@@ -11,7 +11,7 @@ class Api::V1::SessionsController < ApplicationController
       @user.save
       render :create, status: :ok, location: [:api, @user]
     else
-      @reasons = ['Invalid username or password']
+      @reasons = ['Invalid email or password']
       render 'api/v1/common/error', status: :unprocessable_entity
     end
   end
@@ -19,6 +19,7 @@ class Api::V1::SessionsController < ApplicationController
   def destroy
     @user = User.find_by(auth_token: params[:id])
     if @user.nil?
+      @reasons = ['Invalid authentication token. User might not be logged in.']
       render 'api/v1/common/error', status: :unprocessable_entity
     else
       @user.generate_authentication_token!
