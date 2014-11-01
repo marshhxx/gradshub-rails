@@ -1,7 +1,9 @@
-@app = angular.module("mepedia", ["ui.router", "templates"])
+@app = angular.module("mepedia",
+	["ui.router", "templates", "mepedia.services", "mepedia.controllers"])
 .config ($stateProvider, $urlRouterProvider, $httpProvider) ->
 	$httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
-
+	$httpProvider.defaults.headers.common.Accept = 'application/mepedia.v1'
+	$httpProvider.defaults.headers.common['Content-type'] = 'application/json'
 	interceptor = [
 		"$location"
 		"$rootScope"
@@ -12,14 +14,13 @@
 			error = (response) ->
 				if response.status is 401
 					$rootScope.$broadcast "event:unauthorized"
-					$location.path "/ login"
+					$location.path "/login"
 					return response
 				$q.reject response
 			return (promise) ->
 				promise.then success, error
 	]
 	$httpProvider.interceptors.push interceptor
-
 	$urlRouterProvider.otherwise "/"
 	$stateProvider.state("home",
 		url: "/"
@@ -29,6 +30,10 @@
 		url: "/login"
 		templateUrl: "angular-app/templates/login.html"
 		controller: "loginController"
-	).state "about", {}
+	).state("profile",
+		url: "/profile"
+		templateUrl: "angular-app/templates/profile.html"
+		controller: "profileController"
+	)
 	return
 

@@ -1,4 +1,4 @@
-app.controller('loginController',
+angular.module('mepedia.controllers').controller('loginController',
     ['$scope', 'sessionService',
     function($scope, sessionService) {
         console.log("THERE");

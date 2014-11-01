@@ -1,30 +1,34 @@
-app.factory('sessionService',
-    ['$location', '$http', '$q',
-        function($location, $http, $q) {
+angular.module('mepedia.services').factory('sessionService',
+    ['$location', '$http',
+        function($location, $http) {
         // Redirect to the given url (defaults to '/')
         function redirect(url) {
             url = url || '/';
             $location.path(url);
         }
-        console.log("HERE");
         var service = {
             login: function(email, password) {
-                return $http.post('/login', {user: {email: email, password: password} })
-                    .then(function(response) {
-                        service.currentUser = response.data.user;
+                return $http.post('/api/sessions', {session: {email: email, password: password} })
+                    .success(function(response) {
+                        service.currentUser = response.user;
                         if (service.isAuthenticated()) {
-                            //TODO: Send them back to where they came from
-                            //$location.path(response.data.redirect);
-                            $location.path('/record');
+                            redirect('/profile')
                         }
+                    })
+                    .error(function(response) {
+                        return response.errors;
                     });
             },
 
-            logout: function(redirectTo) {
-                $http.post('/logout').then(function() {
-                    service.currentUser = null;
-                    redirect(redirectTo);
-                });
+            logout: function() {
+                $http.delete('/api/sessions/' + service.currentUser.auth_token)
+                    .success(function(response) {
+                        service.currentUser = null;
+                        redirect();
+                    })
+                    .error(function(response) {
+                        return response.errors;
+                    });
             },
 
             register: function(email, password, confirm_password) {
@@ -38,12 +42,9 @@ app.factory('sessionService',
             },
             requestCurrentUser: function() {
                 if (service.isAuthenticated()) {
-                    return $q.when(service.currentUser);
+                    return service.currentUser;
                 } else {
-                    return $http.get('/current_user').then(function(response) {
-                        service.currentUser = response.data.user;
-                        return service.currentUser;
-                    });
+                    redirect()
                 }
             },
 
