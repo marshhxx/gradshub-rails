@@ -1,0 +1,352 @@
+@font-face {
+  font-family: 'Opensans-regular';
+  src: url(OpenSans-Regular.ttf);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto-bold';
+  src: url(Roboto-Bold.ttf);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto-light';
+  src: url(Roboto-Light.ttf);
+  font-weight: normal;
+  font-style: normal;
+}
+
+html,body{
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden !important;
+  webkit-tap-highlight-color: transparent;
+}
+
+.navbar-default {
+  position: inherit;
+  margin-bottom: 0px !important;
+  border-radius: 0px;
+  border: 0 !important;
+  background-color: #1C2A33;
+}
+
+.navbar-default .navbar-collapse {
+  border-color: rgba(255,255,255,.02);
+}
+
+.navbar-default .navbar-toggle {
+  border-color: #3D9ED8;
+  background-color: #3D9ED8;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #fff;
+}
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #3D9ED8;
+}
+
+.navbar-default .nav li a {
+  text-transform: uppercase;
+  font-family: 'Opensans-regular';
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: #fff;
+}
+
+.navbar-default .nav li a:hover,
+.navbar-default .nav li a:focus {
+  outline: 0;
+  color: #3D9ED8;
+}
+
+.navbar-default .navbar-nav>.active>a {
+  border-radius: 0;
+  color: #fff;
+  background-color: #3D9ED8;
+}
+
+@media(min-width:768px) {
+
+  .navbar-default .navbar-nav>.active>a {
+    border-radius: 3px;
+  }
+
+  .navbar-default.navbar-shrink {
+    padding: 10px 0;
+    background-color: #222;
+  }
+
+  .navbar-default.navbar-shrink .navbar-brand {
+    font-size: 1.5em;
+  }
+
+}
+
+section#logo {
+  padding: 10px 0;
+}
+
+section#logo .logo {
+  width:100%;
+  padding-top: 20px;
+  padding-bottom: 25px;
+  float: left;
+  background-image: url("mepedia-homepage.jpg");
+  background-repeat: no-repeat;
+  background-size: 200px auto;
+}
+
+// SignIn
+
+header {
+  width: 100%;
+  height: 580px;
+  background-attachment: scroll;
+  background-image: url("home-slider-background.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+header .intro-text {
+  padding-bottom: 50px;
+  position: absolute;
+  z-index: 2;
+}
+
+header .intro-text .intro-lead-in {
+  padding-top: 30px;
+  line-height: 50px;
+  font-family: Roboto-bold, Georgia, "Times New Roman", Times, serif;
+  font-size: 2.2em;
+  color: #FFF;
+}
+
+header .intro-text .intro-heading {
+  font-family: Roboto-light, Georgia, "Times New Roman", Times, serif;
+  font-size: 1.4em;
+  line-height: 22px;
+  color: #FFF;
+}
+
+@media(min-width:768px) {
+  header {
+    height: 650px;
+    background-position: center center;
+    background-repeat: none;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+  }
+
+  header .intro-text {
+    float: left;
+    padding-bottom: 20px;
+    padding-top: 60px;
+  }
+
+  header .intro-text .intro-lead-in {
+    font-size: 4em;
+  }
+
+  header .intro-text .intro-heading {
+    font-size: 1.6em;
+    padding-top: 10px;
+  }
+}
+
+/* Sign up form & carousel*/
+
+section#signup {
+  width: 90%;
+  padding-top: 150px;
+  position: absolute;
+  z-index: 2;
+}
+
+section#signup .form-name {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+section#signup .form-lastname {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+section#signup .form-group {
+  margin-bottom: 25px;
+}
+
+section#signup .form-group input,
+section#signup .form-group textarea {
+  padding: 15px;
+}
+
+section#signup .form-group input.form-rol {
+  height: auto;
+  font-size: 16px;
+}
+
+section#signup .form-group textarea.form-control {
+  height: 236px;
+}
+
+section#signup .form-control:focus {
+  border-color: #3D9ED8;
+  box-shadow: none;
+}
+
+section#signup::-webkit-input-placeholder {
+  /*text-transform: uppercase;*/
+  font-family: Opensans-regular, Georgia, "Times New Roman", Times, serif;
+  font-weight: 700;
+  color: #bbb;
+}
+
+section#signup:-moz-placeholder {
+  font-family: Opensans-regular, Georgia, "Times New Roman", Times, serif;
+  font-weight: 700;
+  color: #bbb;
+}
+
+section#signup::-moz-placeholder {
+  font-family: Opensans-regular, Georgia, "Times New Roman", Times, serif;
+  font-weight: 700;
+  color: #bbb;
+}
+
+section#signup:-ms-input-placeholder {
+  font-family: Opensans-regular, Georgia, "Times New Roman", Times, serif;
+  font-weight: 700;
+  color: #bbb;
+}
+
+section#signup .text-danger {
+  color: #e74c3c;
+}
+
+.home-form-padding-bottom-lastname {
+  padding-bottom: 0px;
+}
+
+.home-form-input-height {
+  line-height:100%
+//  height: 40px !important;
+//  line-height: 40px !important;
+}
+
+.fill {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+//.home-slider-one {
+//  background-image:url(../img/bg/background1.jpg);
+//}
+//
+//.home-slider-two {
+//  background-image:url(../img/bg/background2.jpg);
+//}
+//
+//.home-slider-three {
+//  background-image:url(../img/bg/background3.jpg);
+//}
+//
+//.home-slider-four{
+//  background-image:url(../img/bg/background4.jpg);
+//}
+//
+//.home-slider-five{
+//  background-image:url(../img/bg/background5.jpg);
+//}
+//
+//.home-slider-six{
+//  background-image:url(../img/bg/background6.jpg);
+//}
+
+header .carousel-inner{
+  display: none;
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px) {
+
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+  header .carousel,.item,.active{height:100%;}
+  header .carousel-inner {
+    height:100%;
+    display: block;
+  }
+
+  section#signup {
+    width: 80%;
+    padding-top: 210px;
+    padding-bottom: 50px;
+  }
+
+  section#signup .form-name {
+    padding-left: 0px !important;
+    padding-right: 10px;
+  }
+
+  section#signup .form-lastname {
+    padding-right: 0px !important;
+  }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+
+}
+
+.form-control.line-height{
+  line-height: 40px;
+}
+
+//////////
+.home-container {
+
+}
+
+.home-container.name {
+  padding-bottom: 20px;
+}
+
+.home-container.email {
+  padding-top: 20px;
+}
+
+.home-container.password {
+  padding-top: 20px;
+}
