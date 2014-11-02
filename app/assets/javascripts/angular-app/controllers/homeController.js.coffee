@@ -1,6 +1,6 @@
 angular.module('mepedia.controllers').controller("HomeController", [
-	'$scope',
-	($scope)->
+	'$scope', 'User', '$state'
+	($scope, User, $state)->
 		console.log 'ExampleCtrl running'
 		$scope.exampleValue = "Hello angular-app and rails"
 
@@ -10,6 +10,11 @@ angular.module('mepedia.controllers').controller("HomeController", [
 			user.lastname = $scope.lastname
 			user.email = $scope.email
 			user.password = $scope.password
-			user.$save ->
-				console.log "You are in!"
+			user.$save (->
+				console.log "Yes"
+				$state.go 'profile'
+				return
+			), ->
+			console.log "No"
+			return
 ])

@@ -15,35 +15,37 @@
 
     <div class="container">
     <section id="signup" >
+        <form role="form" ng-submit="registerUser()">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-8">
-                        <div class="col-md-6 col-sm-6 form-name">
-                            <div class="form-group-sm  home-container name">
-                                <input type="text" class="form-control" placeholder="Your Name" id="name" required data-validation-required-message="Please enter your name.">
+                        <div class="col-md-6 col-sm-6 home-col name">
+                            <div class="form-group home-container name">
+                                <input type="text" class="form-control" ng-model="name" placeholder="Your Name" id="name" required data-validation-required-message="Please enter your name.">
                             </div>
                         </div>
-                        <div class="col-md-6 col-sm-6 form-lastname">
-                            <div class="form-group-sm home-container">
-                                <input type="text" class="form-control line-height" placeholder="Your last name" id="lastname" required data-validation-required-message="Please enter your last name.">
+                        <div class="col-md-6 col-sm-6 home-col lastname">
+                            <div class="form-group home-container lastname">
+                                <input type="text" class="form-control" ng-model="lastname" placeholder="Your Last Name" id="lastname" required data-validation-required-message="Please enter your last name.">
                             </div>
                         </div>
-                        <div class="form-group-sm home-container email">
-                            <input type="text" class="form-control" placeholder="Your Email" id="email" required data-validation-required-message="Please enter your email.">
+                        <div class="form-group">
+                            <input type="text" class="form-control" ng-model="email" placeholder="Your Email" id="email" required data-validation-required-message="Please enter your email.">
                         </div>
-                        <div class="form-group-sm home-container password">
-                            <input type="text" class="form-control" placeholder="Your Password" id="password" required data-validation-required-message="Please enter your password.">
+                        <div class="form-group">
+                            <input type="password" class="form-control" ng-model="password" placeholder="Your Password" id="password" required data-validation-required-message="Please enter your password.">
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6 col-lg-6 col-md-6 col-sm-8 text-center btn-margin-top">
+                    <div class="col-md-6 col-lg-6 col-md-6 col-sm-8 text-center margintop-20">
                         <button type="submit" class="btn btn-xl">Join mepedia for free</button>
                     </div>
                 </div>
             </div>
         </div>
+        </form>
     </section>
     </div>
 

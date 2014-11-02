@@ -1,5 +1,5 @@
 @app = angular.module("mepedia",
-	["ui.router", "templates", "mepedia.services", "mepedia.controllers"])
+	["ui.router", "templates", "mepedia.services", "mepedia.controllers", "ngResource"])
 .config ($stateProvider, $urlRouterProvider, $httpProvider) ->
 	$httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
 	$httpProvider.defaults.headers.common.Accept = 'application/mepedia.v1'

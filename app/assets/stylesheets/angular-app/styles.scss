@@ -26,6 +26,16 @@ html,body{
   webkit-tap-highlight-color: transparent;
 }
 
+.input {
+  color: #3f4752;
+  font-family: Opensans-regular, Georgia, "Times New Roman", Times, serif;
+  font-size: 14px;
+}
+
+.input::-webkit-input-placeholder {
+  color: #bbb;
+}
+
 .navbar-default {
   position: inherit;
   margin-bottom: 0px !important;
@@ -175,32 +185,14 @@ section#signup {
   z-index: 2;
 }
 
-section#signup .form-name {
+section#signup .home-col.name {
   padding-left: 0px;
   padding-right: 0px;
 }
 
-section#signup .form-lastname {
+section#signup .home-col.lastname {
   padding-left: 0px;
   padding-right: 0px;
-}
-
-section#signup .form-group {
-  margin-bottom: 25px;
-}
-
-section#signup .form-group input,
-section#signup .form-group textarea {
-  padding: 15px;
-}
-
-section#signup .form-group input.form-rol {
-  height: auto;
-  font-size: 16px;
-}
-
-section#signup .form-group textarea.form-control {
-  height: 236px;
 }
 
 section#signup .form-control:focus {
@@ -208,43 +200,69 @@ section#signup .form-control:focus {
   box-shadow: none;
 }
 
-section#signup::-webkit-input-placeholder {
-  /*text-transform: uppercase;*/
-  font-family: Opensans-regular, Georgia, "Times New Roman", Times, serif;
-  font-weight: 700;
-  color: #bbb;
+header .carousel-inner{
+  display: none;
 }
 
-section#signup:-moz-placeholder {
-  font-family: Opensans-regular, Georgia, "Times New Roman", Times, serif;
-  font-weight: 700;
-  color: #bbb;
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px) {
+
 }
 
-section#signup::-moz-placeholder {
-  font-family: Opensans-regular, Georgia, "Times New Roman", Times, serif;
-  font-weight: 700;
-  color: #bbb;
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+
 }
 
-section#signup:-ms-input-placeholder {
-  font-family: Opensans-regular, Georgia, "Times New Roman", Times, serif;
-  font-weight: 700;
-  color: #bbb;
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+  header .carousel,.item,.active{height:100%;}
+  header .carousel-inner {
+    height:100%;
+    display: block;
+  }
+
+  section#signup {
+    width: 80%;
+    padding-top: 210px;
+    padding-bottom: 50px;
+  }
+
+  section#signup .home-col.name {
+    padding-right: 7.5px;
+  }
+
+  section#signup .home-col.lastname {
+    padding-left: 7.5px;
+  }
 }
 
-section#signup .text-danger {
-  color: #e74c3c;
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+
 }
 
-.home-form-padding-bottom-lastname {
-  padding-bottom: 0px;
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+
 }
 
-.home-form-input-height {
-  line-height:100%
-//  height: 40px !important;
-//  line-height: 40px !important;
+.btn-xl {
+  padding: 10px 40px;
+  background:none;
+  color:#fff;
+  font:18px Opensans-regular, Georgia, "Times New Roman", Times, serif;
+  border:1px solid #fff;
+  margin-top: 20px;
+}
+
+.btn-xl:hover,
+.btn-xl:focus,
+.btn-xl:active,
+.btn-xl.active,
+.open .dropdown-toggle.btn-xl {
+  background-color: #1C2A33;
+  color:#fff;
 }
 
 .fill {
@@ -281,72 +299,3 @@ section#signup .text-danger {
 //.home-slider-six{
 //  background-image:url(../img/bg/background6.jpg);
 //}
-
-header .carousel-inner{
-  display: none;
-}
-
-/* Custom, iPhone Retina */
-@media only screen and (min-width : 320px) {
-
-}
-
-/* Extra Small Devices, Phones */
-@media only screen and (min-width : 480px) {
-
-}
-
-/* Small Devices, Tablets */
-@media only screen and (min-width : 768px) {
-  header .carousel,.item,.active{height:100%;}
-  header .carousel-inner {
-    height:100%;
-    display: block;
-  }
-
-  section#signup {
-    width: 80%;
-    padding-top: 210px;
-    padding-bottom: 50px;
-  }
-
-  section#signup .form-name {
-    padding-left: 0px !important;
-    padding-right: 10px;
-  }
-
-  section#signup .form-lastname {
-    padding-right: 0px !important;
-  }
-}
-
-/* Medium Devices, Desktops */
-@media only screen and (min-width : 992px) {
-
-}
-
-/* Large Devices, Wide Screens */
-@media only screen and (min-width : 1200px) {
-
-}
-
-.form-control.line-height{
-  line-height: 40px;
-}
-
-//////////
-.home-container {
-
-}
-
-.home-container.name {
-  padding-bottom: 20px;
-}
-
-.home-container.email {
-  padding-top: 20px;
-}
-
-.home-container.password {
-  padding-top: 20px;
-}
