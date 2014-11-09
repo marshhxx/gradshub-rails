@@ -89,6 +89,7 @@ RSpec.configure do |config|
   #Including to test requests
   config.include Devise::TestHelpers, :type => :controller
   config.include FactoryGirl::Syntax::Methods
+  config.include Request
 
   config.use_transactional_fixtures = false
   config.render_views = true

@@ -6,6 +6,7 @@ module Authenticable
 
   # Devise methods overwrites
   def current_user
+    a = request.headers['Authorization']
     @current_user ||= User.find_by(auth_token: request.headers['Authorization'])
   end
 

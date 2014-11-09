@@ -7,17 +7,23 @@ class Api::V1::BaseController < ApplicationController
   def create
     set_resource(resource_class.new(resource_params))
 
+    unless get_resource.valid?
+      @reasons = get_resource.errors
+      render 'api/v1/common/error', status: :unprocessable_entity
+    end
     if get_resource.save
       render :show, status: :created
-    else
-      render json: get_resource.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /api/{plural_resource_name}/1
   def destroy
-    get_resource.destroy
-    head :no_content
+    if get_resource.destroy
+      @reasons = get_resource.errors
+      render 'api/v1/common/error', status: :unprocessable_entity
+    else
+      head :accepted
+    end
   end
 
   # GET /api/{plural_resource_name}
@@ -88,7 +94,7 @@ class Api::V1::BaseController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_resource(resource = nil)
-    resource ||= resource_class.find(params[:id])
+    resource ||= resource_class.find_by(uid: params[:id])
     instance_variable_set("@#{resource_name}", resource)
   end
 
