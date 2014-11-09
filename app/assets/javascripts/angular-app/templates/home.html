@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div id="top" class="container">
     <section id="signup" >
         <form role="form" ng-submit="registerUser()">
         <div class="row">
@@ -49,41 +49,324 @@
     </section>
     </div>
 
-
-<!--<div class="carousel-inner">-->
-    <!--<div class="item active">-->
-        <!--<div class="fill home-slider-one"></div>-->
-    <!--</div>-->
-    <!--<div class="item">-->
-        <!--<div class="fill home-slider-two"></div>-->
-    <!--</div>-->
-    <!--<div class="item">-->
-        <!--<div class="fill home-slider-three"></div>-->
-    <!--</div>-->
-    <!--<div class="item">-->
-        <!--<div class="fill home-slider-four"></div>-->
-    <!--</div>-->
-    <!--<div class="item">-->
-        <!--<div class="fill home-slider-five"></div>-->
-    <!--</div>-->
-    <!--<div class="item">-->
-        <!--<div class="fill home-slider-six"></div>-->
-    <!--</div>-->
-<!--</div>-->
+    <div id="home-carousel-container">
+        <div>
+            <carousel interval="carouselInterval">
+                <slide ng-repeat="slide in slides" active="slide.active">
+                    <img class="home-carousel-img" ng-src="{{slide.image}}">
+                </slide>
+            </carousel>
+        </div>
+    </div>
 </header>
 
-<!--<script type = "text/javascript" >-->
-    <!--$('#myCarousel').carousel({-->
-        <!--interval: 6000 //changes the speed-->
-    <!--})-->
-<!--</script>-->
+<!-- Features Section -->
+<section id="whychooseus">
+    <div class="container home-features-container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">WELCOME TO MEPEDIA</h2>
+                <h3 class="section-subheading text-muted">Getting a job is easier now</h3>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-4 text-center">
+                <div class="features-image img-left"></div>
+                <h4 class="regular-tlt-black">COMPELLING PROFILE</h4>
+                <p class="regular-txt-gray text-muted">Make a powerful profile that showcases your skills, projects and accomplishments.
+                    Market yourself with the profile for exciting new career opportunities.
+                    The profile is built in 3 easy steps - Create, Edit and Upload. </p>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="features-image img-middle"></div>
+                <h4 class="regular-tlt-black">POWERFUL SEARCH ENGINE</h4>
+                <p class="regular-txt-gray text-muted">Our multi-dimensional, one click search engine finds your next great job opportunity based on your skills, interests and education. The "Always working - automated search engine" works in background to match the most ideal and suitable career opportunities for you.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="features-image img-right"></div>
+                <h4 class="regular-tlt-black">PERSONALIZATION PLATFORM</h4>
+                <p class="regular-txt-gray text-muted">Personalization engine creates meaningful personalized connections between the great minds and the employers looking for great minds.  It greatly improves your chances of finding the best match and speeds up the hiring process. </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Full Page Image Background Carousel Header -->
+<section id="reallifestories" class="carousel slide reallifestories-slider">
+    <!-- Indicators -->
+    <div class="container">
+        <ol class="carousel-indicators">
+            <li data-target="#reallifestories" data-slide-to="0" class="active"></li>
+            <li data-target="#reallifestories" data-slide-to="1"></li>
+        </ol>
+
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <span class="reallifestories title">REAL  LIFE  STORIES</span>
+            </div>
+        </div>
+
+        <!-- Wrapper for Slides -->
+        <div class="carousel-inner">
+
+            <div class="item active">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+                        <div class="reallifestories-img img-two"></div>
+                        <div class="intro-text">
+                            <p class="text-muted light-txt-white">
+                                In the two years since Adriana D. Hughes graduated with her degree </br>
+                                in communication and history,she had worked at a beach club in Annapolis, as a substitute </br>
+                                teacher in McLean, Va., and as a sales associate at a store in Baltimore. Adriana was ready to give up her search </br>
+                                for a position in Public Relations until she learned about Mepedia. Adriana used the Mepedia  </br>
+                                platform to showcase her creativity and work with social media. She was hired to</br>
+                                do Public Relations at one of the world's largest technology company.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--<div class="item">-->
+                <!--<div class="row">-->
+                    <!--<div class="col-lg-12 col-md-12 col-sm-12 text-center">-->
+                        <!--<div class="reallifestories-img img-two"></div>-->
+                        <!--<div class="intro-text">-->
+                            <!--<p class="text-muted reallifestories_txt">-->
+                                <!--Getting the right people into the right jobs is key to our company's growth. </br>-->
+                                <!--I was inundated with resumes every day for the business development position that is critical to my startup's growth. </br>-->
+                                <!--I was looking for someone that could lead, collaborate, multi task and present to customers and grow our business. </br>-->
+                                <!--Mepedia platform helped me with the best matches for my criteria and saved me a lot of time and energy. </br>-->
+                                <!--It was great to finally find someone that I could trust. </br>-->
+                                <!--- Ron Y. Murphy --->
+                            <!--</p>-->
+                        <!--</div>-->
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+
+    </div>
+</section>
+
+<section id="home-middle-quote">
+    <div class="container">
+        <div class="row">
+        <p class="home-middle-quote-tlt text-muted text-center">Ready to start?</p>
+        </div>
+        <div class="row">
+            <p class="home-middle-quote-txt text-muted text-center">Discover the new way of connecting the world's top hiring managers.</p>
+        </div>
+    </div>
+</section>
+
+<section id="howitworks-bar-line" class="greatminds-color">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="howitworks-bar">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <span class="here-is-how-it-works title"> HERE'S HOW IT WORKS </span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="btn-type">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-6 col-sm-6 btn-type">
+                <span id="lookingforgreatminds-btn" class="looking_minds_btn looking_minds_btn_right" ng-click="showType()" ng-class="{'looking_minds_btn-active': !type}">LOOKING FOR GREAT MINDS</span>
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+                <span id="greatminds-btn" class="great_minds_btn great_minds_btn_left" ng-click="showType()" ng-class="{'great_minds_btn-active': type}">I  AM A GREAT MIND</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="home-hiw-section-one" ng-show="type">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-6 col-sm-6">
+                <div class="row how-it-works-row-padding">
+                    <div class="col-md-3 how-it-work-row-img-cl">
+                        <div class="how-it-works-row-img gm-img-1"></div>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-8">
+                        <span class="regular-tlt-black"> CREATE YOUR PROFILE </span>
+                        <br />
+                        <span class="text-muted regular-txt-gray"> Build your powerful profile to market yourself for the job that you want. </span>
+                    </div>
+                </div>
+                <div class="row how-it-works-row-padding">
+                    <div class="col-md-3 how-it-work-row-img-cl">
+                        <div class="how-it-works-row-img gm-img-2"></div>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-8">
+                        <span class="regular-tlt-black"> APPLY FOR A JOB </span>
+                        <br />
+                        <span class="text-muted regular-txt-gray"> Our automated search finds the most ideal job opportunity for you based on your education, skills and interests. </span>
+                    </div>
+                </div>
+                <div class="row how-it-works-row-padding">
+                    <div class="col-md-3 how-it-work-row-img-cl">
+                        <div class="how-it-works-row-img gm-img-3"></div>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-8">
+                        <span class="regular-tlt-black"> GET HIRED </span>
+                        <br />
+                        <span class="text-muted regular-txt-gray"> Our personalization platform provides you with instant communication, thereby making the hiring process pleasant. </span>
+                    </div>
+                </div>
+                <div class="row how-it-works-row-padding">
+                    <div class="col-md-3 how-it-work-row-img-cl">
+                        <div class="how-it-works-row-img gm-img-4"></div>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-8">
+                        <span class="regular-tlt-black"> DO A GREAT JOB </span>
+                        <br />
+                        <span class="text-muted regular-txt-gray"> Excelling at your job is fulfilling, rewarding and enriching with new experiences in life. </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+</section>
 
 
-<div>
-    <a ui-sref="login">SignIn</a>
-    <p>Value from ExampleCtrl:</p>
-    <p>{{ exampleValue }}</p>
-</div>
+<section id="home-hiw-section-two" ng-hide="type">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 how-it-works-img-cl-right">
+                <div class="how-it-works-img lgm-img"></div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="row how-it-works-row-padding">
+                    <div class="col-md-3 how-it-work-row-img-cl">
+                        <div class="how-it-works-row-img lgm-img-1"></div>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-8">
+                        <span class="regular-tlt-black"> CREATE YOUR COMPANY PROFILE </span>
+                        <br />
+                        <span class="text-muted regular-txt-gray"> Build a power profile to market your company with current job openings, work culture to attract great talent. </span>
+                    </div>
+                </div>
+                <div class="row how-it-works-row-padding">
+                    <div class="col-md-3 how-it-work-row-img-cl">
+                        <div class="how-it-works-row-img lgm-img-2"></div>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-8">
+                        <span class="regular-tlt-black"> FIND GREAT MINDS </span>
+                        <br />
+                        <span class="text-muted regular-txt-gray"> Our automated search finds the most ideal candidate for your company, based on your requirements. </span>
+                    </div>
+                </div>
+                <div class="row how-it-works-row-padding">
+                    <div class="col-md-3 how-it-work-row-img-cl">
+                        <div class="how-it-works-row-img lgm-img-3"></div>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-8">
+                        <span class="regular-tlt-black"> HIRE FAST </span>
+                        <br />
+                        <span class="text-muted regular-txt-gray"> Our personalization platform allows you to interact efficiently, thereby making the hiring process pleasant. </span>
+                    </div>
+                </div>
+                <div class="row how-it-works-row-padding">
+                    <div class="col-md-3 how-it-work-row-img-cl">
+                        <div class="how-it-works-row-img lgm-img-4"></div>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-8">
+                        <span class="regular-tlt-black"> BUILD A GREAT COMPANY </span>
+                        <br />
+                        <span class="text-muted regular-txt-gray"> Hiring the best minds creates opportunities for growth, leadership and success. </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container -->
+</section>
 
 
+<section id="quotes">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="quotes-img"></div>
+                <br/>
+                <span class="quotes-txt"> All our dreams can come true if we have the courage to pursue them.</span>
+                </br>
+                <span class="quotes-author"> Walt Disney </span>
+            </div>
+        </div>
+    </div>
+</section>
 
+    <section id="home-end-quote">
+        <div class="container">
+            <div class="row">
+                <p class="home-middle-quote-tlt text-muted text-center">Become a member now!</p>
+            </div>
+            <div class="row">
+                <p class="home-middle-quote-txt text-muted text-center">Discover the new way of connecting the world's top hiring managers.</p>
+            </div>
+        </div>
+    </section>
+
+<footer id="home" class="text-center">
+    <div class="footer-above">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="row footer-row-title">
+                        <span href="#" class="footer-title" >COMPANY INFO</span>
+                    </div>
+
+                    <div class="row footer-row-li">
+                        <a href="#" class="footer-li" >About Mepedia</a>
+                    </div>
+
+                    <div class="row footer-row-li">
+                        <a href="#" class="footer-li" >Terms of Service</a>
+                    </div>
+                    <div class="row footer-row-li">
+                        <a href="#" class="footer-li" >Privacy Policy</a>
+                    </div>
+                </div>
+
+                <div class="col-md-8 footer-right-cl">
+                    <a ng-click="gotoTop()" id="signup-footer-btn" class="btn btn-xs">Join mepedia for free</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-below">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <span class="footer-sign-txt"> Copyright &copy; Mepedia, Inc. 2014 </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

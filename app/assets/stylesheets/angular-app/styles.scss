@@ -6,6 +6,28 @@
 }
 
 @font-face {
+  font-family: 'Opensans-semibold';
+  src: url(OpenSans-Semibold.ttf);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Opensans-light';
+  src: url(OpenSans-Light.ttf);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Opensans-light-italic';
+  src: url(OpenSans-LightItalic.ttf);
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@font-face {
   font-family: 'Roboto-bold';
   src: url(Roboto-Bold.ttf);
   font-weight: normal;
@@ -17,6 +39,11 @@
   src: url(Roboto-Light.ttf);
   font-weight: normal;
   font-style: normal;
+}
+
+@font-face {
+  font-family: 'Oswald-Regular';
+  src: url(Oswald-Regular.otf);
 }
 
 html,body{
@@ -34,6 +61,36 @@ html,body{
 
 .input::-webkit-input-placeholder {
   color: #bbb;
+}
+
+.light-txt-white {
+  color: #FFF !important;
+  font-size: 14px;
+  font-family: 'Opensans-light', Georgia, "Times New Roman", Times, serif;
+}
+
+.regular-txt-gray {
+  color: #898989 !important;
+  font-size: 14px;
+  font-family: 'Opensans-regular', Georgia, "Times New Roman", Times, serif;
+}
+
+.regular-tlt-black {
+  color:#3f4752;
+  font-size:18px;
+  font-family: 'Opensans-semibold', Georgia, "Times New Roman", Times, serif;
+}
+
+.title {
+  font-size: 2.5em;
+  font-family: Oswald-regular, Georgia, "Times New Roman", Times, serif;
+}
+
+@media(min-width:768px) {
+  .title {
+    font-size: 3.5em;
+    font-family: Oswald-regular, Georgia, "Times New Roman", Times, serif;
+  }
 }
 
 .navbar-default {
@@ -74,6 +131,7 @@ html,body{
 .navbar-default .nav li a:focus {
   outline: 0;
   color: #3D9ED8;
+  font-family: 'Opensans-semibold';
 }
 
 .navbar-default .navbar-nav>.active>a {
@@ -117,9 +175,8 @@ section#logo .logo {
 
 header {
   width: 100%;
-  height: 580px;
+  height: 490px;
   background-attachment: scroll;
-  background-image: url("home-slider-background.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   -webkit-background-size: cover;
@@ -151,7 +208,7 @@ header .intro-text .intro-heading {
 
 @media(min-width:768px) {
   header {
-    height: 650px;
+    height: 490px;
     background-position: center center;
     background-repeat: none;
     -webkit-background-size: cover;
@@ -200,8 +257,10 @@ section#signup .form-control:focus {
   box-shadow: none;
 }
 
-header .carousel-inner{
+header .home-carousel-container{
   display: none;
+  position:absolute;
+  width: 100%;
 }
 
 /* Custom, iPhone Retina */
@@ -216,9 +275,8 @@ header .carousel-inner{
 
 /* Small Devices, Tablets */
 @media only screen and (min-width : 768px) {
-  header .carousel,.item,.active{height:100%;}
-  header .carousel-inner {
-    height:100%;
+
+  header .home-carousel-container {
     display: block;
   }
 
@@ -265,9 +323,28 @@ header .carousel-inner{
   color:#fff;
 }
 
-.fill {
+.btn-xs {
+  padding: 15px 30px;
+  background:none;
+  color:#fff;
+  font:14px Opensans-regular, Georgia, "Times New Roman", Times, serif;
+  border:1px solid #fff;
+}
+
+.btn-xs:hover {
+  background:#FFF;
+  color:#1C2A33;
+  font:14px Opensans-semibold, Georgia, "Times New Roman", Times, serif;
+}
+
+@media(min-width:768px) {
+  .btn-xs {
+    float: right;
+  }
+}
+
+.home-carousel-img{
   width: 100%;
-  height: 100%;
   background-position: center;
   background-repeat: no-repeat;
   -webkit-background-size: cover;
@@ -276,26 +353,467 @@ header .carousel-inner{
   background-size: cover;
 }
 
-//.home-slider-one {
-//  background-image:url(../img/bg/background1.jpg);
-//}
-//
-//.home-slider-two {
-//  background-image:url(../img/bg/background2.jpg);
-//}
-//
-//.home-slider-three {
-//  background-image:url(../img/bg/background3.jpg);
-//}
-//
-//.home-slider-four{
-//  background-image:url(../img/bg/background4.jpg);
-//}
-//
-//.home-slider-five{
-//  background-image:url(../img/bg/background5.jpg);
-//}
-//
-//.home-slider-six{
-//  background-image:url(../img/bg/background6.jpg);
-//}
+/* Removes carousel buttons */
+.right.carousel-control, .left.carousel-control {
+  display: none;
+}
+
+.carousel-indicators li {
+  margin: 0 2px !important;
+}
+
+
+/*** Start features section ***/
+
+section {
+  padding: 50px 0;
+}
+
+section h2.section-heading {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 30px;
+  color: #3D9ED8;
+  font-family: Oswald-regular, Georgia, "Times New Roman", Times, serif;
+}
+
+section h3.section-subheading {
+  margin-bottom: 45px;
+  font-family: Opensans-regular, Georgia, "Times New Roman", Times, serif;
+  font-size: 1.5em;
+  color: #3f4752;
+//  font-variant: small-caps;
+}
+
+.features-image {
+  width: 120px;
+  height: 120px;
+  background-size: 120px;
+  background-repeat: no-repeat;
+  display: inline-block; /* so that it behaves like the img element */
+}
+
+.features-image.img-left{
+  background-image: url("home-features-left.svg");
+}
+
+.features-image.img-middle{
+  background-image: url("home-features-middle.svg");
+}
+
+.features-image.img-right{
+  background-image: url("home-features-right.svg");
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+  section {
+    padding: 50px 0;
+  }
+
+  section h2.section-heading {
+    font-size: 3.5em;
+  }
+
+  section h3.section-subheading {
+    margin-bottom: 35px;
+    margin-top: 15px;
+  }
+
+  .features-image{
+    width:120px;
+    height:120px;
+    background-size: 120px;
+  }
+
+  .home-features-container{
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+  .home-features-container{
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+  .home-features-container{
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
+/* End features section */
+
+
+/* Start reallifestories section */
+
+section#reallifestories {
+  text-align:center;
+  padding: 50px 0;
+  width: 100%;
+  background: url(home-reallifestories-background.jpg) no-repeat center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+.reallifestories {
+  color:#FFF;
+  text-align: center;
+  width:100%;
+}
+
+.reallifestories-img {
+  width: 160px;
+  height: 160px;
+  background-size: 160px;
+  background-repeat: no-repeat;
+  margin: 10px 0;
+  display: inline-block; /* so that it behaves like the img element */
+}
+
+.reallifestories-img.img-one{
+  background-image: url(home-real-lifestories2.png);
+}
+
+.reallifestories-img.img-two{
+  background-image: url(home-real-lifestories1.png);
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+
+}
+
+/* End reallifestories section */
+
+/* Start middle quote section */
+
+section#home-middle-quote {
+  padding: 50px 0;
+}
+
+.home-middle-quote-tlt {
+  font-family: Opensans-semibold, Georgia, "Times New Roman", Times, serif;
+  font-size: 2.0em;
+  color: #3f4752;
+}
+
+.home-middle-quote-txt {
+  font-family: Opensans-regular, Georgia, "Times New Roman", Times, serif;
+  font-size: 1.5em;
+  color: #3f4752;
+}
+
+
+/* End middle quote section */
+
+/* Btn type section */
+
+section#btn-type {
+  padding: 20px 0;
+}
+
+.looking_minds_btn{
+  width: 300px;
+  text-align:center;
+  padding:15px 0;
+  border:2px solid rgb(134,185,163);
+  font:18px Opensans-regular, Georgia, "Times New Roman", Times, serif;
+  color: #3f4752;
+  cursor: pointer;
+  background-color: #FFF;
+  text-decoration: none;
+}
+
+.looking_minds_btn-active{
+  background-color: rgb(134,185,163);
+  color: #FFF;
+  text-decoration: none;
+}
+
+.looking_minds_btn:hover {
+  background-color:rgb(134,185,163);
+  border-width: 2px;
+  border-style: solid;
+  color: #FFF;
+  text-decoration: none;
+}
+
+.great_minds_btn {
+  width: 300px;
+  text-align:center;
+  border:2px solid rgb(226,148,123);
+  font:18px Opensans-regular, Georgia, "Times New Roman", Times, serif;
+  padding:15px 0;
+  color: #3f4752;
+  cursor: pointer;
+  background-color: #FFF;
+  text-decoration: none;
+}
+
+.great_minds_btn-active{
+  background-color: rgb(226,148,123);
+  color: #FFF;
+  text-decoration: none;
+}
+
+.great_minds_btn:hover {
+  background-color:rgb(226,148,123);
+  border-width: 2px;
+  border-style: solid;
+  color: #FFF;
+  text-decoration: none;
+}
+
+.btn-type {
+  padding-bottom: 50px;
+}
+
+@media(min-width:767px) {
+
+  .looking_minds_btn_right{
+    float: right;
+  }
+
+  .great_minds_btn_left{
+    float: left;
+  }
+
+  .btn-type {
+    padding-bottom: 0px;
+  }
+}
+
+/* End Btn type section */
+
+
+/* Start how it works section */
+
+section#howitworks-bar-line{
+  height: 10px;
+  padding: 0px 0px;
+  background-color: #00A0DE;
+}
+
+section#howitworks-bar {
+  padding: 20px 0px;
+  background-color: #1C2A33;
+}
+
+.here-is-how-it-works{
+  text-align: center;
+  color: #FFF;
+}
+
+section#home-hiw-section-one {
+  padding: 20px 0;
+}
+
+section#home-hiw-section-two {
+  padding: 20px 0;
+}
+
+.how-it-works-row-img {
+  width: 60px;
+  height: 60px;
+  float: right;
+  background-size: 60px 60px;
+  background-repeat: no-repeat;
+  display: inline-block; /* so that it behaves like the img element */
+}
+
+.how-it-works-row-img.gm-img-1 {
+  background-image: url(tab1.svg);
+}
+
+.how-it-works-row-img.gm-img-2 {
+  background-image: url(tab2.svg);
+}
+
+.how-it-works-row-img.gm-img-3 {
+  background-image: url(tab3.svg);
+}
+
+.how-it-works-row-img.gm-img-4 {
+  background-image: url(tab4.svg);
+}
+
+.how-it-works-row-img.lgm-img-1 {
+  background-image: url(tab1.svg);
+}
+
+.how-it-works-row-img.lgm-img-2 {
+  background-image: url(tab2.svg);
+}
+
+.how-it-works-row-img.lgm-img-3 {
+  background-image: url(tab3.svg);
+}
+
+.how-it-works-row-img.lgm-img-4 {
+  background-image: url(tab4.svg);
+}
+
+.how-it-work-row-img-cl {
+  float: left;
+}
+
+.how-it-works-row-padding {
+  padding: 10px 0;
+}
+
+.how-it-works-img {
+  width: 100%;
+  padding: 10px 0;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  display: inline-block;
+}
+
+.how-it-works-img-cl-right {
+  display: none;
+}
+
+.how-it-works-img-cl-left {
+  display: none;
+}
+
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+
+  .how-it-works-img-cl-right {
+    display: block;
+    float: right;
+  }
+
+  .how-it-works-img-cl-left {
+    display: block;
+    float: left;
+  }
+
+  .how-it-work-row-img-cl {
+    width: 20%;
+  }
+
+  .how-it-works-img {
+    height: 250px;
+    margin: 80px 0;
+  }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+  .how-it-works-img {
+    height: 350px;
+    margin: 50px 0;
+  }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+  .how-it-works-img {
+    height: 350px;
+    margin: 20px 0;
+  }
+}
+
+/* End how it works section */
+
+
+section#quotes {
+  padding: 50px 0;
+  background-color: #f0efef;
+}
+
+.quotes-img{
+  margin-bottom: 20px;
+  width: 55px;
+  height: 45px;
+  background-image: url(quotes.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  display: inline-block;
+}
+
+.quotes-txt{
+  color:#3f4752;
+  font:1.5em Opensans-light-italic, Georgia, "Times New Roman", Times, serif;
+}
+
+.quotes-author {
+  color:#3f4752;
+  line-height: 40px !important;
+  font:16px Opensans-light, Georgia, "Times New Roman", Times, serif;
+}
+
+/* End quotes section */
+
+footer#home {
+  padding: 0px 0px !important;
+}
+
+footer#home .footer-above {
+  background-color: #1C2A33;
+  padding: 50px 0px;
+}
+
+footer#home .footer-below {
+  padding: 25px 0;
+  background-color: #FFF;
+}
+
+.footer-title {
+  color:#FFF;
+  font:16px Opensans-semibold, Georgia, "Times New Roman", Times, serif;
+}
+
+.footer-li{
+  color:#FFF;
+  font:14px Opensans-light, Georgia, "Times New Roman", Times, serif;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.footer-li:hover {
+  font:14px Opensans-regular, Georgia, "Times New Roman", Times, serif;
+  color:#00A0DE;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.footer-row-title {
+  padding-bottom: 25px;
+}
+
+.footer-row-li {
+  padding-bottom: 10px;
+}
+
+.footer-sign-txt{
+  font:14px Opensans-light, Georgia, "Times New Roman", Times, serif;
+  color:#3f4752;
+}
+
+.footer-right-cl {
+  padding-top: 40px;
+}
+
+
