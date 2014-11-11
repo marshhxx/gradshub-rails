@@ -1,6 +1,6 @@
 angular.module('mepedia.controllers').controller("HomeController", [
-	'$scope', 'User', '$state', '$anchorScroll', '$location','$sce',
-	($scope, User, $state, $anchorScroll, $location, $sce)->
+	'$scope', 'User', '$state', '$anchorScroll', '$location', 'sessionService', '$sce',
+	($scope, User, $state, $anchorScroll, $location, sessionService, $sce)->
 		console.log 'ExampleCtrl running'
 		$scope.exampleValue = "Hello angular-app and rails"
 
@@ -13,12 +13,11 @@ angular.module('mepedia.controllers').controller("HomeController", [
 			user.lastname = $scope.lastname
 			user.email = $scope.email
 			user.password = $scope.password
-			user.$save (->
-				console.log "Yes"
-				$state.go 'profile'
+			user.$save {}, (()->
+				sessionService.login($scope.email, $scope.password)
 				return
-			), ->
-			console.log "No"
+			), (error)->
+				console.log error
 			return
 
 		$scope.carouselInterval = 4000

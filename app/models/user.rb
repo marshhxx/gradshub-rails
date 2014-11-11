@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
     # This only works before_create obviously, otherwise it would
     # find itself and loop eternally.
     while self.uid.blank? or !User.find_by_uid(self.uid).blank?
-      self.uid = Digest::SHA1.hexdigest("#{self.name},#{self.lastname},#{self.email}#{Time.current.usec}")
+      self.uid = '0U' + Digest::SHA1.hexdigest("#{self.name},#{self.lastname},#{self.email}#{Time.current.usec}").slice(0,8)
     end
   end
 end

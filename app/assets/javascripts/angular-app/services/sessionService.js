@@ -1,6 +1,6 @@
 angular.module('mepedia.services').factory('sessionService',
-    ['$location', '$http',
-        function($location, $http) {
+    ['$location', '$http','$q',
+        function($location, $http, $q) {
         // Redirect to the given url (defaults to '/')
         function redirect(url) {
             url = url || '/';
@@ -8,16 +8,21 @@ angular.module('mepedia.services').factory('sessionService',
         }
         var service = {
             login: function(email, password) {
-                return $http.post('/api/sessions', {session: {email: email, password: password} })
+                var deferred = $q.defer();
+
+                $http.post('/api/sessions', {session: {email: email, password: password} })
                     .success(function(response) {
                         service.currentUser = response.user;
+                        deferred.resolve(service.currentUser);
                         if (service.isAuthenticated()) {
                             redirect('/profile')
                         }
                     })
                     .error(function(response) {
-                        return response.errors;
+                        deferred.reject(response.errors)
                     });
+
+                return deferred.promise;
             },
 
             logout: function() {
@@ -31,15 +36,6 @@ angular.module('mepedia.services').factory('sessionService',
                     });
             },
 
-            register: function(email, password, confirm_password) {
-                return $http.post('/users.json', {user: {email: email, password: password, password_confirmation: confirm_password} })
-                    .then(function(response) {
-                        service.currentUser = response.data;
-                        if (service.isAuthenticated()) {
-                            $location.path('/record');
-                        }
-                    });
-            },
             requestCurrentUser: function() {
                 if (service.isAuthenticated()) {
                     return service.currentUser;

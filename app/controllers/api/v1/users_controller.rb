@@ -6,11 +6,21 @@ class Api::V1::UsersController < Api::V1::BaseController
     head :not_implemented
   end
 
-  private
+  def create
+    set_resource(User.create(user_params))
+    @user.password = params[:password]
+    @user.save
 
-  def after_create
-    update_attributes!(:uid => Digest::SHA1.hexdigest("#{name}|#{lastname}|#{email}|#{password}"))
+    unless get_resource.valid?
+      @reasons = get_resource.errors
+      render 'api/v1/common/error', status: :unprocessable_entity
+    end
+    if get_resource.save
+      render :show, status: :created
+    end
   end
+
+  private
 
   def user_params
     params.require(:user).permit(:name, :lastname, :email, :password) if params[:user]
