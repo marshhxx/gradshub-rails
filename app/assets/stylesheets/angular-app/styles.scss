@@ -224,11 +224,11 @@ header .intro-text .intro-heading {
   }
 
   header .intro-text .intro-lead-in {
-    font-size: 4em;
+    font-size: 3.5em;
   }
 
   header .intro-text .intro-heading {
-    font-size: 1.6em;
+    font-size: 1.5em;
     padding-top: 10px;
   }
 }
@@ -455,7 +455,8 @@ section h3.section-subheading {
 
 section#reallifestories {
   text-align:center;
-  padding: 50px 0;
+  padding-top: 50px;
+  padding-bottom: 60px;
   width: 100%;
   background: url(home-reallifestories-background.jpg) no-repeat center;
   -webkit-background-size: cover;
@@ -463,6 +464,7 @@ section#reallifestories {
   background-size: cover;
   -o-background-size: cover;
 }
+
 
 .reallifestories {
   color:#FFF;
@@ -479,17 +481,11 @@ section#reallifestories {
   display: inline-block; /* so that it behaves like the img element */
 }
 
-.reallifestories-img.img-one{
-  background-image: url(home-real-lifestories2.png);
-}
-
-.reallifestories-img.img-two{
-  background-image: url(home-real-lifestories1.png);
-}
-
 /* Small Devices, Tablets */
 @media only screen and (min-width : 768px) {
-
+  .reallifestories-carousel .carousel-indicators{
+    bottom: -50px !important;
+  }
 }
 
 /* Medium Devices, Desktops */
