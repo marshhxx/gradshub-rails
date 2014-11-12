@@ -18,7 +18,8 @@
 //= require angular-bootstrap
 //= require angular-sanitize
 //= require angular-rails-templates
-//= require_tree ../../../vendor/assets/bower_components/bootstrap-sass-official/assets/javascripts
+//= require bootstrap-sass-official/assets/javascripts/bootstrap
+//= require bootstrap-sass-official/assets/javascripts/bootstrap-sprockets
 //= require ./angular-app/app
 //= require_tree ./angular-app/templates
 //= require_tree ./angular-app/modules
