@@ -14,39 +14,39 @@
     </div>
 
     <div id="top" class="container">
-    <section id="signup" >
-        <form role="form" ng-submit="registerUser()">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12">
+        <section id="signup" >
+            <form role="form" ng-submit="registerUser()">
                 <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-8">
-                        <div class="col-md-6 col-sm-6 home-col name">
-                            <div class="form-group home-container name">
-                                <input type="text" class="form-control" ng-model="name" placeholder="Your Name" id="name" required data-validation-required-message="Please enter your name.">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-8">
+                                <div class="col-md-6 col-sm-6 home-col name">
+                                    <div class="form-group home-container name">
+                                        <input type="text" class="form-control" ng-model="name" placeholder="Your Name" id="name" required data-validation-required-message="Please enter your name.">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 home-col lastname">
+                                    <div class="form-group home-container lastname">
+                                        <input type="text" class="form-control" ng-model="lastname" placeholder="Your Last Name" id="lastname" required data-validation-required-message="Please enter your last name.">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" ng-model="email" placeholder="Your Email" id="email" required data-validation-required-message="Please enter your email.">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" ng-model="password" placeholder="Your Password" id="password" required data-validation-required-message="Please enter your password.">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-sm-6 home-col lastname">
-                            <div class="form-group home-container lastname">
-                                <input type="text" class="form-control" ng-model="lastname" placeholder="Your Last Name" id="lastname" required data-validation-required-message="Please enter your last name.">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6 col-md-6 col-sm-8 text-center margintop-20">
+                                <button type="submit" class="btn btn-xl">Join mepedia for free</button>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" ng-model="email" placeholder="Your Email" id="email" required data-validation-required-message="Please enter your email.">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" ng-model="password" placeholder="Your Password" id="password" required data-validation-required-message="Please enter your password.">
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6 col-lg-6 col-md-6 col-sm-8 text-center margintop-20">
-                        <button type="submit" class="btn btn-xl">Join mepedia for free</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </form>
-    </section>
+            </form>
+        </section>
     </div>
 
     <div id="home-carousel-container">
@@ -91,7 +91,6 @@
     </div>
 </section>
 
-
 <section id="reallifestories">
     <div class="container">
         <div class="row">
@@ -100,27 +99,26 @@
             </div>
         </div>
         <div id="reallifestories-carousel-container">
-                <carousel class="reallifestories-carousel">
-                    <slide ng-repeat="slide in rlslides" active="slide.active">
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 text-center">
-                                <img class="reallifestories-img" ng-src="{{slide.image}}">
-                                <div class="intro-text">
-                                    <p class="text-muted light-txt-white" ng-bind-html="renderHtml(slide.text)"></p>
-                                </div>
+            <carousel class="reallifestories-carousel">
+                <slide ng-repeat="slide in rlslides" active="slide.active">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+                            <img class="reallifestories-img" ng-src="{{slide.image}}">
+                            <div class="intro-text">
+                                <p class="text-muted light-txt-white" ng-bind-html="renderHtml(slide.text)"></p>
                             </div>
                         </div>
-                    </slide>
-                </carousel>
+                    </div>
+                </slide>
+            </carousel>
         </div>
-
     </div>
 </section>
 
 <section id="home-middle-quote">
     <div class="container">
         <div class="row">
-        <p class="home-middle-quote-tlt text-muted text-center">Ready to start?</p>
+            <p class="home-middle-quote-tlt text-muted text-center">Ready to start?</p>
         </div>
         <div class="row">
             <p class="home-middle-quote-txt text-muted text-center">Discover the new way of connecting the world's top hiring managers.</p>
@@ -216,7 +214,6 @@
 
     </div>
     <!-- /.container -->
-
 </section>
 
 
@@ -289,16 +286,16 @@
     </div>
 </section>
 
-    <section id="home-end-quote">
-        <div class="container">
-            <div class="row">
-                <p class="home-middle-quote-tlt text-muted text-center">We are the everybody's Pedia</p>
-            </div>
-            <div class="row">
-                <p class="home-middle-quote-txt text-muted text-center">Start building your storyline. Become a member now.</p>
-            </div>
+<section id="home-end-quote">
+    <div class="container">
+        <div class="row">
+            <p class="home-middle-quote-tlt text-muted text-center">We are the everybody's Pedia</p>
         </div>
-    </section>
+        <div class="row">
+            <p class="home-middle-quote-txt text-muted text-center">Start building your storyline. Become a member now.</p>
+        </div>
+    </div>
+</section>
 
 <footer id="home" class="text-center">
     <div class="footer-above">

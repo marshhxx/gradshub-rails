@@ -30,9 +30,13 @@
 		url: "/login"
 		templateUrl: "angular-app/templates/login.html"
 		controller: "loginController"
+	).state("signup",
+		url: "/signup"
+		templateUrl: "angular-app/templates/signup.html"
+		controller: "signupController"
 	).state("profile",
 		url: "/profile"
-		templateUrl: "angular-app/templates/profile.html"
+		templateUrl: "angular-app/templatess/profile.html"
 		controller: "profileController"
 	)
 	return

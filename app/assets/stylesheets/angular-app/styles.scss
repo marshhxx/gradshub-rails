@@ -166,7 +166,7 @@ section#logo .logo {
   padding-top: 20px;
   padding-bottom: 25px;
   float: left;
-  background-image: url("mepedia-homepage.jpg");
+  background-image: url("logo-homepage.svg");
   background-repeat: no-repeat;
   background-size: 200px auto;
 }
@@ -636,35 +636,35 @@ section#home-hiw-section-two {
 }
 
 .how-it-works-row-img.gm-img-1 {
-  background-image: url(tab1.svg);
+  background-image: url(tabs1.svg);
 }
 
 .how-it-works-row-img.gm-img-2 {
-  background-image: url(tab2.svg);
+  background-image: url(tabs2.svg);
 }
 
 .how-it-works-row-img.gm-img-3 {
-  background-image: url(tab3.svg);
+  background-image: url(tabs3.svg);
 }
 
 .how-it-works-row-img.gm-img-4 {
-  background-image: url(tab4.svg);
+  background-image: url(tabs4.svg);
 }
 
 .how-it-works-row-img.lgm-img-1 {
-  background-image: url(tab1.svg);
+  background-image: url(tabs1.svg);
 }
 
 .how-it-works-row-img.lgm-img-2 {
-  background-image: url(tab2.svg);
+  background-image: url(tabs2.svg);
 }
 
 .how-it-works-row-img.lgm-img-3 {
-  background-image: url(tab3.svg);
+  background-image: url(tabs3.svg);
 }
 
 .how-it-works-row-img.lgm-img-4 {
-  background-image: url(tab4.svg);
+  background-image: url(tabs4.svg);
 }
 
 .how-it-work-row-img-cl {
@@ -812,4 +812,106 @@ footer#home .footer-below {
   padding-top: 40px;
 }
 
+/** Signup **/
+
+.signup-background {
+    height:100%;
+    background:url("signup-image.jpg") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: 100%;
+}
+
+.signup-container {
+  background-color: #FFF;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin: 0px;
+  padding: 40px 80px 80px;
+  min-height: 570px;
+}
+
+.signup-container .title {
+  font-size: 2.5em;
+  font-family: Oswald-regular, Georgia, "Times New Roman", Times, serif;
+  color: #00A0DE;
+}
+
+.signup-container .looking_btn {
+  width: 210px;
+  text-align:center;
+  padding:10px 0;
+  border:2px solid rgb(134,185,163);
+  font:14px Opensans-regular, Georgia, "Times New Roman", Times, serif;
+  color: #3f4752;
+  cursor: pointer;
+  background-color: #FFF;
+  text-decoration: none;
+  display: block;
+  float: left;
+  margin-right: 10px;
+}
+
+.signup-container .looking_btn_active {
+  background-color: rgb(134,185,163);
+  color: #FFF;
+  text-decoration: none;
+}
+
+.signup-container .looking_btn:hover {
+  background-color:rgb(134,185,163);
+  border-width: 2px;
+  border-style: solid;
+  color: #FFF;
+  text-decoration: none;
+}
+
+.signup-container .great_btn {
+  width: 210px;
+  text-align:center;
+  border:2px solid rgb(226,148,123);
+  font: 14px Opensans-regular, Georgia, "Times New Roman", Times, serif;
+  padding:10px 0;
+  color: #3f4752;
+  cursor: pointer;
+  background-color: #FFF;
+  text-decoration: none;
+  display: block;
+  float: left;
+}
+
+.signup-container .great_btn-active{
+  background-color: rgb(226,148,123);
+  color: #FFF;
+  text-decoration: none;
+}
+
+.signup-container .great_btn:hover {
+  background-color:rgb(226,148,123);
+  border-width: 2px;
+  border-style: solid;
+  color: #FFF;
+  text-decoration: none;
+}
+
+.btn-info {
+  background-color: #00A0DE !important;
+}
+
+.btn-info:hover {
+  background-color: #00A0DE !important;
+  border-color: #00A0DE;
+
+}
+
+.btn-danger {
+  background-color: #3f4752;
+  border-color: #3f4752 !important;
+}
+
+.btn-danger:hover {
+  background-color: #3f4752;
+  border-color: #3f4752;
+}
 

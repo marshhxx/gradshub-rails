@@ -1,0 +1,66 @@
+<div class="signup-background">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <form name="signup-step-one" class="signup-container">
+
+                    <div>
+                        <span class="title">Welcome to Mepedia</span>
+                    </div>
+
+                    <div class="row ">
+                        <div class="col-md-12">
+                            <span id="looking" class="looking_btn">LOOKING FOR GREAT MINDS</span>
+                            <span id="great" class="great_btn">I  AM A GREAT MIND</span>
+                        </div>
+                     </div>
+
+                    <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label for="bio">Bio</label>
+                                    <input type="text" class="form-control" id="bio" placeholder="Bio">
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label for="country">Country</label>
+                                    <input type="text" class="form-control" id="country" placeholder="Country">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="state">State</label>
+                                    <input type="text" class="form-control" id="state" placeholder="State">
+                                </div>
+                            </div>
+                    </div>
+
+
+                    <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label for="nationality">Nationality</label>
+                                    <input type="text" class="form-control" id="nationality" placeholder="Nationality">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label>Date of birth</label>
+                                    <p class="input-group">
+                                        <input type="text" class="form-control" datepicker-popup="yyyy/MM/dd" ng-model="date" is-open="opened" max-date="'2015-01-01'" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                                          <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                          </span>
+                                    </p>
+                                </div>
+                            </div>
+                     </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

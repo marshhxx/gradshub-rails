@@ -8,17 +8,18 @@ angular.module('mepedia.controllers').controller("HomeController", [
 		 $sce.trustAsHtml(htmlCode)
 
 		$scope.registerUser = () ->
-			user = new User()
-			user.name = $scope.name
-			user.lastname = $scope.lastname
-			user.email = $scope.email
-			user.password = $scope.password
-			user.$save (->
-				console.log "Yes"
-				$state.go 'profile'
-				return
-			), ->
-			console.log "No"
+			$state.go 'signup'
+#			user = new User()
+#			user.name = $scope.name
+#			user.lastname = $scope.lastname
+#			user.email = $scope.email
+#			user.password = $scope.password
+#			user.$save (->
+#				console.log "Yes"
+#				$state.go 'signup'
+#				return
+#			), ->
+#			console.log "No"
 			return
 
 		$scope.carouselInterval = 4000
@@ -63,5 +64,4 @@ angular.module('mepedia.controllers').controller("HomeController", [
 			# the element you wish to scroll to.
 			$location.hash "top"
 			$anchorScroll()
-
 ])
