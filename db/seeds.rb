@@ -6,5 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-user = User.create({name: 'Martin', lastname: 'Bomio', email: 'mbomio@dataxu.com', password: '12345'})
-
+%w{
+  countries users states
+}.each do |part|
+  require File.expand_path(File.dirname(__FILE__))+"/seeds/#{part}.rb"
+end

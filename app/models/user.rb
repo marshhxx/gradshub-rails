@@ -3,9 +3,19 @@ class User < ActiveRecord::Base
   validates :name, :lastname, :email, :presence => true
   validates_uniqueness_of :auth_token
   validates_uniqueness_of :email, :case_sensitive => false
-
   before_create :generate_authentication_token!
   before_create :set_uid
+
+  enum gender: {male: 0, female: 1, not_known:2}
+  has_and_belongs_to_many :skills
+  has_one :country
+  has_one :state
+  has_and_belongs_to_many :nationality
+  has_many :languages, :through => :users_languages
+  has_many :careers
+  has_many :eduacations
+  serialize :interests, Array
+  has_and_belongs_to_many :publications
 
   def generate_authentication_token!
     begin
