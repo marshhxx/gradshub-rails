@@ -5,4 +5,10 @@ class ApplicationController < ActionController::Base
 
   include Authenticable
 
+  rescue_from ActiveRecord::RecordNotFound, :with => :not_found
+
+  def not_found(exception)
+      render :json => {:error => {:message => exception.message}}, :status => :not_found
+  end
+
 end

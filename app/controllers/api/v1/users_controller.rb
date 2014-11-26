@@ -1,4 +1,4 @@
-class Api::V1::UsersController < Api::V1::BaseController
+class Api::V1::UsersController < Api::BaseController
   before_action :authenticate_with_token!, only: [:update]
 
   # DELETE /api/users/1

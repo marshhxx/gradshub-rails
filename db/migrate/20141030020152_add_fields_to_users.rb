@@ -1,5 +1,18 @@
 class AddFieldsToUsers < ActiveRecord::Migration
   def change
+
+    create_table :countries do |t|
+      t.string :name, null: false
+      t.string :iso_code, null: false
+      t.timestamp
+    end
+
+    create_table :states do |t|
+      t.string :name, null: false
+      t.belongs_to :country
+      t.string :iso_code
+    end
+
     create_table :users do |t|
       t.string :uid,  null: false
 
@@ -29,18 +42,6 @@ class AddFieldsToUsers < ActiveRecord::Migration
     create_table :users_skills do |t|
       t.belongs_to :users
       t.belongs_to :skills
-    end
-
-    create_table :countries do |t|
-      t.string :name, null: false
-      t.string :iso_code, null: false
-      t.timestamp
-    end
-
-    create_table :states do |t|
-      t.string :name, null: false
-      t.belongs_to :country
-      t.string :iso_code
     end
 
     create_table :nationalities do |t|
@@ -109,7 +110,6 @@ class AddFieldsToUsers < ActiveRecord::Migration
     create_table :users_publications do |t|
       t.belongs_to :user
       t.belongs_to :publication
-
     end
   end
 end

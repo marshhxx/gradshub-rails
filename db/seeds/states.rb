@@ -3808,5 +3808,7 @@ State.delete_all
     {:id => 3806, :iso_code => "09", :name => "Bulawayo", :country_id => 249},
     {:id => 3807, :iso_code => "10", :name => "Harare Province", :country_id => 249}
 ].each do |s|
-  State.new(:name => s[:name], :iso_code => s[:iso_code], :country_id => s[:country_id])
+  state = State.new(:name => s[:name], :iso_code => s[:iso_code])
+  state.country = Country.find(s[:country_id])
+  state.save
 end

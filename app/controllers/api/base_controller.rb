@@ -1,4 +1,4 @@
-class Api::V1::BaseController < ApplicationController
+class Api::BaseController < ApplicationController
   protect_from_forgery with: :null_session
   before_action :set_resource, only: [:destroy, :show, :update]
   respond_to :json
@@ -32,11 +32,13 @@ class Api::V1::BaseController < ApplicationController
     resources = resource_class.where(query_params)
 
     instance_variable_set(plural_resource_name, resources)
-    respond_with instance_variable_get(plural_resource_name)
+    render :index, status: :ok
   end
 
   # GET /api/{plural_resource_name}/1
   def show
+    resources = resource_class.find(params[:id])
+    instance_variable_set(resource_name, resources)
     respond_with get_resource
   end
 

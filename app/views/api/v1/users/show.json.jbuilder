@@ -3,5 +3,4 @@ json.user do
   json.lastname @user.lastname
   json.email  @user.email
   json.password @user.password
-
 end

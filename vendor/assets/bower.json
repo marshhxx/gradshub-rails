@@ -5,6 +5,7 @@
     "angular-ui-router": "latest",
     "angular-resource": "latest",
     "bootstrap-sass-official": "latest",
-    "angular-bootstrap": "latest"
+    "angular-bootstrap": "latest",
+    "angular-sanitize": "latest"
   }
 }

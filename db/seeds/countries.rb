@@ -252,5 +252,5 @@ Country.delete_all
     {:id => 250, :iso_code => "CS", :name => "Serbia and Montenegro"},
     {:id => 251, :iso_code => "AN", :name => "Netherlands Antilles"}
 ].each do |c|
-  Country.new(:name => c[:name], :iso_code => c[:iso_code])
+  Country.create(:id => c[:id], :name => c[:name], :iso_code => c[:iso_code])
 end
