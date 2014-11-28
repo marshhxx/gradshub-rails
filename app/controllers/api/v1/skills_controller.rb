@@ -1,5 +1,5 @@
 class Api::V1::SkillsController < Api::BaseController
-  #before_action :authenticate_with_token!, only: [:create]
+  before_action :authenticate_with_token!, only: [:create]
 
   private
 

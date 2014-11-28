@@ -8,8 +8,8 @@ class User < ActiveRecord::Base
 
   enum gender: {male: 0, female: 1, not_known:2}
   has_and_belongs_to_many :skills
-  has_one :country
-  has_one :state
+  belongs_to :country
+  belongs_to :state
   has_and_belongs_to_many :nationality
   has_many :languages, :through => :users_languages
   has_many :careers

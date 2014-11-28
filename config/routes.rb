@@ -7,7 +7,7 @@ Demo::Application.routes.draw do
   namespace :api, defaults: {format: 'json'} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1) do
     # We are going to list our resources here
-      resources :users, :only => [:show, :create, :update, :destroy]
+      resources :users, :only => [:show, :create, :update]
       resources :sessions, :only => [:create, :destroy]
       resources :languages, :only => [:index]
       resources :schools, :only => [:index]
