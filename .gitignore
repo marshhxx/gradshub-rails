@@ -19,3 +19,4 @@
 *.ini
 .idea/*
 .keep
+/vendor/assets/*    
