@@ -16,7 +16,10 @@
 //= require angular-ui-router
 //= require angular-resource
 //= require angular-bootstrap
+// Insert html in text
 //= require angular-sanitize
+//= require angular-animate
+
 //= require angular-rails-templates
 //= require bootstrap-sass-official/assets/javascripts/bootstrap
 //= require bootstrap-sass-official/assets/javascripts/bootstrap-sprockets
@@ -28,3 +31,4 @@
 //= require_tree ./angular-app/modules
 //= require_tree ./angular-app/services
 //= require_tree ./angular-app/controllers
+

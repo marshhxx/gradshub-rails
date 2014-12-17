@@ -6,6 +6,7 @@
     "angular-resource": "latest",
     "bootstrap-sass-official": "latest",
     "angular-bootstrap": "latest",
-    "angular-sanitize": "latest"
+    "angular-sanitize": "latest",
+    "angular-animate": "latest"
   }
 }

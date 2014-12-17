@@ -46,16 +46,23 @@
   src: url(Oswald-Regular.otf);
 }
 
-html,body{
-  width: 100%;
+html {
   height: 100%;
+  min-height: 100%;
+}
+
+body{
+  min-height: 100%;
   overflow-x: hidden !important;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
   webkit-tap-highlight-color: transparent;
+
 }
 
 .input {
   color: #3f4752;
-  font-family: Opensans-regular, Georgia, "Times New Roman", Times, serif;
+  font-family: Opensans-regular, Georgia, "Times New Roman", Times, serif !important;
   font-size: 14px;
 }
 
@@ -82,15 +89,110 @@ html,body{
 }
 
 .title {
-  font-size: 2.5em;
+  font-size: 2.2em;
   font-family: Oswald-regular, Georgia, "Times New Roman", Times, serif;
+}
+
+.subtitle {
+  font-size: 1.3em;
+  font-family: Opensans-regular, Georgia, "Times New Roman", Times, serif;
+}
+
+.hr {
+  border:1px solid #dce0e0;
+}
+
+.form_label {
+  color: #3f4752;
+  font-size: 14px;
+  font-family: Opensans-regular, Georgia, "Times New Roman", Times, serif !important;
+  font-weight: bold;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 6px 0;
+}
+
+.padding-0 {
+  padding: 0 0;
+}
+
+.padding-5 {
+  padding: 0 5px !important;
+}
+
+.padding-right-0 {
+  padding-right: 0;
+}
+
+.padding-left-0 {
+  padding-left: 0 !important;
+}
+
+.padding-right-0 {
+  padding-right: 0 !important;
 }
 
 @media(min-width:768px) {
   .title {
     font-size: 3.5em;
-    font-family: Oswald-regular, Georgia, "Times New Roman", Times, serif;
   }
+
+  .subtitle {
+    font-size: 1.1em;
+  }
+}
+
+.margin-lr10{
+  margin: 0px 10px;
+}
+
+.margin-lr20{
+  margin: 0px 20px;
+}
+
+.margin-lr30{
+  margin: 0px 30px;
+}
+
+.margin-t10{
+  margin-top: 10px;
+}
+
+.margin-t15{
+  margin-top: 15px;
+}
+
+.margin-t20{
+  margin-top: 20px;
+}
+
+.margin-t30{
+  margin-top: 30px;
+}
+
+.margin-t40{
+  margin-top: 40px;
+}
+
+.margin-t50{
+  margin-top: 50px;
+}
+
+.margin-b20{
+  margin-bottom: 20px;
+}
+
+.col-label {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 30%;
+  padding-right: 11px;
+  text-align: right;
+}
+
+.col-field {
+  margin-left: 30%;
+  text-align: left;
 }
 
 .navbar-default {
@@ -98,7 +200,8 @@ html,body{
   margin-bottom: 0px !important;
   border-radius: 0px;
   border: 0 !important;
-  background-color: #1C2A33;
+ // background-color: #1C2A33;
+  background-color: #122028;
 }
 
 .navbar-default .navbar-collapse {
@@ -121,23 +224,23 @@ html,body{
 
 .navbar-default .nav li a {
   text-transform: uppercase;
-  font-family: 'Opensans-regular';
+  font-family: 'Opensans-light';
   font-weight: 400;
-  letter-spacing: 1px;
-  color: #fff;
+  color:#fff;
 }
 
 .navbar-default .nav li a:hover,
 .navbar-default .nav li a:focus {
   outline: 0;
-  color: #3D9ED8;
-  font-family: 'Opensans-semibold';
+  color:#3D9ED8;
+  font-family: 'Opensans-light' !important;
+  cursor: pointer;
 }
 
 .navbar-default .navbar-nav>.active>a {
   border-radius: 0;
-  color: #fff;
-  background-color: #3D9ED8;
+  background-color:#3D9ED8;
+  cursor: pointer;
 }
 
 @media(min-width:768px) {
@@ -166,17 +269,36 @@ section#logo .logo {
   padding-top: 20px;
   padding-bottom: 25px;
   float: left;
-  background-image: url("mepedia-homepage.jpg");
+  background-image: url("logo-homepage.svg");
   background-repeat: no-repeat;
   background-size: 200px auto;
 }
+
+.logo-white {
+  width: 150px;
+  height: 50px;
+  float: left;
+  background-image: url("logo-lightblue.svg");
+  background-repeat: no-repeat;
+  background-size: 150px 50px;
+  border: 0px !important;
+}
+
+
+.logo-white-container {
+  width: 200px;
+  height: 50px;
+}
+
+
+
 
 // SignIn
 
 header {
   width: 100%;
   height: 490px;
-  background-attachment: scroll;
+  background-image: url("home-slider-background.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   -webkit-background-size: cover;
@@ -195,13 +317,13 @@ header .intro-text .intro-lead-in {
   padding-top: 30px;
   line-height: 50px;
   font-family: Roboto-bold, Georgia, "Times New Roman", Times, serif;
-  font-size: 2.2em;
+  font-size: 1.9em;
   color: #FFF;
 }
 
 header .intro-text .intro-heading {
   font-family: Roboto-light, Georgia, "Times New Roman", Times, serif;
-  font-size: 1.4em;
+  font-size: 1.3em;
   line-height: 22px;
   color: #FFF;
 }
@@ -211,6 +333,7 @@ header .intro-text .intro-heading {
     height: 490px;
     background-position: center center;
     background-repeat: none;
+    background-image: none;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -236,10 +359,8 @@ header .intro-text .intro-heading {
 /* Sign up form & carousel*/
 
 section#signup {
-  width: 90%;
+  width: 100%;
   padding-top: 150px;
-  position: absolute;
-  z-index: 2;
 }
 
 section#signup .home-col.name {
@@ -275,6 +396,12 @@ header .home-carousel-container{
 
 /* Small Devices, Tablets */
 @media only screen and (min-width : 768px) {
+
+  section#signup {
+    width: 90%;
+    position: absolute;
+    z-index: 2;
+  }
 
   header .home-carousel-container {
     display: block;
@@ -324,7 +451,7 @@ header .home-carousel-container{
 }
 
 .btn-xs {
-  padding: 15px 30px;
+  padding: 10px 30px;
   background:none;
   color:#fff;
   font:14px Opensans-regular, Georgia, "Times New Roman", Times, serif;
@@ -343,6 +470,10 @@ header .home-carousel-container{
   }
 }
 
+.carousel-slider {
+  display: none;
+}
+
 .home-carousel-img{
   width: 100%;
   background-position: center;
@@ -359,9 +490,26 @@ header .home-carousel-container{
 }
 
 .carousel-indicators li {
-  margin: 0 2px !important;
+  display: none;
 }
 
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+  .carousel-indicators li {
+    margin: 0 2px !important;
+    display: inline-block;
+  }
+
+  .carousel-slider {
+    display: inherit;
+  }
+
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+
+}
 
 /*** Start features section ***/
 
@@ -372,14 +520,14 @@ section {
 section h2.section-heading {
   margin-top: 0;
   margin-bottom: 15px;
-  font-size: 30px;
+  font-size: 2.2em;
   color: #3D9ED8;
   font-family: Oswald-regular, Georgia, "Times New Roman", Times, serif;
 }
 
 section h3.section-subheading {
   margin-bottom: 45px;
-  font-family: Opensans-regular, Georgia, "Times New Roman", Times, serif;
+  font-family: Opensans-light, Georgia, "Times New Roman", Times, serif;
   font-size: 1.5em;
   color: #3f4752;
 //  font-variant: small-caps;
@@ -418,6 +566,7 @@ section h3.section-subheading {
   section h3.section-subheading {
     margin-bottom: 35px;
     margin-top: 15px;
+
   }
 
   .features-image{
@@ -502,21 +651,50 @@ section#reallifestories {
 /* Start middle quote section */
 
 section#home-middle-quote {
-  padding: 50px 0;
+  padding: 70px 0;
 }
 
 .home-middle-quote-tlt {
-  font-family: Opensans-semibold, Georgia, "Times New Roman", Times, serif;
-  font-size: 2.0em;
-  color: #3f4752;
+  font-family: Oswald-Regular, Georgia, "Times New Roman", Times, serif;
+  font-size: 1.5em;
+  color: #3D9ED8 !important;
+  text-transform: uppercase;
 }
 
 .home-middle-quote-txt {
-  font-family: Opensans-regular, Georgia, "Times New Roman", Times, serif;
-  font-size: 1.5em;
+  font-family: Opensans-light, Georgia, "Times New Roman", Times, serif;
+  font-size: 1.3em;
   color: #3f4752;
 }
 
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+
+  .home-middle-quote-tlt {
+    font-family: Oswald-Regular, Georgia, "Times New Roman", Times, serif;
+    font-size: 3.5em;
+  }
+
+  .home-middle-quote-txt {
+    font-family: Opensans-light, Georgia, "Times New Roman", Times, serif;
+    font-size: 1.5em;
+    color: #3f4752;
+  }
+
+}
+
+section#home-end-quote {
+  padding: 70px 0;
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+
+}
 
 /* End middle quote section */
 
@@ -527,7 +705,7 @@ section#btn-type {
 }
 
 .looking_minds_btn{
-  width: 300px;
+  width: 290px;
   text-align:center;
   padding:15px 0;
   border:2px solid rgb(134,185,163);
@@ -536,6 +714,7 @@ section#btn-type {
   cursor: pointer;
   background-color: #FFF;
   text-decoration: none;
+  display: inline-block;
 }
 
 .looking_minds_btn-active{
@@ -553,7 +732,7 @@ section#btn-type {
 }
 
 .great_minds_btn {
-  width: 300px;
+  width: 290px;
   text-align:center;
   border:2px solid rgb(226,148,123);
   font:18px Opensans-regular, Georgia, "Times New Roman", Times, serif;
@@ -562,6 +741,7 @@ section#btn-type {
   cursor: pointer;
   background-color: #FFF;
   text-decoration: none;
+  display: inline-block;
 }
 
 .great_minds_btn-active{
@@ -578,8 +758,9 @@ section#btn-type {
   text-decoration: none;
 }
 
+
 .btn-type {
-  padding-bottom: 50px;
+  padding-bottom: 10px;
 }
 
 @media(min-width:767px) {
@@ -605,12 +786,12 @@ section#btn-type {
 section#howitworks-bar-line{
   height: 10px;
   padding: 0px 0px;
-  background-color: #00A0DE;
+  background-color: #3D9ED8;
 }
 
 section#howitworks-bar {
   padding: 20px 0px;
-  background-color: #1C2A33;
+  background-color: #122028;
 }
 
 .here-is-how-it-works{
@@ -636,35 +817,35 @@ section#home-hiw-section-two {
 }
 
 .how-it-works-row-img.gm-img-1 {
-  background-image: url(tab1.svg);
+  background-image: url(tabs1.svg);
 }
 
 .how-it-works-row-img.gm-img-2 {
-  background-image: url(tab2.svg);
+  background-image: url(tabs2.svg);
 }
 
 .how-it-works-row-img.gm-img-3 {
-  background-image: url(tab3.svg);
+  background-image: url(tabs3.svg);
 }
 
 .how-it-works-row-img.gm-img-4 {
-  background-image: url(tab4.svg);
+  background-image: url(tabs4.svg);
 }
 
 .how-it-works-row-img.lgm-img-1 {
-  background-image: url(tab1.svg);
+  background-image: url(tabs1.svg);
 }
 
 .how-it-works-row-img.lgm-img-2 {
-  background-image: url(tab2.svg);
+  background-image: url(tabs2.svg);
 }
 
 .how-it-works-row-img.lgm-img-3 {
-  background-image: url(tab3.svg);
+  background-image: url(tabs3.svg);
 }
 
 .how-it-works-row-img.lgm-img-4 {
-  background-image: url(tab4.svg);
+  background-image: url(tabs4.svg);
 }
 
 .how-it-work-row-img-cl {
@@ -733,9 +914,8 @@ section#home-hiw-section-two {
 
 /* End how it works section */
 
-
 section#quotes {
-  padding: 50px 0;
+  padding: 70px 0;
   background-color: #f0efef;
 }
 
@@ -767,7 +947,7 @@ footer#home {
 }
 
 footer#home .footer-above {
-  background-color: #1C2A33;
+  background-color: #122028;
   padding: 50px 0px;
 }
 
@@ -789,8 +969,8 @@ footer#home .footer-below {
 }
 
 .footer-li:hover {
-  font:14px Opensans-regular, Georgia, "Times New Roman", Times, serif;
-  color:#00A0DE;
+  font:14px Opensans-light, Georgia, "Times New Roman", Times, serif;
+  color:#3D9ED8;
   cursor: pointer;
   text-decoration: none;
 }
@@ -812,4 +992,366 @@ footer#home .footer-below {
   padding-top: 40px;
 }
 
+/** Main footer **/
 
+footer#main {
+  padding: 0px 0px !important;
+}
+
+footer#main .footer-above {
+  background-color: #122028;
+  padding: 15px 0px;
+}
+
+/** Signup **/
+
+.col-8 {
+  width: 90%;
+}
+
+.signup.background {
+  background: url("background-lights.jpg") no-repeat center center fixed;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  height: 710px;
+}
+
+.signup .title {
+  font-size: 2.0em;
+  font-family: Oswald-regular, Georgia, "Times New Roman", Times, serif;
+  color: #FFFFFF;
+  text-transform: uppercase;
+}
+
+.signup .subtitle-container {
+  padding: 0 30px;
+}
+
+.signup .subtitle {
+  font-size: 1.1em;
+  font-family: Opensans-light, Georgia, "Times New Roman", Times, serif;
+  color: #FFFFFF;
+}
+
+.signup-ending-message {
+  font-size: 1.1em;
+  font-family: Opensans-regular, Georgia, "Times New Roman", Times, serif;
+  color: #FFFFFF;
+}
+
+.signup .looking_btn {
+  width: 210px;
+  text-align:center;
+  padding:10px 0;
+  border: 1px solid rgb(255,255,255);
+  font: 14px Opensans-light, Georgia, "Times New Roman", Times, serif;
+  //color: #3f4752;
+  color: #FFFFFF;
+  cursor: pointer;
+  background-color: none;
+  text-decoration: none;
+  margin-right: 10px;
+  display:inline-block;
+}
+
+.signup .looking_btn_active {
+  background-color: rgb(134,185,163);
+  border: 1px solid rgb(134,185,163);
+  color: #FFF;
+  text-decoration: none;
+}
+
+.signup .looking_btn:hover {
+  background-color:rgb(134,185,163);
+  border: 1px solid rgb(134,185,163);
+  text-decoration: none;
+}
+
+.signup .great_btn {
+  width: 210px;
+  color: #FFFFFF;
+  text-align:center;
+  border: 1px solid rgb(255,255,255);
+  font: 14px Opensans-light, Georgia, "Times New Roman", Times, serif;
+  padding:10px 0;
+  //color: #3f4752;
+  cursor: pointer;
+  background-color: none;
+  text-decoration: none;
+  display:inline-block;
+}
+
+.signup .great_btn-active{
+  background-color: rgb(226,148,123);
+  border: 1px solid rgb(226,148,123);
+  color: #FFF;
+  text-decoration: none;
+}
+
+.signup .great_btn:hover {
+  background-color:rgb(226,148,123);
+  border: 1px solid rgb(226,148,123);
+  color: #FFF;
+  text-decoration: none;
+}
+
+.signup.form-container {
+  min-height: 270px;
+}
+
+.btn-form {
+  width: 210px;
+  margin: 20px 0;
+  padding: 10px 0px;
+  background:none;
+  color:#FFFFFF;
+  font:14px Opensans-light, Georgia, "Times New Roman", Times, serif;
+  border:1px solid #fff;
+  border-radius: 0 !important;
+}
+
+.btn-form:hover {
+  background:#FFFFFF;
+  color:#3f4752;
+  font:14px Opensans-semibold, Georgia, "Times New Roman", Times, serif;
+}
+
+.btn-primary {
+  width: 100px;
+  background-color: rgb(255,255,255)  !important;
+  border-color: rgb(255,255,255) !important;
+  color: #555555 !important;
+}
+
+.btn-primary :hover {
+  background-color: rgb(255,255,255)  !important;
+  border-color: rgb(255,255,255) !important;
+  color: #555555 !important;
+}
+
+.dropdown-menu {
+  height: 180px;
+  overflow-y:scroll
+}
+
+.caret{
+  margin-left: 10px !important;
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+  .col-8 {
+    width: 60%;
+  }
+
+  .signup .title {
+    font-size: 2.5em;
+  }
+
+  .signup .signup-form {
+    padding: 30px 50px 50px;
+  }
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+
+}
+
+/* BASIC STYLINGS
+============================================================================= */
+
+/* form styling */
+#form-container                { background:rgba(18,32,40,0.8); margin-top:20px; }
+#form-container .page-header   { margin:0; padding:20px;}
+
+/* numbered buttons */
+#status-buttons-work                 {  }
+#status-buttons-work a               { color:#FFF; display:inline-block; font-size:12px; margin-right:10px; text-align:center; text-transform:uppercase; text-decoration: none !important; font-family: Opensans-light, Georgia, "Times New Roman" }
+#status-buttons-work a:hover         { text-decoration:none !important; }
+#status-buttons-work span            { display:block; height:30px; margin:25px auto 10px; padding-top:5px; width:30px; text-decoration: none}
+.ic-wizard{
+  background-size: 45px 45px;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+}
+.ic-wizard.personal{ background-image: url("personalwhite.svg");}
+.ic-wizard.personal.active{ background-image: url("personalpink.svg"); text-decoration: none;}
+.ic-wizard.hpersonal{ background-image: url("personalwhite.svg");}
+.ic-wizard.hpersonal.active{ background-image: url("personalgreen.svg"); text-decoration: none;}
+.ic-wizard.education{ background-image: url("educationwhite.svg");}
+.ic-wizard.education.active{ background-image: url("educationpink.svg");}
+.ic-wizard.interests{ background-image: url("interestswhite.svg"); }
+.ic-wizard.interests.active{ background-image: url("interestspink.svg"); }
+.ic-wizard.company{ background-image: url("companywhite.svg");}
+.ic-wizard.company.active{ background-image: url("companygreen.svg"); text-decoration: none;}
+.ic-wizard.lookingfor{ background-image: url("lookingwhite.svg");}
+.ic-wizard.lookingfor.active{ background-image: url("lookinggreen.svg");}
+
+/* active buttons */
+#status-buttons-work a.active span   { text-decoration:none !important; }
+
+/* numbered buttons */
+#status-buttons-hire                 {  }
+#status-buttons-hire a               { color:#FFF; display:inline-block; font-size:12px; margin-right:10px; text-align:center; text-transform:uppercase; text-decoration: none !important; font-family: Opensans-light, Georgia, "Times New Roman" }
+#status-buttons-hire a:hover         { text-decoration:none !important; }
+#status-buttons-hire span            { display:block; height:30px; margin:25px auto 10px; padding-top:5px; width:30px; text-decoration: none}
+
+label {
+  color: #FFF;
+}
+
+
+/* ANIMATION STYLINGS
+============================================================================= */
+#signup-form            { position:relative; min-height:380px; overflow:hidden; margin-top: 20px;}
+
+/* basic styling for entering and leaving */
+/* left and right added to ensure full width */
+#form-views.ng-enter,
+#form-views.ng-leave      { position:absolute; left:0px; right:0px;
+  transition:0.5s all ease; -moz-transition:0.5s all ease; -webkit-transition:0.5s all ease;
+}
+
+/* enter animation */
+#form-views.ng-enter            {
+  -webkit-animation:slideInRight 0.5s both ease;
+  -moz-animation:slideInRight 0.5s both ease;
+  animation:slideInRight 0.5s both ease;
+}
+
+/* leave animation */
+#form-views.ng-leave            {
+  -webkit-animation:slideOutLeft 0.5s both ease;
+  -moz-animation:slideOutLeft 0.5s both ease;
+  animation:slideOutLeft 0.5s both ease;
+}
+
+/* ANIMATIONS
+============================================================================= */
+/* slide out to the left */
+@keyframes slideOutLeft {
+  to 		{ transform: translateX(-200%); }
+}
+@-moz-keyframes slideOutLeft {
+  to 		{ -moz-transform: translateX(-200%); }
+}
+@-webkit-keyframes slideOutLeft {
+  to 		{ -webkit-transform: translateX(-200%); }
+}
+
+/* slide in from the right */
+@keyframes slideInRight {
+  from 	{ transform:translateX(200%); }
+  to 		{ transform: translateX(0); }
+}
+@-moz-keyframes slideInRight {
+  from 	{ -moz-transform:translateX(200%); }
+  to 		{ -moz-transform: translateX(0); }
+}
+@-webkit-keyframes slideInRight {
+  from 	{ -webkit-transform:translateX(200%); }
+  to 		{ -webkit-transform: translateX(0); }
+}
+
+
+/*=========================================================================== */
+
+/** START login **/
+.login.background {
+  background:url("background-paris.JPG") no-repeat center center fixed;
+  background-size: cover !important;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  min-height: 630px;
+
+}
+
+.login.form-container {
+  min-height: 320px;
+  background: rgba(18 ,32 ,40 ,0.8);
+  padding: 20px 20px 20px 20px;
+  margin-top: 80px;
+}
+
+.login.logo {
+  height: 70px;
+  background:url("logo-lightblue.svg") no-repeat center center;
+  background-size: 280px 90px;
+  background-attachment: scroll;
+}
+
+.login.ic-email {
+  background: url("mail.svg") no-repeat 0px 0px;
+  width: 35px;
+  height: 35px;
+  background-size: 30px 30px;
+  float: left;
+  background-color: #3D9ED8;
+  border-radius: 5px;
+}
+
+.login.ic-password {
+  background: url("lock.svg") no-repeat 0px 2px;
+  width: 35px;
+  height: 35px;
+  background-size: 30px 30px;
+  float: left;
+  background-color: #3D9ED8;
+  border-radius: 5px;
+}
+
+.login.button-submit {
+  width: 210px;
+  margin: 10px 0;
+  padding: 10px 0px;
+  background:none;
+  color:#FFFFFF;
+  font:14px Opensans-light, Georgia, "Times New Roman", Times, serif;
+  border:1px solid #fff;
+  border-radius: 0 !important;
+}
+
+.login.button-submit:hover {
+  background:#FFFFFF;
+  color:#3f4752;
+  font:14px Opensans-light, Georgia, "Times New Roman", Times, serif;
+}
+
+.login.forgot-pass {
+  color: white;
+}
+
+.login.forgot-pass a,
+.login.forgot-pass label{
+  font-weight: normal;
+  color: white;
+  font-size: 15px;
+  font:14px Opensans-light, Georgia, "Times New Roman", Times, serif;
+}
+
+.sign-up-login {
+  color: #3D9ED8 !important;
+}
+
+/** END login **/
+
+/** START forgot password **/
+.forgot-pssw-container {
+  border: 1px solid black;
+  width: 400px;
+  height: 400px;
+}
+
+
+/** END forgot password **/

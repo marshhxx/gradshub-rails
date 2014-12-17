@@ -1,5 +1,5 @@
 @app = angular.module("mepedia",
-	["ui.router", "templates", "mepedia.services", "mepedia.controllers", "ngResource", "ui.bootstrap", "ngSanitize"])
+	["ui.router", "templates", "mepedia.services", "mepedia.controllers", "ngResource", "ui.bootstrap", "ngSanitize", "ngAnimate"])
 .config ($stateProvider, $urlRouterProvider, $httpProvider) ->
 	$httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
 	$httpProvider.defaults.headers.common.Accept = 'application/mepedia.v1'
@@ -21,19 +21,57 @@
 				promise.then success, error
 	]
 	$httpProvider.interceptors.push interceptor
-	$urlRouterProvider.otherwise "/"
+	$urlRouterProvider.when('/home', '/home/page')
+	$urlRouterProvider.otherwise "/home"
 	$stateProvider.state("home",
-		url: "/"
+		url: "/home"
+		templateUrl: "angular-app/templates/layouts/homeLayout.html"
+		controller: "HomeController"
+	).state("home.page",
+		url: "/page"
 		templateUrl: "angular-app/templates/home.html"
 		controller: "HomeController"
-	).state("login",
+	).state("main",
+		url: "/main"
+		templateUrl: "angular-app/templates/layouts/mainLayout.html"
+		controller: "signupController"
+	).state("main.login",
 		url: "/login"
 		templateUrl: "angular-app/templates/login.html"
 		controller: "loginController"
+	).state("main.forgotpssw",
+		url: "/login"
+		templateUrl: "angular-app/templates/forgot_pssw.html"
+		controller: "loginController"
+	).state("main.signup",
+		url: "/signup"
+		templateUrl: "angular-app/templates/signup.html"
+		controller: "signupController"
+	).state("main.signup.personal",
+		url: "/personal"
+		templateUrl: "angular-app/templates/views/form-personal.html"
+		controller: "signupController"
+	).state("main.signup.education",
+		url: "/education"
+		templateUrl: "angular-app/templates/views/form-education.html"
+		controller: "signupController"
+	).state("main.signup.career",
+		url: "/career"
+		templateUrl: "angular-app/templates/views/form-interests.html"
+		controller: "signupController"
+	).state("main.signup.company",
+		url: "/company"
+		templateUrl: "angular-app/templates/views/form-company.html"
+		controller: "signupController"
+	).state("main.signup.interests",
+		url: "/interests"
+		templateUrl: "angular-app/templates/views/form-lookingfor.html"
+		controller: "signupController"
 	).state("profile",
 		url: "/profile"
 		templateUrl: "angular-app/templates/profile.html"
 		controller: "profileController"
 	)
+
 	return
 
