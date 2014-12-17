@@ -15,7 +15,7 @@ angular.module('mepedia.services').factory('sessionService',
                         service.currentUser = response.user;
                         deferred.resolve(service.currentUser);
                         if (service.isAuthenticated()) {
-                            redirect('/signup')
+                            redirect('/main/signup')
                         }
                     })
                     .error(function(response) {

@@ -1,6 +1,6 @@
 angular.module('mepedia.controllers').controller("signupController", [
-	'$scope', '$log'
-	($scope, $log)->
+	'$scope', '$log', 'Country'
+	($scope, $log, Country)->
 
 		$scope.months = [
 			"Enero"
@@ -52,6 +52,8 @@ angular.module('mepedia.controllers').controller("signupController", [
 		$scope.selectedFrom = "From"
 		$scope.selectedTo = "To"
 
+		countries = Country.query ->
+			console.log(countries);
 
 
 

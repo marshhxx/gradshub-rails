@@ -21,8 +21,8 @@
 				promise.then success, error
 	]
 	$httpProvider.interceptors.push interceptor
-	$urlRouterProvider.when('/home', '/home/page')
 	$urlRouterProvider.otherwise "/home"
+	$urlRouterProvider.when('/home', '/home/page')
 	$stateProvider.state("home",
 		url: "/home"
 		templateUrl: "angular-app/templates/layouts/homeLayout.html"
