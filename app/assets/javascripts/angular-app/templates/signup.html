@@ -1,66 +1,57 @@
-<div class="signup-background">
+<div class="signup background" xmlns="http://www.w3.org/1999/html">
+
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <form name="signup-step-one" class="signup-container">
+            <div class="col-sm-6 col-sm-offset-3">
 
-                    <div>
+                <div id="form-container">
+                    <div class="page-header text-center signup signup-form">
                         <span class="title">Welcome to Mepedia</span>
-                    </div>
 
-                    <div class="row ">
-                        <div class="col-md-12">
-                            <span id="looking" class="looking_btn">LOOKING FOR GREAT MINDS</span>
-                            <span id="great" class="great_btn">I  AM A GREAT MIND</span>
+                        <div class="row text-center">
+                            <div class="col-md-12">
+                                <div class="margin-10 subtitle-container">
+                                    <span class="subtitle">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</span>
+                                </div>
+                            </div>
                         </div>
-                     </div>
 
-                    <div class="row">
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <label for="bio">Bio</label>
-                                    <input type="text" class="form-control" id="bio" placeholder="Bio">
-                                </div>
+                        <div class="row margin-t20 text-center">
+                            <div class="col-md-12 text-center">
+                            <span id="looking" class="looking_btn" ng-click="showType()"
+                                  ng-class="{'looking_btn_active': !type}">I WANT TO HIRE</span>
+                            <span id="great" class="great_btn" ng-click="showType()"
+                                  ng-class="{'great_btn-active': type}">I WANT A JOB</span>
                             </div>
+                        </div>
+
+                        <!-- the links to our nested states using relative paths -->
+                        <!-- add the active class if the state matches our ui-sref -->
+                        <div id="status-buttons-work" class="text-center" ng-show="type">
+                            <a ui-sref-active="active" ui-sref=".personal" class="ic-wizard personal"><span class="type-work"></span> Personal</a>
+                            <a ui-sref-active="active" ui-sref=".education" class="ic-wizard education"><span class="type-work"></span> Education</a>
+                            <a ui-sref-active="active" ui-sref=".career" class="ic-wizard interests"><span class="type-work"></span> Interests</a>
+                        </div>
+
+                        <div id="status-buttons-hire" class="text-center" ng-hide="type">
+                            <a ui-sref-active="active" ui-sref=".personal" class="ic-wizard hpersonal"><span class="type-work"></span> Personal</a>
+                            <a ui-sref-active="active" ui-sref=".company" class="ic-wizard company" ><span class="type-work"></span> Company</a>
+                            <a ui-sref-active="active" ui-sref=".interests" class="ic-wizard lookingfor"><span class="type-work"></span> Looking For</a>
+                        </div>
                     </div>
 
-                    <div class="row">
-                            <div class="form-group">
-                                <div class="col-md-6">
-                                    <label for="country">Country</label>
-                                    <input type="text" class="form-control" id="country" placeholder="Country">
-                                </div>
+                    <!-- use ng-submit to catch the form submission and use our Angular function -->
+                    <form id="signup-form" name="form" ng-submit="processForm()">
+                        <!-- our nested state views will be injected here -->
+                        <div id="form-views" ui-view>
 
-                                <div class="col-md-6">
-                                    <label for="state">State</label>
-                                    <input type="text" class="form-control" id="state" placeholder="State">
-                                </div>
-                            </div>
-                    </div>
+                        </div>
+                    </form>
 
-
-                    <div class="row">
-                            <div class="form-group">
-                                <div class="col-md-6">
-                                    <label for="nationality">Nationality</label>
-                                    <input type="text" class="form-control" id="nationality" placeholder="Nationality">
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label>Date of birth</label>
-                                    <p class="input-group">
-                                        <input type="text" class="form-control" datepicker-popup="yyyy/MM/dd" ng-model="date" is-open="opened" max-date="'2015-01-01'" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-                                          <span class="input-group-btn">
-                                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                                          </span>
-                                    </p>
-                                </div>
-                            </div>
-                     </div>
-
-                </form>
+                </div>
 
             </div>
         </div>
     </div>
+
 </div>

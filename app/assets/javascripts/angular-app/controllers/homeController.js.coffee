@@ -8,7 +8,7 @@ angular.module('mepedia.controllers').controller("HomeController", [
 		 $sce.trustAsHtml(htmlCode)
 
 		$scope.registerUser = () ->
-			$state.go 'signup'
+			$state.go 'main.signup'
 #			user = new User()
 #			user.name = $scope.name
 #			user.lastname = $scope.lastname
@@ -64,4 +64,5 @@ angular.module('mepedia.controllers').controller("HomeController", [
 			# the element you wish to scroll to.
 			$location.hash "top"
 			$anchorScroll()
+
 ])

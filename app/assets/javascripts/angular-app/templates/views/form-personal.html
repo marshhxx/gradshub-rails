@@ -1,0 +1,73 @@
+<div class="signup form-container col-md-8 col-md-offset-2">
+    <div class="row">
+        <div class="form-group">
+            <input type="text" ng-model="form.bio" required class="form-control" id="bio" placeholder="Bio">
+        </div>
+    </div>
+
+    <div class="row text-center">
+        <div class="btn-group" dropdown on-toggle="isMonth(open)">
+            <button type="button" ng-model="form.month" required class="btn btn-primary dropdown-toggle">
+                {{selectedMonth}} <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li ng-repeat="month in months">
+                    <a ng-click="setMonth(month)">{{month}}</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="btn-group margin-lr10" dropdown on-toggle="isDay(open)">
+            <button type="button" ng-model="form.day" required class="btn btn-primary dropdown-toggle">
+                {{selectedDay}} <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li ng-repeat="day in days">
+                    <a ng-click="setDay(day)">{{day}}</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="btn-group" dropdown on-toggle="isYear(open)">
+            <button type="button" ng-model="form.year" required class="btn btn-primary dropdown-toggle">
+                {{selectedYear}} <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li ng-repeat="year in years">
+                    <a ng-click="setYear(year)">{{year}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row margin-t15">
+        <div class="form-group">
+            <input type="text" ng-model="form.country" required class="form-control" id="country"
+                   placeholder="Country">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group">
+            <input type="text" ng-model="form.state" required class="form-control" id="state"
+                   placeholder="State">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group ">
+            <input type="text" ng-model="form.nationality" required class="form-control" id="nationality"
+                   placeholder="Nationality">
+        </div>
+    </div>
+</div>
+
+<div>
+    <div class="form-group row">
+        <div class="col-xs-12 text-center">
+            <a ui-sref="main.signup.education" class="btn btn-form">
+                NEXT </span>
+            </a>
+        </div>
+    </div>
+</div>
