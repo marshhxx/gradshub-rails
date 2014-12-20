@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  devise  :database_authenticatable
+  devise  :database_authenticatable, :recoverable
   validates :name, :lastname, :email, :presence => true
   validates_uniqueness_of :auth_token
   validates_uniqueness_of :email, :case_sensitive => false

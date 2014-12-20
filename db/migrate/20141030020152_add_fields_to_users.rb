@@ -23,6 +23,10 @@ class AddFieldsToUsers < ActiveRecord::Migration
       t.date :birth
       t.string :encrypted_password,     default: "", null: false
 
+      ## Recoverable
+      t.string   :reset_password_token
+      t.datetime :reset_password_sent_at
+
       t.string :image_url
       t.text :early_life
       t.text :personal_life

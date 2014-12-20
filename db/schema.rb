@@ -101,21 +101,23 @@ ActiveRecord::Schema.define(version: 20141030020738) do
   end
 
   create_table "users", force: true do |t|
-    t.string  "uid",                             null: false
-    t.string  "name",                            null: false
-    t.string  "lastname"
-    t.string  "email",                           null: false
-    t.integer "gender",             default: 2
-    t.date    "birth"
-    t.string  "encrypted_password", default: "", null: false
-    t.string  "image_url"
-    t.text    "early_life"
-    t.text    "personal_life"
-    t.text    "bio"
-    t.string  "job_title"
-    t.integer "country_id"
-    t.integer "state_id"
-    t.string  "auth_token",         default: ""
+    t.string   "uid",                                 null: false
+    t.string   "name",                                null: false
+    t.string   "lastname"
+    t.string   "email",                               null: false
+    t.integer  "gender",                 default: 2
+    t.date     "birth"
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.string   "image_url"
+    t.text     "early_life"
+    t.text     "personal_life"
+    t.text     "bio"
+    t.string   "job_title"
+    t.integer  "country_id"
+    t.integer  "state_id"
+    t.string   "auth_token",             default: ""
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true, using: :btree

@@ -27,4 +27,15 @@ class Api::V1::SessionsController < ApplicationController
       render json: { message: 'Successfully logged out' }, status: :accepted
     end
   end
+
+  def password_reset
+    @user = User.find_by_email(params[:email])
+    if @user.present?
+      @user.send_reset_password_instructions
+      render json: { message: 'The password reset email has been sent.' }, status: :accepted
+    else
+      @reasons = ['There is no user with that email.']
+      render 'api/v1/common/error', status: :unprocessable_entity
+    end
+  end
 end

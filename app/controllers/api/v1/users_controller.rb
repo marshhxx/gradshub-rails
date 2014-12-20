@@ -6,6 +6,11 @@ class Api::V1::UsersController < Api::BaseController
     head :not_implemented
   end
 
+  def show
+    @user = User.find_by_uid(params[:id])
+    respond_with get_resource
+  end
+
   def create
     set_resource(User.create(user_params))
     @user.password = params[:password]
