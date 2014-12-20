@@ -17,6 +17,8 @@ angular.module('mepedia.controllers').controller("signupController", [
 			"Diciembre"
 		]
 
+
+
 		$scope.now = new Date
 		$scope.currentYear = $scope.now.getFullYear()
 
@@ -28,6 +30,7 @@ angular.module('mepedia.controllers').controller("signupController", [
 		$scope.selectedDay = "Day"
 		$scope.selectedYear = "Year"
 
+
 		$scope.setMonth = (month) ->
 			$scope.selectedMonth = month
 
@@ -38,12 +41,12 @@ angular.module('mepedia.controllers').controller("signupController", [
 			$scope.selectedYear = year
 			$log.log $scope.currentYear
 
+		#$scope.formData = {}
 
-		$scope.formData = {}
+		# function to process the form
+		#$scope.processForm = ->
+		#	alert "awesome!"
 
-# function to process the form
-		$scope.processForm = ->
-			alert "awesome!"
 
 		$scope.type = true
 		$scope.showType = ->
@@ -52,9 +55,26 @@ angular.module('mepedia.controllers').controller("signupController", [
 		$scope.selectedFrom = "From"
 		$scope.selectedTo = "To"
 
-		countries = Country.query ->
-			console.log(countries);
+		$scope.selected = undefined
 
+		countries = Country.get ->
+			console.log(countries.countries)
+			$scope.countries = countries.countries
 
+		$scope.items = [
+			"The first choice!"
+			"And another choice for you."
+			"but wait! A third!"
+		]
+		$scope.status = isopen: false
+		$scope.toggled = (open) ->
+			$log.log "Dropdown is now: ", open
+			return
+
+		$scope.toggleDropdown = ($event) ->
+			$event.preventDefault()
+			$event.stopPropagation()
+			$scope.status.isopen = not $scope.status.isopen
+			return
 
 ])
