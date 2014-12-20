@@ -6,4 +6,13 @@ json.user do
   json.birth    @user.birth
   json.country  @user.country
   json.state    @user.state
+  json.bio      @user.bio
+  json.nationalities @user.nationalities
+  json.educations  @user.educations do |education|
+    json.state  education.state
+    json.degree education.degree
+    json.major  education.major
+    json.school education.school
+  end
+  json.skills  @user.skills
 end

@@ -26,6 +26,7 @@ class AddFieldsToUsers < ActiveRecord::Migration
       t.string :image_url
       t.text :early_life
       t.text :personal_life
+      t.text :bio
       t.string :job_title
 
       t.belongs_to :country
@@ -39,33 +40,36 @@ class AddFieldsToUsers < ActiveRecord::Migration
       t.timestamp
     end
 
-    create_table :users_skills do |t|
-      t.belongs_to :users
-      t.belongs_to :skills
+    create_table :skills_users do |t|
+      t.belongs_to :user
+      t.belongs_to :skill
     end
+    add_index(:skills_users, [:user_id, :skill_id], :unique => true)
 
     create_table :nationalities do |t|
       t.string :name
       t.timestamp
     end
 
-    create_table :users_nationality do |t|
+    create_table :nationalities_users do |t|
       t.belongs_to :user
       t.belongs_to :nationality
       t.timestamp
     end
+    add_index(:nationalities_users, [:user_id, :nationality_id], :unique => true)
 
     create_table :languages do |t|
       t.string :name
       t.timestamp
     end
 
-    create_table :users_languages do |t|
+    create_table :languages_users do |t|
       t.belongs_to :user
       t.belongs_to :language
       t.integer :level, default: 0
       t.timestamp
     end
+    add_index(:languages_users, [:user_id, :language_id], :unique => true)
 
     create_table :careers do |t|
       t.belongs_to :user
@@ -96,6 +100,7 @@ class AddFieldsToUsers < ActiveRecord::Migration
       t.belongs_to :school
       t.belongs_to :major
       t.belongs_to :degree
+      t.belongs_to :state
       t.timestamp
     end
 
@@ -107,9 +112,10 @@ class AddFieldsToUsers < ActiveRecord::Migration
       t.timestamp
     end
 
-    create_table :users_publications do |t|
+    create_table :publications_users do |t|
       t.belongs_to :user
       t.belongs_to :publication
     end
+    add_index(:publications_users, [:user_id, :publication_id], :unique => true)
   end
 end

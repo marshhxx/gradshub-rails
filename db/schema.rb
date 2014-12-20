@@ -35,11 +35,20 @@ ActiveRecord::Schema.define(version: 20141030020738) do
     t.integer "school_id"
     t.integer "major_id"
     t.integer "degree_id"
+    t.integer "state_id"
   end
 
   create_table "languages", force: true do |t|
     t.string "name"
   end
+
+  create_table "languages_users", force: true do |t|
+    t.integer "user_id"
+    t.integer "language_id"
+    t.integer "level",       default: 0
+  end
+
+  add_index "languages_users", ["user_id", "language_id"], name: "index_languages_users_on_user_id_and_language_id", unique: true, using: :btree
 
   create_table "majors", force: true do |t|
     t.string "name"
@@ -49,12 +58,26 @@ ActiveRecord::Schema.define(version: 20141030020738) do
     t.string "name"
   end
 
+  create_table "nationalities_users", force: true do |t|
+    t.integer "user_id"
+    t.integer "nationality_id"
+  end
+
+  add_index "nationalities_users", ["user_id", "nationality_id"], name: "index_nationalities_users_on_user_id_and_nationality_id", unique: true, using: :btree
+
   create_table "publications", force: true do |t|
     t.string "title"
     t.string "url"
     t.date   "date"
     t.text   "description"
   end
+
+  create_table "publications_users", force: true do |t|
+    t.integer "user_id"
+    t.integer "publication_id"
+  end
+
+  add_index "publications_users", ["user_id", "publication_id"], name: "index_publications_users_on_user_id_and_publication_id", unique: true, using: :btree
 
   create_table "schools", force: true do |t|
     t.string "name"
@@ -63,6 +86,13 @@ ActiveRecord::Schema.define(version: 20141030020738) do
   create_table "skills", force: true do |t|
     t.string "name", null: false
   end
+
+  create_table "skills_users", force: true do |t|
+    t.integer "user_id"
+    t.integer "skill_id"
+  end
+
+  add_index "skills_users", ["user_id", "skill_id"], name: "index_skills_users_on_user_id_and_skill_id", unique: true, using: :btree
 
   create_table "states", force: true do |t|
     t.string  "name",       null: false
@@ -81,6 +111,7 @@ ActiveRecord::Schema.define(version: 20141030020738) do
     t.string  "image_url"
     t.text    "early_life"
     t.text    "personal_life"
+    t.text    "bio"
     t.string  "job_title"
     t.integer "country_id"
     t.integer "state_id"
@@ -90,26 +121,5 @@ ActiveRecord::Schema.define(version: 20141030020738) do
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["name"], name: "index_users_on_name", using: :btree
-
-  create_table "users_languages", force: true do |t|
-    t.integer "user_id"
-    t.integer "language_id"
-    t.integer "level",       default: 0
-  end
-
-  create_table "users_nationality", force: true do |t|
-    t.integer "user_id"
-    t.integer "nationality_id"
-  end
-
-  create_table "users_publications", force: true do |t|
-    t.integer "user_id"
-    t.integer "publication_id"
-  end
-
-  create_table "users_skills", force: true do |t|
-    t.integer "users_id"
-    t.integer "skills_id"
-  end
 
 end
