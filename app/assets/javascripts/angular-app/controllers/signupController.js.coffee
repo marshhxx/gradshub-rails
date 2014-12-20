@@ -1,6 +1,8 @@
 angular.module('mepedia.controllers').controller("signupController", [
-	'$scope', '$log', 'Country'
-	($scope, $log, Country)->
+	'$scope', '$log', 'Country', 'State', 'Nationality', 'sessionService'
+	($scope, $log, Country, State, Nationality, sessionService)->
+
+		#$scope.user = sessionService.requestCurrentUser()
 
 		$scope.months = [
 			"Enero"
@@ -17,19 +19,25 @@ angular.module('mepedia.controllers').controller("signupController", [
 			"Diciembre"
 		]
 
+		console.log($scope.user)
+		$scope.myItem = {}
 
-
+		$scope.type = true
 		$scope.now = new Date
 		$scope.currentYear = $scope.now.getFullYear()
-
 		$scope.days = (num for num in [1..31])
-
 		$scope.years = (num for num in [$scope.currentYear..1950])
 
+		$scope.bio = undefined
 		$scope.selectedMonth = "Month"
 		$scope.selectedDay = "Day"
 		$scope.selectedYear = "Year"
+		$scope.country = undefined
+		$scope.state = undefined
+		$scope.nationality = undefined
 
+		$scope.selectedFrom = "From"
+		$scope.selectedTo = "To"
 
 		$scope.setMonth = (month) ->
 			$scope.selectedMonth = month
@@ -41,40 +49,32 @@ angular.module('mepedia.controllers').controller("signupController", [
 			$scope.selectedYear = year
 			$log.log $scope.currentYear
 
-		#$scope.formData = {}
-
-		# function to process the form
-		#$scope.processForm = ->
-		#	alert "awesome!"
-
-
-		$scope.type = true
 		$scope.showType = ->
 			$scope.type = not $scope.type
-
-		$scope.selectedFrom = "From"
-		$scope.selectedTo = "To"
-
-		$scope.selected = undefined
 
 		countries = Country.get ->
 			console.log(countries.countries)
 			$scope.countries = countries.countries
 
-		$scope.items = [
-			"The first choice!"
-			"And another choice for you."
-			"but wait! A third!"
-		]
-		$scope.status = isopen: false
-		$scope.toggled = (open) ->
-			$log.log "Dropdown is now: ", open
-			return
+		$scope.getStateByCountryId = (countryId) ->
+			states = State.get {country_id: countryId}, ->
+				$scope.states = states.states
 
-		$scope.toggleDropdown = ($event) ->
-			$event.preventDefault()
-			$event.stopPropagation()
-			$scope.status.isopen = not $scope.status.isopen
-			return
+		nationalities = Nationality.get ->
+			$scope.nationalities = nationalities.nationalities
+
+		$scope.onCountry = (country) ->
+			$scope.country = country
+			if($scope.country?)
+				$scope.getStateByCountryId($scope.country.id)
+
+		$scope.onState = (state) ->
+			if(state?)
+				$scope.state = state
+
+		$scope.onNationality = (nationality) ->
+			if(nationality?)
+				$scope.nationality = nationality
+
 
 ])

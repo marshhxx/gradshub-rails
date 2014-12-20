@@ -15,10 +15,8 @@ angular.module('mepedia.controllers').controller("HomeController", [
 			user.password = $scope.password
 			user.$save {}, (()->
 				sessionService.login($scope.email, $scope.password)
-				return
 			), (error)->
 				console.log error
-			return
 
 		$scope.carouselInterval = 4000
 		$scope.slides = [

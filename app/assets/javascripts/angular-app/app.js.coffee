@@ -50,23 +50,18 @@
 	).state("main.signup.personal",
 		url: "/personal"
 		templateUrl: "angular-app/templates/views/form-personal.html"
-		controller: "signupController"
 	).state("main.signup.education",
 		url: "/education"
 		templateUrl: "angular-app/templates/views/form-education.html"
-		controller: "signupController"
 	).state("main.signup.career",
 		url: "/career"
 		templateUrl: "angular-app/templates/views/form-interests.html"
-		controller: "signupController"
 	).state("main.signup.company",
 		url: "/company"
 		templateUrl: "angular-app/templates/views/form-company.html"
-		controller: "signupController"
 	).state("main.signup.interests",
 		url: "/interests"
 		templateUrl: "angular-app/templates/views/form-lookingfor.html"
-		controller: "signupController"
 	).state("profile",
 		url: "/profile"
 		templateUrl: "angular-app/templates/profile.html"
