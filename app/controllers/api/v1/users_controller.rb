@@ -26,7 +26,7 @@ class Api::V1::UsersController < Api::BaseController
       render 'api/v1/common/error', status: :unprocessable_entity
     end
     if get_resource.save
-      render :show, status: :created
+      head :create
     end
   end
 
@@ -47,6 +47,7 @@ class Api::V1::UsersController < Api::BaseController
 
     educations_params[:educations].map { |raw_edu|
       Education.find_or_create_by(user: @user,
+                                  country: Country.find(raw_edu[:country_id]),
                                   state: State.find(raw_edu[:state_id]),
                                   school: School.find(raw_edu[:school_id]),
                                   major: Major.find(raw_edu[:major_id]),
@@ -58,7 +59,14 @@ class Api::V1::UsersController < Api::BaseController
       unless @user.skills.include?(skill)
         @user.skills << skill
       end
-    }
+    } if skills_params[:skills]
+
+    interests_params[:interests].map { |interest_name|
+      interest = Interest.find_or_create_by(name: interest_name)
+      unless @user.skills.include?(interest)
+        @user.interests << interest
+      end
+    } if interests_params[:interests]
     if @user.update(user_params)
       render :show, status: :accepted
     else
@@ -80,11 +88,15 @@ class Api::V1::UsersController < Api::BaseController
   end
 
   def educations_params
-    params.require(:user).permit(:educations => [:state_id, :school_id, :major_id, :degree_id])
+    params.require(:user).permit(:educations => [:country_id, :state_id, :school_id, :major_id, :degree_id])
   end
 
   def skills_params
     params.require(:user).permit(:skills => [])
+  end
+
+  def interests_params
+    params.require(:user).permit(:interests => [])
   end
 
   def query_params

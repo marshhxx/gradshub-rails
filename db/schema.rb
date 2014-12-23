@@ -35,8 +35,20 @@ ActiveRecord::Schema.define(version: 20141030020738) do
     t.integer "school_id"
     t.integer "major_id"
     t.integer "degree_id"
+    t.integer "country_id"
     t.integer "state_id"
   end
+
+  create_table "interests", force: true do |t|
+    t.string "name", null: false
+  end
+
+  create_table "interests_users", force: true do |t|
+    t.integer "user_id"
+    t.integer "interest_id"
+  end
+
+  add_index "interests_users", ["user_id", "interest_id"], name: "index_interests_users_on_user_id_and_interest_id", unique: true, using: :btree
 
   create_table "languages", force: true do |t|
     t.string "name"

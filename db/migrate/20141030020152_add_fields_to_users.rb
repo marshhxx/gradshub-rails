@@ -39,6 +39,17 @@ class AddFieldsToUsers < ActiveRecord::Migration
       t.timestamp
     end
 
+    create_table :interests do |t|
+      t.string :name, null: false
+      t.timestamp
+    end
+
+    create_table :interests_users do |t|
+      t.belongs_to :user
+      t.belongs_to :interest
+    end
+    add_index(:interests_users, [:user_id, :interest_id], :unique => true)
+
     create_table :skills do |t|
       t.string :name, null: false
       t.timestamp
@@ -104,6 +115,7 @@ class AddFieldsToUsers < ActiveRecord::Migration
       t.belongs_to :school
       t.belongs_to :major
       t.belongs_to :degree
+      t.belongs_to :country
       t.belongs_to :state
       t.timestamp
     end

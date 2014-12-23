@@ -9,10 +9,12 @@ json.user do
   json.bio      @user.bio
   json.nationalities @user.nationalities
   json.educations  @user.educations do |education|
+    json.country education.country
     json.state  education.state
     json.degree education.degree
     json.major  education.major
     json.school education.school
   end
   json.skills  @user.skills
+  json.interests @user.interests
 end

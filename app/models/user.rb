@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   has_many :languages, :through => :users_languages
   has_many :careers
   has_many :educations
-  serialize :interests, Array
+  has_and_belongs_to_many :interests
   has_and_belongs_to_many :publications
 
   def generate_authentication_token!
