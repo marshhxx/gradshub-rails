@@ -8,7 +8,12 @@ class Api::V1::UsersController < Api::BaseController
 
   def show
     @user = User.find_by_uid(params[:id])
-    respond_with get_resource
+    unless @user.nil?
+      respond_with get_resource
+    else
+      @reasons = ["User with uid #{params[:id]} doesn't exist."]
+      render 'api/v1/common/error', status: :unprocessable_entity
+    end
   end
 
   def create

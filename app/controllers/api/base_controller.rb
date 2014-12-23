@@ -38,7 +38,7 @@ class Api::BaseController < ApplicationController
   # GET /api/{plural_resource_name}/1
   def show
     resources = resource_class.find(params[:id])
-    instance_variable_set(resource_name, resources)
+    instance_variable_set("@#{resource_name}", resources)
     respond_with get_resource
   end
 
@@ -96,7 +96,7 @@ class Api::BaseController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_resource(resource = nil)
-    resource ||= resource_class.find_by(uid: params[:id])
+    resource ||= resource_class.find_by(id: params[:id])
     instance_variable_set("@#{resource_name}", resource)
   end
 

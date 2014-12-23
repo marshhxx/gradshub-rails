@@ -13,13 +13,15 @@ Demo::Application.routes.draw do
           put :password_reset
         end
       end
-      resources :languages, :only => [:index]
-      resources :schools, :only => [:index]
-      resources :countries, :only => [:index], shallow: true do
-        resources :states, :only => [:index]
+      resources :degrees, :only => [:index, :show]
+      resources :majors, :only => [:index, :show]
+      resources :languages, :only => [:index, :show]
+      resources :schools, :only => [:index, :show]
+      resources :countries, :only => [:index, :show], shallow: true do
+        resources :states, :only => [:index, :show]
       end
-      resources :nationalities, :only => [:index]
-      resources :skills, :only => [:index, :create]
+      resources :nationalities, :only => [:index, :show]
+      resources :skills, :only => [:index, :create, :show]
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
