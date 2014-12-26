@@ -21,4 +21,7 @@ angular.module('mepedia.controllers').controller('loginController',
         	}
         }
     }
+
+
+
 ]);

@@ -223,8 +223,7 @@ body{
 }
 
 .navbar-default .nav li a {
-  text-transform: uppercase;
-  font-family: 'Opensans-light';
+  font-family: 'Opensans-regular';
   font-weight: 400;
   color:#fff;
 }
@@ -232,8 +231,8 @@ body{
 .navbar-default .nav li a:hover,
 .navbar-default .nav li a:focus {
   outline: 0;
-  color:#3D9ED8;
-  font-family: 'Opensans-light' !important;
+  color:#FFF;
+  font-family: 'Opensans-regular' !important;
   cursor: pointer;
 }
 
@@ -289,9 +288,6 @@ section#logo .logo {
   width: 200px;
   height: 50px;
 }
-
-
-
 
 // SignIn
 
@@ -960,14 +956,14 @@ footer#home .footer-below {
 
 .footer-li{
   color:#FFF;
-  font:14px Opensans-light, Georgia, "Times New Roman", Times, serif;
+  font:12px Opensans-light, Georgia, "Times New Roman", Times, serif;
   cursor: pointer;
   text-decoration: none;
 }
 
 .footer-li:hover {
-  font:14px Opensans-light, Georgia, "Times New Roman", Times, serif;
-  color:#3D9ED8;
+  font:12px Opensans-light, Georgia, "Times New Roman", Times, serif;
+  color:#FFF;
   cursor: pointer;
   text-decoration: none;
 }
@@ -1095,7 +1091,7 @@ footer#main .footer-above {
 }
 
 .signup.form-container {
-  min-height: 270px;
+  min-height: 245px;
 }
 
 .btn-form {
@@ -1129,8 +1125,10 @@ footer#main .footer-above {
 }
 
 .dropdown-menu {
-  height: 180px;
-  overflow-y:scroll
+  height: 125px;
+  overflow-y: scroll;
+  z-index: 999;
+  cursor: pointer;
 }
 
 .caret{
@@ -1210,7 +1208,7 @@ label {
 
 /* ANIMATION STYLINGS
 ============================================================================= */
-#signup-form            { position:relative; min-height:380px; overflow:hidden; margin-top: 20px;}
+#signup-form { position:relative; min-height:345px; margin-top:20px;} //overflow:hidden;
 
 /* basic styling for entering and leaving */
 /* left and right added to ensure full width */
@@ -1270,8 +1268,7 @@ label {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  min-height: 630px;
-
+  min-height: 670px;
 }
 
 .login.form-container {
@@ -1286,6 +1283,7 @@ label {
   background:url("logo-lightblue.svg") no-repeat center center;
   background-size: 280px 90px;
   background-attachment: scroll;
+  cursor: pointer;
 }
 
 .login.ic-email {
@@ -1334,7 +1332,11 @@ label {
   font-weight: normal;
   color: white;
   font-size: 15px;
-  font:14px Opensans-light, Georgia, "Times New Roman", Times, serif;
+  font:14px Opensans-regular, Georgia, "Times New Roman", Times, serif;
+}
+
+.login.forgot-pass a {
+  cursor: pointer;
 }
 
 .sign-up-login {
@@ -1350,5 +1352,22 @@ label {
   height: 400px;
 }
 
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+
+  .footer-li-container {
+    border-right: 1px solid #ffffff;
+    display:inline-block;
+    padding: 5px 50px;
+  }
+
+  .footer-li-container-none {
+    display:inline-block;
+    padding: 5px 50px;
+  }
+
+}
+
 
 /** END forgot password **/
+

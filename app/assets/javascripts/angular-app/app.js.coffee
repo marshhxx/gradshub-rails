@@ -1,5 +1,5 @@
 @app = angular.module("mepedia",
-	["ui.router", "templates", "mepedia.services", "mepedia.controllers", "ngResource", "ui.bootstrap", "ngSanitize", "ngAnimate"])
+	["ui.router", "templates", "mepedia.services", "mepedia.controllers", "ngResource", "ui.bootstrap", "ngSanitize" ])
 .config ($stateProvider, $urlRouterProvider, $httpProvider) ->
 	$httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
 	$httpProvider.defaults.headers.common.Accept = 'application/mepedia.v1'
@@ -31,16 +31,16 @@
 		url: "/page"
 		templateUrl: "angular-app/templates/home.html"
 		controller: "HomeController"
+	).state("login",
+			url: "/login"
+			templateUrl: "angular-app/templates/login.html"
+			controller: "loginController"
 	).state("main",
 		url: "/main"
 		templateUrl: "angular-app/templates/layouts/mainLayout.html"
-		controller: "signupController"
-	).state("main.login",
-		url: "/login"
-		templateUrl: "angular-app/templates/login.html"
-		controller: "loginController"
+#		controller: "signupController"
 	).state("main.forgotpssw",
-		url: "/login"
+		url: "/forgotpssw"
 		templateUrl: "angular-app/templates/forgot_pssw.html"
 		controller: "loginController"
 	).state("main.signup",
@@ -62,7 +62,7 @@
 	).state("main.signup.interests",
 		url: "/interests"
 		templateUrl: "angular-app/templates/views/form-lookingfor.html"
-	).state("profile",
+	).state("main.profile",
 		url: "/profile"
 		templateUrl: "angular-app/templates/profile.html"
 		controller: "profileController"

@@ -1,27 +1,37 @@
 <div class="signup form-container col-md-8 col-md-offset-2">
+
     <div class="row">
         <div class="form-group">
-            <input type="text" ng-model="form.state" required class="form-control" id="state" placeholder="State">
+            <input type="text" ng-model="school" required class="form-control" id="school"
+                   placeholder="School" typeahead="school as school.name for school in schools | filter:$viewValue | limitTo:6" required class="form-control" typeahead-on-select="onSchool($item)">
         </div>
     </div>
 
     <div class="row">
         <div class="form-group">
-            <input type="text" ng-model="form.school" required class="form-control" id="school"
-                   placeholder="School">
+            <input type="text" ng-model="schoolCountry" required class="form-control" id="schoolCountry" placeholder="School Country"
+                   typeahead="country as country.name for country in countries | filter:$viewValue | limitTo:6" required class="form-control" typeahead-on-select="onSchoolCountry($item)">
         </div>
     </div>
 
     <div class="row">
         <div class="form-group">
-            <input type="text" ng-model="form.major" required class="form-control" id="major"
+            <input type="text" ng-model="schoolState" required class="form-control" id="schoolState" placeholder="School State"
+                   typeahead="state as state.name for state in states | filter:$viewValue | limitTo:6" required class="form-control" typeahead-on-select="onSchoolState($item)">
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="form-group">
+            <input type="text" ng-model="tempUser.major" required class="form-control" id="major"
                    placeholder="Major">
         </div>
     </div>
 
     <div class="row">
         <div class="form-group">
-            <input type="text" ng-model="form.degree" required class="form-control" id="degree"
+            <input type="text" ng-model="tempUser.degree" required class="form-control" id="degree"
                    placeholder="Degree">
         </div>
     </div>

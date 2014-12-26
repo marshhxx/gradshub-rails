@@ -1,7 +1,7 @@
 <div class="signup form-container col-md-8 col-md-offset-2">
     <div class="row">
         <div class="form-group">
-            <input type="text" ng-model="bio" required class="form-control" id="bio" placeholder="Bio">
+            <input type="text" ng-model="tempUser.bio" required class="form-control" id="bio" placeholder="Bio">
         </div>
     </div>
 
@@ -44,21 +44,21 @@
 
     <div class="row margin-t15">
         <div class="form-group">
-            <input type="text" ng-model="country" typeahead="country as country.name for country in countries | filter:$viewValue | limitTo:8"  required class="form-control" id="country" typeahead-on-select="onCountry($item)"
+            <input type="text" ng-model="country" typeahead="country as country.name for country in countries | filter:$viewValue | limitTo:6"  required class="form-control" id="country" typeahead-on-select="onCountry($item)"
                    placeholder="Country">
         </div>
     </div>
 
     <div class="row">
         <div class="form-group">
-            <input type="text" ng-model="state" typeahead="state as state.name for state in states | filter:$viewValue | limitTo:8" required class="form-control" id="state" typeahead-on-select="onState($item)"
+            <input type="text" ng-model="state" typeahead="state as state.name for state in states | filter:$viewValue | limitTo:6" required class="form-control" id="state" typeahead-on-select="onState($item)"
                    placeholder="State">
         </div>
     </div>
 
     <div class="row">
         <div class="form-group ">
-            <input type="text" ng-model="nationality" typeahead="nationality as nationality.name for nationality in nationalities | filter:$viewValue | limitTo:8" required class="form-control" id="nationality" typeahead-on-select="onNationality($item)"
+            <input type="text" ng-model="nationality" typeahead="nationality as nationality.name for nationality in nationalities | filter:$viewValue | limitTo:6" required class="form-control" id="nationality" typeahead-on-select="onNationality($item)"
                    placeholder="Nationality">
         </div>
     </div>
