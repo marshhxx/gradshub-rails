@@ -41,7 +41,11 @@
 #		controller: "signupController"
 	).state("main.forgotpssw",
 		url: "/forgotpssw"
-		templateUrl: "angular-app/templates/forgot_pssw.html"
+		templateUrl: "angular-app/templates/views/forgot_pssw.html"
+		controller: "loginController"
+	).state("main.checkemail",
+		url: "/checkemail"
+		templateUrl: "angular-app/templates/views/forgot_pssw_checkemail.html"
 		controller: "loginController"
 	).state("main.signup",
 		url: "/signup"
