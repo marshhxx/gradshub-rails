@@ -1,6 +1,6 @@
 angular.module('mepedia.controllers').controller("signupController", [
-	'$scope', '$log', 'Country', 'State', 'Nationality', 'sessionService', 'School', 'Skills'
-	($scope, $log, Country, State, Nationality, sessionService, School, Skills)->
+	'$scope', '$log', 'Country', 'State', 'Nationality', 'sessionService', 'School', 'Skills', 'User','Major', 'Degree'
+	($scope, $log, Country, State, Nationality, sessionService, School, Skills, User, Major, Degree)->
 
 		$scope.user = sessionService.requestCurrentUser()
 
@@ -50,7 +50,8 @@ angular.module('mepedia.controllers').controller("signupController", [
 		console.log($scope.user)
 		$scope.myItem = {}
 
-		$scope.type = true
+		$scope.looking = false
+		$scope.great = true
 		$scope.now = new Date
 		$scope.currentYear = $scope.now.getFullYear()
 		$scope.days = (num for num in [1..31])
@@ -73,8 +74,15 @@ angular.module('mepedia.controllers').controller("signupController", [
 			$scope.selectedYear = year
 			$log.log $scope.currentYear
 
-		$scope.showType = ->
-			$scope.type = not $scope.type
+		$scope.showLookingMindsSignup = () ->
+			if(!$scope.looking)
+				$scope.looking = true
+				$scope.great = false
+
+		$scope.showGreatMindsSignup = () ->
+			if(!$scope.great)
+				$scope.great = true
+				$scope.looking = false
 
 		countries = Country.get ->
 			console.log(countries.countries)
@@ -117,32 +125,48 @@ angular.module('mepedia.controllers').controller("signupController", [
 			if(state?)
 				$scope.schoolState = state
 
+		majors = Major.get ->
+			$scope.majors = majors.majors
+
+		$scope.onMajor = (major) ->
+			if(major?)
+				$scope.major = major
+
+		degrees = Degree.get ->
+			$scope.degrees = degrees.degrees
+
+		$scope.onDegree= (degree) ->
+			if(degree?)
+				$scope.degree = degree
+
 		####### Interests ######
 		skills = Skills.get ->
 			$scope.skills = skills.skills
 
 		$scope.createUser = () ->
-				$scope.user = sessionService.requestCurrentUser()
-				if($scope.user?)
-					$scope.user.bio = $scope.tempUser.bio
+				user = sessionService.requestCurrentUser()
+				if(user?)
+					user.bio = $scope.tempUser.bio
 					monthNumber = getMonthNumber($scope.selectedMonth)
-					$scope.user.birth = $scope.selectedYear + "-" + monthNumber + "-" + $scope.selectedDay
-					$scope.user.country_id = $scope.country.id
-					$scope.user.state_id = $scope.state.id
-					$scope.user.nationalities_ids =  []
-					$scope.user.nationalities_ids.push $scope.nationality.id
+					user.birth = $scope.selectedYear + "-" + monthNumber + "-" + $scope.selectedDay
+					console.log $scope.country
+					user.country_id = $scope.country.id
+					user.state_id = $scope.state.id
+					user.nationalities_ids =  []
+					user.nationalities_ids.push $scope.nationality.id
 
-					$scope.user.educations = []
+					user.educations = []
 					education = []
 					education.school_id = $scope.school.id
 					education.state_id = $scope.schoolState.id
-					education.major_id = 1 #$scope.tempUser.major
-					education.degree_id = 1 #$scope.tempUser.degree
-					$scope.user.educations.push education
+					education.major_id = $scope.major.id
+					education.degree_id = $scope.degree.id
+					user.educations.push education
 
-					$scope.user.skills = $scope.tempUser.skills.name
+					user.skills = $scope.tempUser.skills.name
 
-					console.log($scope.user)
+					User.update({ id: $scope.user.uid}, $scope.user)
+					console.log(user)
 
 
 ])

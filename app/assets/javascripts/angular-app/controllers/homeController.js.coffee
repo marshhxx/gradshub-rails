@@ -52,7 +52,7 @@ angular.module('mepedia.controllers').controller("HomeController", [
 		]
 
 		$scope.type = true
-		$scope.showType = ->
+		$scope.showType = () ->
 			$scope.type = not $scope.type
 
 		$scope.gotoTop = ->

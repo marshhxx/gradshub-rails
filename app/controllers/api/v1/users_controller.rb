@@ -25,9 +25,7 @@ class Api::V1::UsersController < Api::BaseController
       @reasons = get_resource.errors.full_messages
       render 'api/v1/common/error', status: :unprocessable_entity
     end
-    if get_resource.save
-      head :create
-    end
+    render :nothing => true, :status => :created
   end
 
   def update

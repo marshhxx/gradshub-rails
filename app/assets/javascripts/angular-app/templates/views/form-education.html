@@ -24,15 +24,15 @@
 
     <div class="row">
         <div class="form-group">
-            <input type="text" ng-model="tempUser.major" required class="form-control" id="major"
-                   placeholder="Major">
+            <input type="text" ng-model="major" required class="form-control" id="major" placeholder="Major"
+                   typeahead="major as major.name for major in majors | filter:$viewValue | limitTo:6" required class="form-control" typeahead-on-select="onMajor($item)">
         </div>
     </div>
 
     <div class="row">
         <div class="form-group">
-            <input type="text" ng-model="tempUser.degree" required class="form-control" id="degree"
-                   placeholder="Degree">
+            <input type="text" ng-model="degree" required class="form-control" id="degree" placeholder="Degree"
+                   typeahead="degree as degree.name for degree in degrees | filter:$viewValue | limitTo:6" required class="form-control" typeahead-on-select="onDegree($item)">
         </div>
     </div>
 </div>

@@ -1279,9 +1279,11 @@ label {
 }
 
 .login.logo {
-  height: 70px;
-  background:url("logo-lightblue.svg") no-repeat center center;
-  background-size: 280px 90px;
+  padding: 15px 0;
+  height: 80px;
+  background:url("logo-lightblue.svg") center center;
+  background-repeat: no-repeat !important;
+  background-size: 250px 60px;
   background-attachment: scroll;
   cursor: pointer;
 }
