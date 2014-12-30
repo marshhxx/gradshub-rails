@@ -47,6 +47,14 @@
 		url: "/checkemail"
 		templateUrl: "angular-app/templates/views/forgot_pssw_checkemail.html"
 		controller: "loginController"
+	).state("main.resetpssw",
+		url: "/resetpssw"
+		templateUrl: "angular-app/templates/views/forgot_pssw_reset.html"
+		controller: "loginController"
+	).state("main.resetsccss",
+		url: "/resetsccss"
+		templateUrl: "angular-app/templates/views/forgot_pssw_success.html"
+		controller: "loginController"
 	).state("main.signup",
 		url: "/signup"
 		templateUrl: "angular-app/templates/signup.html"

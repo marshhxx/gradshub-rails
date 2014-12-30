@@ -235,6 +235,7 @@ body{
   font-family: 'Opensans-regular';
   font-weight: 400;
   color:#fff;
+  cursor: pointer;
 }
 
 .navbar-default .nav li a:hover,
@@ -1375,6 +1376,12 @@ label {
   background-color: #FFF;
 }
 
+.forgotpssw.form-checkemail {
+  margin-top: 5px;
+  padding: 30px 50px 30px 50px;
+  background-color: #FFF;
+}
+
 .forgotpssw.title-container{
   vertical-align: middle;
   padding: 5px 0px;
@@ -1409,14 +1416,29 @@ label {
 }
 
 .forgotpssw.btn-form:hover{
-  width: 210px;
-  margin: 20px 0;
   padding: 10px 0px;
   background:#3D9ED8;
   color:#FFF;
+}
+
+.forgotpssw.btn-form.reset{
+  margin: 0px 0;
+}
+
+.forgotpssw.text{
+  color:#3f4752;
+  font:14px Opensans-light, Georgia, "Times New Roman", Times, serif;
+}
+
+.forgotpssw.text-blue{
+  color:#3D9ED8;
   font:14px Opensans-regular, Georgia, "Times New Roman", Times, serif;
-  border:1px solid #3D9ED8;
-  border-radius: 0 !important;
+  cursor:pointer;
+  text-decoration: none;
+}
+
+.forgotpssw.hr{
+  background:#3D9ED8;
 }
 
 /* Small Devices, Tablets */
