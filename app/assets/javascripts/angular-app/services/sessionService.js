@@ -1,6 +1,6 @@
 angular.module('mepedia.services').factory('sessionService',
-    ['$location', '$http','$q',
-        function($location, $http, $q) {
+    ['$location', '$http','$q', 'User',
+        function($location, $http, $q, User) {
         // Redirect to the given url (defaults to '/')
         function redirect(url) {
             url = url || '/';
@@ -12,7 +12,7 @@ angular.module('mepedia.services').factory('sessionService',
 
                 $http.post('/api/sessions', {session: {email: email, password: password} })
                     .success(function(response) {
-                        service.currentUser = response.user;
+                        service.currentUser = createUser(response.user);
                         deferred.resolve(service.currentUser);
                         if (service.isAuthenticated()) {
                             redirect('/main/signup/personal')
@@ -44,11 +44,26 @@ angular.module('mepedia.services').factory('sessionService',
                 }
             },
 
-            currentUser: null,
-
             isAuthenticated: function(){
                 return !!service.currentUser;
+            },
+
+            authenticationToken: function() {
+                if (service.isAuthenticated())
+                    return service.auth_token;
             }
+
         };
+
+        function createUser(rawUser) {
+            var user = new User()
+            user.name = rawUser.name
+            user.lastname = rawUser.lastname
+            user.email = rawUser.email
+            user.uid = rawUser.uid
+            service.auth_token = rawUser.auth_token
+            return user
+        }
         return service;
     }]);
+
