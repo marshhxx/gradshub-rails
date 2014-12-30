@@ -1,5 +1,5 @@
 class Api::V1::UsersController < Api::BaseController
-  #before_action :authenticate_with_token!, only: [:update]
+  before_action :authenticate_with_token!, only: [:update]
 
   # DELETE /api/users/1
   def destroy
@@ -8,19 +8,18 @@ class Api::V1::UsersController < Api::BaseController
 
   def show
     @user = User.find_by_uid(params[:id])
-    unless @user.nil?
-      respond_with get_resource
-    else
+    if @user.nil?
       @reasons = ["User with uid #{params[:id]} doesn't exist."]
       render 'api/v1/common/error', status: :unprocessable_entity
+    else
+      respond_with get_resource
     end
   end
 
   def create
-    set_resource(User.create(user_params))
+    set_resource(User.new(user_params))
     @user.password = params[:password]
     @user.save
-
     unless get_resource.valid?
       @reasons = get_resource.errors.full_messages
       render 'api/v1/common/error', status: :unprocessable_entity
