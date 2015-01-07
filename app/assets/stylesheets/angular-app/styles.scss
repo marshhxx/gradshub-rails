@@ -741,7 +741,7 @@ section#btn-type {
 .great_minds_btn {
   width: 290px;
   text-align:center;
-  border:2px solid rgb(226,148,123);
+  border:2px solid rgb(217,144,83);
   font:18px Opensans-regular, Georgia, "Times New Roman", Times, serif;
   padding:15px 0;
   color: #3f4752;
@@ -752,13 +752,14 @@ section#btn-type {
 }
 
 .great_minds_btn-active{
-  background-color: rgb(226,148,123);
+  background-color: rgb(217,144,83);
   color: #FFF;
   text-decoration: none;
 }
 
 .great_minds_btn:hover {
-  background-color:rgb(226,148,123);
+  background-color:rgb(243,175,104);
+  border-color:rgb(243,175,104);
   border-width: 2px;
   border-style: solid;
   color: #FFF;
@@ -1091,15 +1092,15 @@ footer#main .footer-above {
 }
 
 .signup .great_btn-active{
-  background-color: rgb(226,148,123);
-  border: 1px solid rgb(226,148,123);
+  background-color: rgb(217,144,83);
+  border: 1px solid rgb(217,144,83);
   color: #FFF;
   text-decoration: none;
 }
 
 .signup .great_btn:hover {
-  background-color:rgb(226,148,123);
-  border: 1px solid rgb(226,148,123);
+  background-color:rgb(243,175,104);
+  border: 1px solid rgb(243,175,104);
   color: #FFF;
   text-decoration: none;
 }
@@ -1457,5 +1458,113 @@ label {
 
 }
 
-/** END forgot password **/
+/* Tags input directive */
+
+.tags {
+  height: 80px;
+  width: 100%;
+  margin: 10px 0;
+  float: left;
+  background-color: rgba(61,158,216,0.1);
+}
+
+.tags .tag {
+  border-radius: 6px;
+  background-color: #EFEFEF;
+  color: #3D9ED8;
+  border: 1px solid #DDD;
+  padding: 5px;
+  margin-right: 10px;
+  margin-top: 5px;
+  display: inline-block;
+}
+
+.tags .tag:hover {
+  text-decoration: none;
+}
+
+.tagsinput {
+  margin-bottom: 0px !important;
+}
+
+.tagsinput.cont.left {
+  width: 85%;
+  display: inline-block;
+}
+
+.tagsinput.cont.right {
+  width: 15%;
+  display: inline-block;
+}
+
+.tagsinput.addbutton {
+  width: 50px;
+  margin-left:10px;
+  padding: 7px 10px;
+  background:#3D9ED8;
+  text-decoration: none;
+  color:#FFFFFF;
+  font:14px Opensans-light, Georgia, "Times New Roman", Times, serif;
+  border:1px solid #3D9ED8;
+  border-radius: 0 !important;
+  cursor: pointer;
+}
+
+.tagsinput.addbutton:hover {
+  background:#3D9ED8;
+  color:#FFF;
+}
+
+
+/** profile **/
+
+.profile.background{
+  background-color: #ececec;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  height: 1200px;
+}
+
+.profile.wrapper{
+  background-color: #fff;
+  height: 1200px;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+#profileTopSection{
+
+}
+
+#profileCover.coverWrap{
+  display: block;
+  position: relative;
+  height: 315px;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.coverImage{
+  background: url('coverDefaultImage.png') center center no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  display: block;
+  height: 100%;
+}
+
+.coverBorder {
+  border-bottom-color: rgba(0,0,0,.4);
+  border: 1px solid #000;
+  border-color: rgba(0, 0, 0, .25);
+  border-top-color: rgba(0, 0, 0, .1);
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
 

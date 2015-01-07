@@ -1,7 +1,9 @@
 angular.module('mepedia.controllers').controller("signupController", [
 	'$scope', '$http', '$state', '$log', 'Country', 'State', 'Nationality', 'sessionService', 'School', 'Skills', 'User','Major', 'Degree'
 	($scope, $httpProvider, $state, $log, Country, State, Nationality, sessionService, School, Skills, User, Major, Degree)->
+
 		user = sessionService.requestCurrentUser()
+
 		if (!user?)
 			$state.go 'home.page'
 
@@ -109,6 +111,7 @@ angular.module('mepedia.controllers').controller("signupController", [
 				$scope.nationality = nationality
 
 		####### Eduaction ######
+
 		schools = School.get ->
 			$scope.schools = schools.schools
 
@@ -141,28 +144,39 @@ angular.module('mepedia.controllers').controller("signupController", [
 
 		####### Interests ######
 		skills = Skills.get ->
-			$scope.skills = skills.skills
+			$scope.skillstags = skills.skills
+
+		interests = Skills.get ->
+			$scope.intereststags = skills.skills
+
+		$scope.skillsTags = [ ];
+
+		$scope.interestsTags = [ ];
 
 		$scope.createUser = () ->
-			user.bio = $scope.tempUser.bio
-			monthNumber = getMonthNumber($scope.selectedMonth)
-			user.birth = $scope.selectedYear + "-" + monthNumber + "-" + $scope.selectedDay
-			console.log $scope.country
-			user.country_id = $scope.country.id
-			user.state_id = $scope.state.id
-			user.nationalities_ids =  []
-			user.nationalities_ids.push $scope.nationality.id
+			console.log($scope.skillsTags);
+			console.log($scope.interestsTags);
 
-			user.educations = []
-			education = []
-			education.school_id = $scope.school.id
-			education.state_id = $scope.schoolState.id
-			education.major_id = $scope.major.id
-			education.degree_id = $scope.degree.id
-			user.educations.push education
+		#console.log($scope.newTags);
+		#	user.bio = $scope.tempUser.bio
+		#	monthNumber = getMonthNumber($scope.selectedMonth)
+		#	user.birth = $scope.selectedYear + "-" + monthNumber + "-" + $scope.selectedDay
+		#	console.log $scope.country
+		#	user.country_id = $scope.country.id
+		#	user.state_id = $scope.state.id
+		#	user.nationalities_ids =  []
+		#	user.nationalities_ids.push $scope.nationality.id
 
-			user.skills = $scope.tempUser.skills.name
-			$httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
-			user.$update () ->
-				console.log(user)
+		#	user.educations = []
+		#	education = []
+		#	education.school_id = $scope.school.id
+		#	education.state_id = $scope.schoolState.id
+		#	education.major_id = $scope.major.id
+		#	education.degree_id = $scope.degree.id
+		#	user.educations.push education
+
+		#	user.skills = $scope.tempUser.skills.name
+		#	$httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
+		#	user.$update () ->
+		#		console.log(user)
 ])
