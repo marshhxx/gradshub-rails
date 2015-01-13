@@ -4,23 +4,29 @@
             <div id="profileTopSection">
                 <div id="profileCover" class="coverWrap">
                     <div class="coverBorder">
-                        <div class="coverImage">
-                            <div class="coverImageEdit wrapper"><div class="coverImageEdit img"> </div></div>
-                        </div>
-
+                        <form>
+                            <div class="coverImage">
+                                <div class="coverImageEdit wrapper">
+                                    <div class="coverImageEdit img" ng-file-select="onFileSelect($files)"
+                                         data-multiple="false" title="Upload Cover Photo"
+                                         onclick="this.value = null"></div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="profileHeadline wrapper">
                     <div class="profileImage wrapper">
                         <div class="profileImage img"></div>
                         <div class="profileImageEdit wrapper">
-                            <div class="profileImageEdit img"> </div>
+                            <div class="profileImageEdit img"></div>
                         </div>
                     </div>
 
                 </div>
 
             </div>
+            <cl-image public-id="{{result.public_id}}" format="jpg"></cl-image>
         </div>
     </div>
 </div>

@@ -19,6 +19,13 @@
 // Insert html in text
 //= require angular-sanitize
 //= require angular-animate
+//= require angular-route
+// Upload images (order is important)
+//= require cloudinary_js
+//= require ng-file-upload-shim
+//= require cloudinary_ng
+//= require ng-file-upload
+
 
 //= require angular-rails-templates
 //= require bootstrap-sass-official/assets/javascripts/bootstrap

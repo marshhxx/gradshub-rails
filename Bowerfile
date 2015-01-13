@@ -6,4 +6,10 @@ asset 'angular-bootstrap'
 asset 'angular-sanitize'
 asset 'angular-animate'
 
+asset 'cloudinary_ng', '>=0.1.1'
+asset 'cloudinary_js', '1.0.21'
+asset 'ng-file-upload-shim', '1.6.x'
+asset 'ng-file-upload', '1.6.x'
+asset 'angular-route', '~1.2.x'
+
 
