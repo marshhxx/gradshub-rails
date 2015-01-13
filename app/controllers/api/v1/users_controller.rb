@@ -12,6 +12,7 @@ class Api::V1::UsersController < Api::BaseController
       @reasons = ["User with uid #{params[:id]} doesn't exist."]
       render 'api/v1/common/error', status: :unprocessable_entity
     else
+      logger.info 'User rendered!'
       respond_with get_resource
     end
   end
@@ -24,6 +25,7 @@ class Api::V1::UsersController < Api::BaseController
       @reasons = get_resource.errors.full_messages
       render 'api/v1/common/error', status: :unprocessable_entity
     end
+    logger.info 'User created!'
     render :nothing => true, :status => :created
   end
 
@@ -65,6 +67,7 @@ class Api::V1::UsersController < Api::BaseController
       end
     } if interests_params[:interests]
     if @user.update(user_params)
+      logger.info 'User created!'
       render :show, status: :accepted
     else
       @reasons = @user.errors.full_messages

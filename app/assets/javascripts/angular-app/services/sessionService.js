@@ -51,6 +51,32 @@ angular.module('mepedia.services').factory('sessionService',
             authenticationToken: function() {
                 if (service.isAuthenticated())
                     return service.auth_token;
+            },
+
+            sendFgtPsswEmail: function(email) {
+                var deferred = $q.defer();
+                $http.get('/api/sessions/password_reset?email=' + email)
+                    .success(function(status) {
+                        deferred.resolve({status: status})
+                    })
+                    .error(function(msg, code) {
+                        deferred.reject(msg);
+                        console.log(msg, code);
+                    });
+                return deferred.promise;
+            },
+
+            resetPassword: function(user) {
+                var deferred = $q.defer();
+                $http.post('/api/sessions/password_reset', {user: user})
+                    .success(function(status) {
+                        deferred.resolve({status: status})
+                    })
+                    .error(function(msg, code) {
+                        deferred.reject(msg);
+                        console.log(msg, code);
+                    });
+                return deferred.promise;
             }
 
         };

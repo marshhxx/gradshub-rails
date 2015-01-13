@@ -43,19 +43,19 @@
 	).state("main.forgotpssw",
 		url: "/forgotpssw"
 		templateUrl: "angular-app/templates/views/forgot_pssw.html"
-		controller: "loginController"
+		controller: "forgotPasswordController"
 	).state("main.checkemail",
 		url: "/checkemail"
 		templateUrl: "angular-app/templates/views/forgot_pssw_checkemail.html"
-		controller: "loginController"
+		controller: "forgotPasswordController"
 	).state("main.resetpssw",
-		url: "/resetpssw"
+		url: "/resetpssw?r={resource}&reset_token={token}"
 		templateUrl: "angular-app/templates/views/forgot_pssw_reset.html"
-		controller: "loginController"
+		controller: "forgotPasswordController"
 	).state("main.resetsccss",
 		url: "/resetsccss"
 		templateUrl: "angular-app/templates/views/forgot_pssw_success.html"
-		controller: "loginController"
+		controller: "forgotPasswordController "
 	).state("main.signup",
 		url: "/signup"
 		templateUrl: "angular-app/templates/signup.html"

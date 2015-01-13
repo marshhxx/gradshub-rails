@@ -23,20 +23,21 @@
 
                         <div class="row margin-t20">
                             <div class="form-group">
-                                <input type="text" class="form-control" ng-model="email" placeholder="Type your new password"
+                                <input type="text" class="form-control" ng-model="password" placeholder="Type your new password"
                                    id="password" required
                                    data-validation-required-message="Please type your new password.">
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group">
-                                <input type="text" class="form-control" ng-model="email" placeholder="Type your new password again"
+                                <input type="text" class="form-control" ng-model="password_confirmation" placeholder="Type your new password again"
                                    id="confirmPassword" required
                                    data-validation-required-message="Please type your new password again">
                             </div>
                         </div>
+                        <alert ng-repeat="alert in alerts" type="danger" close="closeAlert()">{{alert.msg}}</alert>
                         <div class="row">
-                            <a ui-sref="main.resetsccss" class="btn forgotpssw btn-form reset ">
+                            <a ng-click="resetPassword()" class="btn forgotpssw btn-form reset ">
                                 SUBMIT </span>
                             </a>
                         </div>
