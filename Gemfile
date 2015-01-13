@@ -45,6 +45,8 @@ group :development, :test do
   gem 'figaro', '~> 0.7.0'
 end
 
+gem 'tzinfo-data', platforms: [:x64_mingw, :mingw, :mswin]
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
