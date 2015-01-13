@@ -10,7 +10,8 @@ Demo::Application.routes.draw do
       resources :users, :only => [:show, :create, :update]
       resources :sessions, :only => [:create, :destroy, :password_reset] do
         collection do
-          put :password_reset
+          get :password_reset, to: 'sessions#password_reset_request'
+          post :password_reset, to: 'sessions#password_reset'
         end
       end
       resources :degrees, :only => [:index, :show]

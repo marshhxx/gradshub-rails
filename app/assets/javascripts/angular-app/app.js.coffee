@@ -1,5 +1,5 @@
 @app = angular.module("mepedia",
-	["ui.router", "templates", "mepedia.services", "mepedia.controllers", "ngResource", "ui.bootstrap", "ngSanitize" ])
+	["ui.router", "templates", "mepedia.services", "mepedia.controllers", "ngResource", "ui.bootstrap", "ngSanitize"])
 .config ($stateProvider, $urlRouterProvider, $httpProvider) ->
 	$httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
 	$httpProvider.defaults.headers.common.Accept = 'application/mepedia.v1'
@@ -42,19 +42,19 @@
 	).state("main.forgotpssw",
 		url: "/forgotpssw"
 		templateUrl: "angular-app/templates/views/forgot_pssw.html"
-		controller: "loginController"
+		controller: "forgotPasswordController"
 	).state("main.checkemail",
 		url: "/checkemail"
 		templateUrl: "angular-app/templates/views/forgot_pssw_checkemail.html"
-		controller: "loginController"
+		controller: "forgotPasswordController"
 	).state("main.resetpssw",
-		url: "/resetpssw"
+		url: "/resetpssw?r={resource}&reset_token={token}"
 		templateUrl: "angular-app/templates/views/forgot_pssw_reset.html"
-		controller: "loginController"
+		controller: "forgotPasswordController"
 	).state("main.resetsccss",
 		url: "/resetsccss"
 		templateUrl: "angular-app/templates/views/forgot_pssw_success.html"
-		controller: "loginController"
+		controller: "forgotPasswordController "
 	).state("main.signup",
 		url: "/signup"
 		templateUrl: "angular-app/templates/signup.html"

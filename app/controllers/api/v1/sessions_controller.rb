@@ -28,13 +28,24 @@ class Api::V1::SessionsController < ApplicationController
     end
   end
 
-  def password_reset
+  def password_reset_request
     @user = User.find_by_email(params[:email])
     if @user.present?
       @user.send_reset_password_instructions
       render json: { message: 'The password reset email has been sent.' }, status: :accepted
     else
       @reasons = ['There is no user with that email.']
+      render 'api/v1/common/error', status: :unprocessable_entity
+    end
+  end
+
+  def password_reset
+    reset_user = User.reset_password_by_token(params[:user])
+    if reset_user.errors.empty?
+      logger.info('Password updated')
+      render json: { message: 'Password successfully updated.'}, status: :accepted
+    else
+      @reasons = reset_user.errors.full_messages
       render 'api/v1/common/error', status: :unprocessable_entity
     end
   end

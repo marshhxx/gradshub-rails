@@ -25,13 +25,14 @@
                     <div class="margin-b30">
                     <span class="forgotpssw subtitle">Find your mepedia account </span>
                     </div>
-                    <input type="text" class="form-control" ng-model="email" placeholder="Your Email"
+                    <input type="text" class="form-control" ng-model="emailFgtPssw" placeholder="Your Email"
                            id="email" required
                            data-validation-required-message="Please enter your email.">
+                    <alert ng-repeat="alert in alerts" type="danger" close="closeAlert()">{{alert.msg}}</alert>
 
                     <div class="row">
                         <div class="col-xs-12 text-center">
-                            <a ui-sref="main.checkemail" class="btn forgotpssw btn-form">
+                            <a ng-click="sendEmailForgotPassword()" class="btn forgotpssw btn-form">
                                 SEARCH </span>
                             </a>
                         </div>
