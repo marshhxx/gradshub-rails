@@ -1535,7 +1535,7 @@ label {
 }
 
 #profileTopSection{
-
+  height: 350px;
 }
 
 #profileCover.coverWrap{
@@ -1568,3 +1568,70 @@ label {
   top: 0;
 }
 
+.coverImageEdit.wrapper {
+  float: right;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+}
+
+.coverImageEdit.img {
+  width: 35px;
+  height: 30px;
+  background: url('camera.svg') center center no-repeat;
+  background-size: 35px 30px;
+  margin: 10px 15px;
+  cursor: pointer;
+}
+
+.coverImageEdit.img:hover {
+  background: url('camera-hover.svg') center center no-repeat;
+  background-size: 35px 30px;
+}
+
+.profileImage.wrapper {
+  margin-top: -220px;
+  left: 30px;
+  position: absolute;
+  z-index: 99;
+}
+
+.profileImage.img {
+  background:url(profileimage-default.svg) no-repeat;
+  background-size:270px 270px;
+  background-position:0px 0px;
+  height:270px;
+  width:270px;
+  border-radius:50%;
+  margin:auto;
+  z-index: 99;
+}
+
+.profileHeadline.wrapper{
+  height: 60px;
+  width: 100%;
+  background-color: #1C2A33;
+}
+
+.profileImageEdit.wrapper {
+  position: absolute;
+  width: 100%;
+  z-index: 100;
+  margin-top: -50px;
+  text-align: center;
+}
+
+.profileImageEdit.img {
+  width: 50%;
+  margin: 0 auto;
+  height: 30px;
+  background: url('camera-hover.svg') center center no-repeat;
+  background-size: 35px 30px;
+  //margin: 10px 15px;
+  cursor: pointer;
+}
+
+.profileImageEdit.img:hover {
+  background: url('camera-hover.svg') center center no-repeat;
+  background-size: 35px 30px;
+}
