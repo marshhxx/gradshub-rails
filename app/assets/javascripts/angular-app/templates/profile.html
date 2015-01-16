@@ -1,3 +1,4 @@
+
 <div class="profile background">
     <div class="container">
         <div class="profile wrapper col-md-10 col-md-offset-1">
@@ -14,7 +15,15 @@
 
                             <cl-image public-id="{{result.public_id}}" format="jpg" ng-if="result.public_id != null">
                             </cl-image>
-
+                            <div class="spinner-container" ng-if="progress>0 && progress<100">
+                                <div class="spinner">
+                                  <div class="rect1"></div>
+                                  <div class="rect2"></div>
+                                  <div class="rect3"></div>
+                                  <div class="rect4"></div>
+                                  <div class="rect5"></div>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
