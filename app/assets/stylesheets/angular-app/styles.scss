@@ -317,13 +317,12 @@ header {
 }
 
 header .intro-text {
-  padding-top: 50px;
-  position: absolute;
   z-index: 2;
+  margin: 10px 0;
 }
 
 header .intro-text .intro-lead-in {
-  padding: 0px 15px;
+  padding: 0px;
   line-height: 30px;
   font-family: Roboto-bold, Georgia, "Times New Roman", Times, serif;
   font-size: 2.0em;
@@ -331,29 +330,34 @@ header .intro-text .intro-lead-in {
 }
 
 header .intro-text .intro-heading {
-  padding: 5px 15px 0px 15px;
+  padding: 5px 0px 5px 0px;
   font-family: Roboto-light, Georgia, "Times New Roman", Times, serif;
   font-size: 1.2em;
   line-height: 22px;
   color: #FFF;
 }
 
-@media(min-width:768px) {
-
-  header .intro-text {
-    float: left;
-    padding-bottom: 20px;
-    padding-top: 40px;
-  }
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
 
   header .intro-text .intro-lead-in {
-    padding: 0px;
-    line-height: 40px;
-    font-size: 3.3em;
+    font-size: 2.8em;
   }
 
   header .intro-text .intro-heading {
     font-size: 1.4em;
+  }
+}
+
+@media(min-width:768px) {
+
+  header .intro-text .intro-lead-in {
+    padding: 0px;
+    line-height: 40px;
+    font-size: 3.0em;
+  }
+
+  header .intro-text .intro-heading {
     line-height: 32px;
     padding: 0px;
   }
@@ -362,26 +366,23 @@ header .intro-text .intro-heading {
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width : 992px) {
-
+  header .intro-text .intro-lead-in {
+    font-size: 3.1em;
+  }
 }
 
 /* Large Devices, Wide Screens */
 @media only screen and (min-width : 1100px) {
 
-  header .intro-text {
-    padding-top: 60px;
-  }
-
   header .intro-text .intro-lead-in {
-    font-size: 3.5em;
+    font-size: 3.3em;
   }
 
 }
 
 section#signup {
   width:100%;
-  padding: 50px 15px;
-  padding-top: 150px;
+  padding: 40px 20px;
   overflow: hidden;
   z-index: 2;
 }
@@ -399,6 +400,10 @@ section#signup .home-col.lastname {
 section#signup .form-control:focus {
   border-color: #3D9ED8;
   box-shadow: none;
+}
+
+.signup-form{
+  display: block;
 }
 
 header .home-carousel-container{
@@ -422,7 +427,6 @@ header .home-carousel-container{
 
   section#signup {
     width:100%;
-    padding-top: 120px;
     overflow: hidden;
     //position: absolute; -> cambiarlo
     z-index: 2;
@@ -446,11 +450,8 @@ header .home-carousel-container{
     }
 
     section#signup {
-      width:100%;
-      padding-top: 120px;
       position: absolute;
-      overflow: hidden;
-      z-index: 2;
+      padding: 30px 0px 20px 0px;
     }
 
     section#signup .home-col.name {
@@ -466,12 +467,10 @@ header .home-carousel-container{
 /* Large Devices, Wide Screens */
 @media only screen and (min-width : 1100px) {
 
-    section#signup {
-      width: 100%;
-      padding-top: 150px;
-      overflow: hidden;
-      z-index: 2;
+    section#signup{
+      padding: 60px 0px 40px 0px;
     }
+
 }
 
 .btn-xl {
@@ -480,7 +479,7 @@ header .home-carousel-container{
   color:#fff;
   font:18px Opensans-regular, Georgia, "Times New Roman", Times, serif;
   border:1px solid #fff;
-  margin-top: 10px;
+  margin: 10px 0;
 }
 
 .btn-xl:hover,
@@ -1322,14 +1321,19 @@ label {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  min-height: 670px;
+ //min-height: 670px;
 }
 
-.login.form-container {
+.login.form-container{
+  padding: 100px 0 300px 0;
+}
+
+.login.form-box {
+  width: 370px;
   min-height: 320px;
   background: rgba(18 ,32 ,40 ,0.8);
   padding: 20px 20px 30px 20px;
-  margin-top: 80px;
+  display: inline-block;
 }
 
 .login.logo {
