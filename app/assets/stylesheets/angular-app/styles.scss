@@ -626,13 +626,7 @@ section h3.section-subheading {
   }
 }
 
-/* Medium Devices, Desktops */
-@media only screen and (min-width : 992px) {
-  .home-features-container{
-    padding-left: 50px;
-    padding-right: 50px;
-  }
-}
+
 
 /* Large Devices, Wide Screens */
 @media only screen and (min-width : 1200px) {
@@ -1056,7 +1050,7 @@ footer#main .footer-above {
 }
 
 .signup.background {
-  background: url("background-lights.jpg") no-repeat center center fixed;
+  background: url("signup-background-paris2.JPG") no-repeat center center fixed;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -1098,8 +1092,8 @@ footer#main .footer-above {
   cursor: pointer;
   background-color: none;
   text-decoration: none;
-  margin-right: 10px;
   display:inline-block;
+  margin-bottom: 15px;
 }
 
 .signup .looking_btn_active {
@@ -1144,12 +1138,16 @@ footer#main .footer-above {
 }
 
 .signup.form-container {
-  min-height: 245px;
+  min-height: 268px;
+}
+
+.signup .form-box-cont{
+  padding: 0 30px;
 }
 
 .btn-form {
   width: 210px;
-  margin: 20px 0;
+  margin: 15px 0;
   padding: 10px 0px;
   background:none;
   color:#FFFFFF;
@@ -1159,13 +1157,13 @@ footer#main .footer-above {
 }
 
 .btn-form:hover {
-  background:#FFFFFF;
-  color:#3f4752;
-  font:14px Opensans-semibold, Georgia, "Times New Roman", Times, serif;
+  background:#122028;
+  color:#FFF;
+  font:14px Opensans-light, Georgia, "Times New Roman", Times, serif;
 }
 
 .btn-primary {
-  width: 100px;
+  width: 85px;
   background-color: rgb(255,255,255)  !important;
   border-color: rgb(255,255,255) !important;
   color: #555555 !important;
@@ -1188,8 +1186,23 @@ footer#main .footer-above {
   margin-left: 10px !important;
 }
 
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 494px) {
+
+  .signup .looking_btn{
+    margin-right: 10px;
+    margin-bottom: 0px;
+  }
+
+}
+
 /* Small Devices, Tablets */
 @media only screen and (min-width : 768px) {
+
+  .signup .form-box-cont{
+    padding: 0 70px;
+  }
+
   .col-8 {
     width: 60%;
   }
@@ -1206,7 +1219,9 @@ footer#main .footer-above {
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width : 992px) {
-
+  .signup .form-box-cont{
+    padding: 0 0px;
+  }
 }
 
 /* Large Devices, Wide Screens */
@@ -1218,8 +1233,8 @@ footer#main .footer-above {
 ============================================================================= */
 
 /* form styling */
-#form-container                { background:rgba(18,32,40,0.8); margin-top:20px; }
-#form-container .page-header   { margin:0; padding:20px;}
+#form-container                { background:rgba(18,32,40,0.8); margin-top:15px; display: inline-block }
+#form-container .page-header   { margin:0; padding:15px;}
 
 /* numbered buttons */
 #status-buttons-work                 {  }
@@ -1261,7 +1276,7 @@ label {
 
 /* ANIMATION STYLINGS
 ============================================================================= */
-#signup-form { position:relative; min-height:345px; margin-top:20px;} //overflow:hidden;
+#signup-form { position:relative; min-height:345px; margin-top:15px;} //overflow:hidden;
 
 /* basic styling for entering and leaving */
 /* left and right added to ensure full width */
@@ -1381,8 +1396,8 @@ label {
 }
 
 .login.button-submit:hover {
-  background:#FFFFFF;
-  color:#3f4752;
+  background:#122028;
+  color:#FFF;
   font:14px Opensans-light, Georgia, "Times New Roman", Times, serif;
 }
 
@@ -1449,12 +1464,13 @@ label {
 }
 
 .forgotpssw.cont{
-  margin-top: 120px;
+  margin-top: 40px;
+  padding: 0 40px;
 }
 
 .forgotpssw.form {
   margin-top: 5px;
-  padding: 40px 50px 20px 50px;
+  padding: 40px 50px 40px 50px;
   background-color: #FFF;
 }
 
@@ -1487,7 +1503,7 @@ label {
 }
 
 .forgotpssw.btn-form{
-  width: 210px;
+  width: 100%;
   margin: 20px 0;
   padding: 10px 0px;
   background:none;
@@ -1526,6 +1542,11 @@ label {
 /* Small Devices, Tablets */
 @media only screen and (min-width : 768px) {
 
+  .forgotpssw.cont {
+    padding: 0px 50px;
+    margin-top: 120px;
+  }
+
   .footer-li-container {
     border-right: 1px solid #ffffff;
     display:inline-block;
@@ -1539,6 +1560,15 @@ label {
 
 }
 
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+
+  .forgotpssw.cont{
+    padding: 0px 0px;
+  }
+
+}
+
 /* Tags input directive */
 
 .tags {
@@ -1546,7 +1576,7 @@ label {
   width: 100%;
   margin: 10px 0;
   float: left;
-  background-color: rgba(61,158,216,0.1);
+  background-color: rgba(18,32,40,0.6);
 }
 
 .tags .tag {
