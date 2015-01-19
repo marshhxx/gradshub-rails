@@ -1,10 +1,11 @@
-asset 'angular', '1.3'
+asset 'angular', '1.3.9'
 asset 'angular-ui-router'
 asset 'angular-resource'
 asset 'bootstrap-sass-official'
 asset 'angular-bootstrap'
 asset 'angular-sanitize'
 asset 'angular-animate'
+asset 'angular-cookies'
 
 asset 'cloudinary_ng', '>=0.1.1'
 asset 'cloudinary_js', '1.0.21'

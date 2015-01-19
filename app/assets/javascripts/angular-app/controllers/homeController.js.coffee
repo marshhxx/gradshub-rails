@@ -1,9 +1,7 @@
 angular.module('mepedia.controllers').controller("HomeController", [
 	'$scope', 'User', '$state', '$anchorScroll', '$location', 'sessionService', '$sce',
 	($scope, User, $state, $anchorScroll, $location, sessionService, $sce)->
-		console.log 'ExampleCtrl running'
-		$scope.exampleValue = "Hello angular-app and rails"
-
+		$state.go "main.profile" if sessionService.isAuthenticated()
 		$scope.renderHtml = (htmlCode) ->
 		 $sce.trustAsHtml(htmlCode)
 
@@ -14,7 +12,14 @@ angular.module('mepedia.controllers').controller("HomeController", [
 			user.email = $scope.email
 			user.password = $scope.password
 			user.$save {}, (()->
-				sessionService.login($scope.email, $scope.password)
+				promise = sessionService.login($scope.email, $scope.password)
+				promise.then(
+					(payload) ->
+						$state.go 'main.signup'
+					,
+					(errors) ->
+						console.log(errors)
+				)
 			), (error)->
 				console.log error
 
