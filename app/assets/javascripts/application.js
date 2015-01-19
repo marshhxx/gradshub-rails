@@ -20,7 +20,6 @@
 //= require angular-sanitize
 //= require angular-animate
 //= require angular-cookies
-//= require angular-route
 // Upload images (order is important)
 //= require cloudinary_js
 //= require ng-file-upload-shim

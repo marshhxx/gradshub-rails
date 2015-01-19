@@ -1,7 +1,7 @@
 angular.module('mepedia.controllers').controller('profileController',
-    ['$scope', '$rootScope', '$routeParams', '$location', '$upload', 'sessionService',
+    ['$scope', '$rootScope', '$upload', 'sessionService',
 
-        function($scope, $rootScope, $routeParams, $location, $upload) {
+        function($scope, $rootScope, $upload) {
 
 //            $scope.user = sessionService.requestCurrentUser()
 //
@@ -34,7 +34,7 @@ angular.module('mepedia.controllers').controller('profileController',
                 });
             };
 
-            / Modify the look and fill of the dropzone when files are being dragged over it /
+            // Modify the look and fill of the dropzone when files are being dragged over it /
             $scope.dragOverClass = function($event) {
                 var items = $event.dataTransfer.items;
                 var hasFile = false;
