@@ -23,7 +23,7 @@
 	]
 	$httpProvider.interceptors.push interceptor
 	$urlRouterProvider.otherwise "/home"
-	$urlRouterProvider.when('/home', '/main/profile')
+	$urlRouterProvider.when('/home', '/main/signup/personal')
 	$stateProvider.state("home",
 		url: "/home"
 		templateUrl: "angular-app/templates/layouts/homeLayout.html"

@@ -1050,7 +1050,7 @@ footer#main .footer-above {
 }
 
 .signup.background {
-  background: url("signup-background-paris2.JPG") no-repeat center center fixed;
+  background: url("sign2.JPG") no-repeat center center fixed;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -1138,7 +1138,7 @@ footer#main .footer-above {
 }
 
 .signup.form-container {
-  min-height: 268px;
+  min-height: 250px;
 }
 
 .signup .form-box-cont{
@@ -1233,8 +1233,8 @@ footer#main .footer-above {
 ============================================================================= */
 
 /* form styling */
-#form-container                { background:rgba(18,32,40,0.8); margin-top:15px; display: inline-block }
-#form-container .page-header   { margin:0; padding:15px;}
+#form-container                { background:rgba(18,32,40,0.7); margin-top:15px; display: inline-block }
+#form-container .page-header   { margin:0; padding:30px;}
 
 /* numbered buttons */
 #status-buttons-work                 {  }
@@ -1276,7 +1276,7 @@ label {
 
 /* ANIMATION STYLINGS
 ============================================================================= */
-#signup-form { position:relative; min-height:345px; margin-top:15px;} //overflow:hidden;
+#signup-form { position:relative; min-height:330px; margin-top:15px;} //overflow:hidden;
 
 /* basic styling for entering and leaving */
 /* left and right added to ensure full width */
@@ -1572,11 +1572,12 @@ label {
 /* Tags input directive */
 
 .tags {
-  height: 80px;
+  height: 180px;
   width: 100%;
   margin: 10px 0;
   float: left;
-  background-color: rgba(18,32,40,0.6);
+  background-color: rgba(255,255,255,0.1);
+  position: absolute;
 }
 
 .tags .tag {
@@ -1610,7 +1611,6 @@ label {
 
 .tagsinput.addbutton {
   width: 50px;
-  margin-left:10px;
   padding: 7px 10px;
   background:#3D9ED8;
   text-decoration: none;

@@ -1,6 +1,6 @@
 angular.module('mepedia.controllers').controller("signupController", [
-	'$scope', '$http', '$state', '$log', 'Country', 'State', 'Nationality', 'sessionService', 'School', 'Skills', 'User','Major', 'Degree'
-	($scope, $httpProvider, $state, $log, Country, State, Nationality, sessionService, School, Skills, User, Major, Degree)->
+	'$scope', '$http', '$state', '$log', 'Country', 'State', 'Nationality', 'sessionService', 'School', 'Skill', 'User','Major', 'Degree','Interest'
+	($scope, $httpProvider, $state, $log, Country, State, Nationality, sessionService, School, Skill, User, Major, Degree, Interest)->
 
 		user = sessionService.requestCurrentUser()
 
@@ -143,19 +143,12 @@ angular.module('mepedia.controllers').controller("signupController", [
 				$scope.degree = degree
 
 		####### Interests ######
-		skills = Skills.get ->
+		skills = Skill.get ->
 			$scope.skillstags = skills.skills
-
-		interests = Skills.get ->
-			$scope.intereststags = skills.skills
 
 		$scope.skillsTags = [ ];
 
-		$scope.interestsTags = [ ];
-
 		$scope.createUser = () ->
-			console.log($scope.skillsTags);
-			console.log($scope.interestsTags);
 
 		#console.log($scope.newTags);
 		#	user.bio = $scope.tempUser.bio
