@@ -1,15 +1,17 @@
 angular.module('mepedia.controllers').controller('loginController',
     ['$scope', 'sessionService',
     function($scope, sessionService) {
-        console.log("THERE");
-        $scope.login = function() {
-            if ($scope.email && $scope.password) {
-                sessionService.login($scope.email, $scope.password);
+
+        $scope.login = function(isValid) {
+            console.log(isValid);
+            if(isValid) {
+                if ($scope.email && $scope.password) {
+                    sessionService.login($scope.email, $scope.password);
+                }
+            }else{
+                console.log ("entro");
+                $scope.loginSubmit = true;
             }
         }
-
     }
-
-
-
 ]);
