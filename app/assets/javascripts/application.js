@@ -19,7 +19,7 @@
 // Insert html in text
 //= require angular-sanitize
 //= require angular-animate
-//= require angular-route
+//= require angular-cookies
 // Upload images (order is important)
 //= require cloudinary_js
 //= require ng-file-upload-shim

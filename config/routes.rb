@@ -1,8 +1,6 @@
 require 'api_constraints'
 
 Demo::Application.routes.draw do
-  root 'home#index'
-
   namespace :api, defaults: {format: 'json'} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1) do
     # We are going to list our resources here
@@ -28,6 +26,6 @@ Demo::Application.routes.draw do
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
+  root 'home#index'
   match '*a', :to => 'errors#routing', via: :all
 end

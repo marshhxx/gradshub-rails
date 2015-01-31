@@ -1,7 +1,6 @@
 @app = angular.module("mepedia",
-	["ui.router", "templates", "mepedia.services", "mepedia.controllers", "ngResource",
-	 "ui.bootstrap", "ngSanitize", "ngRoute", "cloudinary", "angularFileUpload" ])
-.config ($stateProvider, $urlRouterProvider, $httpProvider) ->
+	["ui.router", "templates", "mepedia.services", "mepedia.controllers", "ngSanitize"])
+.config ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) ->
 	$httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
 	$httpProvider.defaults.headers.common.Accept = 'application/mepedia.v1'
 	$httpProvider.defaults.headers.common['Content-type'] = 'application/json'
@@ -23,7 +22,7 @@
 	]
 	$httpProvider.interceptors.push interceptor
 	$urlRouterProvider.otherwise "/home"
-	$urlRouterProvider.when('/home', '/main/signup/personal')
+	$urlRouterProvider.when('/home', '/home/page')
 	$stateProvider.state("home",
 		url: "/home"
 		templateUrl: "angular-app/templates/layouts/homeLayout.html"

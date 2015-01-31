@@ -1,21 +1,20 @@
 angular.module('mepedia.services').factory('sessionService',
-    ['$location', '$http','$q', 'User',
-        function($location, $http, $q, User) {
+    ['$location', '$http','$q','Session',
+        function($location, $http, $q, Session) {
         // Redirect to the given url (defaults to '/')
         function redirect(url) {
             url = url || '/';
             $location.path(url);
         }
         var service = {
-            login: function(email, password) {
+            login: function(email, password, rememberMe) {
                 var deferred = $q.defer();
 
                 $http.post('/api/sessions', {session: {email: email, password: password} })
                     .success(function(response) {
-                        service.currentUser = createUser(response.user);
-                        deferred.resolve(service.currentUser);
+                        Session.create(response.user, rememberMe);
                         if (service.isAuthenticated()) {
-                            redirect('/main/signup/personal')
+                            deferred.resolve({authenticated: true})
                         }
                     })
                     .error(function(response) {
@@ -28,7 +27,7 @@ angular.module('mepedia.services').factory('sessionService',
             logout: function() {
                 $http.delete('/api/sessions/' + service.currentUser.auth_token)
                     .success(function(response) {
-                        service.currentUser = null;
+                        Session.destroy();
                         redirect();
                     })
                     .error(function(response) {
@@ -37,20 +36,19 @@ angular.module('mepedia.services').factory('sessionService',
             },
 
             requestCurrentUser: function() {
-                if (service.isAuthenticated()) {
-                    return service.currentUser;
-                } else {
-                    redirect()
+                if (Session.available()) {
+                    return Session.getUser();
                 }
             },
 
             isAuthenticated: function(){
-                return !!service.currentUser;
+                return Session.available();
             },
 
             authenticationToken: function() {
-                if (service.isAuthenticated())
-                    return service.auth_token;
+                if (Session.available()) {
+                    return Session.getToken();
+                }
             },
 
             sendFgtPsswEmail: function(email) {
@@ -80,16 +78,46 @@ angular.module('mepedia.services').factory('sessionService',
             }
 
         };
-
-        function createUser(rawUser) {
-            var user = new User()
-            user.name = rawUser.name
-            user.lastname = rawUser.lastname
-            user.email = rawUser.email
-            user.uid = rawUser.uid
-            service.auth_token = rawUser.auth_token
-            return user
-        }
         return service;
+    }])
+    .service('Session',['User', 'cookieJar', function (User, cookieJar) {
+        this.available = function () {
+            return !!this.token || cookieJar.isDefined("token");
+        };
+        this.create = function (user, remember) {
+            this.token = user.auth_token;
+            this.user = new User();
+            this.user.name = user.name;
+            this.user.lastname = user.lastname;
+            this.user.email = user.email;
+            this.user.uid = user.uid;
+            if (remember) {
+                cookieJar.put("current_user", this.user);
+                cookieJar.put("token", this.token);
+            }
+        };
+        this.destroy = function () {
+            this.token = null;
+            this.user = null;
+            if (cookieJar.isDefined("current_user")) {
+                cookieJar.delete("current_user");
+                cookieJar.delete("token");
+            }
+        };
+        this.getToken = function() {
+            if (!!this.token) {
+                return this.token;
+            } else if (cookieJar.isDefined("token")) {
+                return cookieJar.get("token");
+            }
+        };
+        this.getUser = function() {
+            if (!!this.user) {
+                return this.user;
+            } else if (cookieJar.isDefined("current_user")) {
+                return cookieJar.get("current_user");
+            }
+        };
+        return this;
     }]);
 
