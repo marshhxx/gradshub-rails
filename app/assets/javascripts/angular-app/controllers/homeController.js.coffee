@@ -16,7 +16,7 @@ angular.module('mepedia.controllers').controller("HomeController", [
 					promise = sessionService.login($scope.email, $scope.password)
 					promise.then(
 						(payload) ->
-							$state.go 'main.signup'
+							$state.go 'main.signup.personal'
 						,
 						(errors) ->
 							console.log(errors)
