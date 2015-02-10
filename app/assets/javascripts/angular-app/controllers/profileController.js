@@ -1,7 +1,7 @@
 angular.module('mepedia.controllers').controller('profileController',
     ['$scope', '$rootScope', '$upload', 'sessionService',
 
-        function($scope, $rootScope, $upload) {
+        function($scope, $rootScope, $upload, ENV) {
 
 //            $scope.user = sessionService.requestCurrentUser()
 //

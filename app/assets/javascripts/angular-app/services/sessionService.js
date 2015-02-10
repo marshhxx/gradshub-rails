@@ -10,17 +10,17 @@ angular.module('mepedia.services').factory('sessionService',
             login: function(email, password, rememberMe) {
                 var deferred = $q.defer();
 
-                $http.post('/api/sessions', {session: {email: email, password: password} })
-                    .success(function(response) {
+                $http.post('/api/sessions', {session: {email: email, password: password} }
+                ).success(function(response) {
                         Session.create(response.user, rememberMe);
                         if (service.isAuthenticated()) {
                             deferred.resolve({authenticated: true})
                         }
-                    })
-                    .error(function(response) {
+                    }
+                ).error(function(response) {
                         deferred.reject(response.errors)
-                    });
-
+                    }
+                );
                 return deferred.promise;
             },
 

@@ -1,7 +1,8 @@
 @app = angular.module("mepedia",
 	["ui.router", "templates", "mepedia.services", "mepedia.controllers", "ngSanitize"])
 .config ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) ->
-	$httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
+	$httpProvider.defaults.withCredentials = true;
+#	$httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
 	$httpProvider.defaults.headers.common.Accept = 'application/mepedia.v1'
 	$httpProvider.defaults.headers.common['Content-type'] = 'application/json'
 	interceptor = [
@@ -39,6 +40,10 @@
 		url: "/main"
 		templateUrl: "angular-app/templates/layouts/mainLayout.html"
 #		controller: "signupController"
+	).state("main.login_onepgr",
+		url: "/login?mail"
+		templateUrl: "angular-app/templates/views/login_onepgr.html"
+		controller: "HomeController"
 	).state("main.forgotpssw",
 		url: "/forgotpssw"
 		templateUrl: "angular-app/templates/views/forgot_pssw.html"

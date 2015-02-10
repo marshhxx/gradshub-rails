@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(version: 20141030020738) do
     t.integer  "gender",                 default: 2
     t.date     "birth"
     t.string   "encrypted_password",     default: "", null: false
+    t.string   "onepgr_password",        default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.string   "image_url"

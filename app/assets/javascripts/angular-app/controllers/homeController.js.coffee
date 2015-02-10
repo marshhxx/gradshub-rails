@@ -1,6 +1,6 @@
 angular.module('mepedia.controllers').controller("HomeController", [
-	'$scope', 'User', '$state', '$anchorScroll', '$location', 'sessionService', '$sce',
-	($scope, User, $state, $anchorScroll, $location, sessionService, $sce)->
+	'$scope', 'User', '$state', '$anchorScroll', '$location', 'sessionService', '$sce', 'registerService', '$stateParams', 'communicationPlatform',
+	($scope, User, $state, $anchorScroll, $location, sessionService, $sce, registerService, $stateParams, communicationPlatform)->
 		$state.go "main.profile" if sessionService.isAuthenticated()
 		$scope.renderHtml = (htmlCode) ->
 		 $sce.trustAsHtml(htmlCode)
@@ -11,17 +11,16 @@ angular.module('mepedia.controllers').controller("HomeController", [
 			user.lastname = $scope.lastname
 			user.email = $scope.email
 			user.password = $scope.password
-			user.$save {}, (()->
-				promise = sessionService.login($scope.email, $scope.password)
-				promise.then(
-					(payload) ->
-						$state.go 'main.signup'
-					,
-					(errors) ->
-						console.log(errors)
-				)
-			), (error)->
-				console.log error
+			registerService.register(user).then(
+				(payload) ->
+					login(user)
+			,
+				(errors)->
+					if errors.code == 0
+						$state.go 'main.login_onepgr', {mail: user.email}
+					else
+						console.log(errors.error)
+			)
 
 		$scope.carouselInterval = 4000
 		$scope.slides = [
@@ -65,5 +64,33 @@ angular.module('mepedia.controllers').controller("HomeController", [
 			# the element you wish to scroll to.
 			$location.hash "top"
 			$anchorScroll()
+
+########  OnePgr login #########
+		$scope.onepgr_email = $stateParams.mail
+		$scope.loginOnePgr = () ->
+			user = registerService.currentUser()
+			communicationPlatform.loginUser(user, $scope.password).then(
+				(payload) ->
+					user.onepgr_id = payload.user_id
+					user.onepgr_password = $scope.password
+					registerService.registerToMepedia(user).then(
+						() ->
+							login(registerService.currentUser())
+					,
+						(error)->
+							console.log error
+					)
+			)
+
+		login = (user) ->
+			promise = sessionService.login(user.email, user.password)
+			promise.then(
+				(payload) ->
+					$state.go 'main.signup'
+			,
+				(errors) ->
+					console.log(errors)
+			)
+
 
 ])

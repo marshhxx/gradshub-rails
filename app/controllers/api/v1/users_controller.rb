@@ -24,6 +24,7 @@ class Api::V1::UsersController < Api::BaseController
     unless get_resource.valid?
       @reasons = get_resource.errors.full_messages
       render 'api/v1/common/error', status: :unprocessable_entity
+      return
     end
     logger.info 'User created!'
     render :nothing => true, :status => :created
@@ -78,8 +79,8 @@ class Api::V1::UsersController < Api::BaseController
   private
 
   def user_params
-    params.require(:user).permit(:name, :lastname, :email, :password, :gender,
-                                 :birth, :image_url, :early_life, :personal_life,
+    params.require(:user).permit(:name, :lastname, :email, :password, :onepgr_id, :onepgr_password,
+                                 :gender, :birth, :image_url, :early_life, :personal_life,
                                  :job_title, :country_id, :state_id, :bio) if params[:user]
   end
 
