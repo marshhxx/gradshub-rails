@@ -32,6 +32,7 @@ module Demo
     ::Sass::Script::Number.precision = [10, ::Sass::Script::Number.precision].max
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
     config.angular_templates.htmlcompressor = false
-
+    config.skip_session_storage = [:http_auth, :token_auth]
+    config.session_store :disabled
   end
 end

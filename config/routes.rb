@@ -21,6 +21,7 @@ Demo::Application.routes.draw do
       end
       resources :nationalities, :only => [:index, :show]
       resources :skills, :only => [:index, :create, :show]
+      resources :communication, :only => [:create]
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

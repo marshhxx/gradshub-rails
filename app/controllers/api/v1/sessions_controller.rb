@@ -9,9 +9,9 @@ class Api::V1::SessionsController < ApplicationController
       sign_in @user, store: false
       @user.generate_authentication_token!
       @user.save
-      render :create, status: :ok, location: [:api, @user]
+      render :create, status: :ok
     else
-      @reasons = ['Invalid email or password']
+      @error = {:reasons => ['Invalid email or password'], :code => AUTH_ERROR}
       render 'api/v1/common/error', status: :unprocessable_entity
     end
   end
@@ -19,7 +19,8 @@ class Api::V1::SessionsController < ApplicationController
   def destroy
     @user = User.find_by(auth_token: params[:id])
     if @user.nil?
-      @reasons = ['Invalid authentication token. User might not be logged in.']
+      @error = {:reasons => ['Invalid authentication token. User might not be logged in.'],
+                  :code => AUTH_ERROR}
       render 'api/v1/common/error', status: :unprocessable_entity
     else
       @user.generate_authentication_token!
@@ -34,7 +35,7 @@ class Api::V1::SessionsController < ApplicationController
       @user.send_reset_password_instructions
       render json: { message: 'The password reset email has been sent.' }, status: :accepted
     else
-      @reasons = ['There is no user with that email.']
+      @error = {:reasons => ['There is no user with that email.'], :code => AUTH_ERROR}
       render 'api/v1/common/error', status: :unprocessable_entity
     end
   end
@@ -45,8 +46,28 @@ class Api::V1::SessionsController < ApplicationController
       logger.info('Password updated')
       render json: { message: 'Password successfully updated.'}, status: :accepted
     else
-      @reasons = reset_user.errors.full_messages
+      @error = {:reasons => [reset_user.errors.full_messages], :code => INVALID_PARAMS_ERROR}
       render 'api/v1/common/error', status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def login_to_onepgr
+    begin
+      logged_params = OnepgrService.new().login({
+          email: @user.email,
+          password: @user.onepgr_account.onepgr_password
+      })
+      if logged_params
+        @user.onepgr_account.assign_attributes(logged_params)
+        @user.onepgr_account.save
+      else
+        logged_params
+      end
+    rescue OnepgrService::OnepgrAuthException => error
+      logger.error(error)
+      raise
     end
   end
 end

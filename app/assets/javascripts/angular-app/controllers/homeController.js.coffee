@@ -1,6 +1,6 @@
 angular.module('mepedia.controllers').controller("HomeController", [
-	'$scope', 'User', '$state', '$anchorScroll', '$location', 'sessionService', '$sce', 'registerService', '$stateParams', 'communicationPlatform',
-	($scope, User, $state, $anchorScroll, $location, sessionService, $sce, registerService, $stateParams, communicationPlatform)->
+	'$scope', 'User', '$state', '$anchorScroll', '$location', 'sessionService', '$sce', '$stateParams', 'registerService'
+	($scope, User, $state, $anchorScroll, $location, sessionService, $sce, $stateParams, registerService)->
 		$state.go "main.profile" if sessionService.isAuthenticated()
 		$scope.renderHtml = (htmlCode) ->
 		 $sce.trustAsHtml(htmlCode)
@@ -15,11 +15,12 @@ angular.module('mepedia.controllers').controller("HomeController", [
 				(payload) ->
 					login(user)
 			,
-				(errors)->
-					if errors.code == 0
+				(response)->
+					error = response.data.error
+					if error.code == "ERR02"
 						$state.go 'main.login_onepgr', {mail: user.email}
 					else
-						console.log(errors.error)
+						console.log(error)
 			)
 
 		$scope.carouselInterval = 4000
@@ -69,17 +70,13 @@ angular.module('mepedia.controllers').controller("HomeController", [
 		$scope.onepgr_email = $stateParams.mail
 		$scope.loginOnePgr = () ->
 			user = registerService.currentUser()
-			communicationPlatform.loginUser(user, $scope.password).then(
-				(payload) ->
-					user.onepgr_id = payload.user_id
-					user.onepgr_password = $scope.password
-					registerService.registerToMepedia(user).then(
-						() ->
-							login(registerService.currentUser())
-					,
-						(error)->
-							console.log error
-					)
+			user.onepgr_password = $scope.password
+			registerService.register(user).then(
+				() ->
+					login(registerService.currentUser())
+				,
+				(response) ->
+					console.log(response.data.error)
 			)
 
 		login = (user) ->

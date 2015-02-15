@@ -35,12 +35,15 @@ class AddFieldsToUsers < ActiveRecord::Migration
 
       t.belongs_to :country
       t.belongs_to :state
-
-      ## Onepgr related
-      t.string :onepgr_id
-      t.string :onepgr_password,        default: "", null: false
+      t.belongs_to :onepgr_account
 
       t.timestamp
+    end
+
+    create_table :onepgr_accounts do |t|
+      t.string :onepgr_id
+      t.string :onepgr_password,        default: "", null: false
+      t.string :session_token
     end
 
     create_table :interests do |t|

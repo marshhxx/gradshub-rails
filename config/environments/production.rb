@@ -79,6 +79,4 @@ Demo::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.log_level = :warn
-
-  config.angular_config = "{env: 'prod'}"
 end

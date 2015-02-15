@@ -6,9 +6,8 @@ class Api::BaseController < ApplicationController
   # POST /api/{plural_resource_name}
   def create
     set_resource(resource_class.new(resource_params))
-
     unless get_resource.valid?
-      @reasons = get_resource.errors
+      @error = {:reasons => get_resource.errors.full_messages, :code => INVALID_PARAMS_ERROR}
       render 'api/v1/common/error', status: :unprocessable_entity
     end
     if get_resource.save
@@ -19,7 +18,7 @@ class Api::BaseController < ApplicationController
   # DELETE /api/{plural_resource_name}/1
   def destroy
     if get_resource.destroy
-      @reasons = get_resource.errors
+      @error = {:reasons => get_resource.errors.full_messages, :code => INVALID_PARAMS_ERROR}
       render 'api/v1/common/error', status: :unprocessable_entity
     else
       head :accepted
@@ -99,6 +98,5 @@ class Api::BaseController < ApplicationController
     resource ||= resource_class.find_by(id: params[:id])
     instance_variable_set("@#{resource_name}", resource)
   end
-
 
 end

@@ -38,6 +38,4 @@ Demo::Application.configure do
   config.assets.debug = true
 
   config.log_level = :warn
-
-  config.angular_config = "{env: 'dev'}"
 end
