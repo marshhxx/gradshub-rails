@@ -155,8 +155,8 @@ angular.module('mepedia.controllers').controller("signupController", [
 		#	monthNumber = getMonthNumber($scope.selectedMonth)
 		#	user.birth = $scope.selectedYear + "-" + monthNumber + "-" + $scope.selectedDay
 		#	console.log $scope.country
-		#	user.country_id = $scope.country.id
-		#	user.state_id = $scope.state.id
+			user.country_id = $scope.country.id
+			user.state_id = $scope.state.id
 		#	user.nationalities_ids =  []
 		#	user.nationalities_ids.push $scope.nationality.id
 
@@ -169,7 +169,7 @@ angular.module('mepedia.controllers').controller("signupController", [
 		#	user.educations.push education
 
 		#	user.skills = $scope.tempUser.skills.name
-		#	$httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
-		#	user.$update () ->
-		#		console.log(user)
+			$httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
+			user.$update () ->
+				console.log(user)
 ])

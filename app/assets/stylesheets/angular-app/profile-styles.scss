@@ -54,3 +54,257 @@
   }
 }
 // END SPINNER <<<<<<<<<<<<
+
+
+/** profile **/
+
+.profile.background {
+  height: 100%;
+  background-color: #ececec;
+  background-size: 100%;
+}
+
+.profile.wrapper {
+  //  background-color: #fff;
+  height: 100%;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+#profileTopSection {
+  height: 375px;
+}
+
+#profileCover.coverWrap {
+  display: block;
+  position: relative;
+  height: 315px;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.coverImage {
+  background: url('portadaimage-default.png') center center no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  display: block;
+  height: 315px;
+}
+
+.cloudinary.img {
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  display: block;
+  width: 948px;
+}
+
+.coverBorder {
+  border-bottom-color: rgba(0, 0, 0, .4);
+  border: 1px solid #000;
+  border-color: rgba(0, 0, 0, .25);
+  border-top-color: rgba(0, 0, 0, .1);
+  bottom: 0;
+  left: 0;
+  //position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.coverImageEdit.wrapper {
+  float: right;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+}
+
+.coverImageEdit.img {
+  width: 45px;
+  height: 40px;
+  background: url('camara.svg') center center no-repeat;
+  background-size: 45px 40px;
+  margin: 10px 15px;
+  cursor: pointer;
+}
+
+.coverImageEdit.img:hover {
+  background: url('camara.svg') center center no-repeat;
+  background-size: 40px 35px;
+}
+
+.profileImage.wrapper {
+  margin-top: -220px;
+  left: 30px;
+  position: absolute;
+  z-index: 99;
+}
+
+.profileImage.img {
+  background: url(profileimage-default.svg) no-repeat;
+  background-size: 270px 270px;
+  background-position: 0px 0px;
+  height: 270px;
+  width: 270px;
+  border-radius: 50%;
+  margin: auto;
+  z-index: 99;
+}
+
+.profileHeadline.wrapper {
+  height: 60px;
+  width: 100%;
+  background-color: #012b5d;
+}
+
+.profileImageEdit.wrapper {
+  position: absolute;
+  width: 100%;
+  z-index: 100;
+  margin-top: -50px;
+  text-align: center;
+}
+
+.profileImageEdit.img {
+  width: 50%;
+  margin: 0 auto;
+  height: 40px;
+  background: url('camara.svg') center center no-repeat;
+  background-size: 45px 40px;
+  //margin: 10px 15px;
+  cursor: pointer;
+}
+
+.profileImageEdit.img:hover {
+  background: url('camara.svg') center center no-repeat;
+  background-size: 45px 40px;
+}
+
+.profileContent{
+  width: 100%;
+  display: inline-block;
+}
+
+.profileLeftContent{
+  padding: 15px;
+  height: 100%;
+  background-color: #FFFFFF;
+  margin-top: 10px;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 2px 2px 0px 0px;
+  border-radius: 2px 2px 0px 0px;
+}
+
+.profileMainContent{
+  height: 100%;
+  background-color: #ececec;
+}
+
+.profile-img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  margin-top: 4px;
+  background-size: 40px !important;
+}
+
+.profile-img.country{
+  background: url('country.svg') center center no-repeat;
+}
+
+.profile-img.major{
+  background: url('major.svg') center center no-repeat;
+}
+
+.profile-img.interest{
+  background: url('magnifyingglass.svg') center center no-repeat;
+}
+
+.profile-img.current{
+  background: url('current.svg') center center no-repeat;
+}
+
+
+.profile-cont{
+
+}
+
+p {
+  margin: 0;
+}
+
+.profileLeft {
+  width: 100%;
+  height: 50px;
+  float: left;
+}
+
+.img-col {
+  float: left;
+  width: 15%;
+}
+
+.cont-col {
+  width: 85%;
+  margin-left: 5px;
+  overflow: auto;
+  height: 50px;
+}
+
+.profile-label {
+  display: inline-block;
+  color: #041533;
+  line-height: 50px;
+  text-decoration: none;
+  font-weight: normal !important;
+  float: left;
+}
+
+.profile-input{
+  margin-top: 10px;
+  height: 30px !important;
+}
+
+.profile-left-cont{
+  line-height: 50px;
+}
+
+.profile-select{
+  display: inline-block;
+  line-height: 50px;
+}
+
+.editwrapper{
+  height: 30px;
+  width: 100%;
+}
+
+.edit-buttons-wrapper{
+  float: right;
+}
+
+.edit-pencil{
+  width: 30px;
+  height: 30px;
+  float: right;
+  background: url(pencil.svg) no-repeat;
+}
+
+.btn-edit {
+  width: 70px;
+  margin-bottom: 5px;
+  padding: 5px 0px;
+  background: none;
+  color: #041533;
+  font: 13px Opensans-light, Georgia, "Times New Roman", Times, serif;
+  border: 1px solid #041533;
+  border-radius: 0 !important;
+}
+
+.btn-edit:hover {
+  color: #3D9ED8;
+  border: 1px solid #3D9ED8;
+  font: 13px Opensans-light, Georgia, "Times New Roman", Times, serif;
+}

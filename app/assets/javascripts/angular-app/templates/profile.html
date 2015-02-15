@@ -1,45 +1,134 @@
-
 <div class="profile background">
-    <div class="container">
-        <div class="profile wrapper col-md-10 col-md-offset-1">
-            <div id="profileTopSection">
-                <div id="profileCover" class="coverWrap">
-                    <div class="coverBorder">
-                        <form>
-                            <div class="coverImage" ng-if="result.public_id == null"></div>
-                            <div class="coverImageEdit wrapper">
-                                <div class="coverImageEdit img" ng-file-select="onFileSelect($files)"
-                                data-multiple="false" title="Upload Cover Photo"
-                                onclick="this.value = null"></div>
-                            </div>
 
-                            <cl-image class="cloudinary img" public-id="{{result.public_id}}" format="jpg" ng-if="result.public_id != null">
-                            </cl-image>
-                            <div class="spinner-container" ng-if="progress>0 && progress<100">
-                                <div class="spinner">
-                                  <div class="rect1"></div>
-                                  <div class="rect2"></div>
-                                  <div class="rect3"></div>
-                                  <div class="rect4"></div>
-                                  <div class="rect5"></div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="profileHeadline wrapper">
-                    <div class="profileImage wrapper">
-                        <div class="profileImage img"></div>
-                        <div class="profileImageEdit wrapper">
-                            <div class="profileImageEdit img"></div>
+    <div class="profile wrapper col-md-9 col-md-offset-1">
+
+        <div id="profileTopSection">
+
+            <div id="profileCover" class="coverWrap">
+                <div class="coverBorder">
+                    <form>
+                        <div class="coverImage" ng-if="result.public_id == null"></div>
+                        <div class="coverImageEdit wrapper">
+                            <div class="coverImageEdit img" ng-file-select="onFileSelect($files)"
+                                 data-multiple="false" title="Upload Cover Photo"
+                                 onclick="this.value = null"></div>
                         </div>
-                    </div>
 
+                        <cl-image class="cloudinary img" public-id="{{result.public_id}}" format="jpg"
+                                  ng-if="result.public_id != null">
+                        </cl-image>
+                        <div class="spinner-container" ng-if="progress>0 && progress<100">
+                            <div class="spinner">
+                                <div class="rect1"></div>
+                                <div class="rect2"></div>
+                                <div class="rect3"></div>
+                                <div class="rect4"></div>
+                                <div class="rect5"></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="profileHeadline wrapper">
+                <div class="profileImage wrapper">
+                    <div class="profileImage img"></div>
+                    <div class="profileImageEdit wrapper">
+                        <div class="profileImageEdit img"></div>
+                    </div>
                 </div>
 
             </div>
 
+
         </div>
+        <div class="profileContent">
+            <div class="profileLeftContent col-md-4">
+                <div class="editwrapper">
+                    <div class="edit-pencil" ng-click="enableEditor()" ng-hide="editorEnabled"></div>
+
+                <div ng-show="editorEnabled" class="edit-buttons-wrapper">
+                    <a href="#" ng-click="save()" class="btn btn-edit">
+                        SAVE </span>
+                    </a>
+                    <a href="#" ng-click="disableEditor()" class="btn btn-edit margin-l5">
+                        CANCEL </span>
+                    </a>
+                </div>
+                </div>
+
+                <div class="profileLeftContentWrapper">
+
+                    <div class="profileLeft">
+                        <div class="img-col">
+                            <div class="profile-img current"></div>
+                        </div>
+                        <div class="cont-col">
+                            <div ng-hide="editorEnabled" class="profile-left-cont">
+                                {{tempUser.jobtitle}}
+                            </div>
+                            <input class="form-control profile-input" ng-model="user.jobtitle" ng-show="editorEnabled" placeholder="My Current Position">
+                        </div>
+                    </div>
+
+                    <div class="profileLeft">
+                        <div class="img-col">
+                            <div class="profile-img major"></div>
+                        </div>
+                        <div class="cont-col">
+                            <div ng-hide="editorEnabled" class="profile-left-cont">
+                                {{tempUser.major}}
+                            </div>
+                            <input class="form-control profile-input" ng-model="user.major" ng-show="editorEnabled" placeholder="Area of Specialization"/>
+                        </div>
+                    </div>
+
+                    <div class="profileLeft">
+                        <div class="img-col">
+                            <div class="profile-img interest"></div>
+                        </div>
+                        <div class="cont-col">
+                            <div ng-hide="editorEnabled" class="profile-left-cont">
+                                {{tempUser.interest}}
+                            </div>
+                            <input class="form-control profile-input" ng-model="user.interest" ng-show="editorEnabled" placeholder="Interested in"/>
+                        </div>
+                    </div>
+
+                    <div class="profileLeft">
+                        <div class="img-col">
+                            <div class="profile-img country"></div>
+                        </div>
+                        <div class="cont-col">
+                            <div ng-hide="editorEnabled" class="profile-left-cont">
+                                {{tempPersonalInfo.currentLocation}}
+                            </div>
+                            <input  class="form-control profile-input" ng-model="personalInfo.currentLocation" ng-show="editorEnabled" placeholder="Current Location"/>
+                        </div>
+                    </div>
+                </div>
+
+                <!--<div class="profileLeft">-->
+                    <!--<div class="img-col">-->
+                        <!--<div class="profile-img current"></div>-->
+                    <!--</div>-->
+                    <!--<div class="cont-col">-->
+                        <!--<div ng-hide="editorEnabled">-->
+                            <!--{{title}}-->
+                        <!--</div>-->
+                        <!--<input ng-model="editableTitle" ng-show="editorEnabled">-->
+                    <!--</div>-->
+                <!--</div>-->
+
+
+
+            </div>
+
+            <div class="profileMainContent col-md-8">
+
+            </div>
+        </div>
+
+
     </div>
 </div>
 
