@@ -1,7 +1,7 @@
 angular.module('mepedia.controllers').controller('profileController',
-    ['$scope', '$rootScope', '$upload', 'sessionService', '$state','Country', 'State', 'User',
+    ['$scope', '$rootScope', '$upload', 'sessionService', '$state','Country', 'State', 'User', 'Skill',
 
-        function($scope, $rootScope, $upload, sessionService, $state, Country, State, User) {
+        function($scope, $rootScope, $upload, sessionService, $state, Country, State, User, Skill) {
 
           /*  $scope.user = sessionService.requestCurrentUser()
 
@@ -71,7 +71,6 @@ angular.module('mepedia.controllers').controller('profileController',
                 });
             };
 
-
             /* Request current user */
             var currentUser = sessionService.requestCurrentUser();
             if(currentUser != null) {
@@ -84,56 +83,35 @@ angular.module('mepedia.controllers').controller('profileController',
                     console.log(errResponse);
                 });
             } else {
-                $state.go('home.page');
+                $state.go('main.profile');
             }
 
-
-
-            //var user = User.query(userId);
-//            var sessionUser = sessionService.requestCurrentUser();
-//            User.get({id: sessionUser.uid})
-//                .$promise.then(function(user) {
-//                    $scope.user = user;
-//            });
-
-          /*  if ($scope.user == null) {
-
-            }*/
-
-//            if(user != null) {
-//                console.log("user country " + user.user.country.country_id);
-//                console.log("user country " + user.country);
-//            }
-
-           // $scope.user = {};
             $scope.tempPersonalInfo = {}
             $scope.personalInfo = {};
             var getPersonalInfo = function () {
                 if($scope.user != null) {
+                    $scope.personalInfo.currentPosition = "Add your current position";
+                    $scope.tempPersonalInfo.currentPosition = $scope.personalInfo.currentPosition;
 
-                    // var country = $filter('getObjectById')(countries, user.country.id);
+                    $scope.personalInfo.education = "Add your education";
+                    $scope.tempPersonalInfo.education = $scope.personalInfo.education;
+
+                    $scope.personalInfo.topSkills = "Add your skills";
+                    $scope.tempPersonalInfo.topSkills = $scope.personalInfo.topSkills;
 
                     $scope.personalInfo.currentLocation = ($scope.user.country != null) ? (($scope.user.state.name != null) ? $scope.user.state.name + ", " + $scope.user.country.name : $scope.user.country.name) : "Add your current location";
                     $scope.tempPersonalInfo.currentLocation = $scope.personalInfo.currentLocation;
-//                jobtitle: "Add",
-//                major: "",
-//                interest: "",
-//                country: ""
-
                 }
-            }
-
-            function getCurrentPosition(){
-
             }
 
             $scope.editorEnabled = false;
 
             $scope.enableEditor = function() {
                 $scope.editorEnabled = true;
-                $scope.user.jobtitle = $scope.tempUser.jobtitle;
-                $scope.user.major = $scope.tempUser.major;
-                $scope.user.interest = $scope.tempUser.interest;
+
+                $scope.personalInfo.currentPosition = $scope.tempPersonalInfo.currentPosition;
+                $scope.personalInfo.education = $scope.tempPersonalInfo.education;
+                $scope.personalInfo.topSkills = $scope.tempPersonalInfo.topSkills;
                 $scope.personalInfo.currentLocation = $scope.tempPersonalInfo.currentLocation;
             };
 
@@ -142,13 +120,146 @@ angular.module('mepedia.controllers').controller('profileController',
             };
 
             $scope.save = function() {
-                $scope.tempUser.jobtitle = $scope.user.jobtitle;
-                $scope.tempUser.major = $scope.user.major;
-                $scope.tempUser.interest = $scope.user.interest;
-                //$scope.tempUser.country = $scope.user.country;
+                $scope.tempPersonalInfo.currentPosition = $scope.personalInfo.currentPosition;
+                $scope.tempPersonalInfo.education = $scope.personalInfo.education;
+                $scope.tempPersonalInfo.topSkills = $scope.personalInfo.topSkills;
                 $scope.tempPersonalInfo.currentLocation = $scope.personalInfo.currentLocation;
                 $scope.disableEditor();
             };
+
+            /* SUMMARY */
+            $scope.userSummary;
+            $scope.profileSummary = "Write something about you";
+
+            $scope.editorSummaryEnabled = false;
+
+            $scope.enableSummaryEditor = function() {
+                $scope.editorSummaryEnabled = true;
+                if($scope.profileSummary != "Write something about you")
+                    $scope.userSummary = $scope.profileSummary;
+            };
+
+            $scope.disableSummaryEditor = function() {
+                $scope.editorSummaryEnabled = false;
+            };
+
+            $scope.saveSummary = function(){
+                $scope.disableSummaryEditor();
+                if($scope.userSummary != undefined  && $scope.userSummary != "" && $scope.userSummary.length > 0){
+                    $scope.profileSummary = $scope.userSummary;
+                } else {
+                    $scope.profileSummary = "Write something about you";
+                }
+            }
+
+            /* SKILLS */
+            $scope.userSelectedSkills = [];
+            $scope.selectedSkills = ["Add a skill"];
+            var skills;
+            skills = Skill.get(function() {
+                return $scope.skillsTags = skills.skills;
+            });
+
+            $scope.editorSkillsEnabled = false;
+
+            $scope.enableSkillsEditor = function() {
+                $scope.editorSkillsEnabled = true;
+                if($scope.selectedSkills.length > 0)
+                    $scope.userSelectedSkills = $scope.selectedSkills.slice();
+            };
+
+            $scope.disableSkillsEditor = function() {
+                $scope.editorSkillsEnabled = false;
+            };
+
+            $scope.saveSkills = function(){
+                $scope.disableSkillsEditor();
+                if($scope.userSelectedSkills.length > 0){
+                    if($scope.userSelectedSkills[0] == "Add a skill")
+                        $scope.userSelectedSkills.shift()
+                    $scope.selectedSkills = $scope.userSelectedSkills.slice();
+                } else {
+                    $scope.selectedSkills.push("Add a skill");
+                }
+            }
+
+            /* EARLY LIFE */
+            $scope.userEarlyLife;
+            $scope.profileEarlyLife = "Write something about your early life";
+
+            $scope.editorEarlyLifeEnabled = false;
+
+            $scope.enableEarlyLifeEditor = function() {
+                $scope.editorEarlyLifeEnabled = true;
+                if($scope.profileEarlyLife != "Write something about your early life")
+                    $scope.userEarlyLife = $scope.profileEarlyLife;
+            };
+
+            $scope.disableEarlyLifeEditor = function() {
+                $scope.editorEarlyLifeEnabled = false;
+            };
+
+            $scope.saveEarlyLife = function(){
+                $scope.disableEarlyLifeEditor();
+                if($scope.userEarlyLife != undefined  && $scope.userEarlyLife != "" && $scope.userEarlyLife.length > 0){
+                    $scope.profileEarlyLife = $scope.userEarlyLife;
+                } else {
+                    $scope.profileEarlyLife = "Write something about your early life";
+                }
+            }
+
+            /* PERSONAL LIFE */
+
+            $scope.userPersonalLife;
+            $scope.profilePersonalLife = "Write something about your personal life";
+            $scope.editorPersonalLifeEnabled = false;
+
+            $scope.enablePersonalLifeEditor = function() {
+                $scope.editorPersonalLifeEnabled = true;
+                if($scope.profilePersonalLife != "Write something about your personal life")
+                    $scope.userPersonalLife = $scope.profilePersonalLife;
+            };
+
+            $scope.disablePersonalLifeEditor = function() {
+                $scope.editorPersonalLifeEnabled = false;
+            };
+
+            $scope.savePersonalLife = function(){
+                $scope.disablePersonalLifeEditor();
+                if($scope.userPersonalLife != undefined  && $scope.userPersonalLife != "" && $scope.userPersonalLife.length > 0){
+                    $scope.profilePersonalLife = $scope.userPersonalLife;
+                } else {
+                    $scope.profilePersonalLife = "Write something about your personal life";
+                }
+            }
+
+            /* CAREER */
+
+            $scope.userCareer;
+            $scope.profileCareer= "Write something about your personal life";
+            $scope.editorCareerEnabled = false;
+
+            $scope.enableCareerEditor = function() {
+                $scope.editorCareerEnabled = true;
+                if($scope.profileCareer != "Write something about your personal life")
+                    $scope.userCareer = $scope.profileCareer;
+            };
+
+            $scope.disableCareerEditor = function() {
+                $scope.editorPersonalLifeEnabled = false;
+            };
+
+            $scope.saveCareer= function(){
+                $scope.disablePersonalLifeEditor();
+                if($scope.userCareer != undefined  && $scope.userCareer != "" && $scope.userCareer.length > 0){
+                    $scope.profileCareer = $scope.userCareer;
+                } else {
+                    $scope.profileCareer = "Write something about your personal life";
+                }
+            }
+
+
+
 
         }]);
 

@@ -1,4 +1,15 @@
-// START SPINNER >>>>>>>>>>>>
+/* General */
+
+h3 {
+  font: 18px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+  text-transform: uppercase;
+  margin: 0px !important;
+  display: inline-block;
+  float: left;
+}
+
+
+/* Spinner */
 .spinner {
   margin: 100px auto;
   width: 50px;
@@ -59,9 +70,9 @@
 /** profile **/
 
 .profile.background {
-  height: 100%;
+  width: 100%;
+  display: inline-block;
   background-color: #ececec;
-  background-size: 100%;
 }
 
 .profile.wrapper {
@@ -84,7 +95,7 @@
 }
 
 .coverImage {
-  background: url('portadaimage-default.png') center center no-repeat;
+  background: url('background-pattern-blue.png') center center no-repeat;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -156,7 +167,7 @@
 .profileHeadline.wrapper {
   height: 60px;
   width: 100%;
-  background-color: #012b5d;
+  background-color: #3D9ED8;
 }
 
 .profileImageEdit.wrapper {
@@ -188,18 +199,20 @@
 }
 
 .profileLeftContent{
-  padding: 15px;
   height: 100%;
   background-color: #FFFFFF;
-  margin-top: 10px;
-  -moz-border-radius: 0px;
-  -webkit-border-radius: 2px 2px 0px 0px;
-  border-radius: 2px 2px 0px 0px;
+  margin-top: 20px;
+  border-radius: 3px;
+  border: 1px solid #d8d8d8;
+  border-bottom-width: 2px;
+  padding: 20px 20px 25px 20px;
 }
 
 .profileMainContent{
   height: 100%;
   background-color: #ececec;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
 }
 
 .profile-img {
@@ -286,25 +299,84 @@ p {
 }
 
 .edit-pencil{
-  width: 30px;
-  height: 30px;
-  float: right;
+  width: 25px;
+  height: 25px;
   background: url(pencil.svg) no-repeat;
+  background-size: 25px;
+  float: right;
+  cursor: pointer;
+}
+
+.edit-pencil{
+  width: 25px;
+  height: 25px;
+  background: url(pencil.svg) no-repeat;
+  background-size: 25px;
+  float: right;
+}
+
+.edit-pencil:hover{
+  background: url(pencil-hover.svg) no-repeat;
+  background-size: 25px;
 }
 
 .btn-edit {
   width: 70px;
-  margin-bottom: 5px;
   padding: 5px 0px;
   background: none;
-  color: #041533;
-  font: 13px Opensans-light, Georgia, "Times New Roman", Times, serif;
-  border: 1px solid #041533;
+  color: #3D9ED8;
+  font: 13px Roboto-Light, Georgia, "Times New Roman", Times, serif;
+  border: 1px solid #3D9ED8;
   border-radius: 0 !important;
 }
 
 .btn-edit:hover {
-  color: #3D9ED8;
-  border: 1px solid #3D9ED8;
-  font: 13px Opensans-light, Georgia, "Times New Roman", Times, serif;
+  color: #041533;
+  border: 1px solid #041533;
+}
+
+.profile-right-container{
+  background-color: #FFF;
+  padding: 20px 20px 25px 20px;
+  margin: 20px 0 20px 20px;
+  border-radius: 3px;
+  border: 1px solid #d8d8d8;
+  border-bottom-width: 2px;
+}
+
+.profile-right-header{
+  width: 100%;
+  display: inline-block;
+  padding: 10px 0;
+}
+
+.profile-right-header.title{
+  float: left;
+  width: 40%;
+  padding: 0px;
+}
+
+.profile-right-header.edit{
+  float: left;
+  width: 60%;
+  padding: 0px;
+}
+
+.profile-right-content{
+  width: 100%;
+  display: inline-block;
+}
+
+.profile-right-container{
+
+}
+
+.profile-right-text{
+  color: #999999;
+  font: 13px Montserrat-Light;
+}
+
+textarea{
+  color: #505050;
+  font: 13px Montserrat-Light;
 }

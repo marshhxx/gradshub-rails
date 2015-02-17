@@ -45,6 +45,16 @@
   src: url(Oswald-Regular.otf);
 }
 
+@font-face {
+  font-family: 'Montserrat-Regular';
+  src: url(Montserrat-Regular.otf);
+}
+
+@font-face {
+  font-family: 'Montserrat-Light';
+  src: url(Montserrat-Light.otf);
+}
+
 html {
   height: 100%;
   -webkit-user-select: none;
@@ -64,15 +74,17 @@ body {
   margin: 0;
 }
 
-.input {
-  color: #3f4752;
-  font-family: Opensans-regular, Georgia, "Times New Roman", Times, serif !important;
-  font-size: 14px;
+input {
+  color: #505050;
+  font-family: Montserrat-Light !important;
+  font-size: 13px !important;
   box-sizing: border-border;
 }
 
-.input::-webkit-input-placeholder {
+input::-webkit-input-placeholder {
   color: #bbb;
+  font-size: 13px !important;
+  font-family: Montserrat-Light !important;
 }
 
 .light-txt-white {
@@ -214,19 +226,19 @@ body {
 }
 
 ::-webkit-input-placeholder {
-  font: 13px Opensans-light, Georgia, "Times New Roman", Times, serif;
+  font: 13px Montserrat-Light;
 }
 
 :-moz-placeholder { /* Firefox 18- */
-  font: 13px Opensans-light, Georgia, "Times New Roman", Times, serif;
+  font: 13px Montserrat-Light;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
-  font: 13px Opensans-light, Georgia, "Times New Roman", Times, serif;
+  font: 13px Montserrat-Light;
 }
 
 :-ms-input-placeholder {
-  font: 13px Opensans-light, Georgia, "Times New Roman", Times, serif;
+  font: 13px Montserrat-Light;
 }
 
 .navbar-default {
@@ -1193,7 +1205,7 @@ footer#main .footer-above {
 }
 
 .signup.form-container {
-  min-height: 250px;
+  height: 250px;
 }
 
 .signup .form-box-cont {
@@ -1202,7 +1214,7 @@ footer#main .footer-above {
 
 .btn-form {
   width: 210px;
-  margin: 15px 0;
+  margin: 20px 0;
   padding: 10px 0px;
   background: none;
   color: #FFFFFF;
@@ -1212,7 +1224,7 @@ footer#main .footer-above {
 }
 
 .btn-form:hover {
-  background: #122028;
+  background: #041533;
   color: #FFF;
   font: 14px Opensans-light, Georgia, "Times New Roman", Times, serif;
 }
@@ -1222,6 +1234,7 @@ footer#main .footer-above {
   background-color: rgb(255, 255, 255) !important;
   border-color: rgb(255, 255, 255) !important;
   color: #555555 !important;
+  margin-bottom: 5px;
 }
 
 .btn-primary :hover {
@@ -1231,9 +1244,10 @@ footer#main .footer-above {
 }
 
 .dropdown-menu {
-  height: 125px;
+  height: 140px;
   overflow-y: scroll;
   z-index: 999;
+  font: 13px Montserrat-Light !important;
   cursor: pointer;
 }
 
@@ -1427,7 +1441,7 @@ label {
 #signup-form {
   position: relative;
   min-height: 330px;
-  margin-top: 15px;
+  margin-top: 20px;
 }
 
 //overflow:hidden;
@@ -1763,23 +1777,23 @@ label {
 /* Tags input directive */
 
 .tags {
-  height: 180px;
+  min-height: 50px;
   width: 100%;
-  margin: 10px 0;
+  margin: 5px 0px;
   float: left;
   background-color: rgba(255, 255, 255, 0.1);
-  position: absolute;
 }
 
 .tags .tag {
-  border-radius: 6px;
+  border-radius: 3px;
   background-color: #EFEFEF;
   color: #3D9ED8;
   border: 1px solid #DDD;
-  padding: 5px;
-  margin-right: 10px;
-  margin-top: 5px;
+  padding: 3px 4px;
+  margin: 5px 10px 5px 0px;
   display: inline-block;
+  float: left;
+  font: 13px Montserrat-Light;
 }
 
 .tags .tag:hover {
@@ -1791,25 +1805,25 @@ label {
 }
 
 .tagsinput.cont.left {
-  width: 85%;
+  width: 90%;
   display: inline-block;
 }
 
 .tagsinput.cont.right {
-  width: 15%;
+  width: 10%;
   display: inline-block;
 }
 
 .tagsinput.addbutton {
-  width: 50px;
   padding: 7px 10px;
   background: #3D9ED8;
   text-decoration: none;
   color: #FFFFFF;
-  font: 14px Opensans-light, Georgia, "Times New Roman", Times, serif;
+  font: 13px Montserrat-Light;
   border: 1px solid #3D9ED8;
-  border-radius: 0 !important;
+  border-radius: 3px;
   cursor: pointer;
+  margin-left: 10px;
 }
 
 .tagsinput.addbutton:hover {

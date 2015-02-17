@@ -87,7 +87,6 @@ angular.module('mepedia.controllers').controller("signupController", [
 				$scope.looking = false
 
 		countries = Country.get ->
-			console.log(countries.countries)
 			$scope.countries = countries.countries
 
 		$scope.getStateByCountryId = (countryId) ->
@@ -142,11 +141,11 @@ angular.module('mepedia.controllers').controller("signupController", [
 			if(degree?)
 				$scope.degree = degree
 
-		####### Interests ######
+		####### Skills ######
 		skills = Skill.get ->
-			$scope.skillstags = skills.skills
+			$scope.skillsTags = skills.skills
 
-		$scope.skillsTags = [ ];
+		$scope.selectedSkills = [];
 
 		$scope.createUser = () ->
 
