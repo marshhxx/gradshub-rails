@@ -235,7 +235,7 @@ angular.module('mepedia.controllers').controller('profileController',
 
             /* CAREER */
 
-            $scope.userCareer;
+          /*  $scope.userCareer;
             $scope.profileCareer= "Write something about your personal life";
             $scope.editorCareerEnabled = false;
 
@@ -256,7 +256,7 @@ angular.module('mepedia.controllers').controller('profileController',
                 } else {
                     $scope.profileCareer = "Write something about your personal life";
                 }
-            }
+            }*/
 
 
 

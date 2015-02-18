@@ -55,6 +55,11 @@
   src: url(Montserrat-Light.otf);
 }
 
+@font-face {
+  font-family: 'Lato-Regular';
+  src: url(Lato-Regular.ttf);
+}
+
 html {
   height: 100%;
   -webkit-user-select: none;
@@ -76,15 +81,15 @@ body {
 
 input {
   color: #505050;
-  font-family: Montserrat-Light !important;
+  font-family: Lato-Regular !important;
   font-size: 13px !important;
   box-sizing: border-border;
 }
 
 input::-webkit-input-placeholder {
   color: #bbb;
-  font-size: 13px !important;
-  font-family: Montserrat-Light !important;
+  font-size: 14px !important;
+  font-family: Lato-Regular !important;
 }
 
 .light-txt-white {
@@ -226,19 +231,19 @@ input::-webkit-input-placeholder {
 }
 
 ::-webkit-input-placeholder {
-  font: 13px Montserrat-Light;
+  font: 14px Lato-Regular;
 }
 
 :-moz-placeholder { /* Firefox 18- */
-  font: 13px Montserrat-Light;
+  font: 14px Lato-Regular;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
-  font: 13px Montserrat-Light;
+  font: 14px Lato-Regular;
 }
 
 :-ms-input-placeholder {
-  font: 13px Montserrat-Light;
+  font: 14px Lato-Regular;
 }
 
 .navbar-default {
@@ -1247,7 +1252,7 @@ footer#main .footer-above {
   height: 140px;
   overflow-y: scroll;
   z-index: 999;
-  font: 13px Montserrat-Light !important;
+  font: 14px Lato-Regular !important;
   cursor: pointer;
 }
 
@@ -1793,7 +1798,7 @@ label {
   margin: 5px 10px 5px 0px;
   display: inline-block;
   float: left;
-  font: 13px Montserrat-Light;
+  font: 14px Lato-Regular;
 }
 
 .tags .tag:hover {
@@ -1819,7 +1824,7 @@ label {
   background: #3D9ED8;
   text-decoration: none;
   color: #FFFFFF;
-  font: 13px Montserrat-Light;
+  font: 14px Lato-Regular;
   border: 1px solid #3D9ED8;
   border-radius: 3px;
   cursor: pointer;

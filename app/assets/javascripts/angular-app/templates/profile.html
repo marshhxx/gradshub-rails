@@ -241,28 +241,16 @@
         <div class="profile-right-container">
             <div class="profile-right-header">
                 <div class="profile-right-header title">
-                    <h3>CAREER</h3>
+                    <h3>Education</h3>
                 </div>
                 <div class="profile-right-header edit">
                     <div class="editwrapper">
-                        <div class="edit-pencil" ng-click="enableCareerEditor()"
-                             ng-hide="editorCareerEnabled"></div>
-
-                        <div ng-show="editorCareerEnabled" class="edit-buttons-wrapper">
-                            <a href="#" ng-click="CareerLife()" class="btn btn-edit">
-                                SAVE </span>
-                            </a>
-                            <a href="#" ng-click="disableCareerEditor()" class="btn btn-edit margin-l5">
-                                CANCEL </span>
-                            </a>
-                        </div>
+                        <div class="edit-pencil" ng-click="enableEducationEditor()"
+                             ng-hide="editorEducationEnabled"></div>
                     </div>
                 </div>
             </div>
             <div class="profile-right-content">
-                <div ng-hide="editorCareerEnabled" class="profile-right-text">
-                    {{profilePersonalLife}}
-                </div>
                 <textarea class="form-control" rows="5" ng-show="editorCareerEnabled" ng-model="userCareer"></textarea>
             </div>
         </div>
