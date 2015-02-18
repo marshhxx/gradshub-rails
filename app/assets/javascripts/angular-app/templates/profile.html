@@ -1,4 +1,9 @@
+<style>
+    .frame > img {
+        width: 1000px;
+    }
 
+</style>
 <div class="profile background">
     <div class="container">
         <div class="profile wrapper col-md-10 col-md-offset-1">
@@ -6,15 +11,21 @@
                 <div id="profileCover" class="coverWrap">
                     <div class="coverBorder">
                         <form>
-                            <div class="coverImage" ng-if="result.public_id == null"></div>
+                            <!--<div class="coverImage" ng-if="result.public_id == null"></div>-->
                             <div class="coverImageEdit wrapper">
                                 <div class="coverImageEdit img" ng-file-select="onFileSelect($files)"
                                 data-multiple="false" title="Upload Cover Photo"
                                 onclick="this.value = null"></div>
                             </div>
-
-                            <cl-image public-id="{{result.public_id}}" format="jpg" ng-if="result.public_id != null">
-                            </cl-image>
+                            <div class="content" style="width:100%; height: 315px;">
+                                <div class="frame" style="width: 100%; height:315px;"><!--
+                                    <cl-image public-id="{{result.public_id}}" format="jpg" ng-if="result.public_id != null"
+                                      id="sample_picture">
+                                    </cl-image>-->
+                                    <!--<img src="{{data.secure_url}}" id="sample_picture" />-->
+                                    <img id="sample_picture" src="assets/background-l0.jpg" />
+                                </div>
+                            </div>
                             <div class="spinner-container" ng-if="progress>0 && progress<100">
                                 <div class="spinner">
                                   <div class="rect1"></div>
@@ -36,7 +47,36 @@
                     </div>
 
                 </div>
+                <!--<div id='content'>-->
+                    <h1>Guillotine demo</h1>
+<!--
+                    <div class='frame'>
+                        <img id='sample_picture' src='http://lorempixel.com/640/480/city'>
+                    </div>-->
 
+                    <div id='controls'>
+                        <button id='rotate_left'  type='button' title='Rotate left'> &lt; </button>
+                        <button id='zoom_out'     type='button' title='Zoom out'> - </button>
+                        <button id='fit'          type='button' title='Fit image'> [ ]  </button>
+                        <button id='zoom_in'      type='button' title='Zoom in'> + </button>
+                        <button id='rotate_right' type='button' title='Rotate right'> &gt; </button>
+                    </div>
+
+                    <ul id='data'>
+                        <div class='column'>
+                            <li>x: <span id='x'></span></li>
+                            <li>y: <span id='y'></span></li>
+                        </div>
+                        <div class='column'>
+                            <li>width:  <span id='w'></span></li>
+                            <li>height: <span id='h'></span></li>
+                        </div>
+                        <div class='column'>
+                            <li>scale: <span id='scale'></span></li>
+                            <li>angle: <span id='angle'></span></li>
+                        </div>
+                    </ul>
+                <!--</div>-->
             </div>
 
         </div>
