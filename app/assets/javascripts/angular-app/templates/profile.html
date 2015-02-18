@@ -11,7 +11,7 @@
                 <div id="profileCover" class="coverWrap">
                     <div class="coverBorder">
                         <form>
-                            <!--<div class="coverImage" ng-if="result.public_id == null"></div>-->
+                            <div class="coverImage" ng-if="result.public_id == null"></div>
                             <div class="coverImageEdit wrapper">
                                 <div class="coverImageEdit img" ng-file-select="onFileSelect($files)"
                                 data-multiple="false" title="Upload Cover Photo"
@@ -22,8 +22,8 @@
                                     <cl-image public-id="{{result.public_id}}" format="jpg" ng-if="result.public_id != null"
                                       id="sample_picture">
                                     </cl-image>-->
-                                    <!--<img src="{{data.secure_url}}" id="sample_picture" />-->
-                                    <img id="sample_picture" src="assets/background-l0.jpg" />
+                                    <img src="{{data.secure_url}}" id="sample_picture" />
+                                    <!--<img id="sample_picture" src="assets/background-l0.jpg" />-->
                                 </div>
                             </div>
                             <div class="spinner-container" ng-if="progress>0 && progress<100">
