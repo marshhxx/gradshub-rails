@@ -16,7 +16,7 @@ angular.module('mepedia.directives').directive('tagsInput', function () {
 
             // This adds the new tag to the tags array
             $scope.add = function() {
-                if($scope.newTags.length < 6) {
+                if($scope.newTags.length < 9) {
                     if($scope.new_value.name) {
                         $scope.customerInfo.push($scope.new_value.name);
                         $scope.newTags.push($scope.new_value.name);

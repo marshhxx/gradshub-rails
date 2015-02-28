@@ -5,23 +5,26 @@ angular.module('mepedia.controllers').controller("HomeController", [
 		$scope.renderHtml = (htmlCode) ->
 		 $sce.trustAsHtml(htmlCode)
 
-		$scope.registerUser = () ->
-			user = new User()
-			user.name = $scope.name
-			user.lastname = $scope.lastname
-			user.email = $scope.email
-			user.password = $scope.password
-			registerService.register(user).then(
-				(payload) ->
-					login(user)
-			,
-				(response)->
-					error = response.data.error
-					if error.code == "ERR02"
-						$state.go 'main.login_onepgr', {mail: user.email}
-					else
-						console.log(error)
-			)
+		$scope.registerUser = (isValid) ->
+			if isValid
+				user = new User()
+				user.name = $scope.name
+				user.lastname = $scope.lastname
+				user.email = $scope.email
+				user.password = $scope.password
+				registerService.register(user).then(
+					(payload) ->
+						login(user)
+				,
+					(response)->
+						error = response.data.error
+						if error.code == "ERR02"
+							$state.go 'main.login_onepgr', {mail: user.email}
+						else
+							console.log(error)
+				)
+			else
+				$scope.submitted = true
 
 		$scope.carouselInterval = 4000
 		$scope.slides = [

@@ -1,56 +1,58 @@
 <div class="login background" xmlns="http://www.w3.org/1999/html">
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-
-                <div class="login form-container">
-                    <form id="login-form" role="form" ng-submit="login()">
-                        <div class="form-container col-md-8 col-md-offset-2">
-                            <div class="row text-center">
-                                <div class="login logo"  ui-sref="home.page"></div>
-                            </div>
-
-                            <div class="row margin-t20">
-                                <div class="form-group">
-                                    <!--<div class="login ic-email"></div>-->
-                                    <input type="email" ng-model="email" class="login form-control" id="exampleInputEmail1"
-                                           placeholder="Email address">
+    <div class="login form-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+                    <div class="login form-box">
+                        <div class="login form-box-cont">
+                            <form name="loginForm" ng-submit="login(loginForm.$valid)" novalidate>
+                                <div class="row text-center">
+                                    <div class="login logo" ui-sref="home.page"></div>
                                 </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="form-group">
-                                    <!--<div class="login ic-password"></div>-->
-                                    <input type="password" ng-model="password" class="login form-control"
-                                           id="exampleInputPassword1" placeholder="Password">
+                                <div class="login input-box">
+                                    <div class="form-group login-group margin-t20"
+                                         ng-class="{true: 'error'}[loginSubmit && loginForm.email.$invalid]">
+                                        <input type="text" name="email" class="form-control" ng-model="email"
+                                               placeholder="Your Email" required>
+
+                                        <p ng-show="loginSubmit && loginForm.email.$error.required">Enter your
+                                            email.</p>
+                                    </div>
+                                    <div class="form-group login-group"
+                                         ng-class="{true: 'error'}[loginSubmit && loginForm.password.$invalid]">
+                                        <input type="password" name="password" ng-model="password" class="form-control"
+                                               placeholder="Your Password" required>
+
+                                        <p ng-show="loginSubmit && loginForm.password.$error.required">Enter your
+                                            password.</p>
+                                    </div>
                                 </div>
+
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-default login button-submit">Log In
+                                    </button>
+                                </div>
+                            </form>
+
+                            <div class="login rememberme">
+                                <label>Remember me</label>
+                                <input class="login rememberme-checkbox" type="checkbox"
+                                       ng-model="rememberMe">
                             </div>
 
+                            <div class="login forgotpssw"><a ui-sref="main.forgotpssw">Forgot
+                                password?&nbsp;</a><label>
+                                / New
+                                to Mepedia?&nbsp;</label><a class="sign-up-login" ui-sref="home.page">Sign up</a>
+                            </div>
                         </div>
-
-                        <div class="row">
-                            <div class="form-group row">
-                                <div class="col-xs-12 text-center">
-                                    <button type="submit" class="btn btn-default login button-submit">Log In</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-
-                    <div class="row text-center">
-                        <div class="login forgotpssw"><a ui-sref="main.forgotpssw">Forgot password?&nbsp;</a><label> / New
-                            to Mepedia?&nbsp;</label><a class="sign-up-login" ui-sref="home.page">Sign up</a></div>
                     </div>
 
-                    </form>
-
                 </div>
-
             </div>
         </div>
     </div>
-
 </div>
 
 <footer id="main" class="text-center">
@@ -74,4 +76,5 @@
             </div>
         </div>
     </div>
+
 </footer>

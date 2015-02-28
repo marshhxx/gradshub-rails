@@ -12,7 +12,6 @@
     "cloudinary_ng": ">=0.1.1",
     "cloudinary_js": "1.0.21",
     "ng-file-upload-shim": "1.6.x",
-    "ng-file-upload": "1.6.x",
-    "angular-route": "~1.2.x"
+    "ng-file-upload": "1.6.x"
   }
 }
