@@ -95,9 +95,10 @@ class AddFieldsToUsers < ActiveRecord::Migration
 
     create_table :careers do |t|
       t.belongs_to :user
-      t.string :company
-      t.string :title
+      t.string :company_name
+      t.string :job_title
       t.date :start_date
+      t.date :end_date
       t.text :description
       t.timestamp
     end

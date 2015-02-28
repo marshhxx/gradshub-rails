@@ -5,7 +5,9 @@ Demo::Application.routes.draw do
     scope module: :v1, constraints: ApiConstraints.new(version: 1) do
     # We are going to list our resources here
       devise_for :users, :only => []
-      resources :users, :only => [:show, :create, :update]
+      resources :users, :only => [:show, :create, :update], shallow: true do
+        resources :careers
+      end
       resources :sessions, :only => [:create, :destroy, :password_reset] do
         collection do
           get :password_reset, to: 'sessions#password_reset_request'
