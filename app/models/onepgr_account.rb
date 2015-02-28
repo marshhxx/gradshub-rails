@@ -68,7 +68,8 @@ class OnepgrAccount < ActiveRecord::Base
 
   def parse_response(response, attr_name)
     response_args = JSON.parse(JSON.parse(response.body)['response'])
-    if response_args['success'] == '0'
+    success_code = Integer(response_args['success'])
+    if success_code >= 0
       return response_args
     end
     self.onepgr_errors = (response_args[attr_name])
@@ -117,6 +118,7 @@ class OnepgrAccount < ActiveRecord::Base
         :requestor_name => "#{[self.user.name, self.user.lastname].join(' ')}",
         :requestor_email => self.user.email,
         :account_email => user.email,
+        :msg => "Please follow this link: #{ONEPGR_URL}/pages/#{page_params[:page_id]}"
     })
   end
 
