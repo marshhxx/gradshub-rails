@@ -1,7 +1,7 @@
 @app = angular.module("mepedia",
 	["ui.router", "templates", "mepedia.services", "mepedia.controllers", "ngSanitize"])
 .config ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) ->
-	$httpProvider.defaults.withCredentials = true;
+#	$httpProvider.defaults.withCredentials = true;
 #	$httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
 	$httpProvider.defaults.headers.common.Accept = 'application/mepedia.v1'
 	$httpProvider.defaults.headers.common['Content-type'] = 'application/json'
