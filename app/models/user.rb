@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :skills
   belongs_to :country
   belongs_to :state
+  belongs_to :onepgr_account
   has_and_belongs_to_many :nationalities
   has_many :languages, :through => :users_languages
   has_many :careers
@@ -21,6 +22,24 @@ class User < ActiveRecord::Base
     begin
       self.auth_token = Devise.friendly_token
     end while self.class.exists?(auth_token: auth_token)
+  end
+
+  def register_onepgr(params)
+    acc = OnepgrAccount.new
+    if acc.register(params[:email])
+      self.onepgr_account = acc
+      return true
+    end
+    self.errors.add(:onepgr_account, acc.onepgr_errors)
+    false
+  end
+
+  def login_to_onepgr(password)
+    acc = OnepgrAccount.new(onepgr_password: password)
+    self.onepgr_account = acc
+    logged = acc.login
+    self.errors.add(:onepgr_account, acc.onepgr_errors) unless logged
+    logged
   end
 
   protected

@@ -1,0 +1,42 @@
+<div class="login form-container">
+	<form id="login-form" role="form" ng-submit="loginOnePgr()">
+		<div class="form-container col-md-8 col-md-offset-2">
+			<div class="row text-center">
+				<div class="login logo"  ui-sref="home.page"></div>
+			</div>
+
+			<div class="row margin-t20">
+				<div class="form-group">
+					<!--<div class="login ic-email"></div>-->
+					<input type="email" ng-model="onepgr_email" class="login form-control" id="exampleInputEmail1"
+					       placeholder="Email address">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="form-group">
+					<!--<div class="login ic-password"></div>-->
+					<input type="password" ng-model="password" class="login form-control"
+					       id="exampleInputPassword1" placeholder="Password">
+				</div>
+			</div>
+
+		</div>
+
+		<div class="row">
+			<div class="form-group row">
+				<div class="col-xs-12 text-center">
+					<button type="submit" class="btn btn-default login button-submit">Log In</button>
+				</div>
+			</div>
+		</div>
+	</form>
+
+	<div class="row text-center">
+		<div class="login forgotpssw"><a ui-sref="main.forgotpssw">Forgot password?&nbsp;</a><label> / New
+			to Mepedia?&nbsp;</label><a class="sign-up-login" ui-sref="home.page">Sign up</a></div>
+	</div>
+
+	</form>
+
+</div>

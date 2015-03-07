@@ -12,17 +12,3 @@ angular.module('mepedia.services').factory "cookieJar", ($cookieStore) ->
 		isDefined: (name) ->
 			this.get(name)?
 	}
-	noCookies = {
-		get: (name) ->
-
-		,
-		put: (name, vallue) ->
-
-		,
-		delete: (name) ->
-
-		,
-		isDefined: (name) ->
-			false
-	}
-	noCookies
