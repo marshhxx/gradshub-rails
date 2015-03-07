@@ -1,3 +1,1 @@
-json.errors do
-  json.reasons  @reasons
-end
+json.error @error

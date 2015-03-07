@@ -1,6 +1,6 @@
 angular.module('mepedia.controllers').controller("HomeController", [
-	'$scope', 'User', '$state', '$anchorScroll', '$location', 'sessionService', '$sce',
-	($scope, User, $state, $anchorScroll, $location, sessionService, $sce)->
+	'$scope', 'User', '$state', '$anchorScroll', '$location', 'sessionService', '$sce', '$stateParams', 'registerService'
+	($scope, User, $state, $anchorScroll, $location, sessionService, $sce, $stateParams, registerService)->
 		$state.go "main.profile" if sessionService.isAuthenticated()
 		$scope.renderHtml = (htmlCode) ->
 		 $sce.trustAsHtml(htmlCode)
@@ -12,17 +12,17 @@ angular.module('mepedia.controllers').controller("HomeController", [
 				user.lastname = $scope.lastname
 				user.email = $scope.email
 				user.password = $scope.password
-				user.$save {}, (()->
-					promise = sessionService.login($scope.email, $scope.password)
-					promise.then(
-						(payload) ->
-							$state.go 'main.signup.personal'
-						,
-						(errors) ->
-							console.log(errors)
-					)
-				), (error)->
-					console.log error
+				registerService.register(user).then(
+					(payload) ->
+						login(user)
+				,
+					(response)->
+						error = response.data.error
+						if error.code == "ERR02"
+							$state.go 'main.login_onepgr', {mail: user.email}
+						else
+							console.log(error)
+				)
 			else
 				$scope.submitted = true
 
@@ -68,5 +68,29 @@ angular.module('mepedia.controllers').controller("HomeController", [
 			# the element you wish to scroll to.
 			$location.hash "top"
 			$anchorScroll()
+
+########  OnePgr login #########
+		$scope.onepgr_email = $stateParams.mail
+		$scope.loginOnePgr = () ->
+			user = registerService.currentUser()
+			user.onepgr_password = $scope.password
+			registerService.register(user).then(
+				() ->
+					login(registerService.currentUser())
+				,
+				(response) ->
+					console.log(response.data.error)
+			)
+
+		login = (user) ->
+			promise = sessionService.login(user.email, user.password)
+			promise.then(
+				(payload) ->
+					$state.go 'main.signup.personal'
+			,
+				(errors) ->
+					console.log(errors)
+			)
+
 
 ])

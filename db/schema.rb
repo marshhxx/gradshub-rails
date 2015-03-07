@@ -77,6 +77,12 @@ ActiveRecord::Schema.define(version: 20141030020738) do
 
   add_index "nationalities_users", ["user_id", "nationality_id"], name: "index_nationalities_users_on_user_id_and_nationality_id", unique: true, using: :btree
 
+  create_table "onepgr_accounts", force: true do |t|
+    t.string "onepgr_id"
+    t.string "onepgr_password", default: "", null: false
+    t.string "session_token"
+  end
+
   create_table "publications", force: true do |t|
     t.string "title"
     t.string "url"
@@ -129,6 +135,7 @@ ActiveRecord::Schema.define(version: 20141030020738) do
     t.string   "job_title"
     t.integer  "country_id"
     t.integer  "state_id"
+    t.integer  "onepgr_account_id"
     t.string   "auth_token",             default: ""
   end
 
