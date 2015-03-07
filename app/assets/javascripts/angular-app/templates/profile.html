@@ -10,13 +10,10 @@
                 <div class="coverImage" ng-if="result.public_id == null"></div>
                 <div class="coverImageEdit wrapper">
                     <div class="coverImageEdit img" ng-file-select="onFileSelect($files)"
-                         data-multiple="false" title="Upload Cover Photo"
+                         data-multiple="false" title="cover_photo"
                          onclick="this.value = null"></div>
                 </div>
 
-                <cl-image class="cloudinary img" public-id="{{result.public_id}}" format="jpg"
-                          ng-if="result.public_id != null">
-                </cl-image>
                 <div class="spinner-container" ng-if="progress>0 && progress<100">
                     <div class="spinner">
                         <div class="rect1"></div>
@@ -26,7 +23,16 @@
                         <div class="rect5"></div>
                     </div>
                 </div>
-            </form>
+        <div class="content" style="width:100%; height: 315px;">
+                                <div class="frame" style="width: 100%; height:315px;"><!--
+                                    <cl-image public-id="{{result.public_id}}" format="jpg" ng-if="result.public_id != null"
+                                      id="sample_picture">
+                                    </cl-image>-->
+                                    <img src="{{data.secure_url}}" id="sample_picture" />
+                                    <!--<img id="sample_picture" src="{{temp_cover}}" />-->
+                                </div>
+                            </div>            
+		</form>
         </div>
     </div>
     <div class="profileHeadline wrapper">
@@ -37,7 +43,7 @@
             </div>
         </div>
 
-    </div>
+                </div>
 
 
 </div>

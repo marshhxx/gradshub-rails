@@ -25,6 +25,7 @@
 //= require ng-file-upload-shim
 //= require cloudinary_ng
 //= require ng-file-upload
+//= require jquery-guillotine
 
 //= require angular-rails-templates
 //= require bootstrap-sass-official/assets/javascripts/bootstrap
