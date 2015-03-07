@@ -3,6 +3,9 @@ class OnepgrAccount < ActiveRecord::Base
   attr_accessor :onepgr_errors, :session_cookies, :headers
 
   def login
+    if Rails.env.development?
+      return true
+    end
     begin
       client = get_client('/sessions/create3')
       raw_resp = client.post(parse_login_params)
@@ -18,6 +21,9 @@ class OnepgrAccount < ActiveRecord::Base
   end
 
   def register(email)
+    if Rails.env.development?
+      return true
+    end
     begin
       client = get_client('/users/create_api')
       response = parse_response(client.post(parse_register_params(email)), 'message')
@@ -46,6 +52,9 @@ class OnepgrAccount < ActiveRecord::Base
   end
 
   def invite_user_to_page(user, page_params)
+    if Rails.env.development?
+      return true
+    end
     begin
       client = get_client('/onepgrapi/invite_user_api')
       response = parse_response(client.post(parse_invite_user_to_page_params(user, page_params),

@@ -14,7 +14,7 @@ angular.module('mepedia.controllers').controller("HomeController", [
 				user.password = $scope.password
 				registerService.register(user).then(
 					(payload) ->
-						login(user)
+						login(registerService.currentUser())
 				,
 					(response)->
 						error = response.data.error
