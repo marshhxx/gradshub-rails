@@ -17,11 +17,13 @@ angular.module('mepedia.controllers').controller('profileController',
 
                 var file = $files[0]; // we're not interested in multiple file uploads here
 
-                var picture;
-
                 $scope.upload = $upload.upload({
                     url: "https://api.cloudinary.com/v1_1/" + $.cloudinary.config().cloud_name + "/upload",
-                    data: {upload_preset: $.cloudinary.config().upload_preset, tags: 'myphotoalbum', context:'photo=' + $scope.title},
+                    data: {
+                        upload_preset: $.cloudinary.config().upload_preset, 
+                        tags: 'temp_cover', 
+                        context:'photo=' + $scope.title
+                    },
                     file: file
                 }).progress(function (e) {
                     $scope.progress = Math.round((e.loaded * 100.0) / e.total);
@@ -39,11 +41,10 @@ angular.module('mepedia.controllers').controller('profileController',
                     } else {
                         $scope.data = data;
                     }
-                }).then(function (success, error, progress) {
-
                 });
                 
             };
+
             var picture = angular.element('#sample_picture');
             var content = angular.element('.content');
             picture.on('load', function() { 
