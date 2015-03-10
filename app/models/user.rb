@@ -7,16 +7,9 @@ class User < ActiveRecord::Base
   before_create :set_uid
 
   enum gender: {male: 0, female: 1, not_known:2}
-  has_and_belongs_to_many :skills
-  belongs_to :country
-  belongs_to :state
+
   belongs_to :onepgr_account
-  has_and_belongs_to_many :nationalities
-  has_many :languages, :through => :users_languages
-  has_many :careers
-  has_many :educations
-  has_and_belongs_to_many :interests
-  has_and_belongs_to_many :publications
+  belongs_to :meta, polymorphic: true
 
   def generate_authentication_token!
     begin
@@ -24,9 +17,9 @@ class User < ActiveRecord::Base
     end while self.class.exists?(auth_token: auth_token)
   end
 
-  def register_onepgr(params)
+  def register_onepgr
     acc = OnepgrAccount.new
-    if acc.register(params[:email])
+    if acc.register(self.email)
       self.onepgr_account = acc
       return true
     end
@@ -40,6 +33,10 @@ class User < ActiveRecord::Base
     logged = acc.login
     self.errors.add(:onepgr_account, acc.onepgr_errors) unless logged
     logged
+  end
+
+  def has_onepgr
+    OnepgrAccount.new.is_user(self.email)
   end
 
   protected

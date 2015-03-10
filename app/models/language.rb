@@ -1,3 +1,3 @@
 class Language < ActiveRecord::Base
-  has_many :users, :through => :users_languages
+  has_many :candidates, :through => :users_languages
 end
