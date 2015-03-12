@@ -8,6 +8,6 @@ angular
             }
         });
 
-        Candidate.prototype.isEMployer = false;
+        Candidate.prototype.isEmployer = false;
         return Candidate;
 });
