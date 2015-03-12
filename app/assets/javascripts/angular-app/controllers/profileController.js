@@ -9,14 +9,21 @@ angular.module('mepedia.controllers').controller('profileController',
                 sessionService.logout()
             } */
 
-          /* ---- Upload photo ---- */
+            /* ---- Upload photo ---- */
+            $scope.coverPhotoButtons = false;
+            $scope.temporaryCoverPhoto = true;
+            $scope.coverPhoto = false;
+            $scope.profilePhotoButtons = false;
+            $scope.temporaryProfilePhoto = true;
+            $scope.profilePhoto = false;
+
+            var cloudinary_data;
+            $.cloudinary.config({
+                'cloud_name' : 'mepediacobas',
+                'upload_preset': 'mepediacobas_unsigned_name'
+            });
 
             $scope.onFileSelect = function($files) {
-                $.cloudinary.config({
-                    'cloud_name' : 'mepediacobas',
-                    'upload_preset': 'mepediacobas_unsigned_name'
-                });
-
                 var file = $files[0]; // we're not interested in multiple file uploads here
 
                 $scope.upload = $upload.upload({
@@ -34,25 +41,27 @@ angular.module('mepedia.controllers').controller('profileController',
                         $scope.$apply();
                     }
                 }).success(function (data, status, headers, config) {
+                    cloudinary_data = data;
                     $rootScope.photos = $rootScope.photos || [];
                     data.context = {custom: {photo: $scope.title}};
-                    $scope.result = data;
+                    $scope.resultCoverPhoto = data;
                     $rootScope.photos.push(data);
                     if (!$scope.$$phase) {
                         $scope.$apply();
                     } else {
-                        $scope.data = data;
+                        $scope.coverPhotoData = data;
                     }
                 });
-                
             };
 
-            var picture = angular.element('#sample_picture');
-            var content = angular.element('.content');
-            picture.on('load', function() { 
-                picture.guillotine({eventOnChange: 'guillotinechange', width: content[0].offsetWidth, height: 315});
+            var pictureCoverPhoto = angular.element('#temp_cover_photo');
+            var contentCoverPhoto = angular.element('.content');
 
-                var data = picture.guillotine('getData');
+            pictureCoverPhoto.on('load', function() {
+                $scope.coverPhotoButtons = true;
+                pictureCoverPhoto.guillotine({eventOnChange: 'guillotinechange', width: contentCoverPhoto[0].offsetWidth, height: 315});
+
+                var data = pictureCoverPhoto.guillotine('getData');
                 console.log(data);
                 for(var key in data) { $('#'+key).html(data[key]); }
 
@@ -62,11 +71,110 @@ angular.module('mepedia.controllers').controller('profileController',
                 $('#zoom_in').click(function(){ picture.guillotine('zoomIn'); });
                 $('#zoom_out').click(function(){ picture.guillotine('zoomOut'); });
 
-                picture.on('guillotinechange', function(ev, data, action) {
+                pictureCoverPhoto.on('guillotinechange', function(ev, data, action) {
                   data.scale = parseFloat(data.scale.toFixed(4));
                   for(var k in data) { $('#'+k).html(data[k]); }
                 });
             });
+
+            $scope.saveCoverPhoto = function() {
+                var data = pictureCoverPhoto.guillotine('getData');
+                console.log(cloudinary_data);
+                var cloudianary_result = $.cloudinary.image(cloudinary_data.public_id, {
+                    secure: true,
+                    width: data.w,
+                    height: data.h,
+                    x: data.x,
+                    y: data.y,
+                    crop: 'crop'
+                });
+                console.log(cloudianary_result);
+                console.log(cloudianary_result[0].src);
+                $scope.coverPhotoURI = cloudianary_result[0].src;
+                $scope.temporaryCoverPhoto = false;
+                $scope.coverPhoto = true;
+            };
+
+            //*********************************
+
+            $scope.onFileSelectProfile = function($files) {
+                var file = $files[0]; // we're not interested in multiple file uploads here
+
+                $scope.upload = $upload.upload({
+                    url: "https://api.cloudinary.com/v1_1/" + $.cloudinary.config().cloud_name + "/upload",
+                    data: {
+                        upload_preset: $.cloudinary.config().upload_preset, 
+                        tags: 'temp_profile', 
+                        context:'photo=' + $scope.title
+                    },
+                    file: file
+                }).progress(function (e) {
+                    $scope.progressProfile = Math.round((e.loaded * 100.0) / e.total);
+                    $scope.status = "Uploading... " + $scope.progressProfile + "%";
+                    if (!$scope.$$phase) {
+                        $scope.$apply();
+                    }
+                }).success(function (data, status, headers, config) {
+                    cloudinary_data = data;
+                    $rootScope.photos = $rootScope.photos || [];
+                    data.context = {custom: {photo: $scope.title}};
+                    $scope.resultProfile = data;
+                    $rootScope.photos.push(data);
+                    if (!$scope.$$phase) {
+                        $scope.$apply();
+                    } else {
+                        $scope.profileData = data;
+                    }
+                });
+            };
+
+            var pictureProfilePhoto = angular.element('#temp_profile_photo');
+            //content = angular.element('.content');
+
+            pictureProfilePhoto.on('load', function() {
+                //$scope.coverPhotoButtons = true;
+                pictureProfilePhoto.guillotine({eventOnChange: 'guillotinechange', width: 270, height: 270});
+
+                var data = pictureProfilePhoto.guillotine('getData');
+                console.log(data);
+                for(var key in data) { $('#'+key).html(data[key]); }
+
+                $('#rotate_left').click(function(){ picture.guillotine('rotateLeft'); });
+                $('#rotate_right').click(function(){ picture.guillotine('rotateRight'); });
+                $('#fit').click(function(){ picture.guillotine('fit'); });
+                $('#zoom_in').click(function(){ picture.guillotine('zoomIn'); });
+                $('#zoom_out').click(function(){ picture.guillotine('zoomOut'); });
+
+                pictureProfilePhoto.on('guillotinechange', function(ev, data, action) {
+                  data.scale = parseFloat(data.scale.toFixed(4));
+                  for(var k in data) { $('#'+k).html(data[k]); }
+                });
+                console.log(pictureProfilePhoto);
+
+                angular.element('.edit-buttons-profile-photo').css({
+                    'top': '220px',
+                    'left': '61px'
+                });
+                console.log(angular.element('.edit-buttons-profile-photo'));
+            });
+
+            $scope.saveProfilePhoto = function() {
+                var data = pictureProfilePhoto.guillotine('getData');
+                var cloudianary_result = $.cloudinary.image(cloudinary_data.public_id, {
+                    secure: true,
+                    width: data.w,
+                    height: data.h,
+                    x: data.x,
+                    y: data.y,
+                    crop: 'crop'
+                });
+
+                $scope.profilePhotoURI = cloudianary_result[0].src;
+                $scope.temporaryProfilePhoto = false;
+                $scope.profilePhoto = true;
+            };
+
+            //*********************************            
 
             / Modify the look and fill of the dropzone when files are being dragged over it /
             $scope.dragOverClass = function($event) {
@@ -91,7 +199,6 @@ angular.module('mepedia.controllers').controller('profileController',
 
             var countries;
             countries = Country.get(function() {
-                console.log(countries.countries);
                 return $scope.countries = countries.countries;
             });
 

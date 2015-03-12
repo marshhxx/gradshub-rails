@@ -1,3 +1,16 @@
+<style>
+    .edit-buttons-cover-photo {
+        margin: -5% 1% 0% 0%;
+        position: relative;
+    }
+    .edit-buttons-cover-photo a{
+        background-color: white;
+    }
+    .edit-buttons-profile-photo a{
+        background-color: white;
+    }
+</style>
+
 <div class="profile background">
 
 <div class="profile wrapper col-md-9 col-md-offset-1">
@@ -7,15 +20,52 @@
     <div id="profileCover" class="coverWrap">
         <div class="coverBorder">
             <form>
-                <div class="coverImage" ng-if="result.public_id == null"></div>
+                <div class="coverImage" ng-if="resultCoverPhoto.public_id == null"></div>
                 <div class="coverImageEdit wrapper">
                     <div class="coverImageEdit img" ng-file-select="onFileSelect($files)"
                          data-multiple="false" title="cover_photo"
                          onclick="this.value = null"></div>
                 </div>
-
-                <div class="spinner-container" ng-if="progress>0 && progress<100">
-                    <div class="spinner">
+                <div class="temporary-cover-photo" ng-show="temporaryCoverPhoto">
+                    <div class="spinner-container" ng-if="progress > 0 && progress < 100">
+                        <div class="spinner">
+                            <div class="rect1"></div>
+                            <div class="rect2"></div>
+                            <div class="rect3"></div>
+                            <div class="rect4"></div>
+                            <div class="rect5"></div>
+                        </div>
+                    </div>
+                    <div class="content" style="width:100%; height: 315px;">
+                        <div class="frame" style="width: 100%; height:315px;">
+                            <img src="{{coverPhotoData.secure_url}}" id="temp_cover_photo" />
+                        </div>
+                    </div>
+                    <div ng-show="coverPhotoButtons" class="edit-buttons-wrapper edit-buttons-cover-photo" ng-hide="coverPhotoButtons">
+                        <a href="#" ng-click="saveCoverPhoto()" class="btn btn-edit">
+                            SAVE </span>
+                        </a>
+                        <a href="#" class="btn btn-edit margin-l5">
+                            CANCEL </span>
+                        </a>
+                    </div>
+                </div>
+                <div class="cover-photo" ng-show="coverPhoto">
+                    <img src="{{coverPhotoURI}}">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="profileHeadline wrapper">
+        <div class="profileImage wrapper" style="overflow: hidden; border-radius: 150px;">
+            <div class="profileImage img" ng-if="resultProfile.public_id == null"></div>
+            <div class="profileImageEdit wrapper">
+                <div class="profileImageEdit img" ng-file-select="onFileSelectProfile($files)"
+                data-multiple="false" title="profile_photo" onclick="this.value = null"></div>
+            </div>
+            <div class="    hoto" ng-show="temporaryProfilePhoto">
+                <div class="spinner-container-profile" ng-if="progressProfile > 0 && progressProfile < 100">
+                    <div class="spinner spinner-profile">
                         <div class="rect1"></div>
                         <div class="rect2"></div>
                         <div class="rect3"></div>
@@ -23,27 +73,25 @@
                         <div class="rect5"></div>
                     </div>
                 </div>
-        <div class="content" style="width:100%; height: 315px;">
-                                <div class="frame" style="width: 100%; height:315px;"><!--
-                                    <cl-image public-id="{{result.public_id}}" format="jpg" ng-if="result.public_id != null"
-                                      id="sample_picture">
-                                    </cl-image>-->
-                                    <img src="{{data.secure_url}}" id="sample_picture" />
-                                    <!--<img id="sample_picture" src="{{temp_cover}}" />-->
-                                </div>
-                            </div>            
-		</form>
-        </div>
-    </div>
-    <div class="profileHeadline wrapper">
-        <div class="profileImage wrapper">
-            <div class="profileImage img"></div>
-            <div class="profileImageEdit wrapper">
-                <div class="profileImageEdit img"></div>
+                <div class="content" style="width:100%; height: 270px;">
+                    <div class="frame" style="width: 270px; height:270px;">
+                        <img src="{{profileData.secure_url}}" id="temp_profile_photo" />
+                    </div>
+                    <div ng-show="profilePhotoButtons" class="edit-buttons-wrapper edit-buttons-profile-photo" ng-hide="profilePhotoButtons" style="position: absolute;">
+                        <a href="#" ng-click="saveProfilePhoto()" class="btn btn-edit">
+                            SAVE </span>
+                        </a>
+                        <a href="#" class="btn btn-edit margin-l5">
+                            CANCEL </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-photo" ng-show="profilePhoto">
+                <img src="{{profilePhotoURI}}">
             </div>
         </div>
-
-                </div>
+    </div>
 
 
 </div>
