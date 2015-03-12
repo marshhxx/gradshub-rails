@@ -12,7 +12,7 @@ angular.module('mepedia.services').factory('sessionService',
 
                 $http.post('/api/sessions', {session: {email: email, password: password} }
                 ).success(function(response) {
-                        Session.create(response.user, rememberMe);
+                        Session.create(response.session, rememberMe);
                         if (service.isAuthenticated()) {
                             deferred.resolve({authenticated: true})
                         }
@@ -80,22 +80,33 @@ angular.module('mepedia.services').factory('sessionService',
         };
         return service;
     }])
-    .service('Session',['User', 'cookieJar', function (User, cookieJar) {
+    .service('Session',['Candidate', 'Employer', 'cookieJar', function (Candidate, Employer, cookieJar) {
         this.available = function () {
             return !!this.token || cookieJar.isDefined("token");
         };
-        this.create = function (user, remember) {
-            this.token = user.auth_token;
-            this.user = new User();
-            this.user.name = user.name;
-            this.user.lastname = user.lastname;
-            this.user.email = user.email;
-            this.user.uid = user.uid;
-            if (remember) {
-                cookieJar.put("current_user", this.user);
-                cookieJar.put("token", this.token);
+
+        this.create = function (session, remember) {
+            var setUser = function (user) {
+                this.user = user;
+                if (this.remember) {
+                    cookieJar.put("current_user", this.user);
+                    cookieJar.put("token", this.token);
+                }
+            };
+
+            if (session.type == 'Candidate') {
+                Candidate.get({id: session.uid}, function (candidate) {
+                    setUser(candidate.candidate);
+                });
+            } else if (session.type == 'Emplpyer') {
+                Employer.get({id: session.uid}, function(employer) {
+                    setUser(employer.employer);
+                });
             }
+            this.token = session.auth_token;
+            this.remember = remember;
         };
+
         this.destroy = function () {
             this.token = null;
             this.user = null;

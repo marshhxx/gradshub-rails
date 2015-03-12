@@ -4,8 +4,7 @@ angular.module('mepedia.controllers').controller("signupController", [
 
 		user = sessionService.requestCurrentUser()
 
-		if (!user?)
-			$state.go 'home.page'
+		$state.go 'home.page' if !user?
 
 		$scope.tempUser = {}
 

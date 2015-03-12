@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   def not_found(exception)
     @error = {:reasons => [exception.message], :code => INVALID_PARAMS_ERROR}
-    render_error :not_found
+    render :json => @error
   end
 
   def render_api_error

@@ -8,7 +8,7 @@ class Employer < ActiveRecord::Base
 
 
   def self.find_by_uid(uid)
-    User.find_by_uid(uid).meta
+    User.find_by_uid!(uid).meta
   end
 
   def self.find_by_email(email)

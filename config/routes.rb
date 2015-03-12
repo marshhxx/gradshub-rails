@@ -5,7 +5,9 @@ Demo::Application.routes.draw do
     scope module: :v1, constraints: ApiConstraints.new(version: 1) do
     # We are going to list our resources here
       devise_for :users, :only => []
-      resource :employers, :only => [:show, :create, :update]
+      resources :employers, :only => [:show, :create, :update], shallow: true do
+        resource :skills
+      end
       resources :candidates, :only => [:show, :create, :update], shallow: true do
         resources :careers
       end
