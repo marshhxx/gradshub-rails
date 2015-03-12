@@ -23,16 +23,16 @@
                         <div class="rect5"></div>
                     </div>
                 </div>
-        <div class="content" style="width:100%; height: 315px;">
-                                <div class="frame" style="width: 100%; height:315px;"><!--
+                <div class="content" style="width:100%; height: 315px;">
+                    <div class="frame" style="width: 100%; height:315px;"><!--
                                     <cl-image public-id="{{result.public_id}}" format="jpg" ng-if="result.public_id != null"
                                       id="sample_picture">
                                     </cl-image>-->
-                                    <img src="{{data.secure_url}}" id="sample_picture" />
-                                    <!--<img id="sample_picture" src="{{temp_cover}}" />-->
-                                </div>
-                            </div>            
-		</form>
+                        <img src="{{data.secure_url}}" id="sample_picture"/>
+                        <!--<img id="sample_picture" src="{{temp_cover}}" />-->
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
     <div class="profileHeadline wrapper">
@@ -43,225 +43,308 @@
             </div>
         </div>
 
-                </div>
+    </div>
 
 
 </div>
 <div class="profileContent">
-    <div class="profileLeftContent col-md-4">
-        <div class="editwrapper">
-            <div class="edit-pencil" ng-click="enableEditor()" ng-hide="editorEnabled"></div>
+<div class="profileLeftContent col-md-4">
+    <div class="editwrapper">
+        <div class="edit-pencil" ng-click="enableEditor()" ng-hide="editorEnabled"></div>
 
-            <div ng-show="editorEnabled" class="edit-buttons-wrapper">
-                <a href="#" ng-click="save()" class="btn btn-edit">
-                    SAVE </span>
-                </a>
-                <a href="#" ng-click="disableEditor()" class="btn btn-edit margin-l5">
-                    CANCEL </span>
-                </a>
+        <div ng-show="editorEnabled" class="edit-buttons-wrapper">
+            <a href="#" ng-click="save()" class="btn btn-edit">
+                SAVE </span>
+            </a>
+            <a href="#" ng-click="disableEditor()" class="btn btn-edit margin-l5">
+                CANCEL </span>
+            </a>
+        </div>
+    </div>
+
+    <div class="profileLeftContentWrapper">
+
+        <div class="profileLeft">
+            <div class="img-col">
+                <div class="profile-img current"></div>
+            </div>
+            <div class="cont-col">
+                <div ng-hide="editorEnabled" class="profile-left-cont">
+                    {{tempPersonalInfo.currentPosition}}
+                </div>
+                <input class="form-control profile-input" ng-model="personalInfo.currentPosition"
+                       ng-show="editorEnabled" placeholder="My Current Position">
             </div>
         </div>
 
-        <div class="profileLeftContentWrapper">
-
-            <div class="profileLeft">
-                <div class="img-col">
-                    <div class="profile-img current"></div>
+        <div class="profileLeft">
+            <div class="img-col">
+                <div class="profile-img major"></div>
+            </div>
+            <div class="cont-col">
+                <div ng-hide="editorEnabled" class="profile-left-cont">
+                    {{tempPersonalInfo.education}}
                 </div>
-                <div class="cont-col">
-                    <div ng-hide="editorEnabled" class="profile-left-cont">
-                        {{tempPersonalInfo.currentPosition}}
-                    </div>
-                    <input class="form-control profile-input" ng-model="personalInfo.currentPosition"
-                           ng-show="editorEnabled" placeholder="My Current Position">
+                <input class="form-control profile-input" ng-model="personalInfo.education"
+                       ng-show="editorEnabled" placeholder="Area of Specialization"/>
+            </div>
+        </div>
+
+        <div class="profileLeft">
+            <div class="img-col">
+                <div class="profile-img interest"></div>
+            </div>
+            <div class="cont-col">
+                <div ng-hide="editorEnabled" class="profile-left-cont">
+                    {{tempPersonalInfo.topSkills}}
+                </div>
+                <input class="form-control profile-input" ng-model="personalInfo.topSkills"
+                       ng-show="editorEnabled" placeholder="Interested in"/>
+            </div>
+        </div>
+
+        <div class="profileLeft">
+            <div class="img-col">
+                <div class="profile-img country"></div>
+            </div>
+            <div class="cont-col">
+                <div ng-hide="editorEnabled" class="profile-left-cont">
+                    {{tempPersonalInfo.currentLocation}}
+                </div>
+                <input class="form-control profile-input" ng-model="personalInfo.currentLocation"
+                       ng-show="editorEnabled" placeholder="Current Location"/>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="profileMainContent col-md-8">
+
+<div class="profile-right-container">
+    <div class="profile-right-header">
+        <div class="profile-right-header title">
+            <h3> Summary </h3>
+        </div>
+        <div class="profile-right-header edit">
+            <div class="editwrapper">
+                <div class="edit-pencil" ng-click="enableSummaryEditor()"
+                     ng-hide="editorSummaryEnabled"></div>
+
+                <div ng-show="editorSummaryEnabled" class="edit-buttons-wrapper">
+                    <a href="#" ng-click="saveSummary()" class="btn btn-edit">
+                        SAVE </span>
+                    </a>
+                    <a href="#" ng-click="disableSummaryEditor()" class="btn btn-edit margin-l5">
+                        CANCEL </span>
+                    </a>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="profile-right-content">
+        <div ng-hide="editorSummaryEnabled" class="profile-right-text">
+            {{profileSummary}}
+        </div>
+        <textarea class="form-control" rows="5" ng-show="editorSummaryEnabled" ng-model="userSummary"></textarea>
+    </div>
+</div>
 
-            <div class="profileLeft">
-                <div class="img-col">
-                    <div class="profile-img major"></div>
-                </div>
-                <div class="cont-col">
-                    <div ng-hide="editorEnabled" class="profile-left-cont">
-                        {{tempPersonalInfo.education}}
-                    </div>
-                    <input class="form-control profile-input" ng-model="personalInfo.education"
-                           ng-show="editorEnabled" placeholder="Area of Specialization"/>
+<div class="profile-right-container">
+    <div class="profile-right-header">
+        <div class="profile-right-header title">
+            <h3> SKILLS </h3>
+        </div>
+        <div class="profile-right-header edit">
+            <div class="editwrapper">
+                <div class="edit-pencil" ng-click="enableSkillsEditor()"
+                     ng-hide="editorSkillsEnabled"></div>
+
+                <div ng-show="editorSkillsEnabled" class="edit-buttons-wrapper">
+                    <a href="#" ng-click="saveSkills()" class="btn btn-edit">
+                        SAVE </span>
+                    </a>
+                    <a href="#" ng-click="disableSkillsEditor()" class="btn btn-edit margin-l5">
+                        CANCEL </span>
+                    </a>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <div class="profileLeft">
-                <div class="img-col">
-                    <div class="profile-img interest"></div>
-                </div>
-                <div class="cont-col">
-                    <div ng-hide="editorEnabled" class="profile-left-cont">
-                        {{tempPersonalInfo.topSkills}}
-                    </div>
-                    <input class="form-control profile-input" ng-model="personalInfo.topSkills"
-                           ng-show="editorEnabled" placeholder="Interested in"/>
-                </div>
+    <div class="profile-right-content">
+        <div ng-hide="editorSkillsEnabled" class="profile-right-text">
+            <div class="tags">
+                <a class="tag" ng-model="tag" ng-repeat="tag in selectedSkills">{{tag}}</a>
             </div>
-
-            <div class="profileLeft">
-                <div class="img-col">
-                    <div class="profile-img country"></div>
-                </div>
-                <div class="cont-col">
-                    <div ng-hide="editorEnabled" class="profile-left-cont">
-                        {{tempPersonalInfo.currentLocation}}
-                    </div>
-                    <input class="form-control profile-input" ng-model="personalInfo.currentLocation"
-                           ng-show="editorEnabled" placeholder="Current Location"/>
-                </div>
-            </div>
+        </div>
+        <div class="form-group">
+            <tags-input tags="skillsTags" ng-show="editorSkillsEnabled" placeholder="Add your skills..."
+                        info="userSelectedSkills"></tags-input>
         </div>
 
     </div>
+</div>
 
-    <div class="profileMainContent col-md-8">
+<div class="profile-right-container">
+    <div class="profile-right-header">
+        <div class="profile-right-header title">
+            <h3>EARLY LIFE</h3>
+        </div>
+        <div class="profile-right-header edit">
+            <div class="editwrapper">
+                <div class="edit-pencil" ng-click="enableEarlyLifeEditor()"
+                     ng-hide="editorEarlyLifeEnabled"></div>
 
-        <div class="profile-right-container">
-            <div class="profile-right-header">
-                <div class="profile-right-header title">
-                    <h3> Summary </h3>
+                <div ng-show="editorEarlyLifeEnabled" class="edit-buttons-wrapper">
+                    <a href="#" ng-click="saveEarlyLife()" class="btn btn-edit">
+                        SAVE </span>
+                    </a>
+                    <a href="#" ng-click="disableEarlyLifeEditor()" class="btn btn-edit margin-l5">
+                        CANCEL </span>
+                    </a>
                 </div>
-                <div class="profile-right-header edit">
-                    <div class="editwrapper">
-                        <div class="edit-pencil" ng-click="enableSummaryEditor()"
-                             ng-hide="editorSummaryEnabled"></div>
-
-                        <div ng-show="editorSummaryEnabled" class="edit-buttons-wrapper">
-                            <a href="#" ng-click="saveSummary()" class="btn btn-edit">
-                                SAVE </span>
-                            </a>
-                            <a href="#" ng-click="disableSummaryEditor()" class="btn btn-edit margin-l5">
-                                CANCEL </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="profile-right-content">
-                <div ng-hide="editorSummaryEnabled" class="profile-right-text">
-                    {{profileSummary}}
-                </div>
-                <textarea class="form-control" rows="5" ng-show="editorSummaryEnabled" ng-model="userSummary"></textarea>
             </div>
         </div>
-
-        <div class="profile-right-container">
-            <div class="profile-right-header">
-                <div class="profile-right-header title">
-                    <h3> SKILLS </h3>
-                </div>
-                <div class="profile-right-header edit">
-                    <div class="editwrapper">
-                        <div class="edit-pencil" ng-click="enableSkillsEditor()"
-                             ng-hide="editorSkillsEnabled"></div>
-
-                        <div ng-show="editorSkillsEnabled" class="edit-buttons-wrapper">
-                            <a href="#" ng-click="saveSkills()" class="btn btn-edit">
-                                SAVE </span>
-                            </a>
-                            <a href="#" ng-click="disableSkillsEditor()" class="btn btn-edit margin-l5">
-                                CANCEL </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="profile-right-content">
-                <div ng-hide="editorSkillsEnabled" class="profile-right-text">
-                    <div class="tags">
-                        <a class="tag" ng-model="tag" ng-repeat="tag in selectedSkills">{{tag}}</a>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <tags-input tags="skillsTags" ng-show="editorSkillsEnabled" placeholder="Add your skills..."
-                                info="userSelectedSkills"></tags-input>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="profile-right-container">
-            <div class="profile-right-header">
-                <div class="profile-right-header title">
-                    <h3>EARLY LIFE</h3>
-                </div>
-                <div class="profile-right-header edit">
-                    <div class="editwrapper">
-                        <div class="edit-pencil" ng-click="enableEarlyLifeEditor()"
-                             ng-hide="editorEarlyLifeEnabled"></div>
-
-                        <div ng-show="editorEarlyLifeEnabled" class="edit-buttons-wrapper">
-                            <a href="#" ng-click="saveEarlyLife()" class="btn btn-edit">
-                                SAVE </span>
-                            </a>
-                            <a href="#" ng-click="disableEarlyLifeEditor()" class="btn btn-edit margin-l5">
-                                CANCEL </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="profile-right-content">
-                <div ng-hide="editorEarlyLifeEnabled" class="profile-right-text">
-                    {{profileEarlyLife}}
-                </div>
-                <textarea class="form-control" rows="5" ng-show="editorEarlyLifeEnabled" ng-model="userEarlyLife"></textarea>
-            </div>
-        </div>
-
-        <div class="profile-right-container">
-            <div class="profile-right-header">
-                <div class="profile-right-header title">
-                    <h3>PERSONAL LIFE</h3>
-                </div>
-                <div class="profile-right-header edit">
-                    <div class="editwrapper">
-                        <div class="edit-pencil" ng-click="enablePersonalLifeEditor()"
-                             ng-hide="editorPersonalLifeEnabled"></div>
-
-                        <div ng-show="editorPersonalLifeEnabled" class="edit-buttons-wrapper">
-                            <a href="#" ng-click="savePersonalLife()" class="btn btn-edit">
-                                SAVE </span>
-                            </a>
-                            <a href="#" ng-click="disablePersonalLifeEditor()" class="btn btn-edit margin-l5">
-                                CANCEL </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="profile-right-content">
-                <div ng-hide="editorPersonalLifeEnabled" class="profile-right-text">
-                    {{profilePersonalLife}}
-                </div>
-                <textarea class="form-control" rows="5" ng-show="editorPersonalLifeEnabled" ng-model="userPersonalLife"></textarea>
-            </div>
-        </div>
-
-        <div class="profile-right-container">
-            <div class="profile-right-header">
-                <div class="profile-right-header title">
-                    <h3>Education</h3>
-                </div>
-                <div class="profile-right-header edit">
-                    <div class="editwrapper">
-                        <div class="edit-pencil" ng-click="enableEducationEditor()"
-                             ng-hide="editorEducationEnabled"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="profile-right-content">
-                <textarea class="form-control" rows="5" ng-show="editorCareerEnabled" ng-model="userCareer"></textarea>
-            </div>
-        </div>
-
     </div>
+    <div class="profile-right-content">
+        <div ng-hide="editorEarlyLifeEnabled" class="profile-right-text">
+            {{profileEarlyLife}}
+        </div>
+        <textarea class="form-control" rows="5" ng-show="editorEarlyLifeEnabled" ng-model="userEarlyLife"></textarea>
+    </div>
+</div>
+
+<div class="profile-right-container">
+    <div class="profile-right-header">
+        <div class="profile-right-header title">
+            <h3>PERSONAL LIFE</h3>
+        </div>
+        <div class="profile-right-header edit">
+            <div class="editwrapper">
+                <div class="edit-pencil" ng-click="enablePersonalLifeEditor()"
+                     ng-hide="editorPersonalLifeEnabled"></div>
+
+                <div ng-show="editorPersonalLifeEnabled" class="edit-buttons-wrapper">
+                    <a href="#" ng-click="savePersonalLife()" class="btn btn-edit">
+                        SAVE </span>
+                    </a>
+                    <a href="#" ng-click="disablePersonalLifeEditor()" class="btn btn-edit margin-l5">
+                        CANCEL </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="profile-right-content">
+        <div ng-hide="editorPersonalLifeEnabled" class="profile-right-text">
+            {{profilePersonalLife}}
+        </div>
+        <textarea class="form-control" rows="5" ng-show="editorPersonalLifeEnabled"
+                  ng-model="userPersonalLife"></textarea>
+    </div>
+</div>
+
+<div class="profile-right-container">
+    <div class="profile-right-header">
+        <div class="profile-right-header title">
+            <h3>Education</h3>
+        </div>
+        <div class="profile-right-header edit">
+            <div class="editwrapper">
+                <div class="edit-pencil" ng-click="enableEducationEditor()"
+                     ng-hide="editorEducationEnabled"></div>
+
+                <div ng-show="editorEducationEnabled" class="edit-buttons-wrapper">
+                    <a href="#" ng-click="saveEducation()" class="btn btn-edit">
+                        SAVE </span>
+                    </a>
+                    <a href="#" ng-click="disableEducationEditor()" class="btn btn-edit margin-l5">
+                        CANCEL </span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="profile-right-content">
+
+        <div  ng-hide="editorEducationEnabled">
+            <div>
+                {{ profileSchool }}
+            </div>
+
+
+        </div>
+
+        <div ng-show="editorEducationEnabled">
+            <div class="form-group">
+                <input type="text" ng-model="school" required class="form-control" id="school"
+                       placeholder="School"
+                       typeahead="school as school.name for school in schools | filter:$viewValue | limitTo:6" required
+                       class="form-control" typeahead-on-select="onSchool($item)">
+            </div>
+
+            <div class="form-group">
+                <input type="text" ng-model="degree" required class="form-control" id="degree" placeholder="Degree"
+                       typeahead="degree as degree.name for degree in degrees | filter:$viewValue | limitTo:6" required
+                       class="form-control" typeahead-on-select="onDegree($item)">
+            </div>
+
+            <div class="form-group">
+                <input type="text" ng-model="major" required class="form-control" id="major"
+                       placeholder="Field of Study"
+                       typeahead="major as major.name for major in majors | filter:$viewValue | limitTo:6" required
+                       class="form-control" typeahead-on-select="onMajor($item)">
+            </div>
+
+            <div class="form-group">
+                <div class="btn-group margin-r5" dropdown>
+                    <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle
+                            ng-disabled="disabled">
+                        {{startDate}} <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li ng-repeat="startYear in years">
+                            <a ng-click="setStartYear(startYear)">{{startYear}}</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="btn-group margin-l5" dropdown>
+                    <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle
+                            ng-disabled="disabled">
+                        {{endDate}} <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li ng-repeat="endYear in years">
+                            <a ng-click="setEndYear(endYear)">{{endYear}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="form-group div-50 left">
+                <input type="text" ng-model="country"
+                       typeahead="country as country.name for country in countries | filter:$viewValue | limitTo:6"
+                       required class="form-control" id="country" typeahead-on-select="onCountry($item)"
+                       placeholder="Country">
+            </div>
+            <div class="form-group div-50 right">
+                <input type="text" ng-model="state"
+                       typeahead="state as state.name for state in states | filter:$viewValue | limitTo:6" required
+                       class="form-control" id="state" typeahead-on-select="onState($item)"
+                       placeholder="State">
+            </div>
+
+            <textarea class="form-control" rows="5" ng-model="educationDescription"
+                      placeholder="Description..."></textarea>
+
+        </div>
+    </div>
+</div>
+
+</div>
 
 </div>
 

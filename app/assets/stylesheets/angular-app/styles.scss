@@ -168,6 +168,10 @@ input::-webkit-input-placeholder {
   margin-left: 5px;
 }
 
+.margin-r5{
+  margin-right: 5px;
+}
+
 .margin-lr10 {
   margin: 0px 10px;
 }
@@ -466,9 +470,9 @@ section#signup .form-control:focus {
   margin-bottom: 0px !important;
 }
 
-.form-group {
-  margin-bottom: 20px !important;
-}
+//.form-group {
+//  margin-bottom: 20px !important;
+//}
 
 .login-group.error input {
   border-color: #FFF;
@@ -1237,9 +1241,9 @@ footer#main .footer-above {
 .btn-primary {
   width: 85px;
   background-color: rgb(255, 255, 255) !important;
-  border-color: rgb(255, 255, 255) !important;
+  border-color: #CCCCCC !important;
   color: #555555 !important;
-  margin-bottom: 5px;
+  //margin-bottom: 5px;
 }
 
 .btn-primary :hover {
@@ -1834,4 +1838,16 @@ label {
 .tagsinput.addbutton:hover {
   background: #3D9ED8;
   color: #FFF;
+}
+
+.div-50{
+  width: 49% !important;
+}
+
+.left{
+  float: left;
+}
+
+.right{
+  float: right;
 }
