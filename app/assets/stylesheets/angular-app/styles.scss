@@ -1810,7 +1810,8 @@ label {
 }
 
 .tagsinput {
-  margin-bottom: 0px !important;
+//  margin-bottom: 0px !important;
+  display: inline-block;
 }
 
 .tagsinput.cont.left {
@@ -1825,12 +1826,12 @@ label {
 
 .tagsinput.addbutton {
   padding: 7px 10px;
-  background: #3D9ED8;
+ // background: #3D9ED8;
   text-decoration: none;
-  color: #FFFFFF;
+  color: #3D9ED8;
   font: 14px Lato-Regular;
   border: 1px solid #3D9ED8;
-  border-radius: 3px;
+//  border-radius: 3px;
   cursor: pointer;
   margin-left: 10px;
 }

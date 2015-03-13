@@ -266,6 +266,7 @@ angular.module('mepedia.controllers').controller('profileController',
                 }
             }
 
+            /* EDUCATION */
 
             var schools = School.get(function() {
                 $scope.schools = schools.schools
@@ -275,7 +276,6 @@ angular.module('mepedia.controllers').controller('profileController',
                 if (school != undefined)
                     $scope.school = school
             }
-
 
             $scope.startDate = "Start Year";
             $scope.endDate = "End Year";
@@ -290,8 +290,8 @@ angular.module('mepedia.controllers').controller('profileController',
 
             $scope.enableEducationEditor = function() {
                 $scope.editorEducationEnabled = true;
-                if($scope.profileSchool != "Where did you study?")
-                    $scope.school = $scope.profileSchool;
+                if($scope.educationPlaceHolder != "Where did you study?")
+                    $scope.school = $scope.education.school;
             };
 
 
@@ -299,12 +299,16 @@ angular.module('mepedia.controllers').controller('profileController',
                 $scope.editorEducationEnabled = false;
             };
 
+            $scope.educationPlaceHolder = "Where did you study?";
+
             $scope.saveEducation = function(){
                 $scope.disableEducationEditor();
-                    if($scope.school.name != undefined  && $scope.school.name != "" && $scope.school.name.length > 0){
-                        $scope.profileSchool = $scope.school.name;
-                    } else {
-                        $scope.profileSchool = "Where did you study?";
+                $scope.education = {};
+                    if($scope.school != undefined  && $scope.school.name != "" && $scope.school.name.length > 0){
+                        $scope.education.school = $scope.school.name;
+                        $scope.education.degree = $scope.degree.name;
+                        $scope.education.major = $scope.major.name;
+                        $scope.educationPlaceHolder = "";
                     }
             }
 
@@ -362,7 +366,7 @@ angular.module('mepedia.controllers').controller('profileController',
             }
 
 
-            $scope.profileSchool = "Where did you study?"
+
 
 
 

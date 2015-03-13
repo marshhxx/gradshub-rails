@@ -252,8 +252,10 @@
         </div>
         <div class="profile-right-header edit">
             <div class="editwrapper">
-                <div class="edit-pencil" ng-click="enableEducationEditor()"
-                     ng-hide="editorEducationEnabled"></div>
+
+                <a href="#" ng-click="enableEducationEditor()" class="btn btn-add" ng-hide="editorEducationEnabled">
+                   Add Education </span>
+                </a>
 
                 <div ng-show="editorEducationEnabled" class="edit-buttons-wrapper">
                     <a href="#" ng-click="saveEducation()" class="btn btn-edit">
@@ -270,8 +272,17 @@
     <div class="profile-right-content">
 
         <div  ng-hide="editorEducationEnabled">
-            <div>
-                {{ profileSchool }}
+            <div ng-hide="editorPersonalLifeEnabled" class="profile-right-text">
+                {{educationPlaceHolder}}
+            </div>
+            <div ng-hide="editorPersonalLifeEnabled" class="profile-right-text">
+                {{education.school}}
+            </div>
+            <div ng-hide="editorPersonalLifeEnabled" class="profile-right-text">
+                {{education.degree}}
+            </div>
+            <div ng-hide="editorPersonalLifeEnabled" class="profile-right-text">
+                {{education.major}}
             </div>
 
 
