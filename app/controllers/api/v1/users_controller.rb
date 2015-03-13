@@ -1,6 +1,8 @@
 require 'active_support'
 
 class Api::V1::UsersController < Api::BaseController
+  wrap_parameters include: [:name, :lastname, :email, :password, :onepgr_password, :gender,
+                            :birth, :image_url, :tag]
   before_action :authenticate_with_token!, only: [:update]
 
   # DELETE /api/users/1

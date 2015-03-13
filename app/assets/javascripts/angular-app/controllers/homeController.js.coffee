@@ -1,13 +1,17 @@
 angular.module('mepedia.controllers').controller("HomeController", [
-	'$scope', 'Candidate', '$state', '$anchorScroll', '$location', 'sessionService', '$sce', '$stateParams', 'registerService'
-	($scope, Candidate, $state, $anchorScroll, $location, sessionService, $sce, $stateParams, registerService)->
+	'$http','$scope', 'Candidate', 'Employer', '$state', '$anchorScroll', '$location', 'sessionService', '$sce', '$stateParams', 'registerService'
+	($http, $scope, Candidate, Employer, $state, $anchorScroll, $location, sessionService, $sce, $stateParams, registerService)->
 		$state.go "main.profile" if sessionService.isAuthenticated()
 		$scope.renderHtml = (htmlCode) ->
 		 $sce.trustAsHtml(htmlCode)
+		$scope.userType = 'Candidate'
 
 		$scope.registerUser = (isValid) ->
 			if isValid
-				user = new Candidate()
+				if $scope.userType == 'Candidate'
+					user = new Candidate()
+				else
+					user = new Employer()
 				user.name = $scope.name
 				user.lastname = $scope.lastname
 				user.email = $scope.email

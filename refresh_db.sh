@@ -1,7 +1,7 @@
 #!/bin/bash
 
 rake db:drop
-rake dv:create
+rake db:create
 rake db:migrate
-rake db:seed
+#rake db:seed
 
