@@ -1,7 +1,7 @@
 angular.module('mepedia.controllers').controller('profileController',
-    ['$scope', '$rootScope', '$upload', 'sessionService', '$state','Country', 'State', 'User', 'Skill', 'School', 'Major', 'Degree',
+    ['$scope', '$rootScope', '$upload', 'sessionService', '$state','Country', 'State', 'Candidate', 'Employer', 'Skill', 'School', 'Major', 'Degree',
 
-        function($scope, $rootScope, $upload, sessionService, $state, Country, State, User, Skill, School, Major, Degree) {
+        function($scope, $rootScope, $upload, sessionService, $state, Country, State, Candidate, Employer, Skill, School, Major, Degree) {
 
           /*  $scope.user = sessionService.requestCurrentUser()
 

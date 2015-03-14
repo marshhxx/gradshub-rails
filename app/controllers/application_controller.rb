@@ -6,9 +6,24 @@ class ApplicationController < ActionController::Base
   include Authenticable
 
   rescue_from ActiveRecord::RecordNotFound, :with => :not_found
+  rescue_from ActionController::ParameterMissing, :with => :bad_request
 
   def not_found(exception)
-      render :json => {:error => {:message => exception.message}}, :status => :not_found
+    @error = {:reasons => [exception.message], :code => INVALID_PARAMS_ERROR}
+    render :json => @error
+  end
+
+  def bad_request(exception)
+    @error = {:reasons => [exception.message], :code => INVALID_PARAMS_ERROR}
+    render_error :bad_request
+  end
+
+  def render_api_error
+    render_error :unprocessable_entity
+  end
+
+  def render_error(status)
+    render 'api/v1/common/error', status: status
   end
 
 end

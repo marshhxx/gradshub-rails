@@ -2,8 +2,24 @@ class OnepgrAccount < ActiveRecord::Base
   has_one :user
   attr_accessor :onepgr_errors, :session_cookies, :headers
 
+  def is_user(email)
+    if Rails.env.development?
+      return false
+    end
+    begin
+      client = get_client('onepgrapi/query_user_exists')
+      parse_response(client.post(parse_user_exists_params(email)), 'message')
+      true
+    rescue StandardError => error
+      logger.error error
+      false
+    end
+  end
+
   def login
     if Rails.env.development?
+      self.onepgr_id = Random.rand
+      self.session_token = Random.rand
       return true
     end
     begin
@@ -22,7 +38,9 @@ class OnepgrAccount < ActiveRecord::Base
 
   def register(email)
     if Rails.env.development?
-      return true
+      self.onepgr_id = Random.rand
+      self.onepgr_password = Random.rand
+      return self.save
     end
     begin
       client = get_client('/users/create_api')
@@ -128,6 +146,16 @@ class OnepgrAccount < ActiveRecord::Base
         :requestor_email => self.user.email,
         :account_email => user.email,
         :msg => "Please follow this link: #{ONEPGR_URL}/pages/#{page_params[:page_id]}"
+    })
+  end
+
+  def parse_user_exists_params(email)
+    URI::encode_www_form({
+       :onepgr_apicall => 1,
+       :email => email,
+       :clientappkey => ONEPGR_APP_KEY,
+       :clientappid => ONEPGR_APP_ID,
+       :clientname => ONEPGR_CLIENT_NAME
     })
   end
 

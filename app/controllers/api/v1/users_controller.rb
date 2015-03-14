@@ -1,4 +1,8 @@
+require 'active_support'
+
 class Api::V1::UsersController < Api::BaseController
+  wrap_parameters include: [:name, :lastname, :email, :password, :onepgr_password, :gender,
+                            :birth, :image_url, :tag]
   before_action :authenticate_with_token!, only: [:update]
 
   # DELETE /api/users/1
@@ -7,10 +11,9 @@ class Api::V1::UsersController < Api::BaseController
   end
 
   def show
-    @user = User.find_by_uid(params[:id])
-    if @user.nil?
-      @error = {:reasons => ["User with uid #{params[:id]} doesn't exist."],
-                :code => INVALID_PARAMS_ERROR}
+    set_resource(resource_class.find_by_uid(params[:id]))
+    if get_resource.nil?
+      @reasons = ["User with uid #{params[:id]} doesn't exist."]
       render 'api/v1/common/error', status: :unprocessable_entity
     else
       logger.info 'User rendered!'
@@ -19,34 +22,35 @@ class Api::V1::UsersController < Api::BaseController
   end
 
   def create
-    if User.find_by(email: user_params[:email]).nil?
-      set_resource(User.new(user_params))
-      if params[:onepgr_password].nil?
-        unless @user.register_onepgr(user_params)
-          @error = {:reasons => @user.errors.full_messages, :code => ONEPGR_REGISTER_ERROR}
-          render 'api/v1/common/error', status: :unprocessable_entity
-          return
+    if resource_class.find_by_email(user_params[:email]).nil?
+      set_resource(create_resource)
+      if get_resource.user.has_onepgr
+        if onepgr_password.nil?
+          @error = {
+              :reasons => ['The user already has a onepgr account, the password needs to be provided'],
+              :code => ONEPGR_REGISTER_ERROR
+          }
+          render_api_error and return
+        end
+        unless get_resource.user.login_to_onepgr(onepgr_password)
+          @error = {:reasons => get_resource.user.errors.full_messages, :code => ONEPGR_AUTH_ERROR}
+          render_api_error and return
         end
       else
-        unless @user.login_to_onepgr(params[:onepgr_password])
-          @error = {:reasons => @user.errors.full_messages, :code => ONEPGR_AUTH_ERROR}
-          render 'api/v1/common/error', status: :unprocessable_entity
-          return
+        unless get_resource.user.register_onepgr
+          @error = {:reasons => get_resource.user.errors.full_messages, :code => ONEPGR_REGISTER_ERROR}
         end
       end
-      @user.password = params[:password]
-      @user.save
-      unless get_resource.valid?
+      unless get_resource.user.valid?
         @error = {:reasons => get_resource.errors.full_messages, :code => INVALID_PARAMS_ERROR}
-        render 'api/v1/common/error', status: :unprocessable_entity
-        return
+        render_api_error and return
       end
+      get_resource.save
       logger.info 'User created!'
-      render :nothing => true, :status => :created
-    else
-      @error = {:reasons => ['Email has already been taken.'], :code => INVALID_PARAMS_ERROR}
-      render 'api/v1/common/error', status: :unprocessable_entity
+      render :nothing => true, :status => :created and return
     end
+    @error = {:reasons => ['Email has already been taken.'], :code => INVALID_PARAMS_ERROR}
+    render_api_error
   end
 
   def update
@@ -99,14 +103,23 @@ class Api::V1::UsersController < Api::BaseController
 
   private
 
-  def register_user
+  def create_resource
+    resource_class.new(resource_params)
+  end
 
+
+  def nest_user_attributes(parameters)
+    user_attr = parameters.slice(:name, :lastname, :email, :password, :gender, :birth, :image_url, :tag)
+    parameters.slice!(:name, :lastname, :email, :password, :gender, :birth, :image_url, :tag, :onepgr_password)
+              .merge({:user_attributes => user_attr})
   end
 
   def user_params
-    params.require(:user).permit(:name, :lastname, :email, :password,
-                                 :gender, :birth, :image_url, :early_life, :personal_life,
-                                 :job_title, :country_id, :state_id, :bio) if params[:user]
+    resource_params[:user_attributes]
+  end
+
+  def onepgr_password
+    params[resource_name][:onepgr_password]
   end
 
   def nationalities_params

@@ -11,6 +11,5 @@ angular.module('mepedia.services').factory  "registerService",
 					this.tempUser
 			}
 
-
 			service
 	]

@@ -22,6 +22,7 @@ module Demo
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     # Bower asset paths
+    config.autoload_paths += %W(#{config.root}/lib)
     root.join('vendor', 'assets', 'bower_components').to_s.tap do |bower_path|
       config.sass.load_paths << bower_path
       config.assets.paths << bower_path
