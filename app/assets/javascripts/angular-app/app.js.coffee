@@ -5,25 +5,8 @@
 #	$httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
 	$httpProvider.defaults.headers.common.Accept = 'application/mepedia.v1'
 	$httpProvider.defaults.headers.common['Content-type'] = 'application/json'
-	interceptor = [
-		"$location"
-		"$rootScope"
-		"$q"
-		($location, $rootScope, $q) ->
-			success = (response) ->
-				response
-			error = (response) ->
-				if response.status is 401
-					$rootScope.$broadcast "event:unauthorized"
-					$location.path "/login"
-					return response
-				$q.reject response
-			return (promise) ->
-				promise.then success, error
-	]
-	$httpProvider.interceptors.push interceptor
-	$urlRouterProvider.otherwise "/main/profile"
-	$urlRouterProvider.when('/main', '/main/profile')
+	$urlRouterProvider.otherwise "/home/page"
+	$urlRouterProvider.when('/main', '/home/page')
 	$stateProvider.state("home",
 		url: "/home"
 		templateUrl: "angular-app/templates/layouts/homeLayout.html"
@@ -63,7 +46,7 @@
 	).state("main.signup",
 		url: "/signup"
 		templateUrl: "angular-app/templates/signup.html"
-		controller: "signupController"
+		controller: "candidateSignupController"
 	).state("main.signup.personal",
 		url: "/personal"
 		templateUrl: "angular-app/templates/views/form-personal.html"
