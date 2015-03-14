@@ -36,9 +36,7 @@ angular.module('mepedia.services').factory('sessionService',
             },
 
             requestCurrentUser: function() {
-                if (Session.available()) {
-                    return Session.getUser();
-                }
+                return Session.getUser();
             },
 
             isAuthenticated: function(){
@@ -80,7 +78,8 @@ angular.module('mepedia.services').factory('sessionService',
         };
         return service;
     }])
-    .service('Session',['Candidate', 'Employer', 'cookieJar', '$q', function (Candidate, Employer, cookieJar, $q) {
+    .service('Session',
+    ['Candidate', 'Employer', 'cookieJar', '$q', '$window', function (Candidate, Employer, cookieJar, $q, $window) {
         this.available = function () {
             return !!this.token || cookieJar.isDefined("token");
         };
@@ -90,16 +89,25 @@ angular.module('mepedia.services').factory('sessionService',
             this.token = session.auth_token;
             this.remember = remember;
             this.type = session.type
+            $window.sessionStorage["userInfo"] = JSON.stringify(
+                {
+                    user_uid: this.user_uid,
+                    token: this.token,
+                    type: this.type
+                })
         };
 
         this.destroy = function () {
             this.token = null;
             this.user = null;
+            $window.sessionStorage["user"] = null
+            $window.sessionStorage["userInfo"] = null;
             if (cookieJar.isDefined("current_user")) {
                 cookieJar.delete("current_user");
                 cookieJar.delete("token");
             }
         };
+
         this.getToken = function() {
             if (!!this.token) {
                 return this.token;
@@ -107,6 +115,7 @@ angular.module('mepedia.services').factory('sessionService',
                 return cookieJar.get("token");
             }
         };
+
         this.getUser = function() {
             var deferred = $q.defer();
             if (!!this.user) {
@@ -116,6 +125,7 @@ angular.module('mepedia.services').factory('sessionService',
             } else if (!!this.user_uid) {
                 var setUser = function (user) {
                     this.user = user;
+                    $window.sessionStorage["user"] = JSON.stringify(user);
                     if (this.remember) {
                         cookieJar.put("current_user", user);
                         cookieJar.put("token", this.token);
@@ -133,10 +143,25 @@ angular.module('mepedia.services').factory('sessionService',
                     });
                 }
             } else {
-                deferred.reject()
+                deferred.reject({error: {reasons: ['There is no active session']}})
             }
             return deferred.promise;
         };
+
+        var init = function() {
+            if ($window.sessionStorage["userInfo"]) {
+                userInfo = JSON.parse($window.sessionStorage["userInfo"]);
+                this.token = userInfo.token;
+                this.user_uid = userInfo.user_uid;
+                this.type = userInfo.type;
+            }
+            if ($window.sessionStorage["user"]) {
+                this.user = JSON.parse($window.sessionStorage["user"]);
+            }
+        };
+
+        init();
+
         return this;
     }]);
 

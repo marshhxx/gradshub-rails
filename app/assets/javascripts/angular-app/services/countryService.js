@@ -7,6 +7,15 @@ To use this service:
  }); //get() returns all the entries
 
  */
-angular.module('mepedia.services').factory('Country', function($resource) {
-    return $resource('/api/countries/:id');
-});
+var Country = function ($resource) {
+  return $resource('/api/countries/:id', { id: '@id'},
+    {
+        query: {
+            method: 'GET',
+            isArray: false
+        }
+    });
+};
+angular
+    .module('mepedia.services')
+    .factory('Country', Country);

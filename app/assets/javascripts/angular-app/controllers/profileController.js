@@ -155,7 +155,7 @@ angular.module('mepedia.controllers').controller('profileController',
                     },
                     function (error) {
                         console.log(error);
-                        $state.go('main.profile');
+                        $state.go('home.page');
                     }
                 );
             };
@@ -177,13 +177,12 @@ angular.module('mepedia.controllers').controller('profileController',
             };
 
             var getData = function() {
-                Country.get(function(countries) {
-                    console.log(countries.countries);
+                Country.query(function(countries) {
                     $scope.countries = countries.countries;
                 });
 
                 $scope.getStateByCountryId = function(countryId) {
-                    State.get({country_id: countryId}, function(states) {
+                    State.query({country_id: countryId}, function(states) {
                         $scope.states = states.states;
                     });
                 };
