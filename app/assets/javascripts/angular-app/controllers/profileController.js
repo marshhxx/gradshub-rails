@@ -68,7 +68,7 @@ angular.module('mepedia.controllers').controller('profileController',
                 });
             });
 
-            / Modify the look and fill of the dropzone when files are being dragged over it /
+            // Modify the look and fill of the dropzone when files are being dragged over it //
             $scope.dragOverClass = function($event) {
                 var items = $event.dataTransfer.items;
                 var hasFile = false;
@@ -88,39 +88,78 @@ angular.module('mepedia.controllers').controller('profileController',
             /* ---- PERSONAL INFORMATION ---- */
 
             /* Data */
+            var init = function () {
+                getData();
 
-            var countries;
-            countries = Country.get(function() {
-                console.log(countries.countries);
-                return $scope.countries = countries.countries;
-            });
+                $scope.tempPersonalInfo = {};
+                $scope.personalInfo = {};
+                $scope.editorEnabled = false;
 
-            $scope.getStateByCountryId = function(countryId) {
-                var states;
-                return states = State.get({
-                    country_id: countryId
-                }, function() {
-                    return $scope.states = states.states;
-                });
+                $scope.enableEditor = enableEditor;
+
+                $scope.disableEditor = function() {
+                    $scope.editorEnabled = false;
+                };
+
+                $scope.save = save;
+
+                /* SUMMARY */
+                initSummary();
+
+                /* SKILLS */
+                initSkills();
+
+                /* EARLY LIFE */
+                initEarlyLife();
+
+                /* PERSONAL LIFE */
+                initPersonalLife();
+
+                /* EDUCATION */
+                initEducation();
+
+                $scope.years = getYears();
+
+                function getYears(){
+                    var first = 1950;
+                    var now = new Date();
+                    var second = now.getFullYear();
+                    var array = Array();
+
+                    for(var i = first; i <= second; i++){
+                        array.push(i);
+                    }
+                    return array;
+                }
+
+                $scope.onState = function(state) {
+                    if (state != undefined)
+                        $scope.state = state;
+                };
+
+                $scope.onMajor = function(major) {
+                    if (major != undefined)
+                        $scope.major = major
+                };
+
+                $scope.onDegree= function(degree) {
+                    if (degree != undefined)
+                        $scope.degree = degree
+                };
+
+                sessionService.requestCurrentUser().then(
+                    function (user) {
+                        $scope.user = user.candidate;
+                        getPersonalInfo();
+
+                    },
+                    function (error) {
+                        console.log(error);
+                        $state.go('main.profile');
+                    }
+                );
             };
 
-            /* Request current user */
-            var currentUser = sessionService.requestCurrentUser();
-            if(currentUser != null) {
-                User.get({id: currentUser.uid}).$promise.then(function (user) {
-                    //success
-                    $scope.user = user.user;
-                    getPersonalInfo();
-
-                }, function (errResponse) {
-                    console.log(errResponse);
-                });
-            } else {
-                $state.go('main.profile');
-            }
-
-            $scope.tempPersonalInfo = {}
-            $scope.personalInfo = {};
             var getPersonalInfo = function () {
                 if($scope.user != null) {
                     $scope.personalInfo.currentPosition = "Add your current position";
@@ -135,24 +174,46 @@ angular.module('mepedia.controllers').controller('profileController',
                     $scope.personalInfo.currentLocation = ($scope.user.country != null) ? (($scope.user.state.name != null) ? $scope.user.state.name + ", " + $scope.user.country.name : $scope.user.country.name) : "Add your current location";
                     $scope.tempPersonalInfo.currentLocation = $scope.personalInfo.currentLocation;
                 }
-            }
+            };
 
-            $scope.editorEnabled = false;
+            var getData = function() {
+                Country.get(function(countries) {
+                    console.log(countries.countries);
+                    $scope.countries = countries.countries;
+                });
 
-            $scope.enableEditor = function() {
+                $scope.getStateByCountryId = function(countryId) {
+                    State.get({country_id: countryId}, function(states) {
+                        $scope.states = states.states;
+                    });
+                };
+
+                Skill.get(function(skills) {
+                    $scope.skillsTags = skills.skills;
+                });
+
+                School.get(function(schools) {
+                    $scope.schools = schools.schools;
+                });
+
+                Major.get(function(majors){
+                    $scope.majors = majors.majors;
+                });
+
+                Degree.get(function(degrees){
+                    $scope.degrees = degrees.degrees;
+                });
+            };
+
+            var enableEditor = function () {
                 $scope.editorEnabled = true;
-
                 $scope.personalInfo.currentPosition = $scope.tempPersonalInfo.currentPosition;
                 $scope.personalInfo.education = $scope.tempPersonalInfo.education;
                 $scope.personalInfo.topSkills = $scope.tempPersonalInfo.topSkills;
                 $scope.personalInfo.currentLocation = $scope.tempPersonalInfo.currentLocation;
             };
 
-            $scope.disableEditor = function() {
-                $scope.editorEnabled = false;
-            };
-
-            $scope.save = function() {
+            var save = function () {
                 $scope.tempPersonalInfo.currentPosition = $scope.personalInfo.currentPosition;
                 $scope.tempPersonalInfo.education = $scope.personalInfo.education;
                 $scope.tempPersonalInfo.topSkills = $scope.personalInfo.topSkills;
@@ -160,52 +221,16 @@ angular.module('mepedia.controllers').controller('profileController',
                 $scope.disableEditor();
             };
 
-            /* SUMMARY */
-            $scope.userSummary;
-            $scope.profileSummary = "Write something about you";
-
-            $scope.editorSummaryEnabled = false;
-
-            $scope.enableSummaryEditor = function() {
-                $scope.editorSummaryEnabled = true;
-                if($scope.profileSummary != "Write something about you")
-                    $scope.userSummary = $scope.profileSummary;
-            };
-
-            $scope.disableSummaryEditor = function() {
-                $scope.editorSummaryEnabled = false;
-            };
-
-            $scope.saveSummary = function(){
+            var saveSummary = function(){
                 $scope.disableSummaryEditor();
                 if($scope.userSummary != undefined  && $scope.userSummary != "" && $scope.userSummary.length > 0){
                     $scope.profileSummary = $scope.userSummary;
                 } else {
                     $scope.profileSummary = "Write something about you";
                 }
-            }
-
-            /* SKILLS */
-            $scope.userSelectedSkills = [];
-            $scope.selectedSkills = ["Add a skill"];
-            var skills;
-            skills = Skill.get(function() {
-                return $scope.skillsTags = skills.skills;
-            });
-
-            $scope.editorSkillsEnabled = false;
-
-            $scope.enableSkillsEditor = function() {
-                $scope.editorSkillsEnabled = true;
-                if($scope.selectedSkills.length > 0)
-                    $scope.userSelectedSkills = $scope.selectedSkills.slice();
             };
 
-            $scope.disableSkillsEditor = function() {
-                $scope.editorSkillsEnabled = false;
-            };
-
-            $scope.saveSkills = function(){
+            var saveSkills = function(){
                 $scope.disableSkillsEditor();
                 if($scope.userSelectedSkills.length > 0){
                     if($scope.userSelectedSkills[0] == "Add a skill")
@@ -214,162 +239,145 @@ angular.module('mepedia.controllers').controller('profileController',
                 } else {
                     $scope.selectedSkills.push("Add a skill");
                 }
-            }
-
-            /* EARLY LIFE */
-            $scope.userEarlyLife;
-            $scope.profileEarlyLife = "Write something about your early life";
-
-            $scope.editorEarlyLifeEnabled = false;
-
-            $scope.enableEarlyLifeEditor = function() {
-                $scope.editorEarlyLifeEnabled = true;
-                if($scope.profileEarlyLife != "Write something about your early life")
-                    $scope.userEarlyLife = $scope.profileEarlyLife;
             };
 
-            $scope.disableEarlyLifeEditor = function() {
-                $scope.editorEarlyLifeEnabled = false;
-            };
-
-            $scope.saveEarlyLife = function(){
+            var saveEarlyLife = function(){
                 $scope.disableEarlyLifeEditor();
                 if($scope.userEarlyLife != undefined  && $scope.userEarlyLife != "" && $scope.userEarlyLife.length > 0){
                     $scope.profileEarlyLife = $scope.userEarlyLife;
                 } else {
                     $scope.profileEarlyLife = "Write something about your early life";
                 }
-            }
-
-            /* PERSONAL LIFE */
-
-            $scope.userPersonalLife;
-            $scope.profilePersonalLife = "Write something about your personal life";
-            $scope.editorPersonalLifeEnabled = false;
-
-            $scope.enablePersonalLifeEditor = function() {
-                $scope.editorPersonalLifeEnabled = true;
-                if($scope.profilePersonalLife != "Write something about your personal life")
-                    $scope.userPersonalLife = $scope.profilePersonalLife;
             };
 
-            $scope.disablePersonalLifeEditor = function() {
-                $scope.editorPersonalLifeEnabled = false;
-            };
-
-            $scope.savePersonalLife = function(){
+            var savePersonalLife = function(){
                 $scope.disablePersonalLifeEditor();
                 if($scope.userPersonalLife != undefined  && $scope.userPersonalLife != "" && $scope.userPersonalLife.length > 0){
                     $scope.profilePersonalLife = $scope.userPersonalLife;
                 } else {
                     $scope.profilePersonalLife = "Write something about your personal life";
                 }
-            }
-
-            /* EDUCATION */
-
-            var schools = School.get(function() {
-                $scope.schools = schools.schools
-            })
-
-            $scope.onSchool = function (school) {
-                if (school != undefined)
-                    $scope.school = school
-            }
-
-            $scope.startDate = "Start Year";
-            $scope.endDate = "End Year";
-
-            $scope.setStartYear = function(year) {
-                $scope.startDate = year;
-            }
-
-            $scope.setEndYear = function(year) {
-                $scope.endDate = year;
-            }
-
-            $scope.enableEducationEditor = function() {
-                $scope.editorEducationEnabled = true;
-                if($scope.educationPlaceHolder != "Where did you study?")
-                    $scope.school = $scope.education.school;
             };
 
-
-            $scope.disableEducationEditor = function() {
-                $scope.editorEducationEnabled = false;
-            };
-
-            $scope.educationPlaceHolder = "Where did you study?";
-
-            $scope.saveEducation = function(){
+            var saveEducation = function(){
                 $scope.disableEducationEditor();
                 $scope.education = {};
-                    if($scope.school != undefined  && $scope.school.name != "" && $scope.school.name.length > 0){
-                        $scope.education.school = $scope.school.name;
-                        $scope.education.degree = $scope.degree.name;
-                        $scope.education.major = $scope.major.name;
-                        $scope.educationPlaceHolder = "";
-                    }
-            }
-
-            $scope.years = getYears();
-
-            function getYears(){
-                var first = 1950;
-                var now = new Date();
-                var second = now.getFullYear();
-                var array = Array();
-
-                for(var i = first; i <= second; i++){
-                    array.push(i);
+                if($scope.school != undefined  && $scope.school.name != "" && $scope.school.name.length > 0){
+                    $scope.education.school = $scope.school.name;
+                    $scope.education.degree = $scope.degree.name;
+                    $scope.education.major = $scope.major.name;
+                    $scope.educationPlaceHolder = "";
                 }
-                return array;
-            }
-
-            var countries = Country.get(function(){
-                $scope.countries = countries.countries
-            });
-
-            $scope.getStateByCountryId = function (countryId){
-                var states = State.get ({country_id: countryId}, function(){
-                    $scope.states = states.states})
             };
 
-            $scope.onCountry = function(country) {
-                $scope.country = country
-                if ($scope.country != undefined)
-                    $scope.getStateByCountryId($scope.country.id);
-            }
+            var initSummary = function() {
+                $scope.userSummary;
+                $scope.profileSummary = "Write something about you";
+                $scope.editorSummaryEnabled = false;
 
-            $scope.onState = function(state) {
-                if (state != undefined)
-                    $scope.state = state;
-            }
+                $scope.enableSummaryEditor = function() {
+                    $scope.editorSummaryEnabled = true;
+                    if($scope.profileSummary != "Write something about you")
+                        $scope.userSummary = $scope.profileSummary;
+                };
 
-            $scope.onMajor = function(major) {
-                if (major != undefined)
-                    $scope.major = major
-            }
+                $scope.disableSummaryEditor = function() {
+                    $scope.editorSummaryEnabled = false;
+                };
 
-            var majors = Major.get(function(){
-                $scope.majors = majors.majors
-            });
+                $scope.saveSummary = saveSummary;
+            };
 
-            var degrees = Degree.get(function(){
-                $scope.degrees = degrees.degrees
-            });
+            var initSkills = function() {
+                $scope.userSelectedSkills = [];
+                $scope.selectedSkills = ["Add a skill"];
 
 
-            $scope.onDegree= function(degree) {
-                if (degree != undefined)
-                    $scope.degree = degree
-            }
+                $scope.editorSkillsEnabled = false;
 
+                $scope.enableSkillsEditor = function() {
+                    $scope.editorSkillsEnabled = true;
+                    if($scope.selectedSkills.length > 0)
+                        $scope.userSelectedSkills = $scope.selectedSkills.slice();
+                };
 
+                $scope.disableSkillsEditor = function() {
+                    $scope.editorSkillsEnabled = false;
+                };
 
+                $scope.saveSkills = saveSkills;
+            };
 
+            var initEarlyLife = function() {
+                $scope.userEarlyLife;
+                $scope.profileEarlyLife = "Write something about your early life";
 
+                $scope.editorEarlyLifeEnabled = false;
 
+                $scope.enableEarlyLifeEditor = function() {
+                    $scope.editorEarlyLifeEnabled = true;
+                    if($scope.profileEarlyLife != "Write something about your early life")
+                        $scope.userEarlyLife = $scope.profileEarlyLife;
+                };
+
+                $scope.disableEarlyLifeEditor = function() {
+                    $scope.editorEarlyLifeEnabled = false;
+                };
+
+                $scope.saveEarlyLife = saveEarlyLife;
+            };
+
+            var initPersonalLife = function() {
+                $scope.userPersonalLife;
+                $scope.profilePersonalLife = "Write something about your personal life";
+                $scope.editorPersonalLifeEnabled = false;
+
+                $scope.enablePersonalLifeEditor = function() {
+                    $scope.editorPersonalLifeEnabled = true;
+                    if($scope.profilePersonalLife != "Write something about your personal life")
+                        $scope.userPersonalLife = $scope.profilePersonalLife;
+                };
+
+                $scope.disablePersonalLifeEditor = function() {
+                    $scope.editorPersonalLifeEnabled = false;
+                };
+
+                $scope.savePersonalLife = savePersonalLife;
+            };
+
+            var initEducation = function() {
+                $scope.onSchool = function (school) {
+                    if (school != undefined)
+                        $scope.school = school
+                };
+
+                $scope.startDate = "Start Year";
+                $scope.endDate = "End Year";
+
+                $scope.setStartYear = function(year) {
+                    $scope.startDate = year;
+                };
+
+                $scope.setEndYear = function(year) {
+                    $scope.endDate = year;
+                };
+
+                $scope.enableEducationEditor = function() {
+                    $scope.editorEducationEnabled = true;
+                    if($scope.educationPlaceHolder != "Where did you study?")
+                        $scope.school = $scope.education.school;
+                };
+
+                $scope.disableEducationEditor = function() {
+                    $scope.editorEducationEnabled = false;
+                };
+
+                $scope.educationPlaceHolder = "Where did you study?";
+
+                $scope.saveEducation = saveEducation;
+            };
+
+            init();
 
             /* CAREER */
 

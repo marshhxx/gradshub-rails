@@ -80,31 +80,16 @@ angular.module('mepedia.services').factory('sessionService',
         };
         return service;
     }])
-    .service('Session',['Candidate', 'Employer', 'cookieJar', function (Candidate, Employer, cookieJar) {
+    .service('Session',['Candidate', 'Employer', 'cookieJar', '$q', function (Candidate, Employer, cookieJar, $q) {
         this.available = function () {
             return !!this.token || cookieJar.isDefined("token");
         };
 
         this.create = function (session, remember) {
-            var setUser = function (user) {
-                this.user = user;
-                if (this.remember) {
-                    cookieJar.put("current_user", this.user);
-                    cookieJar.put("token", this.token);
-                }
-            };
-
-            if (session.type == 'Candidate') {
-                Candidate.get({id: session.uid}, function (candidate) {
-                    setUser(candidate.candidate);
-                });
-            } else if (session.type == 'Emplpyer') {
-                Employer.get({id: session.uid}, function(employer) {
-                    setUser(employer.employer);
-                });
-            }
+            this.user_uid = session.uid;
             this.token = session.auth_token;
             this.remember = remember;
+            this.type = session.type
         };
 
         this.destroy = function () {
@@ -123,11 +108,34 @@ angular.module('mepedia.services').factory('sessionService',
             }
         };
         this.getUser = function() {
+            var deferred = $q.defer();
             if (!!this.user) {
-                return this.user;
+                deferred.resolve(this.user);
             } else if (cookieJar.isDefined("current_user")) {
-                return cookieJar.get("current_user");
+                deferred.resolve(cookieJar.get("current_user"));
+            } else if (!!this.user_uid) {
+                var setUser = function (user) {
+                    this.user = user;
+                    if (this.remember) {
+                        cookieJar.put("current_user", user);
+                        cookieJar.put("token", this.token);
+                    }
+                };
+                if (this.type == 'Candidate') {
+                    Candidate.get({id: this.user_uid}, function (candidate) {
+                        setUser(candidate.candidate);
+                        deferred.resolve(candidate);
+                    });
+                } else if (this.type == 'Emplpyer') {
+                    Employer.get({id: this.user_uid}, function(employer) {
+                        setUser(employer.employer);
+                        deferred.resolve(employer)
+                    });
+                }
+            } else {
+                deferred.reject()
             }
+            return deferred.promise;
         };
         return this;
     }]);
