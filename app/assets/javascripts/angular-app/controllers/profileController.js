@@ -1,7 +1,7 @@
 angular.module('mepedia.controllers').controller('profileController',
-    ['$scope', '$rootScope', '$upload', 'sessionService', '$state','Country', 'State', 'Candidate', 'Employer',  'Skill',
+    ['$scope', '$rootScope', '$upload', 'sessionService', '$state','Country', 'State', 'Candidate', 'Employer', 'Skill', 'School', 'Major', 'Degree',
 
-        function($scope, $rootScope, $upload, sessionService, $state, Country, State, Candidate, Employer, Skill) {
+        function($scope, $rootScope, $upload, sessionService, $state, Country, State, Candidate, Employer, Skill, School, Major, Degree) {
 
           /*  $scope.user = sessionService.requestCurrentUser()
 
@@ -265,6 +265,111 @@ angular.module('mepedia.controllers').controller('profileController',
                     $scope.profilePersonalLife = "Write something about your personal life";
                 }
             }
+
+            /* EDUCATION */
+
+            var schools = School.get(function() {
+                $scope.schools = schools.schools
+            })
+
+            $scope.onSchool = function (school) {
+                if (school != undefined)
+                    $scope.school = school
+            }
+
+            $scope.startDate = "Start Year";
+            $scope.endDate = "End Year";
+
+            $scope.setStartYear = function(year) {
+                $scope.startDate = year;
+            }
+
+            $scope.setEndYear = function(year) {
+                $scope.endDate = year;
+            }
+
+            $scope.enableEducationEditor = function() {
+                $scope.editorEducationEnabled = true;
+                if($scope.educationPlaceHolder != "Where did you study?")
+                    $scope.school = $scope.education.school;
+            };
+
+
+            $scope.disableEducationEditor = function() {
+                $scope.editorEducationEnabled = false;
+            };
+
+            $scope.educationPlaceHolder = "Where did you study?";
+
+            $scope.saveEducation = function(){
+                $scope.disableEducationEditor();
+                $scope.education = {};
+                    if($scope.school != undefined  && $scope.school.name != "" && $scope.school.name.length > 0){
+                        $scope.education.school = $scope.school.name;
+                        $scope.education.degree = $scope.degree.name;
+                        $scope.education.major = $scope.major.name;
+                        $scope.educationPlaceHolder = "";
+                    }
+            }
+
+            $scope.years = getYears();
+
+            function getYears(){
+                var first = 1950;
+                var now = new Date();
+                var second = now.getFullYear();
+                var array = Array();
+
+                for(var i = first; i <= second; i++){
+                    array.push(i);
+                }
+                return array;
+            }
+
+            var countries = Country.get(function(){
+                $scope.countries = countries.countries
+            });
+
+            $scope.getStateByCountryId = function (countryId){
+                var states = State.get ({country_id: countryId}, function(){
+                    $scope.states = states.states})
+            };
+
+            $scope.onCountry = function(country) {
+                $scope.country = country
+                if ($scope.country != undefined)
+                    $scope.getStateByCountryId($scope.country.id);
+            }
+
+            $scope.onState = function(state) {
+                if (state != undefined)
+                    $scope.state = state;
+            }
+
+            $scope.onMajor = function(major) {
+                if (major != undefined)
+                    $scope.major = major
+            }
+
+            var majors = Major.get(function(){
+                $scope.majors = majors.majors
+            });
+
+            var degrees = Degree.get(function(){
+                $scope.degrees = degrees.degrees
+            });
+
+
+            $scope.onDegree= function(degree) {
+                if (degree != undefined)
+                    $scope.degree = degree
+            }
+
+
+
+
+
+
 
             /* CAREER */
 

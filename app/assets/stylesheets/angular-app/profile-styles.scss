@@ -324,15 +324,32 @@ p {
   width: 70px;
   padding: 5px 0px;
   background: none;
-  color: #3D9ED8;
+  color: #9197A3;
   font: 13px Roboto-Light, Georgia, "Times New Roman", Times, serif;
-  border: 1px solid #3D9ED8;
+  border: 1px solid #9197A3;
   border-radius: 0 !important;
 }
 
 .btn-edit:hover {
-  color: #041533;
-  border: 1px solid #041533;
+  color: #FFF;
+  background: #3D9ED8;
+  border: 1px solid #3D9ED8;
+}
+
+.btn-add {
+  float: right;
+  padding: 5px 5px;
+  background: none;
+  color: #9197A3;
+  font: 14px Lato-Regular, Georgia, "Times New Roman", Times, serif;
+  border: 1px solid #9197A3;
+  border-radius: 0 !important;
+}
+
+.btn-add:hover {
+  color: #FFF;
+  background: #3D9ED8;
+  border: 1px solid #3D9ED8;
 }
 
 .profile-right-container{
