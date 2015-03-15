@@ -21,4 +21,8 @@ class Candidate < ActiveRecord::Base
     User.find_by(email: email)
   end
 
+  def self.find(id)
+    User.find_by_uid!(id).meta
+  end
+
 end

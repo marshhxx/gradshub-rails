@@ -51,23 +51,4 @@ class Api::V1::SessionsController < ApplicationController
     end
   end
 
-  private
-
-  def login_to_onepgr
-    begin
-      logged_params = OnepgrService.new().login({
-          email: @user.email,
-          password: @user.onepgr_account.onepgr_password
-      })
-      if logged_params
-        @user.onepgr_account.assign_attributes(logged_params)
-        @user.onepgr_account.save
-      else
-        logged_params
-      end
-    rescue OnepgrService::OnepgrAuthException => error
-      logger.error(error)
-      raise
-    end
-  end
 end

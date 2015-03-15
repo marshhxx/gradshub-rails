@@ -8,8 +8,8 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, :with => :not_found
   rescue_from ActionController::ParameterMissing, :with => :bad_request
 
-  def not_found(exception)
-    @error = {:reasons => [exception.message], :code => INVALID_PARAMS_ERROR}
+  def not_found
+    @error = {:reasons => [["Resource with id #{params[:id]} doesn't exist."]], :code => INVALID_PARAMS_ERROR}
     render :json => @error
   end
 

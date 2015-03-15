@@ -12,13 +12,8 @@ class Api::V1::UsersController < Api::BaseController
 
   def show
     set_resource(resource_class.find_by_uid(params[:id]))
-    if get_resource.nil?
-      @reasons = ["User with uid #{params[:id]} doesn't exist."]
-      render 'api/v1/common/error', status: :unprocessable_entity
-    else
-      logger.info 'User rendered!'
-      respond_with get_resource
-    end
+    logger.info 'User rendered!'
+    respond_with get_resource
   end
 
   def create
@@ -54,6 +49,17 @@ class Api::V1::UsersController < Api::BaseController
   end
 
   def update
+    resource_params[:birth] = resource_params[:birth].to_date if resource_params[:birth]
+    set_resource(resource_class.find_by_uid(params[:id]))
+    if get_resource.update(resource_params)
+      logger.info 'User updated!'
+      render :show, status: :accepted and return
+    end
+    @error = {:reasons => get_resource.errors.full_messages, :code => INVALID_PARAMS_ERROR}
+    render_error :unprocessable_entity
+  end
+
+  def update_old
     user_params[:birth] = user_params[:birth].to_date if user_params[:birth]
     @user = User.find_by(uid: params[:id])
     if @user.nil?

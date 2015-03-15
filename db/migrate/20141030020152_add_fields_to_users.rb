@@ -164,14 +164,14 @@ class AddFieldsToUsers < ActiveRecord::Migration
     end
 
     create_table :educations do |t|
-      t.belongs_to :candidate
-      t.belongs_to :school
-      t.belongs_to :major
-      t.belongs_to :degree
+      t.belongs_to :candidate,  null: false
+      t.belongs_to :school,     null: false
+      t.belongs_to :major,      null: false
+      t.belongs_to :degree,     null: false
       t.belongs_to :country
       t.belongs_to :state
       t.text :description
-      t.date :start_date
+      t.date :start_date,       null: false
       t.date :end_date
 
       t.timestamp
