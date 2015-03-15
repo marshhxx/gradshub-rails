@@ -8,9 +8,13 @@ Demo::Application.routes.draw do
       resources :employers, :only => [:show, :create, :update], shallow: true do
         resource :skills
       end
-      resources :candidates, :only => [:show, :create, :update], shallow: true do
-        resources :careers
+      resources :candidates, :only => [:show, :create, :update] do
+        shallow do
+          resources :careers
+        end
+        resources :educations, :only => [:index, :create, :update, :destroy]
       end
+      resources :educations, :only => [:index]
       resources :sessions, :only => [:create, :destroy, :password_reset] do
         collection do
           get :password_reset, to: 'sessions#password_reset_request'

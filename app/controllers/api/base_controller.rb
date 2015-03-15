@@ -8,28 +8,33 @@ class Api::BaseController < ApplicationController
     set_resource(resource_class.new(resource_params))
     unless get_resource.valid?
       @error = {:reasons => get_resource.errors.full_messages, :code => INVALID_PARAMS_ERROR}
-      render 'api/v1/common/error', status: :unprocessable_entity
+      render_error :unprocessable_entity
     end
     if get_resource.save
-      render :show, status: :created
+      render :show, status: :created and return
     end
+    @error = {:reasons => get_resource.errors.full_messages, :code => INVALID_PARAMS_ERROR}
+    render_error status: :unprocessable_entity
   end
 
   # DELETE /api/{plural_resource_name}/1
   def destroy
     if get_resource.destroy
-      @error = {:reasons => get_resource.errors.full_messages, :code => INVALID_PARAMS_ERROR}
-      render 'api/v1/common/error', status: :unprocessable_entity
+      head :accepted and return
     else
-      head :accepted
+      @error = {:reasons => get_resource.errors.full_messages, :code => INVALID_PARAMS_ERROR}
+      render_error :unprocessable_entity
     end
   end
 
   # GET /api/{plural_resource_name}
   def index
     plural_resource_name = "@#{resource_name.pluralize}"
-    resources = resource_class.where(query_params)
-
+    if query_params.blank?
+      resources = resource_class.all
+    else
+      resources = resource_class.where(query_params)
+    end
     instance_variable_set(plural_resource_name, resources)
     render :index, status: :ok
   end
@@ -46,7 +51,8 @@ class Api::BaseController < ApplicationController
     if get_resource.update(resource_params)
       render :show
     else
-      render json: get_resource.errors, status: :unprocessable_entity
+      @error = {:reasons => get_resource.errors.full_messages, :code => INVALID_PARAMS_ERROR}
+      render_error :unprocessable_entity
     end
   end
 
@@ -95,7 +101,7 @@ class Api::BaseController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_resource(resource = nil)
-    resource ||= resource_class.find_by(id: params[:id])
+    resource ||= resource_class.find_by!(id: params[:id])
     instance_variable_set("@#{resource_name}", resource)
   end
 
