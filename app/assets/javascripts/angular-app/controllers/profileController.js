@@ -371,37 +371,24 @@ angular.module('mepedia.controllers').controller('profileController',
                     $scope.editorEducationEnabled = false;
                 };
 
-                $scope.educationPlaceHolder = "Where did you study?";
+                //$scope.educationPlaceHolder = "Where did you study?";
 
                 $scope.saveEducation = saveEducation;
+
+                $scope.education = {
+                    school: "Universidad de Montevideo",
+                    degree: "Telematic Engineering",
+                    major: "Computer Engineering",
+                    startDate: "2009",
+                    endDate: "2014",
+                    country: "Uruguay",
+                    state: "Montevideo",
+                    description: "Description description alo hola bueno ta"
+                }
             };
 
             init();
 
-            /* CAREER */
-
-          /*  $scope.userCareer;
-            $scope.profileCareer= "Write something about your personal life";
-            $scope.editorCareerEnabled = false;
-
-            $scope.enableCareerEditor = function() {
-                $scope.editorCareerEnabled = true;
-                if($scope.profileCareer != "Write something about your personal life")
-                    $scope.userCareer = $scope.profileCareer;
-            };
-
-            $scope.disableCareerEditor = function() {
-                $scope.editorPersonalLifeEnabled = false;
-            };
-
-            $scope.saveCareer= function(){
-                $scope.disablePersonalLifeEditor();
-                if($scope.userCareer != undefined  && $scope.userCareer != "" && $scope.userCareer.length > 0){
-                    $scope.profileCareer = $scope.userCareer;
-                } else {
-                    $scope.profileCareer = "Write something about your personal life";
-                }
-            }*/
 
 
 

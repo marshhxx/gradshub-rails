@@ -1,7 +1,8 @@
 /* General */
 
 h3 {
-  font: 18px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+  font: 20px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+  color: #122028;
   text-transform: uppercase;
   margin: 0px !important;
   display: inline-block;
@@ -396,4 +397,28 @@ p {
 textarea{
   color: #505050;
   font: 14px Lato-Regular;
+}
+
+.header-title{
+  color: #505050;
+  font: 18px Lato-Regular;
+}
+
+.header-subtitle{
+  color: #999999;
+  font: 16px Lato-Regular;
+}
+
+.header-light-txt{
+  color: #999999;
+  font: 13px Lato-Light;
+}
+
+.header-regular-txt{
+  color: #999999;
+  font: 14px Lato-Regular;
+}
+
+.form-cont{
+  margin-bottom: 5px;
 }

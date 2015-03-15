@@ -5,8 +5,8 @@
 #	$httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
 	$httpProvider.defaults.headers.common.Accept = 'application/mepedia.v1'
 	$httpProvider.defaults.headers.common['Content-type'] = 'application/json'
-	$urlRouterProvider.otherwise "/home/page"
-	$urlRouterProvider.when('/main', '/home/page')
+	$urlRouterProvider.otherwise "/main/profile"
+	$urlRouterProvider.when('/main', '/main/profile')
 	$stateProvider.state("home",
 		url: "/home"
 		templateUrl: "angular-app/templates/layouts/homeLayout.html"
