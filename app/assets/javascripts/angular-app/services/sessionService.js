@@ -78,7 +78,7 @@ angular.module('mepedia.services').factory('sessionService',
         };
         return service;
     }])
-    .service('Session',
+    .factory('Session',
     ['Candidate', 'Employer', 'cookieJar', '$q', '$window', function (Candidate, Employer, cookieJar, $q, $window) {
         this.available = function () {
             return !!this.token || cookieJar.isDefined("token");
@@ -88,7 +88,7 @@ angular.module('mepedia.services').factory('sessionService',
             this.user_uid = session.uid;
             this.token = session.auth_token;
             this.remember = remember;
-            this.type = session.type
+            this.type = session.type;
             $window.sessionStorage["userInfo"] = JSON.stringify(
                 {
                     user_uid: this.user_uid,
@@ -100,7 +100,7 @@ angular.module('mepedia.services').factory('sessionService',
         this.destroy = function () {
             this.token = null;
             this.user = null;
-            $window.sessionStorage["user"] = null
+            $window.sessionStorage["user"] = null;
             $window.sessionStorage["userInfo"] = null;
             if (cookieJar.isDefined("current_user")) {
                 cookieJar.delete("current_user");
@@ -117,15 +117,15 @@ angular.module('mepedia.services').factory('sessionService',
         };
 
         this.getUser = function() {
+            init();
             var deferred = $q.defer();
-            if (!!this.user) {
-                deferred.resolve(this.user);
+            if (typeof user !== 'undefined') {
+                deferred.resolve(user);
             } else if (cookieJar.isDefined("current_user")) {
                 deferred.resolve(cookieJar.get("current_user"));
-            } else if (!!this.user_uid) {
-                var setUser = function (user) {
-                    this.user = user;
-                    $window.sessionStorage["user"] = JSON.stringify(user);
+            } else if (typeof user_uid !== 'undefined') {
+                var setUser = function (oneUser) {
+                    user = oneUser;
                     if (this.remember) {
                         cookieJar.put("current_user", user);
                         cookieJar.put("token", this.token);
@@ -154,9 +154,6 @@ angular.module('mepedia.services').factory('sessionService',
                 this.token = userInfo.token;
                 this.user_uid = userInfo.user_uid;
                 this.type = userInfo.type;
-            }
-            if ($window.sessionStorage["user"]) {
-                this.user = JSON.parse($window.sessionStorage["user"]);
             }
         };
 
