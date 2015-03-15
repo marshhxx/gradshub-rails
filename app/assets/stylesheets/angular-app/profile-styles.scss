@@ -168,7 +168,7 @@ h3 {
 .profileHeadline.wrapper {
   height: 60px;
   width: 100%;
-  background-color: #3D9ED8;
+  background-color: #FFF;
 }
 
 .profileImageEdit.wrapper {
@@ -355,7 +355,6 @@ p {
 
 .profile-right-container{
   background-color: #FFF;
-  padding: 20px 20px 25px 20px;
   margin: 20px 0 20px 20px;
   border-radius: 3px;
   border: 1px solid #d8d8d8;
@@ -364,8 +363,8 @@ p {
 
 .profile-right-header{
   width: 100%;
+  padding: 20px 20px 10px 20px;
   display: inline-block;
-  padding: 10px 0;
 }
 
 .profile-right-header.title{
@@ -382,7 +381,15 @@ p {
 
 .profile-right-content{
   width: 100%;
+  padding: 20px 20px 25px 20px;
   display: inline-block;
+}
+
+.profile-add-right-content{
+  width: 100%;
+  padding: 20px 20px 25px 20px;
+  display: inline-block;
+  background: #D3EEFA;
 }
 
 .profile-right-container{

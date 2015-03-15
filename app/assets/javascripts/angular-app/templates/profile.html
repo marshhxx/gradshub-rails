@@ -269,8 +269,7 @@
             </div>
         </div>
     </div>
-    <div class="profile-right-content">
-        <div ng-show="editorEducationEnabled">
+    <div class="profile-add-right-content"  ng-show="editorEducationEnabled">
             <div class="form-group">
                 <input type="text" ng-model="school" required class="form-control" id="school"
                        placeholder="School"
@@ -332,8 +331,6 @@
 
             <textarea class="form-control" rows="5" ng-model="educationDescription"
                       placeholder="Description..."></textarea>
-
-        </div>
     </div>
 
     <education data="education"></education>
