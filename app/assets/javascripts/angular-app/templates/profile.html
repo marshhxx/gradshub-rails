@@ -333,8 +333,9 @@
                       placeholder="Description..."></textarea>
     </div>
 
-    <education data="education"></education>
-
+    <div  ng-repeat="education in educations">
+        <education data="education"></education>
+    </div>
 
 
 </div>

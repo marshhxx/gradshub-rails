@@ -128,16 +128,16 @@ angular.module('mepedia.services').factory('sessionService',
                     user = oneUser;
                     if (this.remember) {
                         cookieJar.put("current_user", user);
-                        cookieJar.put("token", this.token);
+                        cookieJar.put("token", token);
                     }
                 };
-                if (this.type == 'Candidate') {
-                    Candidate.get({id: this.user_uid}, function (candidate) {
+                if (type == 'Candidate') {
+                    Candidate.get({id: user_uid}, function (candidate) {
                         setUser(candidate.candidate);
                         deferred.resolve(candidate);
                     });
-                } else if (this.type == 'Emplpyer') {
-                    Employer.get({id: this.user_uid}, function(employer) {
+                } else if (type == 'Employer') {
+                    Employer.get({id: user_uid}, function(employer) {
                         setUser(employer.employer);
                         deferred.resolve(employer)
                     });

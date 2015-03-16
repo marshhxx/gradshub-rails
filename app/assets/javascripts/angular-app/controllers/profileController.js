@@ -1,7 +1,7 @@
 angular.module('mepedia.controllers').controller('profileController',
-    ['$scope', '$rootScope', '$upload', 'sessionService', '$state','Country', 'State', 'Candidate', 'Employer', 'Skill', 'School', 'Major', 'Degree',
+    ['$scope', '$rootScope', '$upload', 'sessionService', '$state','Country', 'State', 'Candidate', 'Employer', 'Skill', 'School', 'Major', 'Degree', 'Education',
 
-        function($scope, $rootScope, $upload, sessionService, $state, Country, State, Candidate, Employer, Skill, School, Major, Degree) {
+        function($scope, $rootScope, $upload, sessionService, $state, Country, State, Candidate, Employer, Skill, School, Major, Degree, Education) {
 
           /*  $scope.user = sessionService.requestCurrentUser()
 
@@ -129,13 +129,19 @@ angular.module('mepedia.controllers').controller('profileController',
                     for(var i = first; i <= second; i++){
                         array.push(i);
                     }
-                    return array;
+                    return array.reverse();
                 }
 
                 $scope.onState = function(state) {
                     if (state != undefined)
                         $scope.state = state;
                 };
+
+                $scope.onCountry = function(country) {
+                    $scope.country = country
+                    if ($scope.country != undefined)
+                        $scope.getStateByCountryId($scope.country.id);
+                }
 
                 $scope.onMajor = function(major) {
                     if (major != undefined)
@@ -184,8 +190,11 @@ angular.module('mepedia.controllers').controller('profileController',
                 $scope.getStateByCountryId = function(countryId) {
                     State.query({country_id: countryId}, function(states) {
                         $scope.states = states.states;
+                        console.log($scope.states);
                     });
                 };
+
+
 
                 Skill.get(function(skills) {
                     $scope.skillsTags = skills.skills;
@@ -260,14 +269,26 @@ angular.module('mepedia.controllers').controller('profileController',
 
             var saveEducation = function(){
                 $scope.disableEducationEditor();
-                $scope.education = {};
-                if($scope.school != undefined  && $scope.school.name != "" && $scope.school.name.length > 0){
-                    $scope.education.school = $scope.school.name;
-                    $scope.education.degree = $scope.degree.name;
-                    $scope.education.major = $scope.major.name;
-                    $scope.educationPlaceHolder = "";
-                }
+                var education = new Education();
+                education.candidate_id = $scope.user.uid;
+                education.school_id = $scope.school.id;
+                education.degree_id = $scope.degree.id;
+                education.major_id = $scope.major.id;
+                education.state_id = $scope.state.id;
+                education.country_id = $scope.country.id;
+                education.description = $scope.description;
+                education.start_date = $scope.startDate;
+                education.end_date = $scope.endDate;
+                education.$save(
+                    function (response) {
+                        $scope.educations.push(response);
+                    },
+                    function (error) {
+
+                });
             };
+
+
 
             var initSummary = function() {
                 $scope.userSummary;
@@ -352,6 +373,7 @@ angular.module('mepedia.controllers').controller('profileController',
 
                 $scope.startDate = "Start Year";
                 $scope.endDate = "End Year";
+                $scope.educations = [];
 
                 $scope.setStartYear = function(year) {
                     $scope.startDate = year;
@@ -363,8 +385,6 @@ angular.module('mepedia.controllers').controller('profileController',
 
                 $scope.enableEducationEditor = function() {
                     $scope.editorEducationEnabled = true;
-                    if($scope.educationPlaceHolder != "Where did you study?")
-                        $scope.school = $scope.education.school;
                 };
 
                 $scope.disableEducationEditor = function() {
@@ -372,19 +392,18 @@ angular.module('mepedia.controllers').controller('profileController',
                 };
 
                 //$scope.educationPlaceHolder = "Where did you study?";
+//                school: "Universidad de Montevideo",
+//                    degree: "Telematic Engineering",
+//                    major: "Computer Engineering",
+//                    startDate: "2009",
+//                    endDate: "",
+//                    country: "",
+//                    state: "",
+//                    description: "Description description alo hola bueno ta"
 
                 $scope.saveEducation = saveEducation;
 
-                $scope.education = {
-                    school: "Universidad de Montevideo",
-                    degree: "Telematic Engineering",
-                    major: "Computer Engineering",
-                    startDate: "2009",
-                    endDate: "2014",
-                    country: "Uruguay",
-                    state: "Montevideo",
-                    description: "Description description alo hola bueno ta"
-                }
+
             };
 
             init();

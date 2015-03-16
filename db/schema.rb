@@ -88,14 +88,14 @@ ActiveRecord::Schema.define(version: 20141030020738) do
   end
 
   create_table "educations", force: true do |t|
-    t.integer "candidate_id"
-    t.integer "school_id"
-    t.integer "major_id"
-    t.integer "degree_id"
+    t.integer "candidate_id", null: false
+    t.integer "school_id",    null: false
+    t.integer "major_id",     null: false
+    t.integer "degree_id",    null: false
     t.integer "country_id"
     t.integer "state_id"
     t.text    "description"
-    t.date    "start_date"
+    t.date    "start_date",   null: false
     t.date    "end_date"
   end
 

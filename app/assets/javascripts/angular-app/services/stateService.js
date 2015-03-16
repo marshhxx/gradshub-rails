@@ -15,6 +15,6 @@ var State = function($resource) {
           }
       });
 };
-angular.module('mepedia.services').factory('State', function($resource) {
-    return $resource('/api/countries/:country_id/states/:id');
-});
+angular
+    .module('mepedia.services')
+    .factory('State', State);
