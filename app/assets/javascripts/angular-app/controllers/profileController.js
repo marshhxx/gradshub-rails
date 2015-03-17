@@ -239,12 +239,23 @@ angular.module('mepedia.controllers').controller('profileController',
                 education.$save(
                     function (response) {
                         $scope.educations.push(response.education);
+                        clearAddEducationValues();
                     },
                     function (error) {
 
                 });
             };
 
+            var clearAddEducationValues = function(){
+                $scope.school.id = "";
+                $scope.degree.id = "";
+                $scope.major.id = "";
+                $scope.state.id = "";
+                $scope.country.id = "";
+                $scope.description = "";
+                $scope.startDate = "";
+                $scope.endDate = "";
+            }
 
 
             var initSummary = function() {
@@ -342,22 +353,15 @@ angular.module('mepedia.controllers').controller('profileController',
 
                 $scope.enableEducationEditor = function() {
                     $scope.editorEducationEnabled = true;
+//                    var nextinput = element.next('input');
+//                    nextinput[0].focus();
                 };
 
                 $scope.disableEducationEditor = function() {
                     $scope.editorEducationEnabled = false;
                 };
 
-                $scope.educations = {
-//                    school: "Universidad de Montevideo",
-//                    degree: "Telematic Engineering",
-//                    major: "Computer Engineering",
-//                    startDate: "2009",
-//                    endDate: "",
-//                    country: "",
-//                    state: "",
-//                    description: "Description description alo hola bueno ta"
-                }
+                $scope.educations = [];
 
                 $scope.saveEducation = saveEducation;
 
@@ -366,6 +370,15 @@ angular.module('mepedia.controllers').controller('profileController',
 
             init();
 
+
+            //                    school: "Universidad de Montevideo",
+//                    degree: "Telematic Engineering",
+//                    major: "Computer Engineering",
+//                    startDate: "2009",
+//                    endDate: "",
+//                    country: "",
+//                    state: "",
+//                    description: "Description description alo hola bueno ta"
 
 
 

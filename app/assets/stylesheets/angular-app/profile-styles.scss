@@ -204,8 +204,14 @@ h3 {
   display: inline-block;
 }
 
-.profileLeftContent{
-  height: 100%;
+.profileLeftContent.cont{
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.profileLeftContent.section{
+  display: inline-block;
+  width: 100%;
   background-color: #FFFFFF;
   margin-top: 20px;
   border-radius: 3px;
@@ -245,6 +251,25 @@ h3 {
   background: url('workcase.svg') center center no-repeat;
 }
 
+
+.profile-communication-panel-img{
+  width: 50%;
+  height: 40px;
+  float: left;
+  background-size: 40px !important;
+}
+
+.profile-communication-panel-img.message{
+  background: url('message.svg') center center no-repeat;
+  border-right: 1px solid #F26621;
+  cursor: pointer;
+}
+
+.profile-communication-panel-img.videocam{
+  background: url('videocam.svg') center center no-repeat;
+  border-left: 1px solid #F26621;
+  cursor: pointer;
+}
 
 .profile-cont{
 
