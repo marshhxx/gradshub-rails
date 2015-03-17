@@ -7,6 +7,7 @@ h3 {
   margin: 0px !important;
   display: inline-block;
   float: left;
+  line-height: 50px;
 }
 
 
@@ -369,6 +370,27 @@ p {
   width: 100%;
   padding: 20px 20px 10px 20px;
   display: inline-block;
+}
+
+.profile-right-header-img{
+  width: 60px;
+  height: 50px;
+  float: left;
+}
+
+.profile-right-header-img.summary{
+  background: url(summary.svg) no-repeat;
+  background-size: 50px;
+}
+
+.profile-right-header-img.skills{
+  background: url(skills.svg) no-repeat;
+  background-size: 50px;
+}
+
+.profile-right-header-img.education{
+  background: url(education-yellow.svg) no-repeat;
+  background-size: 50px;
 }
 
 .profile-right-header.title{
