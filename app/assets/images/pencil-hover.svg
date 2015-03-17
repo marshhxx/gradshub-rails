@@ -3,16 +3,15 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="30px" height="30px" viewBox="0 0 30 30" enable-background="new 0 0 30 30" xml:space="preserve">
-<path fill="none" stroke="#999999" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M11.767,22.551
-	l12.399-12.123c0,0,0.38-0.37,1.351-1.319s0.339-1.476,0.339-1.476s-1.894-1.937-2.562-2.621c-0.67-0.684-1.457,0.191-1.457,0.191
-	l-1.421,1.388L8.015,18.716l-1.319,4.625c0,0-0.193,0.586,0.417,0.426c0.611-0.16-0.201,0.026-0.201,0.026L11.767,22.551z"/>
-<line fill="none" stroke="#999999" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="20.953" y1="6.045" x2="24.163" y2="9.279"/>
-<line fill="none" stroke="#999999" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="8.375" y1="18.939" x2="11.921" y2="22.512"/>
-<line fill="none" stroke="#505150" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="21.164" y1="6.351" x2="24.71" y2="9.841"/>
-<line fill="none" stroke="#505150" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="8.31" y1="18.971" x2="11.504" y2="22.328"/>
-<path fill="none" stroke="#012B5D" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M11.791,22.562
-	l12.356-12.167c0,0,0.378-0.372,1.345-1.324s0.335-1.478,0.335-1.478s-1.901-1.929-2.572-2.611
-	c-0.672-0.682-1.456,0.196-1.456,0.196l-1.416,1.393L8.025,18.739L6.723,23.37c0,0-0.191,0.587,0.419,0.425
-	c0.611-0.163-0.201,0.027-0.201,0.027L11.791,22.562z"/>
-<rect x="7.302" y="11.603" transform="matrix(0.7122 -0.702 0.702 0.7122 -5.3208 15.6016)" fill="#012B5D" stroke="#012B5D" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" width="18.13" height="5.375"/>
+<g>
+	<g>
+		
+			<rect x="6.94" y="12.167" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -6.0699 14.9045)" fill="#505150" width="16.032" height="5.225"/>
+		<path fill="#505150" d="M19.685,6.356l1.297-1.299c0,0,0.715-0.82,1.375-0.162c0.658,0.659,2.524,2.526,2.524,2.526
+			s0.619,0.508-0.268,1.395c-0.889,0.888-1.235,1.235-1.235,1.235L19.685,6.356z"/>
+		<path fill="#505150" d="M10.789,22.643"/>
+		<path fill="#505150" d="M10.271,23.238l-3.734-3.734l-1.088,4.371c0,0-0.163,0.557,0.411,0.412
+			C6.436,24.145,10.271,23.238,10.271,23.238z"/>
+	</g>
+</g>
 </svg>

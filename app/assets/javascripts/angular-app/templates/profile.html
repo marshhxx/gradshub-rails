@@ -50,69 +50,44 @@
 <div class="profileContent">
 <div class="profileLeftContent col-md-4">
     <div class="editwrapper">
-        <div class="edit-pencil" ng-click="enableEditor()" ng-hide="editorEnabled"></div>
 
-        <div ng-show="editorEnabled" class="edit-buttons-wrapper">
-            <a href="#" ng-click="save()" class="btn btn-edit">
-                SAVE </span>
-            </a>
-            <a href="#" ng-click="disableEditor()" class="btn btn-edit margin-l5">
-                CANCEL </span>
-            </a>
-        </div>
     </div>
 
     <div class="profileLeftContentWrapper">
 
         <div class="profileLeft">
             <div class="img-col">
-                <div class="profile-img current"></div>
+                <div class="profile-img jobposition"></div>
             </div>
             <div class="cont-col">
-                <div ng-hide="editorEnabled" class="profile-left-cont">
-                    {{tempPersonalInfo.currentPosition}}
-                </div>
-                <input class="form-control profile-input" ng-model="personalInfo.currentPosition"
-                       ng-show="editorEnabled" placeholder="My Current Position">
+
             </div>
         </div>
 
         <div class="profileLeft">
             <div class="img-col">
-                <div class="profile-img major"></div>
+                <div class="profile-img education"></div>
             </div>
             <div class="cont-col">
-                <div ng-hide="editorEnabled" class="profile-left-cont">
-                    {{tempPersonalInfo.education}}
-                </div>
-                <input class="form-control profile-input" ng-model="personalInfo.education"
-                       ng-show="editorEnabled" placeholder="Area of Specialization"/>
+
             </div>
         </div>
 
         <div class="profileLeft">
             <div class="img-col">
-                <div class="profile-img interest"></div>
+                <div class="profile-img topskills"></div>
             </div>
             <div class="cont-col">
-                <div ng-hide="editorEnabled" class="profile-left-cont">
-                    {{tempPersonalInfo.topSkills}}
-                </div>
-                <input class="form-control profile-input" ng-model="personalInfo.topSkills"
-                       ng-show="editorEnabled" placeholder="Interested in"/>
+
             </div>
         </div>
 
         <div class="profileLeft">
             <div class="img-col">
-                <div class="profile-img country"></div>
+                <div class="profile-img location"></div>
             </div>
             <div class="cont-col">
-                <div ng-hide="editorEnabled" class="profile-left-cont">
-                    {{tempPersonalInfo.currentLocation}}
-                </div>
-                <input class="form-control profile-input" ng-model="personalInfo.currentLocation"
-                       ng-show="editorEnabled" placeholder="Current Location"/>
+
             </div>
         </div>
     </div>

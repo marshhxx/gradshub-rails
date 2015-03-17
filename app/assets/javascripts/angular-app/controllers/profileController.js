@@ -91,18 +91,6 @@ angular.module('mepedia.controllers').controller('profileController',
             var init = function () {
                 getData();
 
-                $scope.tempPersonalInfo = {};
-                $scope.personalInfo = {};
-                $scope.editorEnabled = false;
-
-                $scope.enableEditor = enableEditor;
-
-                $scope.disableEditor = function() {
-                    $scope.editorEnabled = false;
-                };
-
-                $scope.save = save;
-
                 /* SUMMARY */
                 initSummary();
 
@@ -156,7 +144,7 @@ angular.module('mepedia.controllers').controller('profileController',
                 sessionService.requestCurrentUser().then(
                     function (user) {
                         $scope.user = user.candidate;
-                        getPersonalInfo();
+
 
                     },
                     function (error) {
@@ -164,22 +152,6 @@ angular.module('mepedia.controllers').controller('profileController',
                         $state.go('home.page');
                     }
                 );
-            };
-
-            var getPersonalInfo = function () {
-                if($scope.user != null) {
-                    $scope.personalInfo.currentPosition = "Add your current position";
-                    $scope.tempPersonalInfo.currentPosition = $scope.personalInfo.currentPosition;
-
-                    $scope.personalInfo.education = "Add your education";
-                    $scope.tempPersonalInfo.education = $scope.personalInfo.education;
-
-                    $scope.personalInfo.topSkills = "Add your skills";
-                    $scope.tempPersonalInfo.topSkills = $scope.personalInfo.topSkills;
-
-                    $scope.personalInfo.currentLocation = ($scope.user.country != null) ? (($scope.user.state.name != null) ? $scope.user.state.name + ", " + $scope.user.country.name : $scope.user.country.name) : "Add your current location";
-                    $scope.tempPersonalInfo.currentLocation = $scope.personalInfo.currentLocation;
-                }
             };
 
             var getData = function() {
@@ -211,22 +183,6 @@ angular.module('mepedia.controllers').controller('profileController',
                 Degree.get(function(degrees){
                     $scope.degrees = degrees.degrees;
                 });
-            };
-
-            var enableEditor = function () {
-                $scope.editorEnabled = true;
-                $scope.personalInfo.currentPosition = $scope.tempPersonalInfo.currentPosition;
-                $scope.personalInfo.education = $scope.tempPersonalInfo.education;
-                $scope.personalInfo.topSkills = $scope.tempPersonalInfo.topSkills;
-                $scope.personalInfo.currentLocation = $scope.tempPersonalInfo.currentLocation;
-            };
-
-            var save = function () {
-                $scope.tempPersonalInfo.currentPosition = $scope.personalInfo.currentPosition;
-                $scope.tempPersonalInfo.education = $scope.personalInfo.education;
-                $scope.tempPersonalInfo.topSkills = $scope.personalInfo.topSkills;
-                $scope.tempPersonalInfo.currentLocation = $scope.personalInfo.currentLocation;
-                $scope.disableEditor();
             };
 
             var saveSummary = function(){
@@ -391,8 +347,8 @@ angular.module('mepedia.controllers').controller('profileController',
                     $scope.editorEducationEnabled = false;
                 };
 
-                //$scope.educationPlaceHolder = "Where did you study?";
-//                school: "Universidad de Montevideo",
+                $scope.educations = {
+//                    school: "Universidad de Montevideo",
 //                    degree: "Telematic Engineering",
 //                    major: "Computer Engineering",
 //                    startDate: "2009",
@@ -400,6 +356,7 @@ angular.module('mepedia.controllers').controller('profileController',
 //                    country: "",
 //                    state: "",
 //                    description: "Description description alo hola bueno ta"
+                }
 
                 $scope.saveEducation = saveEducation;
 

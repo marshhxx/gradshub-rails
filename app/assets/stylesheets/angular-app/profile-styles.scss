@@ -136,15 +136,15 @@ h3 {
 .coverImageEdit.img {
   width: 45px;
   height: 40px;
-  background: url('camara.svg') center center no-repeat;
+  background: url('ic-photo.svg') center center no-repeat;
   background-size: 45px 40px;
   margin: 10px 15px;
   cursor: pointer;
 }
 
 .coverImageEdit.img:hover {
-  background: url('camara.svg') center center no-repeat;
-  background-size: 40px 35px;
+  background: url('ic-photo-hover.svg') center center no-repeat;
+  background-size: 45px 40px;
 }
 
 .profileImage.wrapper {
@@ -179,7 +179,7 @@ h3 {
   position: absolute;
   width: 100%;
   z-index: 100;
-  margin-top: -50px;
+  margin-top: -60px;
   text-align: center;
 }
 
@@ -187,14 +187,14 @@ h3 {
   width: 50%;
   margin: 0 auto;
   height: 40px;
-  background: url('camara.svg') center center no-repeat;
+  background: url('ic-photo.svg') center center no-repeat;
   background-size: 45px 40px;
   //margin: 10px 15px;
   cursor: pointer;
 }
 
 .profileImageEdit.img:hover {
-  background: url('camara.svg') center center no-repeat;
+  background: url('ic-photo-hover.svg') center center no-repeat;
   background-size: 45px 40px;
 }
 
@@ -228,20 +228,20 @@ h3 {
   background-size: 40px !important;
 }
 
-.profile-img.country{
-  background: url('country.svg') center center no-repeat;
+.profile-img.location{
+  background: url('location.svg') center center no-repeat;
 }
 
-.profile-img.major{
-  background: url('major.svg') center center no-repeat;
+.profile-img.education{
+  background: url('graduationcap.svg') center center no-repeat;
 }
 
-.profile-img.interest{
-  background: url('magnifyingglass.svg') center center no-repeat;
+.profile-img.topskills{
+  background: url('loudspeaker.svg') center center no-repeat;
 }
 
-.profile-img.current{
-  background: url('current.svg') center center no-repeat;
+.profile-img.jobposition{
+  background: url('workcase.svg') center center no-repeat;
 }
 
 

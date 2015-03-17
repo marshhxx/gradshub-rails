@@ -3,9 +3,15 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="30px" height="30px" viewBox="0 0 30 30" enable-background="new 0 0 30 30" xml:space="preserve">
-<path fill="none" stroke="#999999" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M11.83,22.586
-	l12.307-12.218c0,0,0.377-0.373,1.34-1.329s0.328-1.479,0.328-1.479s-1.908-1.922-2.582-2.601c-0.675-0.679-1.455,0.202-1.455,0.202
-	l-1.41,1.399L8.049,18.779l-1.284,4.635c0,0-0.189,0.588,0.421,0.424c0.61-0.165-0.201,0.027-0.201,0.027L11.83,22.586z"/>
-<line fill="none" stroke="#999999" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="20.953" y1="6.045" x2="24.163" y2="9.279"/>
-<line fill="none" stroke="#999999" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="8.375" y1="18.939" x2="11.921" y2="22.512"/>
+<g>
+	<g>
+		
+			<rect x="6.94" y="12.167" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -6.0699 14.9045)" fill="#9197A3" width="16.032" height="5.225"/>
+		<path fill="#9197A3" d="M19.685,6.356l1.297-1.299c0,0,0.715-0.82,1.375-0.162c0.658,0.659,2.524,2.526,2.524,2.526
+			s0.619,0.508-0.268,1.395c-0.889,0.888-1.235,1.235-1.235,1.235L19.685,6.356z"/>
+		<path fill="#9197A3" d="M10.789,22.643"/>
+		<path fill="#9197A3" d="M10.271,23.238l-3.734-3.734l-1.088,4.371c0,0-0.163,0.557,0.411,0.412
+			C6.436,24.145,10.271,23.238,10.271,23.238z"/>
+	</g>
+</g>
 </svg>
