@@ -96,7 +96,7 @@ h3 {
 }
 
 .coverImage {
-  background: url('background-pattern-blue.png') center center no-repeat;
+  background: url('default-cover-photo.png') center center no-repeat;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -115,10 +115,10 @@ h3 {
 }
 
 .coverBorder {
-  border-bottom-color: rgba(0, 0, 0, .4);
-  border: 1px solid #000;
-  border-color: rgba(0, 0, 0, .25);
-  border-top-color: rgba(0, 0, 0, .1);
+  border-bottom-color: rgba(80, 80, 80, .4);
+  border: 1px solid #505050;
+  border-color: rgba(80, 80, 80, .2);
+  border-top-color: rgba(80, 80, 80, .1);
   bottom: 0;
   left: 0;
   //position: absolute;
@@ -155,7 +155,7 @@ h3 {
 }
 
 .profileImage.img {
-  background: url(profileimage-default.svg) no-repeat;
+  background: url(default-profile-photo.png) no-repeat;
   background-size: 270px 270px;
   background-position: 0px 0px;
   height: 270px;
@@ -169,6 +169,10 @@ h3 {
   height: 60px;
   width: 100%;
   background-color: #FFF;
+  border: 1px solid #505050;
+  border-right-color: rgba(80, 80, 80, .2);
+  border-left-color: rgba(80, 80, 80, .2);
+  border-color: rgba(80, 80, 80, .2);
 }
 
 .profileImageEdit.wrapper {
@@ -269,7 +273,7 @@ p {
 
 .profile-label {
   display: inline-block;
-  color: #041533;
+  color: #122028;
   line-height: 50px;
   text-decoration: none;
   font-weight: normal !important;
