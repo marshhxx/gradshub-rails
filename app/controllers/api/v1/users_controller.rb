@@ -4,6 +4,7 @@ class Api::V1::UsersController < Api::BaseController
   wrap_parameters include: [:name, :lastname, :email, :password, :onepgr_password, :gender,
                             :birth, :image_url, :tag]
   before_action :authenticate_with_token!, only: [:update]
+  before_action :set_resource, only: []
 
   # DELETE /api/users/1
   def destroy

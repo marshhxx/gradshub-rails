@@ -1,7 +1,7 @@
 angular.module('mepedia.controllers').controller('profileController',
-    ['$scope', '$rootScope', '$upload', 'sessionService', '$state','Country', 'State', 'Candidate', 'Employer', 'Skill', 'School', 'Major', 'Degree', 'Education',
+    ['$scope', '$rootScope', '$http', '$upload', 'sessionService', '$state','Country', 'State', 'Candidate', 'Employer', 'Skill', 'School', 'Major', 'Degree', 'Education',
 
-        function($scope, $rootScope, $upload, sessionService, $state, Country, State, Candidate, Employer, Skill, School, Major, Degree, Education) {
+        function($scope, $rootScope,$httpProvider, $upload, sessionService, $state, Country, State, Candidate, Employer, Skill, School, Major, Degree, Education) {
 
           /*  $scope.user = sessionService.requestCurrentUser()
 
@@ -277,11 +277,12 @@ angular.module('mepedia.controllers').controller('profileController',
                 education.state_id = $scope.state.id;
                 education.country_id = $scope.country.id;
                 education.description = $scope.description;
-                education.start_date = $scope.startDate;
-                education.end_date = $scope.endDate;
+                education.start_date = $scope.startDate + '-01-01';
+                education.end_date = $scope.endDate + '-01-01';
+                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 education.$save(
                     function (response) {
-                        $scope.educations.push(response);
+                        $scope.educations.push(response.education);
                     },
                     function (error) {
 

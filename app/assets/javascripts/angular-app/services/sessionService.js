@@ -81,7 +81,7 @@ angular.module('mepedia.services').factory('sessionService',
     .factory('Session',
     ['Candidate', 'Employer', 'cookieJar', '$q', '$window', function (Candidate, Employer, cookieJar, $q, $window) {
         this.available = function () {
-            return !!this.token || cookieJar.isDefined("token");
+            return !!token || cookieJar.isDefined("token");
         };
 
         this.create = function (session, remember) {
@@ -109,8 +109,8 @@ angular.module('mepedia.services').factory('sessionService',
         };
 
         this.getToken = function() {
-            if (!!this.token) {
-                return this.token;
+            if (!!token) {
+                return token;
             } else if (cookieJar.isDefined("token")) {
                 return cookieJar.get("token");
             }
@@ -120,7 +120,7 @@ angular.module('mepedia.services').factory('sessionService',
             init();
             var deferred = $q.defer();
             if (typeof user !== 'undefined') {
-                deferred.resolve(user);
+                deferred.resolve({candidate: user});
             } else if (cookieJar.isDefined("current_user")) {
                 deferred.resolve(cookieJar.get("current_user"));
             } else if (typeof user_uid !== 'undefined') {
@@ -154,7 +154,12 @@ angular.module('mepedia.services').factory('sessionService',
                 this.token = userInfo.token;
                 this.user_uid = userInfo.user_uid;
                 this.type = userInfo.type;
+            } else {
+                token = undefined;
+                user_uid = undefined;
+                type = undefined;
             }
+
         };
 
         init();
