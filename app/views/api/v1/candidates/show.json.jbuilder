@@ -1,4 +1,5 @@
 json.candidate do
+  json.uid      @candidate.user.uid
   json.name     @candidate.user.name
   json.lastname @candidate.user.lastname
   json.email    @candidate.user.email
