@@ -1,7 +1,7 @@
 angular.module('mepedia.controllers').controller('profileController',
-    ['$scope', '$rootScope', '$upload', 'sessionService', '$state','Country', 'State', 'User', 'Skill',
+    ['$scope', '$rootScope', '$upload', 'sessionService', '$state','Country', 'State', 'User', 'Skill', '$http',
 
-        function($scope, $rootScope, $upload, sessionService, $state, Country, State, User, Skill) {
+        function($scope, $rootScope, $upload, sessionService, $state, Country, State, User, Skill, $http) {
 
           /*  $scope.user = sessionService.requestCurrentUser()
 
@@ -9,21 +9,24 @@ angular.module('mepedia.controllers').controller('profileController',
                 sessionService.logout()
             } */
 
-            /* ---- Upload photo ---- */
-            $scope.coverPhotoButtons = false;
-            $scope.temporaryCoverPhoto = true;
-            $scope.coverPhoto = false;
-            $scope.profilePhotoButtons = false;
-            $scope.temporaryProfilePhoto = true;
-            $scope.profilePhoto = false;
 
+            /* ---- Upload photo ---- */
             var cloudinary_data;
             $.cloudinary.config({
                 'cloud_name' : 'mepediacobas',
                 'upload_preset': 'mepediacobas_unsigned_name'
             });
 
-            $scope.onFileSelect = function($files) {
+            //<<<<<<<<<<<<<<< START COVER PHOTO >>>>>>>>>>>>>>>
+
+            $scope.coverPhotoButtons = false;
+            $scope.temporaryCoverPhoto = true;
+            $scope.coverPhoto = false;
+            $scope.coverImageSelectorVisible = true;
+            $scope.coverLoaded = false;
+            $scope.spinnerVisible = false;
+
+            $scope.onFileSelectCover = function($files) {
                 var file = $files[0]; // we're not interested in multiple file uploads here
 
                 $scope.upload = $upload.upload({
@@ -35,8 +38,17 @@ angular.module('mepedia.controllers').controller('profileController',
                     },
                     file: file
                 }).progress(function (e) {
+                    $scope.spinnerVisible = true;
                     $scope.progress = Math.round((e.loaded * 100.0) / e.total);
                     $scope.status = "Uploading... " + $scope.progress + "%";
+
+                    if (!$scope.temporaryCoverPhoto) {
+                        $scope.temporaryCoverPhoto = true;
+                        angular.element('.spinner-container').css({
+                        'z-index' : '10'
+                    });
+                    }
+
                     if (!$scope.$$phase) {
                         $scope.$apply();
                     }
@@ -52,34 +64,39 @@ angular.module('mepedia.controllers').controller('profileController',
                         $scope.coverPhotoData = data;
                     }
                 });
+
             };
 
             var pictureCoverPhoto = angular.element('#temp_cover_photo');
-            var contentCoverPhoto = angular.element('.content');
+            var contentCoverPhoto = angular.element('.contentGillotineCover');
 
             pictureCoverPhoto.on('load', function() {
-                $scope.coverPhotoButtons = true;
-                pictureCoverPhoto.guillotine({eventOnChange: 'guillotinechange', width: contentCoverPhoto[0].offsetWidth, height: 315});
 
+                if ($scope.coverPhoto) {
+                    $scope.coverPhoto = false;
+                    angular.element('.spinner-container').css({
+                        'z-index' : '0'
+                    });
+                }
+
+                pictureCoverPhoto.guillotine({eventOnChange: 'guillotinechange', width: contentCoverPhoto[0].offsetWidth - 2, height: 315});
                 var data = pictureCoverPhoto.guillotine('getData');
-                console.log(data);
-                for(var key in data) { $('#'+key).html(data[key]); }
 
-                $('#rotate_left').click(function(){ picture.guillotine('rotateLeft'); });
-                $('#rotate_right').click(function(){ picture.guillotine('rotateRight'); });
-                $('#fit').click(function(){ picture.guillotine('fit'); });
-                $('#zoom_in').click(function(){ picture.guillotine('zoomIn'); });
-                $('#zoom_out').click(function(){ picture.guillotine('zoomOut'); });
+                for(var key in data) { $('#'+key).html(data[key]); }
 
                 pictureCoverPhoto.on('guillotinechange', function(ev, data, action) {
                   data.scale = parseFloat(data.scale.toFixed(4));
                   for(var k in data) { $('#'+k).html(data[k]); }
                 });
+
+                $scope.coverImageSelectorVisible = false;
+                $scope.coverPhotoButtons = true;
+                $scope.coverLoaded = true;
+                $scope.$apply();
             });
 
             $scope.saveCoverPhoto = function() {
                 var data = pictureCoverPhoto.guillotine('getData');
-                console.log(cloudinary_data);
                 var cloudianary_result = $.cloudinary.image(cloudinary_data.public_id, {
                     secure: true,
                     width: data.w,
@@ -88,14 +105,32 @@ angular.module('mepedia.controllers').controller('profileController',
                     y: data.y,
                     crop: 'crop'
                 });
-                console.log(cloudianary_result);
-                console.log(cloudianary_result[0].src);
                 $scope.coverPhotoURI = cloudianary_result[0].src;
-                $scope.temporaryCoverPhoto = false;
-                $scope.coverPhoto = true;
             };
 
-            //*********************************
+            angular.element('.coverPhoto').on('load', function(){
+                // we need to reset the guillotine plugin in order to call again later
+                pictureCoverPhoto.guillotine('remove');
+
+                $scope.spinnerVisible = false;
+                $scope.temporaryCoverPhoto = false;
+                $scope.coverPhoto = true;
+                $scope.coverImageSelectorVisible = true;
+
+                // it's necessary to call $apply in order to bind variables with the DOM
+                $scope.$apply();
+            });
+
+            //<<<<<<<<<<<<<<< END COVER PHOTO >>>>>>>>>>>>>>>
+
+            //<<<<<<<<<<<<<<< START PROFILE PHOTO >>>>>>>>>>>>>>>
+            
+            $scope.profilePhotoButtons = false;
+            $scope.temporaryProfilePhoto = true;
+            $scope.profilePhoto = false;
+            $scope.profileImgSelectVisible = true;
+            $scope.profilePhotoLoaded = false;
+            $scope.spinnerVisibleProfile = false;
 
             $scope.onFileSelectProfile = function($files) {
                 var file = $files[0]; // we're not interested in multiple file uploads here
@@ -111,11 +146,20 @@ angular.module('mepedia.controllers').controller('profileController',
                 }).progress(function (e) {
                     $scope.progressProfile = Math.round((e.loaded * 100.0) / e.total);
                     $scope.status = "Uploading... " + $scope.progressProfile + "%";
+                    $scope.spinnerVisibleProfile = true;
+                    $scope.profileImgSelectVisible = false;
+
+                    if ($scope.profilePhoto) {
+                        angular.element('.spinner-container-profile').css({
+                            'z-index' : '10'
+                        });
+                    }
+
                     if (!$scope.$$phase) {
                         $scope.$apply();
                     }
                 }).success(function (data, status, headers, config) {
-                    cloudinary_data = data;
+                    cloudinary_data = data
                     $rootScope.photos = $rootScope.photos || [];
                     data.context = {custom: {photo: $scope.title}};
                     $scope.resultProfile = data;
@@ -129,37 +173,42 @@ angular.module('mepedia.controllers').controller('profileController',
             };
 
             var pictureProfilePhoto = angular.element('#temp_profile_photo');
-            //content = angular.element('.content');
 
             pictureProfilePhoto.on('load', function() {
-                //$scope.coverPhotoButtons = true;
-                pictureProfilePhoto.guillotine({eventOnChange: 'guillotinechange', width: 270, height: 270});
+
+                if ($scope.profilePhoto) {
+                    $scope.profilePhoto = false;
+                    $scope.temporaryProfilePhoto = true;
+                    angular.element('.spinner-container-profile').css({
+                        'z-index' : '0'
+                    });
+                }
+
+                pictureProfilePhoto.guillotine({eventOnChange: 'guillotinechange', width: 260, height: 260});
 
                 var data = pictureProfilePhoto.guillotine('getData');
-                console.log(data);
-                for(var key in data) { $('#'+key).html(data[key]); }
 
-                $('#rotate_left').click(function(){ picture.guillotine('rotateLeft'); });
-                $('#rotate_right').click(function(){ picture.guillotine('rotateRight'); });
-                $('#fit').click(function(){ picture.guillotine('fit'); });
-                $('#zoom_in').click(function(){ picture.guillotine('zoomIn'); });
-                $('#zoom_out').click(function(){ picture.guillotine('zoomOut'); });
+                for(var key in data) { $('#'+key).html(data[key]); }
 
                 pictureProfilePhoto.on('guillotinechange', function(ev, data, action) {
                   data.scale = parseFloat(data.scale.toFixed(4));
                   for(var k in data) { $('#'+k).html(data[k]); }
                 });
-                console.log(pictureProfilePhoto);
 
                 angular.element('.edit-buttons-profile-photo').css({
-                    'top': '220px',
-                    'left': '61px'
+                    'top': '205px',
+                    'left': '57px'
                 });
-                console.log(angular.element('.edit-buttons-profile-photo'));
+
+                $scope.profilePhotoLoaded = true;
+                $scope.profilePhotoButtons = true;
+                $scope.$apply();
             });
 
             $scope.saveProfilePhoto = function() {
+
                 var data = pictureProfilePhoto.guillotine('getData');
+
                 var cloudianary_result = $.cloudinary.image(cloudinary_data.public_id, {
                     secure: true,
                     width: data.w,
@@ -170,11 +219,21 @@ angular.module('mepedia.controllers').controller('profileController',
                 });
 
                 $scope.profilePhotoURI = cloudianary_result[0].src;
-                $scope.temporaryProfilePhoto = false;
-                $scope.profilePhoto = true;
             };
 
-            //*********************************            
+            angular.element('.profilePhoto').on('load', function() {
+                // we need to reset the guillotine plugin in order to call again later
+                pictureProfilePhoto.guillotine('remove');
+
+                $scope.spinnerVisibleProfile = false;
+                $scope.temporaryProfilePhoto = false;
+                $scope.profilePhoto = true;
+                $scope.profileImgSelectVisible = true;
+                $scope.$apply();
+
+            });
+
+            //<<<<<<<<<<<<<<< END PROFILE PHOTO >>>>>>>>>>>>>>>
 
             / Modify the look and fill of the dropzone when files are being dragged over it /
             $scope.dragOverClass = function($event) {

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+ <g>
+  <title>Layer 1</title>
+  <ellipse id="svg_1" ry="18.725" rx="18.548" cy="19.726" cx="19.813" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round" stroke="#FFFFFF" fill="#3d9ed8"/>
+  <path id="svg_2" d="m30.236,18.438999l0,4.559c0,2.880001 -0.569,4.347 -3.32,4.347l-14.73,0c-2.752,0 -3.319,-1.466999 -3.319,-4.347l0,-4.559c0,-2.877999 0.567,-4.344999 3.319,-4.344999l2.343,0l0,-0.854c0,-1.353 0.268,-2.042 1.561,-2.042l6.924,0c1.292999,0 1.558001,0.689 1.558001,2.042l0,0.854l2.344,0c2.750999,0 3.32,1.467 3.32,4.344999zm-10.832001,-2.045c-2.345999,0 -4.249999,1.919001 -4.249999,4.289001c0,2.366999 1.902999,4.288 4.249999,4.288s4.248001,-1.921001 4.248001,-4.288c-0.000999,-2.370001 -1.902,-4.289001 -4.248001,-4.289001z" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round" stroke="#FFFFFF" fill="#FFFFFF"/>
+  <path id="svg_3" d="m19.506001,17.938c1.220999,-0.104 2.292,0.812 2.396999,2.043001" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round" stroke="#FFFFFF" fill="none"/>
+ </g>
+</svg>
