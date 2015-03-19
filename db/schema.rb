@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20141030020738) do
 
   add_index "candidates_publications", ["candidate_id", "publication_id"], name: "index_candidates_publications_on_candidate_id_and_publication_id", unique: true, using: :btree
 
-  create_table "candidates_skills", force: true do |t|
+  create_table "candidates_skills", id: false, force: true do |t|
     t.integer "candidate_id"
     t.integer "skill_id"
   end
@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(version: 20141030020738) do
 
   add_index "employers_interests", ["employer_id", "interest_id"], name: "index_employers_interests_on_employer_id_and_interest_id", unique: true, using: :btree
 
-  create_table "employers_skills", force: true do |t|
+  create_table "employers_skills", id: false, force: true do |t|
     t.integer "employer_id"
     t.integer "skill_id"
   end
@@ -153,6 +153,8 @@ ActiveRecord::Schema.define(version: 20141030020738) do
   create_table "skills", force: true do |t|
     t.string "name", null: false
   end
+
+  add_index "skills", ["name"], name: "index_skills_on_name", unique: true, using: :btree
 
   create_table "states", force: true do |t|
     t.string  "name",       null: false

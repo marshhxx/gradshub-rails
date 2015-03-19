@@ -8,7 +8,7 @@ class Api::BaseController < ApplicationController
     set_resource(resource_class.new(resource_params))
     unless get_resource.valid?
       @error = {:reasons => get_resource.errors.full_messages, :code => INVALID_PARAMS_ERROR}
-      render_error :unprocessable_entity
+      render_error :unprocessable_entity and return
     end
     if get_resource.save
       render :show, status: :created and return

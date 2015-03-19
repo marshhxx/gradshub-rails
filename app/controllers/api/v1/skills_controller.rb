@@ -1,13 +1,13 @@
-class Api::V1::SkillsController < Api::BaseController
-  before_action :authenticate_with_token!, only: [:create]
+class Api::V1::SkillsController < Api::NestedController
+  before_action :authenticate_with_token!, only: [:create, :update, :destroy]
 
   private
 
   def skill_params
-    params.require(:skill).permit(:name) if params[:skill]
+    params.require(:skill).permit(:name, :id) if params[:skill]
   end
 
   def query_params
-    params.permit(:all)
+    params.permit(:candidate_id, :id)
   end
 end

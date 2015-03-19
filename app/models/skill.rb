@@ -1,8 +1,8 @@
 class Skill < ActiveRecord::Base
-  validates_uniqueness_of :name
   before_create :to_lower_case
-  has_and_belongs_to_many :candidates
-  has_and_belongs_to_many :employers
+  validates_uniqueness_of :name
+  has_and_belongs_to_many :candidates, join_table: 'candidates_skills'
+  has_and_belongs_to_many :employers, join_table: 'employers_skills'
   after_find :capitalize_name
 
   private

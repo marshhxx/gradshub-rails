@@ -88,8 +88,9 @@ class AddFieldsToUsers < ActiveRecord::Migration
       t.string :name, null: false
       t.timestamp
     end
+    add_index :skills, :name, :unique => true
 
-    create_table :candidates_skills do |t|
+    create_table :candidates_skills, id: false do |t|
       t.belongs_to :candidate
       t.belongs_to :skill
 
@@ -97,7 +98,7 @@ class AddFieldsToUsers < ActiveRecord::Migration
     end
     add_index(:candidates_skills, [:candidate_id, :skill_id], :unique => true)
 
-    create_table :employers_skills do |t|
+    create_table :employers_skills, id: false do |t|
       t.belongs_to :employer
       t.belongs_to :skill
 
@@ -134,7 +135,7 @@ class AddFieldsToUsers < ActiveRecord::Migration
     end
     add_index(:candidates_languages, [:candidate_id, :language_id], :unique => true)
 
-    create_table :careers do |t|
+    create_table :experience do |t|
       t.belongs_to :candidate
       t.string :company_name
       t.string :job_title
@@ -164,7 +165,7 @@ class AddFieldsToUsers < ActiveRecord::Migration
     end
 
     create_table :educations do |t|
-      t.belongs_to :candidate,  null: false
+      t.belongs_to :candidate
       t.belongs_to :school,     null: false
       t.belongs_to :major,      null: false
       t.belongs_to :degree,     null: false

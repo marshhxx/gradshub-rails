@@ -85,21 +85,21 @@ angular.module('mepedia.services').factory('sessionService',
         };
 
         this.create = function (session, remember) {
-            this.user_uid = session.uid;
-            this.token = session.auth_token;
-            this.remember = remember;
-            this.type = session.type;
+            user_uid = session.uid;
+            token = session.auth_token;
+            remember = remember;
+            type = session.type;
             $window.sessionStorage["userInfo"] = JSON.stringify(
                 {
-                    user_uid: this.user_uid,
-                    token: this.token,
-                    type: this.type
+                    user_uid: user_uid,
+                    token: token,
+                    type: type
                 })
         };
 
         this.destroy = function () {
-            this.token = null;
-            this.user = null;
+            token = null;
+            user = null;
             $window.sessionStorage["user"] = null;
             $window.sessionStorage["userInfo"] = null;
             if (cookieJar.isDefined("current_user")) {
@@ -126,7 +126,7 @@ angular.module('mepedia.services').factory('sessionService',
             } else if (typeof user_uid !== 'undefined') {
                 var setUser = function (oneUser) {
                     user = oneUser;
-                    if (this.remember) {
+                    if (remember) {
                         cookieJar.put("current_user", user);
                         cookieJar.put("token", token);
                     }
@@ -151,9 +151,9 @@ angular.module('mepedia.services').factory('sessionService',
         var init = function() {
             if ($window.sessionStorage["userInfo"]) {
                 userInfo = JSON.parse($window.sessionStorage["userInfo"]);
-                this.token = userInfo.token;
-                this.user_uid = userInfo.user_uid;
-                this.type = userInfo.type;
+                token = userInfo.token;
+                user_uid = userInfo.user_uid;
+                type = userInfo.type;
             } else {
                 token = undefined;
                 user_uid = undefined;
