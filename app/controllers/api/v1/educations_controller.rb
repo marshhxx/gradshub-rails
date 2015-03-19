@@ -1,7 +1,7 @@
 class Api::V1::EducationsController < Api::NestedController
   before_action :authenticate_with_token!, only: [:create, :update, :destroy]
 
-  private``
+  private
 
   def education_params
     params.require(:education).permit(:school_id, :major_id, :degree_id, :state_id, :country_id,

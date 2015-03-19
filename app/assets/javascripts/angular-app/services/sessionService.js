@@ -126,7 +126,7 @@ angular.module('mepedia.services').factory('sessionService',
             } else if (typeof user_uid !== 'undefined') {
                 var setUser = function (oneUser) {
                     user = oneUser;
-                    if (remember) {
+                    if (typeof remember !== 'undefined' && remember) {
                         cookieJar.put("current_user", user);
                         cookieJar.put("token", token);
                     }

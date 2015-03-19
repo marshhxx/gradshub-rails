@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20141030020738) do
   end
 
   create_table "educations", force: true do |t|
-    t.integer "candidate_id", null: false
+    t.integer "candidate_id"
     t.integer "school_id",    null: false
     t.integer "major_id",     null: false
     t.integer "degree_id",    null: false

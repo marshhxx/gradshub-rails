@@ -50,7 +50,7 @@
 <div class="profileContent">
 <div class="profileLeftContent cont col-md-4">
 
-    <div class="profileLeftContent section">
+    <div class="profileLeftContent section padding-l35">
     <div class="editwrapper">
 
     </div>
@@ -254,7 +254,7 @@
     </div>
     <div class="profile-add-right-content"  ng-show="editorEducationEnabled">
             <div class="form-group">
-                <input type="text" ng-model="school" required class="form-control" id="school"
+                <input focus-input="editorEducationEnabled" type="text" ng-model="school" required class="form-control" id="school"
                        placeholder="School"
                        typeahead="school as school.name for school in schools | filter:$viewValue | limitTo:6" required
                        class="form-control" typeahead-on-select="onSchool($item)">
@@ -316,7 +316,7 @@
                       placeholder="Description..."></textarea>
     </div>
 
-    <div  ng-repeat="education in educations">
+    <div ng-repeat="education in educations">
         <education data="education"></education>
     </div>
 

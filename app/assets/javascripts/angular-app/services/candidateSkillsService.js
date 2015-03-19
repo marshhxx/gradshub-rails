@@ -14,4 +14,4 @@ var Skill = function($resource) {
 };
 angular
     .module('mepedia.services')
-    .factory('UserSkills', Skill);
+    .factory('CandidateSkills', Skill);
