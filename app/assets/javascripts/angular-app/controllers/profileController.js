@@ -155,13 +155,9 @@ angular.module('mepedia.controllers').controller('profileController',
             };
 
             var initCandidateProfile = function(){
-                Education.query({candidate_id: $scope.user.uid}, function(educations){
-                    $scope.educations = educations.educations;
-                })
+                $scope.educations = $scope.user.educations;
+                $scope.selectedSkills = $scope.user.skills;
 
-                CandidateSkills.query({candidate_id: $scope.user.uid}, function(skills){
-                    $scope.selectedSkills = skills.skills;
-                })
             }
 
             var getData = function() {
@@ -204,12 +200,19 @@ angular.module('mepedia.controllers').controller('profileController',
 
             var saveSkills = function(){
                 $scope.disableSkillsEditor();
-                if($scope.userSelectedSkills.length > 0){
-                    if($scope.userSelectedSkills[0] == "Add a skill")
-                        $scope.userSelectedSkills.shift()
-                    $scope.selectedSkills = $scope.userSelectedSkills.slice();
-                } else {
-                    $scope.selectedSkills.push("Add a skill");
+                if($scope.candidateSelectedSkills.length > 0){
+                    $scope.selectedSkills = $scope.candidateSelectedSkills.slice();
+                  /*  var candidateSkills = new CandidateSkills();
+                    candidateSkills.skills = $scope.selectedSkills;
+                    $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
+                    candidateSkills.$save(
+                        function (response) {
+                           $scope.selectedSkills = response.skills;
+                        },
+                        function (error) {
+                            console.log(error);
+                        });
+                   */
                 }
             };
 
@@ -288,13 +291,12 @@ angular.module('mepedia.controllers').controller('profileController',
                 $scope.userSelectedSkills = [];
                 $scope.selectedSkills = ["Add a skill"];
 
-
                 $scope.editorSkillsEnabled = false;
 
                 $scope.enableSkillsEditor = function() {
                     $scope.editorSkillsEnabled = true;
                     if($scope.selectedSkills.length > 0)
-                        $scope.userSelectedSkills = $scope.selectedSkills.slice();
+                        $scope.candidateSelectedSkills = $scope.selectedSkills.slice();
                 };
 
                 $scope.disableSkillsEditor = function() {
