@@ -1,7 +1,13 @@
 angular.module('mepedia.controllers').controller('profileController',
+<<<<<<< HEAD
     ['$scope', '$rootScope', '$http', '$upload', 'sessionService', '$state','Country', 'State', 'Candidate', 'Employer', 'Skill', 'School', 'Major', 'Degree', 'Education', 'CandidateSkills',
 
         function($scope, $rootScope,$httpProvider, $upload, sessionService, $state, Country, State, Candidate, Employer, Skill, School, Major, Degree, Education, CandidateSkills) {
+=======
+    ['$scope', '$rootScope', '$upload', 'sessionService', '$state','Country', 'State', 'User', 'Skill', '$http',
+
+        function($scope, $rootScope, $upload, sessionService, $state, Country, State, User, Skill, $http) {
+>>>>>>> cover-photo
 
           /*  $scope.user = sessionService.requestCurrentUser()
 
@@ -233,9 +239,13 @@ angular.module('mepedia.controllers').controller('profileController',
 
             });
 
+<<<<<<< HEAD
+            // Modify the look and fill of the dropzone when files are being dragged over it //
+=======
             //<<<<<<<<<<<<<<< END PROFILE PHOTO >>>>>>>>>>>>>>>
 
             / Modify the look and fill of the dropzone when files are being dragged over it /
+>>>>>>> cover-photo
             $scope.dragOverClass = function($event) {
                 var items = $event.dataTransfer.items;
                 var hasFile = false;
@@ -252,14 +262,21 @@ angular.module('mepedia.controllers').controller('profileController',
                 return hasFile ? "dragover" : "dragover-err";
             };
 
-           /* ---- PERSONAL INFORMATION ---- */
+            /* ---- PERSONAL INFORMATION ---- */
 
             /* Data */
             var init = function () {
                 getData();
 
+<<<<<<< HEAD
                 /* SUMMARY */
                 initSummary();
+=======
+            var countries;
+            countries = Country.get(function() {
+                return $scope.countries = countries.countries;
+            });
+>>>>>>> cover-photo
 
                 /* SKILLS */
                 initSkills();
