@@ -28,6 +28,7 @@ angular.module('mepedia.directives').directive('tagsInput', function () {
             // This is the ng-click handler to remove an item
             $scope.remove = function ( idx ) {
                 $scope.newTags.splice( idx, 1 );
+                $scope.customerInfo.splice( idx, 1 );
             };
 
             input.attr('placeholder', $scope.placeholder);

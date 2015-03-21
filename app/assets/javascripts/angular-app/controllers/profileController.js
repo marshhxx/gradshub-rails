@@ -200,8 +200,7 @@ angular.module('mepedia.controllers').controller('profileController',
 
             var saveSkills = function(){
                 $scope.disableSkillsEditor();
-                if($scope.candidateSelectedSkills.length > 0){
-                    $scope.selectedSkills = $scope.candidateSelectedSkills.slice();
+                $scope.selectedSkills = $scope.candidateSelectedSkills.slice();
                   /*  var candidateSkills = new CandidateSkills();
                     candidateSkills.skills = $scope.selectedSkills;
                     $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
@@ -213,7 +212,6 @@ angular.module('mepedia.controllers').controller('profileController',
                             console.log(error);
                         });
                    */
-                }
             };
 
             var saveEarlyLife = function(){
@@ -288,8 +286,8 @@ angular.module('mepedia.controllers').controller('profileController',
             };
 
             var initSkills = function() {
-                $scope.userSelectedSkills = [];
-                $scope.selectedSkills = ["Add a skill"];
+                $scope.candidateSelectedSkills = [];
+                $scope.selectedSkills = [];
 
                 $scope.editorSkillsEnabled = false;
 
