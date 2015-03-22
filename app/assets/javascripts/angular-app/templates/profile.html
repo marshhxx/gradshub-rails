@@ -23,11 +23,8 @@
 </style>
 
 <div class="profile background">
-
 <div class="profile wrapper col-md-9 col-md-offset-1">
-
 <div id="profileTopSection">
-
     <div id="profileCover" class="coverWrap">
         <div class="coverBorder">
             <form>
@@ -104,7 +101,6 @@
         </div>
     </div>
 
-
 </div>
 <div class="profileContent">
 <div class="profileLeftContent cont col-md-4">
@@ -174,10 +170,10 @@
                      ng-hide="editorSummaryEnabled"></div>
 
                 <div ng-show="editorSummaryEnabled" class="edit-buttons-wrapper">
-                    <a href="#" ng-click="saveSummary()" class="btn btn-edit">
+                    <a ng-click="saveSummary()" class="btn btn-edit">
                         SAVE </span>
                     </a>
-                    <a href="#" ng-click="disableSummaryEditor()" class="btn btn-edit margin-l5">
+                    <a ng-click="disableSummaryEditor()" class="btn btn-edit margin-l5">
                         CANCEL </span>
                     </a>
                 </div>
@@ -203,10 +199,10 @@
                      ng-hide="editorSkillsEnabled"></div>
 
                 <div ng-show="editorSkillsEnabled" class="edit-buttons-wrapper">
-                    <a href="#" ng-click="saveSkills()" class="btn btn-edit">
+                    <a ng-click="saveSkills()" class="btn btn-edit">
                         SAVE </span>
                     </a>
-                    <a href="#" ng-click="disableSkillsEditor()" class="btn btn-edit margin-l5">
+                    <a ng-click="disableSkillsEditor()" class="btn btn-edit margin-l5">
                         CANCEL </span>
                     </a>
                 </div>
@@ -295,15 +291,15 @@
         <div class="profile-right-header edit">
             <div class="editwrapper">
 
-                <a href="#" ng-click="enableEducationEditor()" class="btn btn-add" ng-hide="editorEducationEnabled">
+                <a ng-click="enableEducationEditor()" class="btn btn-add" ng-hide="editorEducationEnabled">
                     Add Education </span>
                 </a>
 
                 <div ng-show="editorEducationEnabled" class="edit-buttons-wrapper">
-                    <a href="#" ng-click="saveEducation()" class="btn btn-edit">
+                    <a ng-click="saveEducation()" class="btn btn-edit">
                         SAVE </span>
                     </a>
-                    <a href="#" ng-click="disableEducationEditor()" class="btn btn-edit margin-l5">
+                    <a ng-click="disableEducationEditor()" class="btn btn-edit margin-l5">
                         CANCEL </span>
                     </a>
                 </div>
@@ -376,7 +372,7 @@
     </div>
 
     <div ng-repeat="education in educations">
-        <education data="education"></education>
+        <education data="education" schools="schools" majors="majors" degrees="degrees" countries="countries"></education>
     </div>
 
 

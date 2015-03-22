@@ -243,6 +243,16 @@ input::-webkit-input-placeholder {
   text-align: left;
 }
 
+.width15{
+  width: 15%;
+  float: left;
+}
+
+.width85{
+  width: 85%;
+  float: left;
+}
+
 ::-webkit-input-placeholder {
   font: 14px Lato-Regular;
 }

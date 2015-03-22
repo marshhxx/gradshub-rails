@@ -346,17 +346,25 @@ p {
   cursor: pointer;
 }
 
-.edit-pencil{
-  width: 25px;
-  height: 25px;
-  background: url(pencil.svg) no-repeat;
-  background-size: 25px;
-  float: right;
-}
-
 .edit-pencil:hover{
   background: url(pencil-hover.svg) no-repeat;
   background-size: 25px;
+  cursor: pointer;
+}
+
+
+.edit-pencil-hover{
+  width: 25px;
+  height: 25px;
+  float: right;
+  background: url(pencil.svg) no-repeat;
+  background-size: 25px;
+  cursor: pointer;
+  visibility: hidden;
+}
+
+.profile-edit-on-hover:hover .edit-pencil-hover{
+  visibility: visible;
 }
 
 .btn-edit {
@@ -436,6 +444,11 @@ p {
   float: left;
   width: 60%;
   padding: 0px;
+}
+
+.profile-header.edit{
+  width: 100%;
+  padding: 15px 20px;
 }
 
 .profile-right-content{

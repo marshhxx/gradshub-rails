@@ -406,11 +406,11 @@ angular.module('mepedia.controllers').controller('profileController',
                 education.school_id = $scope.school.id;
                 education.degree_id = $scope.degree.id;
                 education.major_id = $scope.major.id;
-                education.state_id = $scope.state.id;
-                education.country_id = $scope.country.id;
-                education.description = $scope.educationDescription;
+                education.state_id = ($scope.state != undefined) ? $scope.state.id : null;
+                education.country_id = ($scope.country.id != undefined) ? $scope.country.id : null;
+                education.description = ($scope.educationDescription != undefined) ? $scope.educationDescription : null;
                 education.start_date = $scope.startDate + '-01-01';
-                education.end_date = $scope.endDate + '-01-01';
+                education.end_date = ($scope.endDate != undefined) ? $scope.endDate + '-01-01' : null;
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 education.$save(
                     function (response) {
@@ -432,7 +432,6 @@ angular.module('mepedia.controllers').controller('profileController',
                 $scope.startDate = "";
                 $scope.endDate = "";
             }
-
 
             var initSummary = function() {
                 $scope.userSummary;
@@ -538,24 +537,9 @@ angular.module('mepedia.controllers').controller('profileController',
 
                 $scope.saveEducation = saveEducation;
 
-
-
-
             };
 
             init();
-
-
-            //                    school: "Universidad de Montevideo",
-//                    degree: "Telematic Engineering",
-//                    major: "Computer Engineering",
-//                    startDate: "2009",
-//                    endDate: "",
-//                    country: "",
-//                    state: "",
-//                    description: "Description description alo hola bueno ta"
-
-
 
 
         }]);
