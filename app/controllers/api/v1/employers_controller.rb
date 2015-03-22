@@ -16,7 +16,7 @@ class Api::V1::EmployersController < Api::V1::UsersController
   def employer_params
     nest_user_attributes params.require(:employer).permit(
                              :name, :lastname, :email, :password, :onepgr_password, :gender,
-                             :birth, :image_url, :tag) if params[:employer]
+                             :birth, :profile_image, :cover_image, :tag) if params[:employer]
   end
 
   def company_params
