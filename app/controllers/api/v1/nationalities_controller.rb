@@ -8,8 +8,10 @@ class Api::V1::NationalitiesController < Api::NestedController
   end
 
   def query_params
-    # this assumes that an album belongs to an artist and has an :artist_id
-    # allowing us to filter by this
-    params.permit(:all)
+    params.permit(:candidate_id, :id)
+  end
+
+  def create_resource
+    resource_class.find_by_name(resource_params[:name])
   end
 end

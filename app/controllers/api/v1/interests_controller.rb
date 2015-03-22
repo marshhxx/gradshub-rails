@@ -12,7 +12,7 @@ class Api::V1::InterestsController < Api::BaseController
   end
 
   def query_params
-    params.permit(:all)
+    params.permit(:candidate_id, :id)
   end
 
   def create_resource
