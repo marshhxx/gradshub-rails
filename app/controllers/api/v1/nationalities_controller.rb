@@ -1,5 +1,5 @@
-class Api::V1::NationalitiesController < Api::BaseController
-  before_action :authenticate_with_token!, only: [:create]
+class Api::V1::NationalitiesController < Api::NestedController
+  before_action :authenticate_with_token!, only: [:create, :update, :destroy]
 
   private
 

@@ -21,7 +21,8 @@ class AddFieldsToUsers < ActiveRecord::Migration
       t.string :email, null: false
       t.integer :gender,  default: 2
       t.date :birth
-      t.string :image_url
+      t.string :profile_image
+      t.string :cover_image
       t.text :tag
       t.string :encrypted_password,     default: "", null: false
 
@@ -39,9 +40,9 @@ class AddFieldsToUsers < ActiveRecord::Migration
     add_index :users, [:meta_id, :meta_type]
 
     create_table :candidates do |t|
+      t.text :summary
       t.text :early_life
       t.text :personal_life
-      t.string :job_title
 
       t.belongs_to :country
       t.belongs_to :state
@@ -135,11 +136,11 @@ class AddFieldsToUsers < ActiveRecord::Migration
     end
     add_index(:candidates_languages, [:candidate_id, :language_id], :unique => true)
 
-    create_table :experience do |t|
+    create_table :experiences do |t|
       t.belongs_to :candidate
-      t.string :company_name
-      t.string :job_title
-      t.date :start_date
+      t.string :company_name, null: false
+      t.string :job_title,    null: false
+      t.date :start_date,     null: false
       t.date :end_date
       t.text :description
 

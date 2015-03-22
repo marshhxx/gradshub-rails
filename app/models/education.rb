@@ -1,4 +1,5 @@
 class Education < ActiveRecord::Base
+  validates_presence_of :start_date, :school_id, :major_id, :degree_id
   belongs_to :candidate
   belongs_to :school
   belongs_to :major

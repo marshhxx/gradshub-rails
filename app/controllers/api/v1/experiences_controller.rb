@@ -5,7 +5,7 @@ class Api::V1::ExperiencesController < Api::NestedController
 
   def experience_params
     params.require(:experience).permit(
-        :company_name, :job_position,
+        :company_name, :job_title,
         :start_date, :end_date,
         :description
     ) if params[:experience]
@@ -13,5 +13,9 @@ class Api::V1::ExperiencesController < Api::NestedController
 
   def query_params
     params.permit(:candidate_id, :id)
+  end
+
+  def sort_resources(collection)
+    collection.order(:start_date).reverse
   end
 end

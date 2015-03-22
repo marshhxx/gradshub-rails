@@ -27,14 +27,26 @@ class Api::NestedController < Api::BaseController
     end
   end
 
-  private
+  def update_collection
+    set_parent_resource
+    get_parent_resource.send("#{resource_name.pluralize}=", collection)
+    if get_parent_resource.save
+      plural_resource_name = "@#{resource_name.pluralize}"
+      instance_variable_set(plural_resource_name, get_parent_resource.send(resource_name.pluralize))
+      render :index, status: :accepted and return
+    end
+    @error = {:reasons => get_parent_resource.errors.full_messages, :code => INVALID_PARAMS_ERROR}
+    render_error status: :unprocessable_entity
+  end
+
+  protected
 
   def create_nested
-    set_resource(resource_class.find_or_create_by(resource_params))
+    set_resource(create_resource)
     set_parent_resource.send(resource_name.pluralize) << get_resource
     unless get_resource.valid?
       @error = {:reasons => get_resource.errors.full_messages, :code => INVALID_PARAMS_ERROR}
-      render_error :unprocessable_entity
+      render_error :unprocessable_entity and return
     end
     if get_parent_resource.save
       render :show, status: :created and return
@@ -49,7 +61,7 @@ class Api::NestedController < Api::BaseController
     if query_params.blank?
       resources = resource_class.all
     else
-      resources = get_parent_resource.send(resource_name.pluralize)
+      resources = sort_resources(get_parent_resource.send(resource_name.pluralize))
     end
     instance_variable_set(plural_resource_name, resources)
     render :index, status: :ok
@@ -57,8 +69,13 @@ class Api::NestedController < Api::BaseController
 
   def destroy_nested
     set_parent_resource
-    get_parent_resource.send(resource_name.pluralize).delete(get_resource)
-    head :accepted and return
+    to_delete = get_parent_resource.send(resource_name.pluralize).find(params[:id])
+    get_parent_resource.send(resource_name.pluralize).delete(to_delete)
+    if get_parent_resource.save
+      head :accepted and return
+    end
+    @error = {:reasons => get_parent_resource.errors.full_messages, :code => INVALID_PARAMS_ERROR}
+    render_error status: :unprocessable_entity
   end
 
 
@@ -93,5 +110,21 @@ class Api::NestedController < Api::BaseController
   def set_parent_resource(resource = nil)
     resource ||= parent_resource_class.find_by_uid(parent_params)
     instance_variable_set("@#{parent_resource_name}", resource)
+  end
+
+  def collection_params
+    @collection_params ||= self.send("#{resource_name.pluralize}_params")
+  end
+
+  def collection
+    collection_params["#{resource_name.pluralize}"].map { |x| resource_class.find_or_create_by(x)}
+  end
+
+  def create_resource
+    resource_class.new(resource_params)
+  end
+
+  def sort_resources(collection)
+    collection.order(:id)
   end
 end

@@ -8,8 +8,8 @@ class Candidate < ActiveRecord::Base
   belongs_to :state
   has_and_belongs_to_many :nationalities
   has_many :languages, :through => :users_languages
-  has_many :experiences
-  has_many :educations
+  has_many :experiences, dependent: :destroy
+  has_many :educations, dependent: :destroy
   has_and_belongs_to_many :interests
   has_and_belongs_to_many :publications
 

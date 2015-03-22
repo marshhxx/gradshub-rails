@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20141030020738) do
 
   create_table "candidates", force: true do |t|
+    t.text    "summary"
     t.text    "early_life"
     t.text    "personal_life"
     t.string  "job_title"
@@ -56,15 +57,6 @@ ActiveRecord::Schema.define(version: 20141030020738) do
   end
 
   add_index "candidates_skills", ["candidate_id", "skill_id"], name: "index_candidates_skills_on_candidate_id_and_skill_id", unique: true, using: :btree
-
-  create_table "careers", force: true do |t|
-    t.integer "candidate_id"
-    t.string  "company_name"
-    t.string  "job_title"
-    t.date    "start_date"
-    t.date    "end_date"
-    t.text    "description"
-  end
 
   create_table "companies", force: true do |t|
     t.string "name"
@@ -116,6 +108,15 @@ ActiveRecord::Schema.define(version: 20141030020738) do
   end
 
   add_index "employers_skills", ["employer_id", "skill_id"], name: "index_employers_skills_on_employer_id_and_skill_id", unique: true, using: :btree
+
+  create_table "experiences", force: true do |t|
+    t.integer "candidate_id"
+    t.string  "company_name"
+    t.string  "job_title"
+    t.date    "start_date"
+    t.date    "end_date"
+    t.text    "description"
+  end
 
   create_table "interests", force: true do |t|
     t.string "name", null: false
@@ -169,7 +170,8 @@ ActiveRecord::Schema.define(version: 20141030020738) do
     t.string   "email",                               null: false
     t.integer  "gender",                 default: 2
     t.date     "birth"
-    t.string   "image_url"
+    t.string   "profile_image"
+    t.string   "cover_image"
     t.text     "tag"
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
