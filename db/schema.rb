@@ -57,15 +57,6 @@ ActiveRecord::Schema.define(version: 20141030020738) do
 
   add_index "candidates_skills", ["candidate_id", "skill_id"], name: "index_candidates_skills_on_candidate_id_and_skill_id", unique: true, using: :btree
 
-  create_table "careers", force: true do |t|
-    t.integer "candidate_id"
-    t.string  "company_name"
-    t.string  "job_title"
-    t.date    "start_date"
-    t.date    "end_date"
-    t.text    "description"
-  end
-
   create_table "companies", force: true do |t|
     t.string "name"
     t.string "industry"
@@ -116,6 +107,15 @@ ActiveRecord::Schema.define(version: 20141030020738) do
   end
 
   add_index "employers_skills", ["employer_id", "skill_id"], name: "index_employers_skills_on_employer_id_and_skill_id", unique: true, using: :btree
+
+  create_table "experience", force: true do |t|
+    t.integer "candidate_id"
+    t.string  "company_name"
+    t.string  "job_title"
+    t.date    "start_date"
+    t.date    "end_date"
+    t.text    "description"
+  end
 
   create_table "interests", force: true do |t|
     t.string "name", null: false
