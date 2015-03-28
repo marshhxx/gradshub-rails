@@ -47,20 +47,20 @@
 </div>
 <div class="profile-add-right-content"  ng-show="educationEditor">
     <div class="form-group">
-        <input focus-input="editorEducationEnabled" type="text" ng-model="education.school.name" required class="form-control" id="school"
+        <input focus-input="editorEducationEnabled" type="text" ng-model="education.school" required class="form-control" id="school"
                placeholder="School"
                typeahead="school as school.name for school in schools | filter:$viewValue | limitTo:6" required
                class="form-control" typeahead-on-select="onSchool($item)">
     </div>
 
     <div class="form-group">
-        <input type="text" ng-model="education.degree.name" required class="form-control" id="degree" placeholder="Degree"
+        <input type="text" ng-model="education.degree" required class="form-control" id="degree" placeholder="Degree"
                typeahead="degree as degree.name for degree in degrees | filter:$viewValue | limitTo:6" required
                class="form-control" typeahead-on-select="onDegree($item)">
     </div>
 
     <div class="form-group">
-        <input type="text" ng-model="education.major.name" required class="form-control" id="major"
+        <input type="text" ng-model="education.major" required class="form-control" id="major"
                placeholder="Field of Study"
                typeahead="major as major.name for major in majors | filter:$viewValue | limitTo:6" required
                class="form-control" typeahead-on-select="onMajor($item)">
@@ -93,13 +93,13 @@
     </div>
 
     <div class="form-group div-50 left">
-        <input type="text" ng-model="education.country.name"
+        <input type="text" ng-model="education.country"
                typeahead="country as country.name for country in countries | filter:$viewValue | limitTo:6"
                required class="form-control" id="country" typeahead-on-select="onCountry($item)"
                placeholder="Country">
     </div>
     <div class="form-group div-50 right">
-        <input type="text" ng-model="education.state.name"
+        <input type="text" ng-model="education.state"
                typeahead="state as state.name for state in states | filter:$viewValue | limitTo:6" required
                class="form-control" id="state" typeahead-on-select="onState($item)"
                placeholder="State">
