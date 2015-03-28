@@ -260,98 +260,18 @@
 <!--</div>-->
 
 <div class="profile-right-container">
-    <div class="profile-right-header">
-        <div class="profile-right-header title">
-            <div class="profile-right-header-img education"></div> <h3>Education</h3>
+    <div>
+        <add-education data="education" save-education="saveEducation" add-education-enable="addEducationEnable"></add-education>
+
+        <div ng-repeat="education in educations">
+            <education data="education" schools="schools" majors="majors" degrees="degrees" countries="countries" years="years" update-education="updateEducation($index)" on-state="onState" on-country="onCountry" get-state-by-country-id="getStateByCountryId" on-major="onMajor" on-degree="onDegree" on-school="onSchool"></education>
         </div>
-        <div class="profile-right-header edit">
-            <div class="editwrapper">
-
-                <a ng-click="enableEducationEditor()" class="btn btn-add" ng-hide="editorEducationEnabled">
-                    Add Education </span>
-                </a>
-
-                <div ng-show="editorEducationEnabled" class="edit-buttons-wrapper">
-                    <a ng-click="saveEducation()" class="btn btn-edit">
-                        SAVE </span>
-                    </a>
-                    <a ng-click="disableEducationEditor()" class="btn btn-edit margin-l5">
-                        CANCEL </span>
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div class="profile-add-right-content"  ng-show="editorEducationEnabled">
-            <div class="form-group">
-                <input focus-input="editorEducationEnabled" type="text" ng-model="education.school" required class="form-control" id="school"
-                       placeholder="School"
-                       typeahead="school as school.name for school in schools | filter:$viewValue | limitTo:6" required
-                       class="form-control" typeahead-on-select="onSchool($item)">
-            </div>
-
-            <div class="form-group">
-                <input type="text" ng-model="education.degree" required class="form-control" id="degree" placeholder="Degree"
-                       typeahead="degree as degree.name for degree in degrees | filter:$viewValue | limitTo:6" required
-                       class="form-control" typeahead-on-select="onDegree($item)">
-            </div>
-
-            <div class="form-group">
-                <input type="text" ng-model="education.major" required class="form-control" id="major"
-                       placeholder="Field of Study"
-                       typeahead="major as major.name for major in majors | filter:$viewValue | limitTo:6" required
-                       class="form-control" typeahead-on-select="onMajor($item)">
-            </div>
-
-            <div class="form-group">
-                <div class="btn-group margin-r5" dropdown>
-                    <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle
-                            ng-disabled="disabled">
-                        {{education.start_date}} <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li ng-repeat="startYear in years">
-                            <a ng-click="setStartYear(startYear)">{{startYear}}</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="btn-group margin-l5" dropdown>
-                    <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle
-                            ng-disabled="disabled">
-                        {{education.end_date}} <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li ng-repeat="endYear in years">
-                            <a ng-click="setEndYear(endYear)">{{endYear}}</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="form-group div-50 left">
-                <input type="text" ng-model="education.country"
-                       typeahead="country as country.name for country in countries | filter:$viewValue | limitTo:6"
-                       required class="form-control" id="country" typeahead-on-select="onCountry($item)"
-                       placeholder="Country">
-            </div>
-            <div class="form-group div-50 right">
-                <input type="text" ng-model="education.state"
-                       typeahead="state as state.name for state in states | filter:$viewValue | limitTo:6" required
-                       class="form-control" id="state" typeahead-on-select="onState($item)"
-                       placeholder="State">
-            </div>
-
-            <textarea class="form-control" rows="5" ng-model="education.description"
-                      placeholder="Description..."></textarea>
-    </div>
-
-    <div ng-repeat="education in educations">
-        <education data="education" schools="schools" majors="majors" degrees="degrees" countries="countries" years="years" update-education="updateEducation($index)" on-state="onState" on-country="onCountry" get-state-by-country-id="getStateByCountryId" on-major="onMajor" on-degree="onDegree" on-school="onSchool"></education>
     </div>
 
 </div>
+
+
+
 
 </div>
 

@@ -1,19 +1,19 @@
 angular.module('mepedia.controllers').controller('profileController',
-    ['$scope', '$rootScope', '$http', '$upload', 'sessionService', '$state','Country', 'State', 'Candidate', 'Employer', 'Skill', 'School', 'Major', 'Degree', 'Education', 'CandidateSkills',
+    ['$scope', '$rootScope', '$http', '$upload', 'sessionService', '$state', 'Country', 'State', 'Candidate', 'Employer', 'Skill', 'School', 'Major', 'Degree', 'Education', 'CandidateSkills',
 
-        function($scope, $rootScope,$httpProvider, $upload, sessionService, $state, Country, State, Candidate, Employer, Skill, School, Major, Degree, Education, CandidateSkills) {
+        function ($scope, $rootScope, $httpProvider, $upload, sessionService, $state, Country, State, Candidate, Employer, Skill, School, Major, Degree, Education, CandidateSkills) {
 
-          /*  $scope.user = sessionService.requestCurrentUser()
+            /*  $scope.user = sessionService.requestCurrentUser()
 
-            $scope.logout = function() {
-                sessionService.logout()
-            } */
+             $scope.logout = function() {
+             sessionService.logout()
+             } */
 
 
             /* ---- Cloudinary Configuration ---- */
             var cloudinary_data;
             $.cloudinary.config({
-                'cloud_name' : 'mepediacobas',
+                'cloud_name': 'mepediacobas',
                 'upload_preset': 'mepediacobas_unsigned_name'
             });
 
@@ -27,7 +27,7 @@ angular.module('mepedia.controllers').controller('profileController',
             $scope.spinnerVisible = false;
             $scope.defaultCoverImageVisible = true;
 
-            $scope.onFileSelectCover = function($files) {
+            $scope.onFileSelectCover = function ($files) {
                 var file = $files[0];
 
                 /* when user select a photo HIDE the following elements: 
@@ -55,16 +55,16 @@ angular.module('mepedia.controllers').controller('profileController',
                 if (!$scope.temporaryCoverPhoto) {
                     $scope.temporaryCoverPhoto = true;
                     angular.element('.spinner-container').css({
-                        'z-index' : '10'
+                        'z-index': '10'
                     });
                 }
 
                 $scope.upload = $upload.upload({
                     url: "https://api.cloudinary.com/v1_1/" + $.cloudinary.config().cloud_name + "/upload",
                     data: {
-                        upload_preset: $.cloudinary.config().upload_preset, 
-                        tags: 'temp_cover', 
-                        context:'photo=' + $scope.title
+                        upload_preset: $.cloudinary.config().upload_preset,
+                        tags: 'temp_cover',
+                        context: 'photo=' + $scope.title
                     },
                     file: file
                 }).progress(function (e) {
@@ -90,7 +90,7 @@ angular.module('mepedia.controllers').controller('profileController',
             var pictureCoverPhoto = angular.element('#temp_cover_photo');
             var contentCoverPhoto = angular.element('.profile.wrapper');
 
-            pictureCoverPhoto.on('load', function() {
+            pictureCoverPhoto.on('load', function () {
                 // show: 
                 $scope.coverPhotoInProgress = true;
                 $scope.temporaryCoverPhoto = true;
@@ -98,18 +98,22 @@ angular.module('mepedia.controllers').controller('profileController',
                 if ($scope.coverPhoto) {
                     $scope.coverPhoto = false;
                     angular.element('.spinner-container').css({
-                        'z-index' : '0'
+                        'z-index': '0'
                     });
                 }
 
                 pictureCoverPhoto.guillotine({eventOnChange: 'guillotinechange', width: contentCoverPhoto[0].offsetWidth - 2, height: 315});
                 var data = pictureCoverPhoto.guillotine('getData');
 
-                for(var key in data) { $('#'+key).html(data[key]); }
+                for (var key in data) {
+                    $('#' + key).html(data[key]);
+                }
 
-                pictureCoverPhoto.on('guillotinechange', function(ev, data, action) {
-                  data.scale = parseFloat(data.scale.toFixed(4));
-                  for(var k in data) { $('#'+k).html(data[k]); }
+                pictureCoverPhoto.on('guillotinechange', function (ev, data, action) {
+                    data.scale = parseFloat(data.scale.toFixed(4));
+                    for (var k in data) {
+                        $('#' + k).html(data[k]);
+                    }
                 });
 
                 // show:
@@ -123,7 +127,7 @@ angular.module('mepedia.controllers').controller('profileController',
                 $scope.$apply();
             });
 
-            $scope.saveCoverPhoto = function() {
+            $scope.saveCoverPhoto = function () {
 
                 var data = pictureCoverPhoto.guillotine('getData');
                 var cloudianary_result = $.cloudinary.image(cloudinary_data.public_id, {
@@ -142,7 +146,7 @@ angular.module('mepedia.controllers').controller('profileController',
                 $scope.coverPhotoInProgress = false;
             };
 
-            angular.element('.coverPhoto').on('load', function(){
+            angular.element('.coverPhoto').on('load', function () {
                 // we need to reset the guillotine plugin in order to call again later
                 pictureCoverPhoto.guillotine('remove');
 
@@ -159,7 +163,7 @@ angular.module('mepedia.controllers').controller('profileController',
                 $scope.$apply();
             });
 
-            $scope.cancelCoverPhoto = function() {
+            $scope.cancelCoverPhoto = function () {
                 // we need to reset the guillotine plugin in order to call again later
                 pictureCoverPhoto.guillotine('remove');
 
@@ -180,7 +184,7 @@ angular.module('mepedia.controllers').controller('profileController',
             //<<<<<<<<<<<<<<< END COVER PHOTO >>>>>>>>>>>>>>>
 
             //<<<<<<<<<<<<<<< START PROFILE PHOTO >>>>>>>>>>>>>>>
-            
+
             // show:
             $scope.temporaryProfilePhoto = true;
             $scope.profileImgSelectVisible = true;
@@ -192,9 +196,9 @@ angular.module('mepedia.controllers').controller('profileController',
             $scope.profilePhotoLoaded = false;
             $scope.spinnerVisibleProfile = false;
 
-            $scope.onFileSelectProfile = function($files) {
+            $scope.onFileSelectProfile = function ($files) {
                 var file = $files[0]; // we're not interested in multiple file uploads here
-                
+
                 // show:
                 $scope.temporaryProfilePhoto = true;
                 $scope.spinnerVisibleProfile = true;
@@ -207,7 +211,7 @@ angular.module('mepedia.controllers').controller('profileController',
                     $scope.defaultProfileImageVisible = false;
                     $scope.temporaryProfilePhoto = false;
                 }
-                
+
                 if ($scope.profilePhoto) {
                     toggleProfileImageSelect('front');
                 }
@@ -215,9 +219,9 @@ angular.module('mepedia.controllers').controller('profileController',
                 $scope.upload = $upload.upload({
                     url: "https://api.cloudinary.com/v1_1/" + $.cloudinary.config().cloud_name + "/upload",
                     data: {
-                        upload_preset: $.cloudinary.config().upload_preset, 
-                        tags: 'temp_profile', 
-                        context:'photo=' + $scope.title
+                        upload_preset: $.cloudinary.config().upload_preset,
+                        tags: 'temp_profile',
+                        context: 'photo=' + $scope.title
                     },
                     file: file
                 }).progress(function (e) {
@@ -240,7 +244,7 @@ angular.module('mepedia.controllers').controller('profileController',
 
             var pictureProfilePhoto = angular.element('#temp_profile_photo');
 
-            pictureProfilePhoto.on('load', function() {
+            pictureProfilePhoto.on('load', function () {
                 // show:
                 $scope.profilePhotoInProgress = true;
 
@@ -251,16 +255,20 @@ angular.module('mepedia.controllers').controller('profileController',
                     toggleProfileImageSelect('back');
                 }
 
-                /* START guillotine configuration */ 
+                /* START guillotine configuration */
                 pictureProfilePhoto.guillotine({eventOnChange: 'guillotinechange', width: 260, height: 260});
 
                 var data = pictureProfilePhoto.guillotine('getData');
 
-                for(var key in data) { $('#'+key).html(data[key]); }
+                for (var key in data) {
+                    $('#' + key).html(data[key]);
+                }
 
-                pictureProfilePhoto.on('guillotinechange', function(ev, data, action) {
-                  data.scale = parseFloat(data.scale.toFixed(4));
-                  for(var k in data) { $('#'+k).html(data[k]); }
+                pictureProfilePhoto.on('guillotinechange', function (ev, data, action) {
+                    data.scale = parseFloat(data.scale.toFixed(4));
+                    for (var k in data) {
+                        $('#' + k).html(data[k]);
+                    }
                 });
                 /* END guillotine configuration */
 
@@ -275,7 +283,7 @@ angular.module('mepedia.controllers').controller('profileController',
                 $scope.$apply();
             });
 
-            $scope.saveProfilePhoto = function() {
+            $scope.saveProfilePhoto = function () {
 
                 var data = pictureProfilePhoto.guillotine('getData');
 
@@ -296,7 +304,7 @@ angular.module('mepedia.controllers').controller('profileController',
                 $scope.profilePhotoInProgress = false;
             };
 
-            angular.element('.profilePhoto').on('load', function() {
+            angular.element('.profilePhoto').on('load', function () {
                 // we need to reset the guillotine plugin in order to call again later
                 pictureProfilePhoto.guillotine('remove');
 
@@ -313,7 +321,7 @@ angular.module('mepedia.controllers').controller('profileController',
                 $scope.$apply();
             });
 
-            $scope.cancelProfilePhoto = function() {
+            $scope.cancelProfilePhoto = function () {
                 // we need to reset the guillotine plugin in order to call again later
                 pictureProfilePhoto.guillotine('remove');
 
@@ -335,14 +343,14 @@ angular.module('mepedia.controllers').controller('profileController',
 
             };
 
-            function toggleProfileImageSelect (position) {
+            function toggleProfileImageSelect(position) {
                 if (position == 'front') {
                     angular.element('.spinner-container-profile').css({
-                        'z-index' : '10'
+                        'z-index': '10'
                     });
                 } else if (position == 'back') {
                     angular.element('.spinner-container-profile').css({
-                        'z-index' : '0'
+                        'z-index': '0'
                     });
                 } else {
                     throw 'Use a valid param in this function';
@@ -355,7 +363,7 @@ angular.module('mepedia.controllers').controller('profileController',
             //<<<<<<<<<<<<<<< utilities functions >>>>>>>>>>>>>>>
 
             // function called when the user leave the page
-            window.onbeforeunload = function() {
+            window.onbeforeunload = function () {
                 if ($scope.coverPhotoInProgress || $scope.profilePhotoInProgress) {
                     return 'You have unsaved changes.\nTo save press the save button over your cover photo.';
                 }
@@ -372,11 +380,11 @@ angular.module('mepedia.controllers').controller('profileController',
 
             // Drag and drop for photos -- NOT IMPLEMENTED!!
             // Modify the look and fill of the dropzone when files are being dragged over it
-            $scope.dragOverClass = function($event) {
+            $scope.dragOverClass = function ($event) {
                 var items = $event.dataTransfer.items;
                 var hasFile = false;
                 if (items != null) {
-                    for (var i = 0 ; i < items.length; i++) {
+                    for (var i = 0; i < items.length; i++) {
                         if (items[i].kind == 'file') {
                             hasFile = true;
                             break;
@@ -389,11 +397,13 @@ angular.module('mepedia.controllers').controller('profileController',
             };
 
 
-
-           /* ---- PERSONAL INFORMATION ---- */
+            /* ---- PERSONAL INFORMATION ---- */
 
             /* Data */
             var init = function () {
+
+                $scope.addEducationEnable = false;
+
                 getData();
 
                 /* SUMMARY */
@@ -411,46 +421,6 @@ angular.module('mepedia.controllers').controller('profileController',
                 /* EDUCATION */
                 initEducation();
 
-                $scope.years = getYears();
-
-                function getYears(){
-                    var first = 1950;
-                    var now = new Date();
-                    var second = now.getFullYear();
-                    var array = Array();
-
-                    for(var i = first; i <= second; i++){
-                        array.push(i);
-                    }
-                    return array.reverse();
-                }
-
-                $scope.onState = function(state) {
-                    if (state != undefined)
-                        $scope.education.state = state;
-                };
-
-                $scope.onCountry = function(country) {
-                    $scope.education.country = country
-                    if ($scope.education.country != undefined)
-                        $scope.getStateByCountryId($scope.education.country.id);
-                }
-
-                $scope.onMajor = function(major) {
-                    if (major != undefined)
-                        $scope.education.major = major
-                };
-
-                $scope.onDegree= function(degree) {
-                    if (degree != undefined)
-                        $scope.education.degree = degree
-                };
-
-                $scope.onSchool = function (school) {
-                    if (school != undefined)
-                        $scope.education.school = school
-                };
-
                 sessionService.requestCurrentUser().then(
                     function (user) {
                         $scope.user = user.candidate;
@@ -464,56 +434,35 @@ angular.module('mepedia.controllers').controller('profileController',
                 );
             };
 
-            var initCandidateProfile = function(){
+            var initCandidateProfile = function () {
                 $scope.educations = $scope.user.educations;
-                $scope.selectedSkills = $scope.user.skills;
-
-            }
-
-            var getData = function() {
-                Country.query(function(countries) {
-                    $scope.countries = countries.countries;
-                });
-
-                $scope.getStateByCountryId = function(countryId) {
-                    State.query({country_id: countryId}, function(states) {
-                        $scope.states = states.states;
-                        console.log($scope.states);
-                    });
-                };
-
-                Skill.get(function(skills) {
-                    $scope.skillsTags = skills.skills;
-                });
-
-                School.get(function(schools) {
-                    $scope.schools = schools.schools;
-                });
-
-                Major.get(function(majors){
-                    $scope.majors = majors.majors;
-                });
-
-                Degree.get(function(degrees){
-                    $scope.degrees = degrees.degrees;
+                $scope.selectedSkills = $scope.user.skills.map(function (skill) {
+                    return skill.name;
                 });
             };
 
-            var saveSummary = function(){
+
+            var getData = function () {
+                Skill.get(function (skills) {
+                    $scope.skillsTags = skills.skills;
+                });
+            };
+
+            var saveSummary = function () {
                 $scope.disableSummaryEditor();
-                if($scope.userSummary != undefined  && $scope.userSummary != "" && $scope.userSummary.length > 0){
+                if ($scope.userSummary != undefined && $scope.userSummary != "" && $scope.userSummary.length > 0) {
                     $scope.profileSummary = $scope.userSummary;
                 } else {
                     $scope.profileSummary = "Write something about you";
                 }
             };
 
-            var saveSkills = function(){
+            var saveSkills = function () {
                 $scope.disableSkillsEditor();
                 $scope.selectedSkills = $scope.candidateSelectedSkills.slice();
                 var candidateSkills = new CandidateSkills();
                 candidateSkills.candidate_id = $scope.user.uid;
-                candidateSkills.skills = $scope.selectedSkills.map(function(skillName) {
+                candidateSkills.skills = $scope.selectedSkills.map(function (skillName) {
                     return {name: skillName}
                 });
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
@@ -521,30 +470,30 @@ angular.module('mepedia.controllers').controller('profileController',
                     function (response) {
                         refreshSkills();
                     },
-                    function(error) {
+                    function (error) {
                         console.log(error)
-                });
+                    });
             };
 
-            var saveEarlyLife = function(){
+            var saveEarlyLife = function () {
                 $scope.disableEarlyLifeEditor();
-                if($scope.userEarlyLife != undefined  && $scope.userEarlyLife != "" && $scope.userEarlyLife.length > 0){
+                if ($scope.userEarlyLife != undefined && $scope.userEarlyLife != "" && $scope.userEarlyLife.length > 0) {
                     $scope.profileEarlyLife = $scope.userEarlyLife;
                 } else {
                     $scope.profileEarlyLife = "Write something about your early life";
                 }
             };
 
-            var savePersonalLife = function(){
+            var savePersonalLife = function () {
                 $scope.disablePersonalLifeEditor();
-                if($scope.userPersonalLife != undefined  && $scope.userPersonalLife != "" && $scope.userPersonalLife.length > 0){
+                if ($scope.userPersonalLife != undefined && $scope.userPersonalLife != "" && $scope.userPersonalLife.length > 0) {
                     $scope.profilePersonalLife = $scope.userPersonalLife;
                 } else {
                     $scope.profilePersonalLife = "Write something about your personal life";
                 }
             };
 
-            var getEducation = function(educationObj){
+            var getEducation = function (educationObj) {
                 var education = new Education();
                 education.candidate_id = $scope.user.uid;
                 education.school_id = educationObj.school.id;
@@ -553,19 +502,19 @@ angular.module('mepedia.controllers').controller('profileController',
                 education.state_id = (educationObj.state != undefined) ? educationObj.state.id : null;
                 education.country_id = (educationObj.country.id != undefined) ? educationObj.country.id : null;
                 education.description = (educationObj.description != undefined) ? educationObj.description : null;
-                education.start_date = educationObj.start_date + '-01-01' ;
+                education.start_date = educationObj.start_date + '-01-01';
                 education.end_date = (educationObj.end_date != undefined) ? educationObj.end_date + '-01-01' : null;
                 return education;
             };
 
-            var getEducations = function(){
-                Education.query({candidate_id: $scope.user.uid},function(educations){
+            var getEducations = function () {
+                Education.query({candidate_id: $scope.user.uid}, function (educations) {
                     $scope.educations = educations.educations;
                 });
             };
 
-            var saveEducation = function(){
-                $scope.disableEducationEditor();
+            var saveEducation = function () {
+                $scope.addEducationEnable = false;
 
                 var education = getEducation($scope.education); //Create Education Resource
 
@@ -573,20 +522,21 @@ angular.module('mepedia.controllers').controller('profileController',
                 education.$save(
                     function (response) {
                         getEducations();
-
+                        clearAddEducationValues();
                     },
                     function (error) {
                         console.log(error);
-                });
+                    });
             };
 
-            var updateEducation = function($index){
+            var updateEducation = function ($index) {
                 $scope.disableEducationEditor();
                 var education = getEducation($scope.educations[$index]);
                 education.id = $scope.educations[$index].id;
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 education.$update(
                     function (response) {
+                        clearAddEducationValues();
                         getEducations(); //Todo change the way this is done. Modify array.
                     },
                     function (error) {
@@ -594,115 +544,99 @@ angular.module('mepedia.controllers').controller('profileController',
                     });
             };
 
-            var clearAddEducationValues = function(){
-                $scope.education.school.id = "";
-                $scope.education.degree.id = "";
-                $scope.education.major.id = "";
-                $scope.education.state.id = "";
-                $scope.education.country.id = "";
+            $scope.disableEducationEditor = function () {
+                $scope.editorEducationEnabled = false;
+            };
+
+            var clearAddEducationValues = function () {
+                $scope.education.school = "";
+                $scope.education.degree = "";
+                $scope.education.major = "";
+                $scope.education.state = "";
+                $scope.education.country = "";
                 $scope.education.description = "";
-                $scope.education.start_date = "";
-                $scope.education.end_date = "";
+                $scope.education.start_date = "Start Year";
+                $scope.education.end_date = "End Year";
             }
 
-            var initSummary = function() {
+            var initSummary = function () {
                 $scope.userSummary;
                 $scope.profileSummary = "Write something about you";
                 $scope.editorSummaryEnabled = false;
 
-                $scope.enableSummaryEditor = function() {
+                $scope.enableSummaryEditor = function () {
                     $scope.editorSummaryEnabled = true;
-                    if($scope.profileSummary != "Write something about you")
+                    if ($scope.profileSummary != "Write something about you")
                         $scope.userSummary = $scope.profileSummary;
                 };
 
-                $scope.disableSummaryEditor = function() {
+                $scope.disableSummaryEditor = function () {
                     $scope.editorSummaryEnabled = false;
                 };
 
                 $scope.saveSummary = saveSummary;
             };
 
-            var initSkills = function() {
+            var initSkills = function () {
                 $scope.candidateSelectedSkills = [];
                 $scope.selectedSkills = [];
                 $scope.editorSkillsEnabled = false;
 
-                $scope.enableSkillsEditor = function() {
+                $scope.enableSkillsEditor = function () {
                     $scope.editorSkillsEnabled = true;
-                    if($scope.selectedSkills.length > 0)
+                    if ($scope.selectedSkills.length > 0)
                         $scope.candidateSelectedSkills = $scope.selectedSkills.slice();
                 };
 
-                $scope.disableSkillsEditor = function() {
+                $scope.disableSkillsEditor = function () {
                     $scope.editorSkillsEnabled = false;
                 };
 
                 $scope.saveSkills = saveSkills;
             };
 
-            var initEarlyLife = function() {
+            var initEarlyLife = function () {
                 $scope.userEarlyLife;
                 $scope.profileEarlyLife = "Write something about your early life";
 
                 $scope.editorEarlyLifeEnabled = false;
 
-                $scope.enableEarlyLifeEditor = function() {
+                $scope.enableEarlyLifeEditor = function () {
                     $scope.editorEarlyLifeEnabled = true;
-                    if($scope.profileEarlyLife != "Write something about your early life")
+                    if ($scope.profileEarlyLife != "Write something about your early life")
                         $scope.userEarlyLife = $scope.profileEarlyLife;
                 };
 
-                $scope.disableEarlyLifeEditor = function() {
+                $scope.disableEarlyLifeEditor = function () {
                     $scope.editorEarlyLifeEnabled = false;
                 };
 
                 $scope.saveEarlyLife = saveEarlyLife;
             };
 
-            var initPersonalLife = function() {
+            var initPersonalLife = function () {
                 $scope.userPersonalLife;
                 $scope.profilePersonalLife = "Write something about your personal life";
                 $scope.editorPersonalLifeEnabled = false;
 
-                $scope.enablePersonalLifeEditor = function() {
+                $scope.enablePersonalLifeEditor = function () {
                     $scope.editorPersonalLifeEnabled = true;
-                    if($scope.profilePersonalLife != "Write something about your personal life")
+                    if ($scope.profilePersonalLife != "Write something about your personal life")
                         $scope.userPersonalLife = $scope.profilePersonalLife;
                 };
 
-                $scope.disablePersonalLifeEditor = function() {
+                $scope.disablePersonalLifeEditor = function () {
                     $scope.editorPersonalLifeEnabled = false;
                 };
 
                 $scope.savePersonalLife = savePersonalLife;
             };
 
-            var initEducation = function() {
+            var initEducation = function () {
                 $scope.educations = [];
-                $scope.education = {}
-                $scope.education.start_date = "Start Year";
-                $scope.education.end_date = "End Year";
-
-                $scope.setStartYear = function(year) {
-                    $scope.education.start_date = year;
-                };
-
-                $scope.setEndYear = function(year) {
-                    $scope.education.end_date = year;
-                };
-
-                $scope.enableEducationEditor = function() {
-                    $scope.editorEducationEnabled = true;
-                };
-
-                $scope.disableEducationEditor = function() {
-                    $scope.editorEducationEnabled = false;
-                };
-
+                $scope.education = {};
                 $scope.saveEducation = saveEducation;
                 $scope.updateEducation = updateEducation;
-
             };
 
             var refreshSkills = function () {
