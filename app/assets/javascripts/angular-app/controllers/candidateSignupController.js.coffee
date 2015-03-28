@@ -141,17 +141,15 @@ angular
 		init()
 		createUser = () ->
 			$httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
-			nationalityPromise = saveCandidateNationality()
-			educationPromise = saveEducation()
-			skillsPromise = saveSkills()
-			userPromise = saveUser()
-			$q.all([nationalityPromise, educationPromise, skillsPromise, userPromise]).then(
-				(data) ->
-					console.log data
-				,
-				(error) ->
-					console.log error
-			)
+			$q.all([saveCandidateNationality(), saveEducation(), saveSkills(), saveUser()])
+				.then(
+					(data) ->
+						console.log(data)
+						$state.go 'main.candidate_profile'
+					,
+					(error) ->
+						console.log error
+				)
 
 		getMonthNumber = (month) ->
 			if month is "January"
@@ -183,7 +181,7 @@ angular
 			candidateNationality = new CandidateNationalities()
 			candidateNationality.name = $scope.nationality.name
 			candidateNationality.candidate_id = $scope.user.uid
-			candidateNationality.$save().$promise
+			candidateNationality.$save()
 
 		saveEducation = ->
 			education = new Education()
@@ -196,13 +194,13 @@ angular
 			education.start_date = [$scope.startDateYear, getMonthNumber($scope.startDateMonth), '01'].join('-')
 			education.end_date = [$scope.endDateYear, getMonthNumber($scope.endDateMonth), '01'].join('-')
 			education.candidate_id = $scope.user.uid
-			education.$save().$promise
+			education.$save()
 
 		saveSkills = ->
 			skills = new CandidateSkills()
 			skills.candidate_id = $scope.user.uid
 			skills.skills = [{name: skill.name} for skill in $scope.selectedSkills]
-			skills.$update().$promise
+			skills.$update()
 
 		saveUser = ->
 			user = new Candidate()
@@ -214,5 +212,5 @@ angular
 			user.birth = [$scope.birthYear, getMonthNumber($scope.birthMonth), $scope.birthDay].join('-')
 			user.country_id = $scope.country.id
 			user.state_id = $scope.state.id
-			user.$update().$promise
+			user.$update()
 ])

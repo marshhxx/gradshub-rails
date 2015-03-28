@@ -2,19 +2,15 @@ angular.module('mepedia.services').factory('sessionService',
     ['$location', '$http','$q','Session',
         function($location, $http, $q, Session) {
         // Redirect to the given url (defaults to '/')
-        function redirect(url) {
-            url = url || '/';
-            $location.path(url);
-        }
         var service = {
             login: function(email, password, rememberMe) {
                 var deferred = $q.defer();
 
                 $http.post('/api/sessions', {session: {email: email, password: password} }
                 ).success(function(response) {
-                        Session.create(response.session, rememberMe);
+                        var type = Session.create(response.session, rememberMe);
                         if (service.isAuthenticated()) {
-                            deferred.resolve({authenticated: true})
+                            deferred.resolve({type: type})
                         }
                     }
                 ).error(function(response) {
@@ -25,14 +21,16 @@ angular.module('mepedia.services').factory('sessionService',
             },
 
             logout: function() {
-                $http.delete('/api/sessions/' + service.currentUser.auth_token)
+                var deferred = $q.defer();
+                $http.delete('/api/sessions/' + Session.getToken())
                     .success(function(response) {
                         Session.destroy();
-                        redirect();
+                        deferred.resolve({logout: true})
                     })
                     .error(function(response) {
-                        return response.errors;
+                        deferred.reject(response.error);
                     });
+                return deferred.promise;
             },
 
             requestCurrentUser: function() {
@@ -84,24 +82,24 @@ angular.module('mepedia.services').factory('sessionService',
             return !!token || cookieJar.isDefined("token");
         };
 
-        this.create = function (session, remember) {
+        this.create = function (session, rememb) {
             user_uid = session.uid;
             token = session.auth_token;
-            remember = remember;
+            remember = rememb;
             type = session.type;
             $window.sessionStorage["userInfo"] = JSON.stringify(
                 {
                     user_uid: user_uid,
                     token: token,
                     type: type
-                })
+                });
+            return type;
         };
 
         this.destroy = function () {
             token = null;
             user = null;
-            $window.sessionStorage["user"] = null;
-            $window.sessionStorage["userInfo"] = null;
+            delete $window.sessionStorage["userInfo"];
             if (cookieJar.isDefined("current_user")) {
                 cookieJar.delete("current_user");
                 cookieJar.delete("token");
@@ -149,7 +147,7 @@ angular.module('mepedia.services').factory('sessionService',
         };
 
         var init = function() {
-            if ($window.sessionStorage["userInfo"]) {
+            if ($window.sessionStorage["userInfo"] != null) {
                 userInfo = JSON.parse($window.sessionStorage["userInfo"]);
                 token = userInfo.token;
                 user_uid = userInfo.user_uid;
