@@ -33,7 +33,7 @@
   background-size: 45px 40px;
 }
 
-.employerProfileImage.wrapper {
+.companyImage.wrapper {
   z-index: 99;
   overflow: hidden;
   border-radius: 150px;
@@ -43,7 +43,7 @@
   margin: -31% auto;
 }
 
-.employerDefaultProfilePhoto {
+.companyDefaultPhoto {
   background-color: #00A5E4;
   background-size: 272px 272px;
   background-position: -8px -6px;
@@ -54,7 +54,7 @@
   border: 6px solid #ececec;
 }
 
-.employerDefaultProfilePhoto h2 {
+.companyDefaultPhoto h2 {
   text-align: center;
   font-size: 2em;
   color: white;
@@ -62,7 +62,7 @@
   width: 205px;
 }
 
-.employerProfileImageEdit.wrapper {
+.companyImageEdit.wrapper {
   width: 100%;
   text-align: center;
   position: relative;
@@ -70,7 +70,7 @@
   z-index: 100;
 }
 
-.employerProfileImageEdit.img {
+.companyImageEdit.img {
   width: 20%;
   margin: 0 auto;
   height: 40px;
@@ -80,7 +80,7 @@
   cursor: pointer;
 }
 
-.employerProfileImageEdit.img:hover {
+.companyImageEdit.img:hover {
   background: url('ic-photo-hover.svg') center center no-repeat;
   background-size: 45px 40px;
 }
@@ -95,4 +95,106 @@
 
 .companyNameWrapper h1 {
     font-weight: bold;
+}
+
+
+/*-------------------*/
+
+.employerProfileContent{
+  width: 100%;
+  display: inline-block;
+}
+
+.employerProfileLeftContent.cont{
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.employerProfileLeftContent .section{
+  overflow: auto;
+  display: inline-block;
+  width: 100%;
+  background-color: #FFFFFF;
+  margin-top: 20px;
+  border-radius: 3px;
+  border: 1px solid #d8d8d8;
+  border-bottom-width: 2px;
+  padding: 20px 20px 25px 20px;
+}
+
+/* Employer profile image */
+.employerProfilePhotoWrapper {
+  padding: 0;   
+}
+
+.employerNameWrapper {
+  overflow: auto;
+  margin: 35px 0px 0px 10px;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.employerPositionWrapper {
+  overflow: auto;
+  margin-left: 10px;
+  font-size: 2em;
+}
+
+.employerDefaultProfileImage.img {
+  background: url(default-profile-photo.png) no-repeat;
+  background-size: 160px 161px;
+  background-position: -6px -4px;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  border: 1px solid #ececec;
+  margin: 0 auto;
+}
+
+.employerProfileImageEdit.wrapper {
+  width: 30%;
+  position: relative;
+  z-index: 100;
+  margin: -41px auto 0;
+}
+
+.employerProfileImageEdit.img {
+  width: 60%;
+  margin: 0 auto;
+  height: 40px;
+  background: url("ic-photo-dark-grey.svg") center center no-repeat;
+  background-size: 30px 30px;
+  cursor: pointer;
+}
+
+.employerProfileImageEdit.img:hover {
+  /*
+  background: url('ic-photo-hover.svg') center center no-repeat;
+  background-size: 30px 40px;
+  */
+}
+
+.employerProfileRightContent {
+    padding: 0;
+}
+
+.profile-right-container {
+  background-color: #FFF;
+  margin: 20px 0 20px 20px;
+  border-radius: 3px;
+  border: 1px solid #d8d8d8;
+  border-bottom-width: 2px;
+}
+
+.profile-right-header.employer-title {
+  width: 55%;
+}
+
+.profile-right-header.employer-edit {
+  float: right;
+  width: 45%;
+}
+
+.edit-pencil.employer {
+  margin: 0 10px 0 0;
 }

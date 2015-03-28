@@ -10,11 +10,11 @@
                 </div>
             </div>
             <div class="profileHeadline wrapper">
-                <div class="employerProfileImage wrapper">
-                    <div class="employerDefaultProfilePhoto">
+                <div class="companyImage wrapper">
+                    <div class="companyDefaultPhoto">
                         <h2>Company Logo</h2>
-                        <div class="employerProfileImageEdit wrapper">
-                            <div class="employerProfileImageEdit img"></div>
+                        <div class="companyImageEdit wrapper">
+                            <div class="companyImageEdit img"></div>
                         </div>
                     </div>
                 </div>
@@ -23,13 +23,31 @@
                 </div>
             </div>
         </div>
-        <div class="profileContent">
-            <div class="profileLeftContent cont col-md-6">
 
-                <div class="profileLeftContent section padding-l35">
+
+
+        <div class="employerProfileContent">
+            <div class="employerProfileLeftContent cont col-md-6">
+                <div class="section padding-135">
+                    <div class="employerProfilePhotoWrapper col-xs-4">
+                        <div class="employerDefaultProfileImage img"></div>
+                        <div class="employerProfileImageEdit wrapper">
+                            <div class="employerProfileImageEdit img"></div>
+                        </div>
+                    </div>
+                    <div class="employerBasicInfoWrapper col-xs-8">
+                        <div class="employerNameWrapper">
+                            <span>Name Last name</span>
+                        </div>
+                        <div class="employerPositionWrapper">
+                            <span>Position</span>
+                        </div>                     
+                    </div>
+                </div>
+                <div class="section padding-l35">
                     <div class="editwrapper"></div>
 
-                    <div class="profileLeftContentWrapper">
+                    <div class="employerProfileLeftContentWrapper">
                         <div class="profileLeft">
                             <div class="img-col">
                                 <div class="profile-img jobposition"></div>
@@ -75,23 +93,24 @@
 
             </div>
 
-            <div class="profileMainContent col-md-6">
-
+            <div class="employerProfileRightContent col-md-6">
+            
+                <!-- DESCRIPTION -->
                 <div class="profile-right-container">
                     <div class="profile-right-header">
-                        <div class="profile-right-header title">
-                            <div class="profile-right-header-img summary"></div>  <h3> Summary </h3>
+                        <div class="profile-right-header title employer-title">
+                            <div class="profile-right-header-img summary"></div>  <h3> Description</h3>
                         </div>
-                        <div class="profile-right-header edit">
+                        <div class="profile-right-header edit employer-edit">
                             <div class="editwrapper">
-                                <div class="edit-pencil" ng-click="enableSummaryEditor()"
-                                     ng-hide="editorSummaryEnabled"></div>
+                                <div class="edit-pencil employer" ng-click="enableDescriptionEditor()"
+                                     ng-hide="descriptionEnable"></div>
 
-                                <div ng-show="editorSummaryEnabled" class="edit-buttons-wrapper">
-                                    <a ng-click="saveSummary()" class="btn btn-edit">
+                                <div ng-show="editorDescriptionEnabled" class="edit-buttons-wrapper">
+                                    <a ng-click="saveDescription()" class="btn btn-edit">
                                         SAVE </span>
                                     </a>
-                                    <a ng-click="disableSummaryEditor()" class="btn btn-edit margin-l5">
+                                    <a ng-click="disableDescriptionEditor()" class="btn btn-edit margin-l5">
                                         CANCEL </span>
                                     </a>
                                 </div>
@@ -99,17 +118,51 @@
                         </div>
                     </div>
                     <div class="profile-right-content">
-                        <div ng-hide="editorSummaryEnabled" class="profile-right-text">
-                            {{profileSummary}}
+                        <div ng-hide="descriptionEnable" class="profile-right-text">
+                            {{employerDescription}}
                         </div>
-                        <textarea class="form-control" rows="5" ng-show="editorSummaryEnabled" ng-model="userSummary"></textarea>
+                        <textarea class="form-control" rows="5" ng-show="descriptionEnable" ng-model="summary"></textarea>
+                    </div>
+                </div>
+
+                <!-- SKILLS -->
+                <div class="profile-right-container">
+                    <div class="profile-right-header">
+                        <div class="profile-right-header title">
+                            <div class="profile-right-header-img skills"></div> <h3> SKILLS </h3>
+                        </div>
+                        <div class="profile-right-header edit">
+                            <div class="editwrapper">
+                                <div class="edit-pencil" ng-click="enableSkillsEditor()"
+                                     ng-hide="editorSkillsEnabled"></div>
+
+                                <div ng-show="editorSkillsEnabled" class="edit-buttons-wrapper">
+                                    <a ng-click="saveSkills()" class="btn btn-edit">
+                                        SAVE </span>
+                                    </a>
+                                    <a ng-click="disableSkillsEditor()" class="btn btn-edit margin-l5">
+                                        CANCEL </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-right-content">
+                        <div ng-hide="editorSkillsEnabled" class="profile-right-text">
+                            <div class="tags">
+                                <a class="tag" ng-model="tag" ng-repeat="tag in selectedSkills">{{tag}}</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <tags-input tags="skillsTags" ng-show="editorSkillsEnabled" placeholder="Add your skills..."
+                                        info="candidateSelectedSkills"></tags-input>
+                        </div>
                     </div>
                 </div>
             </div> 
         </div>
-
     </div>
-
 </div>
 <!-- 
         </div>
