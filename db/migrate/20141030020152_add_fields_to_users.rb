@@ -59,7 +59,7 @@ class AddFieldsToUsers < ActiveRecord::Migration
     end
 
     create_table :employers do |t|
-      t.belongs_to :company_location
+      t.belongs_to :employer_company
 
       t.timestamp
     end
@@ -199,15 +199,15 @@ class AddFieldsToUsers < ActiveRecord::Migration
     create_table :companies do |t|
       t.string :name
       t.string :industry
-      t.text :description
 
       t.timestamp
     end
 
-    create_table :company_locations do |t|
+    create_table :employer_company do |t|
       t.belongs_to :company
       t.belongs_to :country
       t.belongs_to :state
+      t.text :description
 
       t.timestamp
     end

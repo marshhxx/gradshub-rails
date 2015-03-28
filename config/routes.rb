@@ -21,7 +21,9 @@ Demo::Application.routes.draw do
     scope module: :v1, constraints: ApiConstraints.new(version: 1) do
     # We are going to list our resources here
       devise_for :users, :only => []
-      resources :employers, :only => [:show, :create, :update], concerns: [:skillable, :interestable]
+      resources :employers, :only => [:show, :create, :update], concerns: [:skillable, :interestable] do
+        resource :company, :only => [:show, :create, :update]
+      end
       resources :candidates, :only => [:show, :create, :update], concerns: [:skillable, :interestable] do
         resources :experiences, :only => [:index, :create, :update, :destroy, :show]
         resources :educations, :only => [:index, :create, :update, :destroy, :show]
@@ -44,6 +46,7 @@ Demo::Application.routes.draw do
       resources :skills, :only => [:index, :create, :show]
       resources :interests, :only => [:index, :create, :show]
       resources :communication, :only => [:create]
+      resources :companies, :only => [:index]
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

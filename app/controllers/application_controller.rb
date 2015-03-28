@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::ParameterMissing, :with => :bad_request
 
   def record_not_found
-    @error = {:reasons => [["Resource with id #{params[:id]} doesn't exist."]], :code => INVALID_PARAMS_ERROR}
+    @error = {:reasons => ["Resource with id #{params[:id]} doesn't exist."], :code => INVALID_PARAMS_ERROR}
     render :json => @error
   end
 

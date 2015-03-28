@@ -60,13 +60,6 @@ ActiveRecord::Schema.define(version: 20141030020738) do
   create_table "companies", force: true do |t|
     t.string "name"
     t.string "industry"
-    t.text   "description"
-  end
-
-  create_table "company_locations", force: true do |t|
-    t.integer "company_id"
-    t.integer "country_id"
-    t.integer "state_id"
   end
 
   create_table "countries", force: true do |t|
@@ -90,8 +83,15 @@ ActiveRecord::Schema.define(version: 20141030020738) do
     t.date    "end_date"
   end
 
+  create_table "employer_company", force: true do |t|
+    t.integer "company_id"
+    t.integer "country_id"
+    t.integer "state_id"
+    t.text    "description"
+  end
+
   create_table "employers", force: true do |t|
-    t.integer "company_location_id"
+    t.integer "employer_company_id"
   end
 
   create_table "employers_interests", force: true do |t|
