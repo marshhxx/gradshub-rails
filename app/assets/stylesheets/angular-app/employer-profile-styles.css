@@ -1,0 +1,98 @@
+/* COVER PHOTO */
+.employerDefaultCoverPhoto {
+  background: url('default-cover-photo.png') center center no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  display: block;
+  width: 100%;
+  height: 360px;
+  position: relative;
+}
+
+.employerCoverImageEdit.wrapper {
+  float: right;
+  bottom: 0;
+  right: 0;
+  position: relative;
+  margin: -65px 5px 0px 0px;
+}
+
+.employerCoverImageEdit.img {
+  width: 45px;
+  height: 40px;
+  background: url('ic-photo.svg') center center no-repeat;
+  background-size: 45px 40px;
+  margin: 10px 15px;
+  cursor: pointer;
+}
+
+.employerCoverImageEdit.img:hover {
+  background: url('ic-photo-hover.svg') center center no-repeat;
+  background-size: 45px 40px;
+}
+
+.employerProfileImage.wrapper {
+  z-index: 99;
+  overflow: hidden;
+  border-radius: 150px;
+  width: 227px;
+  height: 227px;
+  position: relative;
+  margin: -31% auto;
+}
+
+.employerDefaultProfilePhoto {
+  background-color: #00A5E4;
+  background-size: 272px 272px;
+  background-position: -8px -6px;
+  height: 225px;
+  width: 225px;
+  border-radius: 50%;
+  margin: auto;
+  border: 6px solid #ececec;
+}
+
+.employerDefaultProfilePhoto h2 {
+  text-align: center;
+  font-size: 2em;
+  color: white;
+  margin: 43% auto;
+  width: 205px;
+}
+
+.employerProfileImageEdit.wrapper {
+  width: 100%;
+  text-align: center;
+  position: relative;
+  margin: -50px auto;
+  z-index: 100;
+}
+
+.employerProfileImageEdit.img {
+  width: 20%;
+  margin: 0 auto;
+  height: 40px;
+  background: url('ic-photo.svg') center center no-repeat;
+  background-size: 45px 40px;
+  //margin: 10px 15px;
+  cursor: pointer;
+}
+
+.employerProfileImageEdit.img:hover {
+  background: url('ic-photo-hover.svg') center center no-repeat;
+  background-size: 45px 40px;
+}
+
+.companyNameWrapper {
+  color: white;
+  position: relative;
+  width: 30%;
+  text-align: center;
+  margin: 32% auto 0px;
+}
+
+.companyNameWrapper h1 {
+    font-weight: bold;
+}
