@@ -4,7 +4,8 @@ angular
         var Candidate = $resource('/api/candidates/:id', { id: '@uid' },
         {
             update: {
-                method: 'PUT'
+                method: 'PUT',
+                isArray: false
             }
         });
 

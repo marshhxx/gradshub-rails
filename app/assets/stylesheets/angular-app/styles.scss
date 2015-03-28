@@ -181,6 +181,10 @@ input::-webkit-input-placeholder {
   margin-right: 5px;
 }
 
+.margin-rn1{
+  margin-right: 6px;
+}
+
 .margin-lr10 {
   margin: 0px 10px;
 }
@@ -1156,7 +1160,7 @@ footer#main .footer-above {
 .signup .title {
   font-size: 2.0em;
   font-family: Oswald-regular, Georgia, "Times New Roman", Times, serif;
-  color: #FFFFFF;
+  color: #3D9ED8;
   text-transform: uppercase;
 }
 
@@ -1167,7 +1171,7 @@ footer#main .footer-above {
 .signup .subtitle {
   font-size: 1.1em;
   font-family: Opensans-light, Georgia, "Times New Roman", Times, serif;
-  color: #FFFFFF;
+  color: #505050;
 }
 
 .signup-ending-message {
@@ -1233,7 +1237,7 @@ footer#main .footer-above {
 }
 
 .signup.form-container {
-  height: 250px;
+  height: 330px;
 }
 
 .signup .form-box-cont {
@@ -1258,7 +1262,7 @@ footer#main .footer-above {
 }
 
 .btn-primary {
-  width: 85px;
+  width: 80px;
   background-color: rgb(255, 255, 255) !important;
   border-color: #CCCCCC !important;
   color: #555555 !important;
@@ -1331,7 +1335,7 @@ footer#main .footer-above {
 
 /* form styling */
 #form-container {
-  background: rgba(18, 32, 40, 0.7);
+  background: rgba(255, 255, 255, 0.8);
   margin-top: 15px;
   display: inline-block
 }
@@ -1346,7 +1350,7 @@ footer#main .footer-above {
 }
 
 #status-buttons-work a {
-  color: #FFF;
+  color: #505050;
   display: inline-block;
   font-size: 12px;
   margin-right: 10px;

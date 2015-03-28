@@ -35,6 +35,62 @@
                    typeahead="degree as degree.name for degree in degrees | filter:$viewValue | limitTo:6" required class="form-control" typeahead-on-select="onDegree($item)">
         </div>
     </div>
+
+	  <div class="row">
+		  <div class="form-group">
+	      <input type="text" ng-model="description" class="form-control" id="educationDescription" placeholder="Description"
+	             class="form-control">
+		  </div>
+	  </div>
+
+	    <div class="row text-center">
+
+		    <div class="btn-group margin-rn1 left" dropdown >
+			    <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+				    {{startDateMonth}} <span class="caret"></span>
+			    </button>
+			    <ul class="dropdown-menu" role="menu">
+				    <li ng-repeat="month in months">
+					    <a ng-click="setMonth(month, 'start')">{{month}}</a>
+				    </li>
+			    </ul>
+		    </div>
+
+		    <div class="btn-group margin-rn1 left" dropdown >
+			    <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+				    {{startDateYear}} <span class="caret"></span>
+			    </button>
+			    <ul class="dropdown-menu" role="menu">
+				    <li ng-repeat="year in years">
+					    <a ng-click="setYear(year, 'start')">{{year}}</a>
+				    </li>
+			    </ul>
+		    </div>
+
+		    <div class="btn-group margin-rn1 left" dropdown >
+			    <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+				    {{endDateMonth}} <span class="caret"></span>
+			    </button>
+			    <ul class="dropdown-menu" role="menu">
+				    <li ng-repeat="month in months">
+					    <a ng-click="setMonth(month, 'end')">{{month}}</a>
+				    </li>
+			    </ul>
+		    </div>
+
+		    <div class="btn-group left" dropdown >
+			    <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+				    {{endDateYear}} <span class="caret"></span>
+			    </button>
+			    <ul class="dropdown-menu" role="menu">
+				    <li ng-repeat="year in years">
+					    <a ng-click="setYear(year, 'end')">{{year}}</a>
+				    </li>
+			    </ul>
+		    </div>
+	    </div>
+
+	    </div>
 </div>
 </div>
 

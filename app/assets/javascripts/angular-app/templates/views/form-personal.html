@@ -2,7 +2,7 @@
     <div class="signup form-box-cont">
     <div class="row">
         <div class="form-group">
-            <input type="text" ng-model="tempUser.bio" required class="form-control" id="bio" placeholder="Bio">
+            <input type="text" ng-model="user.tag" required class="form-control" id="tag" placeholder="Tag">
         </div>
     </div>
 
@@ -10,33 +10,33 @@
 
         <div class="btn-group" dropdown >
             <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-                {{selectedDay}} <span class="caret"></span>
+                {{birthDay}} <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
                 <li ng-repeat="day in days">
-                    <a ng-click="setDay(day)">{{day}}</a>
+                    <a ng-click="setDay(day, 'birth')">{{day}}</a>
                 </li>
             </ul>
         </div>
 
         <div class="btn-group margin-lr10" dropdown >
             <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-                {{selectedMonth}} <span class="caret"></span>
+                {{birthMonth}} <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
                 <li ng-repeat="month in months">
-                    <a ng-click="setMonth(month)">{{month}}</a>
+                    <a ng-click="setMonth(month, 'birth')">{{month}}</a>
                 </li>
             </ul>
         </div>
 
         <div class="btn-group" dropdown >
             <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-                {{selectedYear}} <span class="caret"></span>
+                {{birthYear}} <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
                 <li ng-repeat="year in years">
-                    <a ng-click="setYear(year)">{{year}}</a>
+                    <a ng-click="setYear(year, 'birth')">{{year}}</a>
                 </li>
             </ul>
         </div>

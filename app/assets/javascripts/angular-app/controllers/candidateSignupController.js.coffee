@@ -1,8 +1,8 @@
 angular
 	.module('mepedia.controllers')
 	.controller("candidateSignupController",
-	['$scope', '$http', '$state', '$log', 'Country', 'State', 'Nationality', 'sessionService', 'School', 'Skill', 'Candidate','Major', 'Degree','Interest'
-	($scope, $httpProvider, $state, $log, Country, State, Nationality, sessionService, School, Skill, Candidate, Major, Degree, Interest)->
+	['$scope', '$q', '$http', '$state', '$log', 'Country', 'State', 'Nationality', 'sessionService', 'School', 'Skill', 'Candidate','Major', 'Degree','Interest', 'CandidateNationalities', 'Education', 'CandidateSkills',
+	($scope, $q, $httpProvider, $state, $log, Country, State, Nationality, sessionService, School, Skill, Candidate, Major, Degree, Interest, CandidateNationalities, Education, CandidateSkills)->
 
 		init = ->
 			$scope.selectedTags = []
@@ -21,32 +21,6 @@ angular
 				"December"
 			]
 
-			getMonthNumber = (month) ->
-				if month is "January"
-					"1"
-				else if month is "February"
-					"2"
-				else if month is "March"
-					"3"
-				else if month is "April"
-					"4"
-				else if month is "May"
-					"5"
-				else if month is "June"
-					"6"
-				else if month is "July"
-					"7"
-				else if month is "August"
-					"8"
-				else if month is "September"
-					"9"
-				else if month is "October"
-					"10"
-				else if month is "November"
-					"11"
-				else if month is "December"
-					"12"
-
 			$scope.myItem = {}
 
 			$scope.looking = false
@@ -56,22 +30,31 @@ angular
 			$scope.days = (num for num in [1..31])
 			$scope.years = (num for num in [$scope.currentYear..1950])
 
-			$scope.selectedMonth = "Month"
-			$scope.selectedDay = "Day"
-			$scope.selectedYear = "Year"
+			$scope.birthMonth = $scope.endDateMonth = $scope.startDateMonth = "Month"
+			$scope.birthDay = "Day"
+			$scope.birthYear = $scope.endDateYear = $scope.startDateYear = "Year"
 
 			$scope.selectedFrom = "From"
 			$scope.selectedTo = "To"
 
-			$scope.setMonth = (month) ->
-				$scope.selectedMonth = month
+			$scope.setMonth = (month, placeholder) ->
+				if placeholder == 'birth'
+					$scope.birthMonth = month
+				else if placeholder == 'start'
+					$scope.startDateMonth = month
+				else if placeholder == 'end'
+					$scope.endDateMonth == month
 
 			$scope.setDay = (day) ->
-				$scope.selectedDay = day
+				$scope.birthDay = day
 
-			$scope.setYear = (year) ->
-				$scope.selectedYear = year
-				$log.log $scope.currentYear
+			$scope.setYear = (year, placeholder) ->
+				if placeholder == 'birth'
+					$scope.birthYear = year
+				else if placeholder == 'start'
+					$scope.startDateYear = year
+				else if placeholder == 'end'
+					$scope.endDateYear == year
 
 			$scope.showLookingMindsSignup = () ->
 				if(!$scope.looking)
@@ -147,7 +130,7 @@ angular
 			sessionService.requestCurrentUser().then(
 				(user) ->
 					$state.go 'home.page' if !user?
-					user = user.candidate
+					$scope.user = user.candidate
 					$scope.createUser = createUser
 				,
 				(error) ->
@@ -157,27 +140,79 @@ angular
 
 		init()
 		createUser = () ->
+			$httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
+			nationalityPromise = saveCandidateNationality()
+			educationPromise = saveEducation()
+			skillsPromise = saveSkills()
+			userPromise = saveUser()
+			$q.all([nationalityPromise, educationPromise, skillsPromise, userPromise]).then(
+				(data) ->
+					console.log data
+				,
+				(error) ->
+					console.log error
+			)
 
-		#console.log($scope.newTags);
-		#	user.bio = $scope.tempUser.bio
-		#	monthNumber = getMonthNumber($scope.selectedMonth)
-		#	user.birth = $scope.selectedYear + "-" + monthNumber + "-" + $scope.selectedDay
-		#	console.log $scope.country
+		getMonthNumber = (month) ->
+			if month is "January"
+				"1"
+			else if month is "February"
+				"2"
+			else if month is "March"
+				"3"
+			else if month is "April"
+				"4"
+			else if month is "May"
+				"5"
+			else if month is "June"
+				"6"
+			else if month is "July"
+				"7"
+			else if month is "August"
+				"8"
+			else if month is "September"
+				"9"
+			else if month is "October"
+				"10"
+			else if month is "November"
+				"11"
+			else if month is "December"
+				"12"
+
+		saveCandidateNationality = ->
+			candidateNationality = new CandidateNationalities()
+			candidateNationality.name = $scope.nationality.name
+			candidateNationality.candidate_id = $scope.user.uid
+			candidateNationality.$save().$promise
+
+		saveEducation = ->
+			education = new Education()
+			education.school_id = $scope.school.id
+			education.country_id = $scope.schoolCountry.id
+			education.state_id = $scope.schoolState.id
+			education.major_id = $scope.major.id
+			education.degree_id = $scope.degree.id
+			education.description = $scope.educationDescription
+			education.start_date = [$scope.startDateYear, getMonthNumber($scope.startDateMonth), '01'].join('-')
+			education.end_date = [$scope.endDateYear, getMonthNumber($scope.endDateMonth), '01'].join('-')
+			education.candidate_id = $scope.user.uid
+			education.$save().$promise
+
+		saveSkills = ->
+			skills = new CandidateSkills()
+			skills.candidate_id = $scope.user.uid
+			skills.skills = [{name: skill.name} for skill in $scope.selectedSkills]
+			skills.$update().$promise
+
+		saveUser = ->
+			user = new Candidate()
+			user.name = $scope.user.name
+			user.lastname = $scope.user.lastname
+			user.email = $scope.user.email
+			user.uid = $scope.user.uid
+			user.tag = $scope.user.tag
+			user.birth = [$scope.birthYear, getMonthNumber($scope.birthMonth), $scope.birthDay].join('-')
 			user.country_id = $scope.country.id
 			user.state_id = $scope.state.id
-		#	user.nationalities_ids =  []
-		#	user.nationalities_ids.push $scope.nationality.id
-
-		#	user.educations = []
-		#	education = []
-		#	education.school_id = $scope.school.id
-		#	education.state_id = $scope.schoolState.id
-		#	education.major_id = $scope.major.id
-		#	education.degree_id = $scope.degree.id
-		#	user.educations.push education
-
-		#	user.skills = $scope.tempUser.skills.name
-			$httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
-			user.$update () ->
-				console.log(user)
+			user.$update().$promise
 ])

@@ -50,7 +50,6 @@ class Api::V1::UsersController < Api::BaseController
   end
 
   def update
-    resource_params[:birth] = resource_params[:birth].to_date if resource_params[:birth]
     set_resource(resource_class.find_by_uid(params[:id]))
     if get_resource.update(resource_params)
       logger.info 'User updated!'

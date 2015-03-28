@@ -6,7 +6,7 @@
 	$httpProvider.defaults.headers.common.Accept = 'application/mepedia.v1'
 	$httpProvider.defaults.headers.common['Content-type'] = 'application/json'
 	$urlRouterProvider.otherwise "/home/page"
-	$urlRouterProvider.when('/main', '/home/page')
+	$urlRouterProvider.when('/main','/home/page')
 	$stateProvider.state("home",
 		url: "/home"
 		templateUrl: "angular-app/templates/layouts/homeLayout.html"
