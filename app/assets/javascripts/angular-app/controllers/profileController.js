@@ -351,12 +351,26 @@ angular.module('mepedia.controllers').controller('profileController',
 
             //<<<<<<<<<<<<<<< END PROFILE PHOTO >>>>>>>>>>>>>>>
 
+
+            //<<<<<<<<<<<<<<< utilities functions >>>>>>>>>>>>>>>
+
+            // function called when the user leave the page
             window.onbeforeunload = function() {
                 if ($scope.coverPhotoInProgress || $scope.profilePhotoInProgress) {
                     return 'You have unsaved changes.\nTo save press the save button over your cover photo.';
                 }
             }
 
+            function checkProfileActionActive() {
+                var isAvailable = false;
+                if ($scope.coverPhotoInProgress || $scope.profilePhotoInProgress) {
+                    if (confirm('You have unsaved changes.\nTo save press the save button over your cover photo.'))
+                        return true;
+                }
+                return isAvailable;
+            }
+
+            // Drag and drop for photos -- NOT IMPLEMENTED!!
             // Modify the look and fill of the dropzone when files are being dragged over it
             $scope.dragOverClass = function($event) {
                 var items = $event.dataTransfer.items;
@@ -373,6 +387,8 @@ angular.module('mepedia.controllers').controller('profileController',
                 }
                 return hasFile ? "dragover" : "dragover-err";
             };
+
+
 
            /* ---- PERSONAL INFORMATION ---- */
 
@@ -446,7 +462,6 @@ angular.module('mepedia.controllers').controller('profileController',
             var initCandidateProfile = function(){
                 $scope.educations = $scope.user.educations;
                 $scope.selectedSkills = $scope.user.skills;
-
             }
 
             var getData = function() {
