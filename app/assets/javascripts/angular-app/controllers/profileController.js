@@ -10,7 +10,7 @@ angular.module('mepedia.controllers').controller('profileController',
             } */
 
 
-            /* ---- Upload photo ---- */
+            /* ---- Cloudinary Configuration ---- */
             var cloudinary_data;
             $.cloudinary.config({
                 'cloud_name' : 'mepediacobas',
@@ -49,7 +49,7 @@ angular.module('mepedia.controllers').controller('profileController',
                     $scope.coverLoaded = false;
                 }
 
-                /* when the temporary photo DIV is hided
+                /* when the temporary photo DIV is hidden
                  * - SHOW temporary photo DIV                
                  */
                 if (!$scope.temporaryCoverPhoto) {
@@ -91,9 +91,9 @@ angular.module('mepedia.controllers').controller('profileController',
             var contentCoverPhoto = angular.element('.profile.wrapper');
 
             pictureCoverPhoto.on('load', function() {
+                // show: 
                 $scope.coverPhotoInProgress = true;
                 $scope.temporaryCoverPhoto = true;
-                $scope.$apply();
 
                 if ($scope.coverPhoto) {
                     $scope.coverPhoto = false;
@@ -112,15 +112,19 @@ angular.module('mepedia.controllers').controller('profileController',
                   for(var k in data) { $('#'+k).html(data[k]); }
                 });
 
-                $scope.coverImageSelectorVisible = false;
+                // show:
                 $scope.coverPhotoButtons = true;
                 $scope.coverLoaded = true;
+
+                // hide:
+                $scope.coverImageSelectorVisible = false;
                 $scope.spinnerVisible = false;
                 $scope.defaultCoverImageVisible = false;
                 $scope.$apply();
             });
 
             $scope.saveCoverPhoto = function() {
+
                 var data = pictureCoverPhoto.guillotine('getData');
                 var cloudianary_result = $.cloudinary.image(cloudinary_data.public_id, {
                     secure: true,
@@ -130,7 +134,11 @@ angular.module('mepedia.controllers').controller('profileController',
                     y: data.y,
                     crop: 'crop'
                 });
+
+                // get Secure URI.
                 $scope.coverPhotoURI = cloudianary_result[0].src;
+
+                // hide:
                 $scope.coverPhotoInProgress = false;
             };
 
@@ -138,53 +146,70 @@ angular.module('mepedia.controllers').controller('profileController',
                 // we need to reset the guillotine plugin in order to call again later
                 pictureCoverPhoto.guillotine('remove');
 
-                $scope.spinnerVisible = false;
-                $scope.temporaryCoverPhoto = false;
+                // show: 
                 $scope.coverPhoto = true;
                 $scope.coverImageSelectorVisible = true;
                 $scope.defaultCoverImageVisible = true;
+
+                // hide:
+                $scope.spinnerVisible = false;
+                $scope.temporaryCoverPhoto = false;
 
                 // it's necessary to call $apply in order to bind variables with the DOM
                 $scope.$apply();
             });
 
             $scope.cancelCoverPhoto = function() {
+                // we need to reset the guillotine plugin in order to call again later
                 pictureCoverPhoto.guillotine('remove');
 
-                $scope.temporaryCoverPhoto = false;
+                // show:
                 $scope.coverImageSelectorVisible = true;
+
+                // hide: 
+                $scope.temporaryCoverPhoto = false;
                 $scope.spinnerVisible = false;
+                $scope.coverPhotoInProgress = false;
 
                 if (!$scope.coverPhoto) {
                     $scope.defaultCoverImageVisible = true;
                     $scope.coverPhoto = true;
                 }
-
-                $scope.coverPhotoInProgress = false;
             }
 
             //<<<<<<<<<<<<<<< END COVER PHOTO >>>>>>>>>>>>>>>
 
             //<<<<<<<<<<<<<<< START PROFILE PHOTO >>>>>>>>>>>>>>>
             
-            $scope.profilePhotoButtons = false;
+            // show:
             $scope.temporaryProfilePhoto = true;
-            $scope.profilePhoto = false;
             $scope.profileImgSelectVisible = true;
+            $scope.defaultProfileImageVisible = true;
+
+            // hide: 
+            $scope.profilePhotoButtons = false;
+            $scope.profilePhoto = false;
             $scope.profilePhotoLoaded = false;
             $scope.spinnerVisibleProfile = false;
-            $scope.defaultProfileImageVisible = true;
 
             $scope.onFileSelectProfile = function($files) {
                 var file = $files[0]; // we're not interested in multiple file uploads here
                 
+                // show:
                 $scope.temporaryProfilePhoto = true;
+                $scope.spinnerVisibleProfile = true;
+
+                // hide: 
                 $scope.profileImgSelectVisible = false;
 
                 if ($scope.profilePhotoURI) {
                     $scope.profilePhoto = true;
                     $scope.defaultProfileImageVisible = false;
                     $scope.temporaryProfilePhoto = false;
+                }
+                
+                if ($scope.profilePhoto) {
+                    toggleProfileImageSelect('front');
                 }
 
                 $scope.upload = $upload.upload({
@@ -196,12 +221,6 @@ angular.module('mepedia.controllers').controller('profileController',
                     },
                     file: file
                 }).progress(function (e) {
-                    $scope.spinnerVisibleProfile = true;
-
-                    if ($scope.profilePhoto) {
-                        toggleProfileImageSelect('front');
-                    }
-
                     if (!$scope.$$phase) {
                         $scope.$apply();
                     }
@@ -222,14 +241,17 @@ angular.module('mepedia.controllers').controller('profileController',
             var pictureProfilePhoto = angular.element('#temp_profile_photo');
 
             pictureProfilePhoto.on('load', function() {
+                // show:
                 $scope.profilePhotoInProgress = true;
 
+                // if profile photo is already changed
                 if ($scope.profilePhoto) {
                     $scope.profilePhoto = false;
                     $scope.temporaryProfilePhoto = true;
                     toggleProfileImageSelect('back');
                 }
 
+                /* START guillotine configuration */ 
                 pictureProfilePhoto.guillotine({eventOnChange: 'guillotinechange', width: 260, height: 260});
 
                 var data = pictureProfilePhoto.guillotine('getData');
@@ -240,12 +262,14 @@ angular.module('mepedia.controllers').controller('profileController',
                   data.scale = parseFloat(data.scale.toFixed(4));
                   for(var k in data) { $('#'+k).html(data[k]); }
                 });
+                /* END guillotine configuration */
 
                 angular.element('.edit-buttons-profile-photo').css({
                     'top': '205px',
                     'left': '57px'
                 });
 
+                // show:
                 $scope.profilePhotoLoaded = true;
                 $scope.profilePhotoButtons = true;
                 $scope.$apply();
@@ -255,6 +279,7 @@ angular.module('mepedia.controllers').controller('profileController',
 
                 var data = pictureProfilePhoto.guillotine('getData');
 
+                // Crop the photo
                 var cloudianary_result = $.cloudinary.image(cloudinary_data.public_id, {
                     secure: true,
                     width: data.w,
@@ -264,8 +289,10 @@ angular.module('mepedia.controllers').controller('profileController',
                     crop: 'crop'
                 });
 
+                // get Secure URI.
                 $scope.profilePhotoURI = cloudianary_result[0].src;
 
+                // hide:
                 $scope.profilePhotoInProgress = false;
             };
 
@@ -273,33 +300,39 @@ angular.module('mepedia.controllers').controller('profileController',
                 // we need to reset the guillotine plugin in order to call again later
                 pictureProfilePhoto.guillotine('remove');
 
-                $scope.spinnerVisibleProfile = false;
-                $scope.temporaryProfilePhoto = false;
+                // show:
                 $scope.profilePhoto = true;
                 $scope.profileImgSelectVisible = true;
-                $scope.profilePhotoButtons = false;
-                $scope.$apply();
 
+                // hide:
+                $scope.spinnerVisibleProfile = false;
+                $scope.temporaryProfilePhoto = false;
+                $scope.profilePhotoButtons = false;
+
+                // apply changes
+                $scope.$apply();
             });
 
             $scope.cancelProfilePhoto = function() {
+                // we need to reset the guillotine plugin in order to call again later
                 pictureProfilePhoto.guillotine('remove');
 
+                // show:
+                $scope.profileImgSelectVisible = true;
+
+                // hide:
                 $scope.spinnerVisible = false;
                 $scope.temporaryProfilePhoto = false;
                 $scope.spinnerVisibleProfile = false;
-                $scope.profileImgSelectVisible = true;
                 $scope.profilePhotoButtons = false;
+                $scope.profilePhotoInProgress = false;
 
                 if (!$scope.profilePhoto) {
-
-                    pictureProfilePhoto.guillotine('remove');
                     $scope.profilePhoto = true;
                 } else {
                     toggleProfileImageSelect('front');
                 }
 
-                $scope.profilePhotoInProgress = false;
             };
 
             function toggleProfileImageSelect (position) {
@@ -320,7 +353,7 @@ angular.module('mepedia.controllers').controller('profileController',
 
             window.onbeforeunload = function() {
                 if ($scope.coverPhotoInProgress || $scope.profilePhotoInProgress) {
-                    return 'Your changes wasn\'t saved!';
+                    return 'You have unsaved changes.\nTo save press the save button over your cover photo.';
                 }
             }
 
