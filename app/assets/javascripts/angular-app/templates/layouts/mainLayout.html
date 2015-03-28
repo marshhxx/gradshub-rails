@@ -22,7 +22,8 @@
                     <a href="#page-top"></a>
                 </li>
                 <li>
-                    <a class="page-scroll" ui-sref="login">Login</a>
+	                <a class="page-scroll" ng-if="!logged" ui-sref="login">Login</a>
+	                <a class="page-scroll" ng-if="logged" ng-click="logout()">Logout</a>
                 </li>
             </ul>
         </div>

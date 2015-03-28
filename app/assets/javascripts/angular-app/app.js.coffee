@@ -16,13 +16,13 @@
 		templateUrl: "angular-app/templates/home.html"
 		controller: "HomeController"
 	).state("login",
-			url: "/login"
-			templateUrl: "angular-app/templates/login.html"
-			controller: "loginController"
+		url: "/login"
+		templateUrl: "angular-app/templates/login.html"
+		controller: "loginController"
 	).state("main",
 		url: "/main"
 		templateUrl: "angular-app/templates/layouts/mainLayout.html"
-#		controller: "signupController"
+		controller: "mainController"
 	).state("main.login_onepgr",
 		url: "/login?mail"
 		templateUrl: "angular-app/templates/views/login_onepgr.html"
@@ -62,10 +62,14 @@
 	).state("main.signup.interests",
 		url: "/interests"
 		templateUrl: "angular-app/templates/views/form-lookingfor.html"
-	).state("main.profile",
-		url: "/profile"
-		templateUrl: "angular-app/templates/profile.html"
-		controller: "profileController"
+	).state("main.candidate_profile",
+		url: "/candidate/profile"
+		templateUrl: "angular-app/templates/candidate_profile.html"
+		controller: "candidateProfileController"
+	).state("main.candidate_employer",
+		url: "/employer/profile"
+		templateUrl: "angular-app/templates/employer_profile.html"
+		controller: "employerProfileController"
 	)
 
 	return

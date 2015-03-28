@@ -1,4 +1,4 @@
-angular.module('mepedia.controllers').controller('profileController',
+angular.module('mepedia.controllers').controller('candidateProfileController',
     ['$scope', '$rootScope', '$http', '$upload', 'sessionService', '$state','Country', 'State', 'Candidate', 'Employer', 'Skill', 'School', 'Major', 'Degree', 'Education', 'CandidateSkills',
 
         function($scope, $rootScope,$httpProvider, $upload, sessionService, $state, Country, State, Candidate, Employer, Skill, School, Major, Degree, Education, CandidateSkills) {
@@ -434,7 +434,7 @@ angular.module('mepedia.controllers').controller('profileController',
                     $scope.education.country = country
                     if ($scope.education.country != undefined)
                         $scope.getStateByCountryId($scope.education.country.id);
-                }
+                };
 
                 $scope.onMajor = function(major) {
                     if (major != undefined)

@@ -6,8 +6,11 @@ angular.module('mepedia.controllers').controller('loginController',
                     if ($scope.email && $scope.password) {
                         var promise = sessionService.login($scope.email, $scope.password, false);
                         promise.then(
-                            function (payload) {
-                                $state.go('main.profile');
+                            function (resp) {
+                                if (resp.type == 'Candidate')
+                                    $state.go('main.candidate_profile');
+                                else if (resp.type == 'Employer')
+                                    $state.go('main.employer_profile');
                             },
                             function (errors) {
                                 console.log(errors)
