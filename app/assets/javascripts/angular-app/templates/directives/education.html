@@ -5,6 +5,7 @@
 <div class="profile-right-content">
     <div class="profile-edit-on-hover">
     <div class="form-cont">
+        <input type="hidden" ng-value="education.id" />
         <div class="width85">
             <span class="header-title"> {{education.school.name}} </span>
         </div>
@@ -34,7 +35,7 @@
     <div class="editwrapper">
 
         <div class="edit-buttons-wrapper">
-            <a href="#" ng-click="saveEducation()" class="btn btn-edit">
+            <a href="#" ng-click="updateEducation()" class="btn btn-edit">
                 SAVE </span>
             </a>
             <a href="#" ng-click="disableEducationEditor()" class="btn btn-edit margin-l5">
@@ -69,7 +70,7 @@
         <div class="btn-group margin-r5" dropdown>
             <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle
                     ng-disabled="disabled">
-                {{startDate}} <span class="caret"></span>
+                {{education.start_date}} <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
                 <li ng-repeat="startYear in years">
@@ -81,7 +82,7 @@
         <div class="btn-group margin-l5" dropdown>
             <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle
                     ng-disabled="disabled">
-                {{endDate}} <span class="caret"></span>
+                {{education.end_date}} <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
                 <li ng-repeat="endYear in years">

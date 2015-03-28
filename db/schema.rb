@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(version: 20141030020738) do
     t.text    "summary"
     t.text    "early_life"
     t.text    "personal_life"
-    t.string  "job_title"
     t.integer "country_id"
     t.integer "state_id"
   end
@@ -111,9 +110,9 @@ ActiveRecord::Schema.define(version: 20141030020738) do
 
   create_table "experiences", force: true do |t|
     t.integer "candidate_id"
-    t.string  "company_name"
-    t.string  "job_title"
-    t.date    "start_date"
+    t.string  "company_name", null: false
+    t.string  "job_title",    null: false
+    t.date    "start_date",   null: false
     t.date    "end_date"
     t.text    "description"
   end

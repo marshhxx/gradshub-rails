@@ -5,6 +5,7 @@ angular
 	($scope, $httpProvider, $state, $log, Country, State, Nationality, sessionService, School, Skill, Candidate, Major, Degree, Interest)->
 
 		init = ->
+			$scope.selectedTags = []
 			$scope.months = [
 				"January"
 				"February"
