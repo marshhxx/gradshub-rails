@@ -142,14 +142,14 @@
         </div>
         <div class="profile-right-header edit">
             <div class="editwrapper">
-                <div class="edit-pencil" ng-click="enableSummaryEditor()"
-                     ng-hide="editorSummaryEnabled"></div>
+                <div class="edit-pencil" ng-click="onSummaryEditor()"
+                     ng-hide="summaryEnable"></div>
 
-                <div ng-show="editorSummaryEnabled" class="edit-buttons-wrapper">
+                <div ng-show="summaryEnable" class="edit-buttons-wrapper">
                     <a ng-click="saveSummary()" class="btn btn-edit">
                         SAVE </span>
                     </a>
-                    <a ng-click="disableSummaryEditor()" class="btn btn-edit margin-l5">
+                    <a ng-click="onCancelSummaryEditor()" class="btn btn-edit margin-l5">
                         CANCEL </span>
                     </a>
                 </div>
@@ -157,10 +157,10 @@
         </div>
     </div>
     <div class="profile-right-content">
-        <div ng-hide="editorSummaryEnabled" class="profile-right-text">
-            {{profileSummary}}
+        <div ng-hide="summaryEnable" class="profile-right-text">
+            {{summary}}
         </div>
-        <textarea class="form-control" rows="5" ng-show="editorSummaryEnabled" ng-model="userSummary"></textarea>
+        <textarea class="form-control" rows="5" ng-show="summaryEnable" ng-model="summary"></textarea>
     </div>
 </div>
 
@@ -259,16 +259,15 @@
     <!--</div>-->
 <!--</div>-->
 
-<div class="profile-right-container">
-    <div>
-        <add-education data="education" save-education="saveEducation" add-education-enable="addEducationEnable"></add-education>
+    <div class="profile-right-container">
+        <div>
+            <add-education data="education" save-education="saveEducation" add-education-enable="addEducationEnable"></add-education>
 
-        <div ng-repeat="education in educations">
-            <education data="education" update-education="updateEducation($index)"></education>
+            <div ng-repeat="education in educations">
+                <education data="education" update-education="updateEducation($index)"></education>
+            </div>
         </div>
     </div>
-
-</div>
 
 </div>
 

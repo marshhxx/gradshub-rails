@@ -2,7 +2,7 @@ require 'active_support'
 
 class Api::V1::UsersController < Api::BaseController
   wrap_parameters include: [:name, :lastname, :email, :password, :onepgr_password, :gender,
-                            :birth, :image_url, :tag]
+                            :birth, :image_url, :tag, :profile_image, :cover_image]
   before_action :authenticate_with_token!, only: [:update]
   before_action :set_resource, only: []
 

@@ -21,4 +21,7 @@ json.candidate do
   end
   json.skills  @candidate.skills
   json.interests @candidate.interests
+  json.summary @candidate.summary
+  json.cover_image @candidate.user.cover_image
+  json.profile_image @candidate.user.profile_image
 end

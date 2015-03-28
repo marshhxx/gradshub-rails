@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   def record_not_found
     @error = {:reasons => [["Resource with id #{params[:id]} doesn't exist."]], :code => INVALID_PARAMS_ERROR}
-    render :json => @error
+    render :json => @error, :status => :unprocessable_entity
   end
 
   def not_found(exception)

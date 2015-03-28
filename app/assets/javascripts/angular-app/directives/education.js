@@ -56,7 +56,6 @@ angular.module('mepedia.directives').directive('education', ['State', 'Country',
                 scope.education.end_date = year;
             };
 
-
             scope.years = getYears();
 
             function getYears() {
@@ -97,6 +96,5 @@ angular.module('mepedia.directives').directive('education', ['State', 'Country',
                     scope.education.degree = degree
             };
         }
-
     };
 }]);
