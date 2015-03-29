@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email, :case_sensitive => false
   before_create :generate_authentication_token!
   before_create :set_uid
+  before_save
 
   enum gender: {male: 0, female: 1, not_known:2}
 

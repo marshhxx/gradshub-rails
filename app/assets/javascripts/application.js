@@ -16,6 +16,7 @@
 //= require angular-ui-router
 //= require angular-resource
 //= require angular-bootstrap
+//= require angular-messages
 // Insert html in text
 //= require angular-sanitize
 //= require angular-animate

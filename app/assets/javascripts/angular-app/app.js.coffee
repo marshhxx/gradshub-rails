@@ -1,5 +1,5 @@
 @app = angular.module("mepedia",
-	["ui.router", "templates", "mepedia.services", "mepedia.controllers", "ngSanitize"])
+	["ui.router", "templates", "mepedia.services", "mepedia.controllers", "ngSanitize", 'ngMessages'])
 .config ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) ->
 #	$httpProvider.defaults.withCredentials = true;
 #	$httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
@@ -53,14 +53,14 @@
 	).state("main.signup.education",
 		url: "/education"
 		templateUrl: "angular-app/templates/views/form-education.html"
-	).state("main.signup.career",
-		url: "/career"
+	).state("main.signup.interests",
+		url: "/interests"
 		templateUrl: "angular-app/templates/views/form-interests.html"
 	).state("main.signup.company",
 		url: "/company"
 		templateUrl: "angular-app/templates/views/form-company.html"
-	).state("main.signup.interests",
-		url: "/interests"
+	).state("main.signup.looking",
+		url: "/looking"
 		templateUrl: "angular-app/templates/views/form-lookingfor.html"
 	).state("main.candidate_profile",
 		url: "/candidate/profile"
