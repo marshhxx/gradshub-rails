@@ -8,40 +8,12 @@
 	    </div>
 
 	    <div class="row text-center">
-
-	        <div class="btn-group" dropdown>
-	            <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-	                {{birthDay}} <span class="caret"></span>
-	            </button>
-	            <ul class="dropdown-menu" role="menu">
-	                <li ng-repeat="day in days">
-	                    <a ng-click="setDay(day, 'birth')">{{day}}</a>
-	                </li>
-	            </ul>
-	        </div>
-
-	        <div class="btn-group margin-lr10" dropdown >
-	            <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-	                {{birthMonth}} <span class="caret"></span>
-	            </button>
-	            <ul class="dropdown-menu" role="menu">
-	                <li ng-repeat="month in months">
-	                    <a ng-click="setMonth(month, 'birth')">{{month}}</a>
-	                </li>
-	            </ul>
-	        </div>
-
-	        <div class="btn-group" dropdown >
-	            <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-	                {{birthYear}} <span class="caret"></span>
-	            </button>
-	            <ul class="dropdown-menu" role="menu">
-	                <li ng-repeat="year in years">
-	                    <a ng-click="setYear(year, 'birth')">{{year}}</a>
-	                </li>
-	            </ul>
-	        </div>
-
+		    <simpledatepicker date="user.birth"></simpledatepicker>
+		    <div ng-if="pSubmitted && !user.birth" >
+			    <div class="form-error">
+				    Please select a birth date!
+			    </div>
+		    </div>
 	    </div>
 
 	    <div class="row margin-t15">
@@ -50,7 +22,7 @@
 	                   placeholder="Country" required>
 			        <div ng-if="pSubmitted" ng-messages="personalForm.country.$error">
 				        <div class="control-group.error p" ng-message="required">
-					        Please select a country
+					        Please select a country!
 				        </div>
 			        </div>
 	        </div>
@@ -62,7 +34,7 @@
 	                   placeholder="State" required>
 		        <div ng-if="pSubmitted" ng-messages="personalForm.state.$error">
 			        <div class="control-group.error p" ng-message="required">
-				        Please select a country
+				        Please select a state!
 			        </div>
 		        </div>
 	        </div>
@@ -74,7 +46,7 @@
 	                   placeholder="Nationality" required>
 		        <div ng-if="pSubmitted" ng-messages="personalForm.nationality.$error">
 			        <div class="control-group.error p" ng-message="required">
-				        Please select a country
+				        Please select a nationality!
 			        </div>
 		        </div>
 	        </div>
