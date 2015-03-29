@@ -33,16 +33,16 @@ angular.module('mepedia.controllers').controller("HomeController", [
 		$scope.carouselInterval = 4000
 		$scope.slides = [
 			{
-				image: "/assets/background-l0.jpg"
+				image: "/assets/background-marqui1.png"
 			}
 			{
-				image: "/assets/background-l1.jpg"
+				image: "/assets/background-luli1.png"
 			}
 			{
-				image: "/assets/background-l2.jpg"
-			}
+				image: "/assets/background-nico1.png"
+    }
 			{
-				image: "/assets/background-l3.jpg"
+				image: "/assets/background-mumi1.png"
 			}
 		]
 
