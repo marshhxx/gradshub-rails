@@ -262,7 +262,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 }
 
                 /* START guillotine configuration */ 
-                pictureProfilePhoto.guillotine({eventOnChange: 'guillotinechange', width: 260, height: 260});
+                pictureProfilePhoto.guillotine({eventOnChange: 'guillotinechange', width: 240, height: 240});
 
                 var data = pictureProfilePhoto.guillotine('getData');
 
@@ -302,7 +302,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 // get Secure URI.
                 $scope.profilePhotoURI = cloudianary_result[0].src;
                 $scope.user.profile_image = $scope.profilePhotoURI; //update user reference
-                updateUser();
+                //updateUser();
 
                 // hide:
                 $scope.profilePhotoInProgress = false;
@@ -461,7 +461,9 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
 
             var initCandidateProfile = function(){
                 $scope.educations = $scope.user.educations;
-                $scope.selectedSkills = $scope.user.skills;
+                $scope.selectedSkills = $scope.user.skills.map(function(skill) {
+                    return skill.name;
+                });
                 $scope.summary = $scope.user.summary;
                 $scope.coverPhotoURI = $scope.user.cover_image;
                 $scope.profilePhotoURI = $scope.user.profile_image;
@@ -566,15 +568,12 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
             };
 
             var saveEducation = function(){
-                $scope.disableEducationEditor();
-
+                $scope.addEducationEnable = false;
                 var education = getEducation($scope.education); //Create Education Resource
-
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 education.$save(
                     function (response) {
                         getEducations();
-
                     },
                     function (error) {
                         console.log(error);
@@ -582,7 +581,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
             };
 
             var updateEducation = function($index){
-                $scope.disableEducationEditor();
+                $scope.educationEditor = false;
                 var education = getEducation($scope.educations[$index]);
                 education.id = $scope.educations[$index].id;
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
@@ -670,28 +669,10 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
             var initEducation = function() {
                 $scope.educations = [];
                 $scope.education = {}
-                $scope.education.start_date = "Start Year";
-                $scope.education.end_date = "End Year";
-
-                $scope.setStartYear = function(year) {
-                    $scope.education.start_date = year;
-                };
-
-                $scope.setEndYear = function(year) {
-                    $scope.education.end_date = year;
-                };
-
-                $scope.enableEducationEditor = function() {
-                    $scope.editorEducationEnabled = true;
-                };
-
-                $scope.disableEducationEditor = function() {
-                    $scope.editorEducationEnabled = false;
-                };
-
+                $scope.addEducationEnable = false;
+                $scope.educationEditor = false;
                 $scope.saveEducation = saveEducation;
                 $scope.updateEducation = updateEducation;
-
             };
 
             var refreshSkills = function () {

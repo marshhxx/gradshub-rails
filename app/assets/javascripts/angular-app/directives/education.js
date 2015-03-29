@@ -2,7 +2,8 @@ angular.module('mepedia.directives').directive('education', ['State', 'Country',
     return {
         scope: {
             education: '=data',
-            updateEducation: '&'
+            updateEducation: '&',
+            educationEditor: '='
         },
         templateUrl: 'angular-app/templates/directives/education.html',
         link: function (scope, element, attrs) {
