@@ -9,6 +9,7 @@
     "angular-sanitize": "latest",
     "angular-animate": "latest",
     "angular-cookies": "latest",
+    "angular-messages": "latest",
     "cloudinary_ng": ">=0.1.1",
     "cloudinary_js": "1.0.21",
     "ng-file-upload-shim": "1.6.x",

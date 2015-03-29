@@ -24,6 +24,8 @@ angular
 			$scope.myItem = {}
 
 			$scope.looking = false
+			$scope.eSubmitted = false
+			$scope.pSubmitted = false
 			$scope.great = true
 			$scope.now = new Date
 			$scope.currentYear = $scope.now.getFullYear()
@@ -131,14 +133,27 @@ angular
 				(user) ->
 					$state.go 'home.page' if !user?
 					$scope.user = user.candidate
-					$scope.createUser = createUser
+					$scope.validateAndCreate = validateAndCreate
 				,
 				(error) ->
 					console.log error
 					$state.go 'home.page'
 			)
 
+			$scope.validatePersonal = (valid) ->
+				$scope.pSubmitted = true
+				customCondition = dateSet($scope.birthDay) and $scope.birthMonth in $scope.months  and dateSet($scope.birthYear)
+				$state.go 'main.signup.education' if valid and customCondition
+
+			$scope.validateEducation = (valid) ->
+				$scope.eSubmitted = true
+				$state.go 'main.signup.interests' if valid
+
 		init()
+
+		validateAndCreate = (valid) ->
+			createUser() if valid
+
 		createUser = () ->
 			$httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
 			$q.all([saveCandidateNationality(), saveEducation(), saveSkills(), saveUser()])
@@ -176,6 +191,9 @@ angular
 				"11"
 			else if month is "December"
 				"12"
+
+		dateSet = (date) ->
+			!isNaN(parseFloat(date))
 
 		saveCandidateNationality = ->
 			candidateNationality = new CandidateNationalities()

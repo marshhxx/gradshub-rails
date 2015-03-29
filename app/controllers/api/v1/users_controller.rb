@@ -51,7 +51,7 @@ class Api::V1::UsersController < Api::BaseController
 
   def update
     set_resource(resource_class.find_by_uid(params[:id]))
-    if get_resource.update(resource_params)
+    if get_resource.user.update(resource_params[:user_attributes]) and get_resource.update(resource_params.slice!(:user_attributes))
       logger.info 'User updated!'
       render :show, status: :accepted and return
     end
