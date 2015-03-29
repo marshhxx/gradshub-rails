@@ -62,7 +62,7 @@
                         </div>
                         <div class="contentGuillotineProfile" ng-show="temporaryProfilePhoto">
                             <div class="frame">
-                                <img src="{{profileData.secure_url}}" id="temp_profile_photo"
+                                <img class="contentGuillotineProfile img" src="{{profileData.secure_url}}" id="temp_profile_photo"
                                      ng-show="profilePhotoLoaded"/>
                             </div>
                             <div ng-show="profilePhotoButtons" class="edit-buttons-wrapper edit-buttons-profile-photo">
@@ -208,72 +208,22 @@
             </div>
         </div>
 
-        <!--<div class="profile-right-container">-->
-        <!--<div class="profile-right-header">-->
-        <!--<div class="profile-right-header title">-->
-        <!--<h3>EARLY LIFE</h3>-->
-        <!--</div>-->
-        <!--<div class="profile-right-header edit">-->
-        <!--<div class="editwrapper">-->
-        <!--<div class="edit-pencil" ng-click="enableEarlyLifeEditor()"-->
-        <!--ng-hide="editorEarlyLifeEnabled"></div>-->
-
-        <!--<div ng-show="editorEarlyLifeEnabled" class="edit-buttons-wrapper">-->
-        <!--<a href="#" ng-click="saveEarlyLife()" class="btn btn-edit">-->
-        <!--SAVE </span>-->
-        <!--</a>-->
-        <!--<a href="#" ng-click="disableEarlyLifeEditor()" class="btn btn-edit margin-l5">-->
-        <!--CANCEL </span>-->
-        <!--</a>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--<div class="profile-right-content">-->
-        <!--<div ng-hide="editorEarlyLifeEnabled" class="profile-right-text">-->
-        <!--{{profileEarlyLife}}-->
-        <!--</div>-->
-        <!--<textarea class="form-control" rows="5" ng-show="editorEarlyLifeEnabled" ng-model="userEarlyLife"></textarea>-->
-        <!--</div>-->
-        <!--</div>-->
-
-        <!--<div class="profile-right-container">-->
-        <!--<div class="profile-right-header">-->
-        <!--<div class="profile-right-header title">-->
-        <!--<h3>PERSONAL LIFE</h3>-->
-        <!--</div>-->
-        <!--<div class="profile-right-header edit">-->
-        <!--<div class="editwrapper">-->
-        <!--<div class="edit-pencil" ng-click="enablePersonalLifeEditor()"-->
-        <!--ng-hide="editorPersonalLifeEnabled"></div>-->
-
-        <!--<div ng-show="editorPersonalLifeEnabled" class="edit-buttons-wrapper">-->
-        <!--<a href="#" ng-click="savePersonalLife()" class="btn btn-edit">-->
-        <!--SAVE </span>-->
-        <!--</a>-->
-        <!--<a href="#" ng-click="disablePersonalLifeEditor()" class="btn btn-edit margin-l5">-->
-        <!--CANCEL </span>-->
-        <!--</a>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--<div class="profile-right-content">-->
-        <!--<div ng-hide="editorPersonalLifeEnabled" class="profile-right-text">-->
-        <!--{{profilePersonalLife}}-->
-        <!--</div>-->
-        <!--<textarea class="form-control" rows="5" ng-show="editorPersonalLifeEnabled"-->
-        <!--ng-model="userPersonalLife"></textarea>-->
-        <!--</div>-->
-        <!--</div>-->
-
         <div class="profile-right-container">
             <div>
                 <add-education data="education" save-education="saveEducation"
                                add-education-enable="addEducationEnable"></add-education>
-
                 <div ng-repeat="education in educations">
                     <education data="education" update-education="updateEducation($index)" education-editor="educationEditor"></education>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-right-container">
+            <div>
+                <add-experience data="experience" save-experience="saveExperience"
+                               add-experience-enable="addExperienceEnable"></add-experience>
+                <div ng-repeat="experience in experiences">
+                    <experience data="experience" update-experience="updateExperience($index)" experience-editor="experienceEditor"></experience>
                 </div>
             </div>
         </div>

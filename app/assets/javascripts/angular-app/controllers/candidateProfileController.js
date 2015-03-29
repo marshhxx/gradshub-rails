@@ -1,7 +1,7 @@
 angular.module('mepedia.controllers').controller('candidateProfileController',
-    ['$scope', '$rootScope', '$http', '$upload', 'sessionService', '$state','Country', 'State', 'Candidate', 'Employer', 'Skill', 'School', 'Major', 'Degree', 'Education', 'CandidateSkills', 'Utils',
+    ['$scope', '$rootScope', '$http', '$upload', 'sessionService', '$state','Country', 'State', 'Candidate', 'Employer', 'Skill', 'School', 'Major', 'Degree', 'Education', 'CandidateSkills', 'Utils', 'Experience',
 
-        function($scope, $rootScope,$httpProvider, $upload, sessionService, $state, Country, State, Candidate, Employer, Skill, School, Major, Degree, Education, CandidateSkills, Utils) {
+        function($scope, $rootScope,$httpProvider, $upload, sessionService, $state, Country, State, Candidate, Employer, Skill, School, Major, Degree, Education, CandidateSkills, Utils, Experience) {
 
           /*  $scope.user = sessionService.requestCurrentUser()
 
@@ -262,7 +262,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 }
 
                 /* START guillotine configuration */ 
-                pictureProfilePhoto.guillotine({eventOnChange: 'guillotinechange', width: 240, height: 240});
+                pictureProfilePhoto.guillotine({eventOnChange: 'guillotinechange', width: 260, height: 260});
 
                 var data = pictureProfilePhoto.guillotine('getData');
 
@@ -275,8 +275,8 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 /* END guillotine configuration */
 
                 angular.element('.edit-buttons-profile-photo').css({
-                    'top': '205px',
-                    'left': '57px'
+                    'top': '180px',
+                    'left': '48px'
                 });
 
                 // show:
@@ -302,7 +302,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 // get Secure URI.
                 $scope.profilePhotoURI = cloudianary_result[0].src;
                 $scope.user.profile_image = $scope.profilePhotoURI; //update user reference
-                //updateUser();
+                updateUser();
 
                 // hide:
                 $scope.profilePhotoInProgress = false;
@@ -412,40 +412,11 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 /* SKILLS */
                 initSkills();
 
-                /* EARLY LIFE */
-                initEarlyLife();
-
-                /* PERSONAL LIFE */
-                initPersonalLife();
-
                 /* EDUCATION */
                 initEducation();
 
-                $scope.onState = function(state) {
-                    if (state != undefined)
-                        $scope.education.state = state;
-                };
-
-                $scope.onCountry = function(country) {
-                    $scope.education.country = country
-                    if ($scope.education.country != undefined)
-                        $scope.getStateByCountryId($scope.education.country.id);
-                }
-
-                $scope.onMajor = function(major) {
-                    if (major != undefined)
-                        $scope.education.major = major
-                };
-
-                $scope.onDegree= function(degree) {
-                    if (degree != undefined)
-                        $scope.education.degree = degree
-                };
-
-                $scope.onSchool = function (school) {
-                    if (school != undefined)
-                        $scope.education.school = school
-                };
+                /* EXPERIENCE */
+                initExperience();
 
                 sessionService.requestCurrentUser().then(
                     function (user) {
@@ -459,140 +430,18 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 );
             };
 
+            /* INIT FUNCTIONS */
+
             var initCandidateProfile = function(){
-                $scope.educations = $scope.user.educations;
+                $scope.coverPhotoURI = $scope.user.cover_image;
+                $scope.profilePhotoURI = $scope.user.profile_image;
+                $scope.summary = $scope.user.summary;
                 $scope.selectedSkills = $scope.user.skills.map(function(skill) {
                     return skill.name;
                 });
-                $scope.summary = $scope.user.summary;
-                $scope.coverPhotoURI = $scope.user.cover_image;
-                $scope.profilePhotoURI = $scope.user.profile_image;
+                $scope.educations = $scope.user.educations;
+                $scope.experiences = $scope.user.experiences;
             }
-
-            var getData = function() {
-                Country.query(function(countries) {
-                    $scope.countries = countries.countries;
-                });
-
-                $scope.getStateByCountryId = function(countryId) {
-                    State.query({country_id: countryId}, function(states) {
-                        $scope.states = states.states;
-                        console.log($scope.states);
-                    });
-                };
-
-                Skill.get(function(skills) {
-                    $scope.skillsTags = skills.skills;
-                });
-
-                School.get(function(schools) {
-                    $scope.schools = schools.schools;
-                });
-
-                Major.get(function(majors){
-                    $scope.majors = majors.majors;
-                });
-
-                Degree.get(function(degrees){
-                    $scope.degrees = degrees.degrees;
-                });
-            };
-
-
-            var saveSummary = function(){
-                $scope.summaryEnable = false;
-                $scope.user.summary = $scope.summary;
-                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
-                Utils.candidateFromObject($scope.user).$update(function(response){ //Creates resource User from object $scope.user
-                    $scope.user = response.candidate;
-                    initCandidateProfile(); //Update profile variables;
-                }, function(error){
-                    console.log(error);
-                });
-            };
-
-            var saveSkills = function(){
-                $scope.disableSkillsEditor();
-                $scope.selectedSkills = $scope.candidateSelectedSkills.slice();
-                var candidateSkills = new CandidateSkills();
-                candidateSkills.candidate_id = $scope.user.uid;
-                candidateSkills.skills = $scope.selectedSkills.map(function(skillName) {
-                    return {name: skillName}
-                });
-                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
-                candidateSkills.$update(
-                    function (response) {
-                        refreshSkills();
-                    },
-                    function(error) {
-                        console.log(error)
-                });
-            };
-
-            var saveEarlyLife = function(){
-                $scope.disableEarlyLifeEditor();
-                if($scope.userEarlyLife != undefined  && $scope.userEarlyLife != "" && $scope.userEarlyLife.length > 0){
-                    $scope.profileEarlyLife = $scope.userEarlyLife;
-                } else {
-                    $scope.profileEarlyLife = "Write something about your early life";
-                }
-            };
-
-            var savePersonalLife = function(){
-                $scope.disablePersonalLifeEditor();
-                if($scope.userPersonalLife != undefined  && $scope.userPersonalLife != "" && $scope.userPersonalLife.length > 0){
-                    $scope.profilePersonalLife = $scope.userPersonalLife;
-                } else {
-                    $scope.profilePersonalLife = "Write something about your personal life";
-                }
-            };
-
-            var getEducation = function(educationObj){
-                var education = new Education();
-                education.candidate_id = $scope.user.uid;
-                education.school_id = educationObj.school.id;
-                education.degree_id = educationObj.degree.id;
-                education.major_id = educationObj.major.id;
-                education.state_id = (educationObj.state != undefined) ? educationObj.state.id : null;
-                education.country_id = (educationObj.country.id != undefined) ? educationObj.country.id : null;
-                education.description = (educationObj.description != undefined) ? educationObj.description : null;
-                education.start_date = educationObj.start_date + '-01-01' ;
-                education.end_date = (educationObj.end_date != undefined) ? educationObj.end_date + '-01-01' : null;
-                return education;
-            };
-
-            var getEducations = function(){
-                Education.query({candidate_id: $scope.user.uid},function(educations){
-                    $scope.educations = educations.educations;
-                });
-            };
-
-            var saveEducation = function(){
-                $scope.addEducationEnable = false;
-                var education = getEducation($scope.education); //Create Education Resource
-                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
-                education.$save(
-                    function (response) {
-                        getEducations();
-                    },
-                    function (error) {
-                        console.log(error);
-                });
-            };
-
-            var updateEducation = function($index){
-                $scope.educationEditor = false;
-                var education = getEducation($scope.educations[$index]);
-                education.id = $scope.educations[$index].id;
-                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
-                education.$update(
-                    function (response) {
-                        getEducations(); //Todo change the way this is done. Modify array.
-                    },
-                    function (error) {
-                        console.log(error);
-                    });
-            };
 
             var initSummary = function() {
                 $scope.summaryEnable = false;
@@ -629,43 +478,6 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 $scope.saveSkills = saveSkills;
             };
 
-            var initEarlyLife = function() {
-                $scope.userEarlyLife;
-                $scope.profileEarlyLife = "Write something about your early life";
-
-                $scope.editorEarlyLifeEnabled = false;
-
-                $scope.enableEarlyLifeEditor = function() {
-                    $scope.editorEarlyLifeEnabled = true;
-                    if($scope.profileEarlyLife != "Write something about your early life")
-                        $scope.userEarlyLife = $scope.profileEarlyLife;
-                };
-
-                $scope.disableEarlyLifeEditor = function() {
-                    $scope.editorEarlyLifeEnabled = false;
-                };
-
-                $scope.saveEarlyLife = saveEarlyLife;
-            };
-
-            var initPersonalLife = function() {
-                $scope.userPersonalLife;
-                $scope.profilePersonalLife = "Write something about your personal life";
-                $scope.editorPersonalLifeEnabled = false;
-
-                $scope.enablePersonalLifeEditor = function() {
-                    $scope.editorPersonalLifeEnabled = true;
-                    if($scope.profilePersonalLife != "Write something about your personal life")
-                        $scope.userPersonalLife = $scope.profilePersonalLife;
-                };
-
-                $scope.disablePersonalLifeEditor = function() {
-                    $scope.editorPersonalLifeEnabled = false;
-                };
-
-                $scope.savePersonalLife = savePersonalLife;
-            };
-
             var initEducation = function() {
                 $scope.educations = [];
                 $scope.education = {}
@@ -675,14 +487,193 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 $scope.updateEducation = updateEducation;
             };
 
-            var refreshSkills = function () {
-                CandidateSkills.query({candidate_id: $scope.user.uid}, function (skills) {
-                    $scope.candidateSelectedSkills = skills.skills;
-                })
+            var initExperience = function(){
+                $scope.experiences = [];
+                $scope.experience = {};
+                $scope.addExperienceEnable = false;
+                $scope.experienceEditor = false;
+                $scope.saveExperience = saveExperience;
+                $scope.updateExperience = updateExperience;
+            }
+
+            /* GETTERS */
+
+            var getData = function() {
+                Country.query(function(countries) {
+                    $scope.countries = countries.countries;
+                });
+
+                $scope.getStateByCountryId = function(countryId) {
+                    State.query({country_id: countryId}, function(states) {
+                        $scope.states = states.states;
+                        console.log($scope.states);
+                    });
+                };
+
+                Skill.get(function(skills) {
+                    $scope.skillsTags = skills.skills;
+                });
+
+                School.get(function(schools) {
+                    $scope.schools = schools.schools;
+                });
+
+                Major.get(function(majors){
+                    $scope.majors = majors.majors;
+                });
+
+                Degree.get(function(degrees){
+                    $scope.degrees = degrees.degrees;
+                });
+            };
+
+            var getEducation = function(educationObj){
+                var education = new Education();
+                education.candidate_id = $scope.user.uid;
+                education.school_id = educationObj.school.id;
+                education.degree_id = educationObj.degree.id;
+                education.major_id = educationObj.major.id;
+                education.state_id = (educationObj.state != undefined) ? educationObj.state.id : null;
+                education.country_id = (educationObj.country.id != undefined) ? educationObj.country.id : null;
+                education.description = (educationObj.description != undefined) ? educationObj.description : null;
+                education.start_date = educationObj.start_date + '-01-01' ;
+                education.end_date = (educationObj.end_date != undefined) ? educationObj.end_date + '-01-01' : null;
+                return education;
+            };
+
+            var getExperience = function(experienceObj){
+                var experience = new Experience();
+                experience.candidate_id = $scope.user.uid;
+                experience.company_name = experienceObj.company_name;
+                experience.job_title = experienceObj.job_title;
+                experience.description = (experienceObj.description != undefined) ? experienceObj.description : null;
+                experience.start_date = experienceObj.start_date + '-01-01' ;
+                experience.end_date = (experienceObj.end_date != undefined) ? experienceObj.end_date + '-01-01' : null;
+                return experience;
+            }
+
+            /* SAVE FUNCTIONS */
+
+            var saveSummary = function(){
+                $scope.summaryEnable = false;
+                $scope.user.summary = $scope.summary;
+                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
+                Utils.candidateFromObject($scope.user).$update(function(response){ //Creates resource User from object $scope.user
+                    $scope.user = response.candidate;
+                    initCandidateProfile(); //Update profile variables;
+                }, function(error){
+                    console.log(error);
+                });
+            };
+
+            var saveSkills = function(){
+                $scope.disableSkillsEditor();
+                $scope.selectedSkills = $scope.candidateSelectedSkills.slice();
+                var candidateSkills = new CandidateSkills();
+                candidateSkills.candidate_id = $scope.user.uid;
+                candidateSkills.skills = $scope.selectedSkills.map(function(skillName) {
+                    return {name: skillName}
+                });
+                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
+                candidateSkills.$update(
+                    function (response) {
+                        $scope.user = response.candidate;
+                        initCandidateProfile();
+                    },
+                    function(error) {
+                        console.log(error)
+                });
+            };
+
+            var saveEducation = function(){
+                $scope.addEducationEnable = false;
+                var education = getEducation($scope.education); //Create Education Resource
+                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
+                education.$save(
+                    function (response) {
+                        $scope.user = response.candidate;
+                        initCandidateProfile();
+                    },
+                    function (error) {
+                        console.log(error);
+                });
+            };
+
+            var saveExperience = function(){
+                $scope.addExperienceEnable = false;
+                var experience = getExperience($scope.experience); //Create Experience Resource
+                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
+                experience.$save(
+                    function (response) {
+                        $scope.user = response.candidate;
+                        initCandidateProfile();
+                    },
+                    function (error) {
+                        console.log(error);
+                    });
+            };
+
+            /* UPDATE FUNCTIONS */
+
+            var updateEducation = function($index){
+                $scope.educationEditor = false;
+                var education = getEducation($scope.educations[$index]);
+                education.id = $scope.educations[$index].id;
+                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
+                education.$update(
+                    function (response) {
+                        $scope.user = response.candidate;
+                        initCandidateProfile(); //Todo change the way this is done. Modify array.
+                    },
+                    function (error) {
+                        console.log(error);
+                    });
+            };
+
+            var updateExperience = function($index){
+                $scope.experienceEditor = false;
+                var experience = getExperience($scope.experiences[$index]);
+                experience.id = $scope.experiences[$index].id;
+                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
+                experience.$update(
+                    function (response) {
+                        $scope.user = response.candidate;
+                        initCandidateProfile();
+                    },
+                    function (error) {
+                        console.log(error);
+                    });
+            };
+
+            /* OTHER FUNCTIONS */
+
+            $scope.onState = function(state) {
+                if (state != undefined)
+                    $scope.education.state = state;
+            };
+
+            $scope.onCountry = function(country) {
+                $scope.education.country = country
+                if ($scope.education.country != undefined)
+                    $scope.getStateByCountryId($scope.education.country.id);
+            }
+
+            $scope.onMajor = function(major) {
+                if (major != undefined)
+                    $scope.education.major = major
+            };
+
+            $scope.onDegree= function(degree) {
+                if (degree != undefined)
+                    $scope.education.degree = degree
+            };
+
+            $scope.onSchool = function (school) {
+                if (school != undefined)
+                    $scope.education.school = school
             };
 
             init();
-
 
         }]);
 

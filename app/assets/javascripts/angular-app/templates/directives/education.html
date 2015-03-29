@@ -25,7 +25,7 @@
                   ng-model="education.state"> {{education.state.name}} {{education.country.name}} </span>
             </div>
             <div class="form-cont">
-                <p class="header-regular-txt" ng-model="education.description"> {{education.description}} </p>
+                <p class="header-regular-txt"> {{education.description}} </p>
             </div>
         </div>
     </div>
@@ -48,24 +48,24 @@
 </div>
 <div class="profile-add-right-content" ng-show="educationEditor">
     <div class="form-group">
-        <input focus-input="editorEducationEnabled" type="text" ng-model="education.school" required
+        <input focus-input="educationEditor" type="text" ng-model="education.school" required
                class="form-control" id="school"
                placeholder="School"
                typeahead="school as school.name for school in schools | filter:$viewValue | limitTo:6" required
-               class="form-control" typeahead-on-select="onSchool($item)">
+               typeahead-on-select="onSchool($item)">
     </div>
 
     <div class="form-group">
         <input type="text" ng-model="education.degree" required class="form-control" id="degree" placeholder="Degree"
                typeahead="degree as degree.name for degree in degrees | filter:$viewValue | limitTo:6" required
-               class="form-control" typeahead-on-select="onDegree($item)">
+               typeahead-on-select="onDegree($item)">
     </div>
 
     <div class="form-group">
         <input type="text" ng-model="education.major" required class="form-control" id="major"
                placeholder="Field of Study"
                typeahead="major as major.name for major in majors | filter:$viewValue | limitTo:6" required
-               class="form-control" typeahead-on-select="onMajor($item)">
+               typeahead-on-select="onMajor($item)">
     </div>
 
     <div class="form-group">

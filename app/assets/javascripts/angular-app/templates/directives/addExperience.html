@@ -1,0 +1,67 @@
+<!-- Experience add component!-->
+<!-- Required fields are: company name, job title, start date !-->
+
+<div class="profile-right-header">
+    <div class="profile-right-header title">
+        <div class="profile-right-header-img experience"></div>
+        <h3>Experience</h3>
+    </div>
+    <div class="profile-right-header edit">
+        <div class="editwrapper">
+
+            <a ng-click="addExperience()" class="btn btn-add" ng-hide="addExperienceEnable"></a>
+
+            <div ng-show="addExperienceEnable" class="edit-buttons-wrapper">
+                <a ng-click="saveExperience()" class="btn btn-edit">
+                    <span> SAVE </span>
+                </a>
+                <a ng-click="onCancel()" class="btn btn-edit margin-l5">
+                    <span> CANCEL </span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="profile-add-right-content" ng-show="addExperienceEnable">
+    <div class="form-group">
+        <input focus-input="addExperienceEnable" type="text" ng-model="experience.company_name" required id="company"
+               placeholder="Company Name"
+               class="form-control">
+    </div>
+
+    <div class="form-group">
+        <input type="text" ng-model="experience.job_title" required
+               class="form-control" id="jobtitle"
+               placeholder="Job Title">
+    </div>
+
+    <div class="form-group">
+        <div class="btn-group margin-r5" dropdown>
+            <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle
+                    ng-disabled="disabled">
+                {{experience.start_date}} <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li ng-repeat="startYear in years">
+                    <a ng-click="onStartYear(startYear)">{{startYear}}</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="btn-group margin-l5" dropdown>
+            <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle
+                    ng-disabled="disabled">
+                {{experience.end_date}} <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li ng-repeat="endYear in years">
+                    <a ng-click="onEndYear(endYear)">{{endYear}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <textarea class="form-control" rows="5" ng-model="experience.description"
+              placeholder="Add a description..."></textarea>
+</div>

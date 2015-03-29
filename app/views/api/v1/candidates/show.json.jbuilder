@@ -19,6 +19,15 @@ json.candidate do
     json.start_date education.start_date
     json.end_date education.end_date
   end
+  json.experiences @candidate.experiences do |experience|
+    json.id experience.id
+    json.candidate_id experience.candidate.user.uid
+    json.company_name experience.company_name
+    json.job_title experience.job_title
+    json.description experience.description
+    json.start_date experience.start_date
+    json.end_date experience.end_date
+  end
   json.skills  @candidate.skills
   json.interests @candidate.interests
   json.summary @candidate.summary

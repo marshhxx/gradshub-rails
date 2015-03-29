@@ -1,0 +1,85 @@
+<!-- Required fields are: company name, job title, start date !-->
+
+<!-- Experience component-->
+<div ng-hide="experienceEditor">
+    <div class="profile-right-content">
+        <div class="profile-edit-on-hover">
+            <div class="form-cont">
+                <input type="hidden" ng-value="experience.id"/>
+
+                <div class="width85">
+                    <span class="header-title"> {{experience.company_name}} </span>
+                </div>
+                <div class="width15">
+                    <div class="edit-pencil-hover" ng-click="onExperienceEditor()" ng-hide="experienceEditor"></div>
+                </div>
+            </div>
+            <div class="form-cont">
+                <span class="header-subtitle"> {{experience.job_title}}</span>
+            </div>
+            <div class="form-cont">
+                <span class="header-light-txt"> {{experience.start_date}} - {{experience.end_date}} </span>
+            </div>
+            <div class="form-cont">
+                <p class="header-regular-txt"> {{experience.description}} </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Experience editor component -->
+<div class="profile-header edit" ng-show="experienceEditor">
+    <div class="editwrapper">
+
+        <div class="edit-buttons-wrapper">
+            <a ng-click="updateExperience()" class="btn btn-edit">
+                SAVE </span>
+            </a>
+            <a ng-click="onCancel()" class="btn btn-edit margin-l5">
+                CANCEL </span>
+            </a>
+        </div>
+
+    </div>
+</div>
+<div class="profile-add-right-content" ng-show="experienceEditor">
+    <div class="form-group">
+        <input focus-input="experienceEditor" type="text" ng-model="experience.company_name" required
+               class="form-control" id="company_name"
+               placeholder="Company Name">
+    </div>
+
+    <div class="form-group">
+        <input type="text" ng-model="experience.job_title" required class="form-control" id="job_title"
+               placeholder="Job Title">
+    </div>
+
+    <div class="form-group">
+        <div class="btn-group margin-r5" dropdown>
+            <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle
+                    ng-disabled="disabled">
+                {{experience.start_date}} <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li ng-repeat="startYear in years">
+                    <a ng-click="onStartYear(startYear)">{{startYear}}</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="btn-group margin-l5" dropdown>
+            <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle
+                    ng-disabled="disabled">
+                {{experience.end_date}} <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li ng-repeat="endYear in years">
+                    <a ng-click="onEndYear(endYear)">{{endYear}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <textarea class="form-control" rows="5" ng-model="experience.description"
+              placeholder="Description..."></textarea>
+</div>
