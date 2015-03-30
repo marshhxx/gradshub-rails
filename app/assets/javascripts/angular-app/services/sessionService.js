@@ -33,6 +33,10 @@ angular.module('mepedia.services').factory('sessionService',
                 return deferred.promise;
             },
 
+            sessionType: function() {
+                return Session.type();
+            },
+
             requestCurrentUser: function() {
                 return Session.getUser();
             },
@@ -80,6 +84,10 @@ angular.module('mepedia.services').factory('sessionService',
     ['Candidate', 'Employer', 'cookieJar', '$q', '$window', function (Candidate, Employer, cookieJar, $q, $window) {
         this.available = function () {
             return !!token || cookieJar.isDefined("token");
+        };
+
+        this.type = function() {
+          return type;
         };
 
         this.create = function (session, rememb) {

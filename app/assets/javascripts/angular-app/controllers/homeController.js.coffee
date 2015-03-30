@@ -1,7 +1,11 @@
 angular.module('mepedia.controllers').controller("HomeController", [
 	'$http','$scope', 'Candidate', 'Employer', '$state', '$anchorScroll', '$location', 'sessionService', '$sce', '$stateParams', 'registerService'
 	($http, $scope, Candidate, Employer, $state, $anchorScroll, $location, sessionService, $sce, $stateParams, registerService)->
-		#$state.go "main.profile" if sessionService.isAuthenticated()
+		if sessionService.isAuthenticated()
+			if sessionService.sessionType() == "Candidate"
+				$state.go 'main.candidate_profile'
+			else
+				$state.go 'main.employer_profile'
 
 		init = ->
 			$scope.renderHtml = (htmlCode) -> $sce.trustAsHtml(htmlCode)
