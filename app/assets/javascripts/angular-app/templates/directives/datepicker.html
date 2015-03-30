@@ -1,0 +1,32 @@
+<div ng-if="!noDay" class="btn-group" dropdown>
+	<button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+		{{dateDay}} <span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" role="menu">
+		<li ng-repeat="day in days">
+			<a ng-click="setDay(day, 'birth')">{{day}}</a>
+		</li>
+	</ul>
+</div>
+
+<div ng-if="!noMonth" class="btn-group margin-lr10" dropdown >
+	<button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+		{{dateMonth}} <span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" role="menu">
+		<li ng-repeat="month in months">
+			<a ng-click="setMonth(month, 'birth')">{{month}}</a>
+		</li>
+	</ul>
+</div>
+
+<div class="btn-group" dropdown >
+	<button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+		{{dateYear}} <span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" role="menu">
+		<li ng-repeat="year in years">
+			<a ng-click="setYear(year, 'birth')">{{year}}</a>
+		</li>
+	</ul>
+</div>

@@ -1,10 +1,15 @@
-<form id="education-form" name="educationForm" ng-submit="validateEducation(educationForm.$valid)">
+<form id="education-form" name="educationForm" ng-submit="validateEducation(educationForm.$valid)" novalidate>
 	<div class="signup form-container col-md-8 col-md-offset-2">
 	    <div class="signup form-box-cont">
 	    <div class="row">
 	        <div class="form-group">
-	            <input type="text" ng-model="school" required class="form-control" id="school"
+	            <input name="school" type="text" ng-model="school" required class="form-control" id="school"
 	                   placeholder="School" typeahead="school as school.name for school in schools | filter:$viewValue | limitTo:6" required class="form-control" typeahead-on-select="onSchool($item)">
+			        <div ng-if="eSubmitted" ng-messages="educationForm.school.$error">
+				        <div class="control-group.error p" ng-message="required">
+					        Please select a school
+				        </div>
+			        </div>
 	        </div>
 	    </div>
 
@@ -25,72 +30,48 @@
 
 	    <div class="row">
 	        <div class="form-group">
-	            <input type="text" ng-model="major" required class="form-control" id="major" placeholder="Major"
+	            <input name="major" type="text" ng-model="major" required class="form-control" id="major" placeholder="Major"
 	                   typeahead="major as major.name for major in majors | filter:$viewValue | limitTo:6" required class="form-control" typeahead-on-select="onMajor($item)">
+			        <div ng-if="eSubmitted" ng-messages="educationForm.major.$error">
+				        <div class="control-group.error p" ng-message="required">
+					        Please select a major
+				        </div>
+			        </div>
 	        </div>
 	    </div>
 
 	    <div class="row">
 	        <div class="form-group">
-	            <input type="text" ng-model="degree" required class="form-control" id="degree" placeholder="Degree"
+	            <input name="degree" type="text" ng-model="degree" required class="form-control" id="degree" placeholder="Degree"
 	                   typeahead="degree as degree.name for degree in degrees | filter:$viewValue | limitTo:6" required class="form-control" typeahead-on-select="onDegree($item)">
+			        <div ng-if="eSubmitted" ng-messages="educationForm.degree.$error">
+				        <div class="control-group.error p" ng-message="required">
+					        Please select a degree
+				        </div>
+			        </div>
 	        </div>
 	    </div>
 
 		  <div class="row">
 			  <div class="form-group">
-		      <input type="text" ng-model="description" class="form-control" id="educationDescription" placeholder="Description"
+		      <input type="text" ng-model="education.description" class="form-control" id="educationDescription" placeholder="Description"
 		             class="form-control">
 			  </div>
 		  </div>
 
 		    <div class="row text-center">
-
-			    <div class="btn-group margin-rn1 left" dropdown >
-				    <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-					    {{startDateMonth}} <span class="caret"></span>
-				    </button>
-				    <ul class="dropdown-menu" role="menu">
-					    <li ng-repeat="month in months">
-						    <a ng-click="setMonth(month, 'start')">{{month}}</a>
-					    </li>
-				    </ul>
+					<simpledatepicker no-day="true" date="education.start_date"></simpledatepicker>
+			    <div ng-if="eSubmitted && !education.start_date" >
+				    <div class="control-group.error p">
+					    Please select a birth date!
+				    </div>
 			    </div>
-
-			    <div class="btn-group margin-rn1 left" dropdown >
-				    <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-					    {{startDateYear}} <span class="caret"></span>
-				    </button>
-				    <ul class="dropdown-menu" role="menu">
-					    <li ng-repeat="year in years">
-						    <a ng-click="setYear(year, 'start')">{{year}}</a>
-					    </li>
-				    </ul>
+			    <simpledatepicker no-day="true" date="education.end_date"></simpledatepicker>
+			    <div ng-if="eSubmitted && !education.start_date" >
+				    <div class="control-group.error p">
+					    Please select a birth date!
+				    </div>
 			    </div>
-
-			    <div class="btn-group margin-rn1 left" dropdown >
-				    <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-					    {{endDateMonth}} <span class="caret"></span>
-				    </button>
-				    <ul class="dropdown-menu" role="menu">
-					    <li ng-repeat="month in months">
-						    <a ng-click="setMonth(month, 'end')">{{month}}</a>
-					    </li>
-				    </ul>
-			    </div>
-
-			    <div class="btn-group left" dropdown >
-				    <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-					    {{endDateYear}} <span class="caret"></span>
-				    </button>
-				    <ul class="dropdown-menu" role="menu">
-					    <li ng-repeat="year in years">
-						    <a ng-click="setYear(year, 'end')">{{year}}</a>
-					    </li>
-				    </ul>
-			    </div>
-		    </div>
-
 		    </div>
 	</div>
 	</div>
@@ -98,9 +79,9 @@
 	<div>
 	    <div class="form-group row btn-form-container">
 	        <div class="col-xs-12 text-center">
-	            <a ui-sref="main.signup.career" class="btn btn-form">
+	            <button type="submit" class="btn btn-form">
 	                NEXT </span>
-	            </a>
+	            </button>
 	        </div>
 	    </div>
 
