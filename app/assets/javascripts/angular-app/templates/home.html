@@ -14,18 +14,18 @@
                 <div class="intro-heading">CREATE A COMPELLING PROFILE. INSPIRE PEOPLE TO HIRE YOU</div>
             </div>
 
-            <section id="btn-type">
+            <section id="btn-user-type">
                 <div class="container">
                     <div class="row text-center">
                         <div class="col-md-2 col-sm-2btn-type">
                 <span id="employer-btn" class="employer_btn employer_btn_right"
-                      ng-click="showType()"
-                      ng-class="{'employer_btn-active': !type}">EMPLOYER</span>
+                      ng-click="isEmployer()"
+                      ng-class="{'employer_btn-active': !candidate}">EMPLOYER</span>
                         </div>
 
                         <div class="col-md-2 col-sm-2">
-                <span id="millennal-btn" class="millennal_btn millennal_btn_left" ng-click="showType()"
-                      ng-class="{'millennal_btn-active': type}">MILLENNIAL</span>
+                <span id="millennal-btn" class="millennal_btn millennal_btn_left" ng-click="isCandidate()"
+                      ng-class="{'millennal_btn-active': candidate}">MILLENNIAL</span>
                         </div>
                     </div>
                 </div>
@@ -76,10 +76,6 @@
                                     </div>
                                 </div>
                             </div>
-	                          <div class="col-lg-12 col-md-12 col-sm-8">
-		                          <input type="radio" ng-model="userType" value="Candidate">  Millennial <br/>
-		                          <input type="radio" ng-model="userType" value="Employer"> Employer <br/>
-	                          </div>
                             <div class="row text-center">
                                 <div class="col-lg-6 col-md-6 col-sm-12 text-center">
                                     <button type="submit" class="btn btn-xl">Join mepedia for free</button>

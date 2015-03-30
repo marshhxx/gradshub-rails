@@ -15,11 +15,13 @@ angular.module('mepedia.directives').directive('tagsInput', function () {
 
             // This adds the new tag to the tags array
             $scope.add = function() {
-                if($scope.currentTags.length < 9) {
-                    if($scope.new_value.name) {
-                        $scope.currentTags.push($scope.new_value.name);
-                        $scope.new_value = "";
-                    }
+                if($scope.new_value.name) {
+                    $scope.currentTags.push($scope.new_value.name);
+                    $scope.new_value = "";
+                } else {
+                    // it is a new skill so we should save it
+                    $scope.currentTags.push($scope.new_value);
+                    $scope.new_value = "";
                 }
             };
 

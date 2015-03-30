@@ -97,8 +97,8 @@ angular.module('mepedia.services').factory('sessionService',
         };
 
         this.destroy = function () {
-            token = null;
-            user = null;
+            token = undefined;
+            user = undefined;
             delete $window.sessionStorage["userInfo"];
             if (cookieJar.isDefined("current_user")) {
                 cookieJar.delete("current_user");

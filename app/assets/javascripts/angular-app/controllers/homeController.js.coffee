@@ -2,13 +2,31 @@ angular.module('mepedia.controllers').controller("HomeController", [
 	'$http','$scope', 'Candidate', 'Employer', '$state', '$anchorScroll', '$location', 'sessionService', '$sce', '$stateParams', 'registerService'
 	($http, $scope, Candidate, Employer, $state, $anchorScroll, $location, sessionService, $sce, $stateParams, registerService)->
 		#$state.go "main.profile" if sessionService.isAuthenticated()
-		$scope.renderHtml = (htmlCode) ->
-		 $sce.trustAsHtml(htmlCode)
-		$scope.userType = 'Candidate'
 
-		$scope.registerUser = (isValid) ->
+		init = ->
+			$scope.renderHtml = (htmlCode) -> $sce.trustAsHtml(htmlCode)
+			$scope.candidate = true
+			$scope.isCandidate = () -> $scope.candidate = true
+			$scope.isEmployer = () -> $scope.candidate = false
+			$scope.carouselInterval = 4000
+			$scope.slides = slides
+			$scope.rlslides = rlslides
+			$scope.type = true
+			$scope.showType = ->
+				$scope.type = not $scope.type
+			$scope.gotoTop = ->
+				# set the location.hash to the id of
+				# the element you wish to scroll to.
+				$location.hash "top"
+				$anchorScroll()
+
+			$scope.loginOnePgr = loginOnePgr
+
+			$scope.registerUser = registerUser
+
+		registerUser = (isValid) ->
 			if isValid
-				if $scope.userType == 'Candidate'
+				if $scope.candidate
 					user = new Candidate()
 				else
 					user = new Employer()
@@ -30,8 +48,7 @@ angular.module('mepedia.controllers').controller("HomeController", [
 			else
 				$scope.submitted = true
 
-		$scope.carouselInterval = 4000
-		$scope.slides = [
+		slides = [
 			{
 				image: "/assets/background-marqui1.png"
 			}
@@ -46,7 +63,7 @@ angular.module('mepedia.controllers').controller("HomeController", [
 			}
 		]
 
-		$scope.rlslides = [
+		rlslides = [
 			{
 				image: "/assets/home-real-lifestories2.png"
 				text: "In the two years since Adriana D. Hughes graduated with her degree </br> in communication and history,she had worked at a beach club in Annapolis, as a substitute
@@ -63,19 +80,9 @@ angular.module('mepedia.controllers').controller("HomeController", [
 			}
 		]
 
-		$scope.type = true
-		$scope.showType = () ->
-			$scope.type = not $scope.type
-
-		$scope.gotoTop = ->
-			# set the location.hash to the id of
-			# the element you wish to scroll to.
-			$location.hash "top"
-			$anchorScroll()
-
 ########  OnePgr login #########
 		$scope.onepgr_email = $stateParams.mail
-		$scope.loginOnePgr = () ->
+		loginOnePgr = () ->
 			user = registerService.currentUser()
 			user.onepgr_password = $scope.password
 			registerService.register(user).then(
@@ -96,5 +103,5 @@ angular.module('mepedia.controllers').controller("HomeController", [
 					console.log(errors)
 			)
 
-
+		init()
 ])
