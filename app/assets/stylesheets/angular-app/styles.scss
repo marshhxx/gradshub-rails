@@ -77,7 +77,6 @@ html {
 body {
   height: 100%;
   overflow-x: hidden !important;
-//  overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   webkit-tap-highlight-color: transparent;
   padding: 0;
@@ -1154,12 +1153,12 @@ footer#main .footer-above {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  height: 100vh;
+  height: 100%;
 }
 
 .signup .title {
   font-size: 2.0em;
-  font-family: Oswald-regular, Georgia, "Times New Roman", Times, serif;
+  font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
   color: #3D9ED8;
   text-transform: uppercase;
 }
@@ -1170,73 +1169,12 @@ footer#main .footer-above {
 
 .signup .subtitle {
   font-size: 1.1em;
-  font-family: Opensans-light, Georgia, "Times New Roman", Times, serif;
-  color: #505050;
-}
-
-.signup-ending-message {
-  font-size: 1.1em;
-  font-family: Opensans-regular, Georgia, "Times New Roman", Times, serif;
-  color: #FFFFFF;
-}
-
-.signup .looking_btn {
-  width: 210px;
-  text-align: center;
-  padding: 10px 0;
-  border: 1px solid rgb(255, 255, 255);
-  font: 14px Opensans-light, Georgia, "Times New Roman", Times, serif;
-  //color: #3f4752;
-  color: #FFFFFF;
-  cursor: pointer;
-  background-color: none;
-  text-decoration: none;
-  display: inline-block;
-  margin-bottom: 15px;
-}
-
-.signup .looking_btn_active {
-  background-color: rgb(134, 185, 163);
-  border: 1px solid rgb(134, 185, 163);
-  color: #FFF;
-  text-decoration: none;
-}
-
-.signup .looking_btn:hover {
-  background-color: rgb(134, 185, 163);
-  border: 1px solid rgb(134, 185, 163);
-  text-decoration: none;
-}
-
-.signup .great_btn {
-  width: 210px;
-  color: #FFFFFF;
-  text-align: center;
-  border: 1px solid rgb(255, 255, 255);
-  font: 14px Opensans-light, Georgia, "Times New Roman", Times, serif;
-  padding: 10px 0;
-  //color: #3f4752;
-  cursor: pointer;
-  background-color: none;
-  text-decoration: none;
-  display: inline-block;
-}
-
-.signup .great_btn-active {
-  background-color: rgb(217, 144, 83);
-  border: 1px solid rgb(217, 144, 83);
-  color: #FFF;
-  text-decoration: none;
-}
-
-.signup .great_btn:hover {
-  background-color: rgb(243, 175, 104);
-  border: 1px solid rgb(243, 175, 104);
-  color: #FFF;
-  text-decoration: none;
+  font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+  color: #122028;
 }
 
 .signup.form-container {
+  margin-top: 20px;
   height: 330px;
 }
 
@@ -1249,16 +1187,16 @@ footer#main .footer-above {
   margin: 20px 0;
   padding: 10px 0px;
   background: none;
-  color: #FFFFFF;
-  font: 14px Opensans-light, Georgia, "Times New Roman", Times, serif;
-  border: 1px solid #fff;
+  color: #122028;
+  font: 14px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+  border: 1px solid #122028;
   border-radius: 0 !important;
 }
 
 .btn-form:hover {
   background: #122028;
   color: #FFF;
-  font: 14px Opensans-light, Georgia, "Times New Roman", Times, serif;
+  font: 14px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
 }
 
 .btn-primary {
@@ -1335,13 +1273,13 @@ footer#main .footer-above {
 /* form styling */
 #form-container {
   background: rgba(255, 255, 255, 0.8);
-  margin-top: 15px;
+  margin-top: 50px;
   display: inline-block
 }
 
 #form-container .page-header {
   margin: 0;
-  padding: 30px;
+  padding: 20px 30px;
 }
 
 /* numbered buttons */
@@ -1349,14 +1287,14 @@ footer#main .footer-above {
 }
 
 #status-buttons-work a {
-  color: #505050;
+  color: #122028;
   display: inline-block;
   font-size: 12px;
   margin-right: 10px;
   text-align: center;
   text-transform: uppercase;
   text-decoration: none !important;
-  font-family: Opensans-light, Georgia, "Times New Roman"
+  font-family: Montserrat-Regular, Georgia, "Times New Roman"
 }
 
 #status-buttons-work a:hover {
@@ -1376,58 +1314,57 @@ footer#main .footer-above {
   background-size: 45px 45px;
   background-repeat: no-repeat;
   background-position: center center;
-
 }
 
 .ic-wizard.personal {
-  background-image: url("personalwhite.svg");
+  background-image: url("personal-gray.svg");
 }
 
 .ic-wizard.personal .active {
-  background-image: url("personalpink.svg");
+  background-image: url("personal-orange.svg");
   text-decoration: none;
 }
 
 .ic-wizard.hpersonal {
-  background-image: url("personalwhite.svg");
+  background-image: url("personal-gray.svg");
 }
 
 .ic-wizard.hpersonal.active {
-  background-image: url("personalgreen.svg");
+  background-image: url("personal-blue.svg");
   text-decoration: none;
 }
 
 .ic-wizard.education {
-  background-image: url("educationwhite.svg");
+  background-image: url("education-gray.svg");
 }
 
 .ic-wizard.education.active {
-  background-image: url("educationpink.svg");
+  background-image: url("education-orange.svg");
 }
 
 .ic-wizard.interests {
-  background-image: url("interestswhite.svg");
+  background-image: url("interests-gray.svg");
 }
 
 .ic-wizard.interests.active {
-  background-image: url("interestspink.svg");
+  background-image: url("interests-orange.svg");
 }
 
 .ic-wizard.company {
-  background-image: url("companywhite.svg");
+  background-image: url("company-gray.svg");
 }
 
 .ic-wizard.company.active {
-  background-image: url("companygreen.svg");
+  background-image: url("company-blue.svg");
   text-decoration: none;
 }
 
 .ic-wizard.lookingfor {
-  background-image: url("lookingwhite.svg");
+  background-image: url("looking-gray.svg");
 }
 
 .ic-wizard.lookingfor.active {
-  background-image: url("lookinggreen.svg");
+  background-image: url("looking-blue.svg");
 }
 
 /* active buttons */
