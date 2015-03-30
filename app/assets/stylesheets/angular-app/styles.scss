@@ -111,15 +111,19 @@ input::-webkit-input-placeholder {
 }
 
 .regular-txt-gray {
-  color: #898989 !important;
+  margin-left: 80px;
+  color: #67666B !important;
   font-size: 14px;
-  font-family: 'Opensans-regular', Georgia, "Times New Roman", Times, serif;
+  text-align: left;
+  font-family: 'Lato-Regular', Georgia, "Times New Roman", Times, serif;
 }
 
 .regular-tlt-black {
-  color: #3f4752;
+  margin-left: 80px;
+  color: #011B25;
   font-size: 18px;
-  font-family: 'Opensans-semibold', Georgia, "Times New Roman", Times, serif;
+  text-align: left;
+  font-family: 'Montserrat-Light', Georgia, "Times New Roman", Times, serif;
 }
 
 .title {
@@ -290,7 +294,7 @@ input::-webkit-input-placeholder {
   border-radius: 0px;
   border: 0 !important;
   // background-color: #1C2A33;
-  background-color: #122028;
+  background-color: #011B25;
 }
 
 .navbar-default .navbar-collapse {
@@ -312,7 +316,7 @@ input::-webkit-input-placeholder {
 }
 
 .navbar-default .nav li a {
-  font-family: 'Opensans-regular';
+  font-family: 'Lato-Regular';
   font-weight: 400;
   color: #fff;
   cursor: pointer;
@@ -335,7 +339,7 @@ input::-webkit-input-placeholder {
 @media(min-width: 768px) {
 
   .navbar-default .navbar-nav > .active > a {
-    border-radius: 3px;
+    border-radius: 0px;
   }
 
   .navbar-default.navbar-shrink {
@@ -362,7 +366,7 @@ section#logo .logo {
   padding-top: 20px;
   padding-bottom: 25px;
   float: left;
-  background-image: url("logo-homepage.svg");
+//  background-image: url("logo-homepage.svg");
   background-repeat: no-repeat;
   background-size: 200px auto;
 }
@@ -404,17 +408,18 @@ header .intro-text {
 header .intro-text .intro-lead-in {
   padding: 0px;
   line-height: 30px;
-  font-family: Roboto-bold, Georgia, "Times New Roman", Times, serif;
-  font-size: 1.9em;
-  color: #FFF;
+  font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+  font-size: 1.8em;
+  color: #011B25;
 }
 
 header .intro-text .intro-heading {
   padding: 5px 0px 5px 0px;
-  font-family: Roboto-light, Georgia, "Times New Roman", Times, serif;
+  margin: 15px 0px 10px 0px;
+  font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
   font-size: 1.2em;
   line-height: 22px;
-  color: #FFF;
+  color: #011B25;
 }
 
 /* Extra Small Devices, Phones */
@@ -595,9 +600,10 @@ header .home-carousel-container {
 .btn-xl {
   padding: 10px 40px;
   background: none;
-  color: #fff;
-  font: 18px Opensans-regular, Georgia, "Times New Roman", Times, serif;
-  border: 1px solid #fff;
+  color: #011B25;
+  font: 18px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+  border: 1px solid #011B25;
+  border-radius: 0 !important;
   margin: 10px 0;
 }
 
@@ -606,22 +612,22 @@ header .home-carousel-container {
 .btn-xl:active,
 .btn-xl.active,
 .open .dropdown-toggle.btn-xl {
-  background-color: #1C2A33;
+  background-color: #011B25;
   color: #fff;
 }
 
 .btn-xs {
   padding: 10px 30px;
   background: none;
-  color: #fff;
-  font: 14px Opensans-regular, Georgia, "Times New Roman", Times, serif;
-  border: 1px solid #fff;
+  color: #011B25;
+  font: 14px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+  border: 1px solid #011B25;
 }
 
 .btn-xs:hover {
-  background: #FFF;
-  color: #1C2A33;
-  font: 14px Opensans-semibold, Georgia, "Times New Roman", Times, serif;
+  background: #011B25;
+  color: #FFF;
+  font: 14px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
 }
 
 @media(min-width: 768px) {
@@ -633,6 +639,69 @@ header .home-carousel-container {
     margin-top: 0px;
   }
 }
+
+section#btn-type {
+  padding: 20px 0;
+}
+
+.employer_btn {
+  width: 190px;
+  text-align: center;
+  padding: 15px 0;
+  border: 2px solid rgb(0, 159, 219);
+  font: 16px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+  color: #009FDB;
+  cursor: pointer;
+  background-color: transparent;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.employer_btn-active {
+  background-color: rgb(0, 159, 219);
+  color: #FFF;
+  text-decoration: none;
+}
+
+.employer_btn:hover {
+  background-color: rgb(0, 159, 219);
+  border-width: 2px;
+  border-style: solid;
+  color: #FFF;
+  text-decoration: none;
+}
+
+.millennal_btn {
+  width: 190px;
+  text-align: center;
+  border: 2px solid rgb(236, 138, 101);
+  font: 16px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+  padding: 15px 0;
+  color: #EC8A65;
+  cursor: pointer;
+  background-color: transparent;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.millennal_btn-active {
+  background-color: rgb(236, 138, 101);
+  color: #FFF;
+  text-decoration: none;
+}
+
+.millennal_btn:hover {
+  background-color: rgb(236, 138, 101);
+  border-width: 2px;
+  border-style: solid;
+  color: #FFF;
+  text-decoration: none;
+}
+
+.btn-type {
+  padding-bottom: 10px;
+}
+
 
 .carousel-slider {
   display: none;
@@ -684,24 +753,38 @@ section {
 section h2.section-heading {
   margin-top: 0;
   margin-bottom: 15px;
-  font-size: 2.2em;
-  color: #3D9ED8;
-  font-family: Oswald-regular, Georgia, "Times New Roman", Times, serif;
+  font-size: 1.5em;
+  color: #009FDB;
+  font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
 }
 
 section h3.section-subheading {
   margin-bottom: 45px;
-  font-family: Opensans-light, Georgia, "Times New Roman", Times, serif;
+  font-family: Montserrat-Light, Georgia, "Times New Roman", Times, serif;
   font-size: 1.5em;
-  color: #3f4752;
+  color: #011B25;
+  float: none !important;
   //  font-variant: small-caps;
 }
 
+section#welcometomepedia-background{
+  margin-bottom: 50px;
+  width: 100% !important;
+  height: 100px;
+  padding: 30px 0px 120px 0px;
+  background-color: #FAFAFA;
+  position: relative;
+  text-align: center;
+}
+
+
 .features-image {
-  width: 120px;
-  height: 120px;
-  background-size: 120px;
+  margin-top: 15px;
+  width: 60px !important;
+  height: 60px !important;
+  background-size: 60px !important;
   background-repeat: no-repeat;
+  float: left;
   display: inline-block; /* so that it behaves like the img element */
 }
 
@@ -717,14 +800,19 @@ section h3.section-subheading {
   background-image: url("home-features-right.svg");
 }
 
+.compelling-image.img-left {
+  background-image: url("imac-mockup.png");
+}
+
+
 /* Small Devices, Tablets */
 @media only screen and (min-width: 768px) {
   section {
-    padding: 50px 0;
+    padding: 40px 0;
   }
 
   section h2.section-heading {
-    font-size: 3.5em;
+    font-size: 2.9em;
   }
 
   section h3.section-subheading {
@@ -742,6 +830,11 @@ section h3.section-subheading {
     padding-left: 80px;
     padding-right: 80px;
   }
+
+  .compelling-image {
+  text-align: center;
+  }
+
 }
 
 /* Large Devices, Wide Screens */
@@ -1558,7 +1651,7 @@ label {
   background-size: 30px 30px;
   float: left;
   background-color: #3D9ED8;
-  border-radius: 5px;
+  border-radius: 0px;
 }
 
 .login.ic-password {
@@ -1568,7 +1661,7 @@ label {
   background-size: 30px 30px;
   float: left;
   background-color: #3D9ED8;
-  border-radius: 5px;
+  border-radius: 0px;
 }
 
 .login.button-submit {
@@ -1774,7 +1867,7 @@ label {
 }
 
 .tags .tag {
-  border-radius: 3px;
+  border-radius: 0px;
   background-color: #EFEFEF;
   color: #3D9ED8;
   border: 1px solid #DDD;
@@ -1811,7 +1904,7 @@ label {
   color: #3D9ED8;
   font: 14px Lato-Regular;
   border: 1px solid #3D9ED8;
-//  border-radius: 3px;
+//  border-radius: 0px;
   cursor: pointer;
   margin-left: 5px;
   float: right;

@@ -10,9 +10,26 @@
         <div id="top" class="container">
 
             <div class="intro-text">
-                <div class="intro-lead-in">Showcase The Real You</div>
-                <div class="intro-heading">Create a Compelling Profile. Inspire People to hire you</div>
+                <div class="intro-lead-in">SHOWCASE THE REAL YOU</div>
+                <div class="intro-heading">CREATE A COMPELLING PROFILE. INSPIRE PEOPLE TO HIRE YOU</div>
             </div>
+
+            <section id="btn-user-type">
+                <div class="container">
+                    <div class="row text-center">
+                        <div class="col-md-2 col-sm-2btn-type">
+                <span id="employer-btn" class="employer_btn employer_btn_right"
+                      ng-click="isEmployer()"
+                      ng-class="{'employer_btn-active': !candidate}">EMPLOYER</span>
+                        </div>
+
+                        <div class="col-md-2 col-sm-2">
+                <span id="millennal-btn" class="millennal_btn millennal_btn_left" ng-click="isCandidate()"
+                      ng-class="{'millennal_btn-active': candidate}">MILLENNIAL</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <div class="signup-form">
                 <form name="homeForm" ng-submit="registerUser(homeForm.$valid)" novalidate>
@@ -59,10 +76,6 @@
                                     </div>
                                 </div>
                             </div>
-	                          <div class="col-lg-12 col-md-12 col-sm-8">
-		                          <input type="radio" ng-model="userType" value="Candidate">  Millennial <br/>
-		                          <input type="radio" ng-model="userType" value="Employer"> Employer <br/>
-	                          </div>
                             <div class="row text-center">
                                 <div class="col-lg-6 col-md-6 col-sm-12 text-center">
                                     <button type="submit" class="btn btn-xl">Join mepedia for free</button>
@@ -97,36 +110,58 @@
                 <h3 class="section-subheading text-muted">Getting a job is easier now</h3>
             </div>
         </div>
-        <div class="row text-center">
-            <div class="col-md-4 text-center">
-                <div class="features-image img-left"></div>
-                <h4 class="regular-tlt-black">COMPELLING PROFILE</h4>
-
-                <p class="regular-txt-gray text-muted">Make a powerful profile that showcases your skills, projects and
-                    accomplishments.
-                    Market yourself with the profile for exciting new career opportunities.
-                    The profile is built in 3 easy steps - Create, Edit and Upload. </p>
-            </div>
-            <div class="col-md-4 text-center">
-                <div class="features-image img-middle"></div>
-                <h4 class="regular-tlt-black">POWERFUL SEARCH ENGINE</h4>
-
-                <p class="regular-txt-gray text-muted">Our multi-dimensional, one click search engine finds your next
-                    great job opportunity based on your skills, interests and education. The "Always working - automated
-                    search engine" works in background to match the most ideal and suitable career opportunities for
-                    you.</p>
-            </div>
-            <div class="col-md-4 text-center">
-                <div class="features-image img-right"></div>
-                <h4 class="regular-tlt-black">PERSONALIZATION PLATFORM</h4>
-
-                <p class="regular-txt-gray text-muted">Personalization engine creates meaningful personalized
-                    connections between the great minds and the employers looking for great minds. It greatly improves
-                    your chances of finding the best match and speeds up the hiring process. </p>
-            </div>
-        </div>
     </div>
 </section>
+
+            <section id="welcometomepedia-background">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-12 text-center">
+                            <div class="row text-center">
+                                <div class="col-md-4 text-center">
+                                    <div class="features-image img-left"></div>
+                                    <h4 class="regular-tlt-black">COMPELLING <strong>PROFILE</strong></h4>
+
+                                    <p class="regular-txt-gray text-muted">Make a powerful profile that showcase your skills, objects and accomplishments. </p>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <div class="features-image img-middle"></div>
+                                    <h4 class="regular-tlt-black">POWERFUL <strong>SEARCH ENGINE</strong></h4>
+
+                                    <p class="regular-txt-gray text-muted">Our miltu-dimensional, one click search engine finds your next great job opportunity.</p>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <div class="features-image img-right"></div>
+                                    <h4 class="regular-tlt-black">PERSONALIZATION <strong>PLATFORM</strong></h4>
+
+                                    <p class="regular-txt-gray text-muted">Creates meaningful personalized connections between the millennials and the employers. </p>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="features-description">
+                <div class="container">
+                    <div class="row text-center">
+                        <div class="col-md-6 text-center">
+                            <div class="compelling-image img-left"></div>
+                        </div>
+
+                        <div class="col-md-6 text-center">
+                            <h4 class="description-tlt">COMPELLING <strong>PROFILE</strong></h4>
+                            <p class="description-txt text-muted">Make a powerful profile that showcase your skills, objects and accomplishments.
+                                Market yourself with the profile for exciting new career opportunities.
+                                The profile is built in 3 easy steps. Create, Edit and Upload. </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
 
 <section id="reallifestories">
     <div class="container">

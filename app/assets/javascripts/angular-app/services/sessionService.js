@@ -33,6 +33,10 @@ angular.module('mepedia.services').factory('sessionService',
                 return deferred.promise;
             },
 
+            sessionType: function() {
+                return Session.type();
+            },
+
             requestCurrentUser: function() {
                 return Session.getUser();
             },
@@ -82,6 +86,10 @@ angular.module('mepedia.services').factory('sessionService',
             return !!token || cookieJar.isDefined("token");
         };
 
+        this.type = function() {
+          return type;
+        };
+
         this.create = function (session, rememb) {
             user_uid = session.uid;
             token = session.auth_token;
@@ -97,8 +105,8 @@ angular.module('mepedia.services').factory('sessionService',
         };
 
         this.destroy = function () {
-            token = null;
-            user = null;
+            token = undefined;
+            user = undefined;
             delete $window.sessionStorage["userInfo"];
             if (cookieJar.isDefined("current_user")) {
                 cookieJar.delete("current_user");

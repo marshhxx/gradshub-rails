@@ -66,7 +66,7 @@
 		url: "/candidate/profile"
 		templateUrl: "angular-app/templates/candidate_profile.html"
 		controller: "candidateProfileController"
-	).state("main.candidate_employer",
+	).state("main.employer_profile",
 		url: "/employer/profile"
 		templateUrl: "angular-app/templates/employer_profile.html"
 		controller: "employerProfileController"

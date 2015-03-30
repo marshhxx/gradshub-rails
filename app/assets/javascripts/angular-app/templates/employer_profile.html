@@ -1,0 +1,173 @@
+<div class="profile background">
+    <div class="profile wrapper col-md-9 col-md-offset-1">
+        <div id="employerProfileTopSection" style="overflow: auto;">
+            <div id="employerProfileCover" class="coverWrap">
+                <div class="coverBorder">
+                    <div class="employerDefaultCoverPhoto"></div>
+                    <div class="employerCoverImageEdit wrapper">
+                        <div class="employerCoverImageEdit img"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="profileHeadline wrapper">
+                <div class="companyImage wrapper">
+                    <div class="companyDefaultPhoto">
+                        <h2>Company Logo</h2>
+                        <div class="companyImageEdit wrapper">
+                            <div class="companyImageEdit img"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="companyNameWrapper">
+                    <h1>Company Name</h1>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="employerProfileContent">
+            <div class="employerProfileLeftContent cont col-md-6">
+                <div class="section padding-135">
+                    <div class="employerProfilePhotoWrapper col-xs-4">
+                        <div class="employerDefaultProfileImage img"></div>
+                        <div class="employerProfileImageEdit wrapper">
+                            <div class="employerProfileImageEdit img"></div>
+                        </div>
+                    </div>
+                    <div class="employerBasicInfoWrapper col-xs-8">
+                        <div class="employerNameWrapper">
+                            <span>Name Last name</span>
+                        </div>
+                        <div class="employerPositionWrapper">
+                            <span>Position</span>
+                        </div>                     
+                    </div>
+                </div>
+                <div class="section padding-l35">
+                    <div class="editwrapper"></div>
+
+                    <div class="employerProfileLeftContentWrapper">
+                        <div class="profileLeft">
+                            <div class="img-col">
+                                <div class="profile-img jobposition"></div>
+                            </div>
+                            <div class="cont-col">
+
+                            </div>
+                        </div>
+
+                        <div class="profileLeft">
+                            <div class="img-col">
+                                <div class="profile-img education"></div>
+                            </div>
+                            <div class="cont-col">
+
+                            </div>
+                        </div>
+
+                        <div class="profileLeft">
+                            <div class="img-col">
+                                <div class="profile-img topskills"></div>
+                            </div>
+                            <div class="cont-col">
+
+                            </div>
+                        </div>
+
+                        <div class="profileLeft">
+                            <div class="img-col">
+                                <div class="profile-img location"></div>
+                            </div>
+                            <div class="cont-col">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profileLeftContent section">
+                    <div class="profile-communication-panel-img message"></div>
+                    <div class="profile-communication-panel-img videocam"></div>
+                </div>
+
+            </div>
+
+            <div class="employerProfileRightContent col-md-6">
+            
+                <!-- DESCRIPTION -->
+                <div class="profile-right-container">
+                    <div class="profile-right-header">
+                        <div class="profile-right-header title employer-title">
+                            <div class="profile-right-header-img summary"></div>  <h3> Description</h3>
+                        </div>
+                        <div class="profile-right-header edit employer-edit">
+                            <div class="editwrapper">
+                                <div class="edit-pencil employer" ng-click="enableDescriptionEditor()"
+                                     ng-hide="descriptionEnable"></div>
+
+                                <div ng-show="editorDescriptionEnabled" class="edit-buttons-wrapper">
+                                    <a ng-click="saveDescription()" class="btn btn-edit">
+                                        SAVE </span>
+                                    </a>
+                                    <a ng-click="disableDescriptionEditor()" class="btn btn-edit margin-l5">
+                                        CANCEL </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-right-content">
+                        <div ng-hide="descriptionEnable" class="profile-right-text">
+                            {{employerDescription}}
+                        </div>
+                        <textarea class="form-control" rows="5" ng-show="descriptionEnable" ng-model="summary"></textarea>
+                    </div>
+                </div>
+
+                <!-- SKILLS -->
+                <div class="profile-right-container">
+                    <div class="profile-right-header">
+                        <div class="profile-right-header title">
+                            <div class="profile-right-header-img skills"></div> <h3> SKILLS </h3>
+                        </div>
+                        <div class="profile-right-header edit">
+                            <div class="editwrapper">
+                                <div class="edit-pencil" ng-click="enableSkillsEditor()"
+                                     ng-hide="editorSkillsEnabled"></div>
+
+                                <div ng-show="editorSkillsEnabled" class="edit-buttons-wrapper">
+                                    <a ng-click="saveSkills()" class="btn btn-edit">
+                                        SAVE </span>
+                                    </a>
+                                    <a ng-click="disableSkillsEditor()" class="btn btn-edit margin-l5">
+                                        CANCEL </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-right-content">
+                        <div ng-hide="editorSkillsEnabled" class="profile-right-text">
+                            <div class="tags">
+                                <a class="tag" ng-model="tag" ng-repeat="tag in selectedSkills">{{tag}}</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <tags-input tags="skillsTags" ng-show="editorSkillsEnabled" placeholder="Add your skills..."
+                                        info="candidateSelectedSkills"></tags-input>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+<!-- 
+        </div>
+
+    </div>
+</div>
+
+ -->

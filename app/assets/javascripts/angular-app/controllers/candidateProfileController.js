@@ -480,7 +480,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
 
             var initEducation = function() {
                 $scope.educations = [];
-                $scope.education = {}
+                $scope.education = {};
                 $scope.addEducationEnable = false;
                 $scope.educationEditor = false;
                 $scope.saveEducation = saveEducation;
@@ -577,11 +577,16 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 candidateSkills.$update(
                     function (response) {
-                        $scope.user = response.candidate;
-                        initCandidateProfile();
+                        refreshSkills();
                     },
                     function(error) {
                         console.log(error)
+                });
+            };
+
+            var getEducations = function(){
+                Education.query({candidate_id: $scope.user.uid},function(educations){
+                    $scope.educations = educations.educations;
                 });
             };
 
@@ -591,12 +596,17 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 education.$save(
                     function (response) {
-                        $scope.user = response.candidate;
-                        initCandidateProfile();
+                        getEducations();
                     },
                     function (error) {
                         console.log(error);
                 });
+            };
+
+            var getExperiences = function () {
+              Experience.query({candidate_id: $scope.user.uid}, function(experiences) {
+                  $scope.experiences = experiences.experiences;
+              })
             };
 
             var saveExperience = function(){
@@ -605,8 +615,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 experience.$save(
                     function (response) {
-                        $scope.user = response.candidate;
-                        initCandidateProfile();
+                        getExperiences();
                     },
                     function (error) {
                         console.log(error);
@@ -622,8 +631,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 education.$update(
                     function (response) {
-                        $scope.user = response.candidate;
-                        initCandidateProfile(); //Todo change the way this is done. Modify array.
+                        getEducations();
                     },
                     function (error) {
                         console.log(error);
@@ -637,8 +645,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 experience.$update(
                     function (response) {
-                        $scope.user = response.candidate;
-                        initCandidateProfile();
+                        getExperiences();
                     },
                     function (error) {
                         console.log(error);
