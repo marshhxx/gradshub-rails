@@ -375,6 +375,7 @@ section#logo .logo {
   background-repeat: no-repeat;
   background-size: 150px 50px;
   border: 0px !important;
+  display: none;
 }
 
 .logo-white-container {
@@ -1160,11 +1161,12 @@ footer#main .footer-above {
 }
 
 .signup.background {
-  background: #ececec;
+  background-image: url('background-signup.jpg');
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
+  background-repeat: no-repeat;
   height: 100%;
 }
 
@@ -1291,7 +1293,7 @@ footer#main .footer-above {
 
 /* form styling */
 #form-container {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9);
   margin-top: 50px;
   display: inline-block
 }
