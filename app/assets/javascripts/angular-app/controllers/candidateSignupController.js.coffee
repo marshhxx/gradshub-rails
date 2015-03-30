@@ -37,7 +37,7 @@ angular
 				$scope.nationalities = nationalities.nationalities
 
 			$scope.onCountry = (country) ->
-				if($scope.country?)
+				if(country?)
 					$scope.user.country_id = country.id
 					$scope.getStateByCountryId(country.id)
 
@@ -94,7 +94,6 @@ angular
 					$scope.user = Utils.candidateFromObject(user.candidate)
 					$scope.education.candidate_id = $scope.user.uid
 					$scope.skills.candidate_id = $scope.user.uid
-					$scope.validateAndCreate = validateAndCreate
 				,
 				(error) ->
 					console.log error
@@ -109,7 +108,7 @@ angular
 				$scope.eSubmitted = true
 				$state.go 'main.signup.interests' if valid
 
-		init()
+			$scope.validateAndCreate = validateAndCreate
 
 		validateAndCreate = (valid) ->
 			createUser() if valid
@@ -138,4 +137,6 @@ angular
 
 		saveUser = ->
 			$scope.user.$update()
+
+		init()
 ])

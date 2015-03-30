@@ -15,9 +15,6 @@ DatePicker = () ->
 		$scope.months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
 		                 "November", "December"]
 
-		$scope.dateDay = '01' if $scope.noDay
-		$scope.monthDay = '01' if $scope.noMonth
-
 		if $scope.date != '' and $scope.date
 			split = $scope.date.split('-')
 			$scope.dateYear = split[0]
@@ -27,6 +24,9 @@ DatePicker = () ->
 			$scope.dateYear = "Year"
 			$scope.dateMonth = "Month"
 			$scope.dateDay = "Day"
+
+		$scope.dateDay = '01' if $scope.noDay
+		$scope.monthDay = '01' if $scope.noMonth
 
 		$scope.setDay = (day) ->
 			$scope.dateDay = day

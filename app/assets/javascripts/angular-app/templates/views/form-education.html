@@ -14,16 +14,13 @@
 	    </div>
 
 	    <div class="row">
-	        <div class="form-group">
+	        <div class="form-group div-50 left">
 	            <input type="text" ng-model="schoolCountry"  class="form-control" id="schoolCountry" placeholder="School Country"
-	                   typeahead="country as country.name for country in countries | filter:$viewValue | limitTo:6" required class="form-control" typeahead-on-select="onSchoolCountry($item)">
+	                   typeahead="country as country.name for country in countries | filter:$viewValue | limitTo:6" typeahead-on-select="onSchoolCountry($item)">
 	        </div>
-	    </div>
-
-	    <div class="row">
-	        <div class="form-group">
+	        <div class="form-group div-50 right">
 	            <input type="text" ng-model="schoolState"  class="form-control" id="schoolState" placeholder="School State"
-	                   typeahead="state as state.name for state in states | filter:$viewValue | limitTo:6" required class="form-control" typeahead-on-select="onSchoolState($item)">
+	                   typeahead="state as state.name for state in states | filter:$viewValue | limitTo:6" typeahead-on-select="onSchoolState($item)">
 	        </div>
 	    </div>
 
@@ -31,7 +28,7 @@
 	    <div class="row">
 	        <div class="form-group">
 	            <input name="major" type="text" ng-model="major" required class="form-control" id="major" placeholder="Major"
-	                   typeahead="major as major.name for major in majors | filter:$viewValue | limitTo:6" required class="form-control" typeahead-on-select="onMajor($item)">
+	                   typeahead="major as major.name for major in majors | filter:$viewValue | limitTo:6" required typeahead-on-select="onMajor($item)">
 			        <div ng-if="eSubmitted" ng-messages="educationForm.major.$error">
 				        <div class="control-group.error p" ng-message="required">
 					        Please select a major
@@ -59,20 +56,25 @@
 			  </div>
 		  </div>
 
-		    <div class="row text-center">
-					<simpledatepicker no-day="true" date="education.start_date"></simpledatepicker>
+		    <div class="row align-left max-width margin-b15">
+                <span class="signup-label">From: </span>
+			    <simpledatepicker no-day="true" date="education.start_date"></simpledatepicker>
 			    <div ng-if="eSubmitted && !education.start_date" >
 				    <div class="control-group.error p">
 					    Please select a birth date!
 				    </div>
 			    </div>
+            </div>
+
+            <div class="row align-left max-width margin-b15">
+                <span class="signup-label">To: </span>
 			    <simpledatepicker no-day="true" date="education.end_date"></simpledatepicker>
-			    <div ng-if="eSubmitted && !education.start_date" >
+			    <div ng-if="eSubmitted && !education.end_date" >
 				    <div class="control-group.error p">
 					    Please select a birth date!
 				    </div>
 			    </div>
-		    </div>
+            </div>
 	</div>
 	</div>
 

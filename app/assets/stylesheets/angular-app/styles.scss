@@ -96,6 +96,14 @@ input::-webkit-input-placeholder {
   font-family: Lato-Regular !important;
 }
 
+.align-left{
+  float: left !important;
+}
+
+.max-width{
+  width: 100%;
+}
+
 .light-txt-white {
   color: #FFF !important;
   font-size: 14px;
@@ -218,6 +226,10 @@ input::-webkit-input-placeholder {
 
 .margin-t50 {
   margin-top: 50px;
+}
+
+.margin-b15 {
+  margin-bottom: 15px;
 }
 
 .margin-b20 {
@@ -1182,6 +1194,13 @@ footer#main .footer-above {
   padding: 0 30px;
 }
 
+.signup-label{
+  font: 14px Lato-Regular !important;
+  color: #9197A3;
+  float: left;
+  width: 60px;
+}
+
 .btn-form {
   width: 210px;
   margin: 20px 0;
@@ -1774,7 +1793,7 @@ label {
 }
 
 .tagsinput.cont.left {
-  width: 90%;
+  width: 85%;
   display: inline-block;
 }
 
