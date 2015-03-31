@@ -7,6 +7,17 @@
  }); //query() returns all the entries
 
  */
-angular.module('mepedia.services').factory('Degree', function($resource) {
-    return $resource('/api/degrees');
-});
+var Degree = function($resource) {
+    return $resource('/api/degrees',
+        {id: '@id'},
+        {
+            query: {
+                method: 'GET',
+                isArray: false
+            }
+        })
+}
+
+angular
+    .module('mepedia.services')
+    .factory('Degree', Degree);

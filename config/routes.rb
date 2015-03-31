@@ -23,6 +23,7 @@ Demo::Application.routes.draw do
       devise_for :users, :only => []
       resources :employers, :only => [:show, :create, :update], concerns: [:skillable, :interestable] do
         resource :company, :only => [:show, :create, :update]
+        resources :nationalities, :only => [:index, :create, :show, :destroy]
       end
       resources :candidates, :only => [:show, :create, :update], concerns: [:skillable, :interestable] do
         resources :experiences, :only => [:index, :create, :update, :destroy, :show]

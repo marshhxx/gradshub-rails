@@ -60,6 +60,7 @@ class AddFieldsToUsers < ActiveRecord::Migration
 
     create_table :employers do |t|
       t.belongs_to :employer_company
+      t.string :company_image
 
       t.timestamp
     end
@@ -120,6 +121,14 @@ class AddFieldsToUsers < ActiveRecord::Migration
       t.timestamp
     end
     add_index(:candidates_nationalities, [:candidate_id, :nationality_id], :unique => true, :name => :candidates_nationalities_index)
+
+    create_table :employers_nationalities do |t|
+      t.belongs_to :employer
+      t.belongs_to :nationality
+
+      t.timestamp
+    end
+    add_index(:employers_nationalities, [:employer_id, :nationality_id], :unique => true, :name => :employers_nationalities_index)
 
     create_table :languages do |t|
       t.string :name
@@ -208,6 +217,7 @@ class AddFieldsToUsers < ActiveRecord::Migration
       t.belongs_to :country
       t.belongs_to :state
       t.text :description
+      t.string :site_url
 
       t.timestamp
     end
