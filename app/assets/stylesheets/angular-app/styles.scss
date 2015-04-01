@@ -391,7 +391,6 @@ section#logo .logo {
 
 header {
   width: 100%;
-  background-image: url("home-slider-background.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   -webkit-background-size: cover;
@@ -753,7 +752,7 @@ section {
 section h2.section-heading {
   margin-top: 0;
   margin-bottom: 15px;
-  font-size: 1.5em;
+  font-size: 2.9em;
   color: #009FDB;
   font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
 }
@@ -768,7 +767,6 @@ section h3.section-subheading {
 }
 
 section#welcometomepedia-background{
-  margin-bottom: 50px;
   width: 100% !important;
   height: 100px;
   padding: 30px 0px 120px 0px;
@@ -801,7 +799,7 @@ section#welcometomepedia-background{
 }
 
 .compelling-image.img-left {
-  background-image: url("imac-mockup.png");
+  height: 320px;
 }
 
 
@@ -844,6 +842,56 @@ section#welcometomepedia-background{
     padding-right: 0px;
   }
 }
+
+section#readytostart-background{
+  width: 100% !important;
+  height: 100px;
+  padding: 30px 0px 120px 0px;
+  background-color: #009FDB;
+  position: relative;
+  text-align: center;
+}
+
+section h2.section-readytostart {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 2.9em;
+  color: #fff;
+  font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+}
+
+section h3.section-txtreadytostart {
+  margin-bottom: 45px;
+  font-family: Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+  font-size: 1.5em;
+  color: #011B25;
+  float: none !important;
+  //  font-variant: small-caps;
+}
+
+section#howitworks-background{
+  width: 100% !important;
+  height: 100px;
+  padding: 30px 0px 120px 0px;
+  background-color: transparent;
+  position: relative;
+  text-align: center;
+}
+
+section h2.section-howitworks {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 2.5em;
+  color: #00142E;
+  font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+}
+
+section#hiw-employer{
+  width: 100%;
+  text-align: center;
+  background-repeat: no-repeat;
+}
+
 
 /* End features section */
 
