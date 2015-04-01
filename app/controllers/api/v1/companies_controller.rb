@@ -9,9 +9,6 @@ class Api::V1::CompaniesController < Api::NestedController
   end
 
   def show
-    if not get_parent_resource.employer_company
-
-    end
     set_resource(get_parent_resource.employer_company)
     render :employer_company, status: :accepted
   end
@@ -31,7 +28,7 @@ class Api::V1::CompaniesController < Api::NestedController
   end
 
   def employer_company_params
-    params.require(:company).permit(:description, :state_id, :country_id) if params[:company]
+    params.require(:company).permit(:description, :state_id, :country_id, :site_url, :image) if params[:company]
   end
 
   def query_params

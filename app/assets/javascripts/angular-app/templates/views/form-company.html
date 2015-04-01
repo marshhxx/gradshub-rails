@@ -1,34 +1,76 @@
-<form id="personal-form" name="personalForm" ng-submit="validatePersonal(personalForm.$valid)" novalidate>
+<form id="personal-form" name="companyForm" ng-submit="validateCompany(companyForm.$valid)" novalidate>
 	<div class="signup form-container col-md-8 col-md-offset-2">
 	    <div class="signup form-box-cont">
 	    <div class="row">
 	        <div class="form-group">
-		        <input name="company" type="text" ng-model="company" required class="form-control" id="company"
+		        <input name="company" type="text" ng-model="companyName" required class="form-control" id="company"
 		               placeholder="Company Name" typeahead="company as company.name for company in companies | filter:$viewValue | limitTo:6" required class="form-control" typeahead-on-select="onCompany($item)">
+		        <div ng-if="cSubmitted" ng-messages="companyForm.company.$error">
+			        <div class="control-group.error p" ng-message="required">
+				        Please select a country!
+			        </div>
+		        </div>
 	        </div>
 	    </div>
 
 	    <div class="row">
 	        <div class="form-group">
-	            <input type="text" ng-model="form.industry" required class="form-control" id="industry"
+	            <input name="industry" type="text" ng-model="companyIndustry" required class="form-control" id="industry"
 	                   placeholder="Industry">
+			        <div ng-if="cSubmitted" ng-messages="companyForm.industry.$error">
+				        <div class="control-group.error p" ng-message="required">
+					        Please select a country!
+				        </div>
+			        </div>
 	        </div>
 	    </div>
 
-	    <div class="row">
-	        <div class="form-group">
-	            <input type="text" ng-model="form.location" required class="form-control" id="location"
-	                   placeholder="Offices Location">
-	        </div>
-	    </div>
+		    <div class="row">
+			    <div class="form-group">
+				    <input name="country" type="text" ng-model="companyCountry" typeahead="country as country.name for country in countries | filter:$viewValue | limitTo:6"  class="form-control" id="country" typeahead-on-select="onCompanyCountry($item)"
+				           placeholder="Company's Country">
+				    <div ng-if="cSubmitted" ng-messages="companyForm.country.$error">
+					    <div class="control-group.error p" ng-message="required">
+						    Please select a country!
+					    </div>
+				    </div>
+			    </div>
+		    </div>
+
+		    <div class="row">
+			    <div class="form-group">
+				    <input name="state" type="text" ng-model="companyState" typeahead="state as state.name for state in states | filter:$viewValue | limitTo:6" class="form-control" id="state" typeahead-on-select="onCompanyState($item)"
+				           placeholder="Company's State">
+				    <div ng-if="cSubmitted" ng-messages="companyForm.state.$error">
+					    <div class="control-group.error p" ng-message="required">
+						    Please select a state!
+					    </div>
+				    </div>
+			    </div>
+		    </div>
+
+		    <div class="row">
+			    <div class="form-group">
+				    <input type="text" ng-model="employerCompany.site_url" class="form-control" id="siteUrl" placeholder="Company's Web Page"
+				           class="form-control">
+			    </div>
+		    </div>
+
+		    <div class="row">
+			    <div class="form-group">
+				    <input type="text" ng-model="employerCompany.description" class="form-control" id="companyDescription" placeholder="Description"
+				           class="form-control">
+			    </div>
+		    </div>
+
 	</div>
 	</div>
 	<div>
 	    <div class="form-group row btn-form-container">
 	        <div class="col-xs-12 text-center">
-	            <a ui-sref="main.signup.career" class="btn btn-form">
+	            <button type="submit" class="btn btn-form">
 	                NEXT </span>
-	            </a>
+	            </button>
 	        </div>
 	    </div>
 

@@ -11,4 +11,8 @@ class Api::V1::EducationsController < Api::NestedController
   def query_params
     params.permit(:candidate_id, :id)
   end
+
+  def sort_resources(collection)
+    collection.order(:start_date).reverse
+  end
 end

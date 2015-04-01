@@ -4,4 +4,6 @@ json.company do
   json.description @company.description
   json.state @company.state
   json.country @company.country
+  json.site_url @company.site_url
+  json.image @company.image
 end

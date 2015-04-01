@@ -61,6 +61,7 @@ class AddFieldsToUsers < ActiveRecord::Migration
     create_table :employers do |t|
       t.belongs_to :employer_company
       t.string :company_image
+      t.string :job_title
 
       t.timestamp
     end
@@ -218,6 +219,7 @@ class AddFieldsToUsers < ActiveRecord::Migration
       t.belongs_to :state
       t.text :description
       t.string :site_url
+      t.string :image
 
       t.timestamp
     end
