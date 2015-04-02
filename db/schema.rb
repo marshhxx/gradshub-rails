@@ -88,10 +88,12 @@ ActiveRecord::Schema.define(version: 20141030020738) do
     t.integer "country_id"
     t.integer "state_id"
     t.text    "description"
+    t.string  "site_url"
   end
 
   create_table "employers", force: true do |t|
     t.integer "employer_company_id"
+    t.string  "company_image"
   end
 
   create_table "employers_interests", force: true do |t|
@@ -100,6 +102,13 @@ ActiveRecord::Schema.define(version: 20141030020738) do
   end
 
   add_index "employers_interests", ["employer_id", "interest_id"], name: "index_employers_interests_on_employer_id_and_interest_id", unique: true, using: :btree
+
+  create_table "employers_nationalities", force: true do |t|
+    t.integer "employer_id"
+    t.integer "nationality_id"
+  end
+
+  add_index "employers_nationalities", ["employer_id", "nationality_id"], name: "employers_nationalities_index", unique: true, using: :btree
 
   create_table "employers_skills", id: false, force: true do |t|
     t.integer "employer_id"

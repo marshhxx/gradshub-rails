@@ -37,55 +37,16 @@
                     </div>
                     <div class="employerBasicInfoWrapper col-xs-8">
                         <div class="employerNameWrapper">
-                            <span>Name Last name</span>
+                            <span>{{user.name}} {{user.lastname}}</span>
                         </div>
                         <div class="employerPositionWrapper">
                             <span>Position</span>
                         </div>                     
                     </div>
                 </div>
-                <div class="section padding-l35">
-                    <div class="editwrapper"></div>
-
-                    <div class="employerProfileLeftContentWrapper">
-                        <div class="profileLeft">
-                            <div class="img-col">
-                                <div class="profile-img jobposition"></div>
-                            </div>
-                            <div class="cont-col">
-
-                            </div>
-                        </div>
-
-                        <div class="profileLeft">
-                            <div class="img-col">
-                                <div class="profile-img education"></div>
-                            </div>
-                            <div class="cont-col">
-
-                            </div>
-                        </div>
-
-                        <div class="profileLeft">
-                            <div class="img-col">
-                                <div class="profile-img topskills"></div>
-                            </div>
-                            <div class="cont-col">
-
-                            </div>
-                        </div>
-
-                        <div class="profileLeft">
-                            <div class="img-col">
-                                <div class="profile-img location"></div>
-                            </div>
-                            <div class="cont-col">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                    <!-- EDIT COMPANY (DIRECTIVE)-->
+                    <edit-company data="employerCompany" save-company="saveCompany"
+                                   add-company-enable="addCompanyEnabled"></edit-company>
                 <div class="profileLeftContent section">
                     <div class="profile-communication-panel-img message"></div>
                     <div class="profile-communication-panel-img videocam"></div>
@@ -156,7 +117,43 @@
                         </div>
                         <div class="form-group">
                             <tags-input tags="skillsTags" ng-show="editorSkillsEnabled" placeholder="Add your skills..."
-                                        info="candidateSelectedSkills"></tags-input>
+                                        info="employerSelectedSkills"></tags-input>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INTERESTS -->
+                <div class="profile-right-container">
+                    <div class="profile-right-header">
+                        <div class="profile-right-header title">
+                            <div class="profile-right-header-img interests"></div> <h3> INTERESTS </h3>
+                        </div>
+                        <div class="profile-right-header edit">
+                            <div class="editwrapper">
+                                <div class="edit-pencil" ng-click="enableInterestsEditor()"
+                                     ng-hide="editorInterestsEnabled"></div>
+
+                                <div ng-show="editorInterestsEnabled" class="edit-buttons-wrapper">
+                                    <a ng-click="saveInterests()" class="btn btn-edit">
+                                        SAVE </span>
+                                    </a>
+                                    <a ng-click="disableInterestsEditor()" class="btn btn-edit margin-l5">
+                                        CANCEL </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-right-content">
+                        <div ng-hide="editorInterestsEnabled" class="profile-right-text">
+                            <div class="tags">
+                                <a class="tag" ng-model="tag" ng-repeat="tag in selectedInterests">{{tag}}</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <tags-input tags="skillsTags" ng-show="editorInterestsEnabled" placeholder="Add your interests..."
+                                        info="employerSelectedInterests"></tags-input>
                         </div>
                     </div>
                 </div>
