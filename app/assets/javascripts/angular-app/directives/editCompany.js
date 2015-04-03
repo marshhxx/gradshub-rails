@@ -1,4 +1,4 @@
-angular.module('mepedia.directives').directive('editCompany', ['EmployerCompany', function (EmployerCompany) {
+angular.module('mepedia.directives').directive('editCompany', ['EmployerCompany', 'Utils', function (EmployerCompany, Utils) {
     return {
         // NEEEED TO DO EVERYTHING
         scope: {
@@ -16,13 +16,9 @@ angular.module('mepedia.directives').directive('editCompany', ['EmployerCompany'
             }
 
             var getData = function(){
-                console.log(scope);
                 scope.$on('userLoaded', function() {
                     scope.employerUser = scope.$parent.user;
-                    //console.log(scope.employerCompany);
                 });
-
-
             }
 
             scope.enableCompanyEditor = function() {
@@ -30,10 +26,12 @@ angular.module('mepedia.directives').directive('editCompany', ['EmployerCompany'
             }
 
             scope.saveCompany = function() {
-                console.log(scope.employerCompany);
-                if (form.companyName.$error.require) {
-                    console.log('hola');
+                if (scope.companyForm.$valid) {
                     scope.editCompanyEnable = false;
+                    scope.$parent.saveEmployer(scope.employerUser);
+                    
+                } else {
+
                 }
             }
 

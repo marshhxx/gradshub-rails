@@ -1,7 +1,7 @@
 angular.module('mepedia.controllers').controller('employerProfileController',
-    ['$scope', '$rootScope', '$http', '$upload', 'sessionService', '$state', 'Skill', 'Country', 'State', 'EmployerSkills', 'EmployerInterests', 'EmployerCompany', 
+    ['$scope', '$rootScope', '$http', '$upload', 'sessionService', '$state', 'Skill', 'Country', 'State', 'EmployerSkills', 'EmployerInterests', 'EmployerCompany', 'Utils',
 
-        function($scope, $rootScope,$httpProvider, $upload, sessionService, $state, Skill, Country, State, EmployerSkills, EmployerInterests, EmployerCompany) {
+        function($scope, $rootScope,$httpProvider, $upload, sessionService, $state, Skill, Country, State, EmployerSkills, EmployerInterests, EmployerCompany, Utils) {
             var init = function () {
                 getData();
 
@@ -165,6 +165,17 @@ angular.module('mepedia.controllers').controller('employerProfileController',
                 })
             };
 
+            
+            // company info
+            $scope.saveEmployer = function(employerUser) {
+                $scope.user = employerUser;
+                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
+                Utils.employerFromObject($scope.user).$update(function(response) {
+                    console.log(response);
+                }, function(error) {
+                    console.log('An error has occurred');
+                });
+            }
 
 
             // get data from db
