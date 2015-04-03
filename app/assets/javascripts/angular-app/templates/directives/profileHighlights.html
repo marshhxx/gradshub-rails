@@ -1,0 +1,52 @@
+<!-- Profile Highlights default component-->
+
+<div class="profileLeftContent section padding-l35">
+    <!-- ToDo edit panel !-->
+    <div class="editwrapper"></div>
+    <div class="profileLeftContentWrapper">
+        <div class="profileLeft">
+            <div class="img-col">
+                <div class="profile-img jobposition"></div>
+            </div>
+            <div class="cont-col">
+                <p class="header-highlight-txt"> {{user.experiences[0].job_title}}</p>
+            </div>
+        </div>
+
+        <div class="profileLeft">
+            <div class="img-col">
+                <div class="profile-img jobposition"></div>
+            </div>
+            <div class="cont-col">
+                <p class="header-highlight-txt"> {{user.experiences[0].company_name}}</p>
+            </div>
+        </div>
+
+        <div class="profileLeft">
+            <div class="img-col">
+                <div class="profile-img education"></div>
+            </div>
+            <div class="cont-col">
+                <p class="header-highlight-txt"> {{user.educations[0].school.name}}</p>
+            </div>
+        </div>
+
+        <div class="profileLeft">
+            <div class="img-col">
+                <div class="profile-img topskills"></div>
+            </div>
+            <div class="cont-col">
+                <p class="header-highlight-txt"> {{age}} years old</p>
+            </div>
+        </div>
+
+        <div class="profileLeft">
+            <div class="img-col">
+                <div class="profile-img location"></div>
+            </div>
+            <div class="cont-col">
+                <p class="header-highlight-txt"> {{user.state.name}},  {{user.country.name}} </p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -39,6 +39,13 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
             $scope.onFileSelectCover = function($files) {
                 var file = $files[0];
 
+                //Get image before upload
+                var temp_img = angular.element('#temp_cover_photo');
+                //var aspect_ratio = temp_img.width/temp_img.height;
+                //if(aspect_ratio <= 2.5){
+
+                //}
+
                 /* when user select a photo HIDE the following elements: 
                  * - image selector button
                  * - save and cancel buttons
@@ -439,7 +446,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 $scope.selectedSkills = $scope.user.skills.map(function(skill) {
                     return skill.name;
                 });
-                $scope.educations = $scope.user.educations;
+                $scope.user.educations;
                 $scope.experiences = $scope.user.experiences;
             }
 
@@ -586,7 +593,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
 
             var getEducations = function(){
                 Education.query({candidate_id: $scope.user.uid},function(educations){
-                    $scope.educations = educations.educations;
+                    $scope.user.educations = educations.educations;
                 });
             };
 
@@ -626,8 +633,8 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
 
             var updateEducation = function($index){
                 $scope.educationEditor = false;
-                var education = getEducation($scope.educations[$index]);
-                education.id = $scope.educations[$index].id;
+                var education = getEducation($scope.user.educations[$index]);
+                education.id = $scope.user.educations[$index].id;
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 education.$update(
                     function (response) {

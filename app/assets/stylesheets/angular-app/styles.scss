@@ -390,8 +390,9 @@ section#logo .logo {
 // SignIn
 
 header {
-  width: 100%;
-  background-image: url("home-slider-background.jpg");
+  width: auto;
+  height: 550px;
+  background-attachment: scroll;
   background-position: center center;
   background-repeat: no-repeat;
   -webkit-background-size: cover;
@@ -445,6 +446,18 @@ header .intro-text .intro-heading {
   header .intro-text .intro-heading {
     line-height: 32px;
     padding: 0px;
+  }
+
+  header {
+    width: auto;
+    height: 490px;
+    background-attachment: scroll;
+    background-position: center center;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
   }
 
 }
@@ -550,7 +563,7 @@ header .home-carousel-container {
 @media only screen and (min-width: 768px) {
 
   section#signup {
-    width: 100%;
+  //  width: 100%;
     overflow: hidden;
     //position: absolute; -> cambiarlo
     z-index: 2;
@@ -592,7 +605,7 @@ header .home-carousel-container {
 @media only screen and (min-width: 1200px) {
 
   section#signup {
-    padding: 60px 0px 40px 0px;
+  //  padding: 60px 0px 40px 0px;
   }
 
 }
@@ -734,7 +747,7 @@ section#btn-type {
   }
 
   .carousel-slider {
-    display: inherit;
+    display: block;
   }
 
 }

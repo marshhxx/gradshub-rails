@@ -87,50 +87,7 @@
 <div class="profileContent">
     <div class="profileLeftContent cont col-md-4">
 
-        <div class="profileLeftContent section padding-l35">
-            <div class="editwrapper">
-
-            </div>
-
-            <div class="profileLeftContentWrapper">
-
-                <div class="profileLeft">
-                    <div class="img-col">
-                        <div class="profile-img jobposition"></div>
-                    </div>
-                    <div class="cont-col">
-
-                    </div>
-                </div>
-
-                <div class="profileLeft">
-                    <div class="img-col">
-                        <div class="profile-img education"></div>
-                    </div>
-                    <div class="cont-col">
-
-                    </div>
-                </div>
-
-                <div class="profileLeft">
-                    <div class="img-col">
-                        <div class="profile-img topskills"></div>
-                    </div>
-                    <div class="cont-col">
-
-                    </div>
-                </div>
-
-                <div class="profileLeft">
-                    <div class="img-col">
-                        <div class="profile-img location"></div>
-                    </div>
-                    <div class="cont-col">
-
-                    </div>
-                </div>
-            </div>
-        </div>
+        <profile-highlights data="user"></profile-highlights>
 
         <div class="profileLeftContent section">
             <div class="profile-communication-panel-img message"></div>
@@ -212,7 +169,7 @@
             <div>
                 <add-education data="education" save-education="saveEducation"
                                add-education-enable="addEducationEnable"></add-education>
-                <div ng-repeat="education in educations">
+                <div ng-repeat="education in user.educations">
                     <education data="education" update-education="updateEducation($index)" education-editor="educationEditor"></education>
                 </div>
             </div>
@@ -223,7 +180,7 @@
                 <add-experience data="experience" save-experience="saveExperience"
                                add-experience-enable="addExperienceEnable"></add-experience>
                 <div ng-repeat="experience in experiences">
-                    <experience data="experience" update-experience="updateExperience($index)" experience-editor="experienceEditor"></experience>
+                    <experience data="experience" update-experience="updateExperience($index)" experience-editor="skiskil"></experience>
                 </div>
             </div>
         </div>
