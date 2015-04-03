@@ -13,7 +13,7 @@ angular.module('mepedia.directives').directive('education', ['State', 'Country',
 
             scope.onEducationEditor = function () {
                 getData();
-                scope.educationOriginal = angular.copy(scope.education);
+                scope.educationTemp =  angular.copy(scope.education);
                 scope.educationEditor = true;
                 scope.getStateByCountryId(scope.education.country.id);
             };
@@ -38,9 +38,20 @@ angular.module('mepedia.directives').directive('education', ['State', 'Country',
 
             /* Methods */
 
+            scope.onSave = function ($index) {
+                scope.education.school = scope.educationTemp.school;
+                scope.education.major = scope.educationTemp.major;
+                scope.education.degree = scope.educationTemp.degree;
+                scope.education.country = scope.educationTemp.country;
+                scope.education.start_date = scope.educationTemp.start_date;
+                scope.education.end_date = scope.educationTemp.end_date;
+                scope.education.description = scope.educationTemp.description;
+                scope.updateEducation($index);
+            }
+
             scope.onCancel = function () {
                 scope.educationEditor = false;
-                scope.education = scope.educationOriginal;
+//                scope.education = scope.educationOriginal;
             };
 
             scope.getStateByCountryId = function (countryId) {
@@ -73,28 +84,28 @@ angular.module('mepedia.directives').directive('education', ['State', 'Country',
 
             scope.onSchool = function (school) {
                 if (school != undefined)
-                    scope.education.school = school
+                    scope.educationTemp.school = school
             };
 
             scope.onState = function (state) {
                 if (state != undefined)
-                    scope.education.state = state;
+                    scope.educationTemp.state = state;
             };
 
             scope.onCountry = function (country) {
-                scope.education.country = country
-                if (scope.education.country != undefined)
-                    scope.getStateByCountryId(scope.education.country.id);
+                scope.educationTemp.country = country
+                if (scope.educationTemp.country != undefined)
+                    scope.getStateByCountryId(scope.educationTemp.country.id);
             }
 
             scope.onMajor = function (major) {
                 if (major != undefined)
-                    scope.education.major = major
+                    scope.educationTemp.major = major
             };
 
             scope.onDegree = function (degree) {
                 if (degree != undefined)
-                    scope.education.degree = degree
+                    scope.educationTemp.degree = degree
             };
         }
     };
