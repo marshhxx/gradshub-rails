@@ -1,138 +1,89 @@
 <!-- Education add component!-->
-<style>
-.form-control.employerCompany {
-  margin: 6px 18px 0px 0px;
-  width: 80%;
-  float: right;
-}
-</style>
-                <div class="section padding-l35">
-<div class="hhfhf" style="overflow:auto;">
-<div class="" style="width: 100%; height: auto;">
-    <div class="profile-right-header title" style="width: 65%; font-size: 40px; text-align: center;">
-        <span>Company info</span>
-    </div>
-    <div class="profile-right-header edit" style="width: 35%; float: right;">
-        <div class="editwrapper">
-            <div class="edit-pencil employer" ng-click="enableCompanyEditor()" ng-hide="editCompanyEnable"></div>
-            <div ng-show="editCompanyEnable" class="edit-buttons-wrapper">
-                <a ng-click="saveCompany()" class="btn btn-edit">
-                   <span> SAVE </span>
-                </a>
-                <a ng-click="onCancel()" class="btn btn-edit margin-l5">
-                    <span> CANCEL </span>
-                </a>
+<form class="company-form" novalidate class="css-form">
+<div class="section padding-l35">
+    <div class="profile-left-header">
+        <div class="profile-left-header title">
+            <span>Company info</span>
+        </div>
+        <div class="profile-left-header edit">
+            <div class="editwrapper">
+                <div class="edit-pencil employer" ng-click="enableCompanyEditor()" ng-hide="editCompanyEnable"></div>
+                <div ng-show="editCompanyEnable" class="edit-buttons-wrapper">
+                    <a class="btn btn-edit employer-company">
+                        <input type="submit" ng-click="saveCompany()" value="SAVE" />
+                    </a>
+                    <a class="btn btn-edit employer-company margin-l5">
+                        <input type="button" ng-click="onCancel()"value="CANCEL" />
+                    </a>
+                </div>
             </div>
-
         </div>
     </div>
-</div>
-<div class="" style="width: 100%; height: auto; overflow: auto;">
-    <div class="employerProfileLeftContentWrapper">
-        <div class="profileLeft">
-            <div class="img-col">
+    <div class="employer-left-content-wrapper">
+        <div class="profile-left-wrapper">
+            <div class="img-col employer">
                 <div class="profile-img companyName jobposition"></div>
             </div>
-            <div class="cont-col" ng-hide="editCompanyEnable">
-                {{user.company.Name}}
+            <div class="cont-col employer-company" ng-hide="editCompanyEnable">
+                {{employerCompany.name}}
             </div>
-            <div class="form-group" ng-show="editCompanyEnable">
+            <div class="form-group employer-company" ng-show="editCompanyEnable">
                 <input focus-input="editCompanyNameEnable" type="text" ng-model="employerCompany.name" required
-                  class="form-control employerCompany" id="companyName">
+                    class="form-control employer-company" id="companyName" name="companyName" />
             </div>
         </div>
 
-        <div class="profileLeft">
-            <div class="img-col">
+        <div class="profile-left-wrapper">
+            <div class="img-col employer">
                 <div class="profile-img companyIndustry jobposition"></div>
             </div>
-            <div class="cont-col" ng-hide="editCompanyEnable">
-                {{user.company.Industry}}
+            <div class="cont-col employer-company" ng-hide="editCompanyEnable">
+                {{employerCompany.industry}}
             </div>
-            <div class="form-group" ng-show="editCompanyEnable">
+            <div class="form-group employer-company" ng-show="editCompanyEnable">
                 <input focus-input="" type="text" ng-model="employerCompany.industry" required
-                  class="form-control employerCompany" id="companyIndustry">
+                    class="form-control employer-company" id="companyIndustry">
             </div>
         </div>
 
-        <div class="profileLeft">
-            <div class="img-col">
+        <div class="profile-left-wrapper">
+            <div class="img-col employer">
+                <div class="profile-img companyIndustry jobposition"></div>
+            </div>
+            <div class="cont-col employer-company" ng-hide="editCompanyEnable">
+                {{employerCompany.state}}, {{employerCompany.country}}
+            </div>
+            <div class="form-group employer-company" ng-show="editCompanyEnable">
+                <input focus-input="" type="text" ng-model="employerCompany.state" required
+                    class="form-control employer-company" id="companyIndustry">
+            </div>
+        </div>
+
+        <div class="profile-left-wrapper">
+            <div class="img-col employer">
+                <div class="profile-img companyIndustry jobposition"></div>
+            </div>
+            <div class="cont-col employer-company" ng-hide="editCompanyEnable">
+                {{employerCompany.companyUrl}}
+            </div>
+            <div class="form-group employer-company" ng-show="editCompanyEnable">
+                <input focus-input="" type="text" ng-model="employerCompany.companyUrl" required
+                    class="form-control employer-company" id="companyIndustry">
+            </div>
+        </div>
+
+        <div class="profile-left-wrapper">
+            <div class="img-col employer">
                 <div class="profile-img companyLocation jobposition"></div>
             </div>
-            <div class="cont-col" ng-hide="editCompanyEnable">
-                {{user.company.Location}}
+            <div class="cont-col employer-company" ng-hide="editCompanyEnable">
+                {{employerCompany.description}}
             </div>
-            <div class="form-group" ng-show="editCompanyEnable">
-                <textarea class="form-control employerCompany" rows="5" ng-model="employerCompany.description"
+            <div class="form-group employer-company" ng-show="editCompanyEnable">
+                <textarea class="form-control employer-company" rows="5" ng-model="employerCompany.description"
                     placeholder="Description..."></textarea>
             </div>
         </div>
     </div>
-    <!--
-    <div class="form-group">
-        <input focus-input="editorEducationEnabled" type="text" ng-model="education.school" required
-               class="form-control" id="school"
-               placeholder="School"
-               typeahead="school as school.name for school in schools | filter:$viewValue | limitTo:6" required
-               class="form-control" typeahead-on-select="onSchool($item)">
-    </div>
-
-    <div class="form-group">
-        <input type="text" ng-model="education.degree" required class="form-control" id="degree" placeholder="Degree"
-               typeahead="degree as degree.name for degree in degrees | filter:$viewValue | limitTo:6" required
-               class="form-control" typeahead-on-select="onDegree($item)">
-    </div>
-
-    <div class="form-group">
-        <input type="text" ng-model="education.major" required class="form-control" id="major"
-               placeholder="Field of Study"
-               typeahead="major as major.name for major in majors | filter:$viewValue | limitTo:6" required
-               class="form-control" typeahead-on-select="onMajor($item)">
-    </div>
-
-    <div class="form-group">
-        <div class="btn-group margin-r5" dropdown>
-            <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle
-                    ng-disabled="disabled">
-                {{education.start_date}} <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-                <li ng-repeat="startYear in years">
-                    <a ng-click="onStartYear(startYear)">{{startYear}}</a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="btn-group margin-l5" dropdown>
-            <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle
-                    ng-disabled="disabled">
-                {{education.end_date}} <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-                <li ng-repeat="endYear in years">
-                    <a ng-click="onEndYear(endYear)">{{endYear}}</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="form-group div-50 left">
-        <input type="text" ng-model="education.country"
-               typeahead="country as country.name for country in countries | filter:$viewValue | limitTo:6"
-               required class="form-control" id="country" typeahead-on-select="onCountry($item)"
-               placeholder="Country">
-    </div>
-    <div class="form-group div-50 right">
-        <input type="text" ng-model="education.state"
-               typeahead="state as state.name for state in states | filter:$viewValue | limitTo:6" required
-               class="form-control" id="state" typeahead-on-select="onState($item)"
-               placeholder="State">
-    </div>
-
-    <textarea class="form-control" rows="5" ng-model="education.description"
-              placeholder="Description..."></textarea>
-    -->
 </div>
-</div>
-
-                </div>
+</form>

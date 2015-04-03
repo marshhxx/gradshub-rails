@@ -27,7 +27,19 @@ angular.module('mepedia.controllers').controller('employerProfileController',
             };
 
             var initEmployerProfile = function(){
-                //$scope.selectedSkills = $scope.user.skills;
+
+                // this is static, it doesn't seems to be done.
+                console.log($scope);
+                $scope.user.company = [{
+                    name: 'Ceibal',
+                    industry: 'Information Techonology',
+                    description: 'Mi descripcion man',
+                    state: 'Montevideo',
+                    country: 'Uruguay',
+                    companyUrl: 'www.ceibal.edu.uy'
+                }];
+                
+                $scope.employerCompany = $scope.user.company[0];
 
             }
             // Description

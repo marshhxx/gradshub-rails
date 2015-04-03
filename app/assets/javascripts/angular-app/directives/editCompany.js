@@ -2,9 +2,9 @@ angular.module('mepedia.directives').directive('editCompany', ['EmployerCompany'
     return {
         // NEEEED TO DO EVERYTHING
         scope: {
-            employerCompany: '=data', //Education array
-            saveCompany: '=', //Save education controller function
-            addCompanyEnabled: '=' //Education ng-show ng-hide variable binded with controller
+            employerCompany: '=data',
+            saveCompany: '=',
+            addCompanyEnabled: '='
         },
         templateUrl: 'angular-app/templates/directives/editCompany.html',
         link: function (scope, element, attrs) {
@@ -14,39 +14,32 @@ angular.module('mepedia.directives').directive('editCompany', ['EmployerCompany'
             var init = function() {
                 getData();
             }
+
             var getData = function(){
-                //var user = scope.$parent;
+                console.log(scope);
                 scope.$on('userLoaded', function() {
                     scope.employerUser = scope.$parent.user;
-                    console.log(scope.employerUser);
+                    //console.log(scope.employerCompany);
                 });
+
+
             }
 
             scope.enableCompanyEditor = function() {
                 scope.editCompanyEnable = true;
             }
 
-
-
-
-
-            scope.addEducation = function() {
-                scope.addEducationEnable = true;
-                clearAddEducationValues();
-                getData();
-            };
-
-            var clearAddEducationValues = function(){
-                scope.education.school = "";
-                scope.education.degree = "";
-                scope.education.major = "";
-                scope.education.state = "";
-                scope.education.country = "";
-                scope.education.description = "";
-                scope.education.start_date = "Start Year";
-                scope.education.end_date = "End Year";
+            scope.saveCompany = function() {
+                console.log(scope.employerCompany);
+                if (form.companyName.$error.require) {
+                    console.log('hola');
+                    scope.editCompanyEnable = false;
+                }
             }
 
+            scope.onCancel = function() {
+                scope.editCompanyEnable = false;
+            }
 
             /* Methods */
 
