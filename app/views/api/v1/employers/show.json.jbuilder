@@ -7,11 +7,13 @@ json.employer do
   json.tag      @employer.user.tag
   json.skills  @employer.skills
   json.interests @employer.interests
-  json.company @employer.employer_company do |company|
-    json.name         company.company.name
-    json.industry     company.company.industry
-    json.description  company.description
-    json.state        company.state
-    json.country      company.country
+  json.company do
+    if @employer.employer_company
+      json.name         @employer.employer_company.company.name
+      json.industry     @employer.employer_company.company.industry
+      json.description  @employer.employer_company.description
+      json.state        @employer.employer_company.state
+      json.country      @employer.employer_company.country
+    end
   end
 end

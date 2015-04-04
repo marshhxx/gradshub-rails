@@ -5,7 +5,7 @@
 	        <div class="form-group">
 		        <input name="company" type="text" ng-model="companyName" required class="form-control" id="company"
 		               placeholder="Company Name" typeahead="company as company.name for company in companies | filter:$viewValue | limitTo:6" required class="form-control" typeahead-on-select="onCompany($item)">
-		        <div ng-if="cSubmitted" ng-messages="companyForm.company.$error">
+		        <div ng-if="companyForm.$submitted" ng-messages="companyForm.company.$error">
 			        <div class="control-group.error p" ng-message="required">
 				        Please select a country!
 			        </div>
@@ -17,7 +17,7 @@
 	        <div class="form-group">
 	            <input name="industry" type="text" ng-model="companyIndustry" required class="form-control" id="industry"
 	                   placeholder="Industry">
-			        <div ng-if="cSubmitted" ng-messages="companyForm.industry.$error">
+			        <div ng-if="companyForm.$submitted" ng-messages="companyForm.industry.$error">
 				        <div class="control-group.error p" ng-message="required">
 					        Please select a country!
 				        </div>
@@ -29,7 +29,7 @@
 			    <div class="form-group">
 				    <input name="country" type="text" ng-model="companyCountry" typeahead="country as country.name for country in countries | filter:$viewValue | limitTo:6"  class="form-control" id="country" typeahead-on-select="onCompanyCountry($item)"
 				           placeholder="Company's Country">
-				    <div ng-if="cSubmitted" ng-messages="companyForm.country.$error">
+				    <div ng-if="companyForm.$submitted" ng-messages="companyForm.country.$error">
 					    <div class="control-group.error p" ng-message="required">
 						    Please select a country!
 					    </div>
@@ -41,7 +41,7 @@
 			    <div class="form-group">
 				    <input name="state" type="text" ng-model="companyState" typeahead="state as state.name for state in states | filter:$viewValue | limitTo:6" class="form-control" id="state" typeahead-on-select="onCompanyState($item)"
 				           placeholder="Company's State">
-				    <div ng-if="cSubmitted" ng-messages="companyForm.state.$error">
+				    <div ng-if="companyForm.$submitted" ng-messages="companyForm.state.$error">
 					    <div class="control-group.error p" ng-message="required">
 						    Please select a state!
 					    </div>

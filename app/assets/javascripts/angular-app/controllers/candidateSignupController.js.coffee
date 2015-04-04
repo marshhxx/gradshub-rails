@@ -6,85 +6,81 @@ angular
 
 		init = ->
 			$scope.selectedTags = []
-			$scope.looking = false
 			$scope.eSubmitted = false
 			$scope.pSubmitted = false
-			$scope.great = true
 			$scope.education = new Education()
 			$scope.skills = new CandidateSkills()
 
 			$scope.selectedFrom = "From"
 			$scope.selectedTo = "To"
 
-			$scope.showLookingMindsSignup = () ->
-				if(!$scope.looking)
-					$scope.looking = true
-					$scope.great = false
-
-			$scope.showGreatMindsSignup = () ->
-				if(!$scope.great)
-					$scope.great = true
-					$scope.looking = false
-
-			countries = Country.get ->
+			Country.query (countries) ->
 				$scope.countries = countries.countries
 
 			$scope.getStateByCountryId = (countryId) ->
-				states = State.get {country_id: countryId}, ->
+				states = State.query {country_id: countryId}, ->
 					$scope.states = states.states
 
-			nationalities = Nationality.get ->
+			Nationality.query (nationalities) ->
 				$scope.nationalities = nationalities.nationalities
 
 			$scope.onCountry = (country) ->
 				if(country?)
+					$scope.country = country.name
 					$scope.user.country_id = country.id
 					$scope.getStateByCountryId(country.id)
 
 			$scope.onState = (state) ->
 				if(state?)
+					$scope.state = state.name
 					$scope.user.state_id = state.id
 
 			$scope.onNationality = (nationality) ->
 				if(nationality?)
+					$scope.nationality = nationality.name
 					$scope.candidateNationality = new CandidateNationalities();
 					$scope.candidateNationality.name = nationality.name
 					$scope.candidateNationality.candidate_id = $scope.user.uid;
 
 			####### Eduaction ######
 
-			schools = School.get ->
+			School.query (schools) ->
 				$scope.schools = schools.schools
 
 			$scope.onSchool = (school) ->
 				if(school?)
+					$scope.school = school.name
 					$scope.education.school_id = school.id
 
 			$scope.onSchoolCountry = (country) ->
 				if(country?)
+					$scope.schoolCountry = country.name
 					$scope.education.country_id = country.id
 					$scope.getStateByCountryId(country.id)
 
 			$scope.onSchoolState = (state) ->
 				if(state?)
+					$scope.schoolState = state.name
 					$scope.education.state_id = state.id
 
-			majors = Major.get ->
+			Major.query (majors) ->
 				$scope.majors = majors.majors
 
 			$scope.onMajor = (major) ->
 				if(major?)
+					$scope.major = major.name
 					$scope.education.major_id = major.id
 
-			degrees = Degree.get ->
+			Degree.query (degrees) ->
 				$scope.degrees = degrees.degrees
 
-			$scope.onDegree= (degree) ->
+			$scope.onDegree = (degree) ->
 				if(degree?)
+					$scope.degree = degree.name
 					$scope.education.degree_id = degree.id
 
 			####### Skills ######
-			skills = Skill.get ->
+			Skill.query (skills) ->
 				$scope.skillsTags = skills.skills
 
 			$scope.selectedSkills = [];
@@ -103,6 +99,7 @@ angular
 
 			$scope.validatePersonal = (valid) ->
 				$scope.pSubmitted = true
+				$scope.country.$error = $scope.country.name in $scope.countries
 				$state.go 'main.signup_candidate.education' if valid
 
 			$scope.validateEducation = (valid) ->

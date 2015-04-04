@@ -7,6 +7,16 @@
  }); //query() returns all the entries
 
  */
-angular.module('mepedia.services').factory('School', function($resource) {
-    return $resource('/api/schools');
-});
+var School = function($resource) {
+    return $resource('/api/schools/:id',
+        {id: '@id'},
+        {
+            query: {
+                method: 'GET',
+                isArray: false
+            }
+        });
+};
+angular
+    .module('mepedia.services')
+    .factory('School', School);

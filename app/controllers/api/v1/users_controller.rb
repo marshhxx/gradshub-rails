@@ -38,7 +38,7 @@ class Api::V1::UsersController < Api::BaseController
         end
       end
       unless get_resource.user.valid?
-        @error = {:reasons => get_resource.errors.full_messages, :code => INVALID_PARAMS_ERROR}
+        @error = {:reasons => get_resource.user.errors.full_messages, :code => INVALID_PARAMS_ERROR}
         render_api_error and return
       end
       get_resource.save

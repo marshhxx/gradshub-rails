@@ -7,6 +7,16 @@
  }); //query() returns all the entries
 
  */
-angular.module('mepedia.services').factory('Major', function($resource) {
-    return $resource('/api/majors');
-});
+var Major = function($resource) {
+    return $resource('/api/majors/:id',
+        {id: '@id'},
+        {
+            query: {
+                method: 'GET',
+                isArray: false
+            }
+        });
+};
+angular
+    .module('mepedia.services')
+    .factory('Major', Major);

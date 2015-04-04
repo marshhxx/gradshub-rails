@@ -23,7 +23,7 @@ angular
 					$scope.companies = companies.companies
 
 				$scope.getStateByCountryId = (countryId) ->
-					states = State.get {country_id: countryId}, ->
+					states = State.query {country_id: countryId}, ->
 						$scope.states = states.states
 
 				Nationality.query (nationalities) ->

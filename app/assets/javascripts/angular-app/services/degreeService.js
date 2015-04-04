@@ -8,7 +8,7 @@
 
  */
 var Degree = function($resource) {
-    return $resource('/api/degrees',
+    return $resource('/api/degrees/:id',
         {id: '@id'},
         {
             query: {

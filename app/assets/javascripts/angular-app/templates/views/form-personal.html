@@ -8,9 +8,9 @@
 	    </div>
 
 	    <div class="row text-center">
-		    <simpledatepicker date="user.birth"></simpledatepicker>
-		    <div ng-if="pSubmitted && !user.birth" >
-			    <div class="form-error">
+		    <simpledatepicker id="birth" name="user.birth" date="user.birth"></simpledatepicker>
+		    <div ng-if="personalForm.$submitted" ng-messages="user.birth.$error">
+			    <div class="form-error" ng-message="valid-date">
 				    Please select a birth date!
 			    </div>
 		    </div>
@@ -20,7 +20,7 @@
 	        <div class="form-group">
 	            <input name="country" type="text" ng-model="country" typeahead="country as country.name for country in countries | filter:$viewValue | limitTo:6"  required class="form-control" id="country" typeahead-on-select="onCountry($item)"
 	                   placeholder="Country" required>
-			        <div ng-if="pSubmitted" ng-messages="personalForm.country.$error">
+			        <div ng-if="personalForm.$submitted" ng-messages="personalForm.country.$error">
 				        <div class="control-group.error p" ng-message="required">
 					        Please select a country!
 				        </div>
@@ -32,7 +32,7 @@
 	        <div class="form-group">
 	            <input name="state" type="text" ng-model="state" typeahead="state as state.name for state in states | filter:$viewValue | limitTo:6" required class="form-control" id="state" typeahead-on-select="onState($item)"
 	                   placeholder="State" required>
-		        <div ng-if="pSubmitted" ng-messages="personalForm.state.$error">
+		        <div ng-if="personalForm.$submitted" ng-messages="personalForm.state.$error">
 			        <div class="control-group.error p" ng-message="required">
 				        Please select a state!
 			        </div>
@@ -44,7 +44,7 @@
 	        <div class="form-group ">
 	            <input name="nationality" type="text" ng-model="nationality" typeahead="nationality as nationality.name for nationality in nationalities | filter:$viewValue | limitTo:6" required class="form-control" id="nationality" typeahead-on-select="onNationality($item)"
 	                   placeholder="Nationality" required>
-		        <div ng-if="pSubmitted" ng-messages="personalForm.nationality.$error">
+		        <div ng-if="personalForm.$submitted" ng-messages="personalForm.nationality.$error">
 			        <div class="control-group.error p" ng-message="required">
 				        Please select a nationality!
 			        </div>
