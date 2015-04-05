@@ -3,7 +3,9 @@ angular.module('mepedia.directives').directive('addExperience', function () {
         scope: {
             experience: '=data', //Experience array
             saveExperience: '=', //SaveExperience function
-            addExperienceEnable: '=' //Experience ng-show ng-hide variable
+            addExperienceEnable: '=', //Experience ng-show ng-hide variable
+            enablePlaceholder: '=',
+            disablePlaceholder: '='
         },
         templateUrl: 'angular-app/templates/directives/addExperience.html',
         link: function (scope, element, attrs) {
@@ -12,6 +14,7 @@ angular.module('mepedia.directives').directive('addExperience', function () {
                 scope.addExperienceEnable = true;
                 clearAddExperienceValues();
                 getData();
+                scope.enablePlaceholder();
             };
 
             var clearAddExperienceValues = function () {
@@ -62,6 +65,7 @@ angular.module('mepedia.directives').directive('addExperience', function () {
             scope.onCancel = function () {
                 scope.addExperienceEnable = false;
                 scope.experience = [];
+                scope.disablePlaceholder();
             };
         }
     };

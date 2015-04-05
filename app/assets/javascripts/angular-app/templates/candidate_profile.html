@@ -86,14 +86,11 @@
 </div>
 <div class="profileContent">
     <div class="profileLeftContent cont col-md-4">
-
         <profile-highlights data="user"></profile-highlights>
-
         <div class="profileLeftContent section">
             <div class="profile-communication-panel-img message"></div>
             <div class="profile-communication-panel-img videocam"></div>
         </div>
-
     </div>
 
     <div class="profileMainContent col-md-8">
@@ -121,10 +118,13 @@
                 </div>
             </div>
             <div class="profile-right-content">
+                <p class="profile-placeholder-txt" ng-show="defaultSummaryEnable">{{defaultSummary}}</p>
                 <div ng-hide="summaryEnable" class="profile-right-text">
-                    {{summary}}
+                    {{user.summary}}
                 </div>
-                <textarea class="form-control" rows="5" ng-show="summaryEnable" ng-model="summary"></textarea>
+                <div ng-hide="defaultSummaryEnable">
+                    <textarea class="form-control" rows="5" ng-show="summaryEnable" ng-model="summaryTemp"></textarea>
+                </div>
             </div>
         </div>
 
@@ -152,13 +152,14 @@
             </div>
 
             <div class="profile-right-content">
+                <p class="profile-placeholder-txt" ng-show="defaultSkillsEnable">{{defaultSkills}}</p>
                 <div ng-hide="editorSkillsEnabled" class="profile-right-text">
                     <div class="tags">
                         <a class="tag" ng-model="tag" ng-repeat="tag in selectedSkills">{{tag}}</a>
                     </div>
                 </div>
-                <div class="form-group">
-                    <tags-input tags="skillsTags" ng-show="editorSkillsEnabled" placeholder="Add your skills..."
+                <div ng-hide="defaultSkillsEnable">
+                    <tags-input tags="skillsTags" ng-show="editorSkillsEnabled"
                                 info="candidateSelectedSkills"></tags-input>
                 </div>
 
@@ -178,7 +179,10 @@
         <div class="profile-right-container">
             <div>
                 <add-experience data="experience" save-experience="saveExperience"
-                               add-experience-enable="addExperienceEnable"></add-experience>
+                               add-experience-enable="addExperienceEnable" enable-placeholder="enableDefaultExperience" disable-placeholder="disableDefaultExperience"></add-experience>
+                <div class="profile-right-content" ng-show="defaultExperienceEnable">
+                    <p class="profile-placeholder-txt">{{defaultExperience}}</p>
+                </div>
                 <div ng-repeat="experience in experiences">
                     <experience data="experience" update-experience="updateExperience($index)" experience-editor="skiskil"></experience>
                 </div>

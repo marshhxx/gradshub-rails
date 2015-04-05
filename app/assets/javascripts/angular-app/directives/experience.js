@@ -2,8 +2,8 @@ angular.module('mepedia.directives').directive('experience', function () {
     return {
         scope: {
             experience: '=data', //Experience in experiences array
-            updateExperience: '&',//Update experience
-            experienceEditor: '='//Experience editor ng-show ng-hide variable
+            updateExperience: '&', //Update experience
+            experienceEditor: '=' //Experience editor ng-show ng-hide variable
         },
         templateUrl: 'angular-app/templates/directives/experience.html',
         link: function (scope, element, attrs) {
@@ -13,8 +13,9 @@ angular.module('mepedia.directives').directive('experience', function () {
 
             scope.onExperienceEditor = function () {
                 getData();
-                scope.experienceOriginal = angular.copy(scope.experience);
+                scope.experienceTemp = angular.copy(scope.experienceTemp);
                 scope.experienceEditor = true;
+                scope.enableDefaultExperience();
             };
 
             var getData = function () {
@@ -27,7 +28,15 @@ angular.module('mepedia.directives').directive('experience', function () {
 
             scope.onCancel = function () {
                 scope.experienceEditor = false;
-                scope.experience = scope.experienceOriginal;
+            };
+
+            scope.onSave = function ($index) {
+                scope.experience.company_name = scope.experienceTemp.company_name;
+                scope.experience.job_title = scope.experienceTemp.job_title;
+                scope.experience.start_date = scope.experienceTemp.start_date;
+                scope.experience.end_date = scope.experienceTemp.end_date;
+                scope.experience.description = scope.experienceTemp.description;
+                scope.updateExperience($index);
             };
 
             scope.onStartYear = function (year) {

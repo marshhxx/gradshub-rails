@@ -44,13 +44,13 @@
 </div>
 <div class="profile-add-right-content" ng-show="experienceEditor">
     <div class="form-group">
-        <input focus-input="experienceEditor" type="text" ng-model="experience.company_name" required
+        <input focus-input="experienceEditor" type="text" ng-model="experienceTemp.company_name" required
                class="form-control" id="company_name"
                placeholder="Company Name">
     </div>
 
     <div class="form-group">
-        <input type="text" ng-model="experience.job_title" required class="form-control" id="job_title"
+        <input type="text" ng-model="experienceTemp.job_title" required class="form-control" id="job_title"
                placeholder="Job Title">
     </div>
 
@@ -58,7 +58,7 @@
         <div class="btn-group margin-r5" dropdown>
             <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle
                     ng-disabled="disabled">
-                {{experience.start_date}} <span class="caret"></span>
+                {{experienceTemp.start_date}} <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
                 <li ng-repeat="startYear in years">
@@ -70,7 +70,7 @@
         <div class="btn-group margin-l5" dropdown>
             <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle
                     ng-disabled="disabled">
-                {{experience.end_date}} <span class="caret"></span>
+                {{experienceTemp.end_date}} <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
                 <li ng-repeat="endYear in years">
@@ -80,6 +80,6 @@
         </div>
     </div>
 
-    <textarea class="form-control" rows="5" ng-model="experience.description"
+    <textarea class="form-control" rows="5" ng-model="experienceTemp.description"
               placeholder="Description..."></textarea>
 </div>

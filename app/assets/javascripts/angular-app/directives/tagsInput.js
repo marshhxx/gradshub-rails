@@ -1,7 +1,7 @@
 angular.module('mepedia.directives').directive('tagsInput', function () {
     return {
         restrict: 'E',
-        scope: { tags: '=', placeholder: '@', currentTags: '=info'},
+        scope: { tags: '=', currentTags: '=info'},
         template:
             '<div class="tagsinput cont left">' +
             '<input type="text" ng-model="new_value" class="form-control tagsInput" typeahead="tag as tag.name for tag in tags | filter:$viewValue | limitTo:6">' +
@@ -30,8 +30,7 @@ angular.module('mepedia.directives').directive('tagsInput', function () {
                 $scope.currentTags.splice( idx, 1 );
             };
 
-            input.attr('placeholder', $scope.placeholder);
-            // Capture all keypresses
+                // Capture all keypresses
             input.bind('keypress', function ( event ) {
                 // But we only care when Enter was pressed
                 if ( event.keyCode == 13 ) {

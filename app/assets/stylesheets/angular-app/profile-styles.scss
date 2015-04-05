@@ -10,7 +10,6 @@ h3 {
   line-height: 40px;
 }
 
-
 /* Spinner */
 .spinner {
   margin: 100px auto;
@@ -565,7 +564,7 @@ p {
 
 .profile-right-content{
   width: 100%;
-  padding: 10px 20px 10px 30px;
+  padding: 10px 20px 30px 30px;
   display: inline-block;
 }
 
@@ -592,12 +591,12 @@ textarea{
 
 .header-title{
   color: #505050;
-  font: 18px Lato-Regular;
+  font: 17px Lato-Regular;
 }
 
 .header-subtitle{
   color: #999999;
-  font: 16px Lato-Regular;
+  font: 15px Lato-Regular;
 }
 
 .header-light-txt{
@@ -612,10 +611,15 @@ textarea{
 
 .header-highlight-txt{
   color: #122028;
-  font: 16px Lato-Regular;
+  font: 15px Lato-Regular;
   line-height: 35px;
 }
 
 .form-cont{
   margin-bottom: 5px;
+}
+
+.profile-placeholder-txt{
+  font: 15px Lato-Light, Georgia, "Times New Roman", Times, serif;
+  color: #999999;
 }

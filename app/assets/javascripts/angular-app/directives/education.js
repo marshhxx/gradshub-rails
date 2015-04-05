@@ -11,6 +11,8 @@ angular.module('mepedia.directives').directive('education', ['State', 'Country',
             scope.education.start_date = scope.education.start_date.split('-')[0];
             scope.education.end_date = scope.education.end_date.split('-')[0];
 
+
+
             scope.onEducationEditor = function () {
                 getData();
                 scope.educationTemp =  angular.copy(scope.education);
@@ -51,7 +53,6 @@ angular.module('mepedia.directives').directive('education', ['State', 'Country',
 
             scope.onCancel = function () {
                 scope.educationEditor = false;
-//                scope.education = scope.educationOriginal;
             };
 
             scope.getStateByCountryId = function (countryId) {
