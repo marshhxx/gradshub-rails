@@ -28,7 +28,7 @@ angular.module('mepedia.directives').directive('editCompany', ['EmployerCompany'
             scope.saveCompany = function() {
                 if (scope.companyForm.$valid) {
                     scope.editCompanyEnable = false;
-                    scope.$parent.saveEmployer(scope.employerUser);
+                    scope.$parent.saveEmployerCompany(scope.employerUser);
                     
                 } else {
 
