@@ -1,7 +1,7 @@
 angular.module('mepedia.controllers').controller('employerProfileController',
-    ['$scope', '$rootScope', '$http', '$upload', 'sessionService', '$state', 'Skill', 'Country', 'State', 'EmployerSkills', 'EmployerInterests', 'EmployerCompany', 'Utils',
+    ['$scope', '$rootScope', '$http', '$upload', 'sessionService', '$state', 'Skill', 'Country', 'State', 'EmployerSkills', 'EmployerCompany', 'Utils',
 
-        function($scope, $rootScope,$httpProvider, $upload, sessionService, $state, Skill, Country, State, EmployerSkills, EmployerInterests, EmployerCompany, Utils) {
+        function($scope, $rootScope,$httpProvider, $upload, sessionService, $state, Skill, Country, State, EmployerSkills, EmployerCompany, Utils) {
             var init = function () {
                 getData();
 
@@ -142,6 +142,7 @@ angular.module('mepedia.controllers').controller('employerProfileController',
             var saveInterests = function(){
                 $scope.disableInterestsEditor();
                 $scope.selectedInterests = $scope.employerSelectedInterests.slice();
+                /*
                 var employerInterests = new EmployerInterests();
                 employerInterests.candidate_id = $scope.user.uid;
                 employerInterests.skills = $scope.selectedInterests.map(function(skillName) {
@@ -156,6 +157,7 @@ angular.module('mepedia.controllers').controller('employerProfileController',
                     function(error) {
                         console.log(error)
                 });
+                */
             };
 
 
@@ -167,14 +169,23 @@ angular.module('mepedia.controllers').controller('employerProfileController',
 
             
             // company info
-            $scope.saveEmployer = function(employerUser) {
+            $scope.saveEmployerCompany = function(employerUser) {
                 $scope.user = employerUser;
+
+                var employerCompany = $scope.user.company[0];
+                employerCompany.candidate_id = $scope.user.uid;
+
+                console.log(employerCompany);
+
+                // save user
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 Utils.employerFromObject($scope.user).$update(function(response) {
                     console.log(response);
                 }, function(error) {
                     console.log('An error has occurred');
                 });
+
+
             }
 
 
