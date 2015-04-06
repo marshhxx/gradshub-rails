@@ -2,6 +2,7 @@
 <div class="profile wrapper col-md-9 col-md-offset-1">
 <div id="profileTopSection">
     <div id="profileCover" class="coverWrap">
+        <div><p class="profile-username-txt"> {{user.name }} {{user.lastname}}</p></div>
         <div class="coverBorder">
             <form>
                 <div class="coverImage" ng-show="defaultCoverImageVisible"></div>
@@ -86,7 +87,7 @@
 </div>
 <div class="profileContent">
     <div class="profileLeftContent cont col-md-4">
-        <profile-highlights data="user"></profile-highlights>
+        <profile-highlights data="user" user-age="age"></profile-highlights>
         <div class="profileLeftContent section">
             <div class="profile-communication-panel-img message"></div>
             <div class="profile-communication-panel-img videocam"></div>

@@ -71,10 +71,9 @@ h3 {
   margin-top: -55%;
 }
 
-// END SPINNER <<<<<<<<<<<<
+/* END SPINNER */
 
-
-/** profile **/
+/** Profile **/
 
 .profile.background {
   width: 100%;
@@ -101,7 +100,7 @@ h3 {
   text-decoration: none;
 }
 
-// <<<<<<<<<<<<<<<<<<< COVER PHOTO START >>>>>>>>>>>>>>>>>>>
+/** COVER PHOTO START **/
 
 .coverImage {
   background: url('default-cover-photo.png') center center no-repeat;
@@ -135,6 +134,17 @@ h3 {
   background-color: white;
 }
 
+.profile-username-txt{
+  font: 26px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+  color: #FFF;
+  bottom: 25px;
+  left: 315px;
+  position: absolute;
+  text-transform: uppercase;
+  text-shadow: 0 0 3px rgba(0,0,0,.6);
+  z-index: 10;
+}
+
 .coverBorder {
   border-bottom-color: rgba(80, 80, 80, .4);
   border: 1px solid #505050;
@@ -145,6 +155,7 @@ h3 {
   //position: absolute;
   right: 0;
   top: 0;
+  height: 315px;
 }
 
 .coverImageEdit.wrapper {
@@ -202,9 +213,9 @@ h3 {
 }
 
 
-// <<<<<<<<<<<<<<<<<<< COVER PHOTO END >>>>>>>>>>>>>>>>>>>
+/** COVER PHOTO END **/
 
-// <<<<<<<<<<<<<<<<<<< PROFILE PHOTO START >>>>>>>>>>>>>>>>>>>
+/** PROFILE PHOTO START **/
 
 .profileImage.wrapper {
   margin-top: -220px;
@@ -316,7 +327,7 @@ h3 {
   border-radius: 50%;
 }
 
-// <<<<<<<<<<<<<<<<<<< PROFILE PHOTO END >>>>>>>>>>>>>>>>>>>
+/** PROFILE PHOTO END **/
 
 .profileContent{
   width: 100%;
@@ -353,21 +364,24 @@ h3 {
 }
 
 .profile-img.location{
-  background: url('location.svg') center center no-repeat;
+  background: url('_location.svg') center center no-repeat;
 }
 
 .profile-img.education{
-  background: url('graduationcap.svg') center center no-repeat;
+  background: url('_graduationcap.svg') center center no-repeat;
 }
 
 .profile-img.topskills{
-  background: url('loudspeaker.svg') center center no-repeat;
+  background: url('_loudspeaker.svg') center center no-repeat;
 }
 
 .profile-img.jobposition{
-  background: url('workcase.svg') center center no-repeat;
+  background: url('_workcase.svg') center center no-repeat;
 }
 
+.profile-img.company{
+  background: url('_company.svg') center center no-repeat;
+}
 
 .profile-communication-panel-img{
   width: 50%;
@@ -459,7 +473,6 @@ p {
   background-size: 25px;
   cursor: pointer;
 }
-
 
 .edit-pencil-hover{
   width: 25px;
@@ -611,7 +624,7 @@ textarea{
 
 .header-highlight-txt{
   color: #122028;
-  font: 15px Lato-Regular;
+  font: 14px Lato-Regular;
   line-height: 35px;
 }
 
