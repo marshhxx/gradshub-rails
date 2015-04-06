@@ -1,21 +1,23 @@
 angular.module('mepedia.controllers').controller('employerProfileController',
-    ['$scope', '$rootScope', '$http', '$upload', 'sessionService', 'Skill', 'Country', 'State',
+    ['$scope', '$rootScope', '$http', '$upload', 'sessionService', '$state', 'Skill', 'Country', 'State', 'EmployerSkills', 'EmployerCompany', 'Utils',
 
-        function($scope, $rootScope,$httpProvider, $upload, sessionService, Skill, Country, State) {
+        function($scope, $rootScope,$httpProvider, $upload, sessionService, $state, Skill, Country, State, EmployerSkills, EmployerCompany, Utils) {
             var init = function () {
                 getData();
 
-                /* SUMMARY 
-                initSummary();
-                */
                 /* SKILLS */
                 initSkills();
 
+                /* INTERESTS */
+                initInterests();
+
                 sessionService.requestCurrentUser().then(
                     function (user) {
-                        $scope.user = user.candidate;
+                        $scope.user = user.employer;
                         initEmployerProfile();
 
+                        // Fire event to catch it in editCompany directive
+                        $scope.$broadcast('userLoaded');
                     },
                     function (error) {
                         console.log(error);
@@ -25,7 +27,19 @@ angular.module('mepedia.controllers').controller('employerProfileController',
             };
 
             var initEmployerProfile = function(){
-                $scope.selectedSkills = $scope.user.skills;
+
+                // this is static, it doesn't seems to be done.
+                console.log($scope);
+                $scope.user.company = [{
+                    name: 'Ceibal',
+                    industry: 'Information Techonology',
+                    description: 'Mi descripcion man',
+                    state: 'Montevideo',
+                    country: 'Uruguay',
+                    companyUrl: 'www.ceibal.edu.uy'
+                }];
+                
+                $scope.employerCompany = $scope.user.company[0];
 
             }
             // Description
@@ -50,15 +64,16 @@ angular.module('mepedia.controllers').controller('employerProfileController',
 
             // Skills
             var initSkills = function() {
-                $scope.candidateSelectedSkills = [];
+                $scope.employerSelectedSkills = [];
                 $scope.selectedSkills = [];
                 $scope.editorSkillsEnabled = false;
 
                 $scope.enableSkillsEditor = function() {
-                    console.log('hoal');
                     $scope.editorSkillsEnabled = true;
-                    if($scope.selectedSkills.length > 0)
-                        $scope.candidateSelectedSkills = $scope.selectedSkills.slice();
+                    if($scope.selectedSkills.length > 0) {
+                        console.log($scope.selectedSkills);
+                        $scope.employerSelectedSkills = $scope.selectedSkills.slice();
+                    }
                 };
 
                 $scope.disableSkillsEditor = function() {
@@ -71,14 +86,23 @@ angular.module('mepedia.controllers').controller('employerProfileController',
 
             var saveSkills = function(){
                 $scope.disableSkillsEditor();
-                $scope.selectedSkills = $scope.candidateSelectedSkills.slice();
-                var candidateSkills = new CandidateSkills();
-                candidateSkills.candidate_id = $scope.user.uid;
-                candidateSkills.skills = $scope.selectedSkills.map(function(skillName) {
+
+                console.log($scope.employerSelectedSkills);
+
+                $scope.selectedSkills = $scope.employerSelectedSkills.slice();
+                console.log($scope.selectedSkills);
+
+                var employerSkills = new EmployerSkills();
+                
+                console.log(employerSkills);
+
+                employerSkills.candidate_id = $scope.user.uid;
+                employerSkills.skills = $scope.selectedSkills.map(function(skillName) {
                     return {name: skillName}
                 });
+                // need to be updated in backend.
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
-                candidateSkills.$update(
+                employerSkills.$update(
                     function (response) {
                         refreshSkills();
                     },
@@ -89,11 +113,83 @@ angular.module('mepedia.controllers').controller('employerProfileController',
 
 
             var refreshSkills = function () {
-                CandidateSkills.query({candidate_id: $scope.user.uid}, function (skills) {
-                    $scope.candidateSelectedSkills = skills.skills;
+                EmployerSkills.query({candidate_id: $scope.user.uid}, function (skills) {
+                    $scope.employerSelectedSkills = skills.skills;
                 })
             };
 
+            // interests
+            var initInterests = function() {
+                $scope.employerSelectedInterests = [];
+                $scope.selectedInterests = [];
+                $scope.editorInterestsEnabled = false;
+
+                $scope.enableInterestsEditor = function() {
+                    $scope.editorInterestsEnabled = true;
+                    if($scope.selectedInterests.length > 0) {
+                        $scope.employerSelectedInterests = $scope.selectedInterests.slice();
+                    }
+                };
+
+                $scope.disableInterestsEditor = function() {
+                    $scope.editorInterestsEnabled = false;
+                };
+
+                $scope.saveInterests = saveInterests;
+            };
+
+
+            var saveInterests = function(){
+                $scope.disableInterestsEditor();
+                $scope.selectedInterests = $scope.employerSelectedInterests.slice();
+                /*
+                var employerInterests = new EmployerInterests();
+                employerInterests.candidate_id = $scope.user.uid;
+                employerInterests.skills = $scope.selectedInterests.map(function(skillName) {
+                    return {name: skillName}
+                });
+                // need to be updated in backend.
+                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
+                employerInterests.$update(
+                    function (response) {
+                        refreshSkills();
+                    },
+                    function(error) {
+                        console.log(error)
+                });
+                */
+            };
+
+
+            var refreshInterests = function () {
+                EmployerInterests.query({candidate_id: $scope.user.uid}, function (skills) {
+                    $scope.employerSelectedInterests = skills.skills;
+                })
+            };
+
+            
+            // company info
+            $scope.saveEmployerCompany = function(employerUser) {
+                $scope.user = employerUser;
+
+                var employerCompany = $scope.user.company[0];
+                employerCompany.candidate_id = $scope.user.uid;
+
+                console.log(employerCompany);
+
+                // save user
+                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
+                Utils.employerFromObject($scope.user).$update(function(response) {
+                    console.log(response);
+                }, function(error) {
+                    console.log('An error has occurred');
+                });
+
+
+            }
+
+
+            // get data from db
             var getData = function() {
                 Country.query(function(countries) {
                     $scope.countries = countries.countries;
