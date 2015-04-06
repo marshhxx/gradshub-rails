@@ -1,0 +1,89 @@
+<!-- Education add component!-->
+<form class="company-form" novalidate class="css-form" name="companyForm">
+<div class="section padding-l35">
+    <div class="profile-left-header">
+        <div class="profile-left-header title">
+            <span>Company info</span>
+        </div>
+        <div class="profile-left-header edit">
+            <div class="editwrapper">
+                <div class="edit-pencil employer" ng-click="enableCompanyEditor()" ng-hide="editCompanyEnable"></div>
+                <div ng-show="editCompanyEnable" class="edit-buttons-wrapper">
+                    <a class="btn btn-edit employer-company">
+                        <input type="submit" ng-click="saveCompany()" value="SAVE" />
+                    </a>
+                    <a class="btn btn-edit employer-company margin-l5">
+                        <input type="button" ng-click="onCancel()"value="CANCEL" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="employer-left-content-wrapper">
+        <div class="profile-left-wrapper">
+            <div class="img-col employer">
+                <div class="profile-img companyName jobposition"></div>
+            </div>
+            <div class="cont-col employer-company" ng-hide="editCompanyEnable">
+                {{employerCompany.name}}
+            </div>
+            <div class="form-group employer-company" ng-show="editCompanyEnable">
+                <input focus-input="editCompanyNameEnable" type="text" ng-model="employerCompany.name" required
+                    class="form-control employer-company" id="companyName" name="companyName" />
+            </div>
+        </div>
+
+        <div class="profile-left-wrapper">
+            <div class="img-col employer">
+                <div class="profile-img companyIndustry jobposition"></div>
+            </div>
+            <div class="cont-col employer-company" ng-hide="editCompanyEnable">
+                {{employerCompany.industry}}
+            </div>
+            <div class="form-group employer-company" ng-show="editCompanyEnable">
+                <input focus-input="" type="text" ng-model="employerCompany.industry" required
+                    class="form-control employer-company" id="companyIndustry">
+            </div>
+        </div>
+
+        <div class="profile-left-wrapper">
+            <div class="img-col employer">
+                <div class="profile-img companyIndustry jobposition"></div>
+            </div>
+            <div class="cont-col employer-company" ng-hide="editCompanyEnable">
+                {{employerCompany.state}}, {{employerCompany.country}}
+            </div>
+            <div class="form-group employer-company" ng-show="editCompanyEnable">
+                <input focus-input="" type="text" ng-model="employerCompany.state" required
+                    class="form-control employer-company" id="companyIndustry">
+            </div>
+        </div>
+
+        <div class="profile-left-wrapper">
+            <div class="img-col employer">
+                <div class="profile-img companyIndustry jobposition"></div>
+            </div>
+            <div class="cont-col employer-company" ng-hide="editCompanyEnable">
+                {{employerCompany.companyUrl}}
+            </div>
+            <div class="form-group employer-company" ng-show="editCompanyEnable">
+                <input focus-input="" type="text" ng-model="employerCompany.companyUrl" required
+                    class="form-control employer-company" id="companyIndustry">
+            </div>
+        </div>
+
+        <div class="profile-left-wrapper">
+            <div class="img-col employer">
+                <div class="profile-img companyLocation jobposition"></div>
+            </div>
+            <div class="cont-col employer-company" ng-hide="editCompanyEnable">
+                {{employerCompany.description}}
+            </div>
+            <div class="form-group employer-company" ng-show="editCompanyEnable">
+                <textarea class="form-control employer-company" rows="5" ng-model="employerCompany.description"
+                    placeholder="Description..."></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
