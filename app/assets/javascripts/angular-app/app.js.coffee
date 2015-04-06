@@ -43,23 +43,30 @@
 		url: "/resetsccss"
 		templateUrl: "angular-app/templates/views/forgot_pssw_success.html"
 		controller: "forgotPasswordController "
-	).state("main.signup",
-		url: "/signup"
+	).state("main.signup_candidate",
+		url: "/signup/candidate"
 		templateUrl: "angular-app/templates/signup.html"
 		controller: "candidateSignupController"
-	).state("main.signup.personal",
+	).state("main.signup_employer",
+		url: "/signup/employer"
+		templateUrl: "angular-app/templates/signup.html"
+		controller: "employerSignupController"
+	).state("main.signup_candidate.personal",
 		url: "/personal"
 		templateUrl: "angular-app/templates/views/form-personal.html"
-	).state("main.signup.education",
+	).state("main.signup_candidate.education",
 		url: "/education"
 		templateUrl: "angular-app/templates/views/form-education.html"
-	).state("main.signup.interests",
+	).state("main.signup_candidate.interests",
 		url: "/interests"
 		templateUrl: "angular-app/templates/views/form-interests.html"
-	).state("main.signup.company",
+	).state("main.signup_employer.personal",
+		url: "/personal"
+		templateUrl: "angular-app/templates/views/form-personal.html"
+	).state("main.signup_employer.company",
 		url: "/company"
 		templateUrl: "angular-app/templates/views/form-company.html"
-	).state("main.signup.looking",
+	).state("main.signup_employer.looking",
 		url: "/looking"
 		templateUrl: "angular-app/templates/views/form-lookingfor.html"
 	).state("main.candidate_profile",

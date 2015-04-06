@@ -2,9 +2,19 @@
  To use this service:
  1) If you want to get all nationalities
 
- nationalities = Nationality.get -> //get() all nationalities
+ nationalities = Nationality.query -> //get() all nationalities
      $scope.nationalities = nationalities.nationalities
  */
-angular.module('mepedia.services').factory('Nationality', function($resource) {
-    return $resource('/api/nationalities');
-});
+var Nationality = function($resource) {
+    return $resource('/api/nationalities',
+        {id: '@id'},
+        {
+            query: {
+                method: 'GET',
+                isArray: false
+            }
+        })
+};
+angular
+    .module('mepedia.services')
+    .factory('Nationality', Nationality);

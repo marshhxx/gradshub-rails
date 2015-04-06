@@ -48,6 +48,7 @@ angular
 			$scope.onNationality = (nationality) ->
 				if(nationality?)
 					$scope.candidateNationality = new CandidateNationalities();
+					$scope.candidateNationality.name = nationality.name
 					$scope.candidateNationality.candidate_id = $scope.user.uid;
 
 			####### Eduaction ######
@@ -102,11 +103,11 @@ angular
 
 			$scope.validatePersonal = (valid) ->
 				$scope.pSubmitted = true
-				$state.go 'main.signup.education' if valid
+				$state.go 'main.signup_candidate.education' if valid
 
 			$scope.validateEducation = (valid) ->
 				$scope.eSubmitted = true
-				$state.go 'main.signup.interests' if valid
+				$state.go 'main.signup_candidate.interests' if valid
 
 			$scope.validateAndCreate = validateAndCreate
 

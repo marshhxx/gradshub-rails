@@ -100,8 +100,10 @@ angular.module('mepedia.controllers').controller("HomeController", [
 		login = (user) ->
 			promise = sessionService.login(user.email, user.password)
 			promise.then(
-				(payload) ->
-					$state.go 'main.signup.personal'
+				(resp) ->
+
+					$state.go 'main.signup_candidate.personal' if resp.type == 'Candidate'
+					$state.go 'main.signup_employer.personal' if resp.type == 'Employer'
 			,
 				(errors) ->
 					console.log(errors)

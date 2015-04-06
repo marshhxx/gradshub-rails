@@ -125,9 +125,7 @@ angular.module('mepedia.services').factory('sessionService',
         this.getUser = function() {
             init();
             var deferred = $q.defer();
-            if (typeof user !== 'undefined') {
-                deferred.resolve({candidate: user});
-            } else if (cookieJar.isDefined("current_user")) {
+            if (cookieJar.isDefined("current_user")) {
                 deferred.resolve(cookieJar.get("current_user"));
             } else if (typeof user_uid !== 'undefined') {
                 var setUser = function (oneUser) {
