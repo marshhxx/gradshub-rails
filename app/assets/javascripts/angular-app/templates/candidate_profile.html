@@ -184,7 +184,7 @@
                 <div class="profile-right-content" ng-show="defaultExperienceEnable">
                     <p class="profile-placeholder-txt">{{defaultExperience}}</p>
                 </div>
-                <div ng-repeat="experience in experiences">
+                <div ng-repeat="experience in user.experiences">
                     <experience data="experience" update-experience="updateExperience($index)" experience-editor="skiskil"></experience>
                 </div>
             </div>

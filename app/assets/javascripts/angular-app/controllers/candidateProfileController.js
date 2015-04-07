@@ -299,9 +299,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
             });
 
             $scope.saveProfilePhoto = function () {
-
                 var data = pictureProfilePhoto.guillotine('getData');
-
                 // Crop the photo
                 var cloudianary_result = $.cloudinary.image(cloudinary_data.public_id, {
                     secure: true,
@@ -622,7 +620,9 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 candidateSkills.$update(
                     function (response) {
-                        initCandidateProfile();
+                        $scope.selectedSkills = response.skills.map(function (skill) {
+                            return skill.name;
+                        });
                     },
                     function (error) {
                         console.log(error)
@@ -650,7 +650,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
 
             var getExperiences = function () {
                 Experience.query({candidate_id: $scope.user.uid}, function (experiences) {
-                    $scope.experiences = experiences.experiences;
+                    $scope.user.experiences = experiences.experiences;
                 })
             };
 
@@ -661,6 +661,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 experience.$save(
                     function (response) {
                         getExperiences();
+
                     },
                     function (error) {
                         console.log(error);
