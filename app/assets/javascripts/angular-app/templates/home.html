@@ -39,41 +39,61 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="col-md-6 col-sm-6 home-col name">
-                                        <div class="form-group home-container name control-group"
-                                             ng-class="{true: 'error'}[submitted && homeForm.name.$invalid]">
-                                            <input type="text" name="name" class="form-control" ng-model="name"
-                                                   placeholder="Your Name" required>
+                                        <div class="form-group home-container name"
+                                             ng-class="{'has-error': homeForm.name.$invalid && (homeForm.$submitted || homeForm.name.$dirty)}">
+	                                        <input type="text" name="name" class="form-control" ng-model="name" placeholder="Your Name" required>
 
-                                            <p ng-show="submitted && homeForm.name.$error.required">Enter your name.</p>
+	                                        <div ng-if="homeForm.name.$invalid && (homeForm.$submitted || homeForm.name.$dirty)" ng-messages="homeForm.name.$error">
+		                                        <div class="help-block" ng-message="required">
+			                                        Enter your name.
+		                                        </div>
+	                                        </div>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6 col-sm-6 home-col lastname">
-                                        <div class="form-group home-container lastname control-group"
-                                             ng-class="{true: 'error'}[submitted && homeForm.lastname.$invalid]">
-                                            <input type="text" name="lastname" class="form-control" ng-model="lastname"
-                                                   placeholder="Your Last Name" required>
+                                        <div class="form-group home-container lastname"
+                                             ng-class="{'has-error': homeForm.lastname.$invalid && (homeForm.$submitted || homeForm.lastname.$dirty)}">
+	                                        <input type="text" name="lastname" class="form-control" ng-model="lastname" placeholder="Your Last Name" required>
 
-                                            <p ng-show="submitted && homeForm.lastname.$error.required">Enter your last
-                                                name.</p>
+	                                        <div ng-if="homeForm.lastname.$invalid && (homeForm.$submitted || homeForm.lastname.$dirty)" ng-messages="homeForm.lastname.$error">
+		                                        <div class="help-block" ng-message="required">
+			                                        Enter your last name.
+		                                        </div>
+	                                        </div>
                                         </div>
                                     </div>
 
                                     <div class="form-group control-group"
-                                         ng-class="{true: 'error'}[submitted && homeForm.email.$invalid]">
-                                        <input type="text" name="email" class="form-control" ng-model="email"
+                                         ng-class="{'has-error': homeForm.email.$invalid && (homeForm.$submitted || homeForm.email.$touched)}">
+                                        <input ng-model-options="{debounce: 500}" type="email" name="email" class="form-control" ng-model="email"
                                                placeholder="Your Email" required>
 
-                                        <p ng-show="submitted && homeForm.email.$error.required">Enter your email.</p>
+	                                    <div ng-if="homeForm.email.$invalid && (homeForm.$submitted || homeForm.email.$touched)" ng-messages="homeForm.email.$error">
+		                                    <div class="help-block" ng-message="required">
+			                                    Enter your email.
+		                                    </div>
+		                                    <div class="help-block" ng-message="email">
+			                                    Enter a valid email.
+		                                    </div>
+	                                    </div>
                                     </div>
 
                                     <div class="form-group control-group"
-                                         ng-class="{true: 'error'}[submitted && homeForm.password.$invalid]">
-                                        <input type="password" name="password" class="form-control" ng-model="password"
-                                               placeholder="Your Password" required>
+                                         ng-class="{'has-error': homeForm.password.$invalid && (homeForm.$submitted || homeForm.password.$touched)}">
+	                                    <input type="password" name="password" class="form-control" ng-model="password" placeholder="Your Password" ng-minlength="5" ng-maxlength="20" required >
 
-                                        <p ng-show="submitted && homeForm.password.$error.required">Enter your
-                                            password.</p>
+	                                    <div ng-if="homeForm.password.$invalid && (homeForm.$submitted || homeForm.password.$touched)" ng-messages="homeForm.password.$error">
+		                                    <div class="help-block" ng-message="required">
+			                                    Enter your password.
+		                                    </div>
+		                                    <div class="help-block" ng-message="minlength">
+			                                    Your password is too short.
+		                                    </div>
+		                                    <div class="help-block" ng-message="maxlength">
+			                                    Your password is too long.
+		                                    </div>
+	                                    </div>
                                     </div>
                                 </div>
                             </div>

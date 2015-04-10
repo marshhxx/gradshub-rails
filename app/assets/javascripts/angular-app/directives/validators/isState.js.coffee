@@ -7,7 +7,7 @@ IsState = (State) ->
 		State.query (states) ->
 			scope.states = states.states
 			ctrl.$validators.state = (value) ->
-				return value in scope.states || value == ""
+				return scope.states? and (value in scope.states or value == "")
 
 	}
 angular

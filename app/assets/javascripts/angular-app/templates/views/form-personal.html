@@ -47,11 +47,14 @@
 	    </div>
 
 	    <div class="row">
-	        <div class="form-group" ng-class="{'has-error': personalForm.nationality.$invalid && (personalForm.$submitted || personalForm.nationality.$dirty)}">
+	        <div class="form-group" ng-class="{'has-error': personalForm.nationality.$invalid && (personalForm.$submitted || personalForm.nationality.$touched)}">
 	            <nationality-selector placeholder="Nationality" ng-model="nationality" on-select="onNationality"></nationality-selector>
-		        <div ng-if="personalForm.nationality.$invalid && (personalForm.$submitted || personalForm.nationality.$dirty)" ng-messages="personalForm.nationality.$error">
+		        <div ng-if="personalForm.nationality.$invalid && (personalForm.$submitted || personalForm.nationality.$touched)" ng-messages="personalForm.nationality.$error">
 			        <div class="help-block" ng-message="required">
 				        Please select a nationality!
+			        </div>
+			        <div class="help-block" ng-message="nationality">
+				        Please select a valid nationality!
 			        </div>
 		        </div>
 	        </div>
