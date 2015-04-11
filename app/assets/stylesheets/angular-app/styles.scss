@@ -1939,3 +1939,15 @@ label {
 .right{
   float: right;
 }
+
+.alert-top-fixed {
+  opacity: 0.95;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50%;
+  margin-left: 25%;
+  z-index: 7000;
+  margin-top: 5px;
+}

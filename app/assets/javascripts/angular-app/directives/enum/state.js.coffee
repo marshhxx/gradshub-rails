@@ -19,8 +19,8 @@ StateSelector = (State) ->
 			(id) ->
 				if id?
 					scope.isDisabled = false
-					State.query {country_id: id}, (countries) ->
-						scope.states = countries.states
+					State.query {country_id: id}, (states) ->
+						scope.states = states.states
 		)
 
 	}

@@ -1,8 +1,8 @@
 angular
 	.module('mepedia.controllers')
 	.controller("candidateSignupController",
-	['$scope', '$q', '$http', '$state', 'sessionService', 'Skill', 'Candidate', 'Interest', 'CandidateNationalities', 'Education', 'CandidateSkills', 'Utils'
-	($scope, $q, $httpProvider, $state, sessionService, Skill, Candidate, Interest, CandidateNationalities, Education, CandidateSkills, Utils)->
+	['$scope', '$q', '$http', '$state', 'sessionService', 'Skill', 'Candidate', 'Interest', 'CandidateNationalities', 'Education', 'CandidateSkills', 'Utils', 'alertService',
+	($scope, $q, $httpProvider, $state, sessionService, Skill, Candidate, Interest, CandidateNationalities, Education, CandidateSkills, Utils, alertService)->
 
 		init = ->
 			$scope.selectedTags = []
@@ -94,7 +94,7 @@ angular
 						$state.go 'main.candidate_profile'
 					,
 					(error) ->
-						console.log error
+						alertService.addError(error.data)
 				)
 
 		saveEducation = ->

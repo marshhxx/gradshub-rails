@@ -7,7 +7,7 @@ IsCountry = (Country) ->
 		Country.query (countries) ->
 			scope.countries = countries.countries
 			ctrl.$validators.country = (value) ->
-				return value in scope.countries || value == ""
+				return !value?|| value == "" || value in scope.countries
 
 	}
 angular
