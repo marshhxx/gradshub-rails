@@ -602,8 +602,9 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 $scope.user.summary = $scope.summaryTemp;
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 Utils.candidateFromObject($scope.user).$update(function (response) { //Creates resource User from object $scope.user
-                    $scope.user = response.candidate;
+                    $scope.user = response.candidate;  // ToDO !! update only user.summary
                     initCandidateProfile(); //Update profile variables;
+                    $scope.defaultSummaryEnable = false;
                 }, function (error) {
                     console.log(error);
                 });
@@ -623,6 +624,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                         $scope.selectedSkills = response.skills.map(function (skill) {
                             return skill.name;
                         });
+                        $scope.defaultSkillsEnable = false;
                     },
                     function (error) {
                         console.log(error)
@@ -637,7 +639,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
 
             var saveEducation = function () {
                 $scope.addEducationEnable = false;
-                var education = getEducation($scope.education); //Create Education Resource
+                var education = getEducation($scope.education); // Create Education Resource
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 education.$save(
                     function (response) {
