@@ -467,17 +467,17 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
             }
 
             var initSummary = function () {
-                $scope.summaryEnable = false;
+                $scope.summaryEditorEnable = false;
 
                 $scope.onSummaryEditor = function () {
                     if ($scope.defaultSummaryEnable == true)
                         $scope.defaultSummaryEnable = false;
-                    $scope.summaryEnable = true;
+                    $scope.summaryEditorEnable = true;
                     $scope.summaryTemp = $scope.user.summary;
                 };
 
                 $scope.onCancelSummaryEditor = function () {
-                    $scope.summaryEnable = false;
+                    $scope.summaryEditorEnable = false;
                     if ($scope.user.summary == undefined || $scope.user.summary == "")
                         $scope.defaultSummaryEnable = true;
 
@@ -492,18 +492,16 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 $scope.editorSkillsEnabled = false;
 
                 $scope.enableSkillsEditor = function () {
-                    if ($scope.defaultSkillsEnable == true)
-                        $scope.defaultSkillsEnable = false;
-
                     $scope.editorSkillsEnabled = true;
                     if ($scope.selectedSkills.length > 0)
                         $scope.candidateSelectedSkills = $scope.selectedSkills.slice();
+
+                    if ($scope.defaultSkillsEnable == true)
+                        $scope.defaultSkillsEnable = false;
                 };
 
                 $scope.disableSkillsEditor = function () {
                     $scope.editorSkillsEnabled = false;
-                    if ($scope.selectedSkills.length == 0)
-                        $scope.defaultSkillsEnable = true;
                 };
 
                 $scope.saveSkills = saveSkills;
@@ -536,7 +534,6 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     if ($scope.user.experiences.length == 0)
                         $scope.defaultExperienceEnable = true;
                 };
-
             }
 
             /* GETTERS */
@@ -598,7 +595,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
             /* SAVE FUNCTIONS */
 
             var saveSummary = function () {
-                $scope.summaryEnable = false;
+                $scope.summaryEditorEnable = false;
                 $scope.user.summary = $scope.summaryTemp;
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 Utils.candidateFromObject($scope.user).$update(function (response) { //Creates resource User from object $scope.user
@@ -615,16 +612,26 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 $scope.selectedSkills = $scope.candidateSelectedSkills.slice();
                 var candidateSkills = new CandidateSkills();
                 candidateSkills.candidate_id = $scope.user.uid;
-                candidateSkills.skills = $scope.selectedSkills.map(function (skillName) {
-                    return {name: skillName}
-                });
+
+                if($scope.selectedSkills.length > 0) {
+                    candidateSkills.skills = $scope.selectedSkills.map(function (skillName) {
+                        return {name: skillName}
+                    });
+                } else {
+                    candidateSkills.skills = [];
+                }
+
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 candidateSkills.$update(
                     function (response) {
                         $scope.selectedSkills = response.skills.map(function (skill) {
                             return skill.name;
                         });
-                        $scope.defaultSkillsEnable = false;
+                        if ($scope.selectedSkills.length == 0) {
+                            $scope.defaultSkillsEnable = true;
+                        } else {
+                            $scope.defaultSkillsEnable = false;
+                        }
                     },
                     function (error) {
                         console.log(error)
@@ -688,12 +695,13 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
 
             var updateExperience = function ($index) {
                 $scope.experienceEditor = false;
-                var experience = getExperience($scope.experiences[$index]);
-                experience.id = $scope.experiences[$index].id;
+                var experience = getExperience($scope.user.experiences[$index]);
+                experience.id = $scope.user.experiences[$index].id;
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 experience.$update(
                     function (response) {
                         getExperiences();
+                        $scope.defaultExperienceEnable = false;
                     },
                     function (error) {
                         console.log(error);

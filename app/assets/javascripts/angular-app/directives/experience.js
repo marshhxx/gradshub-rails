@@ -3,19 +3,20 @@ angular.module('mepedia.directives').directive('experience', function () {
         scope: {
             experience: '=data', //Experience in experiences array
             updateExperience: '&', //Update experience
-            experienceEditor: '=' //Experience editor ng-show ng-hide variable
+            experienceEditor: '=', //Experience editor ng-show ng-hide variable
+            defaultExperience: '=' //Default experience visibility
         },
         templateUrl: 'angular-app/templates/directives/experience.html',
         link: function (scope, element, attrs) {
 
-            scope.experience.start_date = scope.experience.start_date.split('-')[0];
-            scope.experience.end_date = scope.experience.end_date.split('-')[0];
-
             scope.onExperienceEditor = function () {
-                getData();
-                scope.experienceTemp = angular.copy(scope.experienceTemp);
+                if(scope.experience == undefined)
+                    scope.defaultExperience = false;
+
+                scope.experienceTemp = angular.copy(scope.experience);
                 scope.experienceEditor = true;
-                scope.enableDefaultExperience();
+                scope.experienceTemp.start_date = scope.experience.start_date.split('-')[0];
+                scope.experienceTemp.end_date = scope.experience.end_date.split('-')[0];
             };
 
             var getData = function () {
@@ -28,6 +29,8 @@ angular.module('mepedia.directives').directive('experience', function () {
 
             scope.onCancel = function () {
                 scope.experienceEditor = false;
+                if(scope.experienceTemp == undefined)
+                    scope.defaultExperience = true;
             };
 
             scope.onSave = function ($index) {
@@ -40,11 +43,11 @@ angular.module('mepedia.directives').directive('experience', function () {
             };
 
             scope.onStartYear = function (year) {
-                scope.experience.start_date = year;
+                scope.experienceTemp.start_date = year;
             };
 
             scope.onEndYear = function (year) {
-                scope.experience.end_date = year;
+                scope.experienceTemp.end_date = year;
             };
 
             scope.years = getYears();

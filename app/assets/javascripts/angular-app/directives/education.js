@@ -8,16 +8,14 @@ angular.module('mepedia.directives').directive('education', ['State', 'Country',
         templateUrl: 'angular-app/templates/directives/education.html',
         link: function (scope, element, attrs) {
 
-            scope.education.start_date = scope.education.start_date.split('-')[0];
-            scope.education.end_date = scope.education.end_date.split('-')[0];
-
-
-
             scope.onEducationEditor = function () {
                 getData();
                 scope.educationTemp =  angular.copy(scope.education);
                 scope.educationEditor = true;
                 scope.getStateByCountryId(scope.education.country.id);
+
+                scope.educationTemp.start_date = scope.education.start_date.split('-')[0];
+                scope.educationTemp.end_date = scope.education.end_date.split('-')[0];
             };
 
             var getData = function () {
@@ -62,11 +60,11 @@ angular.module('mepedia.directives').directive('education', ['State', 'Country',
             };
 
             scope.onStartYear = function (year) {
-                scope.education.start_date = year;
+                scope.educationTemp.start_date = year;
             };
 
             scope.onEndYear = function (year) {
-                scope.education.end_date = year;
+                scope.educationTemp.end_date = year;
             };
 
             scope.years = getYears();

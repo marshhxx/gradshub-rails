@@ -11,7 +11,7 @@
                     <span class="header-title"> {{experience.company_name}} </span>
                 </div>
                 <div class="width15">
-                    <div class="edit-pencil-hover" ng-click="onExperienceEditor()" ng-hide="experienceEditor"></div>
+                    <div class="edit-pencil-hover" ng-click="onExperienceEditor()"></div>
                 </div>
             </div>
             <div class="form-cont">
@@ -32,7 +32,7 @@
     <div class="editwrapper">
 
         <div class="edit-buttons-wrapper">
-            <a ng-click="updateExperience()" class="btn btn-edit">
+            <a ng-click="onSave()" class="btn btn-edit">
                 SAVE </span>
             </a>
             <a ng-click="onCancel()" class="btn btn-edit margin-l5">

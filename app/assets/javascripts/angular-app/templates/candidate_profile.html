@@ -105,9 +105,9 @@
                 <div class="profile-right-header edit">
                     <div class="editwrapper">
                         <div class="edit-pencil" ng-click="onSummaryEditor()"
-                             ng-hide="summaryEnable"></div>
+                             ng-hide="summaryEditorEnable"></div>
 
-                        <div ng-show="summaryEnable" class="edit-buttons-wrapper">
+                        <div ng-show="summaryEditorEnable" class="edit-buttons-wrapper">
                             <a ng-click="saveSummary()" class="btn btn-edit">
                                 SAVE </span>
                             </a>
@@ -120,11 +120,11 @@
             </div>
             <div class="profile-right-content">
                 <p class="profile-placeholder-txt" ng-show="defaultSummaryEnable">{{defaultSummary}}</p>
-                <div ng-hide="summaryEnable" class="profile-right-text">
+                <div ng-hide="summaryEditorEnable" class="profile-right-text">
                     {{user.summary}}
                 </div>
                 <div ng-hide="defaultSummaryEnable">
-                    <textarea class="form-control" rows="5" ng-show="summaryEnable" ng-model="summaryTemp"></textarea>
+                    <textarea class="form-control" rows="5" ng-show="summaryEditorEnable" ng-model="summaryTemp"></textarea>
                 </div>
             </div>
         </div>
@@ -185,7 +185,7 @@
                     <p class="profile-placeholder-txt">{{defaultExperience}}</p>
                 </div>
                 <div ng-repeat="experience in user.experiences">
-                    <experience data="experience" update-experience="updateExperience($index)" experience-editor="skiskil"></experience>
+                    <experience data="experience" update-experience="updateExperience($index)" experience-editor="experienceEditor" default-experience=defaultExperienceEnable></experience>
                 </div>
             </div>
         </div>
