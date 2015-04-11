@@ -46,6 +46,8 @@ angular.module('mepedia.controllers').controller("HomeController", [
 						error = response.data.error
 						if error.code == "ERR02"
 							$state.go 'main.login_onepgr', {mail: user.email}
+						else
+							$scope.serverErrors = error
 				)
 			else
 				$scope.submitted = true

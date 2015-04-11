@@ -81,7 +81,8 @@
 
                                     <div class="form-group control-group"
                                          ng-class="{'has-error': homeForm.password.$invalid && (homeForm.$submitted || homeForm.password.$touched)}">
-	                                    <input type="password" name="password" class="form-control" ng-model="password" placeholder="Your Password" ng-minlength="5" ng-maxlength="20" required >
+	                                    <input type="password" name="password" class="form-control" ng-model="password" placeholder="Your Password"
+	                                           ng-minlength="5" ng-maxlength="20" required >
 
 	                                    <div ng-if="homeForm.password.$invalid && (homeForm.$submitted || homeForm.password.$touched)" ng-messages="homeForm.password.$error">
 		                                    <div class="help-block" ng-message="required">
@@ -99,6 +100,11 @@
                             </div>
                             <div class="row text-center">
                                 <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+	                                <div class="control-group has-error" ng-messages="serverErrors">
+		                                <div class="help-block" ng-repeat="error in serverErrors.reasons">
+			                                <div>{{ error }}</div>
+		                                </div>
+	                                </div>
                                     <button type="submit" class="btn btn-xl">Join project B for free</button>
                                 </div>
                             </div>

@@ -94,7 +94,7 @@ angular
 						$state.go 'main.candidate_profile'
 					,
 					(error) ->
-						alertService.addError(error.data)
+						$scope.serverErrors = error.data.error
 				)
 
 		saveEducation = ->
