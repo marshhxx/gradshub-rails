@@ -1,8 +1,8 @@
 angular
 	.module('mepedia.controllers')
 	.controller('mainController',
-	['$scope', 'sessionService', '$state',
-	 ($scope, sessionService, $state) ->
+	['$scope', '$rootScope', 'sessionService', '$state', 'alertService'
+	 ($scope, $rootScope, sessionService, $state, alertService) ->
 
 		 $scope.logged = sessionService.isAuthenticated();
 		 $scope.logout = () ->
@@ -11,4 +11,4 @@ angular
 			 ).catch(
 				 (error)-> console.log(error)
 			 );
-])
+	])

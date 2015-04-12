@@ -11,9 +11,10 @@ angular.module('mepedia.controllers').controller('loginController',
                                     $state.go('main.candidate_profile');
                                 else if (resp.type == 'Employer')
                                     $state.go('main.employer_profile');
-                            },
-                            function (errors) {
-                                console.log(errors)
+                            }
+                            ,
+                            function (resp) {
+                                $scope.serverErrors = resp.error;
                             }
                         );
                     }

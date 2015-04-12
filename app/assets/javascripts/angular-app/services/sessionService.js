@@ -14,7 +14,7 @@ angular.module('mepedia.services').factory('sessionService',
                         }
                     }
                 ).error(function(response) {
-                        deferred.reject(response.errors)
+                        deferred.reject(response)
                     }
                 );
                 return deferred.promise;

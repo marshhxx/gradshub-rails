@@ -1,4 +1,4 @@
-class Api::V1::InterestsController < Api::BaseController
+class Api::V1::InterestsController < Api::NestedController
   before_action :authenticate_with_token!, only: [:create, :update, :destroy, :update_collection]
 
   private

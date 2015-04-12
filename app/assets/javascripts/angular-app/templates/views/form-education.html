@@ -2,48 +2,52 @@
 	<div class="signup form-container col-md-8 col-md-offset-2">
 	    <div class="signup form-box-cont">
 	    <div class="row">
-	        <div class="form-group">
-	            <input name="school" type="text" ng-model="school" required class="form-control" id="school"
-	                   placeholder="School" typeahead="school as school.name for school in schools | filter:$viewValue | limitTo:6" required class="form-control" typeahead-on-select="onSchool($item)">
-			        <div ng-if="educationForm.$submitted" ng-messages="educationForm.school.$error">
-				        <div class="control-group.error p" ng-message="required">
+	        <div class="form-group" ng-class="{'has-error': educationForm.school.$invalid && (educationForm.$submitted || educationForm.school.$dirty)}">
+			        <school-selector placeholder="School" ng-model="school" on-select="onSchool" required></school-selector>
+		          <div ng-if=" educationForm.school.$invalid && (educationForm.$submitted || educationForm.school.$dirty)" ng-messages="educationForm.school.$error">
+				        <div class="help-block" ng-message="required">
 					        Please select a school
 				        </div>
+			          <div class="help-block" ng-message="school">
+				          Please select a valid school!
+			          </div>
 			        </div>
 	        </div>
 	    </div>
 
 	    <div class="row">
 	        <div class="form-group div-50 left">
-	            <input type="text" ng-model="schoolCountry"  class="form-control" id="schoolCountry" placeholder="School Country"
-	                   typeahead="country as country.name for country in countries | filter:$viewValue | limitTo:6" typeahead-on-select="onSchoolCountry($item)">
+		        <country-selector novalidate placeholder="School Country" ng-model="schoolCountry" on-select="onSchoolCountry"></country-selector>
 	        </div>
 	        <div class="form-group div-50 right">
-	            <input type="text" ng-model="schoolState"  class="form-control" id="schoolState" placeholder="School State"
-	                   typeahead="state as state.name for state in states | filter:$viewValue | limitTo:6" typeahead-on-select="onSchoolState($item)">
+		        <state-selector novalidate placeholder="School State" ng-model="schoolState" on-select="onSchoolState" country-id="education.country_id"></state-selector>
 	        </div>
 	    </div>
 
 
 	    <div class="row">
-	        <div class="form-group">
-	            <input name="major" type="text" ng-model="major" required class="form-control" id="major" placeholder="Major"
-	                   typeahead="major as major.name for major in majors | filter:$viewValue | limitTo:6" required typeahead-on-select="onMajor($item)">
-			        <div ng-if="educationForm.$submitted" ng-messages="educationForm.major.$error">
-				        <div class="control-group.error p" ng-message="required">
+	        <div class="form-group" ng-class="{'has-error': educationForm.major.$invalid && (educationForm.$submitted || educationForm.major.$dirty)}">
+							<major-selector placeholder="Major" ng-model="major" on-select="onMajor" required></major-selector>
+			        <div ng-if="educationForm.major.$invalid && (educationForm.$submitted || educationForm.major.$dirty)" ng-messages="educationForm.major.$error">
+				        <div class="help-block" ng-message="required">
 					        Please select a major
+				        </div>
+				        <div class="help-block" ng-message="major">
+					        Please select a valid major!
 				        </div>
 			        </div>
 	        </div>
 	    </div>
 
 	    <div class="row">
-	        <div class="form-group">
-	            <input name="degree" type="text" ng-model="degree" required class="form-control" id="degree" placeholder="Degree"
-	                   typeahead="degree as degree.name for degree in degrees | filter:$viewValue | limitTo:6" required class="form-control" typeahead-on-select="onDegree($item)">
-			        <div ng-if="educationForm.$submitted" ng-messages="educationForm.degree.$error">
-				        <div class="control-group.error p" ng-message="required">
-					        Please select a degree
+	        <div class="form-group" ng-class="{'has-error': educationForm.degree.$invalid && (educationForm.$submitted || educationForm.degree.$dirty)}">
+		        <degree-selector placeholder="Degree" ng-model="degree" on-select="onDegree" required></degree-selector>
+			        <div ng-if="educationForm.degree.$invalid && (educationForm.$submitted || educationForm.degree.$dirty)" ng-messages="educationForm.degree.$error">
+				        <div class="help-block" ng-message="required">
+					        Please select a degree!
+				        </div>
+				        <div class="help-block" ng-message="degree">
+					        Please select a valid degree!
 				        </div>
 			        </div>
 	        </div>
@@ -56,18 +60,20 @@
 			  </div>
 		  </div>
 
-		    <div class="row align-left max-width margin-b15">
-			    <span class="signup-label">From: </span>
-			    <simpledatepicker no-day="true" date="education.start_date"></simpledatepicker>
-			    <div ng-if="educationForm.$submitted && !education.start_date" >
-				    <div class="control-group.error p">
-					    Please select a start date!
+		    <div class="row align-left max-width">
+			    <div class="form-group" ng-class="{'has-error': educationForm.$submitted && !education.start_date}">
+				    <span class="signup-label help-block">From: </span>
+				    <simpledatepicker no-day="true" date="education.start_date"></simpledatepicker>
+				    <div ng-if="educationForm.$submitted && !education.start_date" >
+					    <div class="help-block">
+						    Please select a start date!
+					    </div>
 				    </div>
 			    </div>
 		    </div>
 
-		    <div class="row align-left max-width margin-b15">
-			    <span class="signup-label">To: </span>
+		    <div class="row align-left max-width">
+			    <span class="signup-label help-block">To: </span>
 			    <simpledatepicker no-day="true" date="education.end_date"></simpledatepicker>
 		    </div>
 	</div>

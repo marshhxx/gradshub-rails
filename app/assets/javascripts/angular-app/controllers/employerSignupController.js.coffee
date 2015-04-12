@@ -1,14 +1,12 @@
 angular
 .module('mepedia.controllers')
 .controller("employerSignupController",
-	['$scope', '$q', '$http', '$state', '$log', 'Country', 'State', 'Nationality', 'sessionService', 'Skill', 'Employer','Interest', 'EmployerNationalities', 'Company', 'EmployerCompany', 'EmployerSkills', 'EmployerInterests', 'Utils'
-		($scope, $q, $httpProvider, $state, $log, Country, State, Nationality, sessionService, Skill, Employer, Interest, EmployerNationalities, Company, EmployerCompany, EmployerSkills, EmployerInterests, Utils) ->
+	['$scope', '$q', '$http', '$state', 'sessionService', 'Skill', 'Employer','Interest', 'EmployerNationalities', 'Company', 'EmployerCompany', 'EmployerSkills', 'EmployerInterests', 'Utils'
+		($scope, $q, $httpProvider, $state, sessionService, Skill, Employer, Interest, EmployerNationalities, Company, EmployerCompany, EmployerSkills, EmployerInterests, Utils) ->
 
 			init = ->
 				$scope.selectedInterests = []
 				$scope.selectedSkills = []
-				$scope.cSubmitted = false
-				$scope.pSubmitted = false
 				$scope.skills = new EmployerSkills()
 				$scope.interests = new EmployerInterests();
 				$scope.employerCompany = new EmployerCompany()
@@ -16,24 +14,13 @@ angular
 				$scope.selectedFrom = "From"
 				$scope.selectedTo = "To"
 
-				Country.query (countries)->
-					$scope.countries = countries.countries
-
 				Company.query (companies) ->
 					$scope.companies = companies.companies
-
-				$scope.getStateByCountryId = (countryId) ->
-					states = State.query {country_id: countryId}, ->
-						$scope.states = states.states
-
-				Nationality.query (nationalities) ->
-					$scope.nationalities = nationalities.nationalities
 
 				$scope.onCountry = (country) ->
 					if(country?)
 						$scope.country = country.name
 						$scope.user.country_id = country.id
-						$scope.getStateByCountryId(country.id)
 
 				$scope.onState = (state) ->
 					if(state?)
@@ -57,7 +44,6 @@ angular
 					if(country?)
 						$scope.companyCountry = country.name
 						$scope.employerCompany.country_id = country.id
-						$scope.getStateByCountryId(country.id)
 
 				$scope.onCompanyState = (state) ->
 					if(state?)

@@ -36,7 +36,7 @@ class Api::NestedController < Api::BaseController
       render :index, status: :accepted and return
     end
     @error = {:reasons => get_parent_resource.errors.full_messages, :code => INVALID_PARAMS_ERROR}
-    render_error status: :unprocessable_entity
+    render_api_error
   end
 
   protected
@@ -46,13 +46,13 @@ class Api::NestedController < Api::BaseController
     set_parent_resource.send(resource_name.pluralize) << get_resource
     unless get_resource.valid?
       @error = {:reasons => get_resource.errors.full_messages, :code => INVALID_PARAMS_ERROR}
-      render_error :unprocessable_entity and return
+      render_api_error and return
     end
     if get_parent_resource.save
       render :show, status: :created and return
     end
     @error = {:reasons => get_parent_resource.errors.full_messages, :code => INVALID_PARAMS_ERROR}
-    render_error status: :unprocessable_entity
+    render_api_error
   end
 
   def index_nested
@@ -75,7 +75,7 @@ class Api::NestedController < Api::BaseController
       head :accepted and return
     end
     @error = {:reasons => get_parent_resource.errors.full_messages, :code => INVALID_PARAMS_ERROR}
-    render_error status: :unprocessable_entity
+    render_api_error
   end
 
 
@@ -117,7 +117,7 @@ class Api::NestedController < Api::BaseController
   end
 
   def collection
-    collection_params["#{resource_name.pluralize}"].map { |x| resource_class.find_or_create_by(x)}
+    if collection_params then collection_params["#{resource_name.pluralize}"].map { |x| resource_class.find_or_create_by(x)} else [] end
   end
 
   def create_resource

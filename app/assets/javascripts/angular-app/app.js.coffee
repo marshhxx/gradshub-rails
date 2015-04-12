@@ -3,6 +3,8 @@
 .config ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) ->
 #	$httpProvider.defaults.withCredentials = true;
 #	$httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
+#	$httpProvider.interceptors.push('errorInterceptor')
+
 	$httpProvider.defaults.headers.common.Accept = 'application/mepedia.v1'
 	$httpProvider.defaults.headers.common['Content-type'] = 'application/json'
 	$urlRouterProvider.otherwise "/home/page"

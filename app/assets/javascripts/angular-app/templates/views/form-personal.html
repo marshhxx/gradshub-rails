@@ -8,45 +8,53 @@
 	    </div>
 
 	    <div class="row text-center">
-		    <simpledatepicker id="birth" name="user.birth" date="user.birth"></simpledatepicker>
-		    <div ng-if="personalForm.$submitted" ng-messages="user.birth.$error">
-			    <div class="form-error" ng-message="valid-date">
-				    Please select a birth date!
+		    <div class="form-group" ng-class="{'has-error': !user.birth && personalForm.$submitted}">
+		      <simpledatepicker date="user.birth"></simpledatepicker>
+			    <div ng-if="personalForm.$submitted && !user.birth" >
+				    <div class="help-block">
+					    Please select a birth date!
+				    </div>
 			    </div>
 		    </div>
 	    </div>
 
-	    <div class="row margin-t15">
-	        <div class="form-group">
-	            <input name="country" type="text" ng-model="country" typeahead="country as country.name for country in countries | filter:$viewValue | limitTo:6"  required class="form-control" id="country" typeahead-on-select="onCountry($item)"
-	                   placeholder="Country" required>
-			        <div ng-if="personalForm.$submitted" ng-messages="personalForm.country.$error">
-				        <div class="control-group.error p" ng-message="required">
+	    <div class="row">
+	        <div class="form-group" ng-class="{'has-error': personalForm.country.$invalid && (personalForm.$submitted || personalForm.country.$dirty)}">
+			        <country-selector placeholder="Country" ng-model="country" on-select="onCountry" required></country-selector>
+		          <div ng-if="personalForm.country.$invalid && (personalForm.$submitted || personalForm.country.$dirty)" ng-messages="personalForm.country.$error">
+				        <div class="help-block" ng-message="required">
 					        Please select a country!
 				        </div>
+			          <div class="help-block" ng-message="country">
+				          Please select a valid country!
+			          </div>
 			        </div>
 	        </div>
 	    </div>
 
 	    <div class="row">
-	        <div class="form-group">
-	            <input name="state" type="text" ng-model="state" typeahead="state as state.name for state in states | filter:$viewValue | limitTo:6" required class="form-control" id="state" typeahead-on-select="onState($item)"
-	                   placeholder="State" required>
-		        <div ng-if="personalForm.$submitted" ng-messages="personalForm.state.$error">
-			        <div class="control-group.error p" ng-message="required">
+	        <div class="form-group" ng-class="{'has-error': personalForm.state.$invalid && (personalForm.$submitted || personalForm.state.$dirty)}">
+						<state-selector placeholder="State" ng-model="state" on-select="onState" country-id="user.country_id" required></state-selector>
+		        <div ng-if="personalForm.state.$invalid && (personalForm.$submitted || personalForm.state.$dirty)" ng-messages="personalForm.state.$error">
+			        <div class="help-block" ng-message="required">
 				        Please select a state!
+			        </div>
+			        <div class="help-block" ng-message="state">
+				        Please select a valid state!
 			        </div>
 		        </div>
 	        </div>
 	    </div>
 
 	    <div class="row">
-	        <div class="form-group ">
-	            <input name="nationality" type="text" ng-model="nationality" typeahead="nationality as nationality.name for nationality in nationalities | filter:$viewValue | limitTo:6" required class="form-control" id="nationality" typeahead-on-select="onNationality($item)"
-	                   placeholder="Nationality" required>
-		        <div ng-if="personalForm.$submitted" ng-messages="personalForm.nationality.$error">
-			        <div class="control-group.error p" ng-message="required">
+	        <div class="form-group" ng-class="{'has-error': personalForm.nationality.$invalid && (personalForm.$submitted || personalForm.nationality.$touched)}">
+	            <nationality-selector placeholder="Nationality" ng-model="nationality" on-select="onNationality"></nationality-selector>
+		        <div ng-if="personalForm.nationality.$invalid && (personalForm.$submitted || personalForm.nationality.$touched)" ng-messages="personalForm.nationality.$error">
+			        <div class="help-block" ng-message="required">
 				        Please select a nationality!
+			        </div>
+			        <div class="help-block" ng-message="nationality">
+				        Please select a valid nationality!
 			        </div>
 		        </div>
 	        </div>

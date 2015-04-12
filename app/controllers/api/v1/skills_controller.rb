@@ -8,7 +8,7 @@ class Api::V1::SkillsController < Api::NestedController
   end
 
   def skills_params
-    params.permit([:skills => [:name]]) if params[:skills]
+    params.permit([:skills => [:name]])if params[:skills]
   end
 
   def query_params

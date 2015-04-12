@@ -12,7 +12,7 @@ class Api::V1::SessionsController < ApplicationController
       render :create, status: :ok
     else
       @error = {:reasons => ['Invalid email or password'], :code => AUTH_ERROR}
-      render 'api/v1/common/error', status: :unprocessable_entity
+      render_api_error
     end
   end
 
@@ -21,7 +21,7 @@ class Api::V1::SessionsController < ApplicationController
     if @user.nil?
       @error = {:reasons => ['Invalid authentication token. User might not be logged in.'],
                   :code => AUTH_ERROR}
-      render 'api/v1/common/error', status: :unprocessable_entity
+      render_api_error
     else
       @user.generate_authentication_token!
       @user.save
@@ -36,7 +36,7 @@ class Api::V1::SessionsController < ApplicationController
       render json: { message: 'The password reset email has been sent.' }, status: :accepted
     else
       @error = {:reasons => ['There is no user with that email.'], :code => AUTH_ERROR}
-      render 'api/v1/common/error', status: :unprocessable_entity
+      render_api_error
     end
   end
 
@@ -47,8 +47,7 @@ class Api::V1::SessionsController < ApplicationController
       render json: { message: 'Password successfully updated.'}, status: :accepted
     else
       @error = {:reasons => [reset_user.errors.full_messages], :code => INVALID_PARAMS_ERROR}
-      render 'api/v1/common/error', status: :unprocessable_entity
+      render_api_error
     end
   end
-
 end

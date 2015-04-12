@@ -1,6 +1,6 @@
 angular.module('mepedia.controllers').controller("HomeController", [
-	'$http','$scope', 'Candidate', 'Employer', '$state', '$anchorScroll', '$location', 'sessionService', '$sce', '$stateParams', 'registerService'
-	($http, $scope, Candidate, Employer, $state, $anchorScroll, $location, sessionService, $sce, $stateParams, registerService)->
+	'$http','$scope', 'Candidate', 'Employer', '$state', '$anchorScroll', '$location', 'sessionService', '$sce', '$stateParams', 'registerService', 'alertService',
+	($http, $scope, Candidate, Employer, $state, $anchorScroll, $location, sessionService, $sce, $stateParams, registerService, alertService)->
 		if sessionService.isAuthenticated()
 			if sessionService.sessionType() == "Candidate"
 				$state.go 'main.candidate_profile'
@@ -47,7 +47,7 @@ angular.module('mepedia.controllers').controller("HomeController", [
 						if error.code == "ERR02"
 							$state.go 'main.login_onepgr', {mail: user.email}
 						else
-							console.log(error)
+							$scope.serverErrors = error
 				)
 			else
 				$scope.submitted = true

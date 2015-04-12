@@ -1,34 +1,21 @@
 angular
 	.module('mepedia.controllers')
 	.controller("candidateSignupController",
-	['$scope', '$q', '$http', '$state', '$log', 'Country', 'State', 'Nationality', 'sessionService', 'School', 'Skill', 'Candidate','Major', 'Degree','Interest', 'CandidateNationalities', 'Education', 'CandidateSkills', 'Utils'
-	($scope, $q, $httpProvider, $state, $log, Country, State, Nationality, sessionService, School, Skill, Candidate, Major, Degree, Interest, CandidateNationalities, Education, CandidateSkills, Utils)->
+	['$scope', '$q', '$http', '$state', 'sessionService', 'Skill', 'Candidate', 'Interest', 'CandidateNationalities', 'Education', 'CandidateSkills', 'Utils', 'alertService',
+	($scope, $q, $httpProvider, $state, sessionService, Skill, Candidate, Interest, CandidateNationalities, Education, CandidateSkills, Utils, alertService)->
 
 		init = ->
 			$scope.selectedTags = []
-			$scope.eSubmitted = false
-			$scope.pSubmitted = false
 			$scope.education = new Education()
 			$scope.skills = new CandidateSkills()
 
 			$scope.selectedFrom = "From"
 			$scope.selectedTo = "To"
 
-			Country.query (countries) ->
-				$scope.countries = countries.countries
-
-			$scope.getStateByCountryId = (countryId) ->
-				states = State.query {country_id: countryId}, ->
-					$scope.states = states.states
-
-			Nationality.query (nationalities) ->
-				$scope.nationalities = nationalities.nationalities
-
 			$scope.onCountry = (country) ->
 				if(country?)
 					$scope.country = country.name
 					$scope.user.country_id = country.id
-					$scope.getStateByCountryId(country.id)
 
 			$scope.onState = (state) ->
 				if(state?)
@@ -44,9 +31,6 @@ angular
 
 			####### Eduaction ######
 
-			School.query (schools) ->
-				$scope.schools = schools.schools
-
 			$scope.onSchool = (school) ->
 				if(school?)
 					$scope.school = school.name
@@ -56,23 +40,16 @@ angular
 				if(country?)
 					$scope.schoolCountry = country.name
 					$scope.education.country_id = country.id
-					$scope.getStateByCountryId(country.id)
 
 			$scope.onSchoolState = (state) ->
 				if(state?)
 					$scope.schoolState = state.name
 					$scope.education.state_id = state.id
 
-			Major.query (majors) ->
-				$scope.majors = majors.majors
-
 			$scope.onMajor = (major) ->
 				if(major?)
 					$scope.major = major.name
 					$scope.education.major_id = major.id
-
-			Degree.query (degrees) ->
-				$scope.degrees = degrees.degrees
 
 			$scope.onDegree = (degree) ->
 				if(degree?)
@@ -98,12 +75,9 @@ angular
 			)
 
 			$scope.validatePersonal = (valid) ->
-				$scope.pSubmitted = true
-				$scope.country.$error = $scope.country.name in $scope.countries
 				$state.go 'main.signup_candidate.education' if valid
 
 			$scope.validateEducation = (valid) ->
-				$scope.eSubmitted = true
 				$state.go 'main.signup_candidate.interests' if valid
 
 			$scope.validateAndCreate = validateAndCreate
@@ -120,7 +94,7 @@ angular
 						$state.go 'main.candidate_profile'
 					,
 					(error) ->
-						console.log error
+						$scope.serverErrors = error.data.error
 				)
 
 		saveEducation = ->

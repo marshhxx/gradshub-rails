@@ -13,7 +13,8 @@ var School = function($resource) {
         {
             query: {
                 method: 'GET',
-                isArray: false
+                isArray: false,
+                cache: true
             }
         });
 };
