@@ -9,6 +9,7 @@ json.employer do
   json.interests @employer.interests
   json.company do
     if @employer.employer_company
+      json.company_id   @employer.employer_company.company.id
       json.name         @employer.employer_company.company.name
       json.industry     @employer.employer_company.company.industry
       json.description  @employer.employer_company.description
@@ -17,5 +18,7 @@ json.employer do
     end
   end
   json.company_image @employer.company_image
+  json.profile_image @employer.user.profile_image
+  json.cover_image @employer.user.cover_image
   json.job_title @employer.job_title
 end
