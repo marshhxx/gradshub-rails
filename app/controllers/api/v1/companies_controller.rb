@@ -4,7 +4,7 @@ class Api::V1::CompaniesController < Api::NestedController
   before_action :set_parent_resource, :only => [:show, :update]
 
   def update
-    get_parent_resource.employer_company.destroy!
+    get_parent_resource.employer_company.destroy! if get_parent_resource.employer_company
     create_nested
   end
 

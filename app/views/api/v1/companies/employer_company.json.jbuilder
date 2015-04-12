@@ -1,4 +1,5 @@
 json.company do
+  json.company_id @company.company.id
   json.name @company.company.name
   json.industry @company.company.industry
   json.description @company.description

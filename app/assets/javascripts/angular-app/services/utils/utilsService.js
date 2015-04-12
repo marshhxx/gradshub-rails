@@ -23,11 +23,12 @@ var Utils = function(Candidate, Employer) {
         employer.name = user.name;
         employer.lastname = user.lastname;
         employer.email = user.email;
-        employer.gender = user.gender;
         employer.birth = user.birth;
+        employer.tag = user.tag;
+        employer.company_image = user.company_image;
         employer.profile_image = user.profile_image;
         employer.cover_image = user.cover_image;
-        employer.tag = user.tag;
+        employer.job_title = user.job_title;
         return employer;
     };
 
