@@ -417,14 +417,21 @@ p {
 }
 
 .img-col {
-  float: left;
   width: 15%;
+  float: left;
 }
 
 .cont-col {
-  width: 85%;
-  overflow: auto;
+  width: 70%;
   height: 35px;
+  float: left;
+  overflow: auto;
+}
+
+.ph-col {
+  width: 15%;
+  height: 35px;
+  float: left;
 }
 
 .profile-label {
@@ -485,6 +492,10 @@ p {
 }
 
 .profile-edit-on-hover:hover .edit-pencil-hover{
+  visibility: visible;
+}
+
+.profileLeft:hover .edit-pencil-hover{
   visibility: visible;
 }
 

@@ -5,7 +5,7 @@ angular.module('mepedia.directives').directive('addExperience', function () {
             saveExperience: '=', //SaveExperience function
             addExperienceEnable: '=', //Experience ng-show ng-hide variable
             enablePlaceholder: '=',
-            disablePlaceholder: '='
+            defaultExperience: '='
         },
         templateUrl: 'angular-app/templates/directives/addExperience.html',
         link: function (scope, element, attrs) {
@@ -65,7 +65,7 @@ angular.module('mepedia.directives').directive('addExperience', function () {
             scope.onCancel = function () {
                 scope.addExperienceEnable = false;
                 scope.experience = [];
-                scope.disablePlaceholder();
+                scope.defaultExperience();
             };
         }
     };

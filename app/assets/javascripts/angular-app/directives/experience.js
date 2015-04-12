@@ -3,16 +3,12 @@ angular.module('mepedia.directives').directive('experience', function () {
         scope: {
             experience: '=data', //Experience in experiences array
             updateExperience: '&', //Update experience
-            experienceEditor: '=', //Experience editor ng-show ng-hide variable
-            defaultExperience: '=' //Default experience visibility
+            experienceEditor: '=' //Experience editor ng-show ng-hide variable
         },
         templateUrl: 'angular-app/templates/directives/experience.html',
         link: function (scope, element, attrs) {
 
             scope.onExperienceEditor = function () {
-                if(scope.experience == undefined)
-                    scope.defaultExperience = false;
-
                 scope.experienceTemp = angular.copy(scope.experience);
                 scope.experienceEditor = true;
                 scope.experienceTemp.start_date = scope.experience.start_date.split('-')[0];
@@ -29,8 +25,6 @@ angular.module('mepedia.directives').directive('experience', function () {
 
             scope.onCancel = function () {
                 scope.experienceEditor = false;
-                if(scope.experienceTemp == undefined)
-                    scope.defaultExperience = true;
             };
 
             scope.onSave = function ($index) {

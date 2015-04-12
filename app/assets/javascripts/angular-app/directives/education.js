@@ -14,8 +14,8 @@ angular.module('mepedia.directives').directive('education', ['State', 'Country',
                 scope.educationEditor = true;
                 scope.getStateByCountryId(scope.education.country.id);
 
-                scope.educationTemp.start_date = scope.education.start_date.split('-')[0];
-                scope.educationTemp.end_date = scope.education.end_date.split('-')[0];
+                scope.educationTemp.start_date = scope.education.start_date.split('-')[0] != null ?  scope.education.start_date.split('-')[0] : "Start Date";
+                scope.educationTemp.end_date = scope.education.end_date != null ? scope.education.end_date.split('-')[0] : "End Date";
             };
 
             var getData = function () {

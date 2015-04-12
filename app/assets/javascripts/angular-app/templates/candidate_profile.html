@@ -87,7 +87,7 @@
 </div>
 <div class="profileContent">
     <div class="profileLeftContent cont col-md-4">
-        <profile-highlights data="user" user-age="age"></profile-highlights>
+        <profile-highlights data="user" user-age="age" scroll-to="scrollTo"></profile-highlights>
         <div class="profileLeftContent section">
             <div class="profile-communication-panel-img message"></div>
             <div class="profile-communication-panel-img videocam"></div>
@@ -167,7 +167,7 @@
             </div>
         </div>
 
-        <div class="profile-right-container">
+        <div class="profile-right-container" id="focusEducation">
             <div>
                 <add-education data="education" save-education="saveEducation"
                                add-education-enable="addEducationEnable"></add-education>
@@ -177,18 +177,19 @@
             </div>
         </div>
 
-        <div class="profile-right-container">
+        <div class="profile-right-container" id="focusExperience">
             <div>
                 <add-experience data="experience" save-experience="saveExperience"
-                               add-experience-enable="addExperienceEnable" enable-placeholder="enableDefaultExperience" disable-placeholder="disableDefaultExperience"></add-experience>
+                               add-experience-enable="addExperienceEnable" enable-placeholder="enableDefaultExperience" default-experience="disableDefaultExperience"></add-experience>
                 <div class="profile-right-content" ng-show="defaultExperienceEnable">
                     <p class="profile-placeholder-txt">{{defaultExperience}}</p>
                 </div>
                 <div ng-repeat="experience in user.experiences">
-                    <experience data="experience" update-experience="updateExperience($index)" experience-editor="experienceEditor" default-experience=defaultExperienceEnable></experience>
+                    <experience data="experience" update-experience="updateExperience($index)" experience-editor="experienceEditor"></experience>
                 </div>
             </div>
         </div>
+
 
     </div>
 

@@ -1,7 +1,7 @@
 angular.module('mepedia.controllers').controller('candidateProfileController',
-    ['$scope', '$rootScope', '$http', '$upload', 'sessionService', '$state', 'Country', 'State', 'Candidate', 'Employer', 'Skill', 'School', 'Major', 'Degree', 'Education', 'CandidateSkills', 'Utils', 'Experience',
+    ['$scope', '$rootScope', '$http', '$upload', '$location', '$anchorScroll','sessionService', '$state', 'Country', 'State', 'Candidate', 'Employer', 'Skill', 'School', 'Major', 'Degree', 'Education', 'CandidateSkills', 'Utils', 'Experience',
 
-        function ($scope, $rootScope, $httpProvider, $upload, sessionService, $state, Country, State, Candidate, Employer, Skill, School, Major, Degree, Education, CandidateSkills, Utils, Experience) {
+        function ($scope, $rootScope, $httpProvider, $upload, $location, $anchorScroll, sessionService, $state, Country, State, Candidate, Employer, Skill, School, Major, Degree, Education, CandidateSkills, Utils, Experience) {
 
             $scope.defaultSummary = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dignissim orci in eros auctor, at fringilla orci hendrerit. Quisque consequat eros enim. Nullam luctus lectus sed justo ullamcorper, tempor commodo leo sagittis. Quisque egestas tempus nulla. Aenean sit amet mauris leo.";
             $scope.defaultSkills = "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed cursus quam erat, non fringilla dui efficitur vitae. Pellentesque nec sodales lacus. Fusce rutrum diam a dolor vestibulum, at sodales turpis congue. Curabitur condimentum velit elit, id ornare velit eleifend id. In vel lorem ut mi suscipit placerat ut eu nunc. ";
@@ -747,6 +747,13 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 var ageDifMs = Date.now() - d.getTime();
                 var ageDate = new Date(ageDifMs); // miliseconds from epoch
                 $scope.age = Math.abs(ageDate.getUTCFullYear() - 1970);
+            }
+
+            $scope.scrollTo = function (id) {
+                var old = $location.hash();
+                $location.hash(id);
+                $anchorScroll();
+                $location.hash(old);
             }
 
             getData();

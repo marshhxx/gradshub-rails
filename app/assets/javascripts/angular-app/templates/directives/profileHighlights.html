@@ -11,6 +11,9 @@
             <div class="cont-col">
                 <p class="header-highlight-txt"> {{user.experiences[0].job_title}}</p>
             </div>
+            <div class="ph-col">
+                <div class="edit-pencil-hover" ng-click="onExperienceEditor()"></div>
+            </div>
         </div>
 
         <div class="profileLeft">
@@ -20,6 +23,9 @@
             <div class="cont-col">
                 <p class="header-highlight-txt"> {{user.experiences[0].company_name}}</p>
             </div>
+            <div class="ph-col">
+                <div class="edit-pencil-hover" ng-click="onExperienceEditor()"></div>
+            </div>
         </div>
 
         <div class="profileLeft">
@@ -28,6 +34,9 @@
             </div>
             <div class="cont-col">
                 <p class="header-highlight-txt"> {{user.educations[0].school.name}}</p>
+            </div>
+            <div class="ph-col">
+                <div class="edit-pencil-hover" ng-click="onEducationEditor()"></div>
             </div>
         </div>
 
@@ -40,7 +49,7 @@
             </div>
         </div>
 
-        <div class="profileLeft">
+        <div class="profileLeft" id="focusExperience">
             <div class="img-col">
                 <div class="profile-img location"></div>
             </div>
