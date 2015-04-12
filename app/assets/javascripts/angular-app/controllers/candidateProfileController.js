@@ -663,7 +663,8 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 })
             };
 
-            var saveExperience = function () {
+            var saveExperience = function (valid) {
+                if (!valid) return;
                 $scope.addExperienceEnable = false;
                 var experience = getExperience($scope.experience); //Create Experience Resource
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
@@ -693,10 +694,11 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     });
             };
 
-            var updateExperience = function ($index) {
+            var updateExperience = function (valid, index) {
+                if (!valid) return;
                 $scope.experienceEditor = false;
-                var experience = getExperience($scope.user.experiences[$index]);
-                experience.id = $scope.user.experiences[$index].id;
+                var experience = getExperience($scope.user.experiences[index]);
+                experience.id = $scope.user.experiences[index].id;
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 experience.$update(
                     function (response) {

@@ -2,7 +2,7 @@ angular.module('mepedia.directives').directive('experience', [ 'Utils', function
     return {
         scope: {
             experience: '=data', //Experience in experiences array
-            updateExperience: '&', //Update experience
+            updateExperience: '=', //Update experience
             experienceEditor: '=' //Experience editor ng-show ng-hide variable
         },
         templateUrl: 'angular-app/templates/directives/experience.html',
@@ -18,7 +18,7 @@ angular.module('mepedia.directives').directive('experience', [ 'Utils', function
                 scope.experienceEditor = false;
             };
 
-            scope.onSave = function ($index) {
+            scope.onSave = function (valid, index) {
                 scope.experience.company_name = scope.experienceTemp.company_name;
                 scope.experience.job_title = scope.experienceTemp.job_title;
                 scope.experience.start_date = scope.experienceTemp.start_date;
@@ -26,7 +26,7 @@ angular.module('mepedia.directives').directive('experience', [ 'Utils', function
                 scope.experience.description = scope.experienceTemp.description;
                 scope.experience.start_date = scope.experienceTemp.start_date;
                 scope.experience.end_date = scope.experienceTemp.end_date;
-                scope.updateExperience($index);
+                scope.updateExperience(valid, index);
             };
 
             scope.getMonth = Utils.getMonthByNumber;

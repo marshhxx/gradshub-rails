@@ -7,7 +7,7 @@ angular.module('mepedia.directives').directive('addExperience', function () {
             enablePlaceholder: '=',
             defaultExperience: '='
         },
-        templateUrl: 'angular-app/templates/directives/addExperience.html',
+        templateUrl: 'angular-app/templates/directives/add-experience.html',
         link: function (scope, element, attrs) {
 
             scope.addExperience = function () {
