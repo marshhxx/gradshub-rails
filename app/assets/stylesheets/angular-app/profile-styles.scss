@@ -434,15 +434,6 @@ p {
   float: left;
 }
 
-.profile-label {
-  display: inline-block;
-  color: #122028;
-  line-height: 50px;
-  text-decoration: none;
-  font-weight: normal !important;
-  float: left;
-}
-
 .profile-input{
   margin-top: 10px;
   height: 30px !important;
@@ -646,4 +637,19 @@ textarea{
 .profile-placeholder-txt{
   font: 15px Lato-Light, Georgia, "Times New Roman", Times, serif;
   color: #999999;
+}
+
+.profile-datepicker-container{
+  float: left;
+  display: inline-block;
+  margin-bottom: 15px;
+  margin-right: 15px;
+}
+
+
+.profile-datepicker-label {
+  display: inline-block;
+  color: #122028;
+  float: left;
+  line-height: 25px;
 }

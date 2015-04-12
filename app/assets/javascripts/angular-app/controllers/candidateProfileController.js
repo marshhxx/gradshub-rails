@@ -745,7 +745,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 var d = new Date();
                 d.setFullYear(year, month-1, day);
                 var ageDifMs = Date.now() - d.getTime();
-                var ageDate = new Date(ageDifMs); // miliseconds from epoch
+                var ageDate = new Date(ageDifMs); //miliseconds from epoch
                 $scope.age = Math.abs(ageDate.getUTCFullYear() - 1970);
             }
 

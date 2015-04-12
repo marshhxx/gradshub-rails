@@ -18,7 +18,7 @@
                 <span class="header-subtitle"> {{experience.job_title}}</span>
             </div>
             <div class="form-cont">
-                <span class="header-light-txt"> {{experience.start_date}} - {{experience.end_date}} </span>
+                <span class="header-light-txt"> {{getMonth(experience.start_date.split('-')[1])}} {{experience.start_date.split('-')[0]}} - {{getMonth(experience.end_date.split('-')[1])}} {{experience.end_date.split('-')[0]}} </span>
             </div>
             <div class="form-cont">
                 <p class="header-regular-txt"> {{experience.description}} </p>
@@ -54,30 +54,19 @@
                placeholder="Job Title">
     </div>
 
-    <div class="form-group">
-        <div class="btn-group margin-r5" dropdown>
-            <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle
-                    ng-disabled="disabled">
-                {{experienceTemp.start_date}} <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-                <li ng-repeat="startYear in years">
-                    <a ng-click="onStartYear(startYear)">{{startYear}}</a>
-                </li>
-            </ul>
+    <div class="profile-datepicker-container">
+        <span class="profile-datepicker-label">From: </span>
+        <simpledatepicker no-day="true" date="experienceTemp.start_date"></simpledatepicker>
+        <div ng-if="educationForm.$submitted && !education.start_date" >
+            <div class="control-group.error p">
+                Please select a start date!
+            </div>
         </div>
+    </div>
 
-        <div class="btn-group margin-l5" dropdown>
-            <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle
-                    ng-disabled="disabled">
-                {{experienceTemp.end_date}} <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-                <li ng-repeat="endYear in years">
-                    <a ng-click="onEndYear(endYear)">{{endYear}}</a>
-                </li>
-            </ul>
-        </div>
+    <div class="profile-datepicker-container">
+        <span class="profile-datepicker-label">To: </span>
+        <simpledatepicker no-day="true" date="experienceTemp.end_date"></simpledatepicker>
     </div>
 
     <textarea class="form-control" rows="5" ng-model="experienceTemp.description"

@@ -1,4 +1,4 @@
-angular.module('mepedia.directives').directive('experience', function () {
+angular.module('mepedia.directives').directive('experience', [ 'Utils', function (Utils) {
     return {
         scope: {
             experience: '=data', //Experience in experiences array
@@ -22,7 +22,6 @@ angular.module('mepedia.directives').directive('experience', function () {
             }
 
             /* Methods */
-
             scope.onCancel = function () {
                 scope.experienceEditor = false;
             };
@@ -36,27 +35,9 @@ angular.module('mepedia.directives').directive('experience', function () {
                 scope.updateExperience($index);
             };
 
-            scope.onStartYear = function (year) {
-                scope.experienceTemp.start_date = year;
-            };
-
-            scope.onEndYear = function (year) {
-                scope.experienceTemp.end_date = year;
-            };
-
-            scope.years = getYears();
-
-            function getYears() {
-                var first = 1950;
-                var now = new Date();
-                var second = now.getFullYear();
-                var array = Array();
-
-                for (var i = first; i <= second; i++) {
-                    array.push(i);
-                }
-                return array.reverse();
+            scope.getMonth = function(month) {
+                return Utils.getMonth(month);
             }
         }
     };
-});
+}]);
