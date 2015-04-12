@@ -11,15 +11,7 @@ angular.module('mepedia.directives').directive('experience', [ 'Utils', function
             scope.onExperienceEditor = function () {
                 scope.experienceTemp = angular.copy(scope.experience);
                 scope.experienceEditor = true;
-                scope.experienceTemp.start_date = scope.experience.start_date.split('-')[0];
-                scope.experienceTemp.end_date = scope.experience.end_date.split('-')[0];
             };
-
-            var getData = function () {
-                /* Country.query(function (countries) {
-                 scope.countries = countries.countries;
-                 });*/
-            }
 
             /* Methods */
             scope.onCancel = function () {
@@ -32,12 +24,12 @@ angular.module('mepedia.directives').directive('experience', [ 'Utils', function
                 scope.experience.start_date = scope.experienceTemp.start_date;
                 scope.experience.end_date = scope.experienceTemp.end_date;
                 scope.experience.description = scope.experienceTemp.description;
+                scope.experience.start_date = scope.experienceTemp.start_date;
+                scope.experience.end_date = scope.experienceTemp.end_date;
                 scope.updateExperience($index);
             };
 
-            scope.getMonth = function(month) {
-                return Utils.getMonth(month);
-            }
+            scope.getMonth = Utils.getMonthByNumber;
         }
     };
 }]);

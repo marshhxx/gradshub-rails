@@ -21,9 +21,9 @@ angular.module('mepedia.directives').directive('addEducation', ['State', 'Countr
                 scope.education.state = "";
                 scope.education.country = "";
                 scope.education.description = "";
-                scope.education.start_date = "Start Year";
-                scope.education.end_date = "End Year";
-            }
+                scope.education.start_date = null;
+                scope.education.end_date = null;
+            };
 
             var getData = function(){
 
@@ -45,20 +45,6 @@ angular.module('mepedia.directives').directive('addEducation', ['State', 'Countr
             }
 
             /* Methods */
-
-            scope.years = getYears();
-
-            function getYears(){
-                var first = 1950;
-                var now = new Date();
-                var second = now.getFullYear();
-                var array = Array();
-
-                for(var i = first; i <= second; i++){
-                    array.push(i);
-                }
-                return array.reverse();
-            }
 
             scope.onSchool = function (school) {
                 if (school != undefined)
@@ -95,14 +81,6 @@ angular.module('mepedia.directives').directive('addEducation', ['State', 'Countr
                 State.query({country_id: countryId}, function(states) {
                     scope.states = states.states;
                 });
-            };
-
-            scope.onStartYear = function(year) {
-                scope.education.start_date = year;
-            };
-
-            scope.onEndYear = function(year) {
-                scope.education.end_date = year;
             };
         }
 

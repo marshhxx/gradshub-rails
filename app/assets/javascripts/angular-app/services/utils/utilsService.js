@@ -2,6 +2,9 @@ var Utils = function(Candidate, Employer) {
 
     var utils = {};
 
+    var monthToNumberMap = {"January": '01', "February": '02', "March": '03', "April": '04', "May": '05', "June": '06',
+    "July": '07', "August": '08', "September": '09', "October": '10', "November": '11', "December": '12'};
+
     utils.candidateFromObject = function(user){
         var candidate = new Candidate();
         candidate.uid = user.uid;
@@ -32,35 +35,15 @@ var Utils = function(Candidate, Employer) {
         return employer;
     };
 
-    utils.getMonth = function(month){
-        switch (month)
-        {
-            case "01":
-                return "January"
-            case "02":
-                return "February"
-            case "03":
-                return "March"
-            case "04":
-                return "April"
-            case "05":
-                return "May"
-            case "06":
-                return "June"
-            case "07":
-                return "July"
-            case "08":
-                return "August"
-            case "09":
-                return "September"
-            case "10":
-                return "October"
-            case "11":
-                return "November"
-            case "12":
-                return "December"
-        }
-    }
+    utils.getMonthByNumber = function(number){
+        return Object.keys(monthToNumberMap).filter(function (key) {
+            return monthToNumberMap[key] == number
+        })[0];
+    };
+
+    utils.getMonthNumber = function (month) {
+      return monthToNumberMap[month]
+    };
 
     return utils;
 }

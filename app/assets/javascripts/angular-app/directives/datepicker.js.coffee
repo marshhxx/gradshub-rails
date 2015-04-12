@@ -1,4 +1,4 @@
-DatePicker = () ->
+DatePicker = (Utils) ->
 	{
 	restrict: 'E',
 	scope: {
@@ -15,18 +15,25 @@ DatePicker = () ->
 		$scope.months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
 		                 "November", "December"]
 
-		if $scope.date != '' and $scope.date
-			split = $scope.date.split('-')
-			$scope.dateYear = split[0]
-			$scope.dateMonth = split[1]
-			$scope.dateDay = split[2]
-		else
-			$scope.dateYear = "Year"
-			$scope.dateMonth = "Month"
-			$scope.dateDay = "Day"
+		$scope.$watch('date',
+			(value) ->
+				initDate(value)
+		)
 
-		$scope.dateDay = '01' if $scope.noDay
-		$scope.monthDay = '01' if $scope.noMonth
+		initDate = (date) ->
+			if date != '' and date
+				split = date.split('-')
+				$scope.dateYear = split[0]
+				$scope.dateMonth = Utils.getMonthByNumber(split[1])
+				$scope.dateDay = split[2]
+			else
+				$scope.dateYear = "Year"
+				$scope.dateMonth = "Month"
+				$scope.dateDay = "Day"
+			$scope.dateDay = '01' if $scope.noDay
+			$scope.dateMonth = 'January' if $scope.noMonth
+
+		initDate($scope.date)
 
 		$scope.setDay = (day) ->
 			$scope.dateDay = day
@@ -41,33 +48,8 @@ DatePicker = () ->
 			refreshDate()
 
 		refreshDate = () ->
-			$scope.date = [$scope.dateYear, getMonthNumber($scope.dateMonth), $scope.dateDay].join('-') if $scope.dateYear != "Year" and $scope.dateMonth != "Month" and $scope.dateDay != "Day"
+			$scope.date = [$scope.dateYear, Utils.getMonthNumber($scope.dateMonth), $scope.dateDay].join('-') if $scope.dateYear != "Year" and $scope.dateMonth != "Month" and $scope.dateDay != "Day"
 
-		getMonthNumber = (month) ->
-			if month is "January"
-				"1"
-			else if month is "February"
-				"2"
-			else if month is "March"
-				"3"
-			else if month is "April"
-				"4"
-			else if month is "May"
-				"5"
-			else if month is "June"
-				"6"
-			else if month is "July"
-				"7"
-			else if month is "August"
-				"8"
-			else if month is "September"
-				"9"
-			else if month is "October"
-				"10"
-			else if month is "November"
-				"11"
-			else if month is "December"
-				"12"
 	}
 angular
 	.module('mepedia.directives')

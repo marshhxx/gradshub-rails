@@ -13,9 +13,6 @@ angular.module('mepedia.directives').directive('education', ['State', 'Country',
                 scope.educationTemp =  angular.copy(scope.education);
                 scope.educationEditor = true;
                 scope.getStateByCountryId(scope.education.country.id);
-
-                scope.educationTemp.start_date = scope.education.start_date.split('-')[0] != null ?  scope.education.start_date.split('-')[0] : "Start Date";
-                scope.educationTemp.end_date = scope.education.end_date != null ? scope.education.end_date.split('-')[0] : "End Date";
             };
 
             var getData = function () {
@@ -34,7 +31,7 @@ angular.module('mepedia.directives').directive('education', ['State', 'Country',
                 Degree.get(function (degrees) {
                     scope.degrees = degrees.degrees;
                 });
-            }
+            };
 
             /* Methods */
 
@@ -46,6 +43,8 @@ angular.module('mepedia.directives').directive('education', ['State', 'Country',
                 scope.education.start_date = scope.educationTemp.start_date;
                 scope.education.end_date = scope.educationTemp.end_date;
                 scope.education.description = scope.educationTemp.description;
+                scope.education.start_date = scope.educationTemp.start_date;
+                scope.education.end_date = scope.educationTemp.end_date;
                 scope.updateEducation($index);
             }
 
@@ -58,28 +57,6 @@ angular.module('mepedia.directives').directive('education', ['State', 'Country',
                     scope.states = states.states;
                 });
             };
-
-            scope.onStartYear = function (year) {
-                scope.educationTemp.start_date = year;
-            };
-
-            scope.onEndYear = function (year) {
-                scope.educationTemp.end_date = year;
-            };
-
-            scope.years = getYears();
-
-            function getYears() {
-                var first = 1950;
-                var now = new Date();
-                var second = now.getFullYear();
-                var array = Array();
-
-                for (var i = first; i <= second; i++) {
-                    array.push(i);
-                }
-                return array.reverse();
-            }
 
             scope.onSchool = function (school) {
                 if (school != undefined)

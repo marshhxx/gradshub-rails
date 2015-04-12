@@ -576,8 +576,8 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 education.state_id = (educationObj.state != undefined) ? educationObj.state.id : null;
                 education.country_id = (educationObj.country.id != undefined) ? educationObj.country.id : null;
                 education.description = (educationObj.description != undefined) ? educationObj.description : null;
-                education.start_date = educationObj.start_date + '-01-01';
-                education.end_date = (educationObj.end_date != undefined) ? educationObj.end_date + '-01-01' : null;
+                education.start_date = educationObj.start_date;
+                education.end_date = (educationObj.end_date != undefined) ? educationObj.end_date : null;
                 return education;
             };
 
@@ -587,8 +587,8 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 experience.company_name = experienceObj.company_name;
                 experience.job_title = experienceObj.job_title;
                 experience.description = (experienceObj.description != undefined) ? experienceObj.description : null;
-                experience.start_date = experienceObj.start_date + '-01-01';
-                experience.end_date = (experienceObj.end_date != undefined) ? experienceObj.end_date + '-01-01' : null;
+                experience.start_date = experienceObj.start_date;
+                experience.end_date = (experienceObj.end_date != undefined) ? experienceObj.end_date : null;
                 return experience;
             }
 

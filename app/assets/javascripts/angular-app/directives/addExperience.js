@@ -13,7 +13,6 @@ angular.module('mepedia.directives').directive('addExperience', function () {
             scope.addExperience = function () {
                 scope.addExperienceEnable = true;
                 clearAddExperienceValues();
-                getData();
                 scope.enablePlaceholder();
             };
 
@@ -21,46 +20,11 @@ angular.module('mepedia.directives').directive('addExperience', function () {
                 scope.experience.company_name = "";
                 scope.experience.job_title = "";
                 scope.experience.description = "";
-                scope.experience.start_date = "Start Year";
-                scope.experience.end_date = "End Year";
-            }
-
-            var getData = function () {
-
-                /* Company.query(function(countries) {
-                 scope.countries = countries.countries;
-                 });*/
-
-            }
+                scope.experience.start_date = null;
+                scope.experience.end_date = null;
+            };
 
             /* Methods */
-
-            scope.years = getYears();
-
-            function getYears() {
-                var first = 1950;
-                var now = new Date();
-                var second = now.getFullYear();
-                var array = Array();
-
-                for (var i = first; i <= second; i++) {
-                    array.push(i);
-                }
-                return array.reverse();
-            }
-
-//            scope.onCompany = function (school) {
-//                if (school != undefined)
-//                    scope.education.school = school
-//            };
-
-            scope.onStartYear = function (year) {
-                scope.experience.start_date = year;
-            };
-
-            scope.onEndYear = function (year) {
-                scope.experience.end_date = year;
-            };
 
             scope.onCancel = function () {
                 scope.addExperienceEnable = false;
