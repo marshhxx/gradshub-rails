@@ -7,7 +7,8 @@ IsMajor = (Major) ->
 		Major.query (majors) ->
 			scope.majors = majors.majors
 			ctrl.$validators.major = (value) ->
-				return value in scope.majors || value == ""
+				majorNames = scope.majors.map((major) -> major.name)
+				return value.name in majorNames || value == ""
 
 	}
 angular

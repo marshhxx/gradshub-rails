@@ -17,6 +17,8 @@ angular.module('mepedia.directives').directive('addExperience', function () {
             };
 
             var clearAddExperienceValues = function () {
+                scope.newExperienceForm.$submitted = false;
+                scope.newExperienceForm.$setPristine();
                 scope.experience.company_name = "";
                 scope.experience.job_title = "";
                 scope.experience.description = "";

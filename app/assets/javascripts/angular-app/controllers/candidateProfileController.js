@@ -570,11 +570,11 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
             var getEducation = function (educationObj) {
                 var education = new Education();
                 education.candidate_id = $scope.user.uid;
-                education.school_id = educationObj.school.id;
-                education.degree_id = educationObj.degree.id;
-                education.major_id = educationObj.major.id;
-                education.state_id = (educationObj.state != undefined) ? educationObj.state.id : null;
-                education.country_id = (educationObj.country.id != undefined) ? educationObj.country.id : null;
+                education.school_id = educationObj.school_id;
+                education.degree_id = educationObj.degree_id;
+                education.major_id = educationObj.major_id;
+                education.state_id = (educationObj.state_id != undefined) ? educationObj.state_id : null;
+                education.country_id = (educationObj.country_id != undefined) ? educationObj.country_id : null;
                 education.description = (educationObj.description != undefined) ? educationObj.description : null;
                 education.start_date = educationObj.start_date;
                 education.end_date = (educationObj.end_date != undefined) ? educationObj.end_date : null;
@@ -644,7 +644,8 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 });
             };
 
-            var saveEducation = function () {
+            var saveEducation = function (valid) {
+                if (!valid) return;
                 $scope.addEducationEnable = false;
                 var education = getEducation($scope.education); // Create Education Resource
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
@@ -680,7 +681,8 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
 
             /* UPDATE FUNCTIONS */
 
-            var updateEducation = function ($index) {
+            var updateEducation = function (valid, $index) {
+                if (!valid) return;
                 $scope.educationEditor = false;
                 var education = getEducation($scope.user.educations[$index]);
                 education.id = $scope.user.educations[$index].id;

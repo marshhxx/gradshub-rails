@@ -12,7 +12,8 @@ IsState = (State) ->
 					State.query {country_id: id}, (states) ->
 						scope.states = states.states
 						ctrl.$validators.state = (value) ->
-							return scope.states? and (value in scope.states or value == "")
+							stateNames = scope.states.map((state) -> state.name)
+							return scope.states? and (value.name in stateNames or value == "")
 		)
 
 	}

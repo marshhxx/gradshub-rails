@@ -14,17 +14,14 @@ angular
 
 			$scope.onCountry = (country) ->
 				if(country?)
-					$scope.country = country.name
 					$scope.user.country_id = country.id
 
 			$scope.onState = (state) ->
 				if(state?)
-					$scope.state = state.name
 					$scope.user.state_id = state.id
 
 			$scope.onNationality = (nationality) ->
 				if(nationality?)
-					$scope.nationality = nationality.name
 					$scope.candidateNationality = new CandidateNationalities();
 					$scope.candidateNationality.name = nationality.name
 					$scope.candidateNationality.candidate_id = $scope.user.uid;
@@ -33,27 +30,22 @@ angular
 
 			$scope.onSchool = (school) ->
 				if(school?)
-					$scope.school = school.name
 					$scope.education.school_id = school.id
 
 			$scope.onSchoolCountry = (country) ->
 				if(country?)
-					$scope.schoolCountry = country.name
 					$scope.education.country_id = country.id
 
 			$scope.onSchoolState = (state) ->
 				if(state?)
-					$scope.schoolState = state.name
 					$scope.education.state_id = state.id
 
 			$scope.onMajor = (major) ->
 				if(major?)
-					$scope.major = major.name
 					$scope.education.major_id = major.id
 
 			$scope.onDegree = (degree) ->
 				if(degree?)
-					$scope.degree = degree.name
 					$scope.education.degree_id = degree.id
 
 			####### Skills ######

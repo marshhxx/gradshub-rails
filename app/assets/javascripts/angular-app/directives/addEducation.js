@@ -1,88 +1,63 @@
-angular.module('mepedia.directives').directive('addEducation', ['State', 'Country', 'School', 'Major', 'Degree', function (State, Country, School, Major, Degree) {
+angular.module('mepedia.directives').directive('addEducation', function () {
     return {
         scope: {
             education: '=data', //Education array
             saveEducation: '=', //Save education controller function
             addEducationEnable: '=' //Education ng-show ng-hide variable binded with controller
         },
-        templateUrl: 'angular-app/templates/directives/addEducation.html',
+        templateUrl: 'angular-app/templates/directives/add-education.html',
         link: function (scope, element, attrs) {
 
             scope.addEducation = function() {
                 scope.addEducationEnable = true;
                 clearAddEducationValues();
-                getData();
             };
 
             var clearAddEducationValues = function(){
-                scope.education.school = "";
-                scope.education.degree = "";
-                scope.education.major = "";
-                scope.education.state = "";
-                scope.education.country = "";
+                scope.newEducationForm.$submitted = false;
+                scope.newEducationForm.$setPristine();
+                scope.school = "";
+                scope.degree = "";
+                scope.major = "";
+                scope.state = "";
+                scope.country = "";
                 scope.education.description = "";
                 scope.education.start_date = null;
                 scope.education.end_date = null;
             };
 
-            var getData = function(){
-
-                Country.query(function(countries) {
-                    scope.countries = countries.countries;
-                });
-
-                School.get(function(schools) {
-                    scope.schools = schools.schools;
-                });
-
-                Major.get(function(majors){
-                    scope.majors = majors.majors;
-                });
-
-                Degree.get(function(degrees){
-                    scope.degrees = degrees.degrees;
-                });
-            }
-
             /* Methods */
 
             scope.onSchool = function (school) {
                 if (school != undefined)
-                    scope.education.school = school
+                    scope.education.school_id = school.id;
             };
 
             scope.onState = function(state) {
                 if (state != undefined)
-                    scope.education.state = state;
+                    scope.education.state_id = state.id;
             };
 
             scope.onCountry = function(country) {
-                scope.education.country = country
                 if (scope.education.country != undefined)
-                    scope.getStateByCountryId(scope.education.country.id);
-            }
+                    scope.education.country_id = country.id;
+            };
 
             scope.onMajor = function(major) {
                 if (major != undefined)
-                    scope.education.major = major
+                    scope.education.major_id = major.id
             };
 
             scope.onDegree= function(degree) {
                 if (degree != undefined)
-                    scope.education.degree = degree
+                    scope.education.degree_id = degree.id
             };
 
             scope.onCancel = function() {
                 scope.addEducationEnable = false;
                 scope.education = [];
             };
-
-            scope.getStateByCountryId = function(countryId) {
-                State.query({country_id: countryId}, function(states) {
-                    scope.states = states.states;
-                });
-            };
         }
 
     };
-}]);
+});
