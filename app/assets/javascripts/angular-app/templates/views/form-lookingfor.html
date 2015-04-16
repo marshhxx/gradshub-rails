@@ -1,4 +1,4 @@
-<form id="personal-form" name="lookingForm" ng-submit="validateAndCreate(lookingForm.$valid)" novalidate>
+<form id="personal-form" name="lookingForm" novalidate>
 	<div class="signup form-container col-md-8 col-md-offset-2">
 	    <div class="signup form-box-cont">
 
@@ -18,9 +18,14 @@
 	<div>
 	    <div class="form-group row btn-form-container">
 	        <div class="col-xs-12 text-center">
-	            <button type="submit" class="btn btn-form">
+			        <div class="control-group has-error" ng-messages="serverErrors">
+				        <div class="help-block" ng-repeat="error in serverErrors.reasons">
+					        <div>{{ error }}</div>
+				        </div>
+			        </div>
+	            <a ng-click="validateAndCreate(lookingForm.$valid)" type="submit" class="btn btn-form">
 	                NEXT </span>
-	            </button>
+	            </a>
 	        </div>
 	    </div>
 

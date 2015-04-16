@@ -41,7 +41,7 @@ angular.module('mepedia.controllers').controller("HomeController", [
 				registerService.register(user).then(
 					(payload) ->
 						login(registerService.currentUser())
-				,
+				).catch(
 					(response)->
 						error = response.data.error
 						if error.code == "ERR02"
@@ -92,19 +92,18 @@ angular.module('mepedia.controllers').controller("HomeController", [
 			registerService.register(user).then(
 				() ->
 					login(registerService.currentUser())
-				,
+			).catch(
 				(response) ->
 					console.log(response.data.error)
 			)
 
 		login = (user) ->
-			promise = sessionService.login(user.email, user.password)
-			promise.then(
+			sessionService.login(user.email, user.password).then(
 				(resp) ->
 
 					$state.go 'main.signup_candidate.personal' if resp.type == 'Candidate'
 					$state.go 'main.signup_employer.personal' if resp.type == 'Employer'
-			,
+			).catch(
 				(errors) ->
 					console.log(errors)
 			)

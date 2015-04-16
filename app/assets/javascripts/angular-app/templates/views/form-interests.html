@@ -1,4 +1,4 @@
-<form id="interests-form" name="interestsForm" ng-submit="validateAndCreate(interestsForm.$valid)">
+<form id="interests-form" name="interestsForm" >
 	<div class="signup form-container col-md-8 col-md-offset-2">
 	    <div class="signup form-box-cont">
 	        <div class="row">
@@ -17,9 +17,9 @@
 				        </div>
 			        </div>
 
-	            <button type="submit" class="btn btn-form">
+	            <a ng-click="validateAndCreate(interestsForm.$valid)" type="submit" class="btn btn-form">
 	                SUBMIT </span>
-	            </button>
+	            </a>
 	        </div>
 	    </div>
 

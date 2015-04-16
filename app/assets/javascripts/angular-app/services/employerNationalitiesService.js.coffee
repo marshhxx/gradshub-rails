@@ -1,6 +1,6 @@
 Nationalities = ($resource) ->
 	$resource('/api/employers/:employer_id/nationalities/:id',
-		{candidate_id: '@employer_id', id: '@id'},
+		{employer_id: '@employer_id', id: '@id'},
 		{
 			query: {
 				method: 'GET',

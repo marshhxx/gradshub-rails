@@ -18,10 +18,6 @@ angular.module('mepedia.directives').directive('tagsInput', function () {
                 if($scope.new_value.name) {
                     $scope.currentTags.push($scope.new_value.name);
                     $scope.new_value = "";
-                } else {
-                    // it is a new skill so we should save it
-                    $scope.currentTags.push($scope.new_value);
-                    $scope.new_value = "";
                 }
             };
 
@@ -38,6 +34,7 @@ angular.module('mepedia.directives').directive('tagsInput', function () {
                     $scope.$apply( $scope.add );
                 }
             });
+
         }
     };
 });

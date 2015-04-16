@@ -520,6 +520,25 @@ p {
   background-size: 30px;
 }
 
+.btn-delete{
+  width: 35px;
+  height: 35px;
+  background: url(delete.svg) no-repeat;
+  background-size: 30px;
+  float: right;
+  cursor: pointer;
+}
+
+.btn-delete:hover {
+  background: url(delete-hover.svg) no-repeat;
+  background-size: 30px;
+}
+
+.signup-btn {
+  margin-right: 25px;
+  margin-top: 20px;
+}
+
 .profile-right-container{
   background-color: #FFF;
   margin: 20px 0 20px 20px;

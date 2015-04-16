@@ -8,7 +8,7 @@ IsNationality = (Nationality) ->
 			scope.nationalities = nationalities.nationalities
 			ctrl.$validators.nationality = (value) ->
 				nationalityNames = scope.nationalities.map((nationality) -> nationality.name)
-				return name in nationalityNames || value == ""
+				return value? and (value == "" or value.name in nationalityNames)
 
 	}
 angular

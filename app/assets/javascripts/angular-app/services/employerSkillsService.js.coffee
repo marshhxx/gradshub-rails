@@ -1,5 +1,5 @@
 Skill = ($resource) ->
-	$resource('/api/candidates/:employer_id/skills/:id',
+	$resource('/api/employers/:employer_id/skills/:id',
 		{employer_id: '@employer_id', id: '@id'},
 		{
 			query: {

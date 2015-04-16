@@ -47,7 +47,7 @@ Demo::Application.routes.draw do
       resources :skills, :only => [:index, :create, :show]
       resources :interests, :only => [:index, :create, :show]
       resources :communication, :only => [:create]
-      resources :companies, :only => [:index]
+      resources :companies, :only => [:index, :create]
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

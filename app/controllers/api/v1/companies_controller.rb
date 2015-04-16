@@ -1,4 +1,5 @@
 class Api::V1::CompaniesController < Api::NestedController
+  wrap_parameters include: [:name, :industry, :company_id, :description, :state_id, :country_id, :site_url, :image]
   before_action :authenticate_with_token!, only: [:create, :update]
   before_action :set_resource, :only => []
   before_action :set_parent_resource, :only => [:show, :update]

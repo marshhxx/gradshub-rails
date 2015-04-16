@@ -1,15 +1,16 @@
-angular.module('mepedia.services').factory  "registerService",
-	[
-		() ->
-			this.tempUser = null
-			service = {
-				register: (user) ->
-					this.tempUser = angular.copy(user)
-					user.$save()
+RegisterService = () ->
+	this.tempUser = null
+	service = {}
 
-				currentUser: () ->
-					this.tempUser
-			}
+	service.register = (user) ->
+		this.tempUser = angular.copy(user)
+		user.$save()
 
-			service
-	]
+	service.currentUser = ->
+		this.tempUser
+
+	service
+
+angular
+	.module('mepedia.services')
+	.factory("registerService", RegisterService)

@@ -8,6 +8,7 @@ angular
 			$scope.selectedTags = []
 			$scope.education = new Education()
 			$scope.skills = new CandidateSkills()
+			$scope.candidateNationality = new CandidateNationalities();
 
 			$scope.selectedFrom = "From"
 			$scope.selectedTo = "To"
@@ -22,7 +23,6 @@ angular
 
 			$scope.onNationality = (nationality) ->
 				if(nationality?)
-					$scope.candidateNationality = new CandidateNationalities();
 					$scope.candidateNationality.name = nationality.name
 					$scope.candidateNationality.candidate_id = $scope.user.uid;
 
