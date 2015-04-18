@@ -56,7 +56,7 @@
 
 		    <div class="row">
 			    <div class="form-group"  ng-class="{'has-error': companyForm.state.$invalid && (companyForm.$submitted || companyForm.state.$dirty)}">
-				    <state-selector placeholder="Company's State" ng-model="companyState" on-select="onCompanyState" country-id="employerCompany.country_id" required></state-selector>
+				    <state-selector placeholder="Company's State" ng-model="companyState" on-select="onCompanyState" country-id="employerCompany.country_id"></state-selector>
 				    <div ng-if="companyForm.state.$invalid && (companyForm.$submitted || companyForm.state.$dirty)" ng-messages="companyForm.state.$error">
 					    <div class="control-group.error p" ng-message="required">
 						    Please select a state!

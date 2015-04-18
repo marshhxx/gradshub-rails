@@ -153,13 +153,13 @@
             </div>
 
             <div class="profile-right-content">
-                <p class="profile-placeholder-txt" ng-show="defaultSkillsEnable">{{defaultSkills}}</p>
+                <p class="profile-placeholder-txt" ng-show="selectedSkills.length == 0 && !editorSkillsEnabled">{{defaultSkills}}</p>
                 <div ng-hide="editorSkillsEnabled" class="profile-right-text">
                     <div class="tags">
                         <a class="tag" ng-model="tag" ng-repeat="tag in selectedSkills">{{tag}}</a>
                     </div>
                 </div>
-                <div ng-hide="defaultSkillsEnable">
+                <div ng-hide="selectedSkills.length == 0 && !editorSkillsEnabled">
                     <tags-input tags="skillsTags" ng-show="editorSkillsEnabled"
                                 info="candidateSelectedSkills"></tags-input>
                 </div>
@@ -189,6 +189,46 @@
                 </div>
             </div>
         </div>
+
+		    <div class="profile-right-container">
+			    <div class="profile-right-header">
+				    <div class="profile-right-header title">
+					    <div class="profile-right-header-img interests"></div>
+					    <h3> INTERESTS </h3>
+				    </div>
+				    <div class="profile-right-header edit">
+					    <div class="editwrapper">
+						    <div class="edit-pencil" ng-click="enableInterestsEditor()"
+						         ng-hide="editorInterestsEnabled"></div>
+
+						    <div ng-show="editorInterestsEnabled" class="edit-buttons-wrapper">
+							    <a ng-click="saveInterests()" class="btn btn-edit">
+								    SAVE </span>
+							    </a>
+							    <a ng-click="disableInterestsEditor()" class="btn btn-edit margin-l5">
+								    CANCEL </span>
+							    </a>
+						    </div>
+					    </div>
+				    </div>
+			    </div>
+
+			    <div class="profile-right-content">
+				    <p class="profile-placeholder-txt" ng-show="selectedInterests.length == 0 && !editorInterestsEnabled">
+					    {{defaultInterests}}
+				    </p>
+				    <div ng-hide="editorInterestsEnabled" class="profile-right-text">
+					    <div class="tags">
+						    <a class="tag" ng-model="tag" ng-repeat="tag in selectedInterests">{{tag}}</a>
+					    </div>
+				    </div>
+				    <div ng-hide="selectedInterests.length == 0 && !editorInterestsEnabled">
+					    <tags-input tags="interestsTags" ng-show="editorInterestsEnabled"
+					                info="candidateSelectedInterests"></tags-input>
+				    </div>
+
+			    </div>
+		    </div>
 
 
     </div>

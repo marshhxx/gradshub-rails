@@ -1,11 +1,13 @@
 angular.module('mepedia.controllers').controller('candidateProfileController',
-    ['$scope', '$rootScope', '$http', '$upload', '$location', '$anchorScroll','sessionService', '$state', 'Country', 'State', 'Candidate', 'Employer', 'Skill', 'School', 'Major', 'Degree', 'Education', 'CandidateSkills', 'Utils', 'Experience',
+    ['$scope', '$rootScope', '$http', '$upload', '$location', '$anchorScroll','sessionService', '$state', 'Country', 'State', 'Candidate', 'Employer', 'Skill', 'Interest', 'School', 'Major', 'Degree', 'Education', 'CandidateSkills', 'CandidateInterests', 'Utils', 'Experience',
 
-        function ($scope, $rootScope, $httpProvider, $upload, $location, $anchorScroll, sessionService, $state, Country, State, Candidate, Employer, Skill, School, Major, Degree, Education, CandidateSkills, Utils, Experience) {
+        function ($scope, $rootScope, $httpProvider, $upload, $location, $anchorScroll, sessionService, $state, Country, State, Candidate, Employer, Skill, Interest, School, Major, Degree, Education, CandidateSkills, CandidateInterests, Utils, Experience) {
 
             $scope.defaultSummary = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dignissim orci in eros auctor, at fringilla orci hendrerit. Quisque consequat eros enim. Nullam luctus lectus sed justo ullamcorper, tempor commodo leo sagittis. Quisque egestas tempus nulla. Aenean sit amet mauris leo.";
             $scope.defaultSkills = "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed cursus quam erat, non fringilla dui efficitur vitae. Pellentesque nec sodales lacus. Fusce rutrum diam a dolor vestibulum, at sodales turpis congue. Curabitur condimentum velit elit, id ornare velit eleifend id. In vel lorem ut mi suscipit placerat ut eu nunc. ";
             $scope.defaultExperience = "Cras diam sapien, pharetra laoreet sapien nec, pellentesque interdum mauris. Suspendisse blandit leo in luctus dapibus. Praesent accumsan eu leo quis eleifend. Vivamus vitae auctor neque. Donec facilisis bibendum dui ac lobortis.";
+            $scope.defaultInterests = "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed cursus quam erat, non fringilla dui efficitur vitae. Pellentesque nec sodales lacus. Fusce rutrum diam a dolor vestibulum, at sodales turpis congue. Curabitur condimentum velit elit, id ornare velit eleifend id. In vel lorem ut mi suscipit placerat ut eu nunc. ";
+
 
             var updateUser = function () {
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
@@ -423,6 +425,9 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 /* SKILLS */
                 initSkills();
 
+                /* INTERESTS */
+                initInterests();
+
                 /* EDUCATION */
                 initEducation();
 
@@ -448,6 +453,10 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     return skill.name;
                 });
 
+                $scope.selectedInterests = $scope.user.interests.map(function(interest) {
+                   return interest.name;
+                });
+
                 $scope.coverPhotoURI = $scope.user.cover_image;
                 $scope.profilePhotoURI = $scope.user.profile_image;
 
@@ -458,13 +467,10 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 if ($scope.user.summary == undefined || $scope.user.summary == "")
                     $scope.defaultSummaryEnable = true;
 
-                if ($scope.selectedSkills.length == 0)
-                    $scope.defaultSkillsEnable = true;
-
                 if ($scope.user.experiences.length == 0)
                     $scope.defaultExperienceEnable = true;
 
-            }
+            };
 
             var initSummary = function () {
                 $scope.summaryEditorEnable = false;
@@ -495,9 +501,6 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     $scope.editorSkillsEnabled = true;
                     if ($scope.selectedSkills.length > 0)
                         $scope.candidateSelectedSkills = $scope.selectedSkills.slice();
-
-                    if ($scope.defaultSkillsEnable == true)
-                        $scope.defaultSkillsEnable = false;
                 };
 
                 $scope.disableSkillsEditor = function () {
@@ -505,6 +508,24 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 };
 
                 $scope.saveSkills = saveSkills;
+            };
+
+            var initInterests = function() {
+                $scope.candidateSelectedInterests = [];
+                $scope.selectedInterests = [];
+                $scope.editorSkillsEnabled = false;
+
+                $scope.enableInterestsEditor = function() {
+                    $scope.editorInterestsEnabled = true;
+                    if ($scope.selectedInterests.length > 0)
+                        $scope.candidateSelectedInterests = $scope.selectedInterests.slice();
+                };
+
+                $scope.disableInterestsEditor = function() {
+                    $scope.editorInterestsEnabled = false
+                };
+
+                $scope.saveInterests = saveInterests;
             };
 
             var initEducation = function () {
@@ -543,28 +564,25 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     $scope.countries = countries.countries;
                 });
 
-                $scope.getStateByCountryId = function (countryId) {
-                    State.query({country_id: countryId}, function (states) {
-                        $scope.states = states.states;
-                        console.log($scope.states);
-                    });
-                };
-
-                Skill.get(function (skills) {
+                Skill.query(function (skills) {
                     $scope.skillsTags = skills.skills;
                 });
 
-                School.get(function (schools) {
+                School.query(function (schools) {
                     $scope.schools = schools.schools;
                 });
 
-                Major.get(function (majors) {
+                Major.query(function (majors) {
                     $scope.majors = majors.majors;
                 });
 
-                Degree.get(function (degrees) {
+                Degree.query(function (degrees) {
                     $scope.degrees = degrees.degrees;
                 });
+
+                Interest.query(function (interests) {
+                    $scope.interestsTags = interests.interests;
+                })
             };
 
             var getEducation = function (educationObj) {
@@ -609,33 +627,46 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
 
             var saveSkills = function () {
                 $scope.disableSkillsEditor();
-                $scope.selectedSkills = $scope.candidateSelectedSkills.slice();
                 var candidateSkills = new CandidateSkills();
                 candidateSkills.candidate_id = $scope.user.uid;
-
-                if($scope.selectedSkills.length > 0) {
-                    candidateSkills.skills = $scope.selectedSkills.map(function (skillName) {
-                        return {name: skillName}
-                    });
-                } else {
-                    candidateSkills.skills = [];
-                }
+                candidateSkills.skills = $scope.candidateSelectedSkills.slice().map(function (skillName) {
+                    return {name: skillName}
+                });
 
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
-                candidateSkills.$update(
+                candidateSkills.$update().then(
                     function (response) {
                         $scope.selectedSkills = response.skills.map(function (skill) {
                             return skill.name;
                         });
-                        if ($scope.selectedSkills.length == 0) {
-                            $scope.defaultSkillsEnable = true;
-                        } else {
-                            $scope.defaultSkillsEnable = false;
-                        }
-                    },
+                    }
+                ).catch(
                     function (error) {
                         console.log(error)
-                    });
+                    }
+                );
+            };
+
+            var saveInterests = function() {
+                $scope.disableInterestsEditor();
+                var candidateInterests = new CandidateInterests();
+                candidateInterests.candidate_id = $scope.user.uid;
+                candidateInterests.interests = $scope.candidateSelectedInterests.slice().map(function (interestName) {
+                    return {name: interestName}
+                });
+
+                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
+                candidateInterests.$update().then(
+                    function(response) {
+                        $scope.selectedInterests = response.interests.map(function (interest) {
+                            return interest.name;
+                        })
+                    }
+                ).catch(
+                    function (error) {
+                        console.log(error);
+                    }
+                )
             };
 
             var getEducations = function () {
@@ -714,32 +745,6 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
 
             /* OTHER FUNCTIONS */
 
-            $scope.onState = function (state) {
-                if (state != undefined)
-                    $scope.education.state = state;
-            };
-
-            $scope.onCountry = function (country) {
-                $scope.education.country = country
-                if ($scope.education.country != undefined)
-                    $scope.getStateByCountryId($scope.education.country.id);
-            }
-
-            $scope.onMajor = function (major) {
-                if (major != undefined)
-                    $scope.education.major = major
-            };
-
-            $scope.onDegree = function (degree) {
-                if (degree != undefined)
-                    $scope.education.degree = degree
-            };
-
-            $scope.onSchool = function (school) {
-                if (school != undefined)
-                    $scope.education.school = school
-            };
-
             var calculateAge = function () { // birthday is a date
                 var partsOfBirthday = $scope.user.birth.split('-');
                 var year = partsOfBirthday[0];
@@ -751,14 +756,14 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 var ageDifMs = Date.now() - d.getTime();
                 var ageDate = new Date(ageDifMs); //miliseconds from epoch
                 $scope.age = Math.abs(ageDate.getUTCFullYear() - 1970);
-            }
+            };
 
             $scope.scrollTo = function (id) {
                 var old = $location.hash();
                 $location.hash(id);
                 $anchorScroll();
                 $location.hash(old);
-            }
+            };
 
             getData();
 
