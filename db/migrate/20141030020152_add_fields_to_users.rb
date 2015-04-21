@@ -215,8 +215,8 @@ class AddFieldsToUsers < ActiveRecord::Migration
 
     create_table :employer_company do |t|
       t.belongs_to :company, null: false
-      t.belongs_to :country,
-      t.belongs_to :state,
+      t.belongs_to :country
+      t.belongs_to :state
       t.text :description
       t.string :site_url
       t.string :image
