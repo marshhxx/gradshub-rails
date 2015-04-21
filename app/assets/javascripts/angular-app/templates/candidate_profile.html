@@ -226,8 +226,23 @@
 					    <tags-input tags="interestsTags" ng-show="editorInterestsEnabled"
 					                info="candidateSelectedInterests"></tags-input>
 				    </div>
-
 			    </div>
+		    </div>
+
+	      <div class="profile-right-container">
+		      <div>
+			      <add-language data="language" save-language="saveLanguage" on-add="onLanguageAdd" on-cancel="onLanguageCancel"></add-language>
+
+			      <div class="profile-right-content" ng-show="user.languages.length == 0 && !isAddingLanguage">
+			        <p class="profile-placeholder-txt" >
+				        {{defaultLanguages}}
+			        </p>
+			      </div>
+
+			      <div ng-repeat="language in user.languages">
+				      <language data="language" update-language="updateLanguage"></language>
+			      </div>
+		      </div>
 		    </div>
 
 

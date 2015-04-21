@@ -30,6 +30,11 @@ json.candidate do
   end
   json.skills  @candidate.skills
   json.interests @candidate.interests
+  json.languages @candidate.candidate_languages do |language|
+    json.id     language.id
+    json.name   language.language.name
+    json.level  language.level
+  end
   json.summary @candidate.summary
   json.cover_image @candidate.user.cover_image
   json.profile_image @candidate.user.profile_image

@@ -1,12 +1,14 @@
 angular.module('mepedia.controllers').controller('candidateProfileController',
-    ['$scope', '$rootScope', '$http', '$upload', '$location', '$anchorScroll','sessionService', '$state', 'Country', 'State', 'Candidate', 'Employer', 'Skill', 'Interest', 'School', 'Major', 'Degree', 'Education', 'CandidateSkills', 'CandidateInterests', 'Utils', 'Experience',
+    ['$scope', '$rootScope', '$http', '$upload', '$location', '$anchorScroll','sessionService', '$state', 'Country', 'State', 'Candidate', 'Employer', 'Skill', 'Interest', 'School', 'Major', 'Degree', 'Education', 'CandidateSkills', 'CandidateInterests', 'CandidateLanguages', 'Utils', 'Experience',
 
-        function ($scope, $rootScope, $httpProvider, $upload, $location, $anchorScroll, sessionService, $state, Country, State, Candidate, Employer, Skill, Interest, School, Major, Degree, Education, CandidateSkills, CandidateInterests, Utils, Experience) {
+        function ($scope, $rootScope, $httpProvider, $upload, $location, $anchorScroll, sessionService, $state, Country, State, Candidate, Employer, Skill, Interest, School, Major, Degree, Education, CandidateSkills, CandidateInterests, CandidateLanguages, Utils, Experience) {
 
             $scope.defaultSummary = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dignissim orci in eros auctor, at fringilla orci hendrerit. Quisque consequat eros enim. Nullam luctus lectus sed justo ullamcorper, tempor commodo leo sagittis. Quisque egestas tempus nulla. Aenean sit amet mauris leo.";
             $scope.defaultSkills = "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed cursus quam erat, non fringilla dui efficitur vitae. Pellentesque nec sodales lacus. Fusce rutrum diam a dolor vestibulum, at sodales turpis congue. Curabitur condimentum velit elit, id ornare velit eleifend id. In vel lorem ut mi suscipit placerat ut eu nunc. ";
             $scope.defaultExperience = "Cras diam sapien, pharetra laoreet sapien nec, pellentesque interdum mauris. Suspendisse blandit leo in luctus dapibus. Praesent accumsan eu leo quis eleifend. Vivamus vitae auctor neque. Donec facilisis bibendum dui ac lobortis.";
             $scope.defaultInterests = "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed cursus quam erat, non fringilla dui efficitur vitae. Pellentesque nec sodales lacus. Fusce rutrum diam a dolor vestibulum, at sodales turpis congue. Curabitur condimentum velit elit, id ornare velit eleifend id. In vel lorem ut mi suscipit placerat ut eu nunc. ";
+            $scope.defaultLanguages = "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed cursus quam erat, non fringilla dui efficitur vitae. Pellentesque nec sodales lacus. Fusce rutrum diam a dolor vestibulum, at sodales turpis congue. Curabitur condimentum velit elit, id ornare velit eleifend id. In vel lorem ut mi suscipit placerat ut eu nunc. ";
+
 
 
             var updateUser = function () {
@@ -434,6 +436,9 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 /* EXPERIENCE */
                 initExperience();
 
+                /* LANGUAGE */
+                initLanguages();
+
                 sessionService.requestCurrentUser().then(
                     function (user) {
                         $scope.user = user.candidate;
@@ -555,7 +560,24 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     if ($scope.user.experiences.length == 0)
                         $scope.defaultExperienceEnable = true;
                 };
-            }
+            };
+
+            var initLanguages = function () {
+                $scope.languages = [];
+                $scope.language = null;
+                $scope.addLanguageEnable = false;
+                $scope.isAddingLanguage = false;
+                $scope.languageEditor = false;
+
+                $scope.onLanguageAdd = function () {
+                    $scope.isAddingLanguage = true;
+                };
+                $scope.onLanguageCancel = function () {
+                    $scope.isAddingLanguage = false;
+                };
+
+                $scope.saveLanguage = saveLanguage;
+            };
 
             /* GETTERS */
 
@@ -608,7 +630,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 experience.start_date = experienceObj.start_date;
                 experience.end_date = (experienceObj.end_date != undefined) ? experienceObj.end_date : null;
                 return experience;
-            }
+            };
 
             /* SAVE FUNCTIONS */
 
@@ -708,6 +730,32 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     function (error) {
                         console.log(error);
                     });
+            };
+
+            var getLanguage = function (language) {
+              return new CandidateLanguages({language_id: language.language_id, level: 2, candidate_id: $scope.user.uid})
+            };
+
+            var getLanguages = function () {
+                CandidateLanguages.query({candidate_id: $scope.user.uid}, function(languages) {
+                    $scope.user.languages = languages.languages;
+                })
+            };
+
+            var saveLanguage = function (valid) {
+                if (!valid) return;
+                $scope.addLanguageEnable = false;
+                var language = getLanguage($scope.language); //Create Language Resource
+                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
+                language.$save().then(
+                    function(language) {
+                        getLanguages();
+                    }
+                ).catch(
+                    function (error) {
+                        console.log(error);
+                    }
+                )
             };
 
             /* UPDATE FUNCTIONS */

@@ -137,14 +137,14 @@ class AddFieldsToUsers < ActiveRecord::Migration
       t.timestamp
     end
 
-    create_table :candidates_languages do |t|
+    create_table :candidate_languages do |t|
       t.belongs_to :candidate
       t.belongs_to :language
       t.integer :level, default: 0
 
       t.timestamp
     end
-    add_index(:candidates_languages, [:candidate_id, :language_id], :unique => true)
+    add_index(:candidate_languages, [:candidate_id, :language_id], :unique => true)
 
     create_table :experiences do |t|
       t.belongs_to :candidate
@@ -214,9 +214,9 @@ class AddFieldsToUsers < ActiveRecord::Migration
     end
 
     create_table :employer_company do |t|
-      t.belongs_to :company
-      t.belongs_to :country
-      t.belongs_to :state
+      t.belongs_to :company, null: false
+      t.belongs_to :country,
+      t.belongs_to :state,
       t.text :description
       t.string :site_url
       t.string :image

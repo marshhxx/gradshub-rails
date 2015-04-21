@@ -1,15 +1,13 @@
 class Api::V1::LanguagesController < Api::BaseController
-  before_action :authenticate_with_token!, only: [:create]
+  before_action :authenticate_with_token!, only: [:create, :destroy]
 
-  private
+  protected
 
   def language_params
-    params.require(:language).permit(:name) if params[:language]
+    params.require(:language).permit(:language_id, :level) if params[:language]
   end
 
   def query_params
-    # this assumes that an album belongs to an artist and has an :artist_id
-    # allowing us to filter by this
     params.permit(:all)
   end
 end

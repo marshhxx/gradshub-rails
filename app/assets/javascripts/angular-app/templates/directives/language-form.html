@@ -1,0 +1,33 @@
+<!-- Language editor component -->
+<form name="languageForm" ng-submit="onSave(languageForm.$valid, $parent.$index)" novalidate>
+	<div class="profile-header edit">
+		<div class="editwrapper">
+
+			<div class="edit-buttons-wrapper">
+				<button type="submit" class="btn btn-edit">
+					SAVE </span>
+				</button>
+				<a ng-click="onCancel()" class="btn btn-edit margin-l5">
+					CANCEL </span>
+				</a>
+			</div>
+
+		</div>
+	</div>
+	<div class="profile-add-right-content">
+
+		<div class="form-group div-50 left"
+		     ng-class="{'has-error': languageForm.language.$invalid && (languageForm.$submitted || languageForm.language.$dirty)}">
+			<language-selector placeholder="Language" name="language" on-select="onLanguage" ng-model="data.name" required></language-selector>
+			<div ng-if="languageForm.language.$invalid && (languageForm.$submitted || languageForm.language.$dirty)" ng-messages="languageForm.language.$error">
+				<div class="help-block" ng-message="required">
+					Please select a language!
+				</div>
+				<div class="help-block" ng-message="editable">
+					Please select a valid language!
+				</div>
+			</div>
+		</div>
+
+	</div>
+</form>

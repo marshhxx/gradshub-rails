@@ -1,0 +1,15 @@
+<div class="profile-right-header">
+	<div class="profile-right-header title">
+		<div class="profile-right-header-img experience"></div>
+		<h3>Languages</h3>
+	</div>
+	<div class="profile-right-header edit">
+		<div class="editwrapper">
+
+			<a ng-click="addLanguage()" class="btn btn-add" ng-hide="addLanguageEnable"></a>
+
+		</div>
+	</div>
+</div>
+
+<language-form data="data" on-save="onSave" on-cancel="onCancel" ng-if="addLanguageEnable"></language-form>

@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
   rescue_from ActionController::ParameterMissing, :with => :bad_request
+  rescue_from ArgumentError, :with => :bad_request
 
   def record_not_found
     @error = {:reasons => ["Resource with id #{params[:id]} doesn't exist."], :code => INVALID_PARAMS_ERROR}

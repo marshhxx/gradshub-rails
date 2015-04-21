@@ -103,14 +103,15 @@ angular
 				else
 					$scope.newCompany.$save().then(
 						(company) ->
-							deferred.resolve({compay: {id: company.company.id}})
+							deferred.resolve({company: {id: company.company.id}})
 					).catch(
 						(error) ->
 							deferred.reject(error)
 					)
 				deferred.promise
 
-			saveCompany = ->
+			saveCompany = (id) ->
+				$scope.employerCompany.company_id = id
 				$scope.employerCompany.$save()
 
 			saveEmployerNationality = ->
