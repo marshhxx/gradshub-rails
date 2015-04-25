@@ -14,7 +14,7 @@ angular.module('mepedia.controllers').controller('employerProfileController',
                 sessionService.requestCurrentUser().then(
                     function (user) {
                         $scope.user = user.employer;
-
+                        //$scope.user.job_title = 'Python programmer at Ceibal';
                         initEmployerProfile();
 
                         // Fire event to catch it in editCompany directive
@@ -27,34 +27,33 @@ angular.module('mepedia.controllers').controller('employerProfileController',
                 );
             };
 
+            // get data from db
+            var getData = function() {
+                Country.query(function(countries) {
+                    $scope.countries = countries.countries;
+                });
+
+                $scope.getStateByCountryId = function(countryId) {
+                    State.query({country_id: countryId}, function(states) {
+                        $scope.states = states.states;
+                        console.log($scope.states);
+                    });
+                };
+            };
+
             var initEmployerProfile = function(){
 
-                /* this is static, 
-                 * TODO: GET COMPANY FROM SERVER
-                 */
-                 /*
-                $scope.user.company = {
-                    company_id: 1,
-                    name: 'Ceibal',
-                    industry: 'Information Techonology',
-                    description: 'Mi descripcion man',
-                    state: 'Montevideo',
-                    country: 'Uruguay',
-                    companyUrl: 'www.ceibal.edu.uy'
-                };
-                */
                 $scope.employerCompany = $scope.user.company;
-
-                // hide
-                $scope.descriptionEnable = false;
 
                 $scope.selectedSkills = $scope.user.skills.map(function (skill) {
                     return skill.name;
                 });
-
                 $scope.selectedInterests = $scope.user.interests.map(function (interest) {
                     return interest.name;
                 });
+
+                // hide
+                $scope.descriptionEnable = false;
             }
 
             // Description
@@ -65,24 +64,15 @@ angular.module('mepedia.controllers').controller('employerProfileController',
             }
 
             $scope.saveDescription = function() {
+                // Description of employer is stored in employerCompany, a child obeject of employer user.
                 $scope.saveEmployerCompany();
                 
-                $scope.descriptionEnable = false;
-                $scope.editorDescriptionEnabled = false;
+                $scope.disableDescriptionEditor();
             }
 
             $scope.disableDescriptionEditor = function() {
                 $scope.descriptionEnable = false;
                 $scope.editorDescriptionEnabled = false;
-            }
-
-            var updateUser = function () {
-                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
-                Utils.employerFromObject($scope.user).$update(function (response) { //Creates resource User from object $scope.user
-                    $scope.user = response.employer;
-                }, function (error) {
-                    console.log(error);
-                });
             }
 
             // Skills
@@ -105,7 +95,6 @@ angular.module('mepedia.controllers').controller('employerProfileController',
                 $scope.saveSkills = saveSkills;
             };
 
-
             var saveSkills = function(){
                 $scope.disableSkillsEditor();
                 $scope.selectedSkills = $scope.employerSelectedSkills.slice();
@@ -123,18 +112,10 @@ angular.module('mepedia.controllers').controller('employerProfileController',
                         $scope.selectedSkills = response.skills.map(function (skill) {
                             return skill.name;
                         });
-                        //refreshSkills();
                     },
                     function(error) {
                         console.log(error)
                 });
-            };
-
-
-            var refreshSkills = function () {
-                EmployerSkills.query({candidate_id: $scope.user.uid}, function (skills) {
-                    $scope.employerSelectedSkills = skills.skills;
-                })
             };
 
             // interests
@@ -171,20 +152,11 @@ angular.module('mepedia.controllers').controller('employerProfileController',
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 employerInterests.$update(
                     function (response) {
-                        refreshSkills();
                     },
                     function(error) {
                         console.log(error)
                 });
             };
-
-
-            var refreshInterests = function () {
-                EmployerInterests.query({employer_id: $scope.user.uid}, function (skills) {
-                    $scope.employerSelectedInterests = skills.skills;
-                })
-            };
-
             
             // company info
             $scope.saveEmployerCompany = function() {
@@ -210,25 +182,6 @@ angular.module('mepedia.controllers').controller('employerProfileController',
                 );
             }
 
-
-            // get data from db
-            var getData = function() {
-                Country.query(function(countries) {
-                    $scope.countries = countries.countries;
-                });
-
-                $scope.getStateByCountryId = function(countryId) {
-                    State.query({country_id: countryId}, function(states) {
-                        $scope.states = states.states;
-                        console.log($scope.states);
-                    });
-                };
-
-                Skill.get(function(skills) {
-                    $scope.skillsTags = skills.skills;
-                });
-              
-            };
             init();
         }]);
 

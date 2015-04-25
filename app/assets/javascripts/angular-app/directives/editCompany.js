@@ -9,6 +9,7 @@ angular.module('mepedia.directives').directive('editCompany', ['EmployerCompany'
         templateUrl: 'angular-app/templates/directives/editCompany.html',
         link: function (scope, element, attrs) {
             scope.editCompanyEnable = false;
+            var temporaryEmployerCompany = '';
 
             var init = function() {
                 getData();
@@ -22,20 +23,20 @@ angular.module('mepedia.directives').directive('editCompany', ['EmployerCompany'
 
             scope.enableCompanyEditor = function() {
                 scope.editCompanyEnable = true;
+                temporaryEmployerCompany = scope.employerCompany.site_url;
             }
 
             scope.saveCompany = function() {
                 if (scope.companyForm.$valid) {
                     scope.editCompanyEnable = false;
                     scope.$parent.saveEmployerCompany();
-                    
-                } else {
-
+                    temporaryEmployerCompany = scope.employerCompany.site_url;
                 }
             }
 
             scope.onCancel = function() {
                 scope.editCompanyEnable = false;
+                scope.employerCompany.site_url = temporaryEmployerCompany;
             }
 
             scope.onCountry = function(country) {
