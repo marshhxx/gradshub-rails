@@ -22,27 +22,33 @@ angular
 
                 $scope.onCountry = (country) ->
                     if(country?)
+                        $scope.country = country
                         $scope.user.country_id = country.id
 
                 $scope.onState = (state) ->
                     if(state?)
+                        $scope.state = state
                         $scope.user.state_id = state.id
 
                 $scope.onNationality = (nationality) ->
                     if(nationality?)
+                        $scope.nationality = nationality
                         $scope.employerNationality.name = nationality.name
                         $scope.employerNationality.emloyer_id = $scope.user.uid;
 
                 $scope.onCompany = (company) ->
                     if company?
+                        $scope.company = company
                         $scope.employerCompany.company_id = company.id
 
                 $scope.onCompanyCountry = (country) ->
                     if(country?)
+                        $scope.companyCountry = country
                         $scope.employerCompany.country_id = country.id
 
                 $scope.onCompanyState = (state) ->
                     if(state?)
+                        $scope.companyState = state
                         $scope.employerCompany.state_id = state.id
 
                 ####### Skills ######
@@ -71,6 +77,12 @@ angular
 
                 $scope.validateCompany = (valid) ->
                     $state.go 'main.signup_employer.looking' if valid
+
+                $scope.backToPersonal =  ->
+                    $state.go 'main.signup_employer.personal'
+
+                $scope.backToCompany = ->
+                    $state.go 'main.signup_employer.company'
 
                 $scope.validateAndCreate = validateAndCreate
                 $scope.toggleAddCompany = toggleAddCompany
@@ -133,6 +145,6 @@ angular
                     $scope.addCompanyEnabled = false
                 else
                     $scope.addCompanyEnabled = true
-
+            
             init()
     ])
