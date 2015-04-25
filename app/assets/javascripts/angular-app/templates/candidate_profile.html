@@ -172,7 +172,8 @@
                 <add-education data="education" save-education="saveEducation"
                                add-education-enable="addEducationEnable"></add-education>
                 <div ng-repeat="education in user.educations">
-                    <education data="education" update-education="updateEducation" education-editor="educationEditor"></education>
+                    <education data="education" update-education="updateEducation" education-editor="educationEditor"
+	                    on-delete="deleteEducation"></education>
                 </div>
             </div>
         </div>

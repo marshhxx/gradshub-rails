@@ -39,7 +39,7 @@ angular.module('mepedia.directives').directive('addEducation', function () {
             };
 
             scope.onCountry = function(country) {
-                if (scope.education.country != undefined)
+                if (country != undefined)
                     scope.education.country_id = country.id;
             };
 

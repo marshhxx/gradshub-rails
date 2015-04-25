@@ -86,9 +86,9 @@
 		    </div>
 	    </div>
 
-			<div class="form-group" ng-class="{'has-error': !education.start_date && newEducationForm.$submitted}">
+			<div class="form-group" ng-class="{'has-error': newEducationForm.$submitted && !education.start_date}">
 				<div class="profile-datepicker-container div-25">
-					<span class="help-block profile-datepicker-label">From: </span>
+					<span class="profile-datepicker-label">From: </span>
 					<simpledatepicker no-month="true" no-day="true" date="education.start_date"></simpledatepicker>
 				</div>
 

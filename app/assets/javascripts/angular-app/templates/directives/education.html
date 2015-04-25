@@ -36,6 +36,10 @@
 	<div class="profile-header edit" ng-show="educationEditor">
 	    <div class="editwrapper">
 
+			    <div class="delete-buttons-wrapper">
+				    <a ng-click="onDelete($parent.$index)" class="btn btn-edit">DELETE</a>
+			    </div>
+
 	        <div class="edit-buttons-wrapper">
 	            <button type="submit" class="btn btn-edit">
 	                SAVE </span>
@@ -103,7 +107,7 @@
 
 	    <div class="form-group div-50 right"
 		    ng-class="{'has-error': educationForm.state.$invalid && (educationForm.$submitted || educationForm.state.$dirty)}">
-		    <state-selector placeholder="School State" ng-model="educationTemp.state" on-select="onState" country-id="education.country_id"></state-selector>
+		    <state-selector placeholder="School State" ng-model="educationTemp.state" on-select="onState" country-id="educationTemp.country_id"></state-selector>
 
 		    <div ng-if="educationForm.state.$invalid && (educationForm.$submitted || educationForm.state.$dirty)" ng-messages="educationForm.state.$error">
 			    <div class="help-block" ng-message="state">

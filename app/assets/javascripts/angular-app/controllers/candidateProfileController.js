@@ -538,6 +538,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 $scope.educationEditor = false;
                 $scope.saveEducation = saveEducation;
                 $scope.updateEducation = updateEducation;
+                $scope.deleteEducation = deleteEducation;
             };
 
             var initExperience = function () {
@@ -812,6 +813,27 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     )
                 };
                 modalService.confirm("Are you sure you want to delete this experience?").then(deleteIt)
+            };
+
+            var deleteEducation = function(index) {
+                var deleteIt = function() {
+                    var education = new Education({
+                        candidate_id: $scope.user.uid,
+                        id: $scope.user.educations[index].id
+                    });
+                    $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
+                    education.$delete().then(
+                        function() {
+                            $scope.user.educations.splice(index);
+                            alertService.addInfo('Education successfully deleted!', 5000);
+                        }
+                    ).catch(
+                        function (error) {
+                            console.log(error);
+                        }
+                    )
+                };
+                modalService.confirm("Are you sure you want to delete this education?").then(deleteIt)
             };
 
             /* OTHER FUNCTIONS */
