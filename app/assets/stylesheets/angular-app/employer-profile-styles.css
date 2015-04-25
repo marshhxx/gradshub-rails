@@ -161,18 +161,11 @@
 .employerProfileImageEdit.img {
   width: 60%;
   margin: 0 auto;
-  height: 40px;
-  background: url("ic-photo-dark-grey.svg") center center no-repeat;
+  height: 40px; 
   background-size: 30px 30px;
   cursor: pointer;
 }
 
-.employerProfileImageEdit.img:hover {
-  /*
-  background: url('ic-photo-hover.svg') center center no-repeat;
-  background-size: 30px 40px;
-  */
-}
 
 .employerProfileRightContent {
     padding: 0;
@@ -250,4 +243,19 @@
 .profile-left-wrapper {
   width: 100%;
   float: left;
+}
+
+/* Edit company directive */
+.country-selector-wrapper {
+  float: left; 
+  width: 57%;
+}
+
+.state-selector-wrapper {
+  float: left; 
+  width: 40%;
+  margin-left: 10px;
+}
+.help-block {
+  color: #a94442;  
 }

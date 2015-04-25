@@ -14,6 +14,7 @@ angular.module('mepedia.controllers').controller('employerProfileController',
                 sessionService.requestCurrentUser().then(
                     function (user) {
                         $scope.user = user.employer;
+
                         initEmployerProfile();
 
                         // Fire event to catch it in editCompany directive
@@ -31,7 +32,7 @@ angular.module('mepedia.controllers').controller('employerProfileController',
                 /* this is static, 
                  * TODO: GET COMPANY FROM SERVER
                  */
-
+                 /*
                 $scope.user.company = {
                     company_id: 1,
                     name: 'Ceibal',
@@ -41,7 +42,7 @@ angular.module('mepedia.controllers').controller('employerProfileController',
                     country: 'Uruguay',
                     companyUrl: 'www.ceibal.edu.uy'
                 };
-
+                */
                 $scope.employerCompany = $scope.user.company;
 
                 // hide
@@ -64,15 +65,8 @@ angular.module('mepedia.controllers').controller('employerProfileController',
             }
 
             $scope.saveDescription = function() {
-                $scope.employerDescription = $scope.summary;
-
-                // Asign value to user variable
-                $scope.user.description = $scope.employerDescription;
-
-
-
-
-                // HIDE:
+                $scope.saveEmployerCompany();
+                
                 $scope.descriptionEnable = false;
                 $scope.editorDescriptionEnabled = false;
             }
@@ -100,7 +94,6 @@ angular.module('mepedia.controllers').controller('employerProfileController',
                 $scope.enableSkillsEditor = function() {
                     $scope.editorSkillsEnabled = true;
                     if($scope.selectedSkills.length > 0) {
-                        console.log($scope.selectedSkills);
                         $scope.employerSelectedSkills = $scope.selectedSkills.slice();
                     }
                 };
@@ -127,7 +120,6 @@ angular.module('mepedia.controllers').controller('employerProfileController',
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 employerSkills.$update(
                     function (response) {
-                        console.log(response);
                         $scope.selectedSkills = response.skills.map(function (skill) {
                             return skill.name;
                         });
@@ -179,7 +171,6 @@ angular.module('mepedia.controllers').controller('employerProfileController',
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 employerInterests.$update(
                     function (response) {
-                        console.log(response);
                         refreshSkills();
                     },
                     function(error) {
@@ -197,31 +188,26 @@ angular.module('mepedia.controllers').controller('employerProfileController',
             
             // company info
             $scope.saveEmployerCompany = function() {
-
                 var empCom = $scope.employerCompany;
-                console.log(empCom);
 
-                // save 
+                // save
                 var employerCompany = new EmployerCompany();
                 employerCompany.employer_id = $scope.user.uid;
+                employerCompany.company_id = empCom.company_id;
+                employerCompany.country_id = empCom.country.id;
+                employerCompany.state_id = empCom.state.id;
                 employerCompany.description = empCom.description;
-                employerCompany.state = empCom.state;
-                employerCompany.country = empCom.country;
-                employerCompany.companyUrl = empCom.companyUrl;
-                console.log('1 - ');
-                console.log(employerCompany);
-
-                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
+                employerCompany.site_url = empCom.site_url;
                 
+                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
+
                 employerCompany.$update(
                     function(employerCompanyUpdated) {
-                        console.log('Hecho!');
-                        $scope.user.company = employerCompanyUpdated.company;  
+                        $scope.user.company = employerCompanyUpdated.company;
                     }, function(error) {
                         console.log(error);
-                });
-
-
+                    }
+                );
             }
 
 
