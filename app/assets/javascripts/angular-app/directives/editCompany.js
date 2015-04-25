@@ -10,7 +10,6 @@ angular.module('mepedia.directives').directive('editCompany', ['EmployerCompany'
         link: function (scope, element, attrs) {
             scope.editCompanyEnable = false;
 
-
             var init = function() {
                 getData();
             }
@@ -39,6 +38,23 @@ angular.module('mepedia.directives').directive('editCompany', ['EmployerCompany'
                 scope.editCompanyEnable = false;
             }
 
+            scope.onCountry = function(country) {
+                console.log(country);
+
+                if (country) {
+                    scope.country = country.name;
+                    scope.country_id = country.id;
+                }
+                console.log(scope.country_id);
+            }
+
+            scope.onCompanyState = function(state) {
+                if (state) {
+                    scope.companyState = state.name;
+                    scope.state_id = state.id;
+                }
+                console.log(scope.state_id);
+            }
             /* Methods */
 
             init();

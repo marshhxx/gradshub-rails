@@ -27,7 +27,7 @@
             <div class="cont-col employer-company">
                 {{employerCompany.name}}
             </div>
-            <!--
+            <!-- ** Uncomment if you want to enable the Company Name editor
             <div class="form-group employer-company" ng-show="editCompanyEnable">
                 <input focus-input="editCompanyNameEnable" type="text" ng-model="employerCompany.name" required
                     class="form-control employer-company" id="companyName" name="companyName" />
@@ -42,7 +42,8 @@
             <div class="cont-col employer-company">
                 {{employerCompany.industry}}
             </div>
-            <!--
+
+            <!-- ** Uncomment if you want to enable the industry editor
             <div class="form-group employer-company" ng-show="editCompanyEnable">
                 <input focus-input="" type="text" ng-model="employerCompany.industry" required
                     class="form-control employer-company" id="companyIndustry">
@@ -55,11 +56,31 @@
                 <div class="profile-img companyIndustry jobposition"></div>
             </div>
             <div class="cont-col employer-company" ng-hide="editCompanyEnable">
-                {{employerCompany.state}}, {{employerCompany.country}}
+                {{employerCompany.state.name}}, {{employerCompany.country.name}}
             </div>
             <div class="form-group employer-company" ng-show="editCompanyEnable">
-                <input focus-input="" type="text" ng-model="employerCompany.state" required
-                    class="form-control employer-company" id="companyIndustry">
+                <div class="country-selector-wrapper">
+                    <country-selector placeholder="Country" ng-model="employerCompany.country" on-select="onCountry" required></country-selector>
+                    <div ng-if="companyForm.country.$invalid && (companyForm.$submitted || companyForm.country.$dirty)" ng-messages="companyForm.country.$error">
+                        <div class="help-block" ng-message="required">
+                            Please select a country!
+                        </div>
+                        <div class="help-block" ng-message="country">
+                            Please select a valid country!
+                        </div>
+                    </div>
+                </div>
+                <div class="state-selector-wrapper">
+                    <state-selector placeholder="Company's State" ng-model="employerCompany.state" on-select="onCompanyState" country-id="country_id" required></state-selector>
+                    <div ng-if="companyForm.state.$invalid && (companyForm.$submitted || companyForm.state.$dirty)" ng-messages="companyForm.state.$error">
+                        <div class="help-block" ng-message="required">
+                            Please select a state!
+                        </div>
+                        <div class="help-block" ng-message="state">
+                            Please select a valid state!
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -68,24 +89,11 @@
                 <div class="profile-img companyIndustry jobposition"></div>
             </div>
             <div class="cont-col employer-company" ng-hide="editCompanyEnable">
-                {{employerCompany.companyUrl}}
+                {{employerCompany.site_url}}
             </div>
             <div class="form-group employer-company" ng-show="editCompanyEnable">
-                <input focus-input="" type="text" ng-model="employerCompany.companyUrl" required
+                <input focus-input="" type="text" ng-model="employerCompany.site_url" required
                     class="form-control employer-company" id="companyIndustry">
-            </div>
-        </div>
-
-        <div class="profile-left-wrapper">
-            <div class="img-col employer">
-                <div class="profile-img companyLocation jobposition"></div>
-            </div>
-            <div class="cont-col employer-company" ng-hide="editCompanyEnable">
-                {{employerCompany.description}}
-            </div>
-            <div class="form-group employer-company" ng-show="editCompanyEnable">
-                <textarea class="form-control employer-company" rows="5" ng-model="employerCompany.description"
-                    placeholder="Description..."></textarea>
             </div>
         </div>
     </div>

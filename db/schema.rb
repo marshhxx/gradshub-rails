@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 20141030020738) do
   end
 
   create_table "employer_company", force: true do |t|
-    t.integer "company_id"
+    t.integer "company_id",  null: false
     t.integer "country_id"
     t.integer "state_id"
     t.text    "description"

@@ -15,6 +15,8 @@ json.employer do
       json.description  @employer.employer_company.description
       json.state        @employer.employer_company.state
       json.country      @employer.employer_company.country
+      json.site_url     @employer.employer_company.site_url
+      json.image        @employer.employer_company.image
     end
   end
   json.company_image @employer.company_image
