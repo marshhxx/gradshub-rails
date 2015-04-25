@@ -18,6 +18,9 @@ AlertService = ($rootScope, $timeout) ->
 				,
 				timeout)
 
+	alertService.addInfo = (msg, timeout) ->
+		alertService.add("success", msg, timeout)
+
 	alertService.closeAlertByIndex = (index) ->
 		$rootScope.alerts.splice(index, 1);
 

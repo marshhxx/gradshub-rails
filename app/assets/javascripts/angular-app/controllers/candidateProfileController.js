@@ -1,15 +1,13 @@
 angular.module('mepedia.controllers').controller('candidateProfileController',
-    ['$scope', '$rootScope', '$http', '$upload', '$location', '$anchorScroll','sessionService', '$state', 'Country', 'State', 'Candidate', 'Employer', 'Skill', 'Interest', 'School', 'Major', 'Degree', 'Education', 'CandidateSkills', 'CandidateInterests', 'CandidateLanguages', 'Utils', 'Experience',
+    ['$scope', '$rootScope', '$http', '$upload', '$location', '$anchorScroll','sessionService', '$state', 'Country', 'State', 'Candidate', 'Employer', 'Skill', 'Interest', 'School', 'Major', 'Degree', 'Education', 'CandidateSkills', 'CandidateInterests', 'CandidateLanguages', 'Utils', 'Experience', 'alertService', 'modalService',
 
-        function ($scope, $rootScope, $httpProvider, $upload, $location, $anchorScroll, sessionService, $state, Country, State, Candidate, Employer, Skill, Interest, School, Major, Degree, Education, CandidateSkills, CandidateInterests, CandidateLanguages, Utils, Experience) {
+        function ($scope, $rootScope, $httpProvider, $upload, $location, $anchorScroll, sessionService, $state, Country, State, Candidate, Employer, Skill, Interest, School, Major, Degree, Education, CandidateSkills, CandidateInterests, CandidateLanguages, Utils, Experience, alertService, modalService) {
 
             $scope.defaultSummary = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dignissim orci in eros auctor, at fringilla orci hendrerit. Quisque consequat eros enim. Nullam luctus lectus sed justo ullamcorper, tempor commodo leo sagittis. Quisque egestas tempus nulla. Aenean sit amet mauris leo.";
             $scope.defaultSkills = "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed cursus quam erat, non fringilla dui efficitur vitae. Pellentesque nec sodales lacus. Fusce rutrum diam a dolor vestibulum, at sodales turpis congue. Curabitur condimentum velit elit, id ornare velit eleifend id. In vel lorem ut mi suscipit placerat ut eu nunc. ";
             $scope.defaultExperience = "Cras diam sapien, pharetra laoreet sapien nec, pellentesque interdum mauris. Suspendisse blandit leo in luctus dapibus. Praesent accumsan eu leo quis eleifend. Vivamus vitae auctor neque. Donec facilisis bibendum dui ac lobortis.";
             $scope.defaultInterests = "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed cursus quam erat, non fringilla dui efficitur vitae. Pellentesque nec sodales lacus. Fusce rutrum diam a dolor vestibulum, at sodales turpis congue. Curabitur condimentum velit elit, id ornare velit eleifend id. In vel lorem ut mi suscipit placerat ut eu nunc. ";
             $scope.defaultLanguages = "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed cursus quam erat, non fringilla dui efficitur vitae. Pellentesque nec sodales lacus. Fusce rutrum diam a dolor vestibulum, at sodales turpis congue. Curabitur condimentum velit elit, id ornare velit eleifend id. In vel lorem ut mi suscipit placerat ut eu nunc. ";
-
-
 
             var updateUser = function () {
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
@@ -19,7 +17,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 }, function (error) {
                     console.log(error);
                 });
-            }
+            };
 
             /* ---- Cloudinary Configuration ---- */
             var cloudinary_data;
@@ -560,6 +558,8 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     if ($scope.user.experiences.length == 0)
                         $scope.defaultExperienceEnable = true;
                 };
+
+                $scope.deleteExperience = deleteExperience;
             };
 
             var initLanguages = function () {
@@ -789,6 +789,29 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     function (error) {
                         console.log(error);
                     });
+            };
+
+            /* DELETES */
+
+            var deleteExperience = function(index) {
+                var deleteIt = function() {
+                    var experience = new Experience({
+                        candidate_id: $scope.user.uid,
+                        id: $scope.user.experiences[index].id
+                    });
+                    $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
+                    experience.$delete().then(
+                        function () {
+                            $scope.user.experiences.splice(index);
+                            alertService.addInfo('Experience successfully deleted!', 5000);
+                        }
+                    ).catch(
+                        function (error) {
+                            console.log(error);
+                        }
+                    )
+                };
+                modalService.confirm("Are you sure you want to delete this experience?").then(deleteIt)
             };
 
             /* OTHER FUNCTIONS */

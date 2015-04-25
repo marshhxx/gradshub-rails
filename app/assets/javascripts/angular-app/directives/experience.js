@@ -3,7 +3,8 @@ angular.module('mepedia.directives').directive('experience', [ 'Utils', function
         scope: {
             experience: '=data', //Experience in experiences array
             updateExperience: '=', //Update experience
-            experienceEditor: '=' //Experience editor ng-show ng-hide variable
+            experienceEditor: '=', //Experience editor ng-show ng-hide variable
+            onDelete: '='
         },
         templateUrl: 'angular-app/templates/directives/experience.html',
         link: function (scope, element, attrs) {

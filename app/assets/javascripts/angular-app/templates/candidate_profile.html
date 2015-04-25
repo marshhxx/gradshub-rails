@@ -185,7 +185,8 @@
                     <p class="profile-placeholder-txt">{{defaultExperience}}</p>
                 </div>
                 <div ng-repeat="experience in user.experiences">
-                    <experience data="experience" update-experience="updateExperience" experience-editor="experienceEditor"></experience>
+                    <experience data="experience" update-experience="updateExperience" experience-editor="experienceEditor"
+	                    on-delete="deleteExperience"></experience>
                 </div>
             </div>
         </div>
