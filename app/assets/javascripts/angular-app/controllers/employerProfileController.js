@@ -14,7 +14,6 @@ angular.module('mepedia.controllers').controller('employerProfileController',
                 sessionService.requestCurrentUser().then(
                     function (user) {
                         $scope.user = user.employer;
-                        //$scope.user.job_title = 'Python programmer at Ceibal';
                         initEmployerProfile();
 
                         // Fire event to catch it in editCompany directive
