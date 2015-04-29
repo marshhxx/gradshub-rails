@@ -1,106 +1,120 @@
 angular
-	.module('mepedia.controllers')
-	.controller("candidateSignupController",
-	['$scope', '$q', '$http', '$state', 'sessionService', 'Skill', 'Candidate', 'Interest', 'CandidateNationalities', 'Education', 'CandidateSkills', 'Utils', 'alertService',
-	($scope, $q, $httpProvider, $state, sessionService, Skill, Candidate, Interest, CandidateNationalities, Education, CandidateSkills, Utils, alertService)->
+    .module('mepedia.controllers')
+    .controller("candidateSignupController",
+    ['$scope', '$q', '$http', '$state', 'sessionService', 'Skill', 'Candidate', 'Interest', 'CandidateNationalities', 'Education', 'CandidateSkills', 'Utils', 'alertService',
+    ($scope, $q, $httpProvider, $state, sessionService, Skill, Candidate, Interest, CandidateNationalities, Education, CandidateSkills, Utils, alertService)->
 
-		init = ->
-			$scope.selectedTags = []
-			$scope.education = new Education()
-			$scope.skills = new CandidateSkills()
-			$scope.candidateNationality = new CandidateNationalities();
+        init = ->
+            $scope.selectedTags = []
+            $scope.education = new Education()
+            $scope.skills = new CandidateSkills()
+            $scope.candidateNationality = new CandidateNationalities();
 
-			$scope.selectedFrom = "From"
-			$scope.selectedTo = "To"
+            $scope.selectedFrom = "From"
+            $scope.selectedTo = "To"
 
-			$scope.onCountry = (country) ->
-				if(country?)
-					$scope.user.country_id = country.id
+            $scope.onCountry = (country) ->
+                if(country?)
+                    $scope.country = country
+                    $scope.user.country_id = country.id
 
-			$scope.onState = (state) ->
-				if(state?)
-					$scope.user.state_id = state.id
+            $scope.onState = (state) ->
+                if(state?)
+                    $scope.state = state
+                    $scope.user.state_id = state.id
 
-			$scope.onNationality = (nationality) ->
-				if(nationality?)
-					$scope.candidateNationality.name = nationality.name
-					$scope.candidateNationality.candidate_id = $scope.user.uid;
+            $scope.onNationality = (nationality) ->
+                if(nationality?)
+                    $scope.nationality = nationality
+                    $scope.candidateNationality.name = nationality.name
+                    $scope.candidateNationality.candidate_id = $scope.user.uid;
 
-			####### Eduaction ######
+            ####### Eduaction ######
 
-			$scope.onSchool = (school) ->
-				if(school?)
-					$scope.education.school_id = school.id
+            $scope.onSchool = (school) ->
+                if(school?)
+                    $scope.school = school
+                    $scope.education.school_id = school.id
 
-			$scope.onSchoolCountry = (country) ->
-				if(country?)
-					$scope.education.country_id = country.id
+            $scope.onSchoolCountry = (country) ->
+                if(country?)
+                    $scope.schoolCountry = country
+                    $scope.education.country_id = country.id
 
-			$scope.onSchoolState = (state) ->
-				if(state?)
-					$scope.education.state_id = state.id
+            $scope.onSchoolState = (state) ->
+                if(state?)
+                    $scope.schoolState = state
+                    $scope.education.state_id = state.id
 
-			$scope.onMajor = (major) ->
-				if(major?)
-					$scope.education.major_id = major.id
+            $scope.onMajor = (major) ->
+                if(major?)
+                    $scope.major = major
+                    $scope.education.major_id = major.id
 
-			$scope.onDegree = (degree) ->
-				if(degree?)
-					$scope.education.degree_id = degree.id
+            $scope.onDegree = (degree) ->
+                if(degree?)
+                    $scope.degree = degree
+                    $scope.education.degree_id = degree.id
 
-			####### Skills ######
-			Skill.query (skills) ->
-				$scope.skillsTags = skills.skills
+            ####### Skills ######
+            Skill.query (skills) ->
+                $scope.skillsTags = skills.skills
 
-			$scope.selectedSkills = [];
+            $scope.selectedSkills = [];
 
-			sessionService.requestCurrentUser().then(
-				(user) ->
-					$state.go 'home.page' if !user?
-					$scope.user = Utils.candidateFromObject(user.candidate)
-					$scope.education.candidate_id = $scope.user.uid
-					$scope.skills.candidate_id = $scope.user.uid
-				,
-				(error) ->
-					console.log error
-					$state.go 'home.page'
-			)
+            sessionService.requestCurrentUser().then(
+                (user) ->
+                    $state.go 'home.page' if !user?
+                    $scope.user = Utils.candidateFromObject(user.candidate)
+                    $scope.education.candidate_id = $scope.user.uid
+                    $scope.skills.candidate_id = $scope.user.uid
+                ,
+                (error) ->
+                    console.log error
+                    $state.go 'home.page'
+            )
 
-			$scope.validatePersonal = (valid) ->
-				$state.go 'main.signup_candidate.education' if valid
+            $scope.validatePersonal = (valid) ->
+                $state.go 'main.signup_candidate.education' if valid
 
-			$scope.validateEducation = (valid) ->
-				$state.go 'main.signup_candidate.interests' if valid
+            $scope.validateEducation = (valid) ->
+                $state.go 'main.signup_candidate.interests' if valid
 
-			$scope.validateAndCreate = validateAndCreate
+            $scope.backToPersonal = ->
+                $state.go 'main.signup_candidate.personal'
 
-		validateAndCreate = (valid) ->
-			createUser() if valid
+            $scope.backToEducation = ->
+                $state.go 'main.signup_candidate.education'
+                
+            $scope.validateAndCreate = validateAndCreate
 
-		createUser = () ->
-			$httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
-			$q.all([saveCandidateNationality(), saveEducation(), saveSkills(), saveUser()])
-				.then(
-					(data) ->
-						console.log(data)
-						$state.go 'main.candidate_profile'
-					,
-					(error) ->
-						$scope.serverErrors = error.data.error
-				)
+        validateAndCreate = (valid) ->
+            createUser() if valid
 
-		saveEducation = ->
-			$scope.education.$save()
+        createUser = () ->
+            $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
+            $q.all([saveCandidateNationality(), saveEducation(), saveSkills(), saveUser()])
+                .then(
+                    (data) ->
+                        console.log(data)
+                        $state.go 'main.candidate_profile'
+                    ,
+                    (error) ->
+                        $scope.serverErrors = error.data.error
+                )
 
-		saveCandidateNationality = ->
-			$scope.candidateNationality.$save()
+        saveEducation = ->
+            $scope.education.$save()
 
-		saveSkills = ->
-			$scope.skills.skills = $scope.selectedSkills.map((skill) -> {name: skill.name})
-			$scope.skills.$update()
+        saveCandidateNationality = ->
+            $scope.candidateNationality.$save()
 
-		saveUser = ->
-			$scope.user.$update()
+        saveSkills = ->
+            $scope.skills.skills = $scope.selectedSkills.map((skill) -> {name: skill.name})
+            $scope.skills.$update()
 
-		init()
+        saveUser = ->
+            $scope.user.$update()
+
+        init()
 ])
