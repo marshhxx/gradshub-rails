@@ -19,9 +19,9 @@
         </div>
 
         <div class="row">
-            <div class="form-group" ng-class="{'has-error': personalForm.country.$invalid && (personalForm.$submitted || personalForm.country.$dirty)}">
+            <div class="form-group" ng-class="{'has-error': personalForm.country.$invalid && (personalForm.$submitted || personalForm.country.$touched)}">
                     <country-selector placeholder="Country" ng-model="country" on-select="onCountry" required></country-selector>
-                    <div ng-if="personalForm.country.$invalid && (personalForm.$submitted || personalForm.country.$dirty)" ng-messages="personalForm.country.$error">
+                    <div ng-if="personalForm.country.$invalid && (personalForm.$submitted || personalForm.country.$touched)" ng-messages="personalForm.country.$error">
                         <div class="help-block" ng-message="required">
                             Please select a country!
                         </div>
@@ -33,9 +33,9 @@
         </div>
 
         <div class="row">
-            <div class="form-group" ng-class="{'has-error': personalForm.state.$invalid && (personalForm.$submitted || personalForm.state.$dirty)}">
+            <div class="form-group" ng-class="{'has-error': personalForm.state.$invalid && (personalForm.$submitted || personalForm.state.$touched)}">
                 <state-selector placeholder="State" ng-model="state" on-select="onState" country-id="user.country_id" required></state-selector>
-                <div ng-if="personalForm.state.$invalid && (personalForm.$submitted || personalForm.state.$dirty)" ng-messages="personalForm.state.$error">
+                <div ng-if="personalForm.state.$invalid && (personalForm.$submitted || personalForm.state.$touched)" ng-messages="personalForm.state.$error">
                     <div class="help-block" ng-message="required">
                         Please select a state!
                     </div>

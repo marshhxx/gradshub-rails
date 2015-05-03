@@ -2,9 +2,9 @@
 <div class="signup form-container col-md-8 col-md-offset-2">
     <div class="signup form-box-cont">
         <div class="row">
-            <div class="form-group" ng-class="{'has-error': educationForm.school.$invalid && (educationForm.$submitted || educationForm.school.$dirty)}">
+            <div class="form-group" ng-class="{'has-error': educationForm.school.$invalid && (educationForm.$submitted || educationForm.school.$touched)}">
                 <school-selector placeholder="School" ng-model="school" on-select="onSchool" required></school-selector>
-                <div ng-if=" educationForm.school.$invalid && (educationForm.$submitted || educationForm.school.$dirty)" ng-messages="educationForm.school.$error">
+                <div ng-if=" educationForm.school.$invalid && (educationForm.$submitted || educationForm.school.$touched)" ng-messages="educationForm.school.$error">
                     <div class="help-block" ng-message="required">
                         Please select a school
                     </div>
@@ -26,9 +26,9 @@
 
 
         <div class="row">
-            <div class="form-group" ng-class="{'has-error': educationForm.major.$invalid && (educationForm.$submitted || educationForm.major.$dirty)}">
+            <div class="form-group" ng-class="{'has-error': educationForm.major.$invalid && (educationForm.$submitted || educationForm.major.$touched)}">
                 <major-selector placeholder="Major" ng-model="major" on-select="onMajor" required></major-selector>
-                <div ng-if="educationForm.major.$invalid && (educationForm.$submitted || educationForm.major.$dirty)" ng-messages="educationForm.major.$error">
+                <div ng-if="educationForm.major.$invalid && (educationForm.$submitted || educationForm.major.$touched)" ng-messages="educationForm.major.$error">
                     <div class="help-block" ng-message="required">
                         Please select a major
                     </div>
@@ -40,9 +40,9 @@
         </div>
 
         <div class="row">
-            <div class="form-group" ng-class="{'has-error': educationForm.degree.$invalid && (educationForm.$submitted || educationForm.degree.$dirty)}">
+            <div class="form-group" ng-class="{'has-error': educationForm.degree.$invalid && (educationForm.$submitted || educationForm.degree.$touched)}">
                 <degree-selector placeholder="Degree" ng-model="degree" on-select="onDegree" required></degree-selector>
-                <div ng-if="educationForm.degree.$invalid && (educationForm.$submitted || educationForm.degree.$dirty)" ng-messages="educationForm.degree.$error">
+                <div ng-if="educationForm.degree.$invalid && (educationForm.$submitted || educationForm.degree.$touched)" ng-messages="educationForm.degree.$error">
                     <div class="help-block" ng-message="required">
                         Please select a degree!
                     </div>
