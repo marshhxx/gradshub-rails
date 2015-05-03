@@ -2,7 +2,8 @@ Language = () ->
 	{
 		scope: {
 			language: '=data',
-			updateLanguage: '='
+			updateLanguage: '=',
+			onDelete: '='
 		},
 		templateUrl: 'angular-app/templates/directives/language.html',
 		link: (scope, element, attr) ->

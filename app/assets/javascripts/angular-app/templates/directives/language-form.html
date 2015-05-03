@@ -3,6 +3,10 @@
 	<div class="profile-header edit">
 		<div class="editwrapper">
 
+			<div class="delete-buttons-wrapper" ng-if="editable">
+				<a ng-click="onDelete(data)" class="btn btn-edit">DELETE</a>
+			</div>
+
 			<div class="edit-buttons-wrapper">
 				<button type="submit" class="btn btn-edit">
 					SAVE </span>

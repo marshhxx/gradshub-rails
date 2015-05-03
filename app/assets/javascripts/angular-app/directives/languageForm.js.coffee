@@ -4,7 +4,9 @@ LanguageForm = (Language) ->
 	scope: {
 		onCancel: '=',
 		onSave: '=',
-		data: '='
+		data: '=',
+		editable: '=?'
+		onDelete: '=?'
 	},
 	templateUrl: 'angular-app/templates/directives/language-form.html',
 	link: (scope, $element) ->

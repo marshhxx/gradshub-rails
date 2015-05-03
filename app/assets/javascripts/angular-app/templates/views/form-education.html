@@ -59,20 +59,20 @@
             </div>
         </div>
 
-        <div class="row align-left max-width">
-            <div class="form-group" ng-class="{'has-error': educationForm.$submitted && !education.start_date}">
-                <span class="signup-label help-block">From: </span>
-                <simpledatepicker no-day="true" date="education.start_date"></simpledatepicker>
-                <div ng-if="educationForm.$submitted && !education.start_date" >
-                    <div class="help-block">
-                        Please select a start date!
-                    </div>
-                </div>
-            </div>
-        </div>
+		    <div class="row align-left max-width">
+			    <div class="form-group" ng-class="{'has-error': educationForm.$submitted && !education.start_date}">
+				    <span class="signup-label">From: </span>
+				    <simpledatepicker no-day="true" ng-model="education.start_date" is-date></simpledatepicker>
+				    <div ng-if="educationForm.$submitted && !education.start_date" >
+					    <div class="help-block">
+						    Please select a start date!
+					    </div>
+				    </div>
+			    </div>
+		    </div>
 
         <div class="row align-left max-width">
-            <span class="signup-label help-block">To: </span>
+            <span class="signup-label">To: </span>
             <simpledatepicker no-day="true" date="education.end_date"></simpledatepicker>
         </div>
     </div>

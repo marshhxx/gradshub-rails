@@ -4,7 +4,7 @@ DatePicker = (Utils) ->
 	scope: {
 		noDay: '=?',
 		noMonth: '=?',
-		date: '='
+		date: '=ngModel'
 	},
 	templateUrl: 'angular-app/templates/directives/datepicker.html',
 	link: ($scope, $element) ->

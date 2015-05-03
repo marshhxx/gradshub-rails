@@ -73,7 +73,7 @@
 	    <div class="profile-datepicker-container">
 		    <div class="form-group" ng-class="{'has-error': !experience.start_date && experienceForm.$submitted}">
 	        <span class="profile-datepicker-label">From: </span>
-	        <simpledatepicker no-day="true" date="experienceTemp.start_date"></simpledatepicker>
+	        <simpledatepicker no-day="true" ng-model="experienceTemp.start_date" is-date></simpledatepicker>
 			    <div ng-if="experienceForm.$submitted && !experience.start_date" >
 				    <div class="help-block">
 					    Please select a start date!

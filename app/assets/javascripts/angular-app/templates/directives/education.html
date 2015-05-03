@@ -119,12 +119,12 @@
 			<div class="form-group" ng-class="{'has-error': !educationTemp.start_date && educationForm.$submitted}">
 				<div class="profile-datepicker-container div-25">
 					<span class="help-block profile-datepicker-label">From: </span>
-					<simpledatepicker no-month="true" no-day="true" date="educationTemp.start_date"></simpledatepicker>
+					<simpledatepicker no-month="true" no-day="true" ng-model="educationTemp.start_date"></simpledatepicker>
 				</div>
 
 				<div class="profile-datepicker-container div-25">
 					<span class="profile-datepicker-label">To: </span>
-					<simpledatepicker no-month="true" no-day="true" date="educationTemp.end_date"></simpledatepicker>
+					<simpledatepicker no-month="true" no-day="true" ng-model="educationTemp.end_date" is-date></simpledatepicker>
 				</div>
 
 				<div ng-if="educationForm.$submitted && !educationTemp.start_date" >

@@ -14,16 +14,7 @@ angular.module('mepedia.directives').directive('addEducation', function () {
             };
 
             var clearAddEducationValues = function(){
-                scope.newEducationForm.$submitted = false;
-                scope.newEducationForm.$setPristine();
-                scope.school = "";
-                scope.degree = "";
-                scope.major = "";
-                scope.state = "";
-                scope.country = "";
-                scope.education.description = "";
-                scope.education.start_date = null;
-                scope.education.end_date = null;
+                scope.newEducationForm.$setUntouched();
             };
 
             /* Methods */

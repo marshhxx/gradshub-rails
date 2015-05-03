@@ -578,6 +578,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 };
 
                 $scope.saveLanguage = saveLanguage;
+                $scope.deleteLanguage = deleteLanguage;
             };
 
             /* GETTERS */
@@ -834,6 +835,32 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     )
                 };
                 modalService.confirm("Are you sure you want to delete this education?").then(deleteIt)
+            };
+
+            var deleteLanguage = function(language) {
+                var deleteIt = function(language) {
+                    var language = new CandidateLanguages({
+                        candidate_id: $scope.user.uid,
+                        id: language.id
+                    });
+                    $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
+                    language.$delete().then(
+                        function() {
+                            var index = $scope.user.languages.map(function(elem) {return elem.id}).indexOf(language.id);
+                            $scope.user.languages.splice(index);
+                            alertService.addInfo('Language successfully deleted!', 5000);
+                        }
+                    ).catch(
+                        function (error) {
+                            console.log(error)
+                        }
+                    )
+                };
+                modalService.confirm("Are you sure you want to delete this language?").then(
+                    function() {
+                        deleteIt(language)
+                    }
+                )
             };
 
             /* OTHER FUNCTIONS */

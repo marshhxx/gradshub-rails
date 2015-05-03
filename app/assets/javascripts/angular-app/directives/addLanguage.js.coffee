@@ -2,7 +2,7 @@ AddLanguage = () ->
 	{
 		scope: {
 			saveLanguage: '=',
-			data: '=',
+			language: '=data',
 			onAdd: '=',
 			onCancelClick: '=onCancel'
 		},

@@ -24,10 +24,10 @@
 	</div>
 	<div class="profile-add-right-content" ng-show="addEducationEnable">
 	    <div class="form-group"
-	         ng-class="{'has-error': newEducationForm.school.$invalid && (newEducationForm.$submitted || newEducationForm.school.$dirty)}">
+	         ng-class="{'has-error': newEducationForm.school.$invalid && (newEducationForm.$submitted || newEducationForm.school.$touched)}">
 		    <school-selector placeholder="School" ng-model="school" on-select="onSchool" required></school-selector>
 
-		    <div ng-if=" newEducationForm.school.$invalid && (newEducationForm.$submitted || newEducationForm.school.$dirty)" ng-messages="newEducationForm.school.$error">
+		    <div ng-if="newEducationForm.school.$invalid && (newEducationForm.$submitted || newEducationForm.school.$touched)" ng-messages="newEducationForm.school.$error">
 			    <div class="help-block" ng-message="required">
 				    Please select a school
 			    </div>
@@ -89,7 +89,7 @@
 			<div class="form-group" ng-class="{'has-error': newEducationForm.$submitted && !education.start_date}">
 				<div class="profile-datepicker-container div-25">
 					<span class="profile-datepicker-label">From: </span>
-					<simpledatepicker no-month="true" no-day="true" date="education.start_date"></simpledatepicker>
+					<simpledatepicker no-month="true" no-day="true" ng-model="education.start_date" is-date></simpledatepicker>
 				</div>
 
 				<div class="profile-datepicker-container div-25">
@@ -97,7 +97,7 @@
 					<simpledatepicker no-month="true" no-day="true" date="education.end_date"></simpledatepicker>
 				</div>
 
-				<div class="div-50 left" ng-if="newEducationForm.$submitted && !education.start_date" >
+				<div class="div-50 left" ng-if="newEducationForm.$submitted && !education.start_date">
 					<div class="help-block">
 						Please select a start date!
 					</div>

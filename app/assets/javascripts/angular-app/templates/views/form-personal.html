@@ -9,7 +9,7 @@
 
         <div class="row text-center">
             <div class="form-group" ng-class="{'has-error': !user.birth && personalForm.$submitted}">
-              <simpledatepicker date="user.birth"></simpledatepicker>
+              <simpledatepicker ng-model="user.birth" is-date></simpledatepicker>
                 <div ng-if="personalForm.$submitted && !user.birth" >
                     <div class="help-block">
                         Please select a birth date!
