@@ -2,7 +2,7 @@
 	<button type="button" class="btn btn-primary-70 dropdown-toggle" dropdown-toggle ng-disabled="disabled">
 		{{dateDay}} <span class="caret"></span>
 	</button>
-	<ul class="dropdown-menu-datepicker" role="menu">
+	<ul class="dropdown-menu dropdown-menu-datepicker" role="menu">
 		<li ng-repeat="day in days">
 			<a ng-click="setDay(day, 'birth')">{{day}}</a>
 		</li>
@@ -13,7 +13,7 @@
 	<button type="button" class="btn btn-primary-70 dropdown-toggle" dropdown-toggle ng-disabled="disabled">
 		{{dateMonth}} <span class="caret"></span>
 	</button>
-	<ul class="dropdown-menu-datepicker" role="menu">
+	<ul class="dropdown-menu dropdown-menu-datepicker" role="menu">
 		<li ng-repeat="month in months">
 			<a ng-click="setMonth(month, 'birth')">{{month}}</a>
 		</li>
@@ -24,7 +24,7 @@
 	<button type="button" class="btn btn-primary-70 dropdown-toggle" dropdown-toggle ng-disabled="disabled">
 		{{dateYear}} <span class="caret"></span>
 	</button>
-	<ul class="dropdown-menu-datepicker" role="menu">
+	<ul class="dropdown-menu dropdown-menu-datepicker" role="menu">
 		<li ng-repeat="year in years">
 			<a ng-click="setYear(year, 'birth')">{{year}}</a>
 		</li>
