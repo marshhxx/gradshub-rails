@@ -564,7 +564,6 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
             };
 
             var initLanguages = function () {
-                $scope.languages = [];
                 $scope.language = null;
                 $scope.addLanguageEnable = false;
                 $scope.isAddingLanguage = false;
@@ -579,6 +578,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
 
                 $scope.saveLanguage = saveLanguage;
                 $scope.deleteLanguage = deleteLanguage;
+                $scope.updateLanguage = updateLanguage;
             };
 
             /* GETTERS */
@@ -735,7 +735,11 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
             };
 
             var getLanguage = function (language) {
-              return new CandidateLanguages({language_id: language.language_id, level: 2, candidate_id: $scope.user.uid})
+              return new CandidateLanguages({
+                  language_id: language.language_id,
+                  level: language.level,
+                  candidate_id: $scope.user.uid
+              })
             };
 
             var getLanguages = function () {
@@ -752,10 +756,12 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 language.$save().then(
                     function(language) {
                         getLanguages();
+                        alertService.addInfo('Language successfully saved!', 5000);
                     }
                 ).catch(
                     function (error) {
                         console.log(error);
+                        alertService.addError(error.data.error, 5000)
                     }
                 )
             };
@@ -791,6 +797,23 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     function (error) {
                         console.log(error);
                     });
+            };
+
+            var updateLanguage = function (valid, updated) {
+                if (!valid) return;
+                var language = getLanguage(updated);
+                language.id = updated.id;
+                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
+                language.$update().then(
+                    function(language) {
+                        getLanguages();
+                        alertService.addInfo('Language successfully updated!', 5000);
+                    }
+                ).catch(
+                    function(error) {
+                        console.log(error);
+                    }
+                )
             };
 
             /* DELETES */

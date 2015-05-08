@@ -29,7 +29,7 @@ Demo::Application.routes.draw do
         resources :experiences, :only => [:index, :create, :update, :destroy, :show]
         resources :educations, :only => [:index, :create, :update, :destroy, :show]
         resources :nationalities, :only => [:index, :create, :show, :destroy]
-        resources :languages, :controller => :candidate_languages, :only => [:index, :create, :show, :destroy]
+        resources :languages, :controller => :candidate_languages, :only => [:index, :create, :update, :show, :destroy]
       end
       resources :sessions, :only => [:create, :destroy, :password_reset] do
         collection do

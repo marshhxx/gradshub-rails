@@ -216,6 +216,10 @@ input::-webkit-input-placeholder {
   margin: 0px 30px;
 }
 
+.margin-t5 {
+  margin-top: 10px;
+}
+
 .margin-t10 {
   margin-top: 10px;
 }
@@ -1387,7 +1391,7 @@ footer#main .footer-above {
   margin-top: 40px;
 }
 
-.btn-primary {
+.btn-primary-70 {
   width: 70px;
   background-color: rgb(255, 255, 255) !important;
   border-color: #CCCCCC !important;
@@ -1395,13 +1399,13 @@ footer#main .footer-above {
   padding: 2px !important;
 }
 
-.btn-primary :hover {
+.btn-primary-70 :hover {
   background-color: rgb(255, 255, 255) !important;
   border-color: rgb(255, 255, 255) !important;
   color: #555555 !important;
 }
 
-.dropdown-menu {
+.dropdown-menu-datepicker {
   height: 140px;
   overflow-y: scroll;
   z-index: 999;

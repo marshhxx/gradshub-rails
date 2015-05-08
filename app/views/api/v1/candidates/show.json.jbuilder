@@ -33,7 +33,8 @@ json.candidate do
   json.languages @candidate.candidate_languages do |language|
     json.id     language.id
     json.name   language.language.name
-    json.level  language.level
+    json.language_id language.language.id
+    json.level  language.level.capitalize
   end
   json.summary @candidate.summary
   json.cover_image @candidate.user.cover_image
