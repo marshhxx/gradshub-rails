@@ -1,5 +1,8 @@
 angular.module('mepedia.controllers').controller('candidateProfileController',
-    ['$scope', '$rootScope', '$http', '$upload', '$location', '$anchorScroll','sessionService', '$state', 'Country', 'State', 'Candidate', 'Employer', 'Skill', 'Interest', 'School', 'Major', 'Degree', 'Education', 'CandidateSkills', 'CandidateInterests', 'CandidateLanguages', 'Utils', 'Experience', 'alertService', 'modalService',
+    ['$scope', '$rootScope', '$http', '$upload', '$location', '$anchorScroll','sessionService', '$state', 'Country', 
+        'State', 'Candidate', 'Employer', 'Skill', 'Interest', 'School', 'Major', 'Degree', 'Education', 'CandidateSkills', 
+        'CandidateInterests', 'CandidateLanguages', 'Utils', 'Experience', 'alertService', 'modalService',
+        
 
         function ($scope, $rootScope, $httpProvider, $upload, $location, $anchorScroll, sessionService, $state, Country, State, Candidate, Employer, Skill, Interest, School, Major, Degree, Education, CandidateSkills, CandidateInterests, CandidateLanguages, Utils, Experience, alertService, modalService) {
 
@@ -889,16 +892,18 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
             /* OTHER FUNCTIONS */
 
             var calculateAge = function () { // birthday is a date
-                var partsOfBirthday = $scope.user.birth.split('-');
-                var year = partsOfBirthday[0];
-                var month = partsOfBirthday[1];
-                var day = partsOfBirthday[2];
+                if ($scope.user.birth) {
+                    var partsOfBirthday = $scope.user.birth.split('-');
+                    var year = partsOfBirthday[0];
+                    var month = partsOfBirthday[1];
+                    var day = partsOfBirthday[2];
 
-                var d = new Date();
-                d.setFullYear(year, month-1, day);
-                var ageDifMs = Date.now() - d.getTime();
-                var ageDate = new Date(ageDifMs); //miliseconds from epoch
-                $scope.age = Math.abs(ageDate.getUTCFullYear() - 1970);
+                    var d = new Date();
+                    d.setFullYear(year, month-1, day);
+                    var ageDifMs = Date.now() - d.getTime();
+                    var ageDate = new Date(ageDifMs); //miliseconds from epoch
+                    $scope.age = Math.abs(ageDate.getUTCFullYear() - 1970);
+                }
             };
 
             $scope.scrollTo = function (id) {
