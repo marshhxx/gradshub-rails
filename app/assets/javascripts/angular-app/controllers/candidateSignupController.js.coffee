@@ -85,8 +85,10 @@ angular
 
             $scope.backToEducation = ->
                 $state.go 'main.signup_candidate.education'
-                
+
             $scope.validateAndCreate = validateAndCreate
+            $scope.setInnerScope = (scope) -> $scope.innerScope = scope
+            dateValidation()
 
         validateAndCreate = (valid) ->
             createUser() if valid
@@ -115,6 +117,15 @@ angular
 
         saveUser = ->
             $scope.user.$update()
+
+        dateValidation = ->
+	        $scope.$watchGroup(
+		        ['education.start_date', 'education.end_date'],
+		        ->
+			        valid = Date.parse($scope.education.end_date) >= Date.parse($scope.education.start_date)
+			        valid = $scope.education.end_date == null || valid
+			        $scope.innerScope.educationForm.$setValidity('validDates', valid)
+	        )
 
         init()
 ])

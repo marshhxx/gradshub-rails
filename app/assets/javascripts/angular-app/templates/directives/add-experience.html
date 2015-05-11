@@ -47,22 +47,29 @@
 			    </div>
 	    </div>
 
-	    <div class="profile-datepicker-container">
-		    <div class="form-group" ng-class="{'has-error': !experience.start_date && newExperienceForm.$submitted}">
+			<div class="form-group" ng-class="{'has-error': !experience.start_date && newExperienceForm.$submitted}">
+				<div class="profile-datepicker-container">
 	        <span class="profile-datepicker-label">From: </span>
 	        <simpledatepicker no-day="true" ng-model="experience.start_date" is-date></simpledatepicker>
-	        <div ng-if="newExperienceForm.$submitted && !experience.start_date" >
-	            <div class="help-block">
-	                Please select a start date!
-	            </div>
-	        </div>
 		    </div>
-	    </div>
 
-	    <div class="profile-datepicker-container">
-	        <span class="profile-datepicker-label">To: </span>
-	        <simpledatepicker no-day="true" date="experience.end_date"></simpledatepicker>
-	    </div>
+		    <div class="profile-datepicker-container">
+		        <span class="profile-datepicker-label">To: </span>
+		        <simpledatepicker no-day="true" ng-model="experience.end_date"></simpledatepicker>
+		    </div>
+
+				<div class="div-50 left" ng-if="newExperienceForm.$submitted && !experience.start_date" >
+					<div class="help-block">
+						Please select a start date!
+					</div>
+				</div>
+
+				<div class="left" ng-if="newExperienceForm.$invalid && (newExperienceForm.$submitted)" ng-messages="newExperienceForm.$error">
+					<div class="div-100 help-block text-center" ng-message="validDates">
+						The end date must be greater than the start date!
+					</div>
+				</div>
+			</div>
 
 	    <textarea class="form-control" rows="5" ng-model="experience.description"
 	              placeholder="Add a description..."></textarea>

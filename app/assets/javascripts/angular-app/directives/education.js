@@ -55,6 +55,12 @@ angular.module('mepedia.directives').directive('education', ['State', 'Country',
                 if (degree != undefined)
                     scope.educationTemp.degree_id = degree.id;
             };
+
+            scope.$watchGroup(['educationTemp.start_date', 'educationTemp.end_date'], function () {
+                var valid = Date.parse(scope.educationTemp.end_date) >= Date.parse(scope.educationTemp.start_date);
+                valid = scope.educationTemp.end_date || valid;
+                scope.educationForm.$setValidity('validDates', valid)
+            });
         }
     };
 }]);

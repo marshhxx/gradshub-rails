@@ -33,6 +33,12 @@ angular.module('mepedia.directives').directive('addExperience', function () {
                 scope.experience = [];
                 scope.defaultExperience();
             };
+
+            scope.$watchGroup(['experience.start_date', 'experience.end_date'], function () {
+                var valid = Date.parse(scope.experience.end_date) >= Date.parse(scope.experience.start_date);
+                valid = scope.experience.end_date == null || valid;
+                scope.newExperienceForm.$setValidity('validDates', valid)
+            });
         }
     };
 });
