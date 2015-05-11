@@ -57,9 +57,11 @@ angular.module('mepedia.directives').directive('education', ['State', 'Country',
             };
 
             scope.$watchGroup(['educationTemp.start_date', 'educationTemp.end_date'], function () {
-                var valid = Date.parse(scope.educationTemp.end_date) >= Date.parse(scope.educationTemp.start_date);
-                valid = scope.educationTemp.end_date || valid;
-                scope.educationForm.$setValidity('validDates', valid)
+                if(scope.educationTemp) {
+                    var valid = Date.parse(scope.educationTemp.end_date) >= Date.parse(scope.educationTemp.start_date);
+                    valid = scope.educationTemp.end_date || valid;
+                    scope.educationForm.$setValidity('validDates', valid)
+                }
             });
         }
     };

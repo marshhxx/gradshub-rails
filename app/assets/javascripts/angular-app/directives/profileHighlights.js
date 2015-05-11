@@ -1,19 +1,19 @@
-angular.module('mepedia.directives').directive('profileHighlights', function () {
+angular.module('mepedia.directives').directive('profileHighlights', function (click) {
     return {
         scope: {
             user: '=data',
-            userAge: '=',
             scrollTo: '='
         },
-        templateUrl: 'angular-app/templates/directives/profileHighlights.html',
+        transclude: false,
+        templateUrl: 'angular-app/templates/directives/profile-highlights.html',
         link: function (scope, element, attrs) {
 
             scope.onExperienceEditor = function () {
-                scope.scrollTo("focusExperience");
-            }
+                click("experienceEdit0");
+            };
 
             scope.onEducationEditor = function () {
-                scope.scrollTo("focusEducation");
+                click('educationEdit0');
             }
         }
     };

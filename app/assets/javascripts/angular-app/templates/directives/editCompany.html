@@ -91,7 +91,7 @@
                 {{employerCompany.site_url}}
             </div>
             <div class="form-group employer-company" ng-show="editCompanyEnable">
-                <input name="site_url" focus-input="" type="url" ng-model="employerCompany.site_url" required
+                <input name="site_url" type="url" ng-model="employerCompany.site_url" required
                     class="form-control employer-company" id="companyIndustry">
                 <div ng-if="companyForm.site_url.$invalid && (companyForm.$submitted || companyForm.site_url.$touched)" ng-messages="companyForm.site_url.$error">
                     <div class="help-block" ng-message="required">

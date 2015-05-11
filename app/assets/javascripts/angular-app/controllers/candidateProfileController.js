@@ -463,9 +463,6 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 $scope.coverPhotoURI = $scope.user.cover_image;
                 $scope.profilePhotoURI = $scope.user.profile_image;
 
-                /* Calculate user age for highlights section */
-                calculateAge();
-
                 /* Init default sections texts */
                 if ($scope.user.summary == undefined || $scope.user.summary == "")
                     $scope.defaultSummaryEnable = true;
@@ -887,26 +884,6 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
             };
 
             /* OTHER FUNCTIONS */
-
-            var calculateAge = function () { // birthday is a date
-                var partsOfBirthday = $scope.user.birth.split('-');
-                var year = partsOfBirthday[0];
-                var month = partsOfBirthday[1];
-                var day = partsOfBirthday[2];
-
-                var d = new Date();
-                d.setFullYear(year, month-1, day);
-                var ageDifMs = Date.now() - d.getTime();
-                var ageDate = new Date(ageDifMs); //miliseconds from epoch
-                $scope.age = Math.abs(ageDate.getUTCFullYear() - 1970);
-            };
-
-            $scope.scrollTo = function (id) {
-                var old = $location.hash();
-                $location.hash(id);
-                $anchorScroll();
-                $location.hash(old);
-            };
 
             getData();
 

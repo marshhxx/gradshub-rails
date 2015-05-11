@@ -35,9 +35,11 @@ angular.module('mepedia.directives').directive('experience', [ 'Utils', function
             scope.getMonth = Utils.getMonthByNumber;
 
             scope.$watchGroup(['experienceTemp.start_date', 'experienceTemp.end_date'], function () {
-                var valid = Date.parse(scope.experienceTemp.end_date) >= Date.parse(scope.experienceTemp.start_date);
-                valid = scope.experienceTemp.end_date == null || valid;
-                scope.experienceForm.$setValidity('validDates', valid)
+                if (scope.experienceTemp) {
+                    var valid = Date.parse(scope.experienceTemp.end_date) >= Date.parse(scope.experienceTemp.start_date);
+                    valid = scope.experienceTemp.end_date == null || valid;
+                    scope.experienceForm.$setValidity('validDates', valid)
+                }
             });
         }
     };

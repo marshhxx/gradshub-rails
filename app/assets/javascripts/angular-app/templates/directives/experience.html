@@ -11,7 +11,7 @@
                     <span class="header-title"> {{experience.company_name}} </span>
                 </div>
                 <div class="width15">
-                    <div class="edit-pencil-hover" ng-click="onExperienceEditor()"></div>
+                    <div  id="experienceEdit{{$parent.$index}}" class="edit-pencil-hover" ng-click="onExperienceEditor()"></div>
                 </div>
             </div>
             <div class="form-cont">
@@ -28,8 +28,8 @@
 </div>
 
 <!-- Experience editor component -->
-<form name="experienceForm" ng-submit="onSave(experienceForm.$valid, $parent.$index)" novalidate>
-	<div class="profile-header edit" ng-show="experienceEditor">
+<form name="experienceForm" id="experienceForm" ng-submit="onSave(experienceForm.$valid, $parent.$index)" novalidate ng-show="experienceEditor">
+	<div class="profile-header edit" >
 	    <div class="editwrapper">
 
 		      <div class="delete-buttons-wrapper">
@@ -47,10 +47,10 @@
 
 	    </div>
 	</div>
-	<div class="profile-add-right-content" ng-show="experienceEditor">
+	<div class="profile-add-right-content" >
 	    <div class="form-group"
 	         ng-class="{'has-error': experienceForm.company_name.$invalid && (experienceForm.$submitted || experienceForm.company_name.$dirty)}">
-	        <input focus-input="experienceEditor" type="text" ng-model="experienceTemp.company_name" required
+	        <input type="text" ng-model="experienceTemp.company_name" required
 	               class="form-control" id="company_name" placeholder="Company Name" name="company_name">
 			    <div ng-if="experienceForm.company_name.$invalid && (experienceForm.$submitted || experienceForm.company_name.$dirty)" ng-messages="experienceForm.company_name.$error">
 				    <div class="help-block" ng-message="required">

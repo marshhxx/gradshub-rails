@@ -11,7 +11,7 @@
                     <span class="header-title"> {{education.school.name}} </span>
                 </div>
                 <div class="width15">
-                    <div class="edit-pencil-hover" ng-click="onEducationEditor()" ng-hide="educationEditor"></div>
+                    <div id="educationEdit{{$parent.$index}}" class="edit-pencil-hover" ng-click="onEducationEditor()" ng-hide="educationEditor"></div>
                 </div>
             </div>
             <div class="form-cont">
@@ -32,8 +32,8 @@
 </div>
 
 <!-- Education editor component -->
-<form name="educationForm" ng-submit="onSave(educationForm.$valid, $parent.$index)" novalidate>
-	<div class="profile-header edit" ng-show="educationEditor">
+<form name="educationForm" ng-submit="onSave(educationForm.$valid, $parent.$index)" novalidate ng-show="educationEditor">
+	<div class="profile-header edit">
 	    <div class="editwrapper">
 
 			    <div class="delete-buttons-wrapper">
@@ -51,10 +51,10 @@
 
 	    </div>
 	</div>
-	<div class="profile-add-right-content" ng-show="educationEditor">
+	<div class="profile-add-right-content">
 	    <div class="form-group"
 	         ng-class="{'has-error': educationForm.school.$invalid && (educationForm.$submitted || educationForm.school.$touched)}">
-		    <school-selector placeholder="School" ng-model="educationTemp.school" on-select="onSchool" required></school-selector>
+		    <school-selector focus-codition="educationEditor" placeholder="School" ng-model="educationTemp.school" on-select="onSchool" required></school-selector>
 
 		    <div ng-if="educationForm.school.$invalid && (educationForm.$submitted || educationForm.school.$touched)" ng-messages="educationForm.school.$error">
 			    <div class="help-block" ng-message="required">
