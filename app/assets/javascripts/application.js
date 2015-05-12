@@ -29,7 +29,7 @@
 //= require ng-file-upload
 //= require jquery-guillotine
 
-//= require cryptojslib/components/sha1
+//= require cryptojslib/rollups/sha1
 
 //= require angular-rails-templates
 //= require bootstrap-sass-official/assets/javascripts/bootstrap
