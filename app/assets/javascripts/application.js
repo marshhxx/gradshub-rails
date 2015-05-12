@@ -21,12 +21,15 @@
 //= require angular-sanitize
 //= require angular-animate
 //= require angular-cookies
+
 // Upload images (order is important)
 //= require cloudinary_js
 //= require ng-file-upload-shim
 //= require cloudinary_ng
 //= require ng-file-upload
 //= require jquery-guillotine
+
+//= require cryptojslib/components/sha1
 
 //= require angular-rails-templates
 //= require bootstrap-sass-official/assets/javascripts/bootstrap
@@ -38,4 +41,3 @@
 //= require_tree ./angular-app/directives
 //= require_tree ./angular-app/services
 //= require_tree ./angular-app/controllers
-

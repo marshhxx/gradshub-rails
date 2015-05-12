@@ -1,7 +1,7 @@
 angular.module('mepedia.controllers').controller('candidateProfileController',
-    ['$scope', '$rootScope', '$http', '$upload', '$location', '$anchorScroll','sessionService', '$state', 'Country', 'State', 'Candidate', 'Employer', 'Skill', 'Interest', 'School', 'Major', 'Degree', 'Education', 'CandidateSkills', 'CandidateInterests', 'CandidateLanguages', 'Utils', 'Experience', 'alertService', 'modalService',
+    ['$scope', '$rootScope', '$http', '$upload', '$location', '$anchorScroll','sessionService', '$state', 'Country', 'State', 'Candidate', 'Employer', 'Skill', 'Interest', 'School', 'Major', 'Degree', 'Education', 'CandidateSkills', 'CandidateInterests', 'CandidateLanguages', 'Utils', 'Experience', 'alertService', 'modalService', 'crypt',
 
-        function ($scope, $rootScope, $httpProvider, $upload, $location, $anchorScroll, sessionService, $state, Country, State, Candidate, Employer, Skill, Interest, School, Major, Degree, Education, CandidateSkills, CandidateInterests, CandidateLanguages, Utils, Experience, alertService, modalService) {
+        function ($scope, $rootScope, $http, $upload, $location, $anchorScroll, sessionService, $state, Country, State, Candidate, Employer, Skill, Interest, School, Major, Degree, Education, CandidateSkills, CandidateInterests, CandidateLanguages, Utils, Experience, alertService, modalService, crypt) {
 
             $scope.defaultSummary = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dignissim orci in eros auctor, at fringilla orci hendrerit. Quisque consequat eros enim. Nullam luctus lectus sed justo ullamcorper, tempor commodo leo sagittis. Quisque egestas tempus nulla. Aenean sit amet mauris leo.";
             $scope.defaultSkills = "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed cursus quam erat, non fringilla dui efficitur vitae. Pellentesque nec sodales lacus. Fusce rutrum diam a dolor vestibulum, at sodales turpis congue. Curabitur condimentum velit elit, id ornare velit eleifend id. In vel lorem ut mi suscipit placerat ut eu nunc. ";
@@ -41,10 +41,6 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
 
                 //Get image before upload
                 var temp_img = angular.element('#temp_cover_photo');
-                //var aspect_ratio = temp_img.width/temp_img.height;
-                //if(aspect_ratio <= 2.5){
-
-                //}
 
                 /* when user select a photo HIDE the following elements: 
                  * - image selector button
@@ -90,16 +86,19 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     }
                 }).success(function (data, status, headers, config) {
                     cloudinary_data = data;
-                    $rootScope.photos = $rootScope.photos || [];
+                    /*$rootScope.photos = $rootScope.photos || [];
                     data.context = {custom: {photo: $scope.title}};
 
                     $scope.resultCoverPhoto = data;
                     $rootScope.photos.push(data);
                     if (!$scope.$$phase) {
                         $scope.$apply();
-                    } else {
+                    } else {*/
                         $scope.coverPhotoData = data;
-                    }
+                       $scope.coverLoaded = true;
+                    $scope.defaultCoverImageVisible = false;
+                    $scope.coverPhoto = false;
+                   // }
                 });
             };
 
@@ -118,7 +117,8 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     });
                 }
 
-                pictureCoverPhoto.guillotine({eventOnChange: 'guillotinechange', width: contentCoverPhoto[0].offsetWidth - 2, height: 315});
+                pictureCoverPhoto.guillotine({eventOnChange: 'guillotinechange'});
+                pictureCoverPhoto.guillotine('fit');
                 var data = pictureCoverPhoto.guillotine('getData');
 
                 for (var key in data) {
@@ -134,12 +134,12 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
 
                 // show:
                 $scope.coverPhotoButtons = true;
-                $scope.coverLoaded = true;
+
 
                 // hide:
                 $scope.coverImageSelectorVisible = false;
                 $scope.spinnerVisible = false;
-                $scope.defaultCoverImageVisible = false;
+
                 $scope.$apply();
             });
 
@@ -148,11 +148,38 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 var data = pictureCoverPhoto.guillotine('getData');
                 var cloudianary_result = $.cloudinary.image(cloudinary_data.public_id, {
                     secure: true,
-                    width: data.w,
-                    height: data.h,
-                    x: data.x,
-                    y: data.y,
+                    width: pictureCoverPhoto.w,
+                    height: pictureCoverPhoto.h,
+                    x: pictureCoverPhoto.x,
+                    y: pictureCoverPhoto.y,
                     crop: 'crop'
+                });
+
+                var timestamp = (new Date).getTime()/1000; //seconds
+                var delete_url = "https://api.cloudinary.com/v1_1/" + $.cloudinary.config().cloud_name + "/image/destroy";
+
+                //var sha1 = crypt.hash('public_id=xzhealra8y5kwjx0mqig&timestamp=143129843905hwa4MfqVrK_tKFwz1Nx1Umg38');
+
+                var funciono = '9b803b4082e093510d85f47ffbd53ac4d5b8a361';
+
+                var data =  {
+                    public_id: 'xzhealra8y5kwjx0mqig',
+                    api_key: '723254833421314',
+                    timestamp: '1431298439',
+                    signature: '9b803b4082e093510d85f47ffbd53ac4d5b8a361'
+                };
+                //Delete previous image
+                // Simple POST request example (passing data) :
+                $http.post(delete_url, data).
+                    success(function(data, status, headers, config) {
+                        // this callback will be called asynchronously
+                        // when the response is available
+                        var success_data = data;
+                    }).
+                    error(function(data, status, headers, config) {
+                        // called asynchronously if an error occurs
+                        // or server returns response with an error status.
+                        var error_data = data;
                 });
 
                 // get Secure URI.
@@ -163,7 +190,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 $scope.coverPhotoInProgress = false;
             };
 
-            angular.element('.coverPhoto').on('load', function () {
+            angular.element('.cover-photo-img').on('load', function () {
                 // we need to reset the guillotine plugin in order to call again later
                 pictureCoverPhoto.guillotine('remove');
 
