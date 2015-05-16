@@ -1,7 +1,7 @@
 angular.module('mepedia.controllers').controller('candidateProfileController',
     ['$scope', '$rootScope', '$http', '$upload', '$location', '$anchorScroll','sessionService', '$state', 'Country', 'State', 'Candidate', 'Employer', 'Skill', 'Interest', 'School', 'Major', 'Degree', 'Education', 'CandidateSkills', 'CandidateInterests', 'CandidateLanguages', 'Utils', 'Experience', 'alertService', 'modalService', 'crypt',
 
-        function ($scope, $rootScope, $http, $upload, $location, $anchorScroll, sessionService, $state, Country, State, Candidate, Employer, Skill, Interest, School, Major, Degree, Education, CandidateSkills, CandidateInterests, CandidateLanguages, Utils, Experience, alertService, modalService, crypt) {
+        function ($scope, $rootScope, $httpProvider, $upload, $location, $anchorScroll, sessionService, $state, Country, State, Candidate, Employer, Skill, Interest, School, Major, Degree, Education, CandidateSkills, CandidateInterests, CandidateLanguages, Utils, Experience, alertService, modalService, crypt) {
 
             var api_key = '723254833421314';
             var api_secret = '05hwa4MfqVrK_tKFwz1Nx1Umg38';
@@ -88,8 +88,8 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     }
                 }).success(function (data, status, headers, config) {
                     cloudinary_data = data;
-                    $scope.user.tag = data.public_id;
-                    updateUser();
+
+
                     /*$rootScope.photos = $rootScope.photos || [];
                     data.context = {custom: {photo: $scope.title}};
 
@@ -121,7 +121,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     });
                 }
 
-                pictureCoverPhoto.guillotine({eventOnChange: 'guillotinechange'});
+                pictureCoverPhoto.guillotine({eventOnChange: 'guillotinechange',  width: contentCoverPhoto[0].offsetWidth - 2, height: 365});
                 pictureCoverPhoto.guillotine('fit');
                 var data = pictureCoverPhoto.guillotine('getData');
 
@@ -152,10 +152,10 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 var data = pictureCoverPhoto.guillotine('getData');
                 var cloudianary_result = $.cloudinary.image(cloudinary_data.public_id, {
                     secure: true,
-                    width: pictureCoverPhoto.w,
-                    height: pictureCoverPhoto.h,
-                    x: pictureCoverPhoto.x,
-                    y: pictureCoverPhoto.y,
+                    width: data.w,
+                    height: data.h,
+                    x: data.x,
+                    y: data.y,
                     crop: 'crop'
                 });
 
@@ -171,7 +171,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 };
                 //Delete previous image
                 // Simple POST request example (passing data) :
-                $http.post(delete_url, data).
+                $httpProvider.post(delete_url, data).
                     success(function(data, status, headers, config) {
                         // this callback will be called asynchronously
                         // when the response is available
@@ -186,6 +186,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 // get Secure URI.
                 $scope.coverPhotoURI = cloudianary_result[0].src;
                 $scope.user.cover_image = $scope.coverPhotoURI; //update user reference
+                $scope.user.tag = cloudinary_data.public_id;
                 updateUser();
                 // hide:
                 $scope.coverPhotoInProgress = false;
