@@ -3,6 +3,8 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
 
         function ($scope, $rootScope, $http, $upload, $location, $anchorScroll, sessionService, $state, Country, State, Candidate, Employer, Skill, Interest, School, Major, Degree, Education, CandidateSkills, CandidateInterests, CandidateLanguages, Utils, Experience, alertService, modalService, crypt) {
 
+            var api_key = '723254833421314';
+            var api_secret = '05hwa4MfqVrK_tKFwz1Nx1Umg38';
             $scope.defaultSummary = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dignissim orci in eros auctor, at fringilla orci hendrerit. Quisque consequat eros enim. Nullam luctus lectus sed justo ullamcorper, tempor commodo leo sagittis. Quisque egestas tempus nulla. Aenean sit amet mauris leo.";
             $scope.defaultSkills = "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed cursus quam erat, non fringilla dui efficitur vitae. Pellentesque nec sodales lacus. Fusce rutrum diam a dolor vestibulum, at sodales turpis congue. Curabitur condimentum velit elit, id ornare velit eleifend id. In vel lorem ut mi suscipit placerat ut eu nunc. ";
             $scope.defaultExperience = "Cras diam sapien, pharetra laoreet sapien nec, pellentesque interdum mauris. Suspendisse blandit leo in luctus dapibus. Praesent accumsan eu leo quis eleifend. Vivamus vitae auctor neque. Donec facilisis bibendum dui ac lobortis.";
@@ -86,6 +88,8 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     }
                 }).success(function (data, status, headers, config) {
                     cloudinary_data = data;
+                    $scope.user.tag = data.public_id;
+                    updateUser();
                     /*$rootScope.photos = $rootScope.photos || [];
                     data.context = {custom: {photo: $scope.title}};
 
@@ -155,32 +159,29 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     crop: 'crop'
                 });
 
-                var timestamp = (new Date).getTime()/1000; //seconds
                 var delete_url = "https://api.cloudinary.com/v1_1/" + $.cloudinary.config().cloud_name + "/image/destroy";
-
-                var sha1 = crypt.hash('public_id=xzhealra8y5kwjx0mqig&timestamp=143129843905hwa4MfqVrK_tKFwz1Nx1Umg38');
-
-                var funciono = '9b803b4082e093510d85f47ffbd53ac4d5b8a361';
+                var timestamp = (new Date).getTime()/1000; //seconds
+                var signature = crypt.hash('public_id='+$scope.user.tag+'&timestamp='+timestamp+api_secret);
 
                 var data =  {
-                    public_id: 'xzhealra8y5kwjx0mqig',
-                    api_key: '723254833421314',
-                    timestamp: '1431298439',
-                    signature: '9b803b4082e093510d85f47ffbd53ac4d5b8a361'
+                    public_id: $scope.user.tag,
+                    api_key: api_key,
+                    timestamp: timestamp,
+                    signature: signature
                 };
                 //Delete previous image
                 // Simple POST request example (passing data) :
-                //$http.post(delete_url, data).
-                //    success(function(data, status, headers, config) {
-                //        // this callback will be called asynchronously
-                //        // when the response is available
-                //        var success_data = data;
-                //    }).
-                //    error(function(data, status, headers, config) {
-                //        // called asynchronously if an error occurs
-                //        // or server returns response with an error status.
-                //        var error_data = data;
-                //});
+                $http.post(delete_url, data).
+                    success(function(data, status, headers, config) {
+                        // this callback will be called asynchronously
+                        // when the response is available
+                        var success_data = data;
+                    }).
+                    error(function(data, status, headers, config) {
+                        // called asynchronously if an error occurs
+                        // or server returns response with an error status.
+                        var error_data = data;
+                });
 
                 // get Secure URI.
                 $scope.coverPhotoURI = cloudianary_result[0].src;
