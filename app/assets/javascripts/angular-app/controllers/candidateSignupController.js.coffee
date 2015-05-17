@@ -123,8 +123,8 @@ angular
 		        ['education.start_date', 'education.end_date'],
 		        ->
 			        valid = Date.parse($scope.education.end_date) >= Date.parse($scope.education.start_date)
-			        valid = $scope.education.end_date == null || valid
-			        $scope.innerScope.educationForm.$setValidity('validDates', valid)
+			        valid = !$scope.education.end_date? || valid
+			        $scope.innerScope.educationForm.$setValidity('validDates', valid) if $scope.innerScope
 	        )
 
         init()
