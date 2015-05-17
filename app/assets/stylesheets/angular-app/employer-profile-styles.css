@@ -141,12 +141,12 @@
 }
 
 .employerDefaultProfileImage.img {
-  background: url(default-profile-photo.png) no-repeat;
-  background-size: 160px 161px;
+  background-image: url(default-profile-photo.png);
+  background-size: 100%;
   background-position: -6px -4px;
+  background-repeat: no-repeat;
   height: 150px;
   width: 150px;
-  border-radius: 50%;
   border: 1px solid #ececec;
   margin: 0 auto;
 }

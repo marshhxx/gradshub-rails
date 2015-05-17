@@ -45,7 +45,7 @@
         <div class="profileImage wrapper">
             <div class="profileImage border">
                 <div class="profileImage content">
-                    <div class="profileImage img" ng-show="defaultProfileImageVisible"></div>
+                    <div class="img-circle profileImage img" ng-class="user.gender" ng-show="defaultProfileImageVisible"></div>
 
                     <div class="profileImageEdit wrapper" ng-show="profileImgSelectVisible">
                         <div class="profileImageEdit img" ng-file-select="onFileSelectProfile($files)"

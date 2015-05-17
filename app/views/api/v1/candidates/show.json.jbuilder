@@ -4,6 +4,7 @@ json.candidate do
   json.lastname @candidate.user.lastname
   json.email    @candidate.user.email
   json.birth    @candidate.user.birth
+  json.gender   @candidate.user.gender
   json.country  @candidate.country
   json.state    @candidate.state
   json.tag      @candidate.user.tag
