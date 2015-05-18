@@ -4,41 +4,42 @@
     <div id="profileCover" class="coverWrap">
         <div><p class="profile-username-txt"> {{user.name }} {{user.lastname}}</p></div>
         <div class="coverBorder">
-            <!--<form>-->
-                <div class="coverImage" ng-show="defaultCoverImageVisible"></div>
-                <div class="coverImageEdit wrapper" ng-show="coverImageSelectorVisible">
-                    <div class="coverImageEdit img" ng-file-select="onFileSelectCover($files)"
-                         data-multiple="false" title="cover_photo"
-                         onclick="this.value = null"></div>
-                </div>
-                <div class="temporary-cover-photo" ng-show="temporaryCoverPhoto">
-                    <div class="spinner-container" ng-show="spinnerVisible">
-                        <div class="spinner">
-                            <div class="rect1"></div>
-                            <div class="rect2"></div>
-                            <div class="rect3"></div>
-                            <div class="rect4"></div>
-                            <div class="rect5"></div>
-                        </div>
-                    </div>
-                    <div class="contentGillotineCover">
-                        <div class="frame">
-                            <img src="{{coverPhotoData.secure_url}}" id="temp_cover_photo" ng-show="coverLoaded"/>
-                        </div>
-                    </div>
-                    <div class="edit-buttons-wrapper" ng-show="coverPhotoButtons">
-                        <a ng-click="saveCoverPhoto()" class="btn btn-edit cover-photo">
-                            SAVE </span>
-                        </a>
-                        <a ng-click="cancelCoverPhoto()" class="btn btn-edit cover-photo margin-l5">
-                            CANCEL </span>
-                        </a>
-                    </div>
-                </div>
-                <div class="cover-photo-img-wrapper">
-                    <img class="cover-photo-img" src="{{coverPhotoURI}}" ng-show="coverPhoto">
-                </div>
-            <!--</form>-->
+            <simpleimagepicker update-user="updateUser" user="user" init-image="initImage"></simpleimagepicker>
+                <!--<div class="coverImage" ng-show="defaultCoverImageVisible"></div>-->
+                <!--<div class="coverImageEdit wrapper" ng-show="coverImageSelectorVisible">-->
+                    <!--<div class="coverImageEdit img" ng-file-select="onFileSelectCover($files)"-->
+                         <!--data-multiple="false" title="cover_photo"-->
+                         <!--onclick="this.value = null"></div>-->
+                <!--</div>-->
+                <!--<div class="temporary-cover-photo" ng-show="temporaryCoverPhoto">-->
+                    <!--<div class="spinner-container" ng-show="spinnerVisible">-->
+                        <!--<div class="spinner">-->
+                            <!--<div class="rect1"></div>-->
+                            <!--<div class="rect2"></div>-->
+                            <!--<div class="rect3"></div>-->
+                            <!--<div class="rect4"></div>-->
+                            <!--<div class="rect5"></div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="contentGillotineCover">-->
+                        <!--<div class="frame">-->
+                            <!--<img src="{{cloudinaryCoverPhotoData.secure_url}}" id="temp_cover_photo" ng-show="coverLoaded"/>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="edit-buttons-wrapper" ng-show="coverPhotoButtons">-->
+                        <!--<a ng-click="saveCoverPhoto()" class="btn btn-edit cover-photo">-->
+                            <!--SAVE </span>-->
+                        <!--</a>-->
+                        <!--<a ng-click="cancelCoverPhoto()" class="btn btn-edit cover-photo margin-l5">-->
+                            <!--CANCEL </span>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="cover-photo-img-wrapper">-->
+                    <!--<img class="cover-photo-img" src="{{coverPhotoURI}}" ng-show="coverPhoto">-->
+                <!--</div>-->
+
+
         </div>
     </div>
     <div class="profileHeadline wrapper">

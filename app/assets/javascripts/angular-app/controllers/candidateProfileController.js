@@ -1,10 +1,8 @@
 angular.module('mepedia.controllers').controller('candidateProfileController',
-    ['$scope', '$rootScope', '$http', '$upload', '$location', '$anchorScroll','sessionService', '$state', 'Country', 'State', 'Candidate', 'Employer', 'Skill', 'Interest', 'School', 'Major', 'Degree', 'Education', 'CandidateSkills', 'CandidateInterests', 'CandidateLanguages', 'Utils', 'Experience', 'alertService', 'modalService', 'crypt',
+    ['$scope', '$rootScope', '$http', '$upload', '$location', '$anchorScroll','sessionService', '$state', 'Country', 'State', 'Candidate', 'Employer', 'Skill', 'Interest', 'School', 'Major', 'Degree', 'Education', 'CandidateSkills', 'CandidateInterests', 'CandidateLanguages', 'Utils', 'Experience', 'alertService', 'modalService', 'crypt', 'Cloudinary', '$q',
 
-        function ($scope, $rootScope, $httpProvider, $upload, $location, $anchorScroll, sessionService, $state, Country, State, Candidate, Employer, Skill, Interest, School, Major, Degree, Education, CandidateSkills, CandidateInterests, CandidateLanguages, Utils, Experience, alertService, modalService, crypt) {
+        function ($scope, $rootScope, $httpProvider, $upload, $location, $anchorScroll, sessionService, $state, Country, State, Candidate, Employer, Skill, Interest, School, Major, Degree, Education, CandidateSkills, CandidateInterests, CandidateLanguages, Utils, Experience, alertService, modalService, crypt, Cloudinary, $q) {
 
-            var api_key = '723254833421314';
-            var api_secret = '05hwa4MfqVrK_tKFwz1Nx1Umg38';
             $scope.defaultSummary = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dignissim orci in eros auctor, at fringilla orci hendrerit. Quisque consequat eros enim. Nullam luctus lectus sed justo ullamcorper, tempor commodo leo sagittis. Quisque egestas tempus nulla. Aenean sit amet mauris leo.";
             $scope.defaultSkills = "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed cursus quam erat, non fringilla dui efficitur vitae. Pellentesque nec sodales lacus. Fusce rutrum diam a dolor vestibulum, at sodales turpis congue. Curabitur condimentum velit elit, id ornare velit eleifend id. In vel lorem ut mi suscipit placerat ut eu nunc. ";
             $scope.defaultExperience = "Cras diam sapien, pharetra laoreet sapien nec, pellentesque interdum mauris. Suspendisse blandit leo in luctus dapibus. Praesent accumsan eu leo quis eleifend. Vivamus vitae auctor neque. Donec facilisis bibendum dui ac lobortis.";
@@ -21,213 +19,6 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 });
             };
 
-            /* ---- Cloudinary Configuration ---- */
-            var cloudinary_data;
-            $.cloudinary.config({
-                'cloud_name': 'mepediacobas',
-                'upload_preset': 'mepediacobas_unsigned_name'
-            });
-
-            //<<<<<<<<<<<<<<< START COVER PHOTO >>>>>>>>>>>>>>>
-
-            $scope.coverPhotoButtons = false;
-            $scope.temporaryCoverPhoto = true;
-            $scope.coverPhoto = false;
-            $scope.coverImageSelectorVisible = true;
-            $scope.coverLoaded = false;
-            $scope.spinnerVisible = false;
-            $scope.defaultCoverImageVisible = true;
-
-            $scope.onFileSelectCover = function ($files) {
-                var file = $files[0];
-
-                //Get image before upload
-                var temp_img = angular.element('#temp_cover_photo');
-
-                /* when user select a photo HIDE the following elements: 
-                 * - image selector button
-                 * - save and cancel buttons
-                 */
-                $scope.coverImageSelectorVisible = false;
-                $scope.coverPhotoButtons = false;
-
-                // SHOW spinner
-                $scope.spinnerVisible = true;
-
-                /* when the user did not save any photo
-                 * - SHOW the default cover photo
-                 * - HIDE the cover photo loaded
-                 */
-                if (!$scope.coverPhotoURI) {
-                    $scope.defaultCoverImageVisible = true;
-                    $scope.coverLoaded = false;
-                }
-
-                /* when the temporary photo DIV is hidden
-                 * - SHOW temporary photo DIV                
-                 */
-                if (!$scope.temporaryCoverPhoto) {
-                    $scope.temporaryCoverPhoto = true;
-                    angular.element('.spinner-container').css({
-                        'z-index': '10'
-                    });
-                }
-
-                $scope.upload = $upload.upload({
-                    url: "https://api.cloudinary.com/v1_1/" + $.cloudinary.config().cloud_name + "/upload",
-                    data: {
-                        upload_preset: $.cloudinary.config().upload_preset,
-                        tags: 'temp_cover',
-                        context: 'photo=' + $scope.title
-                    },
-                    file: file
-                }).progress(function (e) {
-
-                    if (!$scope.$$phase) {
-                        $scope.$apply();
-                    }
-                }).success(function (data, status, headers, config) {
-                    cloudinary_data = data;
-
-
-                    /*$rootScope.photos = $rootScope.photos || [];
-                    data.context = {custom: {photo: $scope.title}};
-
-                    $scope.resultCoverPhoto = data;
-                    $rootScope.photos.push(data);
-                    if (!$scope.$$phase) {
-                        $scope.$apply();
-                    } else {*/
-                        $scope.coverPhotoData = data;
-                       $scope.coverLoaded = true;
-                    $scope.defaultCoverImageVisible = false;
-                    $scope.coverPhoto = false;
-                   // }
-                });
-            };
-
-            var pictureCoverPhoto = angular.element('#temp_cover_photo');
-            var contentCoverPhoto = angular.element('.profile.wrapper');
-
-            pictureCoverPhoto.on('load', function () {
-                // show: 
-                $scope.coverPhotoInProgress = true;
-                $scope.temporaryCoverPhoto = true;
-
-                if ($scope.coverPhoto) {
-                    $scope.coverPhoto = false;
-                    angular.element('.spinner-container').css({
-                        'z-index': '0'
-                    });
-                }
-
-                pictureCoverPhoto.guillotine({eventOnChange: 'guillotinechange',  width: contentCoverPhoto[0].offsetWidth - 2, height: 365});
-                pictureCoverPhoto.guillotine('fit');
-                var data = pictureCoverPhoto.guillotine('getData');
-
-                for (var key in data) {
-                    $('#' + key).html(data[key]);
-                }
-
-                pictureCoverPhoto.on('guillotinechange', function (ev, data, action) {
-                    data.scale = parseFloat(data.scale.toFixed(4));
-                    for (var k in data) {
-                        $('#' + k).html(data[k]);
-                    }
-                });
-
-                // show:
-                $scope.coverPhotoButtons = true;
-
-
-                // hide:
-                $scope.coverImageSelectorVisible = false;
-                $scope.spinnerVisible = false;
-
-                $scope.$apply();
-            });
-
-            $scope.saveCoverPhoto = function () {
-
-                var data = pictureCoverPhoto.guillotine('getData');
-                var cloudianary_result = $.cloudinary.image(cloudinary_data.public_id, {
-                    secure: true,
-                    width: data.w,
-                    height: data.h,
-                    x: data.x,
-                    y: data.y,
-                    crop: 'crop'
-                });
-
-                var delete_url = "https://api.cloudinary.com/v1_1/" + $.cloudinary.config().cloud_name + "/image/destroy";
-                var timestamp = (new Date).getTime()/1000; //seconds
-                var signature = crypt.hash('public_id='+$scope.user.tag+'&timestamp='+timestamp+api_secret);
-
-                var data =  {
-                    public_id: $scope.user.tag,
-                    api_key: api_key,
-                    timestamp: timestamp,
-                    signature: signature
-                };
-                //Delete previous image
-                // Simple POST request example (passing data) :
-                $httpProvider.post(delete_url, data).
-                    success(function(data, status, headers, config) {
-                        // this callback will be called asynchronously
-                        // when the response is available
-                        var success_data = data;
-                    }).
-                    error(function(data, status, headers, config) {
-                        // called asynchronously if an error occurs
-                        // or server returns response with an error status.
-                        var error_data = data;
-                });
-
-                // get Secure URI.
-                $scope.coverPhotoURI = cloudianary_result[0].src;
-                $scope.user.cover_image = $scope.coverPhotoURI; //update user reference
-                $scope.user.tag = cloudinary_data.public_id;
-                updateUser();
-                // hide:
-                $scope.coverPhotoInProgress = false;
-            };
-
-            angular.element('.cover-photo-img').on('load', function () {
-                // we need to reset the guillotine plugin in order to call again later
-                pictureCoverPhoto.guillotine('remove');
-
-                // show: 
-                $scope.coverPhoto = true;
-                $scope.coverImageSelectorVisible = true;
-                $scope.defaultCoverImageVisible = true;
-
-                // hide:
-                $scope.spinnerVisible = false;
-                $scope.temporaryCoverPhoto = false;
-
-                // it's necessary to call $apply in order to bind variables with the DOM
-                $scope.$apply();
-            });
-
-            $scope.cancelCoverPhoto = function () {
-                // we need to reset the guillotine plugin in order to call again later
-                pictureCoverPhoto.guillotine('remove');
-
-                // show:
-                $scope.coverImageSelectorVisible = true;
-
-                // hide: 
-                $scope.temporaryCoverPhoto = false;
-                $scope.spinnerVisible = false;
-                $scope.coverPhotoInProgress = false;
-
-                if (!$scope.coverPhoto) {
-                    $scope.defaultCoverImageVisible = true;
-                    $scope.coverPhoto = true;
-                }
-            }
-
-            //<<<<<<<<<<<<<<< END COVER PHOTO >>>>>>>>>>>>>>>
 
             //<<<<<<<<<<<<<<< START PROFILE PHOTO >>>>>>>>>>>>>>>
 
@@ -236,7 +27,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
             $scope.profileImgSelectVisible = true;
             $scope.defaultProfileImageVisible = true;
 
-            // hide: 
+            // hide:
             $scope.profilePhotoButtons = false;
             $scope.profilePhoto = false;
             $scope.profilePhotoLoaded = false;
@@ -249,7 +40,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 $scope.temporaryProfilePhoto = true;
                 $scope.spinnerVisibleProfile = true;
 
-                // hide: 
+                // hide:
                 $scope.profileImgSelectVisible = false;
 
                 if ($scope.profilePhotoURI) {
@@ -275,7 +66,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                         $scope.$apply();
                     }
                 }).success(function (data, status, headers, config) {
-                    cloudinary_data = data
+                    cloudinaryData = data;
                     $rootScope.photos = $rootScope.photos || [];
                     data.context = {custom: {photo: $scope.title}};
                     $scope.resultProfile = data;
@@ -332,7 +123,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
             $scope.saveProfilePhoto = function () {
                 var data = pictureProfilePhoto.guillotine('getData');
                 // Crop the photo
-                var cloudianary_result = $.cloudinary.image(cloudinary_data.public_id, {
+                var cloudianary_result = $.cloudinary.image(cloudinaryData.public_id, {
                     secure: true,
                     width: data.w,
                     height: data.h,
@@ -465,6 +256,8 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
 
                 /* LANGUAGE */
                 initLanguages();
+
+                $scope.updateUser = updateUser;
 
                 sessionService.requestCurrentUser().then(
                     function (user) {
@@ -872,3 +665,169 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
         }]);
 
 
+
+
+/* ---- Cloudinary Configuration ---- */
+//            $scope.cloudinaryCoverPhotoData;
+//            var cloudinaryData;
+//
+//            Cloudinary.config();
+
+//<<<<<<<<<<<<<<< START COVER PHOTO >>>>>>>>>>>>>>>
+
+//            $scope.coverPhotoButtons = false;
+//            $scope.temporaryCoverPhoto = true;
+//            $scope.coverPhoto = false;
+//            $scope.coverImageSelectorVisible = true;
+//            $scope.coverLoaded = false;
+//            $scope.spinnerVisible = false;
+//            $scope.defaultCoverImageVisible = true;
+
+/*$scope.onFileSelectCover = function ($files) {
+ var file = $files[0];
+
+ //Get image before upload
+ var temp_img = angular.element('#temp_cover_photo');
+
+ /* when user select a photo HIDE the following elements:
+ * - image selector button
+ * - save and cancel buttons
+ *//*
+ $scope.coverImageSelectorVisible = false;
+ $scope.coverPhotoButtons = false;
+
+ // SHOW spinner
+ $scope.spinnerVisible = true;
+
+ /* when the user did not save any photo
+ * - SHOW the default cover photo
+ * - HIDE the cover photo loaded
+ */
+/*
+ if (!$scope.coverPhotoURI) {
+ $scope.defaultCoverImageVisible = true;
+ $scope.coverLoaded = false;
+ }
+
+ /* when the temporary photo DIV is hidden
+ * - SHOW temporary photo DIV
+ */
+/*
+ if (!$scope.temporaryCoverPhoto) {
+ $scope.temporaryCoverPhoto = true;
+ angular.element('.spinner-container').css({
+ 'z-index': '10'
+ });
+ }
+
+ delete $httpProvider.defaults.headers.common['Authorization'];
+ Cloudinary.uploadImage(file).then(function(data){
+ $scope.cloudinaryCoverPhotoData = data;
+ $scope.coverLoaded = true;
+ $scope.defaultCoverImageVisible = false;
+ $scope.coverPhoto = false;
+ }).catch(function (error) {
+
+ });
+
+ };*/
+/*
+ var pictureCoverPhoto = angular.element('#temp_cover_photo');
+ var contentCoverPhoto = angular.element('.profile.wrapper');
+
+ pictureCoverPhoto.on('load', function () {
+ // show:
+ $scope.coverPhotoInProgress = true;
+ $scope.temporaryCoverPhoto = true;
+
+ if ($scope.coverPhoto) {
+ $scope.coverPhoto = false;
+ angular.element('.spinner-container').css({
+ 'z-index': '0'
+ });
+ }
+
+ pictureCoverPhoto.guillotine({eventOnChange: 'guillotinechange',  width: contentCoverPhoto[0].offsetWidth - 2, height: 365});
+ pictureCoverPhoto.guillotine('fit');
+ var data = pictureCoverPhoto.guillotine('getData');
+
+ for (var key in data) {
+ $('#' + key).html(data[key]);
+ }
+
+ pictureCoverPhoto.on('guillotinechange', function (ev, data, action) {
+ data.scale = parseFloat(data.scale.toFixed(4));
+ for (var k in data) {
+ $('#' + k).html(data[k]);
+ }
+ });
+
+ // show:
+ $scope.coverPhotoButtons = true;
+
+
+ // hide:
+ $scope.coverImageSelectorVisible = false;
+ $scope.spinnerVisible = false;
+
+ $scope.$apply();
+ });
+
+ $scope.saveCoverPhoto = function () {
+ var imageData = pictureCoverPhoto.guillotine('getData');
+ var coverPhotoThumbernail = Cloudinary.getThumbnail(imageData, $scope.cloudinaryCoverPhotoData); //Get Cropped Thumbernail
+
+ delete $httpProvider.defaults.headers.common['Authorization'];
+ Cloudinary.deleteImage($scope.user.tag).then(function(data){
+ //Success
+ var data = data;
+ }).catch(function (error) {
+ //Error
+ });
+
+ // get Secure URI.
+ $scope.coverPhotoURI = coverPhotoThumbernail[0].src;
+ $scope.user.cover_image = $scope.coverPhotoURI; //update user reference
+ $scope.user.tag = $scope.cloudinaryCoverPhotoData.public_id;
+ // Update user image url
+ updateUser();
+ // Cover photo is changing
+ $scope.coverPhotoInProgress = false;
+ };
+
+ angular.element('.cover-photo-img').on('load', function () {
+ // we need to reset the guillotine plugin in order to call again later
+ pictureCoverPhoto.guillotine('remove');
+
+ // show:
+ $scope.coverPhoto = true;
+ $scope.coverImageSelectorVisible = true;
+ $scope.defaultCoverImageVisible = true;
+
+ // hide:
+ $scope.spinnerVisible = false;
+ $scope.temporaryCoverPhoto = false;
+
+ // it's necessary to call $apply in order to bind variables with the DOM
+ $scope.$apply();
+ });
+
+ $scope.cancelCoverPhoto = function () {
+ // we need to reset the guillotine plugin in order to call again later
+ pictureCoverPhoto.guillotine('remove');
+
+ // show:
+ $scope.coverImageSelectorVisible = true;
+
+ // hide:
+ $scope.temporaryCoverPhoto = false;
+ $scope.spinnerVisible = false;
+ $scope.coverPhotoInProgress = false;
+
+ if (!$scope.coverPhoto) {
+ $scope.defaultCoverImageVisible = true;
+ $scope.coverPhoto = true;
+ }
+ }*/
+
+//<<<<<<<<<<<<<<< END COVER PHOTO >>>>>>>>>>>>>>>
