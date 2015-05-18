@@ -18,7 +18,12 @@
                 <span class="header-subtitle"> {{experience.job_title}}</span>
             </div>
             <div class="form-cont">
-                <span class="header-light-txt"> {{getMonth(experience.start_date.split('-')[1])}} {{experience.start_date.split('-')[0]}} - {{getMonth(experience.end_date.split('-')[1])}} {{experience.end_date.split('-')[0]}} </span>
+                <span class="header-light-txt" ng-if="experience.end_date"> 
+                    {{getMonth(experience.start_date.split('-')[1])}} {{experience.start_date.split('-')[0]}} - {{getMonth(experience.end_date.split('-')[1])}} {{experience.end_date.split('-')[0]}} 
+                </span>
+                <span class="header-light-txt" ng-if="!experience.end_date">
+                    {{getMonth(experience.start_date.split('-')[1])}} {{experience.start_date.split('-')[0]}} - Ongoing 
+                </span>
             </div>
             <div class="form-cont">
                 <p class="header-regular-txt"> {{experience.description}} </p>
@@ -29,72 +34,82 @@
 
 <!-- Experience editor component -->
 <form name="experienceForm" id="experienceForm" ng-submit="onSave(experienceForm.$valid, $parent.$index)" novalidate ng-show="experienceEditor">
-	<div class="profile-header edit" >
-	    <div class="editwrapper">
+    <div class="profile-header edit" >
+        <div class="editwrapper">
 
-		      <div class="delete-buttons-wrapper">
-			      <a ng-click="onDelete($parent.$index)" class="btn btn-edit">DELETE</a>
-		      </div>
+              <div class="delete-buttons-wrapper">
+                  <a ng-click="onDelete($parent.$index)" class="btn btn-edit">DELETE</a>
+              </div>
 
-	        <div class="edit-buttons-wrapper">
-	            <button type="submit" class="btn btn-edit">
-	                SAVE </span>
-	            </button>
-	            <a ng-click="onCancel()" class="btn btn-edit margin-l5">
-	                CANCEL </span>
-	            </a>
-	        </div>
+            <div class="edit-buttons-wrapper">
+                <button type="submit" class="btn btn-edit">
+                    SAVE </span>
+                </button>
+                <a ng-click="onCancel()" class="btn btn-edit margin-l5">
+                    CANCEL </span>
+                </a>
+            </div>
 
-	    </div>
-	</div>
-	<div class="profile-add-right-content" >
-	    <div class="form-group"
-	         ng-class="{'has-error': experienceForm.company_name.$invalid && (experienceForm.$submitted || experienceForm.company_name.$dirty)}">
-	        <input type="text" ng-model="experienceTemp.company_name" required
-	               class="form-control" id="company_name" placeholder="Company Name" name="company_name">
-			    <div ng-if="experienceForm.company_name.$invalid && (experienceForm.$submitted || experienceForm.company_name.$dirty)" ng-messages="experienceForm.company_name.$error">
-				    <div class="help-block" ng-message="required">
-					    Please provide your company's name!
-				    </div>
-			    </div>
-	    </div>
+        </div>
+    </div>
+    <div class="profile-add-right-content" >
+        <div class="form-group"
+             ng-class="{'has-error': experienceForm.company_name.$invalid && (experienceForm.$submitted || experienceForm.company_name.$dirty)}">
+            <input type="text" ng-model="experienceTemp.company_name" required
+                   class="form-control" id="company_name" placeholder="Company Name" name="company_name">
+                <div ng-if="experienceForm.company_name.$invalid && (experienceForm.$submitted || experienceForm.company_name.$dirty)" ng-messages="experienceForm.company_name.$error">
+                    <div class="help-block" ng-message="required">
+                        Please provide your company's name!
+                    </div>
+                </div>
+        </div>
 
-	    <div class="form-group"
-	         ng-class="{'has-error': experienceForm.job_title.$invalid && (experienceForm.$submitted || experienceForm.job_title.$dirty)}">
-	        <input type="text" ng-model="experienceTemp.job_title" required class="form-control" id="job_title"
-	               placeholder="Job Title" name="job_title">
-			    <div ng-if="experienceForm.job_title.$invalid && (experienceForm.$submitted || experienceForm.job_title.$dirty)" ng-messages="experienceForm.job_title.$error">
-				    <div class="help-block" ng-message="required">
-					    Please provide your job title!
-				    </div>
-			    </div>
-	    </div>
+        <div class="form-group"
+             ng-class="{'has-error': experienceForm.job_title.$invalid && (experienceForm.$submitted || experienceForm.job_title.$dirty)}">
+            <input type="text" ng-model="experienceTemp.job_title" required class="form-control" id="job_title"
+                   placeholder="Job Title" name="job_title">
+                <div ng-if="experienceForm.job_title.$invalid && (experienceForm.$submitted || experienceForm.job_title.$dirty)" ng-messages="experienceForm.job_title.$error">
+                    <div class="help-block" ng-message="required">
+                        Please provide your job title!
+                    </div>
+                </div>
+        </div>
 
-			<div class="form-group" ng-class="{'has-error': !experience.start_date && experienceForm.$submitted}">
-		    <div class="profile-datepicker-container">
-		      <span class="profile-datepicker-label">From: </span>
-		      <simpledatepicker no-day="true" ng-model="experienceTemp.start_date" is-date></simpledatepicker>
-				</div>
+            <div class="form-group" ng-class="{'has-error': !experience.start_date && experienceForm.$submitted}">
+                <div class="profile-datepicker-container">
+                  <span class="profile-datepicker-label">From: </span>
+                  <simpledatepicker no-day="true" ng-model="experienceTemp.start_date" is-date></simpledatepicker>
+                </div>
+                <div class="profile-datepicker-container">
+                    <span class="profile-datepicker-label">To: </span>
+                    <simpledatepicker no-day="true" ng-model="experienceTemp.end_date" disabled="isCurrentJob"></simpledatepicker>
+                </div>
+                <div class="div-50 left" ng-if="experienceForm.$submitted && !experience.start_date" >
+                    <div class="help-block">
+                        Please select a start date!
+                    </div>
+                </div>
+                <div class="left" ng-if="experienceForm.$invalid && (experienceForm.$submitted)" ng-messages="experienceForm.$error">
+                    <div class="div-100 help-block text-center" ng-message="validDates">
+                        The end date must be greater than the start date!
+                    </div>
+                </div>
+            </div>
+        <div class="profile-datepicker-container" style="margin-right:0px;">
+            <span class="profile-switch-experience-label"> Is my current job? </span>
+            <input
+                id="switchEditingJob"
+                checked="true" 
+                data-on-text=""
+                data-on-color="success"
+                data-off-text="" 
+                data-off-color="danger"
+                data-size="small"
+                data-label-width=0
+                type="checkbox" >
+        </div>
 
-		    <div class="profile-datepicker-container">
-		        <span class="profile-datepicker-label">To: </span>
-		        <simpledatepicker no-day="true" ng-model="experienceTemp.end_date"></simpledatepicker>
-		    </div>
-
-				<div class="div-50 left" ng-if="experienceForm.$submitted && !experience.start_date" >
-					<div class="help-block">
-						Please select a start date!
-					</div>
-				</div>
-
-				<div class="left" ng-if="experienceForm.$invalid && (experienceForm.$submitted)" ng-messages="experienceForm.$error">
-					<div class="div-100 help-block text-center" ng-message="validDates">
-						The end date must be greater than the start date!
-					</div>
-				</div>
-			</div>
-
-	    <textarea class="form-control" rows="5" ng-model="experienceTemp.description"
-	              placeholder="Description..."></textarea>
-	</div>
+        <textarea class="form-control" rows="5" ng-model="experienceTemp.description"
+                  placeholder="Description..."></textarea>
+    </div>
 </form>

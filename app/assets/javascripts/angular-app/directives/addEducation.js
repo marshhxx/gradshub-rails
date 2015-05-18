@@ -8,6 +8,7 @@ angular.module('mepedia.directives').directive('addEducation', function () {
         },
         templateUrl: 'angular-app/templates/directives/add-education.html',
         link: function (scope, element, attrs) {
+
             //scope.frontEndErrors = {}
 
             scope.addEducation = function() {
@@ -54,11 +55,22 @@ angular.module('mepedia.directives').directive('addEducation', function () {
                 scope.onCancelClick();
             };
 
+            
+            // switch education
+            angular.element('#switchEducation').bootstrapSwitch();
+
+            scope.isCurrentEducation = true;
+            
+            angular.element('#switchEducation').on('switchChange.bootstrapSwitch', function(event, state) {
+                state ? scope.isCurrentEducation = true : scope.isCurrentEducation = false;
+                scope.$apply();
+            });
+
             scope.$watchGroup(['education.start_date', 'education.end_date'], function () {
                 var valid = Date.parse(scope.education.end_date) >= Date.parse(scope.education.start_date);
                 valid = scope.education.end_date == null ||valid;
-                scope.newEducationForm.$setValidity('validDates', valid)
+                scope.newEducationForm.$setValidity('validDates', valid);
             });
-        }
+        };
     };
 });

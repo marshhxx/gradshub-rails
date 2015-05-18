@@ -14,11 +14,24 @@ angular
                 $scope.employerNationality = new EmployerNationalities();
                 $scope.newCompany = new Company()
 
+                $scope.genders = [
+                    "Female",
+                    "Male",
+                    "Other"
+                ]
+                
+                $scope.userGender = "Select Gender"
+
                 $scope.selectedFrom = "From"
                 $scope.selectedTo = "To"
 
                 Company.query (companies) ->
                     $scope.companies = companies.companies
+
+                $scope.onGender = (gender) ->
+                    if(gender?)
+                        $scope.userGender = gender
+                        $scope.user.gender = gender
 
                 $scope.onCountry = (country) ->
                     if(country?)

@@ -1413,9 +1413,30 @@ footer#main .footer-above {
   color: #555555 !important;
 }
 
+.btn-primary-120 {
+  width: 120px;
+  background-color: rgb(255, 255, 255) !important;
+  border-color: #CCCCCC !important;
+  color: #555555 !important;
+  padding: 2px !important;
+}
+
+.btn-primary-120 :hover {
+  background-color: rgb(255, 255, 255) !important;
+  border-color: rgb(255, 255, 255) !important;
+  color: #555555 !important;
+}
+
 .dropdown-menu-datepicker {
   max-height: 140px;
   overflow-y: scroll;
+  z-index: 999;
+  font: 14px Lato-Regular !important;
+  cursor: pointer;
+}
+
+.dropdown-menu-gender {
+  max-height: 140px;
   z-index: 999;
   font: 14px Lato-Regular !important;
   cursor: pointer;

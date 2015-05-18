@@ -27,6 +27,7 @@
 //= require cloudinary_ng
 //= require ng-file-upload
 //= require jquery-guillotine
+//= require bootstrap-switch
 
 //= require angular-rails-templates
 //= require bootstrap-sass-official/assets/javascripts/bootstrap

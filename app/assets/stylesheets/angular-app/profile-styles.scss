@@ -137,12 +137,24 @@ h3 {
 .profile-username-txt{
   font: 26px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
   color: #FFF;
-  bottom: 25px;
+  bottom: 35px;
   left: 315px;
   position: absolute;
   text-transform: uppercase;
   text-shadow: 0 0 3px rgba(0,0,0,.6);
   z-index: 10;
+}
+
+.profile-tag-txt {
+  font: 20px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+  color: #FFF;
+  bottom: 9px;
+  left: 315px;
+  position: absolute;
+  text-shadow: 0 0 3px rgba(0,0,0,.6);
+  z-index: 10;
+    max-width: 25px;
+  max-height: 25px;
 }
 
 .coverBorder {
@@ -695,4 +707,14 @@ textarea{
   color: #122028;
   float: left;
   line-height: 25px;
+}
+
+// education
+.education-animation-div {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.education-animation-div.ng-hide {
+  opacity:0;
 }

@@ -26,6 +26,7 @@ var Utils = function(Candidate, Employer) {
         employer.name = user.name;
         employer.lastname = user.lastname;
         employer.email = user.email;
+        employer.gender = user.gender;
         employer.birth = user.birth;
         employer.tag = user.tag;
         employer.company_image = user.company_image;
