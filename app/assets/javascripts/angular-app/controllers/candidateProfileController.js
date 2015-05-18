@@ -8,6 +8,8 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
             $scope.defaultExperience = "Cras diam sapien, pharetra laoreet sapien nec, pellentesque interdum mauris. Suspendisse blandit leo in luctus dapibus. Praesent accumsan eu leo quis eleifend. Vivamus vitae auctor neque. Donec facilisis bibendum dui ac lobortis.";
             $scope.defaultInterests = "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed cursus quam erat, non fringilla dui efficitur vitae. Pellentesque nec sodales lacus. Fusce rutrum diam a dolor vestibulum, at sodales turpis congue. Curabitur condimentum velit elit, id ornare velit eleifend id. In vel lorem ut mi suscipit placerat ut eu nunc. ";
             $scope.defaultLanguages = "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed cursus quam erat, non fringilla dui efficitur vitae. Pellentesque nec sodales lacus. Fusce rutrum diam a dolor vestibulum, at sodales turpis congue. Curabitur condimentum velit elit, id ornare velit eleifend id. In vel lorem ut mi suscipit placerat ut eu nunc. ";
+            $scope.defaultEducation = "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed cursus quam erat, non fringilla dui efficitur vitae. Pellentesque nec sodales lacus. Fusce rutrum diam a dolor vestibulum, at sodales turpis congue. Curabitur condimentum velit elit, id ornare velit eleifend id. In vel lorem ut mi suscipit placerat ut eu nunc. ";
+
 
             var updateUser = function () {
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
@@ -533,9 +535,18 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 $scope.education = {};
                 $scope.addEducationEnable = false;
                 $scope.educationEditor = false;
+                $scope.isAddingEducation = false;
+
                 $scope.saveEducation = saveEducation;
                 $scope.updateEducation = updateEducation;
                 $scope.deleteEducation = deleteEducation;
+
+                $scope.onEducationAdd = function () {
+                    $scope.isAddingEducation = true;
+                };
+                $scope.onEducationCancel = function () {
+                    $scope.isAddingEducation = false;
+                };
             };
 
             var initExperience = function () {
@@ -543,21 +554,19 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 $scope.experience = {};
                 $scope.addExperienceEnable = false;
                 $scope.experienceEditor = false;
+                $scope.isAddingExperience = false;
 
                 $scope.saveExperience = saveExperience;
                 $scope.updateExperience = updateExperience;
-
-                $scope.enableDefaultExperience = function () {
-                    if ($scope.defaultExperienceEnable == true)
-                        $scope.defaultExperienceEnable = false;
-                };
-
-                $scope.disableDefaultExperience = function () {
-                    if ($scope.user.experiences.length == 0)
-                        $scope.defaultExperienceEnable = true;
-                };
-
                 $scope.deleteExperience = deleteExperience;
+
+                $scope.onExperienceAdd = function() {
+                    $scope.isAddingExperience = true;
+                };
+
+                $scope.onExperienceCancel = function() {
+                    $scope.isAddingExperience = false;
+                };
             };
 
             var initLanguages = function () {

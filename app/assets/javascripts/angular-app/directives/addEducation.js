@@ -3,7 +3,8 @@ angular.module('mepedia.directives').directive('addEducation', function () {
         scope: {
             education: '=data', //Education array
             saveEducation: '=', //Save education controller function
-            addEducationEnable: '=' //Education ng-show ng-hide variable binded with controller
+            onAdd: '=',
+            onCancelClick: '='
         },
         templateUrl: 'angular-app/templates/directives/add-education.html',
         link: function (scope, element, attrs) {
@@ -12,6 +13,7 @@ angular.module('mepedia.directives').directive('addEducation', function () {
             scope.addEducation = function() {
                 scope.addEducationEnable = true;
                 clearAddEducationValues();
+                scope.onAdd();
             };
 
             var clearAddEducationValues = function(){
@@ -49,6 +51,7 @@ angular.module('mepedia.directives').directive('addEducation', function () {
             scope.onCancel = function() {
                 scope.addEducationEnable = false;
                 scope.education = [];
+                scope.onCancelClick();
             };
 
             scope.$watchGroup(['education.start_date', 'education.end_date'], function () {

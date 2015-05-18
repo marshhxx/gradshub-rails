@@ -112,7 +112,7 @@ angular
             $scope.candidateNationality.$save()
 
         saveSkills = ->
-            $scope.skills.skills = $scope.selectedSkills.map((skill) -> {name: skill.name})
+            $scope.skills.skills = $scope.selectedSkills.map((skill) -> {name: skill})
             $scope.skills.$update()
 
         saveUser = ->
