@@ -23,6 +23,8 @@ angular.module('mepedia.directives').directive('education', ['State', 'Country',
                 scope.education.country_id = scope.educationTemp.country_id;
                 scope.education.description = scope.educationTemp.description;
                 scope.education.start_date = scope.educationTemp.start_date;
+                if (scope.isCurrentEducation)
+                    scope.educationTemp.end_date = undefined;
                 scope.education.end_date = scope.educationTemp.end_date;
                 scope.updateEducation(valid, index);
             };
@@ -55,6 +57,19 @@ angular.module('mepedia.directives').directive('education', ['State', 'Country',
                 if (degree != undefined)
                     scope.educationTemp.degree_id = degree.id;
             };
+
+
+            scope.education.end_date ? scope.isCurrentEducation = false : scope.isCurrentEducation = true;
+
+            angular.element('#switchEditingEducation').bootstrapSwitch({
+                state: scope.isCurrentEducation
+            });
+            
+            angular.element('#switchEditingEducation').on('switchChange.bootstrapSwitch', function(event, state) {
+                state ? scope.isCurrentEducation = true : scope.isCurrentEducation = false;
+                scope.$apply();
+            });
+
         }
     };
 }]);

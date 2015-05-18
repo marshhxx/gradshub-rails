@@ -26,11 +26,25 @@ angular.module('mepedia.directives').directive('experience', [ 'Utils', function
                 scope.experience.end_date = scope.experienceTemp.end_date;
                 scope.experience.description = scope.experienceTemp.description;
                 scope.experience.start_date = scope.experienceTemp.start_date;
+                if (scope.isCurrentJob)
+                    scope.experienceTemp.end_date = undefined;
                 scope.experience.end_date = scope.experienceTemp.end_date;
                 scope.updateExperience(valid, index);
             };
 
             scope.getMonth = Utils.getMonthByNumber;
+
+            scope.experience.end_date ? scope.isCurrentJob = false : scope.isCurrentJob = true;
+
+            angular.element('#switchEditingJob').bootstrapSwitch({
+                state: scope.isCurrentJob
+            });
+            
+            angular.element('#switchEditingJob').on('switchChange.bootstrapSwitch', function(event, state) {
+                state ? scope.isCurrentJob = true : scope.isCurrentJob = false;
+                scope.$apply();
+            });
+
         }
     };
 }]);

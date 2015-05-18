@@ -2,7 +2,10 @@
 <div class="profile wrapper col-md-9 col-md-offset-1">
 <div id="profileTopSection">
     <div id="profileCover" class="coverWrap">
-        <div><p class="profile-username-txt"> {{user.name }} {{user.lastname}}</p></div>
+        <div>
+            <p class="profile-username-txt"> {{user.name }} {{user.lastname}}</p>
+            <p class="profile-tag-txt">{{user.tag}}</p>
+        </div>
         <div class="coverBorder">
             <form>
                 <div class="coverImage" ng-show="defaultCoverImageVisible"></div>

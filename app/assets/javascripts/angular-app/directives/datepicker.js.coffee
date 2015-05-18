@@ -5,9 +5,7 @@ DatePicker = (Utils) ->
 		noDay: '=?',
 		noMonth: '=?',
 		date: '=ngModel',
-		disabled: '=?',
-		isStart: '=?',
-		isEnd:'=?'
+		disabled: '=?'
 	},
 	templateUrl: 'angular-app/templates/directives/datepicker.html',
 	link: ($scope, $element) ->
@@ -46,29 +44,10 @@ DatePicker = (Utils) ->
 		$scope.setMonth = (month) ->
 			$scope.dateMonth = month
 			refreshDate()
-			checkCorrectDate()
 
 		$scope.setYear = (year) ->
 			$scope.dateYear = year
 			refreshDate()
-			checkCorrectDate()
-
-		checkCorrectDate = () ->
-			if $scope.dateYear != 'Year' and $scope.dateMonth != 'Month'
-				if $scope.isStart
-					$scope.$emit('dateSelected', 
-					{
-						'dateMonth': Utils.getMonthNumber($scope.dateMonth),
-						'dateYear': $scope.dateYear,
-						'isStart': true
-					})
-				else if $scope.isEnd
-					$scope.$emit('dateSelected',
-					{
-						'dateMonth': Utils.getMonthNumber($scope.dateMonth),
-						'dateYear': $scope.dateYear,
-						'isEnd': true
-					})
 
 		refreshDate = () ->
 			$scope.date = [$scope.dateYear, Utils.getMonthNumber($scope.dateMonth), $scope.dateDay].join('-') if $scope.dateYear != "Year" and $scope.dateMonth != "Month" and $scope.dateDay != "Day"

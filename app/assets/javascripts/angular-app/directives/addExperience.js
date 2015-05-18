@@ -33,6 +33,17 @@ angular.module('mepedia.directives').directive('addExperience', function () {
                 scope.experience = [];
                 scope.defaultExperience();
             };
+
+
+            angular.element('#switchJob').bootstrapSwitch();
+
+            scope.isCurrentJob = true;
+            
+            angular.element('#switchJob').on('switchChange.bootstrapSwitch', function(event, state) {
+                state ? scope.isCurrentJob = true : scope.isCurrentJob = false;
+                scope.$apply();
+            });
+
         }
     };
 });

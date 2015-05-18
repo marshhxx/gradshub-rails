@@ -22,7 +22,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="profile-add-right-content" ng-show="addEducationEnable">
+	<div class="profile-add-right-content education-animation-div" ng-show="addEducationEnable">
 		<div class="form-group"
 			 ng-class="{'has-error': newEducationForm.school.$invalid && (newEducationForm.$submitted || newEducationForm.school.$touched)}">
 			<school-selector placeholder="School" ng-model="school" on-select="onSchool" required></school-selector>
@@ -89,22 +89,22 @@
 			<div class="form-group" ng-class="{'has-error': newEducationForm.$submitted && !education.start_date}">
 				<div class="profile-datepicker-container div-40">
 					<span class="profile-datepicker-label">From: </span>
-					<simpledatepicker no-day="true" no-month="false" ng-model="education.start_date" is-start="true"is-date></simpledatepicker>
+					<simpledatepicker no-day="true" no-month="false" ng-model="education.start_date" is-date></simpledatepicker>
 				</div>
 
 				<div class="profile-datepicker-container div-40">
 					<span class="profile-datepicker-label">To: </span>
-					<simpledatepicker no-day="true" no-month="false" ng-model="education.end_date" is-end="true" disabled="isCurrentJob" is-date></simpledatepicker>
+					<simpledatepicker no-day="true" no-month="false" ng-model="education.end_date" disabled="isCurrentEducation"></simpledatepicker>
 				</div>
 
 				<div class="profile-datepicker-container div-40" style="margin-right:0px;">
-					<span class="profile-switch-education-label"> Is my current job? </span>
+					<span class="profile-switch-education-label"> Is my current school? </span>
 					<input
 						id="switchEducation" 
 						checked="false" 
-						data-on-text="Yes"
+						data-on-text=""
 						data-on-color="success"
-						data-off-text="No" 
+						data-off-text="" 
 						data-off-color="danger"
 						data-size="small"
 						data-label-width=0
@@ -114,11 +114,6 @@
 				<div class="div-50 left" ng-if="newEducationForm.$submitted && !education.start_date">
 					<div class="help-block">
 						Please select a start date!
-					</div>
-				</div>
-				<div class="div-50 left" ng-if="!dateValid">
-					<div class="help-block">
-						Please select the correct end date!
 					</div>
 				</div>
 			</div>

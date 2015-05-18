@@ -9,9 +9,22 @@ angular
             $scope.education = new Education()
             $scope.skills = new CandidateSkills()
             $scope.candidateNationality = new CandidateNationalities();
+            
+            $scope.genders = [
+                "Female",
+                "Male",
+                "Other"
+            ]
+            
+            $scope.userGender = "Select Gender"
 
             $scope.selectedFrom = "From"
             $scope.selectedTo = "To"
+
+            $scope.onGender = (gender) ->
+                if(gender?)
+                    $scope.userGender = gender
+                    $scope.user.gender = gender
 
             $scope.onCountry = (country) ->
                 if(country?)
@@ -115,6 +128,6 @@ angular
 
         saveUser = ->
             $scope.user.$update()
-
+        
         init()
 ])

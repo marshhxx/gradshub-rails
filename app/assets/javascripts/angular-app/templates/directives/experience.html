@@ -18,7 +18,12 @@
                 <span class="header-subtitle"> {{experience.job_title}}</span>
             </div>
             <div class="form-cont">
-                <span class="header-light-txt"> {{getMonth(experience.start_date.split('-')[1])}} {{experience.start_date.split('-')[0]}} - {{getMonth(experience.end_date.split('-')[1])}} {{experience.end_date.split('-')[0]}} </span>
+                <span class="header-light-txt" ng-if="experience.end_date"> 
+                    {{getMonth(experience.start_date.split('-')[1])}} {{experience.start_date.split('-')[0]}} - {{getMonth(experience.end_date.split('-')[1])}} {{experience.end_date.split('-')[0]}} 
+                </span>
+                <span class="header-light-txt" ng-if="!experience.end_date">
+                    {{getMonth(experience.start_date.split('-')[1])}} {{experience.start_date.split('-')[0]}} - Ongoing 
+                </span>
             </div>
             <div class="form-cont">
                 <p class="header-regular-txt"> {{experience.description}} </p>
@@ -84,8 +89,22 @@
 
 	    <div class="profile-datepicker-container">
 	        <span class="profile-datepicker-label">To: </span>
-	        <simpledatepicker no-day="true" date="experienceTemp.end_date"></simpledatepicker>
+	        <simpledatepicker no-day="true" ng-model="experienceTemp.end_date" disabled="isCurrentJob"></simpledatepicker>
 	    </div>
+
+        <div class="profile-datepicker-container" style="margin-right:0px;">
+            <span class="profile-switch-experience-label"> Is my current job? </span>
+            <input
+                id="switchEditingJob"
+                checked="true" 
+                data-on-text=""
+                data-on-color="success"
+                data-off-text="" 
+                data-off-color="danger"
+                data-size="small"
+                data-label-width=0
+                type="checkbox" >
+        </div>
 
 	    <textarea class="form-control" rows="5" ng-model="experienceTemp.description"
 	              placeholder="Description..."></textarea>
