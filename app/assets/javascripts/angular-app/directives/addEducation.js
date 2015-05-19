@@ -3,17 +3,21 @@ angular.module('mepedia.directives').directive('addEducation', function () {
         scope: {
             education: '=data', //Education array
             saveEducation: '=', //Save education controller function
-            addEducationEnable: '=' //Education ng-show ng-hide variable binded with controller
+            onAdd: '=',
+            onCancelClick: '='
         },
         templateUrl: 'angular-app/templates/directives/add-education.html',
         link: function (scope, element, attrs) {
+
             scope.addEducation = function() {
                 scope.addEducationEnable = true;
                 clearAddEducationValues();
+                scope.onAdd();
             };
 
             var clearAddEducationValues = function(){
                 scope.newEducationForm.$setUntouched();
+                scope.newEducationForm.$submitted = false;
             };
 
             /* Methods */
@@ -46,6 +50,7 @@ angular.module('mepedia.directives').directive('addEducation', function () {
             scope.onCancel = function() {
                 scope.addEducationEnable = false;
                 scope.education = [];
+                scope.onCancelClick();
             };
             
             // switch education
@@ -57,7 +62,12 @@ angular.module('mepedia.directives').directive('addEducation', function () {
                 state ? scope.isCurrentEducation = true : scope.isCurrentEducation = false;
                 scope.$apply();
             });
-        }
 
+            scope.$watchGroup(['education.start_date', 'education.end_date'], function () {
+                var valid = Date.parse(scope.education.end_date) >= Date.parse(scope.education.start_date);
+                valid = scope.education.end_date == null ||valid;
+                scope.newEducationForm.$setValidity('validDates', valid)
+            });
+        }
     };
 });

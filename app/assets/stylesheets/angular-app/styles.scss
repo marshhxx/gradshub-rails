@@ -184,6 +184,14 @@ input::-webkit-input-placeholder {
   }
 }
 
+.text-center {
+  text-align: center;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
 .margin-l5{
   margin-left: 5px;
 }
@@ -2012,6 +2020,10 @@ label {
 .tagsinput.addbutton:hover {
   background: #3D9ED8;
   color: #FFF;
+}
+
+.div-100 {
+  width: 100% !important;
 }
 
 .div-50{

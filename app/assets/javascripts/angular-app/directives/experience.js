@@ -20,15 +20,18 @@ angular.module('mepedia.directives').directive('experience', [ 'Utils', function
             };
 
             scope.onSave = function (valid, index) {
-                scope.experience.company_name = scope.experienceTemp.company_name;
-                scope.experience.job_title = scope.experienceTemp.job_title;
-                scope.experience.start_date = scope.experienceTemp.start_date;
-                scope.experience.end_date = scope.experienceTemp.end_date;
-                scope.experience.description = scope.experienceTemp.description;
-                scope.experience.start_date = scope.experienceTemp.start_date;
-                if (scope.isCurrentJob)
-                    scope.experienceTemp.end_date = undefined;
-                scope.experience.end_date = scope.experienceTemp.end_date;
+                if (valid) {
+                    scope.experience.company_name = scope.experienceTemp.company_name;
+                    scope.experience.job_title = scope.experienceTemp.job_title;
+                    scope.experience.start_date = scope.experienceTemp.start_date;
+                    scope.experience.end_date = scope.experienceTemp.end_date;
+                    scope.experience.description = scope.experienceTemp.description;
+                    scope.experience.start_date = scope.experienceTemp.start_date;
+                    if (scope.isCurrentJob)
+                        scope.experienceTemp.end_date = undefined;
+                    scope.experience.end_date = scope.experienceTemp.end_date;
+                    
+                }
                 scope.updateExperience(valid, index);
             };
 
@@ -45,6 +48,13 @@ angular.module('mepedia.directives').directive('experience', [ 'Utils', function
                 scope.$apply();
             });
 
+            scope.$watchGroup(['experienceTemp.start_date', 'experienceTemp.end_date'], function () {
+                if (scope.experienceTemp) {
+                    var valid = Date.parse(scope.experienceTemp.end_date) >= Date.parse(scope.experienceTemp.start_date);
+                    valid = scope.experienceTemp.end_date == null || valid;
+                    scope.experienceForm.$setValidity('validDates', valid)
+                }
+            });
         }
     };
 }]);

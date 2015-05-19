@@ -1,4 +1,4 @@
-<form id="education-form" name="educationForm" ng-submit="validateEducation(educationForm.$valid)" novalidate>
+<form id="education-form" name="educationForm" ng-submit="validateEducation(educationForm.$valid)" ng-init="setInnerScope(this)" novalidate>
 <div class="signup form-container col-md-8 col-md-offset-2">
     <div class="signup form-box-cont">
         <div class="row">
@@ -59,22 +59,29 @@
             </div>
         </div>
 
-		    <div class="row align-left max-width">
-			    <div class="form-group" ng-class="{'has-error': educationForm.$submitted && !education.start_date}">
-				    <span class="signup-label">From: </span>
-				    <simpledatepicker no-day="true" ng-model="education.start_date" is-date></simpledatepicker>
-				    <div ng-if="educationForm.$submitted && !education.start_date" >
-					    <div class="help-block">
-						    Please select a start date!
-					    </div>
-				    </div>
+	    <div class="form-group" ng-class="{'has-error': educationForm.$submitted && !education.start_date}">
+		    <div class="row align-left max-width margin-t5">
+					 <span class="signup-label">From: </span>
+					 <simpledatepicker no-day="true" ng-model="education.start_date" is-date></simpledatepicker>
+		    </div>
+
+        <div class="row align-left max-width margin-t5">
+            <span class="signup-label">To: </span>
+            <simpledatepicker no-day="true" ng-model="education.end_date"></simpledatepicker>
+        </div>
+
+		    <div ng-if="educationForm.$submitted && !education.start_date" >
+			    <div class="help-block">
+				    Please select a start date!
 			    </div>
 		    </div>
 
-        <div class="row align-left max-width">
-            <span class="signup-label">To: </span>
-            <simpledatepicker no-day="true" date="education.end_date"></simpledatepicker>
-        </div>
+		    <div class="left" ng-if="educationForm.$invalid && educationForm.$submitted" ng-messages="educationForm.$error">
+			    <div class="div-100 help-block text-center" ng-message="validDates">
+				    The end date must be greater than the start date!
+			    </div>
+		    </div>
+		  </div>
     </div>
 </div>
 

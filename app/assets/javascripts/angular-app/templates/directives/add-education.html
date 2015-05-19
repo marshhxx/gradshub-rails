@@ -23,9 +23,14 @@
 		</div>
 	</div>
 	<div class="profile-add-right-content education-animation-div" ng-show="addEducationEnable">
-		<div class="form-group"
-			 ng-class="{'has-error': newEducationForm.school.$invalid && (newEducationForm.$submitted || newEducationForm.school.$touched)}">
-			<school-selector placeholder="School" ng-model="school" on-select="onSchool" required></school-selector>
+		<div class="control-group has-error" ng-messages="frontEndErrors">
+			<div class="help-block" ng-repeat="error in frontEndErrors.errors">
+				{{error}}
+			</div>
+		</div>
+	    <div class="form-group"
+	         ng-class="{'has-error': newEducationForm.school.$invalid && (newEducationForm.$submitted || newEducationForm.school.$touched)}">
+		    <school-selector placeholder="School" ng-model="school" on-select="onSchool" required></school-selector>
 
 			<div ng-if="newEducationForm.school.$invalid && (newEducationForm.$submitted || newEducationForm.school.$touched)" ng-messages="newEducationForm.school.$error">
 				<div class="help-block" ng-message="required">
@@ -64,27 +69,29 @@
 				</div>
 			</div>
 
-		<div class="form-group div-50 left"
-			 ng-class="{'has-error': newEducationForm.country.$invalid && (newEducationForm.$submitted || newEducationForm.country.$touched)}">
-			<country-selector placeholder="School Country" ng-model="country" on-select="onCountry"></country-selector>
+			<div class="form-group overflow-auto">
+		    <div class="form-group div-50 left"
+		         ng-class="{'has-error': newEducationForm.country.$invalid && (newEducationForm.$submitted || newEducationForm.country.$touched)}">
+			    <country-selector placeholder="School Country" ng-model="country" on-select="onCountry"></country-selector>
 
-			<div ng-if="newEducationForm.country.$invalid && (newEducationForm.$submitted || newEducationForm.country.$touched)" ng-messages="newEducationForm.country.$error">
-				<div class="help-block" ng-message="country">
-					Please select a valid country!
-				</div>
+			    <div ng-if="newEducationForm.country.$invalid && (newEducationForm.$submitted || newEducationForm.country.$touched)" ng-messages="newEducationForm.country.$error">
+				    <div class="help-block" ng-message="country">
+					    Please select a valid country!
+				    </div>
+			    </div>
+		    </div>
+
+		    <div class="form-group div-50 right"
+		         ng-class="{'has-error': newEducationForm.state.$invalid && (newEducationForm.$submitted || newEducationForm.state.$touched)}">
+			    <state-selector placeholder="School State" ng-model="state" on-select="onState" country-id="education.country_id"></state-selector>
+
+			    <div ng-if="newEducationForm.state.$invalid && (newEducationForm.$submitted || newEducationForm.state.$touched)" ng-messages="newEducationForm.state.$error">
+				    <div class="help-block" ng-message="state">
+					    Please select a valid state!
+				    </div>
+			    </div>
+		    </div>
 			</div>
-		</div>
-
-		<div class="form-group div-50 right"
-			 ng-class="{'has-error': newEducationForm.state.$invalid && (newEducationForm.$submitted || newEducationForm.state.$touched)}">
-			<state-selector placeholder="School State" ng-model="state" on-select="onState" country-id="education.country_id"></state-selector>
-
-			<div ng-if="newEducationForm.state.$invalid && (newEducationForm.$submitted || newEducationForm.state.$touched)" ng-messages="newEducationForm.state.$error">
-				<div class="help-block" ng-message="state">
-					Please select a valid state!
-				</div>
-			</div>
-		</div>
 
 			<div class="form-group" ng-class="{'has-error': newEducationForm.$submitted && !education.start_date}">
 				<div class="profile-datepicker-container div-40">
@@ -116,6 +123,13 @@
 						Please select a start date!
 					</div>
 				</div>
+
+				<div class="left" ng-if="newEducationForm.$invalid && (newEducationForm.$submitted)" ng-messages="newEducationForm.$error">
+					<div class="div-100 help-block text-center" ng-message="validDates">
+						The end date must be greater than the start date!
+					</div>
+				</div>
+
 			</div>
 
 		<textarea class="form-control" rows="5" ng-model="education.description"

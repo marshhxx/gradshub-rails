@@ -48,7 +48,7 @@
         <div class="profileImage wrapper">
             <div class="profileImage border">
                 <div class="profileImage content">
-                    <div class="profileImage img" ng-show="defaultProfileImageVisible"></div>
+                    <div class="img-circle profileImage img" ng-class="user.gender" ng-show="defaultProfileImageVisible"></div>
 
                     <div class="profileImageEdit wrapper" ng-show="profileImgSelectVisible">
                         <div class="profileImageEdit img" ng-file-select="onFileSelectProfile($files)"
@@ -173,7 +173,10 @@
         <div class="profile-right-container" id="focusEducation">
             <div>
                 <add-education data="education" save-education="saveEducation"
-                               add-education-enable="addEducationEnable"></add-education>
+                               add-education-enable="addEducationEnable" on-add="onEducationAdd" on-cancel="onEducationCancel"></add-education>
+		            <div class="profile-right-content" ng-show="user.educations.length == 0 && !isAddingEducation">
+			            <p class="profile-placeholder-txt">{{defaultEducation}}</p>
+		            </div>
                 <div ng-repeat="education in user.educations">
                     <education data="education" update-education="updateEducation" education-editor="educationEditor"
 	                    on-delete="deleteEducation"></education>
@@ -184,8 +187,8 @@
         <div class="profile-right-container" id="focusExperience">
             <div>
                 <add-experience data="experience" save-experience="saveExperience"
-                               add-experience-enable="addExperienceEnable" enable-placeholder="enableDefaultExperience" default-experience="disableDefaultExperience"></add-experience>
-                <div class="profile-right-content" ng-show="defaultExperienceEnable">
+                               on-add="onExperienceAdd" on-cancel="onExperienceCancel"></add-experience>
+                <div class="profile-right-content" ng-show="user.experiences.length == 0 && !isAddingExperience">
                     <p class="profile-placeholder-txt">{{defaultExperience}}</p>
                 </div>
                 <div ng-repeat="experience in user.experiences">

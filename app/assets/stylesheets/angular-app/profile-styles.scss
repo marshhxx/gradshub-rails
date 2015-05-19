@@ -267,6 +267,15 @@ h3 {
   position: absolute;
 }
 
+.male {
+  background-image: url(male.png) !important;
+
+}
+
+.female {
+  background-image: url(female.jpeg) !important;
+}
+
 .profileHeadline.wrapper {
   height: 60px;
   width: 100%;
@@ -662,6 +671,12 @@ textarea{
 .header-regular-txt{
   color: #999999;
   font: 14px Lato-Regular;
+}
+
+.header-highlight-placeholder{
+  color: #999999;;
+  font: 14px Lato-Regular;
+  line-height: 35px;
 }
 
 .header-highlight-txt{
