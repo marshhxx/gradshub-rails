@@ -2,7 +2,7 @@ angular.module('mepedia.directives').directive('addExperience', function () {
     return {
         scope: {
             experience: '=data', //Experience array
-            saveExperience: '=', //SaveExperience function
+            saveExperienceCallback: '=saveExperience', //SaveExperience function
             onAdd: '=',
             onCancelClick: '=onCancel'
         },
@@ -23,6 +23,14 @@ angular.module('mepedia.directives').directive('addExperience', function () {
                 scope.experience.description = "";
                 scope.experience.start_date = null;
                 scope.experience.end_date = null;
+            };
+
+            scope.saveExperience = function(valid) {
+                if (valid) {
+                    scope.addExperienceEnable = false;
+                    scope.onCancelClick();
+                    scope.saveExperienceCallback(valid);
+                }
             };
 
             /* Methods */

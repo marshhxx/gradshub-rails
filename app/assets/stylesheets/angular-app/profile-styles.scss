@@ -709,10 +709,9 @@ textarea{
   line-height: 25px;
 }
 
-// education
-.education-animation-div {
-  -webkit-transition:all linear 0.5s;
-  transition:all linear 0.5s;
+.profile-form-animation {
+  -webkit-transition:all linear 0.3s;
+  transition:all linear 0.3s;
 }
 
 .education-animation-div.ng-hide {
