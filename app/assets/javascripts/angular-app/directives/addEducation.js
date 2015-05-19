@@ -2,9 +2,9 @@ angular.module('mepedia.directives').directive('addEducation', function () {
     return {
         scope: {
             education: '=data', //Education array
-            saveEducation: '=', //Save education controller function
+            saveEducationCallback: '=saveEducation', //Save education controller function
             onAdd: '=',
-            onCancelClick: '='
+            onCancelClick: '=onCancel'
         },
         templateUrl: 'angular-app/templates/directives/add-education.html',
         link: function (scope, element, attrs) {
@@ -18,6 +18,14 @@ angular.module('mepedia.directives').directive('addEducation', function () {
             var clearAddEducationValues = function(){
                 scope.newEducationForm.$setUntouched();
                 scope.newEducationForm.$submitted = false;
+            };
+
+            scope.saveEducation = function(valid) {
+              if (valid) {
+                  scope.addEducationEnable = false;
+                  scope.onCancelClick();
+                  scope.saveEducationCallback(valid);
+              }
             };
 
             /* Methods */
