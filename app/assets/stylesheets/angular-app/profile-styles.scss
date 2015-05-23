@@ -123,11 +123,7 @@ h3 {
 }
 
 .edit-buttons-wrapper {
-  position: absolute;
-  bottom: 15px;
-  margin: 0 15px 0 0;
-  right: 0;
-  z-index: 20;
+  float: right;
 }
 
 .profile-username-txt{
@@ -522,7 +518,23 @@ p {
   visibility: visible;
 }
 
-.btn-edit.cover-photo{
+.btn-edit {
+  width: 70px;
+  padding: 5px 0px;
+  background: none;
+  color: #9197A3;
+  font: 13px Roboto-Light, Georgia, "Times New Roman", Times, serif;
+  border: 1px solid #9197A3;
+  border-radius: 0 !important;
+}
+
+.btn-edit:hover {
+  color: #FFF;
+  background: #3D9ED8;
+  border: 1px solid #3D9ED8;
+}
+
+.img-picker.edit-btn{
   width: 70px;
   padding: 5px 0px;
   background: rgba(255,255,255,0.7);
@@ -532,11 +544,19 @@ p {
   border-radius: 5px !important;
 }
 
-.btn-edit.cover-photo:hover {
+.img-picker.edit-btn:hover {
   color: #FFF;
   background: rgba(55,71,118,0.9);
   font: 13px Lato-Regular, Georgia, "Times New Roman", Times, serif;
   border: 1px solid #374776;
+}
+
+.img-picker.btn-wrapper{
+  position: absolute;
+  bottom: 15px;
+  margin: 0 15px 0 0;
+  right: 0;
+  z-index: 20;
 }
 
 .btn-add{

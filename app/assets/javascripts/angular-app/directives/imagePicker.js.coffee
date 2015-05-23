@@ -12,16 +12,10 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout) ->
     $scope.coverPhoto = false
     $scope.coverImageSelectorVisible = true
     $scope.coverLoaded = false
-
-
-
     $scope.defaultCoverImageVisible = false
     $scope.cloudinaryCoverPhotoData = false
     initUser = false
-
     cloudinaryData = ""
-
-
     Cloudinary.config();
 
     #This method will be called whet the 'objectToInject' value is changes
@@ -71,27 +65,20 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout) ->
       #            */
       if !$scope.temporaryCoverPhoto
         $scope.temporaryCoverPhoto = true
-        #angular.element('.spinner-container').css({'z-index': '10'})
-
 
       delete $httpProvider.defaults.headers.common['Authorization']
       Cloudinary.uploadImage(file).then((data) ->
         $scope.cloudinaryCoverPhotoData = data
         $scope.coverLoaded = true
-        #$scope.defaultCoverImageVisible = false
-        $scope.coverPhoto = false
       ).catch((error)->
       )
 
     pictureCoverPhoto = angular.element('#temp_cover_photo')
     contentCoverPhoto = angular.element('.profile.wrapper')
-
     pictureCoverPhoto.on('load',()->
-
 
       if $scope.coverPhoto
         $scope.coverPhoto = false;
-        #angular.element('.spinner-container').css({'z-index': '0'})
 
       pictureCoverPhoto.guillotine({eventOnChange: 'guillotinechange', width: contentCoverPhoto[0].offsetWidth - 2, height: 365})
       pictureCoverPhoto.guillotine('fit')
@@ -109,6 +96,7 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout) ->
       $timeout (->
         #show:
         $scope.coverPhotoInProgress = true;
+        $scope.coverPhoto = false
         $scope.temporaryCoverPhoto = true;
         $scope.spinnerVisible = false;
         #show:
@@ -151,8 +139,6 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout) ->
         $scope.spinnerVisible = false;
       ), 2000
 
-
-
     angular.element('.cover-photo-img').on('load', () ->
       # we need to reset the guillotine plugin in order to call again later
       pictureCoverPhoto.guillotine('remove')
@@ -160,10 +146,6 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout) ->
       #show:
       $scope.coverPhoto = true
       $scope.coverImageSelectorVisible = true
-      #$scope.defaultCoverImageVisible = false
-
-      #hide:
-      #$scope.spinnerVisible = false
       $scope.temporaryCoverPhoto = false
 
       #it's necessary to call $apply in order to bind variables with the DOM
@@ -178,27 +160,13 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout) ->
 
       # hide:
       $scope.temporaryCoverPhoto = false
-      #$scope.spinnerVisible = false
       $scope.coverPhotoInProgress = false
 
       if !$scope.coverPhoto
         $scope.defaultCoverImageVisible = true
         $scope.coverPhoto = true
 
-
-
-
-
-
-
-
-
-
   }
-
-
-
-
 
 angular
 .module('mepedia.directives')
