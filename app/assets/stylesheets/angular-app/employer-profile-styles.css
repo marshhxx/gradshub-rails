@@ -1,4 +1,7 @@
 /* COVER PHOTO */
+.coverBorder.coverBorderEmployer {
+  height: 361px;
+}
 .employerDefaultCoverPhoto {
   background: url('default-cover-photo.png') center center no-repeat;
   background-size: cover;
@@ -44,7 +47,7 @@
 }
 
 .companyDefaultPhoto {
-  background-color: #00A5E4;
+  background-color: white;
   background-size: 272px 272px;
   background-position: -8px -6px;
   height: 225px;
@@ -55,9 +58,10 @@
 }
 
 .companyDefaultPhoto h2 {
+  font-family: Montserrat-Regular;
   text-align: center;
-  font-size: 2em;
-  color: white;
+  font-size: 25px;
+  color: #374776;
   margin: 43% auto;
   width: 205px;
 }
@@ -88,13 +92,15 @@
 .companyNameWrapper {
   color: white;
   position: relative;
-  width: 30%;
+  width: 40%;
   text-align: center;
   margin: 32% auto 0px;
 }
 
 .companyNameWrapper h1 {
-    font-weight: bold;
+  font-family: Montserrat-Regular;
+  font-size: 40px;
+  text-transform: uppercase;
 }
 
 
@@ -122,25 +128,34 @@
   padding: 20px 20px 25px 20px;
 }
 
+.employerProfileLeftContent .section.employer-info-wrapper {
+  padding: 60px 20px 25px 20px;
+}
+
 /* Employer profile image */
 .employerProfilePhotoWrapper {
+  position: absolute;
+  top: -55px;
+  left: 30%;
   padding: 0;   
 }
 
+.employerBasicInfoWrapper {
+  font-family: Montserrat-Regular;
+  text-align: center;
+}
+
 .employerNameWrapper {
-  margin: 35px 0px 0px 10px;
-  font-weight: bold;
+  margin: 35px 0px 0px 0px;
   font-size: 2em;
+  
 }
 
 .employerTagWrapper {
-  margin-left: 10px;
   font-size: 18px;
-  width: 300px;
 }
 
 .employerPositionWrapper {
-  margin-left: 10px;
   font-size: 18px;
 }
 
