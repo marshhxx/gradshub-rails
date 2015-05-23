@@ -2,7 +2,10 @@
 <div class="profile wrapper col-md-8 col-md-offset-1">
 <div id="profileTopSection">
     <div id="profileCover" class="coverWrap">
-        <div><p class="profile-username-txt"> {{user.name }} {{user.lastname}}</p></div>
+        <div>
+            <p class="profile-username-txt"> {{user.name }} {{user.lastname}}</p>
+            <p class="profile-tag-txt">{{user.tag}}</p>
+        </div>
         <div class="coverBorder">
             <simpleimagepicker update-user="updateUser" user="user"></simpleimagepicker>
         </div>
@@ -11,7 +14,7 @@
         <div class="profileImage wrapper">
             <div class="profileImage border">
                 <div class="profileImage content">
-                    <div class="profileImage img" ng-show="defaultProfileImageVisible"></div>
+                    <div class="img-circle profileImage img" ng-class="user.gender" ng-show="defaultProfileImageVisible"></div>
 
                     <div class="profileImageEdit wrapper" ng-show="profileImgSelectVisible">
                         <div class="profileImageEdit img" ng-file-select="onFileSelectProfile($files)"
@@ -136,9 +139,13 @@
         <div class="profile-right-container" id="focusEducation">
             <div>
                 <add-education data="education" save-education="saveEducation"
-                               add-education-enable="addEducationEnable"></add-education>
+                               add-education-enable="addEducationEnable" on-add="onEducationAdd" on-cancel="onEducationCancel"></add-education>
+		            <div class="profile-right-content" ng-show="user.educations.length == 0 && !isAddingEducation">
+			            <p class="profile-placeholder-txt">{{defaultEducation}}</p>
+		            </div>
                 <div ng-repeat="education in user.educations">
-                    <education data="education" update-education="updateEducation" education-editor="educationEditor"></education>
+                    <education data="education" update-education="updateEducation" education-editor="educationEditor"
+	                    on-delete="deleteEducation"></education>
                 </div>
             </div>
         </div>
@@ -146,8 +153,8 @@
         <div class="profile-right-container" id="focusExperience">
             <div>
                 <add-experience data="experience" save-experience="saveExperience"
-                               add-experience-enable="addExperienceEnable" enable-placeholder="enableDefaultExperience" default-experience="disableDefaultExperience"></add-experience>
-                <div class="profile-right-content" ng-show="defaultExperienceEnable">
+                               on-add="onExperienceAdd" on-cancel="onExperienceCancel"></add-experience>
+                <div class="profile-right-content" ng-show="user.experiences.length == 0 && !isAddingExperience">
                     <p class="profile-placeholder-txt">{{defaultExperience}}</p>
                 </div>
                 <div ng-repeat="experience in user.experiences">
@@ -207,7 +214,7 @@
 			      </div>
 
 			      <div ng-repeat="language in user.languages">
-				      <language data="language" update-language="updateLanguage"></language>
+				      <language data="language" update-language="updateLanguage" on-delete="deleteLanguage"></language>
 			      </div>
 		      </div>
 		    </div>

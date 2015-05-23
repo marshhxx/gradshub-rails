@@ -128,25 +128,29 @@
 }
 
 .employerNameWrapper {
-  overflow: auto;
   margin: 35px 0px 0px 10px;
   font-weight: bold;
   font-size: 2em;
 }
 
-.employerPositionWrapper {
-  overflow: auto;
+.employerTagWrapper {
   margin-left: 10px;
-  font-size: 20px;
+  font-size: 18px;
+  width: 300px;
+}
+
+.employerPositionWrapper {
+  margin-left: 10px;
+  font-size: 18px;
 }
 
 .employerDefaultProfileImage.img {
-  background: url(default-profile-photo.png) no-repeat;
-  background-size: 160px 161px;
+  background-image: url(default-profile-photo.png);
+  background-size: 100%;
   background-position: -6px -4px;
+  background-repeat: no-repeat;
   height: 150px;
   width: 150px;
-  border-radius: 50%;
   border: 1px solid #ececec;
   margin: 0 auto;
 }

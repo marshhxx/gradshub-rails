@@ -1,14 +1,14 @@
 class Api::V1::CandidateLanguagesController < Api::NestedController
-  before_action :authenticate_with_token!, only: [:create, :destroy]
+  before_action :authenticate_with_token!, only: [:create, :update, :destroy]
   wrap_parameters :language, include: [:language_id, :level]
 
   protected
 
   def create_resource
-    CandidateLanguage.new(language_params)
+    CandidateLanguage.new(candidate_language_params)
   end
 
-  def language_params
+  def candidate_language_params
     params.require(:language).permit(:language_id, :level) if params[:language]
   end
 

@@ -2,7 +2,8 @@ Language = () ->
 	{
 		scope: {
 			language: '=data',
-			updateLanguage: '='
+			updateLanguage: '=',
+			onDelete: '='
 		},
 		templateUrl: 'angular-app/templates/directives/language.html',
 		link: (scope, element, attr) ->
@@ -15,10 +16,11 @@ Language = () ->
 			scope.onCancel = ->
 				scope.languageEditor = false;
 
-			scope.onSave = (valid, index) ->
-				scope.language.language_id = scope.languageTemp.language_id
-				scope.language.level = scope.languageTemp.level
-				scope.updateLanguage(valid, index)
+			scope.onSave = (valid, language) ->
+				scope.language.language_id = scope.languageTemp.language_id if valid
+				scope.language.level = scope.languageTemp.level if valid
+				scope.languageEditor = !valid
+				scope.updateLanguage(valid, language)
 	}
 angular
 	.module('mepedia.directives')

@@ -8,7 +8,7 @@ IsDegree = (Degree) ->
 			scope.degrees = degrees.degrees
 			ctrl.$validators.degree = (value) ->
 				degreeNames = scope.degrees.map((degree) -> degree.name)
-				return value.name in degreeNames || value == ""
+				return value? and (value.name in degreeNames or value == "")
 
 	}
 angular

@@ -2,8 +2,9 @@ angular.module('mepedia.directives').directive('addEducation', function () {
     return {
         scope: {
             education: '=data', //Education array
-            saveEducation: '=', //Save education controller function
-            addEducationEnable: '=' //Education ng-show ng-hide variable binded with controller
+            saveEducationCallback: '=saveEducation', //Save education controller function
+            onAdd: '=',
+            onCancelClick: '=onCancel'
         },
         templateUrl: 'angular-app/templates/directives/add-education.html',
         link: function (scope, element, attrs) {
@@ -11,19 +12,20 @@ angular.module('mepedia.directives').directive('addEducation', function () {
             scope.addEducation = function() {
                 scope.addEducationEnable = true;
                 clearAddEducationValues();
+                scope.onAdd();
             };
 
             var clearAddEducationValues = function(){
+                scope.newEducationForm.$setUntouched();
                 scope.newEducationForm.$submitted = false;
-                scope.newEducationForm.$setPristine();
-                scope.school = "";
-                scope.degree = "";
-                scope.major = "";
-                scope.state = "";
-                scope.country = "";
-                scope.education.description = "";
-                scope.education.start_date = null;
-                scope.education.end_date = null;
+            };
+
+            scope.saveEducation = function(valid) {
+              if (valid) {
+                  scope.addEducationEnable = false;
+                  scope.onCancelClick();
+                  scope.saveEducationCallback(valid);
+              }
             };
 
             /* Methods */
@@ -39,7 +41,7 @@ angular.module('mepedia.directives').directive('addEducation', function () {
             };
 
             scope.onCountry = function(country) {
-                if (scope.education.country != undefined)
+                if (country != undefined)
                     scope.education.country_id = country.id;
             };
 
@@ -56,8 +58,24 @@ angular.module('mepedia.directives').directive('addEducation', function () {
             scope.onCancel = function() {
                 scope.addEducationEnable = false;
                 scope.education = [];
+                scope.onCancelClick();
             };
-        }
+            
+            // switch education
+            angular.element('#switchEducation').bootstrapSwitch();
 
+            scope.isCurrentEducation = true;
+            
+            angular.element('#switchEducation').on('switchChange.bootstrapSwitch', function(event, state) {
+                state ? scope.isCurrentEducation = true : scope.isCurrentEducation = false;
+                scope.$apply();
+            });
+
+            scope.$watchGroup(['education.start_date', 'education.end_date'], function () {
+                var valid = Date.parse(scope.education.end_date) >= Date.parse(scope.education.start_date);
+                valid = scope.education.end_date == null ||valid;
+                scope.newEducationForm.$setValidity('validDates', valid)
+            });
+        }
     };
 });

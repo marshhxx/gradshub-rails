@@ -27,17 +27,20 @@
             <div class="employerProfileLeftContent cont col-md-6">
                 <div class="section padding-135">
                     <div class="employerProfilePhotoWrapper col-xs-4">
-                        <div class="employerDefaultProfileImage img"></div>
+                        <div class="img-circle employerDefaultProfileImage img" ng-class="user.gender"></div>
                         <div class="employerProfileImageEdit wrapper">
                             <div class="employerProfileImageEdit img"></div>
                         </div>
                     </div>
                     <div class="employerBasicInfoWrapper col-xs-8">
                         <div class="employerNameWrapper">
-                            <span>{{user.name}} {{user.lastname}}</span>
+                            <p>{{user.name}} {{user.lastname}}</p>
+                        </div>
+                        <div class="employerTagWrapper">
+                            <p>{{user.tag}}</p>
                         </div>
                         <div class="employerPositionWrapper">
-                            <span>{{user.job_title}}</span>
+                            <p>{{user.job_title}}</p>
                         </div>                     
                     </div>
                 </div>

@@ -1,12 +1,11 @@
 <form id="personal-form" name="companyForm" ng-submit="validateCompany(companyForm.$valid)" novalidate>
-    <div class="signup form-container col-md-8 col-md-offset-2">
-        <div class="signup form-box-cont">
+<div class="signup form-container col-md-8 col-md-offset-2">
+    <div class="signup form-box-cont">
         <div class="row" ng-if="!addCompanyEnabled">
-            <div class="form-group"  ng-class="{'has-error': companyForm.company.$invalid && (companyForm.$submitted || companyForm.company.$dirty)}">
-                <input typeahead-editable="false" name="company" type="text" ng-model="company" required class="form-control" id="company"
-                       placeholder="Company" typeahead="company as company.name + ' | ' + company.industry for company in companies | filter:$viewValue | limitTo:6" typeahead-on-select="onCompany($item)">
+            <div class="form-group"  ng-class="{'has-error': companyForm.company.$invalid && (companyForm.$submitted || companyForm.company.$touched)}">
+                <input typeahead-editable="false" name="company" type="text" ng-model="company" required class="form-control" id="company" placeholder="Company" typeahead="company as company.name + ' | ' + company.industry for company in companies | filter:$viewValue | limitTo:6" typeahead-on-select="onCompany($item)">
 
-                <div ng-if="companyForm.company.$invalid && (companyForm.$submitted || companyForm.company.$dirty)" ng-messages="companyForm.company.$error">
+                <div ng-if="companyForm.company.$invalid && (companyForm.$submitted || companyForm.company.$touched)" ng-messages="companyForm.company.$error">
                     <div class="help-block" ng-message="required">
                         Please select a company!
                     </div>
@@ -17,92 +16,94 @@
             </div>
         </div>
 
-            <div class="row" ng-if="addCompanyEnabled">
-                <div class="form-group"  ng-class="{'has-error': companyForm.companyName.$invalid && (companyForm.$submitted || companyForm.companyName.$dirty)}">
-                    <input name="companyName" type="text" ng-model="newCompany.name" required class="form-control" id="companyName"
-                           placeholder="Company Name">
+        <div class="row" ng-if="addCompanyEnabled">
+            <div class="form-group"  ng-class="{'has-error': companyForm.companyName.$invalid && (companyForm.$submitted || companyForm.companyName.$dirty)}">
+                <input name="companyName" type="text" ng-model="newCompany.name" required class="form-control" id="companyName"
+                    placeholder="Company Name">
 
-                    <div ng-if="companyForm.companyName.$invalid && (companyForm.$submitted || companyForm.companyName.$dirty)" ng-messages="companyForm.companyName.$error">
-                        <div class="help-block" ng-message="required">
-                            Please provide a company name!
-                        </div>
+                <div ng-if="companyForm.companyName.$invalid && (companyForm.$submitted || companyForm.companyName.$dirty)" ng-messages="companyForm.companyName.$error">
+                    <div class="help-block" ng-message="required">
+                        Please provide a company name!
                     </div>
                 </div>
-            </div>
-
-            <div class="row" ng-if="addCompanyEnabled">
-                <div class="form-group"  ng-class="{'has-error': companyForm.companyIndustry.$invalid && (companyForm.$submitted || companyForm.companyIndustry.$dirty)}">
-                    <input name="companyIndustry" type="text" ng-model="newCompany.industry" required class="form-control" id="companyIndustry"
-                           placeholder="Company Industry">
-
-                    <div ng-if="companyForm.companyIndustry.$invalid && (companyForm.$submitted || companyForm.companyIndustry.$dirty)" ng-messages="companyForm.companyIndustry.$error">
-                        <div class="help-block" ng-message="required">
-                            Please provide a company industry!
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group"  ng-class="{'has-error': companyForm.country.$invalid && (companyForm.$submitted || companyForm.country.$dirty)}">
-                    <country-selector placeholder="Company's Country" ng-model="companyCountry" on-select="onCompanyCountry"></country-selector>
-                    <div ng-if="companyForm.country.$invalid && (companyForm.$submitted || companyForm.country.$dirty)" ng-messages="companyForm.country.$error">
-                        <div class="help-block" ng-message="country">
-                            Please select a valid country !
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group"  ng-class="{'has-error': companyForm.state.$invalid && (companyForm.$submitted || companyForm.state.$dirty)}">
-                    <state-selector placeholder="Company's State" ng-model="companyState" on-select="onCompanyState" country-id="employerCompany.country_id"></state-selector>
-                    <div ng-if="companyForm.state.$invalid && (companyForm.$submitted || companyForm.state.$dirty)" ng-messages="companyForm.state.$error">
-                        <div class="control-group.error p" ng-message="required">
-                            Please select a state!
-                        </div>
-                        <div class="help-block" ng-message="state">
-                            Please select a valid state!
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group">
-                    <input type="text" ng-model="employerCompany.site_url" class="form-control" id="siteUrl" placeholder="Company's Web Page"
-                           class="form-control">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group">
-                    <input type="text" ng-model="user.job_title" class="form-control" id="jobPosition" placeholder="Job Position"
-                           class="form-control">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group">
-                    <textarea rows="2"  ng-model="employerCompany.description" class="form-control" id="companyDescription" placeholder="Description"></textarea>
-                </div>
-            </div>
-
-    </div>
-    </div>
-    <a ng-if="!addCompanyEnabled" popover="Or you can add a new comapny!" popover-trigger="mouseenter"
-       ng-click="toggleAddCompany()" class="btn btn-add signup-btn"></a>
-
-    <a ng-if="addCompanyEnabled" popover="Or select an existing company!" popover-trigger="mouseenter"
-       ng-click="toggleAddCompany()" class="btn btn-delete signup-btn"></a>
-    <div>
-        <div class="form-group row btn-form-container">
-            <div class="col-xs-12 text-center">
-                <button type="submit" class="btn btn-form">
-                    NEXT </span>
-                </button>
             </div>
         </div>
 
+        <div class="row" ng-if="addCompanyEnabled">
+            <div class="form-group"  ng-class="{'has-error': companyForm.companyIndustry.$invalid && (companyForm.$submitted || companyForm.companyIndustry.$dirty)}">
+                <input name="companyIndustry" type="text" ng-model="newCompany.industry" required class="form-control" id="companyIndustry" placeholder="Company Industry">
+
+                <div ng-if="companyForm.companyIndustry.$invalid && (companyForm.$submitted || companyForm.companyIndustry.$dirty)" ng-messages="companyForm.companyIndustry.$error">
+                    <div class="help-block" ng-message="required">
+                        Please provide a company industry!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group"  ng-class="{'has-error': companyForm.country.$invalid && (companyForm.$submitted || companyForm.country.$touched)}">
+                <country-selector placeholder="Company's Country" ng-model="companyCountry" on-select="onCompanyCountry"></country-selector>
+                <div ng-if="companyForm.country.$invalid && (companyForm.$submitted || companyForm.country.$touched)" ng-messages="companyForm.country.$error">
+                    <div class="help-block" ng-message="country">
+                        Please select a valid country !
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group"  ng-class="{'has-error': companyForm.state.$invalid && (companyForm.$submitted || companyForm.state.$touched)}">
+                <state-selector placeholder="Company's State" ng-model="companyState" on-select="onCompanyState" country-id="employerCompany.country_id"></state-selector>
+                <div ng-if="companyForm.state.$invalid && (companyForm.$submitted || companyForm.state.$touched)" ng-messages="companyForm.state.$error">
+                    <div class="control-group.error p" ng-message="required">
+                        Please select a state!
+                    </div>
+                    <div class="help-block" ng-message="state">
+                        Please select a valid state!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <input type="text" ng-model="employerCompany.site_url" class="form-control" id="siteUrl" placeholder="Company's Web Page" class="form-control">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <input type="text" ng-model="user.job_title" class="form-control" id="jobPosition" placeholder="Job Position"class="form-control">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <textarea rows="2"  ng-model="employerCompany.description" class="form-control" id="companyDescription" placeholder="Description"></textarea>
+            </div>
+        </div>
     </div>
+</div>
+
+<a ng-if="!addCompanyEnabled" popover="Or you can add a new comapny!" popover-trigger="mouseenter"
+ng-click="toggleAddCompany()" class="btn btn-add signup-btn"></a>
+
+<a ng-if="addCompanyEnabled" popover="Or select an existing company!" popover-trigger="mouseenter"
+ng-click="toggleAddCompany()" class="btn btn-delete signup-btn"></a>
+
+<div>
+    <div class="form-group row btn-form-container">
+        <div class="col-xs-6 text-center">
+            <button ng-click="backToPersonal()" class="btn btn-form double">
+                <span>BACK</span>
+            </button>
+        </div>
+        <div class="col-xs-6 text-center">
+            <button type="submit" class="btn btn-form double">
+                <span> NEXT </span>
+            </button>
+        </div>
+    </div>
+</div>
 </form>

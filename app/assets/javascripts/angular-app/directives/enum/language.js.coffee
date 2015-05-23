@@ -3,8 +3,8 @@ LanguageSelector = (Language) ->
 	restrict: 'E',
 	require: 'ngModel',
 	scope: {
-		onSelect: '='
-		data: '=ngModel'
+		onSelect: '=',
+		data: '=ngModel',
 	},
 	template: (elem, attr) ->
 		required = if attr.required == "" then "required" else ""

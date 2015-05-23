@@ -184,6 +184,14 @@ input::-webkit-input-placeholder {
   }
 }
 
+.text-center {
+  text-align: center;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
 .margin-l5{
   margin-left: 5px;
 }
@@ -214,6 +222,10 @@ input::-webkit-input-placeholder {
 
 .margin-lr30 {
   margin: 0px 30px;
+}
+
+.margin-t5 {
+  margin-top: 10px;
 }
 
 .margin-t10 {
@@ -1382,7 +1394,12 @@ footer#main .footer-above {
   font: 14px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
 }
 
-.btn-primary {
+.btn-form.double {
+  width: 150px;
+  margin-top: 40px;
+}
+
+.btn-primary-70 {
   width: 70px;
   background-color: rgb(255, 255, 255) !important;
   border-color: #CCCCCC !important;
@@ -1390,15 +1407,36 @@ footer#main .footer-above {
   padding: 2px !important;
 }
 
-.btn-primary :hover {
+.btn-primary-70 :hover {
   background-color: rgb(255, 255, 255) !important;
   border-color: rgb(255, 255, 255) !important;
   color: #555555 !important;
 }
 
-.dropdown-menu {
-  height: 140px;
+.btn-primary-120 {
+  width: 120px;
+  background-color: rgb(255, 255, 255) !important;
+  border-color: #CCCCCC !important;
+  color: #555555 !important;
+  padding: 2px !important;
+}
+
+.btn-primary-120 :hover {
+  background-color: rgb(255, 255, 255) !important;
+  border-color: rgb(255, 255, 255) !important;
+  color: #555555 !important;
+}
+
+.dropdown-menu-datepicker {
+  max-height: 140px;
   overflow-y: scroll;
+  z-index: 999;
+  font: 14px Lato-Regular !important;
+  cursor: pointer;
+}
+
+.dropdown-menu-gender {
+  max-height: 140px;
   z-index: 999;
   font: 14px Lato-Regular !important;
   cursor: pointer;
@@ -1982,6 +2020,10 @@ label {
 .tagsinput.addbutton:hover {
   background: #3D9ED8;
   color: #FFF;
+}
+
+.div-100 {
+  width: 100% !important;
 }
 
 .div-50{

@@ -1,47 +1,52 @@
 <!-- Education add component!-->
 <form name="newEducationForm" ng-submit="saveEducation(newEducationForm.$valid)" novalidate>
 	<div class="profile-right-header">
-	    <div class="profile-right-header title">
-	        <div class="profile-right-header-img education"></div>
-	        <h3>Education</h3>
-	    </div>
-	    <div class="profile-right-header edit">
-	        <div class="editwrapper">
+		<div class="profile-right-header title">
+			<div class="profile-right-header-img education"></div>
+			<h3>Education</h3>
+		</div>
+		<div class="profile-right-header edit">
+			<div class="editwrapper">
 
-	            <div ng-click="addEducation()" class="btn btn-add" ng-hide="addEducationEnable"></div>
+				<div ng-click="addEducation()" class="btn btn-add" ng-hide="addEducationEnable"></div>
 
-	            <div ng-show="addEducationEnable" class="edit-buttons-wrapper">
-	                <button type="submit" class="btn btn-edit">
-	                   <span> SAVE </span>
-	                </button>
-	                <button type="reset" ng-click="onCancel()" class="btn btn-edit margin-l5">
-	                    <span> CANCEL </span>
-	                </button>
-	            </div>
+				<div ng-show="addEducationEnable" class="edit-buttons-wrapper">
+					<button type="submit" class="btn btn-edit">
+					   <span> SAVE </span>
+					</button>
+					<button type="reset" ng-click="onCancel()" class="btn btn-edit margin-l5">
+						<span> CANCEL </span>
+					</button>
+				</div>
 
-	        </div>
-	    </div>
+			</div>
+		</div>
 	</div>
-	<div class="profile-add-right-content" ng-show="addEducationEnable">
+	<div class="profile-add-right-content profile-form-animation" ng-show="addEducationEnable">
+		<div class="control-group has-error" ng-messages="frontEndErrors">
+			<div class="help-block" ng-repeat="error in frontEndErrors.errors">
+				{{error}}
+			</div>
+		</div>
 	    <div class="form-group"
-	         ng-class="{'has-error': newEducationForm.school.$invalid && (newEducationForm.$submitted || newEducationForm.school.$dirty)}">
+	         ng-class="{'has-error': newEducationForm.school.$invalid && (newEducationForm.$submitted || newEducationForm.school.$touched)}">
 		    <school-selector placeholder="School" ng-model="school" on-select="onSchool" required></school-selector>
 
-		    <div ng-if=" newEducationForm.school.$invalid && (newEducationForm.$submitted || newEducationForm.school.$dirty)" ng-messages="newEducationForm.school.$error">
-			    <div class="help-block" ng-message="required">
-				    Please select a school
-			    </div>
-			    <div class="help-block" ng-message="school">
-				    Please select a valid school!
-			    </div>
-		    </div>
-	    </div>
+			<div ng-if="newEducationForm.school.$invalid && (newEducationForm.$submitted || newEducationForm.school.$touched)" ng-messages="newEducationForm.school.$error">
+				<div class="help-block" ng-message="required">
+					Please select a school
+				</div>
+				<div class="help-block" ng-message="school">
+					Please select a valid school!
+				</div>
+			</div>
+		</div>
 
 			<div class="form-group"
-			     ng-class="{'has-error': newEducationForm.degree.$invalid && (newEducationForm.$submitted || newEducationForm.degree.$dirty)}">
+				 ng-class="{'has-error': newEducationForm.degree.$invalid && (newEducationForm.$submitted || newEducationForm.degree.$touched)}">
 				<degree-selector placeholder="Degree" ng-model="degree" on-select="onDegree" required></degree-selector>
 				
-				<div ng-if="newEducationForm.degree.$invalid && (newEducationForm.$submitted || newEducationForm.degree.$dirty)" ng-messages="newEducationForm.degree.$error">
+				<div ng-if="newEducationForm.degree.$invalid && (newEducationForm.$submitted || newEducationForm.degree.$touched)" ng-messages="newEducationForm.degree.$error">
 					<div class="help-block" ng-message="required">
 						Please select a degree!
 					</div>
@@ -51,10 +56,10 @@
 				</div>
 			</div>
 
-			<div class="form-group" ng-class="{'has-error': newEducationForm.major.$invalid && (newEducationForm.$submitted || newEducationForm.major.$dirty)}">
+			<div class="form-group" ng-class="{'has-error': newEducationForm.major.$invalid && (newEducationForm.$submitted || newEducationForm.major.$touched)}">
 				<major-selector placeholder="Major" ng-model="major" on-select="onMajor" required></major-selector>
 
-				<div ng-if="newEducationForm.major.$invalid && (newEducationForm.$submitted || newEducationForm.major.$dirty)" ng-messages="newEducationForm.major.$error">
+				<div ng-if="newEducationForm.major.$invalid && (newEducationForm.$submitted || newEducationForm.major.$touched)" ng-messages="newEducationForm.major.$error">
 					<div class="help-block" ng-message="required">
 						Please select a major
 					</div>
@@ -64,47 +69,70 @@
 				</div>
 			</div>
 
-	    <div class="form-group div-50 left"
-	         ng-class="{'has-error': newEducationForm.country.$invalid && (newEducationForm.$submitted || newEducationForm.country.$dirty)}">
-		    <country-selector placeholder="School Country" ng-model="country" on-select="onCountry"></country-selector>
+			<div class="form-group overflow-auto">
+		    <div class="form-group div-50 left"
+		         ng-class="{'has-error': newEducationForm.country.$invalid && (newEducationForm.$submitted || newEducationForm.country.$touched)}">
+			    <country-selector placeholder="School Country" ng-model="country" on-select="onCountry"></country-selector>
 
-		    <div ng-if="newEducationForm.country.$invalid && (newEducationForm.$submitted || newEducationForm.country.$dirty)" ng-messages="newEducationForm.country.$error">
-			    <div class="help-block" ng-message="country">
-				    Please select a valid country!
+			    <div ng-if="newEducationForm.country.$invalid && (newEducationForm.$submitted || newEducationForm.country.$touched)" ng-messages="newEducationForm.country.$error">
+				    <div class="help-block" ng-message="country">
+					    Please select a valid country!
+				    </div>
 			    </div>
 		    </div>
-	    </div>
 
-	    <div class="form-group div-50 right"
-	         ng-class="{'has-error': newEducationForm.state.$invalid && (newEducationForm.$submitted || newEducationForm.state.$dirty)}">
-		    <state-selector placeholder="School State" ng-model="state" on-select="onState" country-id="education.country_id"></state-selector>
+		    <div class="form-group div-50 right"
+		         ng-class="{'has-error': newEducationForm.state.$invalid && (newEducationForm.$submitted || newEducationForm.state.$touched)}">
+			    <state-selector placeholder="School State" ng-model="state" on-select="onState" country-id="education.country_id"></state-selector>
 
-		    <div ng-if="newEducationForm.state.$invalid && (newEducationForm.$submitted || newEducationForm.state.$dirty)" ng-messages="newEducationForm.state.$error">
-			    <div class="help-block" ng-message="state">
-				    Please select a valid state!
+			    <div ng-if="newEducationForm.state.$invalid && (newEducationForm.$submitted || newEducationForm.state.$touched)" ng-messages="newEducationForm.state.$error">
+				    <div class="help-block" ng-message="state">
+					    Please select a valid state!
+				    </div>
 			    </div>
 		    </div>
-	    </div>
+			</div>
 
-			<div class="form-group" ng-class="{'has-error': !education.start_date && newEducationForm.$submitted}">
-				<div class="profile-datepicker-container div-25">
-					<span class="help-block profile-datepicker-label">From: </span>
-					<simpledatepicker no-month="true" no-day="true" date="education.start_date"></simpledatepicker>
+			<div class="form-group" ng-class="{'has-error': newEducationForm.$submitted && !education.start_date}">
+				<div class="profile-datepicker-container div-40">
+					<span class="profile-datepicker-label">From: </span>
+					<simpledatepicker no-day="true" no-month="false" ng-model="education.start_date" is-date></simpledatepicker>
 				</div>
 
-				<div class="profile-datepicker-container div-25">
+				<div class="profile-datepicker-container div-40">
 					<span class="profile-datepicker-label">To: </span>
-					<simpledatepicker no-month="true" no-day="true" date="education.end_date"></simpledatepicker>
+					<simpledatepicker no-day="true" no-month="false" ng-model="education.end_date" disabled="isCurrentEducation"></simpledatepicker>
 				</div>
 
-				<div class="div-50 left" ng-if="newEducationForm.$submitted && !education.start_date" >
+				<div class="profile-datepicker-container div-40" style="margin-right:0px;">
+					<span class="profile-switch-education-label"> Is my current school? </span>
+					<input
+						id="switchEducation" 
+						checked="false" 
+						data-on-text=""
+						data-on-color="success"
+						data-off-text="" 
+						data-off-color="danger"
+						data-size="small"
+						data-label-width=0
+						type="checkbox" >
+				</div>
+
+				<div class="div-50 left" ng-if="newEducationForm.$submitted && !education.start_date">
 					<div class="help-block">
 						Please select a start date!
 					</div>
 				</div>
+
+				<div class="left" ng-if="newEducationForm.$invalid && (newEducationForm.$submitted)" ng-messages="newEducationForm.$error">
+					<div class="div-100 help-block text-center" ng-message="validDates">
+						The end date must be greater than the start date!
+					</div>
+				</div>
+
 			</div>
 
-	    <textarea class="form-control" rows="5" ng-model="education.description"
-	              placeholder="Description..."></textarea>
+		<textarea class="form-control" rows="5" ng-model="education.description"
+				  placeholder="Description..."></textarea>
 	</div>
 </form>

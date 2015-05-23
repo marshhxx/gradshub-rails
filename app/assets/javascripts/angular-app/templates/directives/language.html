@@ -7,7 +7,7 @@
 				<input type="hidden" ng-value="language.id"/>
 
 				<div class="width85">
-					<span class="header-title"> {{language.name}} </span>
+					<span class="header-title"> {{language.name}} - {{language.level}}</span>
 				</div>
 				<div class="width15">
 					<div class="edit-pencil-hover" ng-click="onLanguageEditor()" ng-hide="languageEditor"></div>
@@ -17,4 +17,5 @@
 	</div>
 </div>
 
-<language-form data="languageTemp" on-save="onSave" on-cancel="onCancel" ng-if="languageEditor"></language-form>
+<language-form data="languageTemp" on-save="onSave" on-cancel="onCancel" ng-if="languageEditor"
+               editable="true" on-delete="onDelete"></language-form>

@@ -1,7 +1,11 @@
 <!-- Language editor component -->
-<form name="languageForm" ng-submit="onSave(languageForm.$valid, $parent.$index)" novalidate>
+<form name="languageForm" ng-submit="onSave(languageForm.$valid, data)" novalidate>
 	<div class="profile-header edit">
 		<div class="editwrapper">
+
+			<div class="delete-buttons-wrapper" ng-if="editable">
+				<a ng-click="onDelete(data)" class="btn btn-edit">DELETE</a>
+			</div>
 
 			<div class="edit-buttons-wrapper">
 				<button type="submit" class="btn btn-edit">
@@ -16,15 +20,40 @@
 	</div>
 	<div class="profile-add-right-content">
 
-		<div class="form-group div-50 left"
-		     ng-class="{'has-error': languageForm.language.$invalid && (languageForm.$submitted || languageForm.language.$dirty)}">
-			<language-selector placeholder="Language" name="language" on-select="onLanguage" ng-model="data.name" required></language-selector>
-			<div ng-if="languageForm.language.$invalid && (languageForm.$submitted || languageForm.language.$dirty)" ng-messages="languageForm.language.$error">
+		<div class="form-group div-50 left" ng-if="!editable"
+		     ng-class="{'has-error': languageForm.language.$invalid && (languageForm.$submitted || languageForm.language.$touched)}">
+			<language-selector placeholder="Language" name="language" on-select="onLanguage"
+			                   ng-model="data.name" required></language-selector>
+			<div ng-if="languageForm.language.$invalid && (languageForm.$submitted || languageForm.language.$touched)" ng-messages="languageForm.language.$error">
 				<div class="help-block" ng-message="required">
 					Please select a language!
 				</div>
 				<div class="help-block" ng-message="editable">
 					Please select a valid language!
+				</div>
+			</div>
+		</div>
+
+		<div class="div-25 left margin-t5" ng-if="editable">
+			<span class="header-title">{{data.name}}</span>
+		</div>
+
+		<div class="form-group div-50" ng-class="{'left': editable, 'right': !editable}">
+			<div class="btn-group" dropdown is-open="status.isopen">
+				<button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+					{{level}}<span class="caret"></span>
+				</button>
+				<input name="level" type="hidden" ng-model="data.level" required>
+				<ul class="dropdown-menu" role="menu">
+					<li ng-repeat="level in levels">
+						<a ng-click="languageSelected($index)">{{level}}</a>
+					</li>
+				</ul>
+			</div>
+
+			<div ng-if="languageForm.level.$invalid && (languageForm.$submitted || languageForm.level.$touched)" ng-messages="languageForm.level.$error">
+				<div class="help-block" ng-message="required">
+					Please select a level!
 				</div>
 			</div>
 		</div>

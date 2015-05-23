@@ -129,12 +129,24 @@ h3 {
 .profile-username-txt{
   font: 26px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
   color: #FFF;
-  bottom: 25px;
+  bottom: 35px;
   left: 315px;
   position: absolute;
   text-transform: uppercase;
   text-shadow: 0 0 3px rgba(0,0,0,.6);
   z-index: 10;
+}
+
+.profile-tag-txt {
+  font: 20px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+  color: #FFF;
+  bottom: 9px;
+  left: 315px;
+  position: absolute;
+  text-shadow: 0 0 3px rgba(0,0,0,.6);
+  z-index: 10;
+    max-width: 25px;
+  max-height: 25px;
 }
 
 .coverBorder {
@@ -276,6 +288,15 @@ h3 {
   height: 100%;
   width: 100%;
   position: absolute;
+}
+
+.male {
+  background-image: url(male.png) !important;
+
+}
+
+.female {
+  background-image: url(female.jpeg) !important;
 }
 
 .profileHeadline.wrapper {
@@ -696,6 +717,12 @@ textarea{
   font: 14px Lato-Regular;
 }
 
+.header-highlight-placeholder{
+  color: #999999;;
+  font: 14px Lato-Regular;
+  line-height: 35px;
+}
+
 .header-highlight-txt{
   color: #122028;
   font: 14px Lato-Regular;
@@ -724,4 +751,13 @@ textarea{
   color: #122028;
   float: left;
   line-height: 25px;
+}
+
+.profile-form-animation {
+  -webkit-transition:all linear 0.3s;
+  transition:all linear 0.3s;
+}
+
+.education-animation-div.ng-hide {
+  opacity:0;
 }

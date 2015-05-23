@@ -4,7 +4,8 @@ DatePicker = (Utils) ->
 	scope: {
 		noDay: '=?',
 		noMonth: '=?',
-		date: '='
+		date: '=ngModel',
+		disabled: '=?'
 	},
 	templateUrl: 'angular-app/templates/directives/datepicker.html',
 	link: ($scope, $element) ->
@@ -19,6 +20,7 @@ DatePicker = (Utils) ->
 			(value) ->
 				initDate(value)
 		)
+
 
 		initDate = (date) ->
 			if date != '' and date
@@ -49,7 +51,6 @@ DatePicker = (Utils) ->
 
 		refreshDate = () ->
 			$scope.date = [$scope.dateYear, Utils.getMonthNumber($scope.dateMonth), $scope.dateDay].join('-') if $scope.dateYear != "Year" and $scope.dateMonth != "Month" and $scope.dateDay != "Day"
-
 	}
 angular
 	.module('mepedia.directives')

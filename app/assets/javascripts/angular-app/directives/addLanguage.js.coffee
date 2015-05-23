@@ -2,7 +2,7 @@ AddLanguage = () ->
 	{
 		scope: {
 			saveLanguage: '=',
-			data: '=',
+			language: '=data',
 			onAdd: '=',
 			onCancelClick: '=onCancel'
 		},
@@ -20,7 +20,7 @@ AddLanguage = () ->
 				scope.onCancelClick()
 
 			scope.onSave = (valid) ->
-				scope.addLanguageEnable = false
+				scope.addLanguageEnable = false if valid
 				scope.saveLanguage(valid)
 
 

@@ -4,6 +4,7 @@ json.candidate do
   json.lastname @candidate.user.lastname
   json.email    @candidate.user.email
   json.birth    @candidate.user.birth
+  json.gender   @candidate.user.gender
   json.country  @candidate.country
   json.state    @candidate.state
   json.tag      @candidate.user.tag
@@ -33,7 +34,8 @@ json.candidate do
   json.languages @candidate.candidate_languages do |language|
     json.id     language.id
     json.name   language.language.name
-    json.level  language.level
+    json.language_id language.language.id
+    json.level  language.level.capitalize
   end
   json.summary @candidate.summary
   json.cover_image @candidate.user.cover_image

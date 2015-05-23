@@ -9,7 +9,7 @@
 
         <div class="row text-center">
             <div class="form-group" ng-class="{'has-error': !user.birth && personalForm.$submitted}">
-              <simpledatepicker date="user.birth"></simpledatepicker>
+              <simpledatepicker ng-model="user.birth" is-date></simpledatepicker>
                 <div ng-if="personalForm.$submitted && !user.birth" >
                     <div class="help-block">
                         Please select a birth date!
@@ -17,11 +17,29 @@
                 </div>
             </div>
         </div>
-
+        <div class="row text-center">
+            <div class="form-group" ng-class="{'has-error': !user.gender && personalForm.$submitted}">
+                <div class="btn-group" dropdown>
+                    <button type="button" class="btn btn-primary-120 dropdown-toggle" dropdown-toggle>
+                        {{userGender}} <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu gender-dropdown dropdown-menu-gender" role="menu">
+                        <li ng-repeat="gender in genders">
+                            <a ng-click="onGender(gender)">{{gender}}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div ng-if="personalForm.$submitted && !user.gender">
+                    <div class="help-block">
+                        Please select gender!
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
-            <div class="form-group" ng-class="{'has-error': personalForm.country.$invalid && (personalForm.$submitted || personalForm.country.$dirty)}">
+            <div class="form-group" ng-class="{'has-error': personalForm.country.$invalid && (personalForm.$submitted || personalForm.country.$touched)}">
                     <country-selector placeholder="Country" ng-model="country" on-select="onCountry" required></country-selector>
-                    <div ng-if="personalForm.country.$invalid && (personalForm.$submitted || personalForm.country.$dirty)" ng-messages="personalForm.country.$error">
+                    <div ng-if="personalForm.country.$invalid && (personalForm.$submitted || personalForm.country.$touched)" ng-messages="personalForm.country.$error">
                         <div class="help-block" ng-message="required">
                             Please select a country!
                         </div>
@@ -33,9 +51,9 @@
         </div>
 
         <div class="row">
-            <div class="form-group" ng-class="{'has-error': personalForm.state.$invalid && (personalForm.$submitted || personalForm.state.$dirty)}">
+            <div class="form-group" ng-class="{'has-error': personalForm.state.$invalid && (personalForm.$submitted || personalForm.state.$touched)}">
                 <state-selector placeholder="State" ng-model="state" on-select="onState" country-id="user.country_id" required></state-selector>
-                <div ng-if="personalForm.state.$invalid && (personalForm.$submitted || personalForm.state.$dirty)" ng-messages="personalForm.state.$error">
+                <div ng-if="personalForm.state.$invalid && (personalForm.$submitted || personalForm.state.$touched)" ng-messages="personalForm.state.$error">
                     <div class="help-block" ng-message="required">
                         Please select a state!
                     </div>

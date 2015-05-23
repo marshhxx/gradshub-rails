@@ -1,5 +1,8 @@
 angular.module('mepedia.controllers').controller('candidateProfileController',
-    ['$scope', '$rootScope', '$http', '$upload', '$location', '$anchorScroll','sessionService', '$state', 'Country', 'State', 'Candidate', 'Employer', 'Skill', 'Interest', 'School', 'Major', 'Degree', 'Education', 'CandidateSkills', 'CandidateInterests', 'CandidateLanguages', 'Utils', 'Experience', 'alertService', 'modalService',
+    ['$scope', '$rootScope', '$http', '$upload', '$location', '$anchorScroll','sessionService', '$state', 'Country', 
+        'State', 'Candidate', 'Employer', 'Skill', 'Interest', 'School', 'Major', 'Degree', 'Education', 'CandidateSkills', 
+        'CandidateInterests', 'CandidateLanguages', 'Utils', 'Experience', 'alertService', 'modalService',
+        
 
         function ($scope, $rootScope, $httpProvider, $upload, $location, $anchorScroll, sessionService, $state, Country, State, Candidate, Employer, Skill, Interest, School, Major, Degree, Education, CandidateSkills, CandidateInterests, CandidateLanguages, Utils, Experience, alertService, modalService) {
 
@@ -8,6 +11,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
             $scope.defaultExperience = "Cras diam sapien, pharetra laoreet sapien nec, pellentesque interdum mauris. Suspendisse blandit leo in luctus dapibus. Praesent accumsan eu leo quis eleifend. Vivamus vitae auctor neque. Donec facilisis bibendum dui ac lobortis.";
             $scope.defaultInterests = "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed cursus quam erat, non fringilla dui efficitur vitae. Pellentesque nec sodales lacus. Fusce rutrum diam a dolor vestibulum, at sodales turpis congue. Curabitur condimentum velit elit, id ornare velit eleifend id. In vel lorem ut mi suscipit placerat ut eu nunc. ";
             $scope.defaultLanguages = "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed cursus quam erat, non fringilla dui efficitur vitae. Pellentesque nec sodales lacus. Fusce rutrum diam a dolor vestibulum, at sodales turpis congue. Curabitur condimentum velit elit, id ornare velit eleifend id. In vel lorem ut mi suscipit placerat ut eu nunc. ";
+            $scope.defaultEducation = "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed cursus quam erat, non fringilla dui efficitur vitae. Pellentesque nec sodales lacus. Fusce rutrum diam a dolor vestibulum, at sodales turpis congue. Curabitur condimentum velit elit, id ornare velit eleifend id. In vel lorem ut mi suscipit placerat ut eu nunc. ";
 
             var updateUser = function () {
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
@@ -285,9 +289,6 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 $scope.coverPhotoURI = $scope.user.cover_image;
                 $scope.profilePhotoURI = $scope.user.profile_image;
 
-                /* Calculate user age for highlights section */
-                calculateAge();
-
                 /* Init default sections texts */
                 if ($scope.user.summary == undefined || $scope.user.summary == "")
                     $scope.defaultSummaryEnable = true;
@@ -358,8 +359,18 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 $scope.education = {};
                 $scope.addEducationEnable = false;
                 $scope.educationEditor = false;
+                $scope.isAddingEducation = false;
+
                 $scope.saveEducation = saveEducation;
                 $scope.updateEducation = updateEducation;
+                $scope.deleteEducation = deleteEducation;
+
+                $scope.onEducationAdd = function () {
+                    $scope.isAddingEducation = true;
+                };
+                $scope.onEducationCancel = function () {
+                    $scope.isAddingEducation = false;
+                };
             };
 
             var initExperience = function () {
@@ -367,25 +378,22 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 $scope.experience = {};
                 $scope.addExperienceEnable = false;
                 $scope.experienceEditor = false;
+                $scope.isAddingExperience = false;
 
                 $scope.saveExperience = saveExperience;
                 $scope.updateExperience = updateExperience;
-
-                $scope.enableDefaultExperience = function () {
-                    if ($scope.defaultExperienceEnable == true)
-                        $scope.defaultExperienceEnable = false;
-                };
-
-                $scope.disableDefaultExperience = function () {
-                    if ($scope.user.experiences.length == 0)
-                        $scope.defaultExperienceEnable = true;
-                };
-
                 $scope.deleteExperience = deleteExperience;
+
+                $scope.onExperienceAdd = function() {
+                    $scope.isAddingExperience = true;
+                };
+
+                $scope.onExperienceCancel = function() {
+                    $scope.isAddingExperience = false;
+                };
             };
 
             var initLanguages = function () {
-                $scope.languages = [];
                 $scope.language = null;
                 $scope.addLanguageEnable = false;
                 $scope.isAddingLanguage = false;
@@ -399,6 +407,8 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 };
 
                 $scope.saveLanguage = saveLanguage;
+                $scope.deleteLanguage = deleteLanguage;
+                $scope.updateLanguage = updateLanguage;
             };
 
             /* GETTERS */
@@ -555,7 +565,11 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
             };
 
             var getLanguage = function (language) {
-              return new CandidateLanguages({language_id: language.language_id, level: 2, candidate_id: $scope.user.uid})
+              return new CandidateLanguages({
+                  language_id: language.language_id,
+                  level: language.level,
+                  candidate_id: $scope.user.uid
+              })
             };
 
             var getLanguages = function () {
@@ -572,10 +586,12 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 language.$save().then(
                     function(language) {
                         getLanguages();
+                        alertService.addInfo('Language successfully saved!', 5000);
                     }
                 ).catch(
                     function (error) {
                         console.log(error);
+                        alertService.addError(error.data.error, 5000)
                     }
                 )
             };
@@ -613,6 +629,23 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     });
             };
 
+            var updateLanguage = function (valid, updated) {
+                if (!valid) return;
+                var language = getLanguage(updated);
+                language.id = updated.id;
+                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
+                language.$update().then(
+                    function(language) {
+                        getLanguages();
+                        alertService.addInfo('Language successfully updated!', 5000);
+                    }
+                ).catch(
+                    function(error) {
+                        console.log(error);
+                    }
+                )
+            };
+
             /* DELETES */
 
             var deleteExperience = function(index) {
@@ -636,27 +669,54 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 modalService.confirm("Are you sure you want to delete this experience?").then(deleteIt)
             };
 
+            var deleteEducation = function(index) {
+                var deleteIt = function() {
+                    var education = new Education({
+                        candidate_id: $scope.user.uid,
+                        id: $scope.user.educations[index].id
+                    });
+                    $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
+                    education.$delete().then(
+                        function() {
+                            $scope.user.educations.splice(index);
+                            alertService.addInfo('Education successfully deleted!', 5000);
+                        }
+                    ).catch(
+                        function (error) {
+                            console.log(error);
+                        }
+                    )
+                };
+                modalService.confirm("Are you sure you want to delete this education?").then(deleteIt)
+            };
+
+            var deleteLanguage = function(language) {
+                var deleteIt = function(language) {
+                    var language = new CandidateLanguages({
+                        candidate_id: $scope.user.uid,
+                        id: language.id
+                    });
+                    $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
+                    language.$delete().then(
+                        function() {
+                            var index = $scope.user.languages.map(function(elem) {return elem.id}).indexOf(language.id);
+                            $scope.user.languages.splice(index);
+                            alertService.addInfo('Language successfully deleted!', 5000);
+                        }
+                    ).catch(
+                        function (error) {
+                            console.log(error)
+                        }
+                    )
+                };
+                modalService.confirm("Are you sure you want to delete this language?").then(
+                    function() {
+                        deleteIt(language)
+                    }
+                )
+            };
+
             /* OTHER FUNCTIONS */
-
-            var calculateAge = function () { // birthday is a date
-                var partsOfBirthday = $scope.user.birth.split('-');
-                var year = partsOfBirthday[0];
-                var month = partsOfBirthday[1];
-                var day = partsOfBirthday[2];
-
-                var d = new Date();
-                d.setFullYear(year, month-1, day);
-                var ageDifMs = Date.now() - d.getTime();
-                var ageDate = new Date(ageDifMs); //miliseconds from epoch
-                $scope.age = Math.abs(ageDate.getUTCFullYear() - 1970);
-            };
-
-            $scope.scrollTo = function (id) {
-                var old = $location.hash();
-                $location.hash(id);
-                $anchorScroll();
-                $location.hash(old);
-            };
 
             getData();
 

@@ -1,106 +1,144 @@
 angular
-	.module('mepedia.controllers')
-	.controller("candidateSignupController",
-	['$scope', '$q', '$http', '$state', 'sessionService', 'Skill', 'Candidate', 'Interest', 'CandidateNationalities', 'Education', 'CandidateSkills', 'Utils', 'alertService',
-	($scope, $q, $httpProvider, $state, sessionService, Skill, Candidate, Interest, CandidateNationalities, Education, CandidateSkills, Utils, alertService)->
+    .module('mepedia.controllers')
+    .controller("candidateSignupController",
+    ['$scope', '$q', '$http', '$state', 'sessionService', 'Skill', 'Candidate', 'Interest', 'CandidateNationalities', 'Education', 'CandidateSkills', 'Utils', 'alertService',
+    ($scope, $q, $httpProvider, $state, sessionService, Skill, Candidate, Interest, CandidateNationalities, Education, CandidateSkills, Utils, alertService)->
 
-		init = ->
-			$scope.selectedTags = []
-			$scope.education = new Education()
-			$scope.skills = new CandidateSkills()
-			$scope.candidateNationality = new CandidateNationalities();
+        init = ->
+            $scope.selectedTags = []
+            $scope.education = new Education()
+            $scope.skills = new CandidateSkills()
+            $scope.candidateNationality = new CandidateNationalities();
+            
+            $scope.genders = [
+                "Female",
+                "Male",
+                "Other"
+            ]
+            
+            $scope.userGender = "Select Gender"
 
-			$scope.selectedFrom = "From"
-			$scope.selectedTo = "To"
+            $scope.selectedFrom = "From"
+            $scope.selectedTo = "To"
 
-			$scope.onCountry = (country) ->
-				if(country?)
-					$scope.user.country_id = country.id
+            $scope.onGender = (gender) ->
+                if(gender?)
+                    $scope.userGender = gender
+                    $scope.user.gender = gender
 
-			$scope.onState = (state) ->
-				if(state?)
-					$scope.user.state_id = state.id
+            $scope.onCountry = (country) ->
+                if(country?)
+                    $scope.country = country
+                    $scope.user.country_id = country.id
 
-			$scope.onNationality = (nationality) ->
-				if(nationality?)
-					$scope.candidateNationality.name = nationality.name
-					$scope.candidateNationality.candidate_id = $scope.user.uid;
+            $scope.onState = (state) ->
+                if(state?)
+                    $scope.state = state
+                    $scope.user.state_id = state.id
 
-			####### Eduaction ######
+            $scope.onNationality = (nationality) ->
+                if(nationality?)
+                    $scope.nationality = nationality
+                    $scope.candidateNationality.name = nationality.name
+                    $scope.candidateNationality.candidate_id = $scope.user.uid;
 
-			$scope.onSchool = (school) ->
-				if(school?)
-					$scope.education.school_id = school.id
+            ####### Eduaction ######
 
-			$scope.onSchoolCountry = (country) ->
-				if(country?)
-					$scope.education.country_id = country.id
+            $scope.onSchool = (school) ->
+                if(school?)
+                    $scope.school = school
+                    $scope.education.school_id = school.id
 
-			$scope.onSchoolState = (state) ->
-				if(state?)
-					$scope.education.state_id = state.id
+            $scope.onSchoolCountry = (country) ->
+                if(country?)
+                    $scope.schoolCountry = country
+                    $scope.education.country_id = country.id
 
-			$scope.onMajor = (major) ->
-				if(major?)
-					$scope.education.major_id = major.id
+            $scope.onSchoolState = (state) ->
+                if(state?)
+                    $scope.schoolState = state
+                    $scope.education.state_id = state.id
 
-			$scope.onDegree = (degree) ->
-				if(degree?)
-					$scope.education.degree_id = degree.id
+            $scope.onMajor = (major) ->
+                if(major?)
+                    $scope.major = major
+                    $scope.education.major_id = major.id
 
-			####### Skills ######
-			Skill.query (skills) ->
-				$scope.skillsTags = skills.skills
+            $scope.onDegree = (degree) ->
+                if(degree?)
+                    $scope.degree = degree
+                    $scope.education.degree_id = degree.id
 
-			$scope.selectedSkills = [];
+            ####### Skills ######
+            Skill.query (skills) ->
+                $scope.skillsTags = skills.skills
 
-			sessionService.requestCurrentUser().then(
-				(user) ->
-					$state.go 'home.page' if !user?
-					$scope.user = Utils.candidateFromObject(user.candidate)
-					$scope.education.candidate_id = $scope.user.uid
-					$scope.skills.candidate_id = $scope.user.uid
-				,
-				(error) ->
-					console.log error
-					$state.go 'home.page'
-			)
+            $scope.selectedSkills = [];
 
-			$scope.validatePersonal = (valid) ->
-				$state.go 'main.signup_candidate.education' if valid
+            sessionService.requestCurrentUser().then(
+                (user) ->
+                    $state.go 'home.page' if !user?
+                    $scope.user = Utils.candidateFromObject(user.candidate)
+                    $scope.education.candidate_id = $scope.user.uid
+                    $scope.skills.candidate_id = $scope.user.uid
+                ,
+                (error) ->
+                    console.log error
+                    $state.go 'home.page'
+            )
 
-			$scope.validateEducation = (valid) ->
-				$state.go 'main.signup_candidate.interests' if valid
+            $scope.validatePersonal = (valid) ->
+                $state.go 'main.signup_candidate.education' if valid
 
-			$scope.validateAndCreate = validateAndCreate
+            $scope.validateEducation = (valid) ->
+                $state.go 'main.signup_candidate.interests' if valid
 
-		validateAndCreate = (valid) ->
-			createUser() if valid
+            $scope.backToPersonal = ->
+                $state.go 'main.signup_candidate.personal'
 
-		createUser = () ->
-			$httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
-			$q.all([saveCandidateNationality(), saveEducation(), saveSkills(), saveUser()])
-				.then(
-					(data) ->
-						console.log(data)
-						$state.go 'main.candidate_profile'
-					,
-					(error) ->
-						$scope.serverErrors = error.data.error
-				)
+            $scope.backToEducation = ->
+                $state.go 'main.signup_candidate.education'
 
-		saveEducation = ->
-			$scope.education.$save()
+            $scope.validateAndCreate = validateAndCreate
+            $scope.setInnerScope = (scope) -> $scope.innerScope = scope
+            dateValidation()
 
-		saveCandidateNationality = ->
-			$scope.candidateNationality.$save()
+        validateAndCreate = (valid) ->
+            createUser() if valid
 
-		saveSkills = ->
-			$scope.skills.skills = $scope.selectedSkills.map((skill) -> {name: skill.name})
-			$scope.skills.$update()
+        createUser = () ->
+            $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
+            $q.all([saveCandidateNationality(), saveEducation(), saveSkills(), saveUser()])
+                .then(
+                    (data) ->
+                        console.log(data)
+                        $state.go 'main.candidate_profile'
+                    ,
+                    (error) ->
+                        $scope.serverErrors = error.data.error
+                )
 
-		saveUser = ->
-			$scope.user.$update()
+        saveEducation = ->
+            $scope.education.$save()
 
-		init()
+        saveCandidateNationality = ->
+            $scope.candidateNationality.$save()
+
+        saveSkills = ->
+            $scope.skills.skills = $scope.selectedSkills.map((skill) -> {name: skill})
+            $scope.skills.$update()
+
+        saveUser = ->
+            $scope.user.$update()
+
+        dateValidation = ->
+	        $scope.$watchGroup(
+		        ['education.start_date', 'education.end_date'],
+		        ->
+			        valid = Date.parse($scope.education.end_date) >= Date.parse($scope.education.start_date)
+			        valid = !$scope.education.end_date? || valid
+			        $scope.innerScope.educationForm.$setValidity('validDates', valid) if $scope.innerScope
+	        )
+
+        init()
 ])

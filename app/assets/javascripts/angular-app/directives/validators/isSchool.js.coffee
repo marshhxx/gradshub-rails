@@ -8,7 +8,7 @@ IsSchool = (School) ->
 			scope.schools = schools.schools
 			ctrl.$validators.school = (value) ->
 				schoolNames = scope.schools.map((school) -> school.name)
-				return value.name in schoolNames || value == ""
+				return value? and (value.name in schoolNames or value == "")
 
 	}
 angular
