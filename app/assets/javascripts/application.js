@@ -19,7 +19,7 @@
 //= require angular-messages
 // Insert html in text
 //= require angular-sanitize
-//= require angular-animate
+////= require angular-animate
 //= require angular-cookies
 
 // Upload images (order is important)
