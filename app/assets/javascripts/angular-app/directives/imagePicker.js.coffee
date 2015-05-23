@@ -1,4 +1,4 @@
-ImagePicker = (Cloudinary, $httpProvider) ->
+ImagePicker = (Cloudinary, $httpProvider, $timeout) ->
   {
   restrict: 'E',
   scope:{
@@ -12,7 +12,9 @@ ImagePicker = (Cloudinary, $httpProvider) ->
     $scope.coverPhoto = false
     $scope.coverImageSelectorVisible = true
     $scope.coverLoaded = false
-    $scope.spinnerVisible = false
+
+
+
     $scope.defaultCoverImageVisible = false
     $scope.cloudinaryCoverPhotoData = false
     initUser = false
@@ -35,9 +37,9 @@ ImagePicker = (Cloudinary, $httpProvider) ->
               #show:
               $scope.coverPhoto = true
               $scope.coverImageSelectorVisible = true
-              $scope.defaultCoverImageVisible = true
+              $scope.defaultCoverImageVisible = false
               #hide:
-              $scope.spinnerVisible = false
+              #$scope.spinnerVisible = false
               $scope.temporaryCoverPhoto = false
 
     $scope.onFileSelectCover = ($files) ->
@@ -69,14 +71,14 @@ ImagePicker = (Cloudinary, $httpProvider) ->
       #            */
       if !$scope.temporaryCoverPhoto
         $scope.temporaryCoverPhoto = true
-        angular.element('.spinner-container').css({'z-index': '10'})
+        #angular.element('.spinner-container').css({'z-index': '10'})
 
 
       delete $httpProvider.defaults.headers.common['Authorization']
       Cloudinary.uploadImage(file).then((data) ->
         $scope.cloudinaryCoverPhotoData = data
         $scope.coverLoaded = true
-        $scope.defaultCoverImageVisible = false
+        #$scope.defaultCoverImageVisible = false
         $scope.coverPhoto = false
       ).catch((error)->
       )
@@ -85,13 +87,11 @@ ImagePicker = (Cloudinary, $httpProvider) ->
     contentCoverPhoto = angular.element('.profile.wrapper')
 
     pictureCoverPhoto.on('load',()->
-      #show:
-      $scope.coverPhotoInProgress = true;
-      $scope.temporaryCoverPhoto = true;
+
 
       if $scope.coverPhoto
         $scope.coverPhoto = false;
-        angular.element('.spinner-container').css({'z-index': '0'})
+        #angular.element('.spinner-container').css({'z-index': '0'})
 
       pictureCoverPhoto.guillotine({eventOnChange: 'guillotinechange', width: contentCoverPhoto[0].offsetWidth - 2, height: 365})
       pictureCoverPhoto.guillotine('fit')
@@ -106,15 +106,22 @@ ImagePicker = (Cloudinary, $httpProvider) ->
           $('#' + k).html(data[k])
       )
 
+      $timeout (->
         #show:
-      $scope.coverPhotoButtons = true
+        $scope.coverPhotoInProgress = true;
+        $scope.temporaryCoverPhoto = true;
+        $scope.spinnerVisible = false;
+        #show:
+        $scope.coverPhotoButtons = true
         #hide:
-      $scope.coverImageSelectorVisible = false;
-      $scope.spinnerVisible = false;
-      $scope.$apply()
+        $scope.coverImageSelectorVisible = false;
+
+        $scope.$apply()
+      ), 3000
     )
 
     $scope.saveCoverPhoto = () ->
+      $scope.spinnerVisible = true;
       imageData = pictureCoverPhoto.guillotine('getData');
       imageData.w = $scope.cloudinaryCoverPhotoData.width;
       imageData.h = $scope.cloudinaryCoverPhotoData.height;
@@ -133,11 +140,17 @@ ImagePicker = (Cloudinary, $httpProvider) ->
       # get Secure URI.
       $scope.coverPhotoURI = coverPhotoThumbernail[0].src
       $scope.user.cover_image = $scope.coverPhotoURI #update user reference
+
       $scope.user.tag = $scope.cloudinaryCoverPhotoData.public_id
       #Update user image url
       $scope.updateUser()
       #Cover photo is changing
       $scope.coverPhotoInProgress = false
+
+      $timeout (->
+        $scope.spinnerVisible = false;
+      ), 2000
+
 
 
     angular.element('.cover-photo-img').on('load', () ->
@@ -147,10 +160,10 @@ ImagePicker = (Cloudinary, $httpProvider) ->
       #show:
       $scope.coverPhoto = true
       $scope.coverImageSelectorVisible = true
-      $scope.defaultCoverImageVisible = true
+      #$scope.defaultCoverImageVisible = false
 
       #hide:
-      $scope.spinnerVisible = false
+      #$scope.spinnerVisible = false
       $scope.temporaryCoverPhoto = false
 
       #it's necessary to call $apply in order to bind variables with the DOM
@@ -165,12 +178,13 @@ ImagePicker = (Cloudinary, $httpProvider) ->
 
       # hide:
       $scope.temporaryCoverPhoto = false
-      $scope.spinnerVisible = false
+      #$scope.spinnerVisible = false
       $scope.coverPhotoInProgress = false
 
       if !$scope.coverPhoto
         $scope.defaultCoverImageVisible = true
         $scope.coverPhoto = true
+
 
 
 
@@ -188,4 +202,4 @@ ImagePicker = (Cloudinary, $httpProvider) ->
 
 angular
 .module('mepedia.directives')
-.directive('simpleimagepicker', ['Cloudinary', '$http', ImagePicker]);
+.directive('simpleimagepicker', ['Cloudinary', '$http', '$timeout', ImagePicker]);

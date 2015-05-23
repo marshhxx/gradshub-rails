@@ -1,20 +1,15 @@
 <div class="image-picker wrapper">
-    <div class="coverImage" ng-show="defaultCoverImageVisible"></div>
+
+    <spinner show-spinner="spinnerVisible"></spinner>
+
+    <img class="coverImage" ng-show="defaultCoverImageVisible"/>
     <div class="coverImageEdit wrapper" ng-show="coverImageSelectorVisible">
         <div class="coverImageEdit img" ng-file-select="onFileSelectCover($files)"
              data-multiple="false" title="cover_photo"
              onclick="this.value = null"></div>
     </div>
     <div class="temporary-cover-photo" ng-show="temporaryCoverPhoto">
-        <div class="spinner-container" ng-show="spinnerVisible">
-            <div class="spinner">
-                <div class="rect1"></div>
-                <div class="rect2"></div>
-                <div class="rect3"></div>
-                <div class="rect4"></div>
-                <div class="rect5"></div>
-            </div>
-        </div>
+
         <div class="contentGillotineCover">
             <div class="frame">
                 <img src="{{cloudinaryCoverPhotoData.secure_url}}" id="temp_cover_photo" ng-show="coverLoaded"/>
@@ -29,7 +24,7 @@
             </a>
         </div>
     </div>
-    <div class="cover-photo-img-wrapper">
+    <div class="img-container">
         <img class="cover-photo-img" src="{{coverPhotoURI}}" ng-show="coverPhoto">
     </div>
 </div>
