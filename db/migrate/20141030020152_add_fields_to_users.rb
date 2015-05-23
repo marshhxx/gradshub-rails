@@ -14,6 +14,7 @@ class AddFieldsToUsers < ActiveRecord::Migration
     end
 
     create_table :users do |t|
+      t.boolean :admin, default: false
       t.string :uid,  null: false
 
       t.string :name , null: false

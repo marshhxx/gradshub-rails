@@ -1,10 +1,8 @@
 angular.module('mepedia.directives').directive('profileHighlights', function (click) {
     return {
         scope: {
-            user: '=data',
-            scrollTo: '='
+            user: '='
         },
-        transclude: false,
         templateUrl: 'angular-app/templates/directives/profile-highlights.html',
         link: function (scope, element, attrs) {
 
@@ -14,7 +12,7 @@ angular.module('mepedia.directives').directive('profileHighlights', function (cl
 
             scope.onEducationEditor = function () {
                 click('educationEdit0');
-            }
+            };
         }
     };
 });
