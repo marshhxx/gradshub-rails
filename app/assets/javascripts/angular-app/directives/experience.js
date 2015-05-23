@@ -39,11 +39,11 @@ angular.module('mepedia.directives').directive('experience', [ 'Utils', function
 
             scope.experience.end_date ? scope.isCurrentJob = false : scope.isCurrentJob = true;
 
-            angular.element('#switchEditingJob').bootstrapSwitch({
+            angular.element('.switchEditingJob').bootstrapSwitch({
                 state: scope.isCurrentJob
             });
             
-            angular.element('#switchEditingJob').on('switchChange.bootstrapSwitch', function(event, state) {
+            angular.element('.switchEditingJob').on('switchChange.bootstrapSwitch', function(event, state) {
                 state ? scope.isCurrentJob = true : scope.isCurrentJob = false;
                 scope.$apply();
             });

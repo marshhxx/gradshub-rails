@@ -11,8 +11,8 @@ angular
             $scope.candidateNationality = new CandidateNationalities();
             
             $scope.genders = [
-                "Female",
                 "Male",
+                "Female",
                 "Other"
             ]
             
@@ -24,7 +24,13 @@ angular
             $scope.onGender = (gender) ->
                 if(gender?)
                     $scope.userGender = gender
-                    $scope.user.gender = gender
+
+                    if gender == "Male"
+                        $scope.user.gender = 0
+                    else if gender == "Female"
+                        $scope.user.gender = 1
+                    else
+                        $scope.user.gender = 2
 
             $scope.onCountry = (country) ->
                 if(country?)
@@ -100,7 +106,17 @@ angular
                 $state.go 'main.signup_candidate.education'
 
             $scope.validateAndCreate = validateAndCreate
+
             $scope.setInnerScope = (scope) -> $scope.innerScope = scope
+
+            $scope.$on '$viewContentLoaded', (event) ->
+                angular.element('#switchEducationSignup').bootstrapSwitch state: $scope.isCurrentEducation
+
+                angular.element('#switchEducationSignup').on 'switchChange.bootstrapSwitch', (event, state) ->
+                    if state then ($scope.isCurrentEducation = true) else ($scope.isCurrentEducation = false)
+                    $scope.$apply()
+                    return
+
             dateValidation()
 
         validateAndCreate = (valid) ->
@@ -132,13 +148,15 @@ angular
             $scope.user.$update()
 
         dateValidation = ->
-	        $scope.$watchGroup(
-		        ['education.start_date', 'education.end_date'],
-		        ->
-			        valid = Date.parse($scope.education.end_date) >= Date.parse($scope.education.start_date)
-			        valid = !$scope.education.end_date? || valid
-			        $scope.innerScope.educationForm.$setValidity('validDates', valid) if $scope.innerScope
-	        )
+            $scope.$watchGroup(
+                ['education.start_date', 'education.end_date'],
+                ->
+                    valid = Date.parse($scope.education.end_date) >= Date.parse($scope.education.start_date)
+                    valid = !$scope.education.end_date? || valid
+                    $scope.innerScope.educationForm.$setValidity('validDates', valid) if $scope.innerScope
+            )
+
+        $scope.isCurrentEducation = true
 
         init()
 ])
