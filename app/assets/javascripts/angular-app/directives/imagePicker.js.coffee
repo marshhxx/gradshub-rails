@@ -8,7 +8,6 @@ ImagePicker = (Cloudinary, $httpProvider) ->
   templateUrl: 'angular-app/templates/directives/image-picker.html',
   link: ($scope, $element) ->
     $scope.coverPhotoButtons = false
-    $scope.coverPhotoButtons = false
     $scope.temporaryCoverPhoto = true
     $scope.coverPhoto = false
     $scope.coverImageSelectorVisible = true
@@ -16,6 +15,7 @@ ImagePicker = (Cloudinary, $httpProvider) ->
     $scope.spinnerVisible = false
     $scope.defaultCoverImageVisible = false
     $scope.cloudinaryCoverPhotoData = false
+    initUser = false
 
     cloudinaryData = ""
 
@@ -24,20 +24,21 @@ ImagePicker = (Cloudinary, $httpProvider) ->
 
     #This method will be called whet the 'objectToInject' value is changes
     $scope.$watch "user", (value) ->
-
-      #Checking if the given value is not undefined
-      if value
-        $scope.user = value
-          #Do something
-        $scope.coverPhotoURI = $scope.user.cover_image
-        if $scope.coverPhotoURI
-          #show:
-          $scope.coverPhoto = true
-          $scope.coverImageSelectorVisible = true
-          $scope.defaultCoverImageVisible = true
-          #hide:
-          $scope.spinnerVisible = false
-          $scope.temporaryCoverPhoto = false
+        #Checking if the given value is not undefined
+        if value
+          if !initUser
+            initUser = true
+            $scope.user = value
+              #Do something
+            $scope.coverPhotoURI = $scope.user.cover_image
+            if $scope.coverPhotoURI
+              #show:
+              $scope.coverPhoto = true
+              $scope.coverImageSelectorVisible = true
+              $scope.defaultCoverImageVisible = true
+              #hide:
+              $scope.spinnerVisible = false
+              $scope.temporaryCoverPhoto = false
 
     $scope.onFileSelectCover = ($files) ->
       file = $files[0]
@@ -103,19 +104,22 @@ ImagePicker = (Cloudinary, $httpProvider) ->
         data.scale = parseFloat(data.scale.toFixed(4));
         for k in data
           $('#' + k).html(data[k])
+      )
 
         #show:
-        $scope.coverPhotoButtons = true
+      $scope.coverPhotoButtons = true
         #hide:
-        $scope.coverImageSelectorVisible = false;
-        $scope.spinnerVisible = false;
-
-        $scope.$apply()
-      )
+      $scope.coverImageSelectorVisible = false;
+      $scope.spinnerVisible = false;
+      $scope.$apply()
     )
 
     $scope.saveCoverPhoto = () ->
       imageData = pictureCoverPhoto.guillotine('getData');
+      imageData.w = $scope.cloudinaryCoverPhotoData.width;
+      imageData.h = $scope.cloudinaryCoverPhotoData.height;
+      imageData.x = Math.round(imageData.x / imageData.scale);
+      imageData.y = Math.round(imageData.y / imageData.scale);
       coverPhotoThumbernail = Cloudinary.getThumbnail(imageData, $scope.cloudinaryCoverPhotoData) #Get Cropped Thumbernail
 
       delete $httpProvider.defaults.headers.common['Authorization'];

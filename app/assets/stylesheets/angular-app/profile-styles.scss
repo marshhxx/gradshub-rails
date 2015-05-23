@@ -127,7 +127,7 @@ h3 {
 .edit-buttons-wrapper {
   position: absolute;
   bottom: 15px;
-  margin: 0% 15px 0% 0%;
+  margin: 0 15px 0 0;
   right: 0;
 }
 
@@ -177,12 +177,13 @@ h3 {
 
 .temporary-cover-photo {
   height: 365px;
-  position: relative;
+  //position: relative;
 }
 
 .spinner-container {
   position:relative; 
   top: 0px;
+  z-index: 999;
 }
 
 .contentGillotineCover {
@@ -208,6 +209,13 @@ h3 {
   height: 100%;
 }
 
+.image-picker.wrapper{
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 365px;
+}
 
 /** COVER PHOTO END **/
 
