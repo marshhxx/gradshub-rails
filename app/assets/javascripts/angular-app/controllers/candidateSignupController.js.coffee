@@ -11,8 +11,8 @@ angular
             $scope.candidateNationality = new CandidateNationalities();
             
             $scope.genders = [
-                "Female",
                 "Male",
+                "Female",
                 "Other"
             ]
             
@@ -24,7 +24,13 @@ angular
             $scope.onGender = (gender) ->
                 if(gender?)
                     $scope.userGender = gender
-                    $scope.user.gender = gender
+
+                    if gender == "Male"
+                        $scope.user.gender = 0
+                    else if gender == "Female"
+                        $scope.user.gender = 1
+                    else
+                        $scope.user.gender = 2
 
             $scope.onCountry = (country) ->
                 if(country?)
@@ -88,6 +94,7 @@ angular
             )
 
             $scope.validatePersonal = (valid) ->
+                console.log $scope.user
                 $state.go 'main.signup_candidate.education' if valid
 
             $scope.validateEducation = (valid) ->

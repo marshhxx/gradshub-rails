@@ -60,11 +60,11 @@ angular.module('mepedia.directives').directive('education', ['State', 'Country',
 
             scope.education.end_date ? scope.isCurrentEducation = false : scope.isCurrentEducation = true;
 
-            angular.element('#switchEditingEducation').bootstrapSwitch({
+            angular.element('.switchEditingEducation').bootstrapSwitch({
                 state: scope.isCurrentEducation
             });
             
-            angular.element('#switchEditingEducation').on('switchChange.bootstrapSwitch', function(event, state) {
+            angular.element('.switchEditingEducation').on('switchChange.bootstrapSwitch', function(event, state) {
                 state ? scope.isCurrentEducation = true : scope.isCurrentEducation = false;
                 scope.$apply();
             });
