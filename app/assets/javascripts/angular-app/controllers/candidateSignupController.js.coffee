@@ -1,8 +1,8 @@
 angular
     .module('mepedia.controllers')
     .controller("candidateSignupController",
-    ['$scope', '$q', '$http', '$state', 'sessionService', 'Skill', 'Candidate', 'Interest', 'CandidateNationalities', 'Education', 'CandidateSkills', 'Utils', 'alertService',
-    ($scope, $q, $httpProvider, $state, sessionService, Skill, Candidate, Interest, CandidateNationalities, Education, CandidateSkills, Utils, alertService)->
+    ['$rootScope', '$scope', '$q', '$http', '$state', 'sessionService', 'Skill', 'Candidate', 'Interest', 'CandidateNationalities', 'Education', 'CandidateSkills', 'Utils', 'alertService',
+    ($rootScope, $scope, $q, $httpProvider, $state, sessionService, Skill, Candidate, Interest, CandidateNationalities, Education, CandidateSkills, Utils, alertService)->
 
         init = ->
             $scope.selectedTags = []
@@ -94,7 +94,6 @@ angular
             )
 
             $scope.validatePersonal = (valid) ->
-                console.log $scope.user
                 $state.go 'main.signup_candidate.education' if valid
 
             $scope.validateEducation = (valid) ->
@@ -107,7 +106,18 @@ angular
                 $state.go 'main.signup_candidate.education'
 
             $scope.validateAndCreate = validateAndCreate
+
             $scope.setInnerScope = (scope) -> $scope.innerScope = scope
+
+            $scope.$on '$viewContentLoaded', (event) ->
+
+                angular.element('#switchEducationSignup').bootstrapSwitch state: $scope.isCurrentEducation
+
+                angular.element('#switchEducationSignup').on 'switchChange.bootstrapSwitch', (event, state) ->
+                    if state then ($scope.isCurrentEducation = true) else ($scope.isCurrentEducation = false)
+                    $scope.$apply()
+                    return
+
             dateValidation()
 
         validateAndCreate = (valid) ->
@@ -139,13 +149,15 @@ angular
             $scope.user.$update()
 
         dateValidation = ->
-	        $scope.$watchGroup(
-		        ['education.start_date', 'education.end_date'],
-		        ->
-			        valid = Date.parse($scope.education.end_date) >= Date.parse($scope.education.start_date)
-			        valid = !$scope.education.end_date? || valid
-			        $scope.innerScope.educationForm.$setValidity('validDates', valid) if $scope.innerScope
-	        )
+            $scope.$watchGroup(
+                ['education.start_date', 'education.end_date'],
+                ->
+                    valid = Date.parse($scope.education.end_date) >= Date.parse($scope.education.start_date)
+                    valid = !$scope.education.end_date? || valid
+                    $scope.innerScope.educationForm.$setValidity('validDates', valid) if $scope.innerScope
+            )
+
+        $scope.isCurrentEducation = true
 
         init()
 ])

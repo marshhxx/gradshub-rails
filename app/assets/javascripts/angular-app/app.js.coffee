@@ -45,14 +45,6 @@
 		url: "/resetsccss"
 		templateUrl: "angular-app/templates/views/forgot_pssw_success.html"
 		controller: "forgotPasswordController "
-	).state("main.signup_candidate",
-		url: "/signup/candidate"
-		templateUrl: "angular-app/templates/signup.html"
-		controller: "candidateSignupController"
-	).state("main.signup_employer",
-		url: "/signup/employer"
-		templateUrl: "angular-app/templates/signup.html"
-		controller: "employerSignupController"
 	).state("main.signup_candidate.personal",
 		url: "/personal"
 		templateUrl: "angular-app/templates/views/form-personal.html"
@@ -71,6 +63,14 @@
 	).state("main.signup_employer.looking",
 		url: "/looking"
 		templateUrl: "angular-app/templates/views/form-lookingfor.html"
+	).state("main.signup_candidate",
+		url: "/signup/candidate"
+		templateUrl: "angular-app/templates/signup.html"
+		controller: "candidateSignupController"
+	).state("main.signup_employer",
+		url: "/signup/employer"
+		templateUrl: "angular-app/templates/signup.html"
+		controller: "employerSignupController"
 	).state("main.candidate_profile",
 		url: "/candidate/profile"
 		templateUrl: "angular-app/templates/candidate_profile.html"
