@@ -1,8 +1,8 @@
 angular
     .module('mepedia.controllers')
     .controller("candidateSignupController",
-    ['$rootScope', '$scope', '$q', '$http', '$state', 'sessionService', 'Skill', 'Candidate', 'Interest', 'CandidateNationalities', 'Education', 'CandidateSkills', 'Utils', 'alertService',
-    ($rootScope, $scope, $q, $httpProvider, $state, sessionService, Skill, Candidate, Interest, CandidateNationalities, Education, CandidateSkills, Utils, alertService)->
+    ['$scope', '$q', '$http', '$state', 'sessionService', 'Skill', 'Candidate', 'Interest', 'CandidateNationalities', 'Education', 'CandidateSkills', 'Utils', 'alertService',
+    ($scope, $q, $httpProvider, $state, sessionService, Skill, Candidate, Interest, CandidateNationalities, Education, CandidateSkills, Utils, alertService)->
 
         init = ->
             $scope.selectedTags = []
@@ -110,7 +110,6 @@ angular
             $scope.setInnerScope = (scope) -> $scope.innerScope = scope
 
             $scope.$on '$viewContentLoaded', (event) ->
-
                 angular.element('#switchEducationSignup').bootstrapSwitch state: $scope.isCurrentEducation
 
                 angular.element('#switchEducationSignup').on 'switchChange.bootstrapSwitch', (event, state) ->
