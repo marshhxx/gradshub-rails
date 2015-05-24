@@ -8,6 +8,12 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
   rescue_from ActionController::ParameterMissing, :with => :bad_request
   rescue_from ArgumentError, :with => :bad_request
+  rescue_from CanCan::AccessDenied, :with => :unauthorized
+
+  def unauthorized
+    @error = {:reasons => ['The user has no permission to perform this action.'], :code => FORBIDDEN}
+    render_error :forbidden
+  end
 
   def record_not_found
     @error = {:reasons => ["Resource with id #{params[:id]} doesn't exist."], :code => INVALID_PARAMS_ERROR}

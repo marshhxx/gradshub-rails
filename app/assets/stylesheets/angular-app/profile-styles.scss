@@ -1,3 +1,4 @@
+@import "colors";
 /* General */
 
 h3 {
@@ -183,8 +184,8 @@ h3 {
 }
 
 .temporary-cover-photo {
-  height: 365px;
-  //position: relative;
+  width: 100%;
+  z-index: 3;
 }
 
 .spinner-container {
@@ -215,7 +216,8 @@ h3 {
 .img-container{
   position: absolute;
   width: 100%;
-  z-index: 3;
+  height: 100%;
+  z-index: 1;
   top: 0px;
 }
 
@@ -230,7 +232,6 @@ h3 {
   background: -ms-linear-gradient(bottom,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.2) 69%,rgba(0,0,0,0.09) 86%,rgba(0,0,0,0) 100%); /* IE10+ */
   background: linear-gradient(to top,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.2) 69%,rgba(0,0,0,0.09) 86%,rgba(0,0,0,0) 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
-
 }
 
 .cover-photo-img {
@@ -273,30 +274,26 @@ h3 {
 }
 
 .profileImage.content {
-  border-radius: 50%;
-  border: none;
-  width: 240px;
-  height: 240px;
-  position: absolute;
-  z-index: 100;
-  background-color: #FFF;
+  width: 100%;
+  height: 100%;
+  background-color: $primary-white;
 }
 
 .profileImage.img {
-  background: url(profile-default-image.svg) no-repeat;
-  background-size: 100%;
   height: 100%;
   width: 100%;
+  background: url(profile-default-image.svg) no-repeat;
+  background-size: 100%;
   position: absolute;
 }
 
 .male {
-  background-image: url(male.png) !important;
+  background-image: url(male.svg) !important;
 
 }
 
 .female {
-  background-image: url(female.jpeg) !important;
+  background-image: url(female.svg) !important;
 }
 
 .profileHeadline.wrapper {
@@ -314,7 +311,7 @@ h3 {
   text-align: center;
   position: absolute;
   top: 190px;
-  z-index: 100;
+  z-index: 113;
 }
 
 .profileImageEdit.img {
@@ -386,12 +383,12 @@ h3 {
 .profileLeftContent.section{
   display: inline-block;
   width: 100%;
-  background-color: #FFFFFF;
+  min-width: 285px;
+  background-color: $primary-blue;
   margin-top: 20px;
-  border-radius: 3px;
-  border: 1px solid #d8d8d8;
-  border-bottom-width: 2px;
-  padding: 20px 20px 25px 20px;
+  border-radius: 6px;
+  border: 1px solid $border-blue;
+  padding: 30px 20px 30px 20px;
 }
 
 .profileMainContent{
@@ -404,27 +401,23 @@ h3 {
 .profile-img {
   width: 35px;
   height: 35px;
-  background-size: 35px !important;
+  background-size: 30px !important;
 }
 
 .profile-img.location{
-  background: url('_location.svg') center center no-repeat;
+  background: url('map_marker.svg') center center no-repeat;
 }
 
 .profile-img.education{
-  background: url('_graduationcap.svg') center center no-repeat;
-}
-
-.profile-img.topskills{
-  background: url('_loudspeaker.svg') center center no-repeat;
+  background: url('graduation_hat.svg') center center no-repeat;
 }
 
 .profile-img.jobposition{
-  background: url('_workcase.svg') center center no-repeat;
+  background: url('case.svg') center center no-repeat;
 }
 
 .profile-img.company{
-  background: url('_company.svg') center center no-repeat;
+  background: url('portfolio.svg') center center no-repeat;
 }
 
 .profile-communication-panel-img{
@@ -456,26 +449,36 @@ p {
 
 .profileLeft {
   width: 100%;
-  padding: 7px 0;
+  padding: 10px 0;
   float: left;
 }
 
+.horizontal-line{
+  min-height: 1px;
+  clear:both;
+  width:100%;
+  text-align: center;
+  height:1px;
+}
+
+.horizontal-line.blue{
+  border-bottom:1px solid $border-blue;
+}
+
 .img-col {
-  width: 15%;
+  display: inline-block;
   float: left;
 }
 
 .cont-col {
-  width: 70%;
-  height: 35px;
+  display: inline-block;
   float: left;
-  overflow: auto;
+  padding-left: 15px;
 }
 
 .ph-col {
-  width: 15%;
   height: 35px;
-  float: left;
+  float: right;
 }
 
 .profile-input{
@@ -502,28 +505,34 @@ p {
 }
 
 .edit-pencil{
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   background: url(pencil.svg) no-repeat;
-  background-size: 25px;
+  background-size: 20px;
   float: right;
   cursor: pointer;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-.edit-pencil:hover{
+.edit-pencil-hover:hover{
   background: url(pencil-hover.svg) no-repeat;
-  background-size: 25px;
+  background-size: 20px;
   cursor: pointer;
 }
 
 .edit-pencil-hover{
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   float: right;
   background: url(pencil.svg) no-repeat;
-  background-size: 25px;
+  background-size: 20px;
   cursor: pointer;
   visibility: hidden;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .profile-edit-on-hover:hover .edit-pencil-hover{
@@ -609,11 +618,10 @@ p {
 }
 
 .profile-right-container{
-  background-color: #FFF;
+  background-color: $primary-white;
   margin: 20px 0 20px 20px;
-  border-radius: 3px;
-  border: 1px solid #d8d8d8;
-  border-bottom-width: 2px;
+  border-radius: 6px;
+  border: 1px solid $border-gray;
 }
 
 .profile-right-header{
@@ -634,22 +642,27 @@ p {
 }
 
 .profile-right-header-img.skills{
-  background: url(skills.svg) no-repeat;
+  background: url(rocket.svg) no-repeat;
   background-size: 40px;
 }
 
 .profile-right-header-img.education{
-  background: url(education-yellow.svg) no-repeat;
+  background: url(graduation_hat_orange.svg) no-repeat;
   background-size: 40px;
 }
 
 .profile-right-header-img.experience{
-  background: url(experience.svg) no-repeat;
+  background: url(books.svg) no-repeat;
   background-size: 40px;
 }
 
 .profile-right-header-img.interests{
-  background: url(interests-gray.svg) no-repeat;
+  background: url(light_bulb.svg) no-repeat;
+  background-size: 40px;
+}
+
+.profile-right-header-img.languages{
+  background: url(message_bubble.svg) no-repeat;
   background-size: 40px;
 }
 
@@ -683,10 +696,6 @@ p {
   background: #D3EEFA;
 }
 
-.profile-right-container{
-
-}
-
 .profile-right-text{
   color: #999999;
   font: 14px Lato-Regular;
@@ -717,13 +726,21 @@ textarea{
   font: 14px Lato-Regular;
 }
 
+.header-highlight-title {
+  font: 18px Lato-Regular;
+  color: $primary-white;
+  text-align: center;
+}
+
 .header-highlight-placeholder{
+  margin-left: 5px;
   color: #999999;;
   font: 14px Lato-Regular;
   line-height: 35px;
 }
 
 .header-highlight-txt{
+  margin-left: 5px;
   color: #122028;
   font: 14px Lato-Regular;
   line-height: 35px;

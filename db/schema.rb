@@ -58,8 +58,14 @@ ActiveRecord::Schema.define(version: 20141030020738) do
   add_index "candidates_skills", ["candidate_id", "skill_id"], name: "index_candidates_skills_on_candidate_id_and_skill_id", unique: true, using: :btree
 
   create_table "companies", force: true do |t|
-    t.string "name"
-    t.string "industry"
+    t.string  "name"
+    t.string  "industry"
+    t.string  "specialties"
+    t.string  "type"
+    t.integer "state_id"
+    t.integer "country_id"
+    t.string  "size"
+    t.text    "description"
   end
 
   create_table "countries", force: true do |t|
@@ -174,16 +180,17 @@ ActiveRecord::Schema.define(version: 20141030020738) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "uid",                                 null: false
-    t.string   "name",                                null: false
+    t.boolean  "admin",                  default: false
+    t.string   "uid",                                    null: false
+    t.string   "name",                                   null: false
     t.string   "lastname"
-    t.string   "email",                               null: false
+    t.string   "email",                                  null: false
     t.integer  "gender",                 default: 2
     t.date     "birth"
     t.string   "profile_image"
     t.string   "cover_image"
     t.text     "tag"
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.integer  "meta_id"

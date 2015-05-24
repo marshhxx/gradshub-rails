@@ -66,7 +66,7 @@
 
                                     <div class="form-group control-group"
                                          ng-class="{'has-error': homeForm.email.$invalid && (homeForm.$submitted || homeForm.email.$touched)}">
-                                        <input ng-model-options="{debounce: 500}" type="email" name="email" class="form-control" ng-model="email"
+                                        <input type="email" name="email" class="form-control" ng-model="email"
                                                placeholder="Your Email" required>
 
 	                                    <div ng-if="homeForm.email.$invalid && (homeForm.$submitted || homeForm.email.$touched)" ng-messages="homeForm.email.$error">

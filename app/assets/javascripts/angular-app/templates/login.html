@@ -16,7 +16,7 @@
                                 <div class="login input-box">
                                     <div class="form-group login-group margin-t20"
                                          ng-class="{'has-error': loginForm.email.$invalid && (loginForm.$submitted || loginForm.email.$touched)}">
-                                        <input ng-model-options="{debounce: 500}" type="email" name="email" class="form-control" ng-model="email"
+                                        <input type="email" name="email" class="form-control" ng-model="email"
                                                placeholder="Your Email" required>
 
 	                                    <div ng-if="loginForm.email.$invalid && (loginForm.$submitted || loginForm.email.$touched)" ng-messages="loginForm.email.$error">
