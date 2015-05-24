@@ -22,7 +22,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="profile-add-right-content profile-form-animation" ng-show="addEducationEnable">
+	<div class="profile-add-right-content profile-form-animation" ng-if="addEducationEnable">
 		<div class="control-group has-error" ng-messages="frontEndErrors">
 			<div class="help-block" ng-repeat="error in frontEndErrors.errors">
 				{{error}}

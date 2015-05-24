@@ -4,7 +4,7 @@ class Ability
   def initialize(current_user)
     current_user ||= User.new # guest user (not logged in)
 
-    alias_action :create, :update, :update_collection, :destroy, :to => :more_than_see
+    alias_action :update, :update_collection, :destroy, :to => :more_than_see
     can :manage, :all
 
     if not current_user.admin?

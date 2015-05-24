@@ -25,7 +25,10 @@ class Api::V1::CompaniesController < Api::NestedController
   end
 
   def company_params
-    params.require(:company).permit(:name, :industry, :company_id) if params[:company]
+    params.require(:company).permit(
+        :specialties, :headquarters_state, :headquarters_country,
+        :size, :type, :name, :industry, :description, :company_id
+    ) if params[:company]
   end
 
   def employer_company_params
