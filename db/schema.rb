@@ -174,16 +174,17 @@ ActiveRecord::Schema.define(version: 20141030020738) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "uid",                                 null: false
-    t.string   "name",                                null: false
+    t.boolean  "admin",                  default: false
+    t.string   "uid",                                    null: false
+    t.string   "name",                                   null: false
     t.string   "lastname"
-    t.string   "email",                               null: false
+    t.string   "email",                                  null: false
     t.integer  "gender",                 default: 2
     t.date     "birth"
     t.string   "profile_image"
     t.string   "cover_image"
     t.text     "tag"
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.integer  "meta_id"

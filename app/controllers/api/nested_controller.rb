@@ -90,7 +90,8 @@ class Api::NestedController < Api::BaseController
   def parent_resource_name
     if params[:candidate_id]
       name = 'candidate'
-    else params[:employer_id]
+    else
+      params[:employer_id]
       name = 'employer'
     end
     @parent_resource_name ||= name
@@ -117,7 +118,13 @@ class Api::NestedController < Api::BaseController
   end
 
   def collection
-    if collection_params then collection_params["#{resource_name.pluralize}"].map { |x| resource_class.find_or_create_by(x)} else [] end
+    if collection_params then
+      collection_params["#{resource_name.pluralize}"].map {
+          |x| resource_class.find_or_create_by(x)
+      }
+    else
+      []
+    end
   end
 
   def create_resource
