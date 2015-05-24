@@ -50,7 +50,6 @@ class Api::V1::UsersController < Api::BaseController
   end
 
   def update
-    set_resource(resource_class.find_by_uid(params[:id]))
     if get_resource.user.update(resource_params[:user_attributes]) and get_resource.update(resource_params.slice!(:user_attributes))
       logger.info 'User updated!'
       render :show, status: :accepted and return
@@ -85,4 +84,5 @@ class Api::V1::UsersController < Api::BaseController
     # allowing us to filter by this
     params.permit(:name, :email)
   end
+
 end

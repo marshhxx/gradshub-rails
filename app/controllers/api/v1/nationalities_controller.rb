@@ -1,10 +1,11 @@
 class Api::V1::NationalitiesController < Api::NestedController
+  wrap_parameters include: [:nationality_id]
   before_action :authenticate_with_token!, only: [:create, :update, :destroy]
 
   private
 
   def nationality_params
-    params.require(:nationality).permit(:name) if params[:nationality]
+    params.require(:nationality).permit(:nationality_id) if params[:nationality]
   end
 
   def query_params
@@ -12,6 +13,6 @@ class Api::V1::NationalitiesController < Api::NestedController
   end
 
   def create_resource
-    resource_class.find_by_name(resource_params[:name])
+    resource_class.find(resource_params[:nationality_id])
   end
 end

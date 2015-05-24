@@ -3,8 +3,7 @@ angular.module('mepedia.directives').directive('education', ['State', 'Country',
         scope: {
             education: '=data',
             updateEducation: '=',
-            educationEditor: '=',
-            onDelete: '='
+            onDeleteCallback: '=onDelete'
         },
         templateUrl: 'angular-app/templates/directives/education.html',
         link: function (scope, element, attrs) {
@@ -17,16 +16,25 @@ angular.module('mepedia.directives').directive('education', ['State', 'Country',
             /* Methods */
 
             scope.onSave = function (valid, index) {
-                scope.education.school_id = scope.educationTemp.school_id;
-                scope.education.major_id = scope.educationTemp.major_id;
-                scope.education.degree_id = scope.educationTemp.degree_id;
-                scope.education.country_id = scope.educationTemp.country_id;
-                scope.education.description = scope.educationTemp.description;
-                scope.education.start_date = scope.educationTemp.start_date;
-                if (scope.isCurrentEducation)
-                    scope.educationTemp.end_date = undefined;
-                scope.education.end_date = scope.educationTemp.end_date;
-                scope.updateEducation(valid, index);
+                if (valid) {
+                    scope.education.school_id = scope.educationTemp.school.id;
+                    scope.education.major_id = scope.educationTemp.major.id;
+                    scope.education.degree_id = scope.educationTemp.degree.id;
+                    scope.education.country_id = scope.educationTemp.country.id;
+                    scope.education.state_id = scope.educationTemp.state.id;
+                    scope.education.description = scope.educationTemp.description;
+                    scope.education.start_date = scope.educationTemp.start_date;
+                    if (scope.isCurrentEducation)
+                        scope.educationTemp.end_date = undefined;
+                    scope.education.end_date = scope.educationTemp.end_date;
+                    scope.educationEditor = false;
+                    scope.updateEducation(valid, index);
+                }
+            };
+
+            scope.onDelete = function (index) {
+                scope.educationEditor = false;
+                scope.onDeleteCallback(index);
             };
 
             scope.onCancel = function () {

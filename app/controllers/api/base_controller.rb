@@ -1,8 +1,7 @@
 class Api::BaseController < ApplicationController
   protect_from_forgery with: :null_session
-  before_action :set_resource, only: [:destroy, :show, :update]
+  load_and_authorize_resource :only => [:destroy, :show, :update, :update_collection]
   respond_to :json
-  authorize_resource
 
   # POST /api/{plural_resource_name}
   def create

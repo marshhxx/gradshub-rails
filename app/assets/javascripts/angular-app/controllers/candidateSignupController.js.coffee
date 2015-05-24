@@ -45,7 +45,7 @@ angular
             $scope.onNationality = (nationality) ->
                 if(nationality?)
                     $scope.nationality = nationality
-                    $scope.candidateNationality.name = nationality.name
+                    $scope.candidateNationality.nationality_id = nationality.id
                     $scope.candidateNationality.candidate_id = $scope.user.uid;
 
             ####### Eduaction ######

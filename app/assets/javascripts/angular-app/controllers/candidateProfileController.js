@@ -395,7 +395,6 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
 
             var initLanguages = function () {
                 $scope.language = null;
-                $scope.addLanguageEnable = false;
                 $scope.isAddingLanguage = false;
                 $scope.languageEditor = false;
 
@@ -580,7 +579,6 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
 
             var saveLanguage = function (valid) {
                 if (!valid) return;
-                $scope.addLanguageEnable = false;
                 var language = getLanguage($scope.language); //Create Language Resource
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 language.$save().then(
@@ -657,7 +655,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                     experience.$delete().then(
                         function () {
-                            $scope.user.experiences.splice(index);
+                            $scope.user.experiences.splice(index, 1);
                             alertService.addInfo('Experience successfully deleted!', 5000);
                         }
                     ).catch(
@@ -678,7 +676,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                     education.$delete().then(
                         function() {
-                            $scope.user.educations.splice(index);
+                            $scope.user.educations.splice(index, 1);
                             alertService.addInfo('Education successfully deleted!', 5000);
                         }
                     ).catch(
@@ -700,7 +698,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     language.$delete().then(
                         function() {
                             var index = $scope.user.languages.map(function(elem) {return elem.id}).indexOf(language.id);
-                            $scope.user.languages.splice(index);
+                            $scope.user.languages.splice(index, 1);
                             alertService.addInfo('Language successfully deleted!', 5000);
                         }
                     ).catch(
