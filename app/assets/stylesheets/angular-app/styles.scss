@@ -65,6 +65,11 @@
   src: url(Lato-Light.ttf);
 }
 
+@font-face {
+  font-family: 'Hanzipen';
+  src: url(Hanzipen.ttc);
+}
+
 html {
   height: 100%;
   -webkit-user-select: none;
@@ -172,6 +177,10 @@ input::-webkit-input-placeholder {
 
 .padding-right-0 {
   padding-right: 0 !important;
+}
+
+.padding-b-20 {
+  padding-bottom: 20px !important;
 }
 
 @media(min-width: 768px) {
