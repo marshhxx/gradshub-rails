@@ -48,14 +48,14 @@
                 <button type="submit" class="btn btn-edit"> 
                     <span>SAVE</span>
                 </button>
-                <button ng-click="onCancel()" class="btn btn-edit margin-l5">
+                <a ng-click="onCancel()" class="btn btn-edit margin-l5">
                     <span>CANCEL</span>
-                </button>
+                </a>
             </div>
 
         </div>
     </div>
-    <div class="profile-add-right-content">
+    <div class="profile-add-right-content" ng-if="educationEditor">
         <div class="form-group" ng-class="{'has-error': educationForm.school.$invalid && (educationForm.$submitted || educationForm.school.$touched)}">
             <school-selector focus-codition="educationEditor" placeholder="School" ng-model="educationTemp.school" on-select="onSchool" required></school-selector>
 
@@ -106,7 +106,7 @@
                 </div>
             </div>
             <div class="form-group div-50 right" ng-class="{'has-error': educationForm.state.$invalid && (educationForm.$submitted || educationForm.state.$touched)}">
-                <state-selector placeholder="School State" ng-model="educationTemp.state" on-select="onState" country-id="educationTemp.country_id"></state-selector>
+                <state-selector placeholder="School State" ng-model="educationTemp.state" on-select="onState" country-id="educationTemp.country.id"></state-selector>
 
                 <div ng-if="educationForm.state.$invalid && (educationForm.$submitted || educationForm.state.$touched)" ng-messages="educationForm.state.$error">
                     <div class="help-block" ng-message="state">
