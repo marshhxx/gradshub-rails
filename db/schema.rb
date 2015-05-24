@@ -58,8 +58,14 @@ ActiveRecord::Schema.define(version: 20141030020738) do
   add_index "candidates_skills", ["candidate_id", "skill_id"], name: "index_candidates_skills_on_candidate_id_and_skill_id", unique: true, using: :btree
 
   create_table "companies", force: true do |t|
-    t.string "name"
-    t.string "industry"
+    t.string  "name"
+    t.string  "industry"
+    t.string  "specialties"
+    t.string  "type"
+    t.integer "state_id"
+    t.integer "country_id"
+    t.string  "size"
+    t.text    "description"
   end
 
   create_table "countries", force: true do |t|

@@ -210,6 +210,12 @@ class AddFieldsToUsers < ActiveRecord::Migration
     create_table :companies do |t|
       t.string :name
       t.string :industry
+      t.string :specialties
+      t.string :type
+      t.belongs_to :state
+      t.belongs_to :country
+      t.string :size
+      t.text :description
 
       t.timestamp
     end
