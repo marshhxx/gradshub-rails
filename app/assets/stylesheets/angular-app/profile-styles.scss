@@ -274,20 +274,16 @@ h3 {
 }
 
 .profileImage.content {
-  border-radius: 50%;
-  border: none;
-  width: 240px;
-  height: 240px;
-  position: absolute;
-  z-index: 100;
-  background-color: #FFF;
+  width: 100%;
+  height: 100%;
+  background-color: $primary-white;
 }
 
 .profileImage.img {
-  background: url(profile-default-image.svg) no-repeat;
-  background-size: 100%;
   height: 100%;
   width: 100%;
+  background: url(profile-default-image.svg) no-repeat;
+  background-size: 100%;
   position: absolute;
 }
 
@@ -315,7 +311,7 @@ h3 {
   text-align: center;
   position: absolute;
   top: 190px;
-  z-index: 100;
+  z-index: 113;
 }
 
 .profileImageEdit.img {
@@ -414,10 +410,6 @@ h3 {
 
 .profile-img.education{
   background: url('graduation_hat.svg') center center no-repeat;
-}
-
-.profile-img.topskills{
-  background: url('_loudspeaker.svg') center center no-repeat;
 }
 
 .profile-img.jobposition{
