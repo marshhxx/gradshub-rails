@@ -8,7 +8,7 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout) ->
   templateUrl: 'angular-app/templates/directives/image-picker.html',
   link: ($scope, $element) ->
     $scope.coverPhotoButtons = false
-    $scope.temporaryCoverPhoto = true
+    $scope.temporaryCoverPhoto = false
     $scope.coverPhoto = false
     $scope.coverImageSelectorVisible = true
     $scope.coverLoaded = false
@@ -63,8 +63,8 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout) ->
       #/* when the temporary photo DIV is hidden
       #            * - SHOW temporary photo DIV
       #            */
-      if !$scope.temporaryCoverPhoto
-        $scope.temporaryCoverPhoto = true
+      #if !$scope.temporaryCoverPhoto
+      #  $scope.temporaryCoverPhoto = true
 
       delete $httpProvider.defaults.headers.common['Authorization']
       Cloudinary.uploadImage(file).then((data) ->
@@ -97,6 +97,8 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout) ->
         #show:
         $scope.coverPhotoInProgress = true;
         $scope.coverPhoto = false
+
+        $scope.defaultCoverImageVisible = false;
         $scope.temporaryCoverPhoto = true;
         $scope.spinnerVisible = false;
         #show:

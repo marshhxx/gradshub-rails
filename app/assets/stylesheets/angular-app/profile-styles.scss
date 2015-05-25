@@ -146,8 +146,6 @@ h3 {
   position: absolute;
   text-shadow: 0 0 3px rgba(0,0,0,.6);
   z-index: 10;
-    max-width: 25px;
-  max-height: 25px;
 }
 
 .coverBorder {
@@ -740,8 +738,7 @@ textarea{
 }
 
 .header-highlight-txt{
-  margin-left: 5px;
-  color: #122028;
+  color: $primary-white;
   font: 14px Lato-Regular;
   line-height: 35px;
 }

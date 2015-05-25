@@ -1,8 +1,9 @@
 <div class="image-picker wrapper">
 
     <spinner show-spinner="spinnerVisible"></spinner>
-
-    <img class="coverImage" ng-show="defaultCoverImageVisible"/>
+    <div class="img-container" ng-show="defaultCoverImageVisible">
+        <img class="coverImage"/>
+    </div>
     <div class="img-container" ng-show="coverPhoto">
         <img class="cover-photo-img" src="{{coverPhotoURI}}">
     </div>
