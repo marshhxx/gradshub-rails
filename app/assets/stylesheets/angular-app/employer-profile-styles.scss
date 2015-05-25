@@ -1,4 +1,7 @@
 /* COVER PHOTO */
+.coverBorder.coverBorderEmployer {
+  height: 361px;
+}
 .employerDefaultCoverPhoto {
   background: url('default-cover-photo.png') center center no-repeat;
   background-size: cover;
@@ -44,7 +47,7 @@
 }
 
 .companyDefaultPhoto {
-  background-color: #00A5E4;
+  background-color: white;
   background-size: 272px 272px;
   background-position: -8px -6px;
   height: 225px;
@@ -55,11 +58,13 @@
 }
 
 .companyDefaultPhoto h2 {
+  font-family: Montserrat-Regular;
   text-align: center;
-  font-size: 2em;
-  color: white;
+  text-transform: uppercase;
+  font-size: 25px;
+  color: #374776;
   margin: 43% auto;
-  width: 205px;
+  width: 213px;
 }
 
 .companyImageEdit.wrapper {
@@ -88,13 +93,15 @@
 .companyNameWrapper {
   color: white;
   position: relative;
-  width: 30%;
+  width: 40%;
   text-align: center;
   margin: 32% auto 0px;
 }
 
 .companyNameWrapper h1 {
-    font-weight: bold;
+  font-family: Montserrat-Regular;
+  font-size: 40px;
+  text-transform: uppercase;
 }
 
 
@@ -122,26 +129,39 @@
   padding: 20px 20px 25px 20px;
 }
 
+.employerProfileLeftContent .section.employer-info-wrapper {
+  padding: 60px 20px 25px 20px;
+}
+
+.employerProfileLeftContent .section.company-wrapper{
+  background-color: #00a5e4;
+}
+
 /* Employer profile image */
 .employerProfilePhotoWrapper {
+  position: absolute;
+  top: -55px;
+  left: 30%;
   padding: 0;   
 }
 
+.employerBasicInfoWrapper {
+  font-family: Montserrat-Regular;
+  text-align: center;
+}
+
 .employerNameWrapper {
-  margin: 35px 0px 0px 10px;
-  font-weight: bold;
+  margin: 35px 0px 0px 0px;
   font-size: 2em;
+  
 }
 
 .employerTagWrapper {
-  margin-left: 10px;
   font-size: 18px;
-  width: 300px;
 }
 
 .employerPositionWrapper {
-  margin-left: 10px;
-  font-size: 18px;
+  font-size: 22px;
 }
 
 .employerDefaultProfileImage.img {
@@ -175,6 +195,14 @@
     padding: 0;
 }
 
+.profile-right-container {
+  background-color: #FFF;
+  margin: 20px 0 20px 20px;
+  border-radius: 3px;
+  border: 1px solid #d8d8d8;
+  border-bottom-width: 2px;
+}
+
 .profile-right-header.title {
   width: 55%;
 }
@@ -185,13 +213,24 @@
 }
 
 .profile-left-header.title {
-  float: left;
-  width: 65%;
+  color: white;
+  text-align: center;
+  width: 100%;
+}
+
+.border-title { 
+  width: 88%;
+  margin: 0 auto;
+  border-top: 3px solid #4262ad; 
 }
 
 .profile-left-header.edit {
   float: right;
-  width: 35%;
+  height: 35px;
+  width: 35px;
+  position: relative;
+  top: -80px;
+  left: 10px;
 }
 .edit-pencil.employer {
   margin: 0 10px 0 0;
@@ -254,4 +293,27 @@
 }
 .help-block {
   color: #a94442;  
+}
+
+.profile-img.company-name{
+  background: url('companyname_employer.svg') center center no-repeat;
+  background-size: 30px !important;
+}
+
+.profile-img.company-industry {
+  text-transform: inherit;
+  background: url('companyindustry_employer.svg') center center no-repeat;
+  background-size: 30px !important;
+}
+
+.profile-img.company-location {
+  text-transform: inherit;
+  background: url('headquarters_employer.svg') center center no-repeat;
+  background-size: 30px !important;
+}
+
+.profile-img.company-url {
+  text-transform: inherit;
+  background: url('website_employer.svg') center center no-repeat;
+  background-size: 30px !important;
 }

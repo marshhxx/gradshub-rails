@@ -2,7 +2,7 @@
     <div class="profile wrapper col-md-9 col-md-offset-1">
         <div id="employerProfileTopSection" style="overflow: auto;">
             <div id="employerProfileCover" class="coverWrap">
-                <div class="coverBorder">
+                <div class="coverBorder coverBorderEmployer">
                     <div class="employerDefaultCoverPhoto"></div>
                     <div class="employerCoverImageEdit wrapper">
                         <div class="employerCoverImageEdit img"></div>
@@ -24,21 +24,21 @@
             </div>
         </div>
         <div class="employerProfileContent">
-            <div class="employerProfileLeftContent cont col-md-6">
-                <div class="section padding-135">
+            <div class="employerProfileLeftContent cont col-md-5">
+                <div class="section employer-info-wrapper padding-135">
                     <div class="employerProfilePhotoWrapper col-xs-4">
                         <div class="img-circle employerDefaultProfileImage img" ng-class="user.gender"></div>
                         <div class="employerProfileImageEdit wrapper">
                             <div class="employerProfileImageEdit img"></div>
                         </div>
                     </div>
-                    <div class="employerBasicInfoWrapper col-xs-8">
+                    <div class="employerBasicInfoWrapper col-xs-12">
                         <div class="employerNameWrapper">
                             <p>{{user.name}} {{user.lastname}}</p>
-                        </div>
+                        </div><!-- Uncomment to enable tag visibility
                         <div class="employerTagWrapper">
                             <p>{{user.tag}}</p>
-                        </div>
+                        </div>-->
                         <div class="employerPositionWrapper">
                             <p>{{user.job_title}}</p>
                         </div>                     
@@ -54,8 +54,7 @@
 
             </div>
 
-            <div class="employerProfileRightContent col-md-6">
-            
+            <div class="employerProfileRightContent col-md-7">
                 <!-- DESCRIPTION -->
                 <div class="profile-right-container">
                     <div class="profile-right-header">
