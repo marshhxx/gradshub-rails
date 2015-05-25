@@ -15,4 +15,8 @@ class Employer < ActiveRecord::Base
   def self.find_by_email(email)
     User.find_by(email: email)
   end
+
+  def self.find(id)
+    User.find_by_uid!(id).meta
+  end
 end

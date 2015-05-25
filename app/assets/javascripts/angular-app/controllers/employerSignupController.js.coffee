@@ -51,8 +51,8 @@ angular
                 $scope.onNationality = (nationality) ->
                     if(nationality?)
                         $scope.nationality = nationality
-                        $scope.employerNationality.name = nationality.name
-                        $scope.employerNationality.emloyer_id = $scope.user.uid;
+                        $scope.employerNationality.nationality_id = nationality.id
+                        $scope.employerNationality.emloyer_id = $scope.user.uid
 
                 $scope.onCompany = (company) ->
                     if company?
