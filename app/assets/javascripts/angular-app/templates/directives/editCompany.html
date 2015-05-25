@@ -1,10 +1,11 @@
 <!-- Education add component!-->
 <form class="company-form" novalidate class="css-form" name="companyForm">
-<div class="section padding-l35">
+<div class="section company-wrapper">
     <div class="profile-left-header">
         <div class="profile-left-header title">
             <span>Company info</span>
         </div>
+        <div class="border-title"></div>
         <div class="profile-left-header edit">
             <div class="editwrapper">
                 <div class="edit-pencil employer" ng-click="enableCompanyEditor()" ng-hide="editCompanyEnable"></div>
@@ -22,7 +23,7 @@
     <div class="employer-left-content-wrapper">
         <div class="profile-left-wrapper">
             <div class="img-col employer">
-                <div class="profile-img companyName jobposition"></div>
+                <div class="profile-img company-name"></div>
             </div>
             <div class="cont-col employer-company">
                 {{employerCompany.name}}
@@ -37,7 +38,7 @@
 
         <div class="profile-left-wrapper">
             <div class="img-col employer">
-                <div class="profile-img companyIndustry jobposition"></div>
+                <div class="profile-img company-industry"></div>
             </div>
             <div class="cont-col employer-company">
                 {{employerCompany.industry}}
@@ -53,7 +54,7 @@
 
         <div class="profile-left-wrapper">
             <div class="img-col employer">
-                <div class="profile-img companyIndustry jobposition"></div>
+                <div class="profile-img company-location"></div>
             </div>
             <div class="cont-col employer-company" ng-hide="editCompanyEnable">
                 {{employerCompany.state.name}}, {{employerCompany.country.name}}
@@ -85,7 +86,7 @@
         </div>
         <div class="profile-left-wrapper">
             <div class="img-col employer">
-                <div class="profile-img companyIndustry jobposition"></div>
+                <div class="profile-img company-url"></div>
             </div>
             <div class="cont-col employer-company" ng-hide="editCompanyEnable">
                 {{employerCompany.site_url}}
