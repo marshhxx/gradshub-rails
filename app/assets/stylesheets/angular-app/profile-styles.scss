@@ -257,9 +257,11 @@ h3 {
   position: absolute;
   z-index: 99;
   overflow: hidden; 
-  border-radius: 150px;
+  border-radius: 50%;
   width: 260px; 
   height: 260px;
+  border: 10px solid $primary-white;
+  background: #FFFFFF;
 }
 
 .profileImage.border {
@@ -343,8 +345,8 @@ h3 {
 .temporaryProfilePhoto{}
 
 .contentGuillotineProfile .frame {
-  width: 240px;
-  height: 240px;
+  width: 260px;
+  height: 260px;
   border-radius: 50% !important;
 }
 
@@ -356,8 +358,9 @@ h3 {
   position:relative; 
   z-index: 2;
   border-radius: 50%;
-  width: 240px;
-  height: 240px;
+  width: 260px;
+  height: 260px;
+  left: -10px;
 }
 
 .profilePhoto {

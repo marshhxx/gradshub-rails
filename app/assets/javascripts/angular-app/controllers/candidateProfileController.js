@@ -98,6 +98,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
 
                 /* START guillotine configuration */
                 pictureProfilePhoto.guillotine({eventOnChange: 'guillotinechange', width: 260, height: 260});
+                pictureProfilePhoto.guillotine('fit');
 
                 var data = pictureProfilePhoto.guillotine('getData');
 
