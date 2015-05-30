@@ -1,14 +1,14 @@
 <div class="image-picker wrapper">
 
     <spinner show-spinner="spinnerVisible"></spinner>
-    <div class="img-container" ng-show="defaultCoverImageVisible">
-        <img class="coverImage"/>
-    </div>
+
+    <img class="coverImage" ng-show="defaultCoverImageVisible"/>
+
     <div class="img-container" ng-show="coverPhoto">
         <img class="cover-photo-img" src="{{coverPhotoURI}}">
     </div>
 
-    <div class="coverImageEdit wrapper" ng-show="coverImageSelectorVisible">
+    <div class="coverImageEdit wrapper" ng-show="uploadImage">
         <div class="coverImageEdit img" ng-file-select="onFileSelectCover($files)"
              data-multiple="false" title="cover_photo"
              onclick="this.value = null"></div>

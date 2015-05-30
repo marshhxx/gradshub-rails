@@ -115,8 +115,8 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 /* END guillotine configuration */
 
                 angular.element('.edit-buttons-profile-photo').css({
-                    'top': '180px',
-                    'left': '48px'
+                    'top': '203px',
+                    'left': '58px'
                 });
 
                 // show:

@@ -131,7 +131,7 @@ h3 {
   font: 26px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
   color: #FFF;
   bottom: 35px;
-  left: 315px;
+  left: 345px;
   position: absolute;
   text-transform: uppercase;
   text-shadow: 0 0 3px rgba(0,0,0,.6);
@@ -142,7 +142,7 @@ h3 {
   font: 20px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
   color: #FFF;
   bottom: 9px;
-  left: 315px;
+  left: 345px;
   position: absolute;
   text-shadow: 0 0 3px rgba(0,0,0,.6);
   z-index: 10;
@@ -252,14 +252,14 @@ h3 {
 /** PROFILE PHOTO START **/
 
 .profileImage.wrapper {
-  margin-top: -220px;
+  margin-top: -228px;
   left: 30px;
   position: absolute;
   z-index: 99;
   overflow: hidden; 
   border-radius: 50%;
-  width: 260px; 
-  height: 260px;
+  width: 280px;
+  height: 280px;
   border: 10px solid $primary-white;
   background: #FFFFFF;
 }
@@ -339,7 +339,7 @@ h3 {
 .spinner-container-profile {
   position: absolute; 
   top: 150px; 
-  left: 95px;
+  left: 115px;
 }
 
 .temporaryProfilePhoto{}
@@ -357,16 +357,14 @@ h3 {
 .profile-photo {
   position:relative; 
   z-index: 2;
-  border-radius: 50%;
-  width: 260px;
-  height: 260px;
+  width: 280px;
+  height: 280px;
   left: -10px;
 }
 
 .profilePhoto {
   width: 100%;
   height: 100%;
-  border-radius: 50%;
 }
 
 /** PROFILE PHOTO END **/
