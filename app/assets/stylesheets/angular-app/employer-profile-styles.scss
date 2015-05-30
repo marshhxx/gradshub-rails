@@ -43,15 +43,15 @@
   width: 227px;
   height: 227px;
   position: relative;
-  margin: -31% auto;
+  margin: -34% auto;
 }
 
 .companyDefaultPhoto {
   background-color: white;
   background-size: 272px 272px;
   background-position: -8px -6px;
-  height: 225px;
-  width: 225px;
+  height: 200px;
+  width: 200px;
   border-radius: 50%;
   margin: auto;
   border: 6px solid #ececec;
@@ -61,10 +61,10 @@
   font-family: Montserrat-Regular;
   text-align: center;
   text-transform: uppercase;
-  font-size: 25px;
+  font-size: 20px;
   color: #374776;
   margin: 43% auto;
-  width: 213px;
+  width: 185px;
 }
 
 .companyImageEdit.wrapper {
@@ -76,18 +76,17 @@
 }
 
 .companyImageEdit.img {
-  width: 20%;
+  width: 25%;
   margin: 0 auto;
   height: 40px;
   background: url('ic-photo.svg') center center no-repeat;
-  background-size: 45px 40px;
-  //margin: 10px 15px;
+  background-size: 35px 40px;
   cursor: pointer;
 }
 
 .companyImageEdit.img:hover {
   background: url('ic-photo-hover.svg') center center no-repeat;
-  background-size: 45px 40px;
+  background-size: 35px 40px;
 }
 
 .companyNameWrapper {
@@ -161,12 +160,13 @@
 }
 
 .employerPositionWrapper {
-  font-size: 22px;
+  font-size: 17px;
+  text-transform: uppercase;
 }
 
 .employerDefaultProfileImage.img {
   background-image: url(default-profile-photo.png);
-  background-size: 100%;
+  background-size: 108%;
   background-position: -6px -4px;
   background-repeat: no-repeat;
   height: 150px;
@@ -229,39 +229,39 @@
   height: 35px;
   width: 35px;
   position: relative;
-  top: -80px;
-  left: 10px;
+  top: -60px;
 }
+
 .edit-pencil.employer {
   margin: 0 10px 0 0;
 }
 
 .profile-left-header {
   width: 100%;
-  height: 80px;
+  height: 60px;
 }
 
 .employer-left-content-wrapper {
-  overflow: auto;
+  color: white;
   width: 100%;
-  margin: 10px 0px 0px 0px
+  margin: 10px 0px 0px 0px;
+  float: left;
 }
 .img-col.employer {
   float: left;
   width: 10%;
+  margin-left: 10%;
 }
 
 .form-group.employer-company {
-  float: left;
+  float: right;
   margin: 6px 0px 0px 10px;
-  width: 80%;  
+  width: 75%;
 }
 
 .cont-col.employer-company {
-  width: 85%;
-  margin: 15px 0px 0px 5px;
-  float: left;
-  height: auto;
+  width: 75%;
+  margin-top: 3%;
 }
 
 .btn.btn-edit.employer-company {
@@ -283,13 +283,13 @@
 /* Edit company directive */
 .country-selector-wrapper {
   float: left; 
-  width: 57%;
+  width: 90%;
+  margin-bottom: 2%;
 }
 
 .state-selector-wrapper {
   float: left; 
-  width: 40%;
-  margin-left: 10px;
+  width: 90%;
 }
 .help-block {
   color: #a94442;  
@@ -306,6 +306,18 @@
   background-size: 30px !important;
 }
 
+.profile-img.company-specialties {
+  text-transform: inherit;
+  background: url('specialties_employer.svg') center center no-repeat;
+  background-size: 30px !important;
+}
+
+.profile-img.company-type {
+  text-transform: inherit;
+  background: url('type_employer.svg') center center no-repeat;
+  background-size: 30px !important;
+}
+
 .profile-img.company-location {
   text-transform: inherit;
   background: url('headquarters_employer.svg') center center no-repeat;
@@ -316,4 +328,34 @@
   text-transform: inherit;
   background: url('website_employer.svg') center center no-repeat;
   background-size: 30px !important;
+}
+
+.company-info-header {
+  height: 100px;
+  margin-top: 10px
+}
+
+.separator-employer-company {
+  border-top: 1px solid #4262ad;
+  width: 80%;
+}
+
+.company-info-content {
+  margin-bottom: 5%;
+}
+
+.company-info-row {
+  margin-bottom: 2%;
+}
+
+.input-company-url {
+  width: 90%;
+}
+
+.company-header-title {
+  font-size: 3em;
+}
+
+.company-header-title span {
+  margin-left: 22%;
 }

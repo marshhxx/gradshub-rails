@@ -1,27 +1,30 @@
 <!-- Education add component!-->
 <form class="company-form" novalidate class="css-form" name="companyForm">
-<div class="section company-wrapper">
-    <div class="profile-left-header">
-        <div class="profile-left-header title">
+<!--<div class="section company-wrapper">-->
+<div class="container-fluid" style="background-color: #00a5e4; margin-top: 3%;">
+    <div class="row" style="font-family: Angelina; color: white;">
+    <!--<div class="profile-left-header">-->
+    <div class="col-xs-12 company-info-header">
+        <div class="profile-left-header company-header-title">
             <span>Company info</span>
         </div>
         <div class="border-title"></div>
         <div class="profile-left-header edit">
             <div class="editwrapper">
                 <div class="edit-pencil employer" ng-click="enableCompanyEditor()" ng-hide="editCompanyEnable"></div>
-                <div ng-show="editCompanyEnable" class="edit-buttons-wrapper">
-                    <a class="btn btn-edit employer-company">
-                        <input type="submit" ng-click="saveCompany()" value="SAVE" />
-                    </a>
-                    <a class="btn btn-edit employer-company margin-l5">
-                        <input type="button" ng-click="onCancel()"value="CANCEL" />
-                    </a>
-                </div>
             </div>
         </div>
     </div>
-    <div class="employer-left-content-wrapper">
-        <div class="profile-left-wrapper">
+    <div ng-show="editCompanyEnable" class="edit-buttons-wrapper col-xs-12">
+        <a class="btn btn-edit employer-company">
+            <input type="submit" ng-click="saveCompany()" value="SAVE" />
+        </a>
+        <a class="btn btn-edit employer-company margin-l5">
+            <input type="button" ng-click="onCancel()"value="CANCEL" />
+        </a>
+    </div>
+    <div class="col-xs-12 company-info-content">
+        <div class="col-xs-12 company-info-row">
             <div class="img-col employer">
                 <div class="profile-img company-name"></div>
             </div>
@@ -36,7 +39,9 @@
             -->
         </div>
 
-        <div class="profile-left-wrapper">
+        <div class="col-xs-12 col-xs-offset-1 separator-employer-company"></div>
+
+        <div class="col-xs-12 company-info-row">
             <div class="img-col employer">
                 <div class="profile-img company-industry"></div>
             </div>
@@ -52,7 +57,31 @@
             -->
         </div>
 
-        <div class="profile-left-wrapper">
+        <div class="col-xs-12 col-xs-offset-1 separator-employer-company"></div>
+
+        <div class="col-xs-12 company-info-row">
+            <div class="img-col employer">
+                <div class="profile-img company-specialties"></div>
+            </div>
+            <div class="cont-col employer-company">
+                Specialties
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-xs-offset-1 separator-employer-company"></div>
+
+        <div class="col-xs-12 company-info-row">
+            <div class="img-col employer">
+                <div class="profile-img company-type"></div>
+            </div>
+            <div class="cont-col employer-company">
+                Types
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-xs-offset-1 separator-employer-company"></div>
+
+        <div class="col-xs-12 company-info-row">
             <div class="img-col employer">
                 <div class="profile-img company-location"></div>
             </div>
@@ -84,7 +113,10 @@
                 </div>
             </div>
         </div>
-        <div class="profile-left-wrapper">
+
+        <div class="col-xs-12 col-xs-offset-1 separator-employer-company"></div>
+
+        <div class="col-xs-12 company-info-row">
             <div class="img-col employer">
                 <div class="profile-img company-url"></div>
             </div>
@@ -93,7 +125,7 @@
             </div>
             <div class="form-group employer-company" ng-show="editCompanyEnable">
                 <input name="site_url" type="url" ng-model="employerCompany.site_url" required
-                    class="form-control employer-company" id="companyIndustry">
+                    class="form-control employer-company input-company-url" id="companyIndustry">
                 <div ng-if="companyForm.site_url.$invalid && (companyForm.$submitted || companyForm.site_url.$touched)" ng-messages="companyForm.site_url.$error">
                     <div class="help-block" ng-message="required">
                         You must provide a web address
@@ -104,6 +136,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </div>
 </form>

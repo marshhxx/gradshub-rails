@@ -1,5 +1,5 @@
 <div class="profile background">
-    <div class="profile wrapper col-md-9 col-md-offset-1">
+    <div class="profile wrapper col-md-8 col-md-offset-2">
         <div id="employerProfileTopSection" style="overflow: auto;">
             <div id="employerProfileCover" class="coverWrap">
                 <div class="coverBorder coverBorderEmployer">
@@ -47,10 +47,11 @@
                 <!-- EDIT COMPANY (DIRECTIVE)-->
                 <div edit-company data="employerCompany" save-company="saveCompany"
                                add-company-enable="addCompanyEnabled"></div>
+                <!-- Enable to add comunication icons
                 <div class="profileLeftContent section">
                     <div class="profile-communication-panel-img message"></div>
                     <div class="profile-communication-panel-img videocam"></div>
-                </div>
+                </div>-->
 
             </div>
 
@@ -59,7 +60,7 @@
                 <div class="profile-right-container">
                     <div class="profile-right-header">
                         <div class="profile-right-header title">
-                            <div class="profile-right-header-img summary"></div>  <h3> Description</h3>
+                            <div class="profile-right-header-img summary"></div><h3>About this company</h3>
                         </div>
                         <div class="profile-right-header edit">
                             <div class="editwrapper">
@@ -86,6 +87,7 @@
                 </div>
 
                 <!-- SKILLS -->
+                <!-- Uncomment if you want to enable
                 <div class="profile-right-container">
                     <div class="profile-right-header">
                         <div class="profile-right-header title">
@@ -98,10 +100,10 @@
 
                                 <div ng-show="editorSkillsEnabled" class="edit-buttons-wrapper">
                                     <a ng-click="saveSkills()" class="btn btn-edit">
-                                        SAVE </span>
+                                        <span>SAVE</span>
                                     </a>
                                     <a ng-click="disableSkillsEditor()" class="btn btn-edit margin-l5">
-                                        CANCEL </span>
+                                        <span>CANCEL</span>
                                     </a>
                                 </div>
                             </div>
@@ -120,8 +122,10 @@
                         </div>
                     </div>
                 </div>
+                -->
 
                 <!-- INTERESTS -->
+                <!-- Uncomment if you want to enable.
                 <div class="profile-right-container">
                     <div class="profile-right-header">
                         <div class="profile-right-header title">
@@ -134,10 +138,10 @@
 
                                 <div ng-show="editorInterestsEnabled" class="edit-buttons-wrapper">
                                     <a ng-click="saveInterests()" class="btn btn-edit">
-                                        SAVE </span>
+                                        <span>SAVE</span>
                                     </a>
                                     <a ng-click="disableInterestsEditor()" class="btn btn-edit margin-l5">
-                                        CANCEL </span>
+                                        <span>CANCEL</span>
                                     </a>
                                 </div>
                             </div>
@@ -155,7 +159,7 @@
                                         info="employerSelectedInterests"></tags-input>
                         </div>
                     </div>
-                </div>
+                </div>-->
             </div> 
         </div>
     </div>
