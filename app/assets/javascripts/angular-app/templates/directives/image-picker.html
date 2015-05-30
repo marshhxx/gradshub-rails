@@ -1,30 +1,27 @@
 <div class="image-picker wrapper">
-
     <spinner show-spinner="spinnerVisible"></spinner>
+    <img class="image-picker default-image" ng-show="defaultImage"/>
 
-    <img class="coverImage" ng-show="defaultCoverImageVisible"/>
-
-    <div class="img-container" ng-show="coverPhoto">
-        <img class="cover-photo-img" src="{{coverPhotoURI}}">
+    <div class="image-picker content" ng-show="photo">
+        <img class="image-picker img" src="{{photoURL}}">
     </div>
 
-    <div class="coverImageEdit wrapper" ng-show="uploadImage">
-        <div class="coverImageEdit img" ng-file-select="onFileSelectCover($files)"
-             data-multiple="false" title="cover_photo"
+    <div class="image-picker upload-btn-wrapper" ng-show="uploadImageBtn">
+        <div class="image-picker upload-btn" ng-file-select="onFileSelect($files)"
+             data-multiple="false" title="Cover Photo"
              onclick="this.value = null"></div>
     </div>
-    <div class="temporary-cover-photo" ng-show="temporaryCoverPhoto">
-
-        <div class="contentGillotineCover">
+    <div class="image-picker guillotine-photo" ng-show="guillotinePhoto">
+        <div class="guillotine-content">
             <div class="frame">
-                <img src="{{cloudinaryCoverPhotoData.secure_url}}" id="temp_cover_photo" ng-show="coverLoaded"/>
+                <img src="{{cloudinaryPhotoData.secure_url}}" id="guillotine-photo"/>
             </div>
         </div>
-        <div class="img-picker btn-wrapper" ng-show="coverPhotoButtons">
-            <a ng-click="saveCoverPhoto()" class="btn img-picker edit-btn">
+        <div class="img-picker btn-wrapper" ng-show="photoButtons">
+            <a ng-click="savePhoto()" class="btn img-picker edit-btn">
                 SAVE </span>
             </a>
-            <a ng-click="cancelCoverPhoto()" class="btn img-picker edit-btn margin-l5">
+            <a ng-click="cancelPhoto()" class="btn img-picker edit-btn margin-l5">
                 CANCEL </span>
             </a>
         </div>

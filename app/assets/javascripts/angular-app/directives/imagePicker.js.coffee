@@ -7,160 +7,122 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout) ->
   },
   templateUrl: 'angular-app/templates/directives/image-picker.html',
   link: ($scope, $element) ->
-    $scope.uploadImage = true
-    $scope.defaultCoverImageVisible = true
+    $scope.uploadImageBtn = true
+    $scope.defaultImage = true
+    $scope.photoButtons = false # Photo save and cancel buttons
     initUser = false
-    Cloudinary.config();
 
-    #This method will be called whet the 'objectToInject' value is changes
+    guillotinePhotoElement = angular.element('#guillotine-photo')
+    imageWrapper = angular.element('.image-picker.wrapper')
+
+    Cloudinary.config(); #init Cloudinary settings
+
+    #This method will be called when 'User' variable value changes
     $scope.$watch "user", (value) ->
-        #Checking if the given value is not undefined
-        if value
+        if value #Checking if the given value is not undefined
           if !initUser
             initUser = true
-            $scope.user = value
-              #Do something
-            $scope.coverPhotoURI = $scope.user.cover_image
-            if $scope.coverPhotoURI
-              #show:
-              $scope.coverPhoto = true
-              $scope.defaultCoverImageVisible = false
-              #hide:
-              #$scope.spinnerVisible = false
-              $scope.temporaryCoverPhoto = false
+            $scope.user = value #Updates user
+            $scope.photoURL = $scope.user.cover_image #Set photo url
+            if $scope.photoURL
+              $scope.photo = true
+              $scope.defaultImage = false
+              $scope.guillotinePhoto = false
 
-    $scope.onFileSelectCover = ($files) ->
-      file = $files[0]
-      #Get image before upload
-      temp_img = angular.element('#temp_cover_photo')
+    #Method to upload file. Called when user clicks button to upload Image.
+    $scope.onFileSelect = ($files) ->
+      file = $files[0]                    #When user select a photo we HIDE and SHOW the following elements:
+      $scope.uploadImageBtn = false         # - image upload button
+      $scope.spinnerVisible = true          # - photo save and cancel buttons
 
-      #when user select a photo HIDE the following elements:
-      # - image selector button
-      # - save and cancel buttons
-
-      $scope.uploadImage = false
-      $scope.coverPhotoButtons = false
-
-      #SHOW spinner
-      $scope.spinnerVisible = true
-
-      #when the user did not save any photo
-      #* - SHOW the default cover photo
-      #* - HIDE the cover photo loaded
-      #*/
-      if !$scope.coverPhotoURI
-        $scope.defaultCoverImageVisible = true
-        $scope.coverLoaded = false
-
-
-      #/* when the temporary photo DIV is hidden
-      #            * - SHOW temporary photo DIV
-      #            */
-      #if !$scope.temporaryCoverPhoto
-      #  $scope.temporaryCoverPhoto = true
-
+      #Call Cloudinary upload Image method to upload image to cloudinary server
       delete $httpProvider.defaults.headers.common['Authorization']
       Cloudinary.uploadImage(file).then((data) ->
-        $scope.cloudinaryCoverPhotoData = data
-        $scope.coverLoaded = true
+        $scope.cloudinaryPhotoData = data
+        $scope.guillotinePhotoLoaded = true
       ).catch((error)->
       )
 
-    pictureCoverPhoto = angular.element('#temp_cover_photo')
-    contentCoverPhoto = angular.element('.profile.wrapper')
-    pictureCoverPhoto.on('load',()->
-
-      if $scope.coverPhoto
-        $scope.coverPhoto = false;
-
-      pictureCoverPhoto.guillotine({eventOnChange: 'guillotinechange', width: contentCoverPhoto[0].offsetWidth - 2, height: 365})
-      pictureCoverPhoto.guillotine('fit')
-      data = pictureCoverPhoto.guillotine('getData')
+    #On guillotine image load
+    guillotinePhotoElement.on('load',()->
+      $scope.photo = false;
+      guillotinePhotoElement.guillotine({eventOnChange: 'guillotinechange', width: imageWrapper[0].offsetWidth - 2, height: 365})
+      guillotinePhotoElement.guillotine('fit')
+      data = guillotinePhotoElement.guillotine('getData')
 
       for key in data
         $('#' + key).html(data[key])
 
-      pictureCoverPhoto.on('guillotinechange', (ev, data, action) ->
+      guillotinePhotoElement.on('guillotinechange', (ev, data, action) ->
         data.scale = parseFloat(data.scale.toFixed(4));
         for k in data
           $('#' + k).html(data[k])
       )
 
+      #Timeout to wait components to load
       $timeout (->
-        #show:
-        $scope.coverPhotoInProgress = true;
-        $scope.coverPhoto = false
-
-        $scope.defaultCoverImageVisible = false;
-        $scope.temporaryCoverPhoto = true;
+        $scope.photo = false
+        $scope.defaultImage = false;
+        $scope.guillotinePhoto = true;
         $scope.spinnerVisible = false;
-        #show:
-        $scope.coverPhotoButtons = true
-        #hide:
-        #$scope.uploadImage = false;
-
+        $scope.photoButtons = true
         $scope.$apply()
       ), 3000
     )
 
-    $scope.saveCoverPhoto = () ->
-      $scope.spinnerVisible = true;
-      imageData = pictureCoverPhoto.guillotine('getData');
-      imageData.w = $scope.cloudinaryCoverPhotoData.width;
-      imageData.h = $scope.cloudinaryCoverPhotoData.height;
-      imageData.x = Math.round(imageData.x / imageData.scale);
-      imageData.y = Math.round(imageData.y / imageData.scale);
-      coverPhotoThumbernail = Cloudinary.getThumbnail(imageData, $scope.cloudinaryCoverPhotoData) #Get Cropped Thumbernail
-
+    deleteImage = ->
+      #Delete previous uploaded image
       delete $httpProvider.defaults.headers.common['Authorization'];
-      Cloudinary.deleteImage($scope.user.tag).then((data)->
-        #Success
-        data = data
-      ).catch((error)->
+      if $scope.user && $scope.user.cover_image
+        publicIdSplitArray = $scope.user.cover_image.split('/')
+        Cloudinary.deleteImage(publicIdSplitArray[publicIdSplitArray.length-1]).then((data)->
+          #On success
+          data = data
+        ).catch((error)->
+        )
 
-      )
+    #On save photo button click
+    $scope.savePhoto = () ->
+      $scope.spinnerVisible = true;
+      imageData = guillotinePhotoElement.guillotine('getData')
+      imageData.w = $scope.cloudinaryPhotoData.width
+      imageData.h = $scope.cloudinaryPhotoData.height
+      imageData.x = Math.round(imageData.x / imageData.scale)
+      imageData.y = Math.round(imageData.y / imageData.scale)
+      coverPhotoThumbernail = Cloudinary.getThumbnail(imageData, $scope.cloudinaryPhotoData) #Get Cropped Thumbernail
 
-      # get Secure URI.
-      $scope.coverPhotoURI = coverPhotoThumbernail[0].src
-      $scope.user.cover_image = $scope.coverPhotoURI #update user reference
+      #Delete uploaded Image
+      deleteImage()
 
-      $scope.user.tag = $scope.cloudinaryCoverPhotoData.public_id
+      #Set photo url
+      $scope.photoURL = coverPhotoThumbernail[0].src
+      $scope.user.cover_image = $scope.photoURL #update user reference
+
       #Update user image url
       $scope.updateUser()
-      #Cover photo is changing
-      $scope.coverPhotoInProgress = false
 
       $timeout (->
-        $scope.spinnerVisible = false;
+        $scope.spinnerVisible = false; #Hide spinner
       ), 2000
 
-    angular.element('.cover-photo-img').on('load', () ->
-      # we need to reset the guillotine plugin in order to call again later
-      pictureCoverPhoto.guillotine('remove')
-
-      #show:
-      $scope.coverPhoto = true
-      $scope.uploadImage = true
-      $scope.temporaryCoverPhoto = false
-
-      #it's necessary to call $apply in order to bind variables with the DOM
-      $scope.$apply()
+    angular.element('.image-picker.img').on('load', () ->
+      #Reset variables
+      guillotinePhotoElement.guillotine('remove')  #Reset guillotine plugin
+      $scope.photo = true
+      $scope.uploadImageBtn = true
+      $scope.guillotinePhoto = false
+      $scope.$apply()  #Bind variables with the DOM
     )
 
-    $scope.cancelCoverPhoto = () ->
-      # we need to reset the guillotine plugin in order to call again later
-      pictureCoverPhoto.guillotine('remove')
-      #show:
-      $scope.uploadImage = true
+    $scope.cancelPhoto = () ->
+      #Reset variables
+      guillotinePhotoElement.guillotine('remove') #Reset guillotine plugin
+      $scope.uploadImageBtn = true
+      $scope.guillotinePhoto = false
 
-      # hide:
-      $scope.temporaryCoverPhoto = false
-      $scope.coverPhotoInProgress = false
-
-      if !$scope.coverPhoto
-        $scope.defaultCoverImageVisible = true
-        $scope.coverPhoto = true
-
+      if !$scope.photo
+        $scope.defaultImage = true
+      $scope.photo = true
   }
 
 angular

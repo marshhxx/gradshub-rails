@@ -100,9 +100,22 @@ h3 {
   text-decoration: none;
 }
 
+.spinner-container {
+  position:relative;
+  text-align: center;
+  display: inline-block;
+  z-index: 10;
+}
+
 /** COVER PHOTO START **/
 
-.coverImage {
+.image-picker.wrapper{
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+.image-picker.default-image {
   background: url('default-cover-photo.png') center center no-repeat;
   background-size: cover;
   -webkit-background-size: cover;
@@ -111,20 +124,70 @@ h3 {
   display: block;
   width: 100%;
   height: 365px;
-  position: relative;
+  position: absolute;
+  top: 0 !important;
 }
 
-.cloudinary.img {
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  display: block;
-  width: 948px;
+.image-picker.upload-btn-wrapper {
+  top:0;
+  position: absolute;
+  z-index: 5;
 }
 
-.edit-buttons-wrapper {
-  float: right;
+.image-picker.upload-btn {
+  width: 45px;
+  height: 40px;
+  background: url('ic-photo.svg') center center no-repeat;
+  background-size: 45px 40px;
+  margin: 10px 15px;
+  cursor: pointer;
+}
+
+.image-picker.upload-btn:hover {
+  background: url('ic-photo-hover.svg') center center no-repeat;
+  background-size: 45px 40px;
+}
+
+.image-picker.guillotine-photo {
+  width: 100%;
+  z-index: 3;
+}
+
+.guillotine-content {
+  position: absolute; 
+  top: 0px; 
+  width: 100%;
+}
+
+.guillotine-content .frame {
+  width: 100%; 
+  height: 100%;
+}
+
+.image-picker.content{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  top: 0px;
+}
+
+.image-picker.content:after{
+  content: '';
+  top:0; left:0; right:0; bottom:0;
+  position: absolute;
+  background: -moz-linear-gradient(bottom,  rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 46%, rgba(0,0,0,0) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0%,rgba(0,0,0,0.65)), color-stop(46%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(bottom,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 46%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(bottom,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 46%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(bottom,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 46%,rgba(0,0,0,0) 100%); /* IE10+ */
+  background: linear-gradient(to top,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 46%,rgba(0,0,0,0) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+}
+
+.image-picker.img {
+  width: 100%;
+  height: 100%;
 }
 
 .profile-username-txt{
@@ -155,97 +218,11 @@ h3 {
   border-top: none !important;
   bottom: 0;
   left: 0;
-  //position: absolute;
   right: 0;
   top: 0;
   height: 365px;
 }
 
-.coverImageEdit.wrapper {
-  top:0;
-  position: absolute;
-  z-index: 5;
-}
-
-.coverImageEdit.img {
-  width: 45px;
-  height: 40px;
-  background: url('ic-photo.svg') center center no-repeat;
-  background-size: 45px 40px;
-  margin: 10px 15px;
-  cursor: pointer;
-}
-
-.coverImageEdit.img:hover {
-  background: url('ic-photo-hover.svg') center center no-repeat;
-  background-size: 45px 40px;
-}
-
-.temporary-cover-photo {
-  width: 100%;
-  z-index: 3;
-}
-
-.spinner-container {
-  position:relative;
-  text-align: center;
-  display: inline-block;
-  z-index: 10;
-}
-
-.contentGillotineCover {
-  position: absolute; 
-  top: 0px; 
-  width: 100%;
-}
-
-.contentGillotineCover .frame {
-  width: 100%; 
-  height: 100%;
-}
-
-.cover-photo-img-wrapper {
-  position: relative;
-  width: 100%;
-  z-index: 3; 
-  top: 0px;
-}
-
-.img-container{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  top: 0px;
-}
-
-.img-container:after{
-  content: '';
-  top:0; left:0; right:0; bottom:0;
-  position: absolute;
-  background: -moz-linear-gradient(bottom,  rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.2) 69%, rgba(0,0,0,0.09) 86%, rgba(0,0,0,0) 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(0%,rgba(0,0,0,0.65)), color-stop(69%,rgba(0,0,0,0.2)), color-stop(86%,rgba(0,0,0,0.09)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(bottom,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.2) 69%,rgba(0,0,0,0.09) 86%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(bottom,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.2) 69%,rgba(0,0,0,0.09) 86%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(bottom,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.2) 69%,rgba(0,0,0,0.09) 86%,rgba(0,0,0,0) 100%); /* IE10+ */
-  background: linear-gradient(to top,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.2) 69%,rgba(0,0,0,0.09) 86%,rgba(0,0,0,0) 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
-}
-
-.cover-photo-img {
-  width: 100%;
-  height: 100%;
-}
-
-.image-picker.wrapper{
-//  bottom: 0;
-//  left: 0;
-//  right: 0;
-//  top: 0;
-  height: 100%;
-  width: 100%;
-  text-align: center;
-}
 
 /** COVER PHOTO END **/
 
