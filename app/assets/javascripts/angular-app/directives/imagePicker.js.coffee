@@ -2,8 +2,8 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout) ->
   {
   restrict: 'E',
   scope:{
-    updateUser: '=',
-    user: '=',
+    updateImage: '=',
+    imageUrl: '=',
   },
   templateUrl: 'angular-app/templates/directives/image-picker.html',
   link: ($scope, $element) ->
@@ -18,12 +18,12 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout) ->
     Cloudinary.config(); #init Cloudinary settings
 
     #This method will be called when 'User' variable value changes
-    $scope.$watch "user", (value) ->
+    $scope.$watch "imageUrl", (value) ->
         if value #Checking if the given value is not undefined
           if !initUser
             initUser = true
-            $scope.user = value #Updates user
-            $scope.photoURL = $scope.user.cover_image #Set photo url
+            $scope.imageUrl = value #Updates user
+            $scope.photoURL = $scope.imageUrl #Set photo url
             if $scope.photoURL
               $scope.photo = true
               $scope.defaultImage = false
@@ -73,8 +73,8 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout) ->
     deleteImage = ->
       #Delete previous uploaded image
       delete $httpProvider.defaults.headers.common['Authorization'];
-      if $scope.user && $scope.user.cover_image
-        publicIdSplitArray = $scope.user.cover_image.split('/')
+      if $scope.imageUrl
+        publicIdSplitArray = $scope.imageUrl.split('/')
         Cloudinary.deleteImage(publicIdSplitArray[publicIdSplitArray.length-1]).then((data)->
           #On success
           data = data
@@ -96,10 +96,10 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout) ->
 
       #Set photo url
       $scope.photoURL = coverPhotoThumbernail[0].src
-      $scope.user.cover_image = $scope.photoURL #update user reference
+      $scope.imageUrl = $scope.photoURL #update user reference
 
       #Update user image url
-      $scope.updateUser()
+      $scope.updateImage()
 
       $timeout (->
         $scope.spinnerVisible = false; #Hide spinner

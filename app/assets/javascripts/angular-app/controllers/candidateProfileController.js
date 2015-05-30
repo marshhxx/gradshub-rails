@@ -23,7 +23,6 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 });
             };
 
-
             //<<<<<<<<<<<<<<< START PROFILE PHOTO >>>>>>>>>>>>>>>
 
             // show:
