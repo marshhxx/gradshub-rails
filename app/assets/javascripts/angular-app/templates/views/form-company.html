@@ -3,7 +3,7 @@
     <div class="signup form-box-cont">
         <div class="row" ng-if="!addCompanyEnabled">
             <div class="form-group"  ng-class="{'has-error': companyForm.company.$invalid && (companyForm.$submitted || companyForm.company.$touched)}">
-                <input typeahead-editable="false" name="company" type="text" ng-model="company" required class="form-control" id="company" placeholder="Company" typeahead="company as company.name + ' | ' + company.industry for company in companies | filter:$viewValue | limitTo:6" typeahead-on-select="onCompany($item)">
+                <input typeahead-editable="false" name="company" type="text" ng-model="company" required class="form-control input-sm" id="company" placeholder="Company" typeahead="company as company.name + ' | ' + company.industry for company in companies | filter:$viewValue | limitTo:6" typeahead-on-select="onCompany($item)">
 
                 <div ng-if="companyForm.company.$invalid && (companyForm.$submitted || companyForm.company.$touched)" ng-messages="companyForm.company.$error">
                     <div class="help-block" ng-message="required">
@@ -18,7 +18,7 @@
 
         <div class="row" ng-if="addCompanyEnabled">
             <div class="form-group"  ng-class="{'has-error': companyForm.companyName.$invalid && (companyForm.$submitted || companyForm.companyName.$dirty)}">
-                <input name="companyName" type="text" ng-model="newCompany.name" required class="form-control" id="companyName"
+                <input name="companyName" type="text" ng-model="newCompany.name" required class="form-control input-sm" id="companyName"
                     placeholder="Company Name">
 
                 <div ng-if="companyForm.companyName.$invalid && (companyForm.$submitted || companyForm.companyName.$dirty)" ng-messages="companyForm.companyName.$error">
@@ -31,7 +31,7 @@
 
         <div class="row" ng-if="addCompanyEnabled">
             <div class="form-group"  ng-class="{'has-error': companyForm.companyIndustry.$invalid && (companyForm.$submitted || companyForm.companyIndustry.$dirty)}">
-                <input name="companyIndustry" type="text" ng-model="newCompany.industry" required class="form-control" id="companyIndustry" placeholder="Company Industry">
+                <input name="companyIndustry" type="text" ng-model="newCompany.industry" required class="form-control input-sm" id="companyIndustry" placeholder="Company Industry">
 
                 <div ng-if="companyForm.companyIndustry.$invalid && (companyForm.$submitted || companyForm.companyIndustry.$dirty)" ng-messages="companyForm.companyIndustry.$error">
                     <div class="help-block" ng-message="required">
@@ -68,13 +68,13 @@
 
         <div class="row">
             <div class="form-group">
-                <input type="text" ng-model="employerCompany.site_url" class="form-control" id="siteUrl" placeholder="Company's Web Page" class="form-control">
+                <input type="text" ng-model="employerCompany.site_url" class="form-control input-sm" id="siteUrl" placeholder="Company's Web Page" class="form-control">
             </div>
         </div>
 
         <div class="row">
             <div class="form-group">
-                <input type="text" ng-model="user.job_title" class="form-control" id="jobPosition" placeholder="Job Position"class="form-control">
+                <input type="text" ng-model="user.job_title" class="form-control input-sm" id="jobPosition" placeholder="Job Position"class="form-control">
             </div>
         </div>
 
