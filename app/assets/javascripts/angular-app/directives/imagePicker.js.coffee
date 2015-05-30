@@ -46,7 +46,7 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout) ->
     #On guillotine image load
     guillotinePhotoElement.on('load',()->
       $scope.photo = false;
-      guillotinePhotoElement.guillotine({eventOnChange: 'guillotinechange', width: imageWrapper[0].offsetWidth - 2, height: 365})
+      guillotinePhotoElement.guillotine({eventOnChange: 'guillotinechange', width: imageWrapper[0].offsetWidth, height: imageWrapper[0].offsetHeight})
       guillotinePhotoElement.guillotine('fit')
       data = guillotinePhotoElement.guillotine('getData')
 
