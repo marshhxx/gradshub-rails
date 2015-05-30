@@ -148,11 +148,11 @@ angular
                 $scope.employerNationality.$save()
 
             saveSkills = ->
-                $scope.skills.skills = $scope.selectedSkills.map((skill) -> {name: skill.name})
+                $scope.skills.skills = $scope.selectedSkills.map((skill) -> {name: skill})
                 $scope.skills.$update()
 
             saveInterests = ->
-                $scope.interests.interests = $scope.selectedInterests.map((interest) -> {name: interest.name})
+                $scope.interests.interests = $scope.selectedInterests.map((interest) -> {name: interest})
                 $scope.interests.$update()
 
             saveUser = ->
