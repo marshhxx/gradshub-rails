@@ -1,4 +1,4 @@
-json.experiences do
+json.experience do
   json.id @experience.id
   json.candidate_id @experience.candidate.user.uid
   json.company_name @experience.company_name

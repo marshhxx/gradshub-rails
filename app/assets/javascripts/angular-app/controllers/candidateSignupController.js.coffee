@@ -17,20 +17,12 @@ angular
             ]
             
             $scope.userGender = "Select Gender"
-
             $scope.selectedFrom = "From"
             $scope.selectedTo = "To"
 
-            $scope.onGender = (gender) ->
-                if(gender?)
-                    $scope.userGender = gender
-
-                    if gender == "Male"
-                        $scope.user.gender = 0
-                    else if gender == "Female"
-                        $scope.user.gender = 1
-                    else
-                        $scope.user.gender = 2
+            $scope.onGender = (index) ->
+              $scope.user.gender = index
+              $scope.gender = $scope.userGender = $scope.genders[index]
 
             $scope.onCountry = (country) ->
                 if(country?)

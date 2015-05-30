@@ -5,6 +5,16 @@ var Utils = function(Candidate, Employer) {
     var monthToNumberMap = {"January": '01', "February": '02', "March": '03', "April": '04', "May": '05', "June": '06',
     "July": '07', "August": '08', "September": '09', "October": '10', "November": '11', "December": '12'};
 
+    var compareDates = function(one, other) {
+        var start = Date.parse(one.start_date);
+        var otherStart = Date.parse(other.start_date);
+        if (start > otherStart)
+            return -1;
+        if (start < otherStart)
+            return 1;
+        return 0;
+    };
+
     utils.candidateFromObject = function(user){
         var candidate = new Candidate();
         candidate.uid = user.uid;
@@ -46,8 +56,12 @@ var Utils = function(Candidate, Employer) {
       return monthToNumberMap[month]
     };
 
+    utils.sortByStartDate = function (array) {
+        array.sort(compareDates)
+    };
+
     return utils;
-}
+};
 angular
     .module('mepedia.services')
     .factory('Utils', Utils);

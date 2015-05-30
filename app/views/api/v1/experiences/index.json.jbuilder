@@ -1,4 +1,4 @@
-json.experiences @experiences do |experience|
+json.experiences @experiences.order(:start_date).reverse do |experience|
   json.id experience.id
   json.candidate_id experience.candidate.user.uid
   json.company_name experience.company_name

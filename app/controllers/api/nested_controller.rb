@@ -29,7 +29,7 @@ class Api::NestedController < Api::BaseController
 
   def update_collection
     set_parent_resource
-    get_parent_resource.send("#{resource_name.pluralize}=", collection)
+    get_parent_resource.send("#{resource_name.pluralize}=", get_collection)
     if get_parent_resource.save
       plural_resource_name = "@#{resource_name.pluralize}"
       instance_variable_set(plural_resource_name, get_parent_resource.send(resource_name.pluralize))
@@ -117,7 +117,7 @@ class Api::NestedController < Api::BaseController
     @collection_params ||= self.send("#{resource_name.pluralize}_params")
   end
 
-  def collection
+  def get_collection
     if collection_params then
       collection_params["#{resource_name.pluralize}"].map {
           |x| resource_class.find_or_create_by(x)
