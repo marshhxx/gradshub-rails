@@ -179,17 +179,22 @@
   width: 30%;
   position: relative;
   z-index: 100;
-  margin: -41px auto 0;
+  margin: -41px 0 0 55px;
 }
 
 .employerProfileImageEdit.img {
-  width: 60%;
+  width: 100%;
   margin: 0 auto;
-  height: 40px; 
-  background-size: 30px 30px;
+  height: 40px;
+  background: url('ic-photo.svg') center center no-repeat;
+  background-size: 35px 40px;
   cursor: pointer;
 }
 
+.employerProfileImageEdit.img:hover {
+  background: url('ic-photo-hover.svg') center center no-repeat;
+  background-size: 35px 40px;
+}
 
 .employerProfileRightContent {
     padding: 0;
@@ -204,24 +209,32 @@
 }
 
 .profile-right-header.title {
-  width: 55%;
+  width: 65%;
+}
+
+.profile-right-header.title h3 {
+  padding-top: 5px;
+  font-size: 18px;
 }
 
 .profile-right-header.edit {
   float: right;
-  width: 45%;
+  width: 35%;
+}
+
+.company-logo-summary {
+  background: url(company_logo.svg) no-repeat;
+  background-size: 50px;
+  width: 50px;
+  height: 50px;
+  margin-right: 3%;
+  float: left;
 }
 
 .profile-left-header.title {
   color: white;
   text-align: center;
   width: 100%;
-}
-
-.border-title { 
-  width: 88%;
-  margin: 0 auto;
-  border-top: 3px solid #4262ad; 
 }
 
 .profile-left-header.edit {
@@ -238,7 +251,7 @@
 
 .profile-left-header {
   width: 100%;
-  height: 60px;
+  height: 45px;
 }
 
 .employer-left-content-wrapper {
@@ -259,13 +272,43 @@
   width: 75%;
 }
 
-.cont-col.employer-company {
-  width: 75%;
-  margin-top: 3%;
+.edit-buttons-wrapper {
+  margin-left: 0px;
+  width: 100%;
 }
 
-.btn.btn-edit.employer-company {
-  height: 27px;
+.edit-buttons-wrapper.edit-company {
+  height: 30px;
+  width: 100%;
+  margin-left: 0px;
+  margin-bottom: 2%;
+  margin-top: 5%;
+}
+
+.edit-company-btn-wrapper {
+  width: 25%;
+  height: 30px;
+  padding-top: 5px;
+  margin-left: 5%;
+  text-align: center;
+  float: left;
+  color: white;
+  font: 13px Lato-Regular, Georgia, "Times New Roman", Times, serif;
+  border: 2px solid white;  
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.edit-company-btn-wrapper:hover {
+  color: #374776;
+  background-color: white;
+  font: 13px Lato-Regular, Georgia, "Times New Roman", Times, serif;
+  border: 2px solid #374776;
+  text-decoration: none;
+}
+
+.edit-company-btn-wrapper:first-child {
+  margin-left: 22%;
 }
 
 .btn.btn-edit.employer-company input {
@@ -331,8 +374,8 @@
 }
 
 .company-info-header {
-  height: 100px;
-  margin-top: 10px
+  height: 60px;
+  margin-top: 25px;
 }
 
 .separator-employer-company {
@@ -352,10 +395,12 @@
   width: 90%;
 }
 
-.company-header-title {
-  font-size: 3em;
+.company-header-title span {
+  font-size: 25px;
+  text-transform: uppercase;
+  margin-left: 20%;
 }
 
-.company-header-title span {
-  margin-left: 22%;
+.cont-col.employer-company {
+  margin-top: 3%;
 }

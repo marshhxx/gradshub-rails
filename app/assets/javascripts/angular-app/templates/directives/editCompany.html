@@ -2,26 +2,17 @@
 <form class="company-form" novalidate class="css-form" name="companyForm">
 <!--<div class="section company-wrapper">-->
 <div class="container-fluid" style="background-color: #00a5e4; margin-top: 3%;">
-    <div class="row" style="font-family: Angelina; color: white;">
+    <div class="row" style="font-family: Segoe-Print; color: white;">
     <!--<div class="profile-left-header">-->
     <div class="col-xs-12 company-info-header">
         <div class="profile-left-header company-header-title">
             <span>Company info</span>
         </div>
-        <div class="border-title"></div>
         <div class="profile-left-header edit">
             <div class="editwrapper">
                 <div class="edit-pencil employer" ng-click="enableCompanyEditor()" ng-hide="editCompanyEnable"></div>
             </div>
         </div>
-    </div>
-    <div ng-show="editCompanyEnable" class="edit-buttons-wrapper col-xs-12">
-        <a class="btn btn-edit employer-company">
-            <input type="submit" ng-click="saveCompany()" value="SAVE" />
-        </a>
-        <a class="btn btn-edit employer-company margin-l5">
-            <input type="button" ng-click="onCancel()"value="CANCEL" />
-        </a>
     </div>
     <div class="col-xs-12 company-info-content">
         <div class="col-xs-12 company-info-row">
@@ -124,7 +115,7 @@
                 {{employerCompany.site_url}}
             </div>
             <div class="form-group employer-company" ng-show="editCompanyEnable">
-                <input name="site_url" type="url" ng-model="employerCompany.site_url" required
+                <input name="site_url" type="text" ng-model="employerCompany.site_url" required
                     class="form-control employer-company input-company-url" id="companyIndustry">
                 <div ng-if="companyForm.site_url.$invalid && (companyForm.$submitted || companyForm.site_url.$touched)" ng-messages="companyForm.site_url.$error">
                     <div class="help-block" ng-message="required">
@@ -135,6 +126,10 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div ng-show="editCompanyEnable" class="edit-buttons-wrapper edit-company col-xs-12">
+            <a class="edit-company-btn-wrapper" ng-click="saveCompany()">SAVE</a>
+            <a class="edit-company-btn-wrapper" ng-click="onCancel()">CANCEL</a>
         </div>
     </div>
     </div>
