@@ -69,6 +69,8 @@ angular
                 Interest.query (interests) ->
                     $scope.interestsTags = interests.interests
 
+                $scope.$state = $state
+
                 sessionService.requestCurrentUser().then(
                     (user) ->
                         $state.go 'home.page' if !user?

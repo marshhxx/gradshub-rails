@@ -222,9 +222,9 @@
 			      <add-language data="language" save-language="saveLanguage" on-add="onLanguageAdd" on-cancel="onLanguageCancel"></add-language>
 
 			      <div class="profile-right-content" ng-show="user.languages.length == 0 && !isAddingLanguage">
-			        <p class="profile-placeholder-txt" >
-				        {{defaultLanguages}}
-			        </p>
+              <div class="border-container">
+			        <p class="profile-placeholder-txt" >{{defaultLanguages}}</p>
+              </div>
 			      </div>
 
 			      <div ng-repeat="language in user.languages">

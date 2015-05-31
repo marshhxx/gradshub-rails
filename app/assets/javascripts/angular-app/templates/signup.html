@@ -1,45 +1,18 @@
 <div class="signup background">
 
+    <div class="signup-title" ng-class="$state.current.name.split('.')[2]">
+      <img src="/assets/signup/signup-{{ $state.current.name.split('.')[2] }}.svg">
+      <span class="signup-header">{{ $state.current.name.split('.')[2] | uppercase }}</span>
+    </div>
+
     <div class="container">
         <div class="row">
+
             <div class="col-lg-12 col-md-12 col-sm-12 text-center">
 
-                <div id="form-container">
-                    <div class="page-header text-center signup signup-form">
-                        <span class="title">Welcome to Project B</span>
-
-                        <div class="text-center">
-                            <div class="col-md-12">
-                                <div class="margin-10 subtitle-container">
-                                    <span class="subtitle">Sed ut perspiciatis unde omnis iste natus.</span>
-                                </div>
-                            </div>
-                        </div>
-
-                         <!--the links to our nested states using relative paths -->
-                         <!--add the active class if the state matches our ui-sref -->
-                        <div id="status-buttons-work" class="text-center" ng-show="great">
-                            <a ui-sref-active="active" class="ic-wizard personal active"><span
-                                    class="type-work"></span> Personal</a>
-                            <a ui-sref-active="active" class="ic-wizard education"><span
-                                    class="type-work"></span> Education</a>
-                            <a ui-sref-active="active" class="ic-wizard interests"><span
-                                    class="type-work"></span> Interests</a>
-                        </div>
-
-                        <div id="status-buttons-hire" class="text-center" ng-show="looking">
-                            <a ui-sref-active="active" class="ic-wizard hpersonal"><span
-                                    class="type-work"></span> Personal</a>
-                            <a ui-sref-active="active" class="ic-wizard company"><span
-                                    class="type-work"></span> Company</a>
-                            <a ui-sref-active="active" class="ic-wizard lookingfor"><span
-                                    class="type-work"></span> Looking For</a>
-                        </div>
-                    </div>
+                <div id="form-container" class="signup-form col-md-6 col-md-offset-3">
                     <!-- signup subviews injected here -->
                     <div id="form-views" ui-view></div>
-                    </form>
-
                 </div>
 
             </div>

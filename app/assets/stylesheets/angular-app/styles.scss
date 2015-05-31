@@ -541,8 +541,50 @@ section#signup .form-control:focus {
   box-shadow: none;
 }
 
-.signup-form {
+.signup-title {
+  width: 100%;
+  height: 60px;
+  margin-top: 20px;
+  text-align: center;
+  color: #ffffff;
+  font: 22px Montserrat-Regular;
+}
+
+.signup-title img {
+  display:block;
+  margin: auto;
+  position: relative;
+  top: -25px;
+  width: 55px;
+  margin-bottom: -28px;
+}
+
+.personal {
+  background: #00a5e4;
+}
+
+.education {
+  background: #f26621;
+}
+
+.interests {
+  background: #374ea1;
+}
+
+.company {
+  background: #f26621;
+}
+
+.looking {
+  background: #374ea1;
+}
+
+.block {
   display: block;
+}
+
+.signup-form {
+  display: inline-block;
 }
 
 .control-group.error input {
@@ -1357,13 +1399,12 @@ footer#main .footer-above {
 }
 
 .signup.background {
-  background-image: url('background-signup.jpg');
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-repeat: no-repeat;
-  height: 100%;
+  background: url('signup/background-signup1.png') no-repeat;
+  background-size: 100%;
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  -o-background-size: 100%;
+  padding-top: 105px;
 }
 
 .signup .title {
@@ -1385,7 +1426,7 @@ footer#main .footer-above {
 
 .signup.form-container {
   margin-top: 20px;
-  height: 330px;
+  min-height: 330px;
 }
 
 .signup .form-box-cont {
@@ -1399,21 +1440,32 @@ footer#main .footer-above {
   width: 60px;
 }
 
-.btn-form {
-  width: 210px;
-  margin: 20px 0;
-  padding: 10px 0px;
-  background: none;
-  color: #122028;
-  font: 14px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
-  border: 1px solid #122028;
-  border-radius: 0 !important;
+.btn-next {
+  background: url(signup/next.svg) no-repeat;
+  background-size: 100%;
+  width: 40px;
+  height: 40px;
 }
 
-.btn-form:hover {
-  background: #122028;
-  color: #FFF;
-  font: 14px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+.btn-next:hover {
+  background: url(signup/next-hover.svg) no-repeat;
+  background-size: 100%;
+  width: 40px;
+  height: 40px;
+}
+
+.btn-back {
+  background: url(signup/back.svg) no-repeat;
+  background-size: 100%;
+  width: 40px;
+  height: 40px;
+}
+
+.btn-back:hover {
+  background: url(signup/back-hover.svg) no-repeat;
+  background-size: 100%;
+  width: 40px;
+  height: 40px;
 }
 
 .btn-form.double {
@@ -1516,8 +1568,6 @@ footer#main .footer-above {
 
 /* form styling */
 #form-container {
-  background: rgba(255, 255, 255, 0.9);
-  margin-top: 50px;
   display: inline-block
 }
 
@@ -1989,6 +2039,7 @@ label {
 /* Tags input directive */
 
 .tags {
+  margin: 20px 0px 0px 0px;
   min-height: 34px;
   width: 100%;
   float: left;
@@ -2042,6 +2093,13 @@ label {
   color: #FFF;
 }
 
+.tags-box {
+  background: #FFFFFF;
+  min-height: 100px;
+  border: 1px solid #cccccc;
+  padding-left: 5px;
+}
+
 .div-100 {
   width: 100% !important;
 }
@@ -2060,6 +2118,10 @@ label {
 
 .right{
   float: right;
+}
+
+.min-height-150 {
+  min-height: 150px;
 }
 
 .alert-top-fixed {

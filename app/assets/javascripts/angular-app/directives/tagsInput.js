@@ -2,15 +2,20 @@ angular.module('mepedia.directives').directive('tagsInput', function () {
     return {
         restrict: 'E',
         scope: { tags: '=', currentTags: '=info'},
-        template:
-            '<div class="tagsinput cont left">' +
-            '<input type="text" ng-model="new_value" class="input-sm form-control tagsInput" typeahead="tag as tag.name for tag in tags | filter:$viewValue | limitTo:6">' +
-            '</div>'   +  '<div class="tagsinput cont right">' +
+        template: function (elem, attr) {
+            var placeholder = attr.placeholder ? attr.placeholder : '';
+            var signupClass = attr.signup == "" ? 'tags-box' : '';
+            return '<div class="tagsinput cont left">' +
+            '<input type="text" ng-model="new_value" class="input-sm form-control tagsInput" ' +
+            'typeahead="tag as tag.name for tag in tags | filter:$viewValue | limitTo:6" placeholder="' + placeholder + '">' +
+            '</div>' + '<div class="tagsinput cont right">' +
             '<a class="tagsinput addbutton btn-sm" ng-click="add()">Add</a>' + '</div>' +
-            '<div class="tags">' +
+            '<div class="tags ' + signupClass + '">' +
             '<a class="tag" ng-model="flavor" ng-repeat="(idx, tag) in currentTags" ng-click="remove(idx)">{{tag}}</a>' +
-            '</div>',
+            '</div>'
+        },
         link: function ( $scope, $element) {
+
             var input = angular.element( $element.children()[0].childNodes[0] );
 
             // This adds the new tag to the tags array
