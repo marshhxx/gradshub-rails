@@ -27,7 +27,7 @@
 	    <div class="form-group"
 	         ng-class="{'has-error': newExperienceForm.company_name.$invalid && (newExperienceForm.$submitted || newExperienceForm.company_name.$dirty)}">
 	        <input type="text" ng-model="experience.company_name" required id="company"
-	               placeholder="Company Name" class="form-control" name="company_name">
+	               placeholder="Company Name" class="form-control input-sm" name="company_name">
 			    <div ng-if="newExperienceForm.company_name.$invalid && (newExperienceForm.$submitted || newExperienceForm.company_name.$dirty)" ng-messages="newExperienceForm.company_name.$error">
 				    <div class="help-block" ng-message="required">
 					    Please provide your company's name!
@@ -38,7 +38,7 @@
         <div class="form-group"
              ng-class="{'has-error': newExperienceForm.job_title.$invalid && (newExperienceForm.$submitted || newExperienceForm.job_title.$dirty)}">
             <input type="text" name="job_title" ng-model="experience.job_title" required
-                   class="form-control" id="jobtitle"
+                   class="form-control input-sm" id="jobtitle"
                    placeholder="Job Title">
                 <div ng-if="newExperienceForm.job_title.$invalid && (newExperienceForm.$submitted || newExperienceForm.job_title.$dirty)" ng-messages="newExperienceForm.job_title.$error">
                     <div class="help-block" ng-message="required">

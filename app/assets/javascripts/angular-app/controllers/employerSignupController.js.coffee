@@ -21,22 +21,15 @@ angular
                 ]
                 
                 $scope.userGender = "Select Gender"
-
                 $scope.selectedFrom = "From"
                 $scope.selectedTo = "To"
 
                 Company.query (companies) ->
                     $scope.companies = companies.companies
 
-                $scope.onGender = (gender) ->
-                    if(gender?)
-                        $scope.userGender = gender
-                        if gender == "Male"
-                            $scope.user.gender = 0
-                        else if gender == "Female"
-                            $scope.user.gender = 1
-                        else
-                            $scope.user.gender = 2
+                $scope.onGender = (index) ->
+                  $scope.user.gender = index
+                  $scope.gender = $scope.userGender = $scope.genders[index]
 
                 $scope.onCountry = (country) ->
                     if(country?)
@@ -75,6 +68,8 @@ angular
 
                 Interest.query (interests) ->
                     $scope.interestsTags = interests.interests
+
+                $scope.$state = $state
 
                 sessionService.requestCurrentUser().then(
                     (user) ->
@@ -148,11 +143,11 @@ angular
                 $scope.employerNationality.$save()
 
             saveSkills = ->
-                $scope.skills.skills = $scope.selectedSkills.map((skill) -> {name: skill.name})
+                $scope.skills.skills = $scope.selectedSkills.map((skill) -> {name: skill})
                 $scope.skills.$update()
 
             saveInterests = ->
-                $scope.interests.interests = $scope.selectedInterests.map((interest) -> {name: interest.name})
+                $scope.interests.interests = $scope.selectedInterests.map((interest) -> {name: interest})
                 $scope.interests.$update()
 
             saveUser = ->

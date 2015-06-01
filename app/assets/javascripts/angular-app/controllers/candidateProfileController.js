@@ -484,13 +484,18 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 $scope.summaryEditorEnable = false;
                 $scope.user.summary = $scope.summaryTemp;
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
-                Utils.candidateFromObject($scope.user).$update(function (response) { //Creates resource User from object $scope.user
-                    $scope.user = response.candidate;  // ToDO !! update only user.summary
-                    initCandidateProfile(); //Update profile variables;
-                    $scope.defaultSummaryEnable = false;
-                }, function (error) {
-                    console.log(error);
-                });
+                Utils.candidateFromObject($scope.user).$update().then(
+                    function (response) {
+                        $scope.user = response.candidate;  // ToDO !! update only user.summary
+                        initCandidateProfile(); //Update profile variables;
+                        $scope.defaultSummaryEnable = false;
+                        alertService.addInfo('Summary successfully updated!', 5000);
+                    }
+                ).catch(
+                    function (error) {
+                        console.log(error);
+                    }
+                );
             };
 
             var saveSkills = function () {
@@ -507,6 +512,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                         $scope.selectedSkills = response.skills.map(function (skill) {
                             return skill.name;
                         });
+                        alertService.addInfo('Skills successfully added!', 5000);
                     }
                 ).catch(
                     function (error) {
@@ -528,19 +534,15 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     function(response) {
                         $scope.selectedInterests = response.interests.map(function (interest) {
                             return interest.name;
-                        })
+                        });
+                        alertService.addInfo('Interests successfully added!', 5000);
+
                     }
                 ).catch(
                     function (error) {
                         console.log(error);
                     }
                 )
-            };
-
-            var getEducations = function () {
-                Education.query({candidate_id: $scope.user.uid}, function (educations) {
-                    $scope.user.educations = educations.educations;
-                });
             };
 
             var saveEducation = function (valid) {
@@ -550,17 +552,12 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 education.$save(
                     function (response) {
-                        getEducations();
+                        addAndSort($scope.user.educations, response.education, Utils.sortByStartDate);
+                        alertService.addInfo('Education successfully added!', 5000);
                     },
                     function (error) {
                         console.log(error);
                     });
-            };
-
-            var getExperiences = function () {
-                Experience.query({candidate_id: $scope.user.uid}, function (experiences) {
-                    $scope.user.experiences = experiences.experiences;
-                })
             };
 
             var saveExperience = function (valid) {
@@ -570,7 +567,8 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 experience.$save(
                     function (response) {
-                        getExperiences();
+                        addAndSort($scope.user.experiences, response.experience, Utils.sortByStartDate);
+                        alertService.addInfo('Experience successfully added!', 5000);
 
                     },
                     function (error) {
@@ -586,20 +584,14 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
               })
             };
 
-            var getLanguages = function () {
-                CandidateLanguages.query({candidate_id: $scope.user.uid}, function(languages) {
-                    $scope.user.languages = languages.languages;
-                })
-            };
-
             var saveLanguage = function (valid) {
                 if (!valid) return;
                 var language = getLanguage($scope.language); //Create Language Resource
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 language.$save().then(
-                    function(language) {
-                        getLanguages();
-                        alertService.addInfo('Language successfully saved!', 5000);
+                    function(response) {
+                        addAndSort($scope.user.languages, response.language);
+                        alertService.addInfo('Language successfully added!', 5000);
                     }
                 ).catch(
                     function (error) {
@@ -617,13 +609,16 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 var education = getEducation($scope.user.educations[$index]);
                 education.id = $scope.user.educations[$index].id;
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
-                education.$update(
+                education.$update().then(
                     function (response) {
-                        getEducations();
-                    },
+                        updateAndSort($scope.user.educations, response.education, Utils.sortByStartDate);
+                        alertService.addInfo('Education successfully updated!', 5000);
+                    }
+                ).catch(
                     function (error) {
                         console.log(error);
-                    });
+                    }
+                );
             };
 
             var updateExperience = function (valid, index) {
@@ -632,14 +627,16 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 var experience = getExperience($scope.user.experiences[index]);
                 experience.id = $scope.user.experiences[index].id;
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
-                experience.$update(
+                experience.$update().then(
                     function (response) {
-                        getExperiences();
-                        $scope.defaultExperienceEnable = false;
-                    },
+                        updateAndSort($scope.user.experiences, response.experience, Utils.sortByStartDate);
+                        alertService.addInfo('Experience successfully updated!', 5000);
+                    }
+                ).catch(
                     function (error) {
                         console.log(error);
-                    });
+                    }
+                );
             };
 
             var updateLanguage = function (valid, updated) {
@@ -648,8 +645,8 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 language.id = updated.id;
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 language.$update().then(
-                    function(language) {
-                        getLanguages();
+                    function(response) {
+                        updateAndSort($scope.user.languages, response.language, index);
                         alertService.addInfo('Language successfully updated!', 5000);
                     }
                 ).catch(
@@ -670,7 +667,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                     experience.$delete().then(
                         function () {
-                            $scope.user.experiences.splice(index, 1);
+                            removeElementAndSort($scope.user.experiences, index, Utils.sortByStartDate);
                             alertService.addInfo('Experience successfully deleted!', 5000);
                         }
                     ).catch(
@@ -691,7 +688,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                     education.$delete().then(
                         function() {
-                            $scope.user.educations.splice(index, 1);
+                            removeElementAndSort($scope.user.educations, index, Utils.sortByStartDate);
                             alertService.addInfo('Education successfully deleted!', 5000);
                         }
                     ).catch(
@@ -713,7 +710,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     language.$delete().then(
                         function() {
                             var index = $scope.user.languages.map(function(elem) {return elem.id}).indexOf(language.id);
-                            $scope.user.languages.splice(index, 1);
+                            removeElementAndSort($scope.user.languages, index);
                             alertService.addInfo('Language successfully deleted!', 5000);
                         }
                     ).catch(
@@ -727,6 +724,29 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                         deleteIt(language)
                     }
                 )
+            };
+
+            var removeElementAndSort = function (array, index, sortFunction) {
+                array.splice(index, 1);
+                sort(array, sortFunction);
+            };
+
+            var addAndSort = function (array, element, sortFunction) {
+                array.push(element);
+                sort(array, sortFunction);
+            };
+
+            var updateAndSort = function (array, element, sortFunction) {
+                var index = array.map(function(elem) {return elem.id}).indexOf(element.id);
+                array[index] = element;
+                sort(array, sortFunction);
+            };
+
+            var sort = function(array, sortFunction) {
+                if (sortFunction)
+                    sortFunction(array);
+                else
+                    array.sort();
             };
 
             /* OTHER FUNCTIONS */

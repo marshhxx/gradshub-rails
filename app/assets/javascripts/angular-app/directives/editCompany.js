@@ -27,7 +27,10 @@ angular.module('mepedia.directives').directive('editCompany', ['EmployerCompany'
             }
 
             scope.saveCompany = function() {
+                console.log('hieieieie');
+                console.log(scope.companyForm);
                 if (scope.companyForm.$valid) {
+                    console.log('hoala');
                     scope.editCompanyEnable = false;
                     scope.$parent.saveEmployerCompany();
                     temporaryEmployerCompany = scope.employerCompany.site_url;

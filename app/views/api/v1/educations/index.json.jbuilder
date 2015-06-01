@@ -1,4 +1,4 @@
-json.educations @educations do |education|
+json.educations @educations.order(:start_date).reverse do |education|
   json.id education.id
   json.country education.country
   json.state education.state

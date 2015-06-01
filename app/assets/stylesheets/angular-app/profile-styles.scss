@@ -127,6 +127,12 @@ h3 {
   top: 0 !important;
 }
 
+.edit-buttons-wrapper {
+  height: 30px;
+  width: 75%;
+  margin-left: 17%;
+}
+
 .image-picker.upload-btn-wrapper-left {
   position: relative;
   z-index: 5;
@@ -320,7 +326,7 @@ h3 {
 .profileImage.img {
   height: 100%;
   width: 100%;
-  background: url(profile-default-image.svg) no-repeat;
+  background: url(profile-default.svg) no-repeat;
   background-size: 100%;
   position: absolute;
 }
@@ -407,7 +413,7 @@ h3 {
 
 /** PROFILE PHOTO END **/
 
-.profileContent{
+.profile-content {
   width: 100%;
   display: inline-block;
 }
@@ -697,8 +703,14 @@ p {
 
 .profile-right-content{
   width: 100%;
-  padding: 10px 20px 30px 30px;
   display: inline-block;
+  padding: 0px 20px 0px 20px;
+}
+
+.border-container {
+  width: 100%;
+  padding: 10px 00px 20px 10px;
+  border-top: 1px solid #a7a9ab;
 }
 
 .profile-add-right-content{
@@ -758,6 +770,7 @@ textarea{
 }
 
 .form-cont{
+  overflow: auto;
   margin-bottom: 5px;
 }
 
@@ -788,4 +801,9 @@ textarea{
 
 .education-animation-div.ng-hide {
   opacity:0;
+}
+
+.flag-img {
+  width: 30px;
+  margin-right: 15px;
 }

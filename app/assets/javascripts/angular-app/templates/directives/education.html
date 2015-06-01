@@ -2,37 +2,41 @@
 
 <!-- Education component-->
 <div ng-hide="educationEditor">
-    <div class="profile-right-content">
-        <div class="profile-edit-on-hover">
-            <div class="form-cont">
-                <input type="hidden" ng-value="education.id"/>
+  <div class="profile-right-content">
+    <div class="border-container">
+      <div class="profile-edit-on-hover">
+        <div class="form-cont">
+          <input type="hidden" ng-value="education.id"/>
 
-                <div class="width85">
-                    <span class="header-title"> {{education.school.name}} </span>
-                </div>
-                <div class="width15">
-                    <div id="educationEdit{{$parent.$index}}" class="edit-pencil-hover" ng-click="onEducationEditor()" ng-hide="educationEditor"></div>
-                </div>
-            </div>
-            <div class="form-cont">
-                <span class="header-subtitle"> {{education.degree.name}} - {{education.major.name}} </span>
-            </div>
-            <div class="form-cont">
-                <div ng-if="!education.end_date">
-                    <span class="header-light-txt"> {{education.start_date.split('-')[0]}} - Ongoing</span>
-                </div>
-                <div ng-if="education.end_date">
-                    <span class="header-light-txt"> {{education.start_date.split('-')[0]}} - {{education.end_date.split('-')[0]}} </span>
-                </div>
-            </div>
-            <div class="form-cont">
-                <span class="header-light-txt" ng-model="education.state"> {{education.state.name}} {{education.country.name}} </span>
-            </div>
-            <div class="form-cont">
-                <p class="header-regular-txt"> {{education.description}} </p>
-            </div>
+          <div class="width85 height25">
+            <span class="header-title"> {{education.school.name}} </span>
+          </div>
+          <div class="width15 height25">
+            <div id="educationEdit{{$parent.$index}}" class="edit-pencil-hover" ng-click="onEducationEditor()"
+                 ng-hide="educationEditor"></div>
+          </div>
         </div>
+        <div class="form-cont">
+          <span class="header-subtitle"> {{education.degree.name}} - {{education.major.name}} </span>
+        </div>
+        <div class="form-cont">
+          <div ng-if="!education.end_date">
+            <span class="header-light-txt"> {{education.start_date.split('-')[0]}} - Ongoing</span>
+          </div>
+          <div ng-if="education.end_date">
+            <span class="header-light-txt"> {{education.start_date.split('-')[0]}} - {{education.end_date.split('-')[0]}} </span>
+          </div>
+        </div>
+        <div class="form-cont">
+          <span class="header-light-txt"
+                ng-model="education.state"> {{education.state.name}} {{education.country.name}} </span>
+        </div>
+        <div class="form-cont">
+          <p class="header-regular-txt"> {{education.description}} </p>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <!-- Education editor component -->

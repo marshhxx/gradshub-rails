@@ -57,7 +57,7 @@
     </div>
 
 </div>
-<div class="profileContent">
+<div class="profile-content">
     <div class="profileLeftContent cont col-md-4">
         <profile-highlights user="user"></profile-highlights>
     </div>
@@ -87,6 +87,7 @@
                 </div>
             </div>
             <div class="profile-right-content">
+              <div class="border-container">
                 <p class="profile-placeholder-txt" ng-show="defaultSummaryEnable">{{defaultSummary}}</p>
                 <div ng-hide="summaryEditorEnable" class="profile-right-text">
                     {{user.summary}}
@@ -94,121 +95,140 @@
                 <div ng-hide="defaultSummaryEnable">
                     <textarea class="form-control" rows="5" ng-show="summaryEditorEnable" ng-model="summaryTemp"></textarea>
                 </div>
+              </div>
             </div>
         </div>
 
-        <div class="profile-right-container">
-            <div class="profile-right-header">
-                <div class="profile-right-header title">
-                    <div class="profile-right-header-img skills"></div>
-                    <h3> SKILLS </h3>
-                </div>
-                <div class="profile-right-header edit">
-                    <div class="editwrapper">
-                        <div class="edit-pencil" ng-click="enableSkillsEditor()"
-                             ng-hide="editorSkillsEnabled"></div>
+      <div class="profile-right-container">
+          <div class="profile-right-header">
+            <div class="profile-right-header title">
+              <div class="profile-right-header-img skills"></div>
+              <h3> SKILLS </h3>
+            </div>
+            <div class="profile-right-header edit">
+              <div class="editwrapper">
+                <div class="edit-pencil" ng-click="enableSkillsEditor()"
+                     ng-hide="editorSkillsEnabled"></div>
 
-                        <div ng-show="editorSkillsEnabled" class="edit-buttons-wrapper">
-                            <a ng-click="saveSkills()" class="btn btn-edit">
-                                SAVE </span>
-                            </a>
-                            <a ng-click="disableSkillsEditor()" class="btn btn-edit margin-l5">
-                                CANCEL </span>
-                            </a>
-                        </div>
-                    </div>
+                <div ng-show="editorSkillsEnabled" class="edit-buttons-wrapper">
+                  <a ng-click="saveSkills()" class="btn btn-edit">
+                    SAVE </span>
+                  </a>
+                  <a ng-click="disableSkillsEditor()" class="btn btn-edit margin-l5">
+                    CANCEL </span>
+                  </a>
                 </div>
+              </div>
+            </div>
+          </div>
+
+        <div class="profile-right-content">
+          <div class="border-container">
+
+            <p class="profile-placeholder-txt" ng-show="selectedSkills.length == 0 && !editorSkillsEnabled">
+              {{defaultSkills}}</p>
+
+            <div ng-hide="editorSkillsEnabled" class="profile-right-text margin-t15">
+              <div class="tags">
+                <a class="tag" ng-model="tag" ng-repeat="tag in selectedSkills">{{tag}}</a>
+              </div>
+            </div>
+            <div class="profile-content margin-t15" ng-hide="selectedSkills.length == 0 && !editorSkillsEnabled">
+              <tags-input tags="skillsTags" ng-show="editorSkillsEnabled"
+                          info="candidateSelectedSkills"></tags-input>
             </div>
 
-            <div class="profile-right-content">
-                <p class="profile-placeholder-txt" ng-show="selectedSkills.length == 0 && !editorSkillsEnabled">{{defaultSkills}}</p>
-                <div ng-hide="editorSkillsEnabled" class="profile-right-text">
-                    <div class="tags">
-                        <a class="tag" ng-model="tag" ng-repeat="tag in selectedSkills">{{tag}}</a>
-                    </div>
-                </div>
-                <div ng-hide="selectedSkills.length == 0 && !editorSkillsEnabled">
-                    <tags-input tags="skillsTags" ng-show="editorSkillsEnabled"
-                                info="candidateSelectedSkills"></tags-input>
-                </div>
-
-            </div>
+          </div>
         </div>
+      </div>
 
-        <div class="profile-right-container" id="focusEducation">
-            <div>
-                <add-education data="education" save-education="saveEducation"
-                               add-education-enable="addEducationEnable" on-add="onEducationAdd" on-cancel="onEducationCancel"></add-education>
-		            <div class="profile-right-content" ng-show="user.educations.length == 0 && !isAddingEducation">
-			            <p class="profile-placeholder-txt">{{defaultEducation}}</p>
-		            </div>
-                <div ng-repeat="education in user.educations">
-                    <education data="education" update-education="updateEducation" on-delete="deleteEducation"></education>
-                </div>
+      <div class="profile-right-container" id="focusEducation">
+        <div>
+          <add-education data="education" save-education="saveEducation"
+                         add-education-enable="addEducationEnable" on-add="onEducationAdd"
+                         on-cancel="onEducationCancel"></add-education>
+
+          <div class="profile-right-content" ng-show="user.educations.length == 0 && !isAddingEducation">
+            <div class="border-container">
+              <p class="profile-placeholder-txt">{{defaultEducation}}</p>
             </div>
-        </div>
+          </div>
 
-        <div class="profile-right-container" id="focusExperience">
-            <div>
-                <add-experience data="experience" save-experience="saveExperience"
-                               on-add="onExperienceAdd" on-cancel="onExperienceCancel"></add-experience>
-                <div class="profile-right-content" ng-show="user.experiences.length == 0 && !isAddingExperience">
-                    <p class="profile-placeholder-txt">{{defaultExperience}}</p>
-                </div>
-                <div ng-repeat="experience in user.experiences">
-                    <experience data="experience" update-experience="updateExperience" experience-editor="experienceEditor"
-	                    on-delete="deleteExperience"></experience>
-                </div>
+          <div ng-repeat="education in user.educations">
+            <education data="education" update-education="updateEducation" on-delete="deleteEducation"></education>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-right-container" id="focusExperience">
+        <div>
+          <add-experience data="experience" save-experience="saveExperience"
+                          on-add="onExperienceAdd" on-cancel="onExperienceCancel"></add-experience>
+
+          <div class="profile-right-content" ng-show="user.experiences.length == 0 && !isAddingExperience">
+            <div class="border-container">
+              <p class="profile-placeholder-txt">{{defaultExperience}}</p>
             </div>
+          </div>
+
+          <div ng-repeat="experience in user.experiences">
+            <experience data="experience" update-experience="updateExperience" experience-editor="experienceEditor"
+                        on-delete="deleteExperience"></experience>
+          </div>
         </div>
+      </div>
 
-		    <div class="profile-right-container">
-			    <div class="profile-right-header">
-				    <div class="profile-right-header title">
-					    <div class="profile-right-header-img interests"></div>
-					    <h3> INTERESTS </h3>
-				    </div>
-				    <div class="profile-right-header edit">
-					    <div class="editwrapper">
-						    <div class="edit-pencil" ng-click="enableInterestsEditor()"
-						         ng-hide="editorInterestsEnabled"></div>
+      <div class="profile-right-container">
+          <div class="profile-right-header">
+            <div class="profile-right-header title">
+              <div class="profile-right-header-img interests"></div>
+              <h3> INTERESTS </h3>
+            </div>
+            <div class="profile-right-header edit">
+              <div class="editwrapper">
+                <div class="edit-pencil" ng-click="enableInterestsEditor()"
+                     ng-hide="editorInterestsEnabled"></div>
 
-						    <div ng-show="editorInterestsEnabled" class="edit-buttons-wrapper">
-							    <a ng-click="saveInterests()" class="btn btn-edit">
-								    SAVE </span>
-							    </a>
-							    <a ng-click="disableInterestsEditor()" class="btn btn-edit margin-l5">
-								    CANCEL </span>
-							    </a>
-						    </div>
-					    </div>
-				    </div>
-			    </div>
+                <div ng-show="editorInterestsEnabled" class="edit-buttons-wrapper">
+                  <a ng-click="saveInterests()" class="btn btn-edit">
+                    SAVE </span>
+                  </a>
+                  <a ng-click="disableInterestsEditor()" class="btn btn-edit margin-l5">
+                    CANCEL </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
 
-			    <div class="profile-right-content">
-				    <p class="profile-placeholder-txt" ng-show="selectedInterests.length == 0 && !editorInterestsEnabled">
-					    {{defaultInterests}}
-				    </p>
-				    <div ng-hide="editorInterestsEnabled" class="profile-right-text">
-					    <div class="tags">
-						    <a class="tag" ng-model="tag" ng-repeat="tag in selectedInterests">{{tag}}</a>
-					    </div>
-				    </div>
-				    <div ng-hide="selectedInterests.length == 0 && !editorInterestsEnabled">
-					    <tags-input tags="interestsTags" ng-show="editorInterestsEnabled"
-					                info="candidateSelectedInterests"></tags-input>
-				    </div>
-			    </div>
-		    </div>
+        <div class="profile-right-content">
+          <div class="border-container">
+            <p class="profile-placeholder-txt" ng-show="selectedInterests.length == 0 && !editorInterestsEnabled">
+              {{defaultInterests}}
+            </p>
+
+            <div ng-hide="editorInterestsEnabled" class="profile-right-text margin-t15">
+              <div class="tags">
+                <a class="tag" ng-model="tag" ng-repeat="tag in selectedInterests">{{tag}}</a>
+              </div>
+            </div>
+
+            <div class="profile-content margin-t15" ng-hide="selectedInterests.length == 0 && !editorInterestsEnabled">
+              <tags-input tags="interestsTags" ng-show="editorInterestsEnabled"
+                          info="candidateSelectedInterests"></tags-input>
+            </div>
+          </div>
+        </div>
+      </div>
 
 	      <div class="profile-right-container">
 		      <div>
 			      <add-language data="language" save-language="saveLanguage" on-add="onLanguageAdd" on-cancel="onLanguageCancel"></add-language>
 
 			      <div class="profile-right-content" ng-show="user.languages.length == 0 && !isAddingLanguage">
-			        <p class="profile-placeholder-txt" >
-				        {{defaultLanguages}}
-			        </p>
+              <div class="border-container">
+			        <p class="profile-placeholder-txt" >{{defaultLanguages}}</p>
+              </div>
 			      </div>
 
 			      <div ng-repeat="language in user.languages">

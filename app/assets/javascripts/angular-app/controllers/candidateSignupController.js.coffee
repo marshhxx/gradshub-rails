@@ -1,8 +1,8 @@
 angular
     .module('mepedia.controllers')
     .controller("candidateSignupController",
-    ['$scope', '$q', '$http', '$state', 'sessionService', 'Skill', 'Candidate', 'Interest', 'CandidateNationalities', 'Education', 'CandidateSkills', 'Utils', 'alertService',
-    ($scope, $q, $httpProvider, $state, sessionService, Skill, Candidate, Interest, CandidateNationalities, Education, CandidateSkills, Utils, alertService)->
+    ['$scope', '$rootScope', '$q', '$http', '$state', 'sessionService', 'Skill', 'Candidate', 'Interest', 'CandidateNationalities', 'Education', 'CandidateSkills', 'Utils', 'alertService',
+    ($scope, $rootScope, $q, $httpProvider, $state, sessionService, Skill, Candidate, Interest, CandidateNationalities, Education, CandidateSkills, Utils, alertService)->
 
         init = ->
             $scope.selectedTags = []
@@ -17,20 +17,12 @@ angular
             ]
             
             $scope.userGender = "Select Gender"
-
             $scope.selectedFrom = "From"
             $scope.selectedTo = "To"
 
-            $scope.onGender = (gender) ->
-                if(gender?)
-                    $scope.userGender = gender
-
-                    if gender == "Male"
-                        $scope.user.gender = 0
-                    else if gender == "Female"
-                        $scope.user.gender = 1
-                    else
-                        $scope.user.gender = 2
+            $scope.onGender = (index) ->
+              $scope.user.gender = index
+              $scope.gender = $scope.userGender = $scope.genders[index]
 
             $scope.onCountry = (country) ->
                 if(country?)
@@ -108,6 +100,8 @@ angular
             $scope.validateAndCreate = validateAndCreate
 
             $scope.setInnerScope = (scope) -> $scope.innerScope = scope
+
+            $scope.$state = $state
 
             $scope.$on '$viewContentLoaded', (event) ->
                 angular.element('#switchEducationSignup').bootstrapSwitch state: $scope.isCurrentEducation

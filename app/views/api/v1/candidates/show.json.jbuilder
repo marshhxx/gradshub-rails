@@ -9,7 +9,7 @@ json.candidate do
   json.state    @candidate.state
   json.tag      @candidate.user.tag
   json.nationalities @candidate.nationalities
-  json.educations  @candidate.educations do |education|
+  json.educations  @candidate.educations.order(:start_date).reverse do |education|
     json.id education.id
     json.country education.country
     json.state education.state
@@ -20,7 +20,7 @@ json.candidate do
     json.start_date education.start_date
     json.end_date education.end_date
   end
-  json.experiences @candidate.experiences do |experience|
+  json.experiences @candidate.experiences.order(:start_date).reverse do |experience|
     json.id experience.id
     json.candidate_id experience.candidate.user.uid
     json.company_name experience.company_name

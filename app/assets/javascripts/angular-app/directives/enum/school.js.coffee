@@ -9,8 +9,8 @@ SchoolSelector = (School) ->
     template: (elem, attr) ->
         required = if attr.required == "" then "required" else ""
         placeholder = if attr.placeholder then attr.placeholder else ""
-        '<input name="school" type="text" ng-model="data" ' + required + ' class="form-control" id="school" placeholder="' + placeholder + '"' +
-        ' typeahead="school as school.name for school in schools | filter:$viewValue | limitTo:6" class="form-control" ' +
+        '<input name="school" type="text" ng-model="data" ' + required + ' class="form-control input-sm" id="school" placeholder="' + placeholder + '"' +
+        ' typeahead="school as school.name for school in schools | filter:$viewValue | limitTo:6" ' +
         ' typeahead-on-select="onSelect($item)" is-school>'
     link: (scope, elm, attrs, ctrl) ->
         School.query (schools) ->

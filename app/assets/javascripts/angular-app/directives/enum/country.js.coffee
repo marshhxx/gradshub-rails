@@ -11,7 +11,7 @@ CountrySelector = (Country) ->
 			placeholder = if attr.placeholder then attr.placeholder else ""
 			'<input name="country" type="text" ng-model="data" ' + required +
 			' typeahead="country as country.name for country in countries | filter:$viewValue | limitTo:6" ' +
-			'class="form-control" id="country" typeahead-on-select="onSelect($item)" placeholder="' + placeholder + '" is-country>'
+			'class="form-control input-sm" id="country" typeahead-on-select="onSelect($item)" placeholder="' + placeholder + '" is-country>'
 		link: (scope, elm, attrs, ctrl) ->
 
 			Country.query (countries) ->
