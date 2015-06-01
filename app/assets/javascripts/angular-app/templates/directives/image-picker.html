@@ -1,7 +1,6 @@
 <div class="image-picker wrapper">
     <spinner show-spinner="spinnerVisible"></spinner>
-
-    <img class="image-picker default-image" ng-show="defaultImage"/>
+    <img class="image-picker default-image" ng-show="defaultImage" src="/assets/{{default}}"/>
 
     <div ng-class="{'image-picker content-shadow':!circular, 'image-picker content':circular}" ng-show="photo">
         <img id="image-picker-img" ng-class="{'image-picker img': !circular, 'image-picker img-circular': circular}" src="{{photoURL}}">

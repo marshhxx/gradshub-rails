@@ -115,7 +115,8 @@ h3 {
 }
 
 .image-picker.default-image {
-  background: url('default-cover-photo.png') center center no-repeat;
+  //background: url('default-cover-photo.png') center center no-repeat;
+  background-repeat: no-repeat;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -275,9 +276,9 @@ h3 {
 }
 
 .coverBorder {
-  border-bottom-color: rgba(80, 80, 80, .4);
-  border: 1px solid #505050;
-  border-color: rgba(80, 80, 80, .2);
+//  border-bottom-color: rgba(80, 80, 80, .4);
+//  border: 1px solid #505050;
+//  border-color: rgba(80, 80, 80, .2);
   border-top: none !important;
   bottom: 0;
   left: 0;

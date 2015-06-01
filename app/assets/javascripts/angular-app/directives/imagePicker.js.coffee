@@ -6,7 +6,13 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout) ->
     circular: '=',
   },
   templateUrl: 'angular-app/templates/directives/image-picker.html',
-  link: ($scope, $element) ->
+  link: ($scope, $element, attr) ->
+    $scope.default = attr.default
+    $scope.$watch(
+      -> attr.default
+      ,
+      (value) -> $scope.default = value
+    )
     $scope.uploadImageBtn = true
     $scope.defaultImage = true
     $scope.photoButtons = false # Photo save and cancel buttons
