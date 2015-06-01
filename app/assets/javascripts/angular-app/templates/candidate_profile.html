@@ -8,50 +8,52 @@
         </div>
         <!-- !-->
         <div class="coverBorder">
-            <simpleimagepicker update-image="updateUser" image-url="user.cover_image"></simpleimagepicker>
+            <simpleimagepicker update-image="updateCoverImage" image-url="user.cover_image" circular="coverImageType"></simpleimagepicker>
         </div>
     </div>
     <div class="profileHeadline wrapper">
-        <div class="profileImage wrapper">
 
-            <div class="profileImage content">
-                <div class="img-circle profileImage img" ng-class="user.gender" ng-show="defaultProfileImageVisible"></div>
+        <div class="profile-image wrapper">
 
-                <div class="profileImageEdit wrapper" ng-show="profileImgSelectVisible">
-                    <div class="profileImageEdit img" ng-file-select="onFileSelectProfile($files)"
-                         data-multiple="false" title="profile_photo" onclick="this.value = null"></div>
-                </div>
-                <div class="temporaryProfilePhoto">
-                    <div class="spinner-container-profile" ng-show="spinnerVisibleProfile">
-                        <div class="spinner spinner-profile">
-                            <div class="rect1"></div>
-                            <div class="rect2"></div>
-                            <div class="rect3"></div>
-                            <div class="rect4"></div>
-                            <div class="rect5"></div>
-                        </div>
-                    </div>
-                    <div class="contentGuillotineProfile" ng-show="temporaryProfilePhoto">
-                        <div class="frame">
-                            <img class="contentGuillotineProfile img" src="{{profileData.secure_url}}" id="temp_profile_photo"
-                                 ng-show="profilePhotoLoaded"/>
-                        </div>
-                        <div ng-show="profilePhotoButtons" class="edit-buttons-wrapper edit-buttons-profile-photo">
-                            <a ng-click="saveProfilePhoto()" class="btn btn-edit">
-                                SAVE </span>
-                            </a>
-                            <a ng-click="cancelProfilePhoto()" class="btn btn-edit margin-l5">
-                                CANCEL </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="profile-photo">
-                    <img class="profilePhoto" src="{{profilePhotoURI}}" ng-show="profilePhoto">
-                </div>
-            </div>
+            <simpleimagepicker update-image="updateProfileImage" image-url="user.profile_image" circular="profileImageType"></simpleimagepicker>
+            <!--<div class="profileImage content">-->
+                <!--<div class="img-circle profileImage img" ng-class="user.gender" ng-show="defaultProfileImageVisible"></div>-->
 
-        </div>
+                <!--<div class="profileImageEdit wrapper" ng-show="profileImgSelectVisible">-->
+                    <!--<div class="profileImageEdit img" ng-file-select="onFileSelectProfile($files)"-->
+                         <!--data-multiple="false" title="profile_photo" onclick="this.value = null"></div>-->
+                <!--</div>-->
+                <!--<div class="temporaryProfilePhoto">-->
+                    <!--<div class="spinner-container-profile" ng-show="spinnerVisibleProfile">-->
+                        <!--<div class="spinner spinner-profile">-->
+                            <!--<div class="rect1"></div>-->
+                            <!--<div class="rect2"></div>-->
+                            <!--<div class="rect3"></div>-->
+                            <!--<div class="rect4"></div>-->
+                            <!--<div class="rect5"></div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="contentGuillotineProfile" ng-show="temporaryProfilePhoto">-->
+                        <!--<div class="frame">-->
+                            <!--<img class="contentGuillotineProfile img" src="{{profileData.secure_url}}" id="temp_profile_photo"-->
+                                 <!--ng-show="profilePhotoLoaded"/>-->
+                        <!--</div>-->
+                        <!--<div ng-show="profilePhotoButtons" class="edit-buttons-wrapper edit-buttons-profile-photo">-->
+                            <!--<a ng-click="saveProfilePhoto()" class="btn btn-edit">-->
+                                <!--SAVE </span>-->
+                            <!--</a>-->
+                            <!--<a ng-click="cancelProfilePhoto()" class="btn btn-edit margin-l5">-->
+                                <!--CANCEL </span>-->
+                            <!--</a>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="profile-photo">-->
+                    <!--<img class="profilePhoto" src="{{profilePhotoURI}}" ng-show="profilePhoto">-->
+                <!--</div>-->
+            <!--</div>-->
+</div>
+
     </div>
 
 </div>

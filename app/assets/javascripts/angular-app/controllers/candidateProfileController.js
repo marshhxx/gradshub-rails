@@ -12,6 +12,9 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
             $scope.defaultInterests = "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed cursus quam erat, non fringilla dui efficitur vitae. Pellentesque nec sodales lacus. Fusce rutrum diam a dolor vestibulum, at sodales turpis congue. Curabitur condimentum velit elit, id ornare velit eleifend id. In vel lorem ut mi suscipit placerat ut eu nunc. ";
             $scope.defaultLanguages = "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed cursus quam erat, non fringilla dui efficitur vitae. Pellentesque nec sodales lacus. Fusce rutrum diam a dolor vestibulum, at sodales turpis congue. Curabitur condimentum velit elit, id ornare velit eleifend id. In vel lorem ut mi suscipit placerat ut eu nunc. ";
             $scope.defaultEducation = "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed cursus quam erat, non fringilla dui efficitur vitae. Pellentesque nec sodales lacus. Fusce rutrum diam a dolor vestibulum, at sodales turpis congue. Curabitur condimentum velit elit, id ornare velit eleifend id. In vel lorem ut mi suscipit placerat ut eu nunc. ";
+            $scope.profileImageType = true;
+            $scope.coverImageType = false;
+
 
             var updateUser = function () {
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
@@ -23,8 +26,20 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 });
             };
 
-            //<<<<<<<<<<<<<<< START PROFILE PHOTO >>>>>>>>>>>>>>>
 
+            $scope.updateCoverImage = function (coverImage){
+                $scope.user.cover_image = coverImage;
+                updateUser();
+            }
+
+            $scope.updateProfileImage = function (profileImage){
+                $scope.user.profile_image = profileImage;
+                updateUser();
+            }
+
+
+            //<<<<<<<<<<<<<<< START PROFILE PHOTO >>>>>>>>>>>>>>>
+/*
             // show:
             $scope.temporaryProfilePhoto = true;
             $scope.profileImgSelectVisible = true;
@@ -96,7 +111,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 }
 
                 /* START guillotine configuration */
-                pictureProfilePhoto.guillotine({eventOnChange: 'guillotinechange', width: 260, height: 260});
+         /*       pictureProfilePhoto.guillotine({eventOnChange: 'guillotinechange', width: 260, height: 260});
                 pictureProfilePhoto.guillotine('fit');
 
                 var data = pictureProfilePhoto.guillotine('getData');
@@ -112,7 +127,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     }
                 });
                 /* END guillotine configuration */
-
+/*
                 angular.element('.edit-buttons-profile-photo').css({
                     'top': '203px',
                     'left': '58px'
@@ -197,7 +212,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     throw 'Use a valid param in this function';
                 }
             }
-
+*/
             //<<<<<<<<<<<<<<< END PROFILE PHOTO >>>>>>>>>>>>>>>
 
 

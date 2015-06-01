@@ -2,26 +2,28 @@
     <spinner show-spinner="spinnerVisible"></spinner>
     <img class="image-picker default-image" ng-show="defaultImage"/>
 
-    <div class="image-picker content" ng-show="photo">
-        <img class="image-picker img" src="{{photoURL}}">
+    <div ng-class="{'image-picker content-shadow':!circular, 'image-picker content':circular}" ng-show="photo">
+        <img id="image-picker-img" ng-class="{'image-picker img': !circular, 'image-picker img-circular': circular}" src="{{photoURL}}">
     </div>
 
-    <div class="image-picker upload-btn-wrapper" ng-show="uploadImageBtn">
-        <div class="image-picker upload-btn" ng-file-select="onFileSelect($files)"
+    <div ng-class="{'image-picker upload-btn-wrapper-center': circular, 'image-picker upload-btn-wrapper-left': !circular}" ng-show="uploadImageBtn">
+        <div ng-class="{'image-picker upload-btn-center': circular, 'image-picker upload-btn-left': !circular}" ng-file-select="onFileSelect($files)"
              data-multiple="false" title="Cover Photo"
              onclick="this.value = null"></div>
     </div>
+
+
     <div class="image-picker guillotine-photo" ng-show="guillotinePhoto">
         <div class="guillotine-content">
             <div class="frame">
                 <img src="{{cloudinaryPhotoData.secure_url}}" id="guillotine-photo"/>
             </div>
         </div>
-        <div class="img-picker btn-wrapper" ng-show="photoButtons">
-            <a ng-click="savePhoto()" class="btn img-picker edit-btn">
+        <div ng-class="{'image-picker btn-wrapper-center': circular, 'image-picker btn-wrapper-right': !circular}" ng-show="photoButtons">
+            <a ng-click="savePhoto()" class="btn image-picker edit-btn">
                 SAVE </span>
             </a>
-            <a ng-click="cancelPhoto()" class="btn img-picker edit-btn margin-l5">
+            <a ng-click="cancelPhoto()" class="btn image-picker edit-btn margin-l5">
                 CANCEL </span>
             </a>
         </div>

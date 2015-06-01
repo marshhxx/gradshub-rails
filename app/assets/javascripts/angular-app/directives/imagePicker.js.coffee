@@ -1,9 +1,9 @@
 ImagePicker = (Cloudinary, $httpProvider, $timeout) ->
   {
-  restrict: 'E',
   scope:{
     updateImage: '=',
     imageUrl: '=',
+    circular: '=',
   },
   templateUrl: 'angular-app/templates/directives/image-picker.html',
   link: ($scope, $element) ->
@@ -12,8 +12,8 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout) ->
     $scope.photoButtons = false # Photo save and cancel buttons
     initUser = false
 
-    guillotinePhotoElement = angular.element('#guillotine-photo')
-    imageWrapper = angular.element('.image-picker.wrapper')
+    guillotinePhotoElement = $element.find('#guillotine-photo')
+    imageWrapper = $element.find('.image-picker.wrapper')
 
     Cloudinary.config(); #init Cloudinary settings
 
@@ -39,8 +39,8 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout) ->
       delete $httpProvider.defaults.headers.common['Authorization']
       Cloudinary.uploadImage(file).then((data) ->
         $scope.cloudinaryPhotoData = data
-        $scope.guillotinePhotoLoaded = true
       ).catch((error)->
+        console.log(error)
       )
 
     #On guillotine image load
@@ -70,15 +70,17 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout) ->
       ), 3000
     )
 
-    deleteImage = ->
+    deleteImage = (imageUrl)->
       #Delete previous uploaded image
       delete $httpProvider.defaults.headers.common['Authorization'];
-      if $scope.imageUrl
-        publicIdSplitArray = $scope.imageUrl.split('/')
-        Cloudinary.deleteImage(publicIdSplitArray[publicIdSplitArray.length-1]).then((data)->
+      if imageUrl
+        publicIdSplitArray = imageUrl.split('/')
+        publicId = (publicIdSplitArray[publicIdSplitArray.length-1]).split('.')
+        Cloudinary.deleteImage(publicId[0]).then((data)->
           #On success
           data = data
         ).catch((error)->
+          console.log(error)
         )
 
     #On save photo button click
@@ -92,20 +94,20 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout) ->
       coverPhotoThumbernail = Cloudinary.getThumbnail(imageData, $scope.cloudinaryPhotoData) #Get Cropped Thumbernail
 
       #Delete uploaded Image
-      deleteImage()
+      deleteImage($scope.imageUrl)
 
       #Set photo url
       $scope.photoURL = coverPhotoThumbernail[0].src
       $scope.imageUrl = $scope.photoURL #update user reference
 
       #Update user image url
-      $scope.updateImage()
+      $scope.updateImage($scope.imageUrl)
 
       $timeout (->
         $scope.spinnerVisible = false; #Hide spinner
       ), 2000
 
-    angular.element('.image-picker.img').on('load', () ->
+    $element.find('#image-picker-img').on('load', () ->
       #Reset variables
       guillotinePhotoElement.guillotine('remove')  #Reset guillotine plugin
       $scope.photo = true
@@ -119,6 +121,8 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout) ->
       guillotinePhotoElement.guillotine('remove') #Reset guillotine plugin
       $scope.uploadImageBtn = true
       $scope.guillotinePhoto = false
+
+      deleteImage($scope.cloudinaryPhotoData.secure_url);
 
       if !$scope.photo
         $scope.defaultImage = true
