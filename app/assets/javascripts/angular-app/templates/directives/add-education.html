@@ -69,7 +69,7 @@
 				</div>
 			</div>
 
-			<div class="form-group overflow-auto">
+			<div class="form-group">
 		    <div class="form-group div-50 left"
 		         ng-class="{'has-error': newEducationForm.country.$invalid && (newEducationForm.$submitted || newEducationForm.country.$touched)}">
 			    <country-selector placeholder="School Country" ng-model="country" on-select="onCountry"></country-selector>
@@ -93,44 +93,47 @@
 		    </div>
 			</div>
 
-			<div class="form-group" ng-class="{'has-error': newEducationForm.$submitted && !education.start_date}">
+			<div class="form-group inline" ng-class="{'has-error': newEducationForm.$submitted && !education.start_date}">
 				<div class="profile-datepicker-container div-40">
 					<span class="profile-datepicker-label">From: </span>
 					<simpledatepicker no-day="true" no-month="false" ng-model="education.start_date" is-date></simpledatepicker>
 				</div>
+
 
 				<div class="profile-datepicker-container div-40">
 					<span class="profile-datepicker-label">To: </span>
 					<simpledatepicker no-day="true" no-month="false" ng-model="education.end_date" disabled="isCurrentEducation"></simpledatepicker>
 				</div>
 
-				<div class="profile-datepicker-container div-40" style="margin-right:0px;">
-					<span class="profile-switch-education-label"> Is my current school? </span>
-					<input
-						id="switchEducation" 
-						checked="false" 
-						data-on-text=""
-						data-on-color="success"
-						data-off-text="" 
-						data-off-color="danger"
-						data-size="small"
-						data-label-width=0
-						type="checkbox" >
-				</div>
+        <div class="div-100 left" ng-if="newEducationForm.$submitted && !education.start_date">
+          <div class="help-block">
+            Please select a start date!
+          </div>
+        </div>
 
-				<div class="div-50 left" ng-if="newEducationForm.$submitted && !education.start_date">
-					<div class="help-block">
-						Please select a start date!
-					</div>
-				</div>
-
-				<div class="left" ng-if="newEducationForm.$invalid && (newEducationForm.$submitted)" ng-messages="newEducationForm.$error">
-					<div class="div-100 help-block text-center" ng-message="validDates">
-						The end date must be greater than the start date!
-					</div>
-				</div>
+        <div class="left div-100" ng-if="newEducationForm.$invalid && (newEducationForm.$submitted)" ng-messages="newEducationForm.$error">
+          <div class="help-block text-center" ng-message="validDates">
+            The end date must be greater than the start date!
+          </div>
+        </div>
 
 			</div>
+
+      <div class="form-group inline">
+        <div class="profile-datepicker-container div-40" style="margin-right:0px;">
+          <span class="profile-switch-education-label"> Is my current school? </span>
+          <input
+            id="switchEducation"
+            checked="false"
+            data-on-text=""
+            data-on-color="success"
+            data-off-text=""
+            data-off-color="danger"
+            data-size="small"
+            data-label-width=0
+            type="checkbox" >
+        </div>
+      </div>
 
 		<textarea class="form-control" rows="5" ng-model="education.description"
 				  placeholder="Description..."></textarea>

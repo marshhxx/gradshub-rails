@@ -129,9 +129,8 @@ h3 {
 }
 
 .edit-buttons-wrapper {
+  float: right;
   height: 30px;
-  width: 75%;
-  margin-left: 17%;
 }
 
 .image-picker.upload-btn-wrapper-left {
@@ -783,7 +782,6 @@ textarea{
 .profile-datepicker-container{
   float: left;
   display: inline-block;
-  margin-bottom: 15px;
   margin-right: 15px;
 }
 
@@ -807,4 +805,8 @@ textarea{
 .flag-img {
   width: 30px;
   margin-right: 15px;
+}
+
+.inline {
+  display: inline-block;
 }
