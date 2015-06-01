@@ -4,7 +4,6 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout) ->
     updateImage: '=',
     imageUrl: '=',
     circular: '=',
-    default: '=',
   },
   templateUrl: 'angular-app/templates/directives/image-picker.html',
   link: ($scope, $element) ->
