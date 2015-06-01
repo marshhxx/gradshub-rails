@@ -31,7 +31,12 @@ module Demo
     config.assets.precompile << %r(bootstrap-sass-official/assets/fonts/bootstrap/[\w-]+\.(?:eot|svg|ttf|woff)$)
     # Minimum Sass number precision required by bootstrap-sass
     ::Sass::Script::Number.precision = [10, ::Sass::Script::Number.precision].max
-    config.assets.paths << "#{Rails.root}/app/assets/fonts"
+
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower')
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components', 'bootstrap-sass-official', 'assets', 'fonts')
+
+
     config.angular_templates.htmlcompressor = false
     config.skip_session_storage = [:http_auth, :token_auth]
     config.session_store :disabled

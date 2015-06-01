@@ -5,6 +5,7 @@ angular
         ($scope, $q, $httpProvider, $state, sessionService, Skill, Employer, Interest, EmployerNationalities, Company, EmployerCompany, EmployerSkills, EmployerInterests, Utils) ->
 
             init = ->
+                $state.go 'main.signup_employer.personal'
                 $scope.selectedInterests = []
                 $scope.selectedSkills = []
                 $scope.addCompanyEnabled = false
@@ -71,20 +72,6 @@ angular
 
                 $scope.$state = $state
 
-                sessionService.requestCurrentUser().then(
-                    (user) ->
-                        $state.go 'home.page' if !user?
-                        $scope.user = Utils.employerFromObject(user.employer)
-                        $scope.employerCompany.employer_id = $scope.user.uid
-                        $scope.skills.employer_id = $scope.user.uid
-                        $scope.interests.employer_id = $scope.user.uid
-                        $scope.employerNationality.employer_id = $scope.user.uid
-                ).catch(
-                    (error) ->
-                        console.log error
-                        $state.go 'home.page'
-                )
-
                 $scope.validatePersonal = (valid) ->
                     $state.go 'main.signup_employer.company' if valid
 
@@ -99,6 +86,23 @@ angular
 
                 $scope.validateAndCreate = validateAndCreate
                 $scope.toggleAddCompany = toggleAddCompany
+
+                initUser()
+
+            initUser = ->
+              sessionService.requestCurrentUser().then(
+                (user) ->
+                  $state.go 'home.page' if !user?
+                  $scope.user = Utils.employerFromObject(user.employer)
+                  $scope.employerCompany.employer_id = $scope.user.uid
+                  $scope.skills.employer_id = $scope.user.uid
+                  $scope.interests.employer_id = $scope.user.uid
+                  $scope.employerNationality.employer_id = $scope.user.uid
+              ).catch(
+                (error) ->
+                  console.log error
+                  $state.go 'home.page'
+              )
 
             validateAndCreate = (valid) ->
                 createUser() if valid

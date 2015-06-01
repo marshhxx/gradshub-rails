@@ -44,6 +44,7 @@ angular.module('mepedia.directives').directive('experience', [ 'Utils', function
             });
             
             angular.element('.switchEditingJob').on('switchChange.bootstrapSwitch', function(event, state) {
+                scope.experienceTemp.end_date = null;
                 state ? scope.isCurrentJob = true : scope.isCurrentJob = false;
                 scope.$apply();
             });

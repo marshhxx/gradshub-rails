@@ -5,6 +5,7 @@ angular
     ($scope, $rootScope, $q, $httpProvider, $state, sessionService, Skill, Candidate, Interest, CandidateNationalities, Education, CandidateSkills, Utils, alertService)->
 
         init = ->
+            $state.go 'main.signup_candidate.personal'
             $scope.selectedTags = []
             $scope.education = new Education()
             $scope.skills = new CandidateSkills()
@@ -73,18 +74,6 @@ angular
 
             $scope.selectedSkills = [];
 
-            sessionService.requestCurrentUser().then(
-                (user) ->
-                    $state.go 'home.page' if !user?
-                    $scope.user = Utils.candidateFromObject(user.candidate)
-                    $scope.education.candidate_id = $scope.user.uid
-                    $scope.skills.candidate_id = $scope.user.uid
-                ,
-                (error) ->
-                    console.log error
-                    $state.go 'home.page'
-            )
-
             $scope.validatePersonal = (valid) ->
                 $state.go 'main.signup_candidate.education' if valid
 
@@ -112,6 +101,20 @@ angular
                     return
 
             dateValidation()
+            initUser()
+
+        initUser = ->
+          sessionService.requestCurrentUser().then(
+            (user) ->
+              $state.go 'home.page' if !user?
+              $scope.user = Utils.candidateFromObject(user.candidate)
+              $scope.education.candidate_id = $scope.user.uid
+              $scope.skills.candidate_id = $scope.user.uid
+          ).catch(
+            (error) ->
+              console.log error
+              $state.go 'home.page'
+          )
 
         validateAndCreate = (valid) ->
             createUser() if valid

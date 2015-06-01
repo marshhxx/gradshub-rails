@@ -50,6 +50,7 @@
         <div class="form-group"
              ng-class="{'has-error': educationForm.degree.$invalid && (educationForm.$submitted || educationForm.degree.$touched)}">
           <degree-selector placeholder="Degree" ng-model="degree" on-select="onDegree" required></degree-selector>
+          <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
           <div ng-if="educationForm.degree.$invalid && (educationForm.$submitted || educationForm.degree.$touched)"
                ng-messages="educationForm.degree.$error">
             <div class="help-block" ng-message="required">
@@ -75,16 +76,16 @@
           <simpledatepicker no-day="true" ng-model="education.start_date" is-date></simpledatepicker>
         </div>
 
-        <div class="row align-left max-width margin-t5">
-          <span class="signup-label">To: </span>
-          <simpledatepicker no-day="true" ng-model="education.end_date"
-                            disabled="isCurrentEducation"></simpledatepicker>
-        </div>
-
         <div ng-if="educationForm.$submitted && !education.start_date">
           <div class="help-block">
             Please select a start date!
           </div>
+        </div>
+
+        <div class="row align-left max-width margin-t5">
+          <span class="signup-label">To: </span>
+          <simpledatepicker no-day="true" ng-model="education.end_date"
+                            disabled="isCurrentEducation"></simpledatepicker>
         </div>
 
         <div class="left" ng-if="educationForm.$invalid && educationForm.$submitted" ng-messages="educationForm.$error">
@@ -92,6 +93,9 @@
             The end date must be greater than the start date!
           </div>
         </div>
+      </div>
+
+      <div class="row form-group">
         <div class="row align-left max-width margin-t5">
           <span>Is my current education?</span>
           <input

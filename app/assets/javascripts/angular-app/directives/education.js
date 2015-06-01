@@ -73,6 +73,7 @@ angular.module('mepedia.directives').directive('education', ['State', 'Country',
             });
             
             angular.element('.switchEditingEducation').on('switchChange.bootstrapSwitch', function(event, state) {
+                scope.educationTemp.end_date = null;
                 state ? scope.isCurrentEducation = true : scope.isCurrentEducation = false;
                 scope.$apply();
             });

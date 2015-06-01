@@ -80,6 +80,7 @@ angular.module('mepedia.directives').directive('addEducation', function () {
                 scope.isCurrentEducation = true;
 
                 angular.element('#switchEducation').on('switchChange.bootstrapSwitch', function(event, state) {
+                    scope.education.end_date = null;
                     state ? scope.isCurrentEducation = true : scope.isCurrentEducation = false;
                     scope.$apply();
                 });
