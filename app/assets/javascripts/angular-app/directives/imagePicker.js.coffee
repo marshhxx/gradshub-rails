@@ -4,6 +4,7 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout) ->
     updateImage: '=',
     imageUrl: '=',
     circular: '=',
+    default: '=',
   },
   templateUrl: 'angular-app/templates/directives/image-picker.html',
   link: ($scope, $element) ->
@@ -88,7 +89,7 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout) ->
       $scope.spinnerVisible = true;
       imageData = guillotinePhotoElement.guillotine('getData')
       imageData.w = $scope.cloudinaryPhotoData.width
-      imageData.h = $scope.cloudinaryPhotoData.height
+      imageData.h = Math.round(imageData.h / imageData.scale)
       imageData.x = Math.round(imageData.x / imageData.scale)
       imageData.y = Math.round(imageData.y / imageData.scale)
       coverPhotoThumbernail = Cloudinary.getThumbnail(imageData, $scope.cloudinaryPhotoData) #Get Cropped Thumbernail
