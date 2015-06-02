@@ -7,15 +7,16 @@
 
             <p class="profile-tag-txt">{{user.tag}}</p>
         </div>
+
         <div class="coverBorder">
             <simpleimagepicker update-image="updateCoverImage"
-                               circular="coverImageType" default="default-cover-photo.png"></simpleimagepicker>
+                               circular="false" default="default-cover-photo.png"></simpleimagepicker>
         </div>
     </div>
     <div class="profileHeadline wrapper">
         <div class="profile-image wrapper">
             <simpleimagepicker update-image="updateProfileImage" default="{{ user.gender ? user.gender : 'profile-default' }}.svg"
-                               circular="profileImageType"></simpleimagepicker>
+                               circular="true"></simpleimagepicker>
         </div>
 
     </div>
