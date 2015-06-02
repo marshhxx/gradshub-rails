@@ -1395,17 +1395,6 @@ footer#main .footer-above {
 }
 
 .signup.background {
-  //height: 100%;
-  //background-image: url('signup/background-signup1.png');
-  //background-size: cover;
-  //-webkit-background-size: 100%;
-  //-moz-background-size: 100%;
-  //-o-background-size: 100%;
-  //background-repeat:no-repeat;
-  /* custom background-position */
-  //background-position:50% 50%;
-  /* ie8- graceful degradation */
-  //background-position:50% 50%\9 !important;
   padding-top: 105px;
   overflow:hidden;
 
@@ -1556,7 +1545,7 @@ footer#main .footer-above {
   }
 
   .signup .signup-form {
-    padding: 30px 50px 50px;
+    padding: 20px;
   }
 
 }
@@ -1578,7 +1567,8 @@ footer#main .footer-above {
 
 /* form styling */
 #form-container {
-  display: inline-block
+  display: inline-block;
+  min-height: 630px;
 }
 
 #form-container .page-header {

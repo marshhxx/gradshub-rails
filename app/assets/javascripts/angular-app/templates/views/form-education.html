@@ -50,7 +50,6 @@
         <div class="form-group"
              ng-class="{'has-error': educationForm.degree.$invalid && (educationForm.$submitted || educationForm.degree.$touched)}">
           <degree-selector placeholder="Degree" ng-model="degree" on-select="onDegree" required></degree-selector>
-          <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
           <div ng-if="educationForm.degree.$invalid && (educationForm.$submitted || educationForm.degree.$touched)"
                ng-messages="educationForm.degree.$error">
             <div class="help-block" ng-message="required">
