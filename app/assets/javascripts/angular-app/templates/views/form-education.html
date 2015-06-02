@@ -63,33 +63,29 @@
       </div>
 
       <div class="row">
-        <div class="form-group">
-          <input type="text" ng-model="education.description" class="form-control input-sm" id="educationDescription"
-                 placeholder="Description" class="form-control">
-        </div>
-      </div>
-
-      <div class="form-group" ng-class="{'has-error': educationForm.$submitted && !education.start_date}">
-        <div class="row align-left max-width margin-t5">
-          <span class="signup-label">From: </span>
-          <simpledatepicker no-day="true" ng-model="education.start_date" is-date></simpledatepicker>
-        </div>
-
-        <div ng-if="educationForm.$submitted && !education.start_date">
-          <div class="help-block">
-            Please select a start date!
+        <div class="form-group" ng-class="{'has-error': educationForm.$submitted && !education.start_date}">
+          <div class="row align-left max-width">
+            <span class="signup-label">From: </span>
+            <simpledatepicker no-day="true" ng-model="education.start_date" is-date></simpledatepicker>
           </div>
-        </div>
 
-        <div class="row align-left max-width margin-t5">
-          <span class="signup-label">To: </span>
-          <simpledatepicker no-day="true" ng-model="education.end_date"
-                            disabled="isCurrentEducation"></simpledatepicker>
-        </div>
+          <div ng-if="educationForm.$submitted && !education.start_date">
+            <div class="help-block">
+              Please select a start date!
+            </div>
+          </div>
 
-        <div class="left" ng-if="educationForm.$invalid && educationForm.$submitted" ng-messages="educationForm.$error">
-          <div class="div-100 help-block text-center" ng-message="validDates">
-            The end date must be greater than the start date!
+          <div class="row align-left max-width margin-t5">
+            <span class="signup-label">To: </span>
+            <simpledatepicker no-day="true" ng-model="education.end_date"
+                              disabled="isCurrentEducation"></simpledatepicker>
+          </div>
+
+          <div class="left" ng-if="educationForm.$invalid && educationForm.$submitted"
+               ng-messages="educationForm.$error">
+            <div class="div-100 help-block text-center" ng-message="validDates">
+              The end date must be greater than the start date!
+            </div>
           </div>
         </div>
       </div>
@@ -112,7 +108,7 @@
       </div>
     </div>
 
-    <div class="row margin-t30">
+    <div class="row margin-t20">
       <div class="form-group row btn-form-container">
         <div class="col-xs-12 text-center">
           <a ng-click="backToPersonal()" class="btn btn-back margin-lr20"></a>

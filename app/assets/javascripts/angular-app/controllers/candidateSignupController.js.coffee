@@ -5,7 +5,7 @@ angular
     ($scope, $rootScope, $q, $httpProvider, $state, sessionService, Skill, Candidate, Interest, CandidateNationalities, Education, CandidateSkills, Utils, alertService)->
 
         init = ->
-            $state.go 'main.signup_candidate.personal'
+#            $state.go 'main.signup_candidate.personal'
             $scope.selectedTags = []
             $scope.education = new Education()
             $scope.skills = new CandidateSkills()
