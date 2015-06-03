@@ -1,30 +1,36 @@
 <form id="interests-form" name="interestsForm">
-  <div class="signup form-container col-md-8 col-md-offset-2">
-    <div class="signup form-box-cont min-height-150">
-      <div class="row">
-        <div class="form-group">
-          <tags-input tags="skillsTags" placeholder="Add your skills..." info="selectedSkills" signup></tags-input>
+    <div class="signup form-container col-md-8 col-md-offset-2">
+
+        <p> Vestibulum ut ante vel felis lacinia feugiat non eget metus. Donec sit amet facilisis elit, ac ultrices
+            lacus. Nam at faucibus dui. </p>
+
+        <div class="signup form-box-cont min-height-150">
+            <div class="row">
+                <div class="form-group">
+                    <tags-input tags="skillsTags" placeholder="Add your skills..." info="selectedSkills"
+                                signup></tags-input>
+                </div>
+            </div>
         </div>
-      </div>
+
+        <div class="row margin-t20">
+            <div class="form-group row btn-form-container">
+
+                <div class="control-group has-error" ng-messages="serverErrors">
+                    <div class="help-block" ng-repeat="error in serverErrors.reasons">
+                        <div>{{ error }}</div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 text-center">
+                    <a ng-click="backToEducation()" class="btn btn-back margin-lr20"></a>
+
+                    <a ng-click="validateAndCreate(interestsForm.$valid)" type="submit"
+                       class="btn btn-next margin-lr20">
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="row margin-t20">
-      <div class="form-group row btn-form-container">
-
-        <div class="control-group has-error" ng-messages="serverErrors">
-          <div class="help-block" ng-repeat="error in serverErrors.reasons">
-            <div>{{ error }}</div>
-          </div>
-        </div>
-
-        <div class="col-xs-12 text-center">
-          <a ng-click="backToEducation()" class="btn btn-back margin-lr20"></a>
-
-          <a ng-click="validateAndCreate(interestsForm.$valid)" type="submit" class="btn btn-next margin-lr20">
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
 
 </form>

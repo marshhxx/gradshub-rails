@@ -1395,10 +1395,11 @@ footer#main .footer-above {
 }
 
 .signup.background {
-  padding-top: 105px;
-  overflow:hidden;
+  height: 95%;
+  padding-top: 60px;
+  overflow: hidden;
 
-  background:  url('signup/background-signup1.png') no-repeat center center;
+  background:  url('signup/signup5.png') no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -1424,12 +1425,17 @@ footer#main .footer-above {
 }
 
 .signup.form-container {
-  margin-top: 20px;
-  min-height: 330px;
+  //margin-top: 20px;
+  //min-height: 330px;
 }
 
 .signup .form-box-cont {
-  padding: 0 30px;
+  padding: 0px 0px;
+  margin-top: 20px;
+}
+
+.signup .form-box-cont {
+ // padding: 0 30px;
 }
 
 .signup-label{
@@ -1533,7 +1539,7 @@ footer#main .footer-above {
 @media only screen and (min-width: 768px) {
 
   .signup .form-box-cont {
-    padding: 0 70px;
+   // padding: 0 70px;
   }
 
   .col-8 {
@@ -1545,17 +1551,11 @@ footer#main .footer-above {
   }
 
   .signup .signup-form {
-    padding: 20px;
+   padding: 40px 20px 20px 20px;
   }
 
 }
 
-/* Medium Devices, Desktops */
-@media only screen and (min-width: 992px) {
-  .signup .form-box-cont {
-    padding: 0 0px;
-  }
-}
 
 /* Large Devices, Wide Screens */
 @media only screen and (min-width: 1200px) {
