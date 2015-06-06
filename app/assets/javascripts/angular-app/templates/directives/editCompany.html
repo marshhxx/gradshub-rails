@@ -1,8 +1,8 @@
 <!-- Education add component!-->
 <form class="company-form" novalidate class="css-form" name="companyForm">
 <!--<div class="section company-wrapper">-->
-<div class="container-fluid" style="background-color: #00a5e4; margin-top: 3%;">
-    <div class="row" style="font-family: Segoe-Print; color: white;">
+<div class="container-fluid container-edit-company">
+    <div class="row">
     <!--<div class="profile-left-header">-->
     <div class="col-xs-12 company-info-header">
         <div class="profile-left-header company-header-title">
@@ -52,32 +52,12 @@
 
         <div class="col-xs-12 company-info-row">
             <div class="img-col employer">
-                <div class="profile-img company-specialties"></div>
-            </div>
-            <div class="cont-col employer-company">
-                Specialties
-            </div>
-        </div>
-
-        <div class="col-xs-12 col-xs-offset-1 separator-employer-company"></div>
-
-        <div class="col-xs-12 company-info-row">
-            <div class="img-col employer">
-                <div class="profile-img company-type"></div>
-            </div>
-            <div class="cont-col employer-company">
-                Types
-            </div>
-        </div>
-
-        <div class="col-xs-12 col-xs-offset-1 separator-employer-company"></div>
-
-        <div class="col-xs-12 company-info-row">
-            <div class="img-col employer">
                 <div class="profile-img company-location"></div>
             </div>
             <div class="cont-col employer-company" ng-hide="editCompanyEnable">
+                <!--<p class="lead" style="font-size: 14px; width: 185px">-->
                 {{employerCompany.state.name}}, {{employerCompany.country.name}}
+                <!--</p>-->
             </div>
             <div class="form-group employer-company" ng-show="editCompanyEnable">
                 <div class="country-selector-wrapper">

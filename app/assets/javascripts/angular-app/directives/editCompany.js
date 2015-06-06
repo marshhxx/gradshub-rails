@@ -1,4 +1,4 @@
-angular.module('mepedia.directives').directive('editCompany', ['EmployerCompany', 'Utils', function (EmployerCompany, Utils) {
+angular.module('mepedia.directives').directive('editCompany', ['EmployerCompany', 'Utils', 'sessionService', function (EmployerCompany, Utils, sessionService) {
     return {
         // NEEEED TO DO EVERYTHING
         scope: {
@@ -9,6 +9,7 @@ angular.module('mepedia.directives').directive('editCompany', ['EmployerCompany'
         templateUrl: 'angular-app/templates/directives/editCompany.html',
         link: function (scope, element, attrs) {
             scope.editCompanyEnable = false;
+
             var temporaryEmployerCompany = '';
 
             var init = function() {
@@ -30,7 +31,6 @@ angular.module('mepedia.directives').directive('editCompany', ['EmployerCompany'
                 console.log('hieieieie');
                 console.log(scope.companyForm);
                 if (scope.companyForm.$valid) {
-                    console.log('hoala');
                     scope.editCompanyEnable = false;
                     scope.$parent.saveEmployerCompany();
                     temporaryEmployerCompany = scope.employerCompany.site_url;
@@ -42,9 +42,10 @@ angular.module('mepedia.directives').directive('editCompany', ['EmployerCompany'
                 scope.employerCompany.site_url = temporaryEmployerCompany;
             }
 
+
+
             scope.onCountry = function(country) {
                 console.log(country);
-
                 if (country) {
                     scope.country = country.name;
                     scope.country_id = country.id;
