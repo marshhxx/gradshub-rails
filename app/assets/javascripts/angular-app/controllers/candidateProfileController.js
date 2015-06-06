@@ -27,12 +27,12 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
             $scope.updateCoverImage = function (coverImage){
                 $scope.user.cover_image = coverImage;
                 updateUser();
-            }
+            };
 
             $scope.updateProfileImage = function (profileImage){
                 $scope.user.profile_image = profileImage;
                 updateUser();
-            }
+            };
 
             //<<<<<<<<<<<<<<< utilities functions >>>>>>>>>>>>>>>
 
@@ -41,7 +41,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 if ($scope.coverPhotoInProgress || $scope.profilePhotoInProgress) {
                     return 'You have unsaved changes.\nTo save press the save button over your cover photo.';
                 }
-            }
+            };
 
             function checkProfileActionActive() {
                 var isAvailable = false;
@@ -309,11 +309,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                         $scope.defaultSummaryEnable = false;
                         alertService.addInfo('Summary successfully updated!', 5000);
                     }
-                ).catch(
-                    function (error) {
-                        console.log(error);
-                    }
-                );
+                ).catch(handleError);
             };
 
             var saveSkills = function () {
@@ -332,11 +328,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                         });
                         alertService.addInfo('Skills successfully added!', 5000);
                     }
-                ).catch(
-                    function (error) {
-                        console.log(error)
-                    }
-                );
+                ).catch(handleError);
             };
 
             var saveInterests = function() {
@@ -354,13 +346,8 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                             return interest.name;
                         });
                         alertService.addInfo('Interests successfully added!', 5000);
-
                     }
-                ).catch(
-                    function (error) {
-                        console.log(error);
-                    }
-                )
+                ).catch(handleError())
             };
 
             var saveEducation = function (valid) {
@@ -372,10 +359,8 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     function (response) {
                         addAndSort($scope.user.educations, response.education, Utils.sortByStartDate);
                         alertService.addInfo('Education successfully added!', 5000);
-                    },
-                    function (error) {
-                        console.log(error);
-                    });
+                    }
+                ).catch(handleError);
             };
 
             var saveExperience = function (valid) {
@@ -388,10 +373,8 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                         addAndSort($scope.user.experiences, response.experience, Utils.sortByStartDate);
                         alertService.addInfo('Experience successfully added!', 5000);
 
-                    },
-                    function (error) {
-                        console.log(error);
-                    });
+                    }
+                ).catch(handleError);
             };
 
             var getLanguage = function (language) {
@@ -411,12 +394,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                         addAndSort($scope.user.languages, response.language);
                         alertService.addInfo('Language successfully added!', 5000);
                     }
-                ).catch(
-                    function (error) {
-                        console.log(error);
-                        alertService.addError(error.data.error, 5000)
-                    }
-                )
+                ).catch(handleError)
             };
 
             /* UPDATE FUNCTIONS */
@@ -432,11 +410,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                         updateAndSort($scope.user.educations, response.education, Utils.sortByStartDate);
                         alertService.addInfo('Education successfully updated!', 5000);
                     }
-                ).catch(
-                    function (error) {
-                        console.log(error);
-                    }
-                );
+                ).catch(handleError);
             };
 
             var updateExperience = function (valid, index) {
@@ -450,11 +424,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                         updateAndSort($scope.user.experiences, response.experience, Utils.sortByStartDate);
                         alertService.addInfo('Experience successfully updated!', 5000);
                     }
-                ).catch(
-                    function (error) {
-                        console.log(error);
-                    }
-                );
+                ).catch(handleError);
             };
 
             var updateLanguage = function (valid, updated) {
@@ -467,11 +437,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                         updateAndSort($scope.user.languages, response.language, index);
                         alertService.addInfo('Language successfully updated!', 5000);
                     }
-                ).catch(
-                    function(error) {
-                        console.log(error);
-                    }
-                )
+                ).catch(handleError);
             };
 
             /* DELETES */
@@ -488,11 +454,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                             removeElementAndSort($scope.user.experiences, index, Utils.sortByStartDate);
                             alertService.addInfo('Experience successfully deleted!', 5000);
                         }
-                    ).catch(
-                        function (error) {
-                            console.log(error);
-                        }
-                    )
+                    ).catch(handleError);
                 };
                 modalService.confirm("Are you sure you want to delete this experience?").then(deleteIt)
             };
@@ -509,11 +471,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                             removeElementAndSort($scope.user.educations, index, Utils.sortByStartDate);
                             alertService.addInfo('Education successfully deleted!', 5000);
                         }
-                    ).catch(
-                        function (error) {
-                            console.log(error);
-                        }
-                    )
+                    ).catch(handleError);
                 };
                 modalService.confirm("Are you sure you want to delete this education?").then(deleteIt)
             };
@@ -531,11 +489,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                             removeElementAndSort($scope.user.languages, index);
                             alertService.addInfo('Language successfully deleted!', 5000);
                         }
-                    ).catch(
-                        function (error) {
-                            console.log(error)
-                        }
-                    )
+                    ).catch(handleError);
                 };
                 modalService.confirm("Are you sure you want to delete this language?").then(
                     function() {
@@ -565,6 +519,11 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     sortFunction(array);
                 else
                     array.sort();
+            };
+
+            var handleError = function(error) {
+                console.log(error);
+                alertService.addError(error.data.error, 5000)
             };
 
             /* OTHER FUNCTIONS */

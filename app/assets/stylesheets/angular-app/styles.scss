@@ -1395,6 +1395,7 @@ footer#main .footer-above {
 }
 
 .signup.background {
+  min-height: 700px;
   height: 95%;
   padding-top: 60px;
   overflow: hidden;
@@ -1568,7 +1569,6 @@ footer#main .footer-above {
 /* form styling */
 #form-container {
   display: inline-block;
-  min-height: 490px;
 }
 
 #form-container .page-header {
@@ -2134,4 +2134,8 @@ label {
   margin-left: 25%;
   z-index: 7000;
   margin-top: 5px;
+}
+
+.alert-top-fixed ul {
+  text-align: left;
 }

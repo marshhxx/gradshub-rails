@@ -1,12 +1,16 @@
 AlertService = ($rootScope, $timeout) ->
   alertService = {};
 
+  titles = {'danger': 'Something went wrong', 'warning': 'Warning', 'success': 'Success'}
+
   # create an array of alerts available globally
   $rootScope.alerts = [];
 
   alertService.add = (type, msg, timeout) ->
+    $rootScope.alerts = []
     $rootScope.alerts.push(
       {
+        'title': titles[type],
         'type': type,
         'msg': msg,
         'close': -> alertService.closeAlert(this)
@@ -33,6 +37,16 @@ AlertService = ($rootScope, $timeout) ->
   alertService.addError = (error, timeout) ->
     for reason in error.reasons
       alertService.add("danger", reason, timeout)
+
+  alertService.addErrors = (errors, timeout) ->
+    if errors.reasons.length <= 1
+      alertService.addError(errors, timeout)
+    else
+      reasons = 'Reasons:<br> <ul>'
+      for reason in errors.reasons
+        reasons += '<li>' + reason + '</li>'
+      reasons += '</ul>'
+      alertService.add("danger", reasons, timeout)
 
   alertService;
 

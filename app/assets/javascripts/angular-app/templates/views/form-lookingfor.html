@@ -1,9 +1,16 @@
 <form id="personal-form" name="lookingForm" novalidate>
   <div class="signup form-container col-md-8 col-md-offset-2">
 
-      <p> Donec aliquet molestie urna, accumsan commodo diam vulputate dapibus. Ut tempor velit diam, et sagittis enim interdum sed.</p>
+    <p> Donec aliquet molestie urna, accumsan commodo diam vulputate dapibus. Ut tempor velit diam, et sagittis enim
+      interdum sed.</p>
 
-      <div class="signup form-box-cont min-height-150">
+    <div class="control-group has-error" ng-messages="serverErrors">
+      <alert ng-repeat="error in serverErrors.reasons" type="danger" close="alert.close()">
+        <strong>Something went wrong!</strong> {{ error }}
+      </alert>
+    </div>
+
+    <div class="signup form-box-cont min-height-150">
 
       <div class="row">
         <div class="form-group">
@@ -22,12 +29,6 @@
 
     <div class="row margin-t20">
       <div class="form-group row btn-form-container">
-
-        <div class="control-group has-error" ng-messages="serverErrors">
-          <div class="help-block" ng-repeat="error in serverErrors.reasons">
-            <div>{{ error }}</div>
-          </div>
-        </div>
 
         <div class="col-xs-12 text-center">
           <a ng-click="backToCompany()" class="btn btn-back margin-lr20"></a>
