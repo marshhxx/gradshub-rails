@@ -1,22 +1,14 @@
 <div class="profile background">
     <div class="profile wrapper col-md-8 col-md-offset-2">
         <div id="employerProfileTopSection" style="overflow: auto;">
-            <div id="employerProfileCover" class="coverWrap">
+            <div id="employer-profile-cover" class="cover-wrap">
                 <div class="coverBorder coverBorderEmployer">
-                    <div class="employerDefaultCoverPhoto"></div>
-                    <div class="employerCoverImageEdit wrapper">
-                        <div class="employerCoverImageEdit img"></div>
-                    </div>
+                    <simpleimagepicker update-image="updateEmployerCoverImage" circular="false" default="background6.png"></simpleimagepicker>
                 </div>
             </div>
             <div class="profileHeadline wrapper">
                 <div class="companyImage wrapper">
-                    <div class="companyDefaultPhoto">
-                        <h2>Company Logo</h2>
-                        <div class="companyImageEdit wrapper">
-                            <div class="companyImageEdit img"></div>
-                        </div>
-                    </div>
+                    <simpleimagepicker update-image="updateEmployerProfileImage" default="logocircle-employer.svg" circular="true"></simpleimagepicker>
                 </div>
                 <div class="companyNameWrapper">
                     <h1>Company Name</h1>

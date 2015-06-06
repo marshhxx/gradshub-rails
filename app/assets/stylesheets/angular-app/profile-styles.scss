@@ -141,9 +141,14 @@ h3 {
 .image-picker.upload-btn-left {
   width: 60px;
   height: 55px;
-  background: url('ic-photo.svg') center center no-repeat;
+  background: url('camera.svg') center center no-repeat;
   background-size: 45px 40px;
   cursor: pointer;
+}
+
+.image-picker.upload-btn-left:hover {
+  background: url('camera-hover.svg') center center no-repeat;
+  background-size: 45px 40px;
 }
 
 .image-picker.upload-btn-wrapper-center {
@@ -154,11 +159,13 @@ h3 {
 
 .image-picker.upload-btn-center {
   height: 45px;
+  width: 45px;
+  margin: 0 auto;
   background: url('ic-photo.svg') center center no-repeat;
   background-size: 45px 40px;
   position: relative;
   cursor: pointer;
-  top: 180px;
+  margin-top: 76%;
 }
 
 .image-picker.upload-btn:hover {
