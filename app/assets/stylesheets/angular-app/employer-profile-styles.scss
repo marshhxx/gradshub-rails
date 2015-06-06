@@ -1,6 +1,6 @@
 /* COVER PHOTO */
 .coverBorder.coverBorderEmployer {
-  height: 361px;
+  height: 358px;
 }
 .employerDefaultCoverPhoto {
   background: url('default-cover-photo.png') center center no-repeat;
@@ -99,7 +99,7 @@
 
 .companyNameWrapper h1 {
   font-family: Montserrat-Regular;
-  font-size: 40px;
+  font-size: 32px;
   text-transform: uppercase;
 }
 
@@ -122,7 +122,7 @@
   width: 100%;
   background-color: #FFFFFF;
   margin-top: 20px;
-  border-radius: 3px;
+  border-radius: 6px;
   border: 1px solid #d8d8d8;
   border-bottom-width: 2px;
   padding: 20px 20px 25px 20px;
@@ -140,7 +140,7 @@
 .employerProfilePhotoWrapper {
   position: absolute;
   top: -55px;
-  left: 30%;
+  left: 26%;
   padding: 0;   
 }
 
@@ -151,7 +151,7 @@
 
 .employerNameWrapper {
   margin: 35px 0px 0px 0px;
-  font-size: 2em;
+  font-size: 26px;
   
 }
 
@@ -169,17 +169,17 @@
   background-size: 108%;
   background-position: -6px -4px;
   background-repeat: no-repeat;
-  height: 150px;
-  width: 150px;
-  border: 1px solid #ececec;
+  height: 160px;
+  width: 160px;
+  border: 7px solid #ececec;
   margin: 0 auto;
 }
 
 .employerProfileImageEdit.wrapper {
-  width: 30%;
+  width: 35%;
   position: relative;
   z-index: 100;
-  margin: -41px 0 0 55px;
+  margin: -46px 0 0 63px;
 }
 
 .employerProfileImageEdit.img {
@@ -197,29 +197,35 @@
 }
 
 .employerProfileRightContent {
-    padding: 0;
+  padding: 0;
+}
+
+.container-edit-company {
+  background-color: #00a5e4;
+  margin-top: 3%;
+  border-radius: 6px;
 }
 
 .profile-right-container {
   background-color: #FFF;
   margin: 20px 0 20px 20px;
-  border-radius: 3px;
+  border-radius: 6px;
   border: 1px solid #d8d8d8;
   border-bottom-width: 2px;
 }
 
 .profile-right-header.title {
-  width: 65%;
+  width: 60%;
 }
 
 .profile-right-header.title h3 {
   padding-top: 5px;
-  font-size: 18px;
+  font-size: 15px;
 }
 
 .profile-right-header.edit {
   float: right;
-  width: 35%;
+  width: 40%;
 }
 
 .company-logo-summary {
@@ -232,7 +238,6 @@
 }
 
 .profile-left-header.title {
-  color: white;
   text-align: center;
   width: 100%;
 }
@@ -250,6 +255,8 @@
 }
 
 .profile-left-header {
+  font-family: Segoe-Print;
+  color: white;
   width: 100%;
   height: 45px;
 }
@@ -263,7 +270,7 @@
 .img-col.employer {
   float: left;
   width: 10%;
-  margin-left: 10%;
+  margin-left: 2%;
 }
 
 .form-group.employer-company {
@@ -369,7 +376,7 @@
 }
 
 .company-info-header {
-  height: 60px;
+  height: 45px;
   margin-top: 25px;
 }
 
@@ -391,11 +398,20 @@
 }
 
 .company-header-title span {
-  font-size: 25px;
+  font-size: 18px;
   text-transform: uppercase;
   margin-left: 20%;
 }
 
 .cont-col.employer-company {
-  margin-top: 3%;
+  font-family: Segoe-Print; 
+  width: 85%;
+  font-size: 14px;
+  color: white;
+  margin-top: 4%;
+}
+
+
+.profile-right-content {
+  margin-bottom: 20px;
 }
