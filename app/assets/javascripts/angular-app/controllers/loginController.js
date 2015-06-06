@@ -1,6 +1,11 @@
 angular.module('mepedia.controllers').controller('loginController',
     ['$scope', '$state', 'sessionService',
         function ($scope, $state, sessionService) {
+            $scope.randomLogin = function () {
+                var images = ['one', 'other'];
+                return images[Math.floor((Math.random() * 2) + 1) - 1];
+            };
+
             $scope.login = function (isValid) {
                 if (isValid) {
                     if ($scope.email && $scope.password) {
