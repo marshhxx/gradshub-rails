@@ -55,6 +55,12 @@ angular.module('mepedia.controllers').controller('employerProfileController',
                 $scope.descriptionEnable = false;
             }
 
+
+            $scope.updateEmployerCoverImage = function (coverImage){
+                $scope.user.cover_image = coverImage;
+                //updateUser();
+            }
+
             // Description
             $scope.enableDescriptionEditor = function() {
                 $scope.summary = $scope.employerDescription;
