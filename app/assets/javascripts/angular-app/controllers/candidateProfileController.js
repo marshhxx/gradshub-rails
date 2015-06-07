@@ -1,10 +1,12 @@
 angular.module('mepedia.controllers').controller('candidateProfileController',
-    ['$scope', '$rootScope', '$http', '$upload', '$location', '$anchorScroll','sessionService', '$state', 'Country', 
-        'State', 'Candidate', 'Employer', 'Skill', 'Interest', 'School', 'Major', 'Degree', 'Education', 'CandidateSkills', 
+    ['$scope', '$rootScope', '$http', '$upload', '$location', '$anchorScroll','sessionService', '$state', 'Country',
+        'State', 'Candidate', 'Employer', 'Skill', 'Interest', 'School', 'Major', 'Degree', 'Education', 'CandidateSkills',
         'CandidateInterests', 'CandidateLanguages', 'Utils', 'Experience', 'alertService', 'modalService',
-        
 
-        function ($scope, $rootScope, $httpProvider, $upload, $location, $anchorScroll, sessionService, $state, Country, State, Candidate, Employer, Skill, Interest, School, Major, Degree, Education, CandidateSkills, CandidateInterests, CandidateLanguages, Utils, Experience, alertService, modalService) {
+
+        function ($scope, $rootScope, $httpProvider, $upload, $location, $anchorScroll, sessionService, $state, Country,
+                  State, Candidate, Employer, Skill, Interest, School, Major, Degree, Education, CandidateSkills,
+                  CandidateInterests, CandidateLanguages, Utils, Experience, alertService, modalService, ALERT_CONSTANTS) {
 
             $scope.defaultSummary = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dignissim orci in eros auctor, at fringilla orci hendrerit. Quisque consequat eros enim. Nullam luctus lectus sed justo ullamcorper, tempor commodo leo sagittis. Quisque egestas tempus nulla. Aenean sit amet mauris leo.";
             $scope.defaultSkills = "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed cursus quam erat, non fringilla dui efficitur vitae. Pellentesque nec sodales lacus. Fusce rutrum diam a dolor vestibulum, at sodales turpis congue. Curabitur condimentum velit elit, id ornare velit eleifend id. In vel lorem ut mi suscipit placerat ut eu nunc. ";
@@ -307,9 +309,9 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                         $scope.user = response.candidate;  // ToDO !! update only user.summary
                         initCandidateProfile(); //Update profile variables;
                         $scope.defaultSummaryEnable = false;
-                        alertService.addInfo('Summary successfully updated!', 5000);
+                        alertService.addInfo('Summary successfully updated!', ALERT_CONSTANTS.SUCCESS_TIMEOUT);
                     }
-                ).catch(handleError);
+                ).catch(alertService.defaultErrorCallback);
             };
 
             var saveSkills = function () {
@@ -326,9 +328,9 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                         $scope.selectedSkills = response.skills.map(function (skill) {
                             return skill.name;
                         });
-                        alertService.addInfo('Skills successfully added!', 5000);
+                        alertService.addInfo('Skills successfully added!', ALERT_CONSTANTS.SUCCESS_TIMEOUT);
                     }
-                ).catch(handleError);
+                ).catch(alertService.defaultErrorCallback);
             };
 
             var saveInterests = function() {
@@ -345,9 +347,9 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                         $scope.selectedInterests = response.interests.map(function (interest) {
                             return interest.name;
                         });
-                        alertService.addInfo('Interests successfully added!', 5000);
+                        alertService.addInfo('Interests successfully added!', ALERT_CONSTANTS.SUCCESS_TIMEOUT);
                     }
-                ).catch(handleError())
+                ).catch(alertService.defaultErrorCallback())
             };
 
             var saveEducation = function (valid) {
@@ -358,9 +360,9 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 education.$save(
                     function (response) {
                         addAndSort($scope.user.educations, response.education, Utils.sortByStartDate);
-                        alertService.addInfo('Education successfully added!', 5000);
+                        alertService.addInfo('Education successfully added!', ALERT_CONSTANTS.SUCCESS_TIMEOUT);
                     }
-                ).catch(handleError);
+                ).catch(alertService.defaultErrorCallback);
             };
 
             var saveExperience = function (valid) {
@@ -371,10 +373,10 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 experience.$save(
                     function (response) {
                         addAndSort($scope.user.experiences, response.experience, Utils.sortByStartDate);
-                        alertService.addInfo('Experience successfully added!', 5000);
+                        alertService.addInfo('Experience successfully added!', ALERT_CONSTANTS.SUCCESS_TIMEOUT);
 
                     }
-                ).catch(handleError);
+                ).catch(alertService.defaultErrorCallback);
             };
 
             var getLanguage = function (language) {
@@ -392,9 +394,9 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 language.$save().then(
                     function(response) {
                         addAndSort($scope.user.languages, response.language);
-                        alertService.addInfo('Language successfully added!', 5000);
+                        alertService.addInfo('Language successfully added!', ALERT_CONSTANTS.SUCCESS_TIMEOUT);
                     }
-                ).catch(handleError)
+                ).catch(alertService.defaultErrorCallback)
             };
 
             /* UPDATE FUNCTIONS */
@@ -408,9 +410,9 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 education.$update().then(
                     function (response) {
                         updateAndSort($scope.user.educations, response.education, Utils.sortByStartDate);
-                        alertService.addInfo('Education successfully updated!', 5000);
+                        alertService.addInfo('Education successfully updated!', ALERT_CONSTANTS.SUCCESS_TIMEOUT);
                     }
-                ).catch(handleError);
+                ).catch(alertService.defaultErrorCallback);
             };
 
             var updateExperience = function (valid, index) {
@@ -422,9 +424,9 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 experience.$update().then(
                     function (response) {
                         updateAndSort($scope.user.experiences, response.experience, Utils.sortByStartDate);
-                        alertService.addInfo('Experience successfully updated!', 5000);
+                        alertService.addInfo('Experience successfully updated!', ALERT_CONSTANTS.SUCCESS_TIMEOUT);
                     }
-                ).catch(handleError);
+                ).catch(alertService.defaultErrorCallback);
             };
 
             var updateLanguage = function (valid, updated) {
@@ -435,9 +437,9 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 language.$update().then(
                     function(response) {
                         updateAndSort($scope.user.languages, response.language, index);
-                        alertService.addInfo('Language successfully updated!', 5000);
+                        alertService.addInfo('Language successfully updated!', ALERT_CONSTANTS.SUCCESS_TIMEOUT);
                     }
-                ).catch(handleError);
+                ).catch(alertService.defaultErrorCallback);
             };
 
             /* DELETES */
@@ -452,9 +454,9 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     experience.$delete().then(
                         function () {
                             removeElementAndSort($scope.user.experiences, index, Utils.sortByStartDate);
-                            alertService.addInfo('Experience successfully deleted!', 5000);
+                            alertService.addInfo('Experience successfully deleted!', ALERT_CONSTANTS.SUCCESS_TIMEOUT);
                         }
-                    ).catch(handleError);
+                    ).catch(alertService.defaultErrorCallback);
                 };
                 modalService.confirm("Are you sure you want to delete this experience?").then(deleteIt)
             };
@@ -469,9 +471,9 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     education.$delete().then(
                         function() {
                             removeElementAndSort($scope.user.educations, index, Utils.sortByStartDate);
-                            alertService.addInfo('Education successfully deleted!', 5000);
+                            alertService.addInfo('Education successfully deleted!', ALERT_CONSTANTS.SUCCESS_TIMEOUT);
                         }
-                    ).catch(handleError);
+                    ).catch(alertService.defaultErrorCallback);
                 };
                 modalService.confirm("Are you sure you want to delete this education?").then(deleteIt)
             };
@@ -487,9 +489,9 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                         function() {
                             var index = $scope.user.languages.map(function(elem) {return elem.id}).indexOf(language.id);
                             removeElementAndSort($scope.user.languages, index);
-                            alertService.addInfo('Language successfully deleted!', 5000);
+                            alertService.addInfo('Language successfully deleted!', ALERT_CONSTANTS.SUCCESS_TIMEOUT);
                         }
-                    ).catch(handleError);
+                    ).catch(alertService.defaultErrorCallback);
                 };
                 modalService.confirm("Are you sure you want to delete this language?").then(
                     function() {
@@ -519,11 +521,6 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     sortFunction(array);
                 else
                     array.sort();
-            };
-
-            var handleError = function(error) {
-                console.log(error);
-                alertService.addError(error.data.error, 5000)
             };
 
             /* OTHER FUNCTIONS */
