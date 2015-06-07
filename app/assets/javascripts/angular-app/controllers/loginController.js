@@ -1,10 +1,12 @@
 angular.module('mepedia.controllers').controller('loginController',
-    ['$scope', '$state', 'sessionService',
-        function ($scope, $state, sessionService) {
-            $scope.randomLogin = function () {
+    ['$scope', '$state', 'sessionService', 'alertService',
+        function ($scope, $state, sessionService, alertService) {
+            var randomLogin = function () {
                 var images = ['one', 'other'];
                 return images[Math.floor((Math.random() * 2) + 1) - 1];
             };
+
+            $scope.randomPhoto = randomLogin();
 
             $scope.login = function (isValid) {
                 if (isValid) {
@@ -17,9 +19,9 @@ angular.module('mepedia.controllers').controller('loginController',
                                 else if (resp.type == 'Employer')
                                     $state.go('main.employer_profile');
                             }
-                            ,
+                        ).catch(
                             function (resp) {
-                                $scope.serverErrors = resp.error;
+                                alertService.addErrors(resp.data.error, 10000)
                             }
                         );
                     }
