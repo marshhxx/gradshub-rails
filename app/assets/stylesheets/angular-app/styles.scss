@@ -1,3 +1,5 @@
+@import "colors";
+
 @font-face {
   font-family: 'Opensans-regular';
   src: url(OpenSans-Regular.ttf);
@@ -73,11 +75,6 @@
 
 html {
   height: 100%;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none;
 }
 
 body {
@@ -395,6 +392,8 @@ input::-webkit-input-placeholder {
 
 }
 
+/** Logo Header **/
+
 section#logo {
   padding: 10px 0;
 }
@@ -409,41 +408,18 @@ section#logo .logo {
   background-size: 200px auto;
 }
 
-.logo-white {
-  width: 150px;
-  height: 50px;
-  float: left;
-  background-image: url("logo-lightblue.svg");
-  background-repeat: no-repeat;
-  background-size: 150px 50px;
-  border: 0px !important;
-  display: none;
-}
-
-.logo-white-container {
-  width: 200px;
-  height: 50px;
-}
-
-// SignIn
+/** Sign up **/
 
 header {
   width: 100%;
-
-  background-position: center center;
-  background-repeat: no-repeat;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover;
+  height: 630px;
 }
 
-header .intro-text {
-  z-index: 2;
+.header-signup .title-box {
   margin: 10px 0;
 }
 
-header .intro-text .intro-lead-in {
+.header-signup .title {
   padding: 0px;
   line-height: 30px;
   font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
@@ -451,7 +427,7 @@ header .intro-text .intro-lead-in {
   color: #011B25;
 }
 
-header .intro-text .intro-heading {
+.header-signup .subtitle {
   padding: 5px 0px 5px 0px;
   margin: 15px 0px 10px 0px;
   font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
@@ -460,59 +436,54 @@ header .intro-text .intro-heading {
   color: #011B25;
 }
 
-/* Extra Small Devices, Phones */
-@media only screen and (min-width: 480px) {
-
-  header .intro-text .intro-lead-in {
-    font-size: 2.7em;
-  }
-
-  header .intro-text .intro-heading {
-    font-size: 1.4em;
-  }
+.header-signup .employer-btn {
+  width: 210px;
+  padding: 15px 0;
+  margin: 0 10px;
+  font: 18px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+  border: 2px solid $primary-turquoise;
+  color: $primary-turquoise;
+  border-radius: 4px !important;
+  background-color: transparent;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
 }
 
-@media(min-width: 768px) {
-
-  header .intro-text .intro-lead-in {
-    padding: 0px;
-    line-height: 40px;
-    font-size: 3.0em;
-  }
-
-  header .intro-text .intro-heading {
-    line-height: 32px;
-    padding: 0px;
-  }
-
-  header {
-    width: auto;
-    height: 490px;
-    background-attachment: scroll;
-    background-position: center center;
-    background-repeat: no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
-  }
-
+.header-signup .employer-btn-active {
+  background-color: $primary-turquoise;
+  color: $primary-white;
+  text-decoration: none;
 }
 
-/* Medium Devices, Desktops */
-@media only screen and (min-width: 992px) {
-  header .intro-text .intro-lead-in {
-    font-size: 3.1em;
-  }
+.header-signup .employer-btn:hover {
+  background-color: $primary-turquoise;
+  color: $primary-white;
 }
 
-/* Large Devices, Wide Screens */
-@media only screen and (min-width: 1200px) {
+.header-signup .candidate-btn {
+  width: 210px;
+  padding: 15px 0;
+  margin: 0 10px;
+  font: 18px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+  border: 2px solid $primary-turquoise;
+  color: $primary-turquoise;
+  background-color: transparent;
+  border-radius: 4px !important;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+}
 
-  header .intro-text .intro-lead-in {
-    font-size: 3.3em;
-  }
+.header-signup .candidate-btn-active {
+  background-color: $primary-turquoise;
+  color: $primary-white;
+  text-decoration: none;
+}
 
+.header-signup .candidate-btn:hover {
+  background-color: $primary-turquoise;
+  color: $primary-white;
 }
 
 section#signup {
@@ -522,15 +493,140 @@ section#signup {
   z-index: 2;
 }
 
-section#signup .home-col.name {
+.header-signup .wrapper{
+  width: 100%;
+  display: inline-block;
+}
+
+.header-signup .buttons{
+  width: 100%;
+  display: inline-block;
+  padding: 40px 0px 30px 0px;
+}
+
+.header-signup .home-col.name {
   padding-left: 0px;
   padding-right: 0px;
 }
 
-section#signup .home-col.lastname {
+.header-signup .home-col.lastname {
   padding-left: 0px;
   padding-right: 0px;
 }
+
+.header-signup .form-btn-container{
+  width: 100%;
+  display: inline-block;
+  padding: 20px 0px;
+}
+
+.header-signup .form-btn {
+  padding: 10px 40px;
+  background: none;
+  color: $primary-dark-blue;
+  font: 18px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+  border: 1px solid $primary-dark-blue;
+  border-radius: 4px !important;
+  margin: 10px 0;
+}
+
+.header-signup .form-btn:hover,
+               .form-btn:focus,
+               .form-btn:active,
+               .form-btn.active,
+               .form-btn.dropdown-toggle.form-btn {
+    background-color: #011B25;
+    color: #fff;
+}
+
+.home-carousel-container {
+  display: none;
+}
+
+.carousel-inner{
+  height: 630px;
+}
+
+.carousel-inner > .item img {
+  width: 100% !important;
+}
+
+/* Removes carousel buttons */
+.right.carousel-control, .left.carousel-control {
+  display: none;
+}
+
+.carousel-indicators li {
+  display: none;
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width: 480px) {
+
+  .header-signup .title {
+    font-size: 2.7em;
+  }
+
+  .header-signup .subtitle {
+    font-size: 1.4em;
+  }
+
+}
+
+/* Medium Devices, Desktops */
+@media(min-width: 768px) {
+  .header-signup .title {
+    padding: 0px;
+    line-height: 40px;
+    font-size: 3.0em;
+  }
+
+  .header-signup .subtitle {
+    line-height: 32px;
+    padding: 0px;
+  }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width: 992px) {
+  .header-signup .subtitle {
+    line-height: 32px;
+    padding: 0px;
+  }
+
+  .home-carousel-container {
+    display: block;
+  }
+
+  .carousel-indicators li {
+    margin: 0 2px !important;
+    display: inline-block;
+  }
+
+  section#signup {
+    position: absolute;
+    padding: 80px 0px 20px 0px;
+  }
+
+  .header-signup .home-col.name {
+    padding-right: 7.5px;
+  }
+
+  .header-signup .home-col.lastname {
+    padding-left: 7.5px;
+  }
+
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width: 1200px) {
+  .header-signup .subtitle {
+    line-height: 32px;
+    padding: 0px;
+  }
+}
+
+/* Sign up process */
 
 section#signup .form-control:focus {
   border-color: #3D9ED8;
@@ -575,10 +671,6 @@ section#signup .form-control:focus {
   background: #374ea1;
 }
 
-.block {
-  display: block;
-}
-
 .signup-form {
   display: inline-block;
 }
@@ -602,9 +694,7 @@ section#signup .form-control:focus {
   margin-bottom: 0px !important;
 }
 
-//.form-group {
-//  margin-bottom: 20px !important;
-//}
+/* Login */
 
 .login-group.error input {
   border-color: #FFF;
@@ -620,92 +710,6 @@ section#signup .form-control:focus {
   margin-bottom: 10px;
   float: left;
   font-size: 13px;
-}
-
-header .home-carousel-container {
-  display: none;
-  position: absolute;
-  width: 100%;
-}
-
-/* Custom, iPhone Retina */
-@media only screen and (min-width: 320px) {
-
-}
-
-/* Extra Small Devices, Phones */
-@media only screen and (min-width: 480px) {
-
-}
-
-/* Small Devices, Tablets */
-@media only screen and (min-width: 768px) {
-
-  section#signup {
-  //  width: 100%;
-    overflow: hidden;
-    //position: absolute; -> cambiarlo
-    z-index: 2;
-  }
-
-  section#signup .home-col.name {
-    padding-right: 7.5px;
-  }
-
-  section#signup .home-col.lastname {
-    padding-left: 7.5px;
-  }
-
-}
-
-/* Medium Devices, Desktops */
-@media only screen and (min-width: 992px) {
-
-  header .home-carousel-container {
-    display: block;
-  }
-
-  section#signup {
-    position: absolute;
-    padding: 30px 0px 20px 0px;
-  }
-
-  section#signup .home-col.name {
-    padding-right: 7.5px;
-  }
-
-  section#signup .home-col.lastname {
-    padding-left: 7.5px;
-  }
-
-}
-
-/* Large Devices, Wide Screens */
-@media only screen and (min-width: 1200px) {
-
-  section#signup {
-  //  padding: 60px 0px 40px 0px;
-  }
-
-}
-
-.btn-xl {
-  padding: 10px 40px;
-  background: none;
-  color: #011B25;
-  font: 18px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
-  border: 1px solid #011B25;
-  border-radius: 0 !important;
-  margin: 10px 0;
-}
-
-.btn-xl:hover,
-.btn-xl:focus,
-.btn-xl:active,
-.btn-xl.active,
-.open .dropdown-toggle.btn-xl {
-  background-color: #011B25;
-  color: #fff;
 }
 
 .btn-xs {
@@ -727,122 +731,15 @@ header .home-carousel-container {
     float: right;
   }
 
-  .btn-xl {
-    margin-top: 0px;
-  }
 }
 
-section#btn-type {
-  padding: 20px 0;
-}
+/*** Start features section header ***/
 
-.employer_btn {
-  width: 190px;
-  text-align: center;
-  padding: 15px 0;
-  border: 2px solid rgb(0, 159, 219);
-  font: 16px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
-  color: #009FDB;
-  cursor: pointer;
-  background-color: transparent;
-  text-decoration: none;
-  display: inline-block;
-}
-
-.employer_btn-active {
-  background-color: rgb(0, 159, 219);
-  color: #FFF;
-  text-decoration: none;
-}
-
-.employer_btn:hover {
-  background-color: rgb(0, 159, 219);
-  border-width: 2px;
-  border-style: solid;
-  color: #FFF;
-  text-decoration: none;
-}
-
-.millennal_btn {
-  width: 190px;
-  text-align: center;
-  border: 2px solid rgb(236, 138, 101);
-  font: 16px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
-  padding: 15px 0;
-  color: #EC8A65;
-  cursor: pointer;
-  background-color: transparent;
-  text-decoration: none;
-  display: inline-block;
-}
-
-.millennal_btn-active {
-  background-color: rgb(236, 138, 101);
-  color: #FFF;
-  text-decoration: none;
-}
-
-.millennal_btn:hover {
-  background-color: rgb(236, 138, 101);
-  border-width: 2px;
-  border-style: solid;
-  color: #FFF;
-  text-decoration: none;
-}
-
-.btn-type {
-  padding-bottom: 10px;
-}
-
-
-.carousel-slider {
-  display: none;
-}
-
-.home-carousel-img {
-  width: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-/* Removes carousel buttons */
-.right.carousel-control, .left.carousel-control {
-  display: none;
-}
-
-.carousel-indicators li {
-  display: none;
-}
-
-/* Medium Devices, Desktops */
-@media only screen and (min-width: 992px) {
-  .carousel-indicators li {
-    margin: 0 2px !important;
-    display: inline-block;
-  }
-
-  .carousel-slider {
-    display: block;
-  }
-
-}
-
-/* Large Devices, Wide Screens */
-@media only screen and (min-width: 1200px) {
-
-}
-
-/*** Start features section ***/
-
-section {
+section#section-two {
   padding: 50px 0;
 }
 
-section h2.section-heading {
+.home-section-two.section-heading {
   margin-top: 0;
   margin-bottom: 15px;
   font-size: 2.9em;
@@ -850,24 +747,20 @@ section h2.section-heading {
   font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
 }
 
-section h3.section-subheading {
+.home-section-two.section-subheading {
   margin-bottom: 45px;
   font-family: Montserrat-Light, Georgia, "Times New Roman", Times, serif;
   font-size: 1.5em;
   color: #011B25;
   float: none !important;
-  //  font-variant: small-caps;
 }
 
-section#welcometomepedia-background{
-  width: 100% !important;
-  height: 100px;
-  padding: 30px 0px 120px 0px;
-  background-color: #FAFAFA;
-  position: relative;
-  text-align: center;
-}
+/*** Start features section ***/
 
+section#section-three{
+  padding: 50px 0px 50px 0px;
+  background-color: $bg-gray;
+}
 
 .features-image {
   margin-top: 15px;
@@ -895,18 +788,19 @@ section#welcometomepedia-background{
   height: 320px;
 }
 
-
 /* Small Devices, Tablets */
 @media only screen and (min-width: 768px) {
-  section {
-    padding: 40px 0;
+
+  .home-section-two-container {
+    padding-left: 80px;
+    padding-right: 80px;
   }
 
-  section h2.section-heading {
+  .home-section-two.section-heading {
     font-size: 2.9em;
   }
 
-  section h3.section-subheading {
+  .home-section-two.section-subheading {
     margin-bottom: 35px;
     margin-top: 15px;
   }
@@ -917,11 +811,6 @@ section#welcometomepedia-background{
     background-size: 120px;
   }
 
-  .home-features-container {
-    padding-left: 80px;
-    padding-right: 80px;
-  }
-
   .compelling-image {
   text-align: center;
   }
@@ -930,11 +819,17 @@ section#welcometomepedia-background{
 
 /* Large Devices, Wide Screens */
 @media only screen and (min-width: 1200px) {
-  .home-features-container {
+
+  .home-section-two-container {
     padding-left: 0px;
     padding-right: 0px;
   }
+
 }
+
+
+/** *****/
+
 
 section#readytostart-background{
   width: 100% !important;
@@ -1395,16 +1290,15 @@ footer#main .footer-above {
 }
 
 .signup.background {
-  height: 95%;
+  min-height: 700px;
+  height: 100%;
   padding-top: 60px;
   overflow: hidden;
-
   background:  url('signup/signup5.png') no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-
 }
 
 .signup .title {
@@ -1424,18 +1318,13 @@ footer#main .footer-above {
   color: #122028;
 }
 
-.signup.form-container {
-  //margin-top: 20px;
-  //min-height: 330px;
-}
-
 .signup .form-box-cont {
   padding: 0px 0px;
   margin-top: 20px;
 }
 
 .signup .form-box-cont {
- // padding: 0 30px;
+// padding: 0 30px;
 }
 
 .signup-label{
@@ -1568,7 +1457,6 @@ footer#main .footer-above {
 /* form styling */
 #form-container {
   display: inline-block;
-  min-height: 490px;
 }
 
 #form-container .page-header {
@@ -2078,7 +1966,7 @@ label {
 }
 
 .tagsinput.addbutton {
- // background: #3D9ED8;
+// background: #3D9ED8;
   text-decoration: none;
   color: #3D9ED8;
   border: 1px solid #3D9ED8;

@@ -1,66 +1,61 @@
-<section id="logo" class="logo-bar">
+<section id="logo">
     <div class="container">
         <a href="#top"><img class="logo"/></a>
     </div>
 </section>
 
-<header id="myCarousel" class="carousel slide">
+<header>
+    <div class="carousel slide">
+        <section id="signup">
+            <div id="top" class="container">
+                <div class="header-signup title-box">
+                    <div class="header-signup title">SHOWCASE THE REAL YOU</div>
+                    <div class="header-signup subtitle">CREATE A COMPELLING PROFILE. INSPIRE PEOPLE TO HIRE YOU</div>
+                </div>
 
-    <section id="signup">
-        <div id="top" class="container">
-
-            <div class="intro-text">
-                <div class="intro-lead-in">SHOWCASE THE REAL YOU</div>
-                <div class="intro-heading">CREATE A COMPELLING PROFILE. INSPIRE PEOPLE TO HIRE YOU</div>
-            </div>
-
-            <section id="btn-user-type">
-                <div class="container">
-                    <div class="row text-center">
-                        <div class="col-md-2 col-sm-2btn-type">
-                <span id="employer-btn" class="employer_btn employer_btn_right"
-                      ng-click="isEmployer()"
-                      ng-class="{'employer_btn-active': !candidate}">EMPLOYER</span>
-
-                        </div>
-
-                        <div class="col-md-2 col-sm-2">
-                <span id="millennal-btn" class="millennal_btn millennal_btn_left" ng-click="isCandidate()"
-                      ng-class="{'millennal_btn-active': candidate}">MILLENNIAL</span>
+                <div class="header-signup wrapper">
+                    <div class="header-signup buttons">
+                        <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+                            <span id="employer-btn" class="header-signup employer-btn"
+                                  ng-click="isEmployer()"
+                                  ng-class="{'header-signup employer-btn-active': !candidate}">EMPLOYER
+                            </span>
+                             <span id="candidate-btn" class="header-signup candidate-btn" ng-click="isCandidate()"
+                                   ng-class="{'header-signup candidate-btn-active': candidate}">CANDIDATE</span>
                         </div>
                     </div>
-                </div>
-            </section>
 
-            <div class="block">
-                <form name="homeForm" ng-submit="registerUser(homeForm.$valid)" novalidate>
-                    <div class="row">
+                    <form name="homeForm" ng-submit="registerUser(homeForm.$valid)" novalidate>
                         <div class="col-lg-12 col-md-12 col-sm-8">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="header-signup form">
+                                <div class="col-lg-6 col-md-6 col-sm-12 text-center">
                                     <div class="col-md-6 col-sm-6 home-col name">
-                                        <div class="form-group home-container name"
+                                        <div class="form-group"
                                              ng-class="{'has-error': homeForm.name.$invalid && (homeForm.$submitted || homeForm.name.$dirty)}">
-	                                        <input type="text" name="name" class="form-control" ng-model="name" placeholder="Your Name" required>
+                                            <input type="text" name="name" class="form-control" ng-model="name"
+                                                   placeholder="Your Name" required>
 
-	                                        <div ng-if="homeForm.name.$invalid && (homeForm.$submitted || homeForm.name.$dirty)" ng-messages="homeForm.name.$error">
-		                                        <div class="help-block" ng-message="required">
-			                                        Enter your name.
-		                                        </div>
-	                                        </div>
+                                            <div ng-if="homeForm.name.$invalid && (homeForm.$submitted || homeForm.name.$dirty)"
+                                                 ng-messages="homeForm.name.$error">
+                                                <div class="help-block" ng-message="required">
+                                                    Enter your name.
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6 col-sm-6 home-col lastname">
-                                        <div class="form-group home-container lastname"
+                                        <div class="form-group"
                                              ng-class="{'has-error': homeForm.lastname.$invalid && (homeForm.$submitted || homeForm.lastname.$dirty)}">
-	                                        <input type="text" name="lastname" class="form-control" ng-model="lastname" placeholder="Your Last Name" required>
+                                            <input type="text" name="lastname" class="form-control" ng-model="lastname"
+                                                   placeholder="Your Last Name" required>
 
-	                                        <div ng-if="homeForm.lastname.$invalid && (homeForm.$submitted || homeForm.lastname.$dirty)" ng-messages="homeForm.lastname.$error">
-		                                        <div class="help-block" ng-message="required">
-			                                        Enter your last name.
-		                                        </div>
-	                                        </div>
+                                            <div ng-if="homeForm.lastname.$invalid && (homeForm.$submitted || homeForm.lastname.$dirty)"
+                                                 ng-messages="homeForm.lastname.$error">
+                                                <div class="help-block" ng-message="required">
+                                                    Enter your last name.
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -69,391 +64,122 @@
                                         <input type="email" name="email" class="form-control" ng-model="email"
                                                placeholder="Your Email" required>
 
-	                                    <div ng-if="homeForm.email.$invalid && (homeForm.$submitted || homeForm.email.$touched)" ng-messages="homeForm.email.$error">
-		                                    <div class="help-block" ng-message="required">
-			                                    Enter your email.
-		                                    </div>
-		                                    <div class="help-block" ng-message="email">
-			                                    Enter a valid email.
-		                                    </div>
-	                                    </div>
+                                        <div ng-if="homeForm.email.$invalid && (homeForm.$submitted || homeForm.email.$touched)"
+                                             ng-messages="homeForm.email.$error">
+                                            <div class="help-block" ng-message="required">
+                                                Enter your email.
+                                            </div>
+                                            <div class="help-block" ng-message="email">
+                                                Enter a valid email.
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="form-group control-group"
                                          ng-class="{'has-error': homeForm.password.$invalid && (homeForm.$submitted || homeForm.password.$touched)}">
-	                                    <input type="password" name="password" class="form-control" ng-model="password" placeholder="Your Password"
-	                                           ng-minlength="5" ng-maxlength="20" required >
+                                        <input type="password" name="password" class="form-control" ng-model="password"
+                                               placeholder="Your Password"
+                                               ng-minlength="5" ng-maxlength="20" required>
 
-	                                    <div ng-if="homeForm.password.$invalid && (homeForm.$submitted || homeForm.password.$touched)" ng-messages="homeForm.password.$error">
-		                                    <div class="help-block" ng-message="required">
-			                                    Enter your password.
-		                                    </div>
-		                                    <div class="help-block" ng-message="minlength">
-			                                    Your password is too short.
-		                                    </div>
-		                                    <div class="help-block" ng-message="maxlength">
-			                                    Your password is too long.
-		                                    </div>
-	                                    </div>
+                                        <div ng-if="homeForm.password.$invalid && (homeForm.$submitted || homeForm.password.$touched)"
+                                             ng-messages="homeForm.password.$error">
+                                            <div class="help-block" ng-message="required">
+                                                Enter your password.
+                                            </div>
+                                            <div class="help-block" ng-message="minlength">
+                                                Your password is too short.
+                                            </div>
+                                            <div class="help-block" ng-message="maxlength">
+                                                Your password is too long.
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row text-center">
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-8">
+                            <div class="header-signup form-btn-container">
                                 <div class="col-lg-6 col-md-6 col-sm-12 text-center">
-	                                <div class="control-group has-error" ng-messages="serverErrors">
-		                                <div class="help-block" ng-repeat="error in serverErrors.reasons">
-			                                <div>{{ error }}</div>
-		                                </div>
-	                                </div>
-                                    <button type="submit" class="btn btn-xl">Join project B for free</button>
+                                    <div class="control-group has-error" ng-messages="serverErrors">
+                                        <div class="help-block" ng-repeat="error in serverErrors.reasons">
+                                            <div>{{ error }}</div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="header-signup form-btn btn">Join project B for free
+                                    </button>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
+
             </div>
+        </section>
 
-        </div>
-    </section>
-
-    <div id="home-carousel-container" class="carousel-slider">
-        <div>
+        <div id="home-carousel-container" class="home-carousel-container">
             <carousel interval="carouselInterval">
                 <slide ng-repeat="slide in slides" active="slide.active">
-                    <img class="home-carousel-img" ng-src="{{slide.image}}">
+                    <img ng-src="{{slide.image}}">
                 </slide>
             </carousel>
         </div>
     </div>
 </header>
 
-<!-- Features Section -->
-<section id="whychooseus">
-    <div class="container home-features-container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="section-heading">WELCOME TO PROJECTB</h2>
-
-                <h3 class="section-subheading text-muted">Getting a job is easier now</h3>
-            </div>
+<!-- Section two -->
+<section id="section-two">
+    <div class="container home-section-two-container">
+        <div class="col-lg-12 text-center">
+            <h2 class="home-section-two section-heading">Lorem ipsum dolor sit amet</h2>
+            <h3 class="home-section-two section-subheading text-muted">Getting a job is easier now</h3>
         </div>
     </div>
 </section>
 
-            <section id="welcometomepedia-background">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-lg-12 text-center">
-                            <div class="row text-center">
-                                <div class="col-md-4 text-center">
-                                    <div class="features-image img-left"></div>
-                                    <h4 class="regular-tlt-black">COMPELLING <strong>PROFILE</strong></h4>
-
-                                    <p class="regular-txt-gray text-muted">Make a powerful profile that showcase your skills, objects and accomplishments. </p>
-                                </div>
-                                <div class="col-md-4 text-center">
-                                    <div class="features-image img-middle"></div>
-                                    <h4 class="regular-tlt-black">POWERFUL <strong>SEARCH ENGINE</strong></h4>
-
-                                    <p class="regular-txt-gray text-muted">Our miltu-dimensional, one click search engine finds your next great job opportunity.</p>
-                                </div>
-                                <div class="col-md-4 text-center">
-                                    <div class="features-image img-right"></div>
-                                    <h4 class="regular-tlt-black">PERSONALIZATION <strong>PLATFORM</strong></h4>
-
-                                    <p class="regular-txt-gray text-muted">Creates meaningful personalized connections between the millennials and the employers. </p>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="features-description">
-                <div class="container">
-                        <div class="col-md-6 text-center">
-                            <img src="/assets/imac-mockup.png" class="compelling-image img-left">
-                        </div>
-
-                        <div class="col-md-6 text-center">
-                            <h4 class="description-tlt">COMPELLING <strong>PROFILE</strong></h4>
-                            <p class="description-txt text-muted">Make a powerful profile that showcase your skills, objects and accomplishments.
-                                Market yourself with the profile for exciting new career opportunities.
-                                The profile is built in 3 easy steps. Create, Edit and Upload. </p>
-                        </div>
-                </div>
-            </section>
-
-
-            <section id="features-description">
-                <div class="container">
-                    <div class="col-md-6 text-center">
-                        <h4 class="description-tlt">PERSONALIZATION <strong>PLATFORM</strong></h4>
-                        <p class="description-txt text-muted">Personalization engine creates meaningful personalizes
-                            conecctions between the great minds and the employers looking for millennials.
-                            It greatly improves our chance of finding the best match and speeds up the hiring process. </p>
-                    </div>
-
-                    <div class="col-md-6 text-center">
-                        <img src="/assets/plarform.png" class="compelling-image img-left">
-                    </div>
-
-                </div>
-            </section>
-
-            <section id="features-description">
-                <div class="container">
-                    <div class="col-md-6 text-center">
-                        <img src="/assets/imacbook-search-engine-mockup.png" class="compelling-image img-left">
-                    </div>
-
-                    <div class="col-md-6 text-center">
-                        <h4 class="description-tlt">POWERFUL <strong>SEARCH ENGINE</strong></h4>
-                        <p class="description-txt text-muted">Our multi-dimensional, one click search engine finds your next great job opportunity based on your skills, interests and education.
-                            The “Always working automated search engine” works in background to match the most ideal and suitale career opportunities for you.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="readytostart-background">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-                            <h2 class="section-readytostart">READY TO START?</h2>
-                            <h3 class="section-txtreadytostart text-muted">DISCOVER THE NEW WAY OF CONNECTING THE WORLD’S TOP HIRING MANAGERS</h3>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-
-            <section id="howitworks-background">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-                            <h2 class="section-howitworks">HERE´S  HOW  IT  WORKS</h2>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="hiw-employer">
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-                            <img src="assets/hiw-employer.png" class="compelling-image">
-                        </div>
-                    </div>
-            </section>
-
-
-
-
-
-
-<section id="reallifestories">
+<!-- Section features -->
+<section id="section-three">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <span class="reallifestories title">REAL  LIFE  STORIES</span>
-            </div>
-        </div>
-        <div id="reallifestories-carousel-container">
-            <carousel class="reallifestories-carousel">
-                <slide ng-repeat="slide in rlslides" active="slide.active">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 text-center">
-                            <img class="reallifestories-img" ng-src="{{slide.image}}">
+        <div class="col-lg-12 text-center">
+            <div class="row text-center">
+                <div class="col-md-4 text-center">
+                    <div class="features-image img-left"></div>
+                    <h4 class="regular-tlt-black">COMPELLING <strong>PROFILE</strong></h4>
 
-                            <div class="intro-text">
-                                <p class="text-muted light-txt-white" ng-bind-html="renderHtml(slide.text)"></p>
-                            </div>
-                        </div>
-                    </div>
-                </slide>
-            </carousel>
+                    <p class="regular-txt-gray text-muted">Make a powerful profile that showcase your skills, objects
+                        and accomplishments. </p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="features-image img-middle"></div>
+                    <h4 class="regular-tlt-black">POWERFUL <strong>SEARCH ENGINE</strong></h4>
+
+                    <p class="regular-txt-gray text-muted">Our miltu-dimensional, one click search engine finds your
+                        next great job opportunity.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="features-image img-right"></div>
+                    <h4 class="regular-tlt-black">PERSONALIZATION <strong>PLATFORM</strong></h4>
+
+                    <p class="regular-txt-gray text-muted">Creates meaningful personalized connections between the
+                        millennials and the employers. </p>
+                </div>
+
+            </div>
+
         </div>
     </div>
 </section>
 
-<section id="home-middle-quote">
+<section id="features-description">
     <div class="container">
-        <div class="row">
-            <p class="home-middle-quote-tlt text-muted text-center">READY TO START?</p>
+        <div class="col-md-6 text-center">
+            <img src="/assets/imac-mockup.png" class="compelling-image img-left">
         </div>
-        <div class="row">
-            <p class="home-middle-quote-txt text-muted text-center">Discover the new way of connecting the world's top
-                hiring managers.</p>
-        </div>
-    </div>
-</section>
 
-<section id="howitworks-bar-line" class="greatminds-color">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="howitworks-bar">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <span class="here-is-how-it-works title"> HERE'S HOW IT WORKS </span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="btn-type">
-    <div class="container">
-        <div class="row text-center">
-            <div class="col-md-6 col-sm-6 btn-type">
-                <span id="lookingforgreatminds-btn" class="looking_minds_btn looking_minds_btn_right"
-                      ng-click="showType()"
-                      ng-class="{'looking_minds_btn-active': !type}">LOOKING FOR GREAT MINDS</span>
-            </div>
-
-            <div class="col-md-6 col-sm-6">
-                <span id="greatminds-btn" class="great_minds_btn great_minds_btn_left" ng-click="showType()"
-                      ng-class="{'great_minds_btn-active': type}">I  AM A GREAT MIND</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="home-hiw-section-one" ng-show="type">
-    <div class="container">
-        <div class="row">
-
-            <div class="col-md-6 col-sm-6">
-                <div class="row how-it-works-row-padding">
-                    <div class="col-md-3 how-it-work-row-img-cl">
-                        <div class="how-it-works-row-img gm-img-1"></div>
-                    </div>
-                    <div class="col-md-8 col-sm-8 col-xs-8">
-                        <span class="regular-tlt-black"> CREATE YOUR PROFILE </span>
-                        <br/>
-                        <span class="text-muted regular-txt-gray"> Build your powerful profile to market yourself for the job that you want. </span>
-                    </div>
-                </div>
-                <div class="row how-it-works-row-padding">
-                    <div class="col-md-3 how-it-work-row-img-cl">
-                        <div class="how-it-works-row-img gm-img-2"></div>
-                    </div>
-                    <div class="col-md-8 col-sm-8 col-xs-8">
-                        <span class="regular-tlt-black"> APPLY FOR A JOB </span>
-                        <br/>
-                        <span class="text-muted regular-txt-gray"> Our automated search finds the most ideal job opportunity for you based on your education, skills and interests. </span>
-                    </div>
-                </div>
-                <div class="row how-it-works-row-padding">
-                    <div class="col-md-3 how-it-work-row-img-cl">
-                        <div class="how-it-works-row-img gm-img-3"></div>
-                    </div>
-                    <div class="col-md-8 col-sm-8 col-xs-8">
-                        <span class="regular-tlt-black"> GET HIRED </span>
-                        <br/>
-                        <span class="text-muted regular-txt-gray"> Our personalization platform provides you with instant communication, thereby making the hiring process pleasant. </span>
-                    </div>
-                </div>
-                <div class="row how-it-works-row-padding">
-                    <div class="col-md-3 how-it-work-row-img-cl">
-                        <div class="how-it-works-row-img gm-img-4"></div>
-                    </div>
-                    <div class="col-md-8 col-sm-8 col-xs-8">
-                        <span class="regular-tlt-black"> DO A GREAT JOB </span>
-                        <br/>
-                        <span class="text-muted regular-txt-gray"> Excelling at your job is fulfilling, rewarding and enriching with new experiences in life. </span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-6">
-            </div>
-        </div>
-    </div>
-
-</section>
-
-<section id="home-hiw-section-two" ng-hide="type">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-sm-4 how-it-works-img-cl-right">
-                <div class="how-it-works-img lgm-img"></div>
-            </div>
-            <div class="col-md-6 col-sm-6">
-                <div class="row how-it-works-row-padding">
-                    <div class="col-md-3 how-it-work-row-img-cl">
-                        <div class="how-it-works-row-img lgm-img-1"></div>
-                    </div>
-                    <div class="col-md-8 col-sm-8 col-xs-8">
-                        <span class="regular-tlt-black"> CREATE YOUR COMPANY PROFILE </span>
-                        <br/>
-                        <span class="text-muted regular-txt-gray"> Build a power profile to market your company with current job openings, work culture to attract great talent. </span>
-                    </div>
-                </div>
-                <div class="row how-it-works-row-padding">
-                    <div class="col-md-3 how-it-work-row-img-cl">
-                        <div class="how-it-works-row-img lgm-img-2"></div>
-                    </div>
-                    <div class="col-md-8 col-sm-8 col-xs-8">
-                        <span class="regular-tlt-black"> FIND GREAT MINDS </span>
-                        <br/>
-                        <span class="text-muted regular-txt-gray"> Our automated search finds the most ideal candidate for your company, based on your requirements. </span>
-                    </div>
-                </div>
-                <div class="row how-it-works-row-padding">
-                    <div class="col-md-3 how-it-work-row-img-cl">
-                        <div class="how-it-works-row-img lgm-img-3"></div>
-                    </div>
-                    <div class="col-md-8 col-sm-8 col-xs-8">
-                        <span class="regular-tlt-black"> HIRE FAST </span>
-                        <br/>
-                        <span class="text-muted regular-txt-gray"> Our personalization platform allows you to interact efficiently, thereby making the hiring process pleasant. </span>
-                    </div>
-                </div>
-                <div class="row how-it-works-row-padding">
-                    <div class="col-md-3 how-it-work-row-img-cl">
-                        <div class="how-it-works-row-img lgm-img-4"></div>
-                    </div>
-                    <div class="col-md-8 col-sm-8 col-xs-8">
-                        <span class="regular-tlt-black"> BUILD A GREAT COMPANY </span>
-                        <br/>
-                        <span class="text-muted regular-txt-gray"> Hiring the best minds creates opportunities for growth, leadership and success. </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</section>
-
-<section id="quotes">
-    <div class="container text-center">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="quotes-img"></div>
-                <br/>
-                <span class="quotes-txt"> All our dreams can come true if we have the courage to pursue them.</span>
-                </br>
-                <span class="quotes-author"> Walt Disney </span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="home-end-quote">
-    <div class="container">
-        <div class="row text-center">
-            <p class="home-middle-quote-tlt text-muted text-center">We are the everybody's Pedia</p>
-        </div>
-        <div class="text-center">
-            <p class="home-middle-quote-txt text-muted text-center">Start building your storyline. Become a member
-                now. </p>
+        <div class="col-md-6 text-center">
+            <h4 class="description-tlt">COMPELLING <strong>PROFILE</strong></h4>
+            <p class="description-txt text-muted">Make a powerful profile that showcase your skills, objects and accomplishments.
+                Market yourself with the profile for exciting new career opportunities.
+                The profile is built in 3 easy steps. Create, Edit and Upload. </p>
         </div>
     </div>
 </section>

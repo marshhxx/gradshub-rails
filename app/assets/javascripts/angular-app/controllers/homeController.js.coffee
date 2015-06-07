@@ -12,7 +12,7 @@ angular.module('mepedia.controllers').controller("HomeController", [
 			$scope.candidate = true
 			$scope.isCandidate = () -> $scope.candidate = true
 			$scope.isEmployer = () -> $scope.candidate = false
-			$scope.carouselInterval = 4000
+			$scope.carouselInterval = 0 #4000
 			$scope.slides = slides
 			$scope.rlslides = rlslides
 			$scope.type = true
@@ -54,16 +54,16 @@ angular.module('mepedia.controllers').controller("HomeController", [
 
 		slides = [
 			{
-				image: "/assets/background-marqui1.png"
+				image: "/assets/background-marqui.png"
 			}
 			{
-				image: "/assets/background-luli1.png"
+				image: "/assets/background-luli.png"
 			}
 			{
-				image: "/assets/background-nico1.png"
+				image: "/assets/background-nico.png"
     }
 			{
-				image: "/assets/background-mumi1.png"
+				image: "/assets/background-mumi.png"
 			}
 		]
 
