@@ -1,9 +1,10 @@
 angular
 .module('mepedia.controllers')
 .controller("employerSignupController",
-    ['$scope', '$q', '$http', '$state', 'sessionService', 'Skill', 'Employer','Interest', 'EmployerNationalities', 'Company', 'EmployerCompany', 'EmployerSkills', 'EmployerInterests', 'Utils'
-        ($scope, $q, $httpProvider, $state, sessionService, Skill, Employer, Interest, EmployerNationalities, Company, EmployerCompany, EmployerSkills, EmployerInterests, Utils) ->
-
+    ['$scope', '$q', '$http', '$state', 'sessionService', 'Skill', 'Employer', 'Interest', 'EmployerNationalities',
+     'Company', 'EmployerCompany', 'EmployerSkills', 'EmployerInterests', 'Utils', 'alertService'
+        ($scope, $q, $httpProvider, $state, sessionService, Skill, Employer, Interest, EmployerNationalities,
+         Company, EmployerCompany, EmployerSkills, EmployerInterests, Utils, alertService) ->
             init = ->
                 $state.go 'main.signup_employer.personal'
                 $scope.selectedInterests = []
@@ -20,7 +21,7 @@ angular
                     "Female",
                     "Other"
                 ]
-                
+
                 $scope.userGender = "Select Gender"
                 $scope.selectedFrom = "From"
                 $scope.selectedTo = "To"
@@ -29,8 +30,8 @@ angular
                     $scope.companies = companies.companies
 
                 $scope.onGender = (index) ->
-                  $scope.user.gender = index
-                  $scope.gender = $scope.userGender = $scope.genders[index]
+                    $scope.user.gender = index
+                    $scope.gender = $scope.userGender = $scope.genders[index]
 
                 $scope.onCountry = (country) ->
                     if(country?)
@@ -78,7 +79,7 @@ angular
                 $scope.validateCompany = (valid) ->
                     $state.go 'main.signup_employer.looking' if valid
 
-                $scope.backToPersonal =  ->
+                $scope.backToPersonal = ->
                     $state.go 'main.signup_employer.personal'
 
                 $scope.backToCompany = ->
@@ -90,19 +91,19 @@ angular
                 initUser()
 
             initUser = ->
-              sessionService.requestCurrentUser().then(
-                (user) ->
-                  $state.go 'home.page' if !user?
-                  $scope.user = Utils.employerFromObject(user.employer)
-                  $scope.employerCompany.employer_id = $scope.user.uid
-                  $scope.skills.employer_id = $scope.user.uid
-                  $scope.interests.employer_id = $scope.user.uid
-                  $scope.employerNationality.employer_id = $scope.user.uid
-              ).catch(
-                (error) ->
-                  console.log error
-                  $state.go 'home.page'
-              )
+                sessionService.requestCurrentUser().then(
+                    (user) ->
+                        $state.go 'home.page' if !user?
+                        $scope.user = Utils.employerFromObject(user.employer)
+                        $scope.employerCompany.employer_id = $scope.user.uid
+                        $scope.skills.employer_id = $scope.user.uid
+                        $scope.interests.employer_id = $scope.user.uid
+                        $scope.employerNationality.employer_id = $scope.user.uid
+                ).catch(
+                    (error) ->
+                        console.log error
+                        $state.go 'home.page'
+                )
 
             validateAndCreate = (valid) ->
                 createUser() if valid
@@ -111,19 +112,15 @@ angular
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
                 createCompany().then(
                     (company) ->
-                        $q.all([saveEmployerNationality(), saveCompany(company.company.id), saveSkills(), saveInterests(), saveUser()])
+                        $q.all([saveEmployerNationality(), saveCompany(company.company.id), saveSkills(),
+                                saveInterests(),
+                                saveUser()])
                         .then(
                             (data) ->
                                 console.log(data)
                                 $state.go 'main.employer_profile'
-                        ).catch(
-                            (error) ->
-                                $scope.serverErrors = error.data.error
-                        )
-                ).catch(
-                    (error) ->
-                        console.log error
-                )
+                        ).catch(renderError)
+                ).catch(renderError)
 
             createCompany = ->
                 deferred = $q.defer()
@@ -162,6 +159,9 @@ angular
                     $scope.addCompanyEnabled = false
                 else
                     $scope.addCompanyEnabled = true
-            
+
+            renderError = (error) ->
+                alertService.addErrors(error.data.error)
+
             init()
     ])

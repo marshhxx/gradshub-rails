@@ -327,7 +327,7 @@ input::-webkit-input-placeholder {
   border-radius: 0px;
   border: 0 !important;
   // background-color: #1C2A33;
-  background-color: #011B25;
+  background-color: $primary-blue;
 }
 
 .navbar-default .navbar-collapse {
@@ -350,7 +350,6 @@ input::-webkit-input-placeholder {
 
 .navbar-default .nav li a {
   font-family: 'Lato-Regular';
-  font-weight: 400;
   color: #fff;
   cursor: pointer;
 }
@@ -359,7 +358,7 @@ input::-webkit-input-placeholder {
 .navbar-default .nav li a:focus {
   outline: 0;
   color: #FFF;
-  font-family: 'Opensans-regular' !important;
+  font-family: 'Lato-Regular' !important;
   cursor: pointer;
 }
 
@@ -650,15 +649,15 @@ section#signup .form-control:focus {
 }
 
 .personal {
-  background: #00a5e4;
+  background: $primary-lightblue;
 }
 
 .education {
-  background: #f26621;
+  background: $primary-green ;
 }
 
 .interests {
-  background: #374ea1;
+  background: $primary-violet;
 }
 
 .company {
@@ -692,7 +691,9 @@ section#signup .form-control:focus {
   margin-bottom: 0px !important;
 }
 
-/* Login */
+//.form-group {
+//  margin-bottom: 20px !important;
+//}
 
 .login-group.error input {
   border-color: #FFF;
@@ -708,6 +709,92 @@ section#signup .form-control:focus {
   margin-bottom: 10px;
   float: left;
   font-size: 13px;
+}
+
+header .home-carousel-container {
+  display: none;
+  position: absolute;
+  width: 100%;
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width: 320px) {
+
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width: 480px) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width: 768px) {
+
+  section#signup {
+  //  width: 100%;
+    overflow: hidden;
+    //position: absolute; -> cambiarlo
+    z-index: 2;
+  }
+
+  section#signup .home-col.name {
+    padding-right: 7.5px;
+  }
+
+  section#signup .home-col.lastname {
+    padding-left: 7.5px;
+  }
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width: 992px) {
+
+  header .home-carousel-container {
+    display: block;
+  }
+
+  section#signup {
+    position: absolute;
+    padding: 30px 0px 20px 0px;
+  }
+
+  section#signup .home-col.name {
+    padding-right: 7.5px;
+  }
+
+  section#signup .home-col.lastname {
+    padding-left: 7.5px;
+  }
+
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width: 1200px) {
+
+  section#signup {
+  //  padding: 60px 0px 40px 0px;
+  }
+
+}
+
+.btn-xl {
+  padding: 10px 40px;
+  background: none;
+  color: #011B25;
+  font: 18px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+  border: 1px solid #011B25;
+  border-radius: 0 !important;
+  margin: 10px 0;
+}
+
+.btn-xl:hover,
+.btn-xl:focus,
+.btn-xl:active,
+.btn-xl.active,
+.open .dropdown-toggle.btn-xl {
+  background-color: #011B25;
+  color: #fff;
 }
 
 .btn-xs {
@@ -1362,10 +1449,10 @@ footer#main .footer-above {
 }
 
 .signup.background {
-  min-height: 700px;
-  height: 100%;
+  height: 95%;
   padding-top: 60px;
   overflow: hidden;
+
   background:  url('signup/signup5.png') no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -1745,80 +1832,82 @@ label {
 
 /*=========================================================================== */
 
+.auto-width {
+  width: auto;
+  overflow:hidden;
+}
+
 /** START login **/
-.login.background {
-  background: url("background-paris.JPG") no-repeat center center fixed;
+
+.login.background.one {
+  background: url("login/login1.png") no-repeat center center;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   height: 100%;
-  width: 100%;
+}
+
+.login.background.other {
+  background: url("login/login2.png") no-repeat center center;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  height: 100%;
+}
+
+.login.logo-container {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  background-color: #000000;
+  margin: -50px auto auto;
 }
 
 .login.form-container {
-  padding: 40px 0 260px 0;
+  padding: 160px 0 0 0;
 }
 
 .login.form-box {
-  //min-height: 330px;
-  background: rgba(18, 32, 40, 0.8);
-  display: inline-block;
-
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 6px;
 }
 
 .login.form-box-cont {
-  padding: 30px 30px 30px 30px;
+  padding: 15px 30px 30px 30px;
 }
 
-.login .input-box {
-  min-height: 112px;
+.login-ic {
+  width: 40px;
+  margin: auto;
 }
 
-.login.logo {
-  padding: 25px 0;
-  background: url("logo-lightblue.svg") center center;
-  background-repeat: no-repeat !important;
-  background-size: 240px 70px;
-  background-attachment: scroll;
-  cursor: pointer;
+.ic-email {
+  background: url("login/email.svg") no-repeat;
+  width: 30px;
+  height: 30px;
 }
 
-.login.ic-email {
-  background: url("email.svg") no-repeat 0px 0px;
-  width: 35px;
-  height: 35px;
-  background-size: 30px 30px;
-  float: left;
-  background-color: #3D9ED8;
-  border-radius: 0px;
-}
-
-.login.ic-password {
-  background: url("password.svg") no-repeat 0px 2px;
-  width: 35px;
-  height: 35px;
-  background-size: 30px 30px;
-  float: left;
-  background-color: #3D9ED8;
-  border-radius: 0px;
+.ic-password {
+  background: url("login/password.svg") no-repeat;
+  width: 30px;
+  height: 30px;
 }
 
 .login.button-submit {
-  width: 100%;
-  //margin: 10px 0;
-  padding: 10px 0px;
+  width: 50%;
   background: none;
-  color: #FFFFFF;
-  font: 14px Opensans-light, Georgia, "Times New Roman", Times, serif;
-  border: 1px solid #fff;
-  border-radius: 0 !important;
+  font: 14px Lato-Regular, Georgia, "Times New Roman", Times, serif;
+  border: 1px solid black;
+  border-radius: 6px !important;
+  padding: 10px;
+
 }
 
 .login.button-submit:hover {
   background: #122028;
   color: #FFF;
-  font: 14px Opensans-light, Georgia, "Times New Roman", Times, serif;
 }
 
 .login.forgotpssw {
@@ -1830,8 +1919,8 @@ label {
 .login label {
   float: left;
   font-weight: normal;
-  color: white;
-  font: 13px Opensans-regular, Georgia, "Times New Roman", Times, serif;
+  color: black;
+  font: 11px Lato-Regular, Georgia, "Times New Roman", Times, serif;
 }
 
 .login.forgotpssw a {
@@ -1840,7 +1929,7 @@ label {
 
 .login.rememberme {
   overflow: auto;
-  margin-top: 15px;
+  margin-top: 20px;
 }
 
 .login.rememberme-checkbox {
@@ -1856,6 +1945,9 @@ label {
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 320px) {
 
+  .login.form-box {
+    padding-top: 1px;
+  }
 }
 
 /* Extra Small Devices, Phones */
@@ -1870,16 +1962,11 @@ label {
 /* Small Devices, Tablets */
 @media only screen and (min-width: 768px) {
 
-  .login.form-container {
-    padding: 80px 0 80px 0;
-  }
 }
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width: 992px) {
-  .login.form-container {
-    padding: 115px 0 80px 0;
-  }
+
 }
 
 /** END login **/
@@ -2064,12 +2151,20 @@ label {
   width: 100% !important;
 }
 
+.div-90{
+  width: 89% !important;
+}
+
 .div-50{
   width: 49% !important;
 }
 
 .div-25{
   width: 24% !important;
+}
+
+.div-10{
+  width: 9% !important;
 }
 
 .left{
@@ -2094,4 +2189,8 @@ label {
   margin-left: 25%;
   z-index: 7000;
   margin-top: 5px;
+}
+
+.alert-top-fixed ul {
+  text-align: left;
 }

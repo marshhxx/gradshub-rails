@@ -1,103 +1,96 @@
 <div class="alert-top-fixed">
-	<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="alert.close()">{{ alert.msg }}</alert>
+  <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="alert.close()">{{ alert.msg }}</alert>
 </div>
-<div class="login background" xmlns="http://www.w3.org/1999/html">
-    <div class="login form-container">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 text-center">
-                    <div class="login form-box">
-                        <div class="login form-box-cont">
-                            <form name="loginForm" ng-submit="login(loginForm.$valid)" novalidate>
-                                <div class="row text-center">
-                                    <div class="login logo" ui-sref="home.page"></div>
-                                </div>
+<div class="login background" ng-class="randomLogin()" xmlns="http://www.w3.org/1999/html">
+  <div class="login form-container">
+    <div class="container">
+      <div class="row">
+        <div class="login form-box col-lg-4 col-md-5 col-sm-5 col-lg-offset-4 col-md-offset-4 col-sm-offset-4 text-center">
 
-                                <div class="login input-box">
-                                    <div class="form-group login-group margin-t20"
-                                         ng-class="{'has-error': loginForm.email.$invalid && (loginForm.$submitted || loginForm.email.$touched)}">
-                                        <input type="email" name="email" class="form-control" ng-model="email"
-                                               placeholder="Your Email" required>
+          <div class="login logo-container">
 
-	                                    <div ng-if="loginForm.email.$invalid && (loginForm.$submitted || loginForm.email.$touched)" ng-messages="loginForm.email.$error">
-		                                    <div class="help-block" ng-message="required">
-			                                    Enter your email.
-		                                    </div>
-		                                    <div class="help-block" ng-message="email">
-			                                    Enter a valid email.
-		                                    </div>
-	                                    </div>
-                                    </div>
-                                    <div class="form-group login-group"
-                                         ng-class="{'has-error': loginForm.password.$invalid && (loginForm.$submitted || loginForm.password.$touched)}">
-                                        <input type="password" name="password" ng-model="password" class="form-control"
-                                               placeholder="Your Password" required ng-minlength="5" ng-maxlength="20">
+          </div>
 
-	                                    <div ng-if="loginForm.password.$invalid && (loginForm.$submitted || loginForm.password.$touched)" ng-messages="loginForm.password.$error">
-		                                    <div class="help-block" ng-message="required">
-			                                    Enter your password.
-		                                    </div>
-		                                    <div class="help-block" ng-message="minlength">
-			                                    Your password is too short.
-		                                    </div>
-		                                    <div class="help-block" ng-message="maxlength">
-			                                    Your password is too long.
-		                                    </div>
-	                                    </div>
-                                    </div>
-                                </div>
+          <div class="login form-box-cont">
+            <form name="loginForm" class="form-horizontal" ng-submit="login(loginForm.$valid)" novalidate>
 
-                                <div class="text-center">
-		                                <div class="control-group has-error" ng-messages="serverErrors">
-			                                <div class="help-block" ng-repeat="error in serverErrors.reasons">
-				                                <div>{{ error }}</div>
-			                                </div>
-		                                </div>
-                                    <button type="submit" class="btn btn-default login button-submit">Log In
-                                    </button>
-                                </div>
-                            </form>
+              <div class="login">
+                <div class="form-group margin-t20"
+                     ng-class="{'has-error': loginForm.email.$invalid && (loginForm.$submitted || loginForm.email.$touched)}">
 
-                            <div class="login rememberme">
-                                <label>Remember me</label>
-                                <input class="login rememberme-checkbox" type="checkbox"
-                                       ng-model="rememberMe">
-                            </div>
+                  <div class="login-ic left">
+                    <div class="ic-email"></div>
+                  </div>
+                  <div class="auto-width">
+                    <input type="email" name="email" class="form-control" ng-model="email"
+                           placeholder="Your Email" required>
 
-                            <div class="login forgotpssw"><a ui-sref="main.forgotpssw">Forgot
-                                password?&nbsp;</a><label>
-                                / New
-                                to Mepedia?&nbsp;</label><a class="sign-up-login" ui-sref="home.page">Sign up</a>
-                            </div>
-                        </div>
+                    <div ng-if="loginForm.email.$invalid && (loginForm.$submitted || loginForm.email.$touched)"
+                         ng-messages="loginForm.email.$error">
+                      <div class="help-block" ng-message="required">
+                        Enter your email.
+                      </div>
+                      <div class="help-block" ng-message="email">
+                        Enter a valid email.
+                      </div>
                     </div>
+                  </div>
 
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
+                <div class="form-group login-group"
+                     ng-class="{'has-error': loginForm.password.$invalid && (loginForm.$submitted || loginForm.password.$touched)}">
 
-<footer id="main" class="text-center">
-    <div class="footer-above">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <div class="footer-li-container">
-                        <a href="#" class="footer-li ">About Mepedia</a>
+                  <div class="login-ic left">
+                    <div class="ic-password"></div>
+                  </div>
+                  <div class="auto-width">
+                    <input type="password" name="password" ng-model="password" class="form-control"
+                           placeholder="Your Password" required ng-minlength="5" ng-maxlength="20">
+
+                    <div ng-if="loginForm.password.$invalid && (loginForm.$submitted || loginForm.password.$touched)"
+                         ng-messages="loginForm.password.$error">
+                      <div class="help-block" ng-message="required">
+                        Enter your password.
+                      </div>
+                      <div class="help-block" ng-message="minlength">
+                        Your password is too short.
+                      </div>
+                      <div class="help-block" ng-message="maxlength">
+                        Your password is too long.
+                      </div>
                     </div>
-                    <div class="footer-li-container">
-                        <a href="#" class="footer-li ">Terms of Service</a>
-                    </div>
-                    <div class="footer-li-container">
-                        <a href="#" class="footer-li ">Privacy Policy</a>
-                    </div>
-                    <div class="footer-li-container-none">
-                        <a href="#" class="footer-li ">Contact Us</a>
-                    </div>
+                  </div>
+
                 </div>
-            </div>
-        </div>
-    </div>
+              </div>
 
-</footer>
+              <div class="margin-t30 text-center">
+                <div class="control-group has-error" ng-messages="serverErrors">
+                  <div class="help-block" ng-repeat="error in serverErrors.reasons">
+                    <div>{{ error }}</div>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-default login button-submit">Log In</button>
+              </div>
+            </form>
+
+            <div class="margin-lr30">
+              <div class="login rememberme">
+                <label>Remember me</label>
+                <input class="login rememberme-checkbox" type="checkbox"
+                       ng-model="rememberMe">
+              </div>
+
+              <div class="login forgotpssw"><a ui-sref="main.forgotpssw">Forgot
+                password?&nbsp;</a><label>
+                / New
+                to Mepedia?&nbsp;</label><a class="sign-up-login" ui-sref="home.page">Sign up</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

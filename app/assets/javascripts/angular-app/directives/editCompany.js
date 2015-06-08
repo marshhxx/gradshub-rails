@@ -9,6 +9,7 @@ angular.module('mepedia.directives').directive('editCompany', ['EmployerCompany'
         templateUrl: 'angular-app/templates/directives/editCompany.html',
         link: function (scope, element, attrs) {
             scope.editCompanyEnable = false;
+
             var temporaryEmployerCompany = '';
 
             var init = function() {
@@ -27,10 +28,7 @@ angular.module('mepedia.directives').directive('editCompany', ['EmployerCompany'
             }
 
             scope.saveCompany = function() {
-                console.log('hieieieie');
-                console.log(scope.companyForm);
                 if (scope.companyForm.$valid) {
-                    console.log('hoala');
                     scope.editCompanyEnable = false;
                     scope.$parent.saveEmployerCompany();
                     temporaryEmployerCompany = scope.employerCompany.site_url;
@@ -42,14 +40,13 @@ angular.module('mepedia.directives').directive('editCompany', ['EmployerCompany'
                 scope.employerCompany.site_url = temporaryEmployerCompany;
             }
 
-            scope.onCountry = function(country) {
-                console.log(country);
 
+
+            scope.onCountry = function(country) {
                 if (country) {
                     scope.country = country.name;
                     scope.country_id = country.id;
                 }
-                console.log(scope.country_id);
             }
 
             scope.onCompanyState = function(state) {
@@ -57,7 +54,6 @@ angular.module('mepedia.directives').directive('editCompany', ['EmployerCompany'
                     scope.companyState = state.name;
                     scope.state_id = state.id;
                 }
-                console.log(scope.state_id);
             }
             /* Methods */
 
