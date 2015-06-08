@@ -34,35 +34,22 @@ angular
           $scope.gender = $scope.userGender = $scope.genders[index]
 
         $scope.onCountry = (country) ->
-          if(country?)
-            $scope.country = country
-            $scope.user.country_id = country.id
+          $scope.user.country_id = country.id if country?
 
         $scope.onState = (state) ->
-          if(state?)
-            $scope.state = state
-            $scope.user.state_id = state.id
+          $scope.user.state_id = state.id if state?
 
         $scope.onNationality = (nationality) ->
-          if(nationality?)
-            $scope.nationality = nationality
-            $scope.employerNationality.nationality_id = nationality.id
-            $scope.employerNationality.emloyer_id = $scope.user.uid
+          $scope.employerNationality.nationality_id = nationality.id if nationality?
 
         $scope.onCompany = (company) ->
-          if company?
-            $scope.company = company
-            $scope.employerCompany.company_id = company.id
+          $scope.employerCompany.company_id = company.id if company?
 
         $scope.onCompanyCountry = (country) ->
-          if(country?)
-            $scope.companyCountry = country
-            $scope.employerCompany.country_id = country.id
+          $scope.employerCompany.country_id = country.id if country?
 
         $scope.onCompanyState = (state) ->
-          if(state?)
-            $scope.companyState = state
-            $scope.employerCompany.state_id = state.id
+          $scope.employerCompany.state_id = state.id if state?
 
         ####### Skills ######
         Skill.query (skills)->

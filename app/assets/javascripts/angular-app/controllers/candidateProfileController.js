@@ -1,7 +1,7 @@
 angular.module('mepedia.controllers').controller('candidateProfileController',
     ['$scope', '$rootScope', '$http', '$upload', '$location', '$anchorScroll','sessionService', '$state', 'Country',
         'State', 'Candidate', 'Employer', 'Skill', 'Interest', 'School', 'Major', 'Degree', 'Education', 'CandidateSkills',
-        'CandidateInterests', 'CandidateLanguages', 'Utils', 'Experience', 'alertService', 'modalService',
+        'CandidateInterests', 'CandidateLanguages', 'Utils', 'Experience', 'alertService', 'modalService', 'ALERT_CONSTANTS',
 
 
         function ($scope, $rootScope, $httpProvider, $upload, $location, $anchorScroll, sessionService, $state, Country,
@@ -18,11 +18,10 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
             var updateUser = function () {
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 Utils.candidateFromObject($scope.user).$update(function (response) { //Creates resource User from object $scope.user
-                    $scope.user = response.candidate;
-                    initCandidateProfile(); //Update profile variables;
-                }, function (error) {
-                    console.log(error);
-                });
+                        $scope.user = response.candidate;
+                        initCandidateProfile(); //Update profile variables;
+                    }
+                ).catch(alertService.defaultErrorCallback);
             };
 
 

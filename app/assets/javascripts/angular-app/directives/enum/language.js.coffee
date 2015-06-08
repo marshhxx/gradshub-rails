@@ -13,10 +13,15 @@ LanguageSelector = (Language) ->
 			'typeahead="language as language.name for language in languages | filter:$viewValue | limitTo:6" class="form-control" typeahead-on-select="onSelect($item)">'
 	link: (scope, elm, attrs, ctrl) ->
 
-		Language.query (languages) ->
-			scope.languages = languages.languages
+    scope.onSelect = (language) ->
+      scope.onSelectCallback(languageNameMap[language]) if language of languageNameMap
 
-	}
+    Language.query (languages) ->
+      scope.languages = languages.languages.map (language) -> language.name
+      for language in languages.languages
+        languageNameMap[language.name] = language
+
+  }
 angular
 .module('mepedia.directives')
 .directive('languageSelector', LanguageSelector)

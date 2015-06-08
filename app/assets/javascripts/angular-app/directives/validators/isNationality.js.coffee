@@ -1,16 +1,19 @@
 IsNationality = (Nationality) ->
-	{
-	restrict: 'A',
-	require: 'ngModel',
-	link: (scope, elm, attrs, ctrl) ->
+  {
+  restrict: 'A',
+  require: 'ngModel',
+  link: (scope, elm, attrs, ctrl) ->
+    nationalityNames = []
 
-		Nationality.query (nationalities) ->
-			scope.nationalities = nationalities.nationalities
-			ctrl.$validators.nationality = (value) ->
-				nationalityNames = scope.nationalities.map((nationality) -> nationality.name)
-				return value? and (value == "" or value.name in nationalityNames)
+    Nationality.query (nationalities) ->
+      nationalityNames = nationalities.nationalities.map (nationality) -> nationality.name
+      initValidator()
 
-	}
+    initValidator = () ->
+      ctrl.$validators.nationality = (value) ->
+        return value? and (value == "" or value in nationalityNames)
+
+  }
 angular
 .module('mepedia.directives')
 .directive('isNationality', IsNationality)

@@ -1,16 +1,19 @@
 IsSchool = (School) ->
-	{
-	restrict: 'A',
-	require: 'ngModel',
-	link: (scope, elm, attrs, ctrl) ->
+  {
+  restrict: 'A',
+  require: 'ngModel',
+  link: (scope, elm, attrs, ctrl) ->
+    schoolNames = []
 
-		School.query (schools) ->
-			scope.schools = schools.schools
-			ctrl.$validators.school = (value) ->
-				schoolNames = scope.schools.map((school) -> school.name)
-				return value? and (value.name in schoolNames or value == "")
+    School.query (schools) ->
+      schoolNames = schools.schools.map((school) -> school.name)
+      initValidator()
 
-	}
+    initValidator = ->
+      ctrl.$validators.school = (value) ->
+        return value? and (value in schoolNames or value == "")
+
+  }
 angular
-	.module('mepedia.directives')
-	.directive('isSchool', IsSchool)
+.module('mepedia.directives')
+.directive('isSchool', IsSchool)

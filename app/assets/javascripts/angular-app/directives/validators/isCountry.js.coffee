@@ -1,16 +1,19 @@
 IsCountry = (Country) ->
-	{
-	restrict: 'A',
-	require: 'ngModel',
-	link: (scope, elm, attrs, ctrl) ->
+  {
+  restrict: 'A',
+  require: 'ngModel',
+  link: (scope, elm, attrs, ctrl) ->
+    countryNames = []
 
-		Country.query (countries) ->
-			scope.countries = countries.countries
-			ctrl.$validators.country = (value) ->
-				countryNames = scope.countries.map((country) -> country.name)
-				return !value?|| value == "" || value.name in countryNames
+    Country.query (countries) ->
+      countryNames = countries.countries.map((country) -> country.name)
+      initValidator()
 
-	}
+    initValidator = ->
+      ctrl.$validators.country = (value) ->
+        return !value? || value == "" || value in countryNames
+
+  }
 angular
-	.module('mepedia.directives')
-	.directive('isCountry', IsCountry)
+.module('mepedia.directives')
+.directive('isCountry', IsCountry)
