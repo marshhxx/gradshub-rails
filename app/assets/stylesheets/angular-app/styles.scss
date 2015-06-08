@@ -114,7 +114,6 @@ input::-webkit-input-placeholder {
 }
 
 .regular-txt-gray {
-  margin-left: 80px;
   color: #67666B !important;
   font-size: 14px;
   text-align: left;
@@ -122,7 +121,6 @@ input::-webkit-input-placeholder {
 }
 
 .regular-tlt-black {
-  margin-left: 80px;
   color: #011B25;
   font-size: 18px;
   text-align: left;
@@ -919,6 +917,14 @@ section#section-eight{
   background-size: cover;
 }
 
+section#section-nine {
+  padding: 20px 0;
+}
+
+.section-nine.column-left{
+  padding-top: 90px;
+}
+
 .section-nine.img{
   height: 500px;
   background:  url('home-candidate.png') no-repeat center center;
@@ -1148,9 +1154,7 @@ section#howitworks-bar {
   color: #FFF;
 }
 
-section#home-hiw-section-one {
-  padding: 20px 0;
-}
+
 
 section#home-hiw-section-two {
   padding: 20px 0;
