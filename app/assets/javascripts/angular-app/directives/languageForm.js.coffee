@@ -16,7 +16,7 @@ LanguageForm = (Language) ->
 		else
 			scope.level = scope.data.level
 
-		scope.levels = ['Bigginer', 'Intermediate', 'Advanced']
+		scope.levels = ['Begginer', 'Intermediate', 'Advanced']
 
 		scope.languageSelected = (index) ->
 			scope.level = scope.levels[index]

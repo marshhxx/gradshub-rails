@@ -1,16 +1,19 @@
 IsDegree = (Degree) ->
-	{
-	restrict: 'A',
-	require: 'ngModel',
-	link: (scope, elm, attrs, ctrl) ->
+  {
+  restrict: 'A',
+  require: 'ngModel',
+  link: (scope, elm, attrs, ctrl) ->
+    degreeNames = []
 
-		Degree.query (degrees) ->
-			scope.degrees = degrees.degrees
-			ctrl.$validators.degree = (value) ->
-				degreeNames = scope.degrees.map((degree) -> degree.name)
-				return value? and (value.name in degreeNames or value == "")
+    Degree.query (degrees) ->
+      degreeNames = degrees.degrees.map((degree) -> degree.name)
+      initValidator()
 
-	}
+    initValidator = ->
+      ctrl.$validators.degree = (value) ->
+        return value? and (value in degreeNames or value == "")
+
+  }
 angular
-	.module('mepedia.directives')
-	.directive('isDegree', IsDegree)
+.module('mepedia.directives')
+.directive('isDegree', IsDegree)

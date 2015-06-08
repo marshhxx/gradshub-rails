@@ -6,7 +6,7 @@ angular
     ($scope, $rootScope, $q, $httpProvider, $state, sessionService, Skill, Candidate, Interest, CandidateNationalities,
      Education, CandidateSkills, Utils, alertService)->
       init = ->
-#        $state.go 'main.signup_candidate.personal'
+        $state.go 'main.signup_candidate.personal'
         $scope.selectedTags = []
         $scope.education = new Education()
         $scope.skills = new CandidateSkills()
@@ -27,47 +27,30 @@ angular
           $scope.gender = $scope.userGender = $scope.genders[index]
 
         $scope.onCountry = (country) ->
-          if(country?)
-            $scope.country = country
-            $scope.user.country_id = country.id
+          $scope.user.country_id = country.id if country?
 
         $scope.onState = (state) ->
-          if(state?)
-            $scope.state = state
-            $scope.user.state_id = state.id
+          $scope.user.state_id = state.id if state?
 
         $scope.onNationality = (nationality) ->
-          if(nationality?)
-            $scope.nationality = nationality
-            $scope.candidateNationality.nationality_id = nationality.id
-            $scope.candidateNationality.candidate_id = $scope.user.uid;
+          $scope.candidateNationality.nationality_id = nationality.id if nationality?
 
         ####### Eduaction ######
 
         $scope.onSchool = (school) ->
-          if(school?)
-            $scope.school = school
-            $scope.education.school_id = school.id
+          $scope.education.school_id = school.id if school?
 
         $scope.onSchoolCountry = (country) ->
-          if(country?)
-            $scope.schoolCountry = country
-            $scope.education.country_id = country.id
+          $scope.education.country_id = country.id if country?
 
         $scope.onSchoolState = (state) ->
-          if(state?)
-            $scope.schoolState = state
-            $scope.education.state_id = state.id
+          $scope.education.state_id = state.id if state?
 
         $scope.onMajor = (major) ->
-          if(major?)
-            $scope.major = major
-            $scope.education.major_id = major.id
+          $scope.education.major_id = major.id if major?
 
         $scope.onDegree = (degree) ->
-          if(degree?)
-            $scope.degree = degree
-            $scope.education.degree_id = degree.id
+          $scope.education.degree_id = degree.id if degree?
 
         ####### Skills ######
         Skill.query (skills) ->
