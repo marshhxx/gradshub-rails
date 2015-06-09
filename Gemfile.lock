@@ -81,6 +81,8 @@ GEM
     multi_json (1.10.1)
     mysql2 (0.3.17)
     netrc (0.10.2)
+    oj (2.12.9)
+    oj_mimic_json (1.0.1)
     orm_adapter (0.5.0)
     polyglot (0.3.5)
     rack (1.5.2)
@@ -178,7 +180,10 @@ DEPENDENCIES
   figaro (~> 0.7.0)
   jbuilder (~> 1.2)
   jquery-rails
+  multi_json
   mysql2
+  oj
+  oj_mimic_json
   rails (= 4.1.0)
   rest-client
   rspec-rails (~> 3.0.0)
