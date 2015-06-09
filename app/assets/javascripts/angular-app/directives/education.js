@@ -1,4 +1,4 @@
-angular.module('mepedia.directives').directive('education', ['State', 'Country', 'School', 'Major', 'Degree', function (State, Country, School, Major, Degree) {
+angular.module('mepedia.directives').directive('education', function (Utils) {
     return {
         scope: {
             education: '=data',
@@ -66,6 +66,8 @@ angular.module('mepedia.directives').directive('education', ['State', 'Country',
                     scope.educationTemp.degree_id = degree.id;
             };
 
+            scope.getMonth = Utils.getMonthByNumber;
+
             scope.education.end_date ? scope.isCurrentEducation = false : scope.isCurrentEducation = true;
 
             scope.$watchGroup(['educationTemp.start_date', 'educationTemp.end_date'], function () {
@@ -77,4 +79,4 @@ angular.module('mepedia.directives').directive('education', ['State', 'Country',
             });
         }
     };
-}]);
+});
