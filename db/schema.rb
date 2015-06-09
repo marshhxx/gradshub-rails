@@ -13,6 +13,13 @@
 
 ActiveRecord::Schema.define(version: 20141030020738) do
 
+  create_table "candidate_interests", force: true do |t|
+    t.integer "candidate_id"
+    t.integer "interest_id"
+  end
+
+  add_index "candidate_interests", ["candidate_id", "interest_id"], name: "index_candidate_interests_on_candidate_id_and_interest_id", unique: true, using: :btree
+
   create_table "candidate_languages", force: true do |t|
     t.integer "candidate_id"
     t.integer "language_id"
@@ -21,6 +28,27 @@ ActiveRecord::Schema.define(version: 20141030020738) do
 
   add_index "candidate_languages", ["candidate_id", "language_id"], name: "index_candidate_languages_on_candidate_id_and_language_id", unique: true, using: :btree
 
+  create_table "candidate_nationalities", force: true do |t|
+    t.integer "candidate_id"
+    t.integer "nationality_id"
+  end
+
+  add_index "candidate_nationalities", ["candidate_id", "nationality_id"], name: "candidates_nationalities_index", unique: true, using: :btree
+
+  create_table "candidate_publications", force: true do |t|
+    t.integer "candidate_id"
+    t.integer "publication_id"
+  end
+
+  add_index "candidate_publications", ["candidate_id", "publication_id"], name: "index_candidate_publications_on_candidate_id_and_publication_id", unique: true, using: :btree
+
+  create_table "candidate_skills", id: false, force: true do |t|
+    t.integer "candidate_id"
+    t.integer "skill_id"
+  end
+
+  add_index "candidate_skills", ["candidate_id", "skill_id"], name: "index_candidate_skills_on_candidate_id_and_skill_id", unique: true, using: :btree
+
   create_table "candidates", force: true do |t|
     t.text    "summary"
     t.text    "early_life"
@@ -28,34 +56,6 @@ ActiveRecord::Schema.define(version: 20141030020738) do
     t.integer "country_id"
     t.integer "state_id"
   end
-
-  create_table "candidates_interests", force: true do |t|
-    t.integer "candidate_id"
-    t.integer "interest_id"
-  end
-
-  add_index "candidates_interests", ["candidate_id", "interest_id"], name: "index_candidates_interests_on_candidate_id_and_interest_id", unique: true, using: :btree
-
-  create_table "candidates_nationalities", force: true do |t|
-    t.integer "candidate_id"
-    t.integer "nationality_id"
-  end
-
-  add_index "candidates_nationalities", ["candidate_id", "nationality_id"], name: "candidates_nationalities_index", unique: true, using: :btree
-
-  create_table "candidates_publications", force: true do |t|
-    t.integer "candidate_id"
-    t.integer "publication_id"
-  end
-
-  add_index "candidates_publications", ["candidate_id", "publication_id"], name: "index_candidates_publications_on_candidate_id_and_publication_id", unique: true, using: :btree
-
-  create_table "candidates_skills", id: false, force: true do |t|
-    t.integer "candidate_id"
-    t.integer "skill_id"
-  end
-
-  add_index "candidates_skills", ["candidate_id", "skill_id"], name: "index_candidates_skills_on_candidate_id_and_skill_id", unique: true, using: :btree
 
   create_table "companies", force: true do |t|
     t.string  "name"
@@ -98,32 +98,31 @@ ActiveRecord::Schema.define(version: 20141030020738) do
     t.string  "image"
   end
 
-  create_table "employers", force: true do |t|
-    t.integer "employer_company_id"
-    t.string  "company_image"
-    t.string  "job_title"
-  end
-
-  create_table "employers_interests", force: true do |t|
+  create_table "employer_interests", force: true do |t|
     t.integer "employer_id"
     t.integer "interest_id"
   end
 
-  add_index "employers_interests", ["employer_id", "interest_id"], name: "index_employers_interests_on_employer_id_and_interest_id", unique: true, using: :btree
+  add_index "employer_interests", ["employer_id", "interest_id"], name: "index_employer_interests_on_employer_id_and_interest_id", unique: true, using: :btree
 
-  create_table "employers_nationalities", force: true do |t|
+  create_table "employer_nationalities", force: true do |t|
     t.integer "employer_id"
     t.integer "nationality_id"
   end
 
-  add_index "employers_nationalities", ["employer_id", "nationality_id"], name: "employers_nationalities_index", unique: true, using: :btree
+  add_index "employer_nationalities", ["employer_id", "nationality_id"], name: "employers_nationalities_index", unique: true, using: :btree
 
-  create_table "employers_skills", id: false, force: true do |t|
+  create_table "employer_skills", id: false, force: true do |t|
     t.integer "employer_id"
     t.integer "skill_id"
   end
 
-  add_index "employers_skills", ["employer_id", "skill_id"], name: "index_employers_skills_on_employer_id_and_skill_id", unique: true, using: :btree
+  add_index "employer_skills", ["employer_id", "skill_id"], name: "index_employer_skills_on_employer_id_and_skill_id", unique: true, using: :btree
+
+  create_table "employers", force: true do |t|
+    t.integer "employer_company_id"
+    t.string  "job_title"
+  end
 
   create_table "experiences", force: true do |t|
     t.integer "candidate_id"
