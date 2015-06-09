@@ -1,12 +1,18 @@
 class Employer < ActiveRecord::Base
   has_one :user, as: :meta, dependent: :destroy
   accepts_nested_attributes_for :user
-
-  has_and_belongs_to_many :nationalities
-  has_and_belongs_to_many :interests, oin_table: 'employers_interests'
-  has_and_belongs_to_many :skills, join_table: 'employers_skills'
   belongs_to :employer_company
+  # nationalities
+  has_many :employer_nationalities
+  has_many :nationalities, :through => :employer_nationalities
+  # interests
+  has_many :employer_interests
+  has_many :interests, :through => :employer_interests
+  # skills
+  has_many :employer_skills
+  has_many :skills, :through => :employer_skills
 
+  validates_associated :nationalities, :interests, :skills
 
   def self.find_by_uid(uid)
     User.find_by_uid!(uid).meta

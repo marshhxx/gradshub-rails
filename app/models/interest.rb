@@ -1,8 +1,13 @@
 class Interest < ActiveRecord::Base
+  # candidate association
+  has_many :candidate_skills
+  has_many :candidates, :through => :candidate_skills
+  # employer association
+  has_many :employer_skills
+  has_many :employers, :through => :employer_skills
+
   validates_uniqueness_of :name
   before_create :to_lower_case
-  has_and_belongs_to_many :candidates
-  has_and_belongs_to_many :employers
   after_find :capitalize_name
 
   private

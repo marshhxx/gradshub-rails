@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::ParameterMissing, :with => :bad_request
   rescue_from ArgumentError, :with => :bad_request
   rescue_from CanCan::AccessDenied, :with => :unauthorized
+  rescue_from ActiveRecord::RecordNotUnique, :with => :not_unique
 
   def unauthorized
     @error = {:reasons => ['The user has no permission to perform this action.'], :code => FORBIDDEN}
@@ -23,6 +24,11 @@ class ApplicationController < ActionController::Base
   def not_found(exception)
     @error = {:reasons => [exception.message], :code => INVALID_PARAMS_ERROR}
     render :json => @error, status: :bad_request
+  end
+
+  def not_unique(exception)
+    @error = {:reasons => [exception.message], :code => INVALID_PARAMS_ERROR}
+    render_error :bad_request
   end
 
   def bad_request(exception)

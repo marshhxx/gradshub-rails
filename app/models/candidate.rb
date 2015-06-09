@@ -1,17 +1,28 @@
 class Candidate < ActiveRecord::Base
-  # include Userable
   has_one :user, as: :meta, dependent: :destroy
   accepts_nested_attributes_for :user
 
-  has_and_belongs_to_many :skills, join_table: 'candidates_skills'
   belongs_to :country
   belongs_to :state
-  has_and_belongs_to_many :nationalities
+
   has_many :candidate_languages, dependent: :destroy
   has_many :experiences, dependent: :destroy
   has_many :educations, dependent: :destroy
-  has_and_belongs_to_many :interests
-  has_and_belongs_to_many :publications
+  # interests
+  has_many :candidate_interests
+  has_many :interests, :through => :candidate_interests
+  # skills
+  has_many :candidate_skills
+  has_many :skills, :through => :candidate_skills
+  # publications
+  has_many :candidate_publications
+  has_many :publications, :through => :candidate_publications
+  # nationalities
+  has_many :candidate_nationalities
+  has_many :nationalities, :through => :candidate_nationalities
+
+  validates_associated :educations, :experiences, :candidate_languages,
+                       :interests, :skills, :publications, :nationalities
 
   def self.find_by_uid(uid)
     User.find_by_uid!(uid).meta

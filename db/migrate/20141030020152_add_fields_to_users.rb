@@ -61,7 +61,6 @@ class AddFieldsToUsers < ActiveRecord::Migration
 
     create_table :employers do |t|
       t.belongs_to :employer_company
-      t.string :company_image
       t.string :job_title
 
       t.timestamp
@@ -72,21 +71,21 @@ class AddFieldsToUsers < ActiveRecord::Migration
       t.timestamp
     end
 
-    create_table :candidates_interests do |t|
+    create_table :candidate_interests do |t|
       t.belongs_to :candidate
       t.belongs_to :interest
 
       t.timestamp
     end
-    add_index(:candidates_interests, [:candidate_id, :interest_id], :unique => true)
+    add_index(:candidate_interests, [:candidate_id, :interest_id], :unique => true)
 
-    create_table :employers_interests do |t|
+    create_table :employer_interests do |t|
       t.belongs_to :employer
       t.belongs_to :interest
 
       t.timestamp
     end
-    add_index(:employers_interests, [:employer_id, :interest_id], :unique => true)
+    add_index(:employer_interests, [:employer_id, :interest_id], :unique => true)
 
     create_table :skills do |t|
       t.string :name, null: false
@@ -94,21 +93,21 @@ class AddFieldsToUsers < ActiveRecord::Migration
     end
     add_index :skills, :name, :unique => true
 
-    create_table :candidates_skills, id: false do |t|
+    create_table :candidate_skills, id: false do |t|
       t.belongs_to :candidate
       t.belongs_to :skill
 
       t.timestamp
     end
-    add_index(:candidates_skills, [:candidate_id, :skill_id], :unique => true)
+    add_index(:candidate_skills, [:candidate_id, :skill_id], :unique => true)
 
-    create_table :employers_skills, id: false do |t|
+    create_table :employer_skills, id: false do |t|
       t.belongs_to :employer
       t.belongs_to :skill
 
       t.timestamp
     end
-    add_index(:employers_skills, [:employer_id, :skill_id], :unique => true)
+    add_index(:employer_skills, [:employer_id, :skill_id], :unique => true)
 
     create_table :nationalities do |t|
       t.string :name
@@ -116,21 +115,23 @@ class AddFieldsToUsers < ActiveRecord::Migration
       t.timestamp
     end
 
-    create_table :candidates_nationalities do |t|
+    create_table :candidate_nationalities do |t|
       t.belongs_to :candidate
       t.belongs_to :nationality
 
       t.timestamp
     end
-    add_index(:candidates_nationalities, [:candidate_id, :nationality_id], :unique => true, :name => :candidates_nationalities_index)
 
-    create_table :employers_nationalities do |t|
+    #TODO: CHeck if we need to add this index to ensure uniqueness.
+    add_index(:candidate_nationalities, [:candidate_id, :nationality_id], :unique => true, :name => :candidates_nationalities_index)
+
+    create_table :employer_nationalities do |t|
       t.belongs_to :employer
       t.belongs_to :nationality
 
       t.timestamp
     end
-    add_index(:employers_nationalities, [:employer_id, :nationality_id], :unique => true, :name => :employers_nationalities_index)
+    add_index(:employer_nationalities, [:employer_id, :nationality_id], :unique => true, :name => :employers_nationalities_index)
 
     create_table :languages do |t|
       t.string :name
@@ -199,13 +200,13 @@ class AddFieldsToUsers < ActiveRecord::Migration
       t.timestamp
     end
 
-    create_table :candidates_publications do |t|
+    create_table :candidate_publications do |t|
       t.belongs_to :candidate
       t.belongs_to :publication
 
       t.timestamp
     end
-    add_index(:candidates_publications, [:candidate_id, :publication_id], :unique => true)
+    add_index(:candidate_publications, [:candidate_id, :publication_id], :unique => true)
 
     create_table :companies do |t|
       t.string :name
