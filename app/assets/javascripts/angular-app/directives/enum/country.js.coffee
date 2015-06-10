@@ -16,7 +16,7 @@ CountrySelector = (Country) ->
     countryNameMap = {}
 
     scope.onSelect = (country) ->
-      scope.onSelectCallback(countryNameMap[country]) if country of countryNameMap
+      scope.onSelectCallback(countryNameMap[country])
 
     Country.query (countries) ->
       scope.countries = countries.countries.map((country) -> country.name)
