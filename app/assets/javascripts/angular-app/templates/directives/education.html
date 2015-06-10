@@ -67,7 +67,7 @@
   <div class="profile-add-right-content">
     <div class="form-group"
          ng-class="{'has-error': educationForm.school.$invalid && (educationForm.$submitted || educationForm.school.$touched)}">
-      <school-selector focus-codition="educationEditor" placeholder="School" ng-model="educationTemp.school"
+      <school-selector focus-codition="educationEditor" placeholder="School" ng-model="educationTemp.school.name"
                        on-select="onSchool" required></school-selector>
 
       <div ng-if="educationForm.school.$invalid && (educationForm.$submitted || educationForm.school.$touched)"
@@ -83,7 +83,7 @@
 
     <div class="form-group"
          ng-class="{'has-error': educationForm.degree.$invalid && (educationForm.$submitted || educationForm.degree.$touched)}">
-      <degree-selector placeholder="Degree" ng-model="educationTemp.degree" on-select="onDegree"
+      <degree-selector placeholder="Degree" ng-model="educationTemp.degree.name" on-select="onDegree"
                        required></degree-selector>
 
       <div ng-if="educationForm.degree.$invalid && (educationForm.$submitted || educationForm.degree.$touched)"
@@ -99,7 +99,7 @@
 
     <div class="form-group"
          ng-class="{'has-error': educationForm.major.$invalid && (educationForm.$submitted || educationForm.major.$touched)}">
-      <major-selector placeholder="Major" ng-model="educationTemp.major" on-select="onMajor" required></major-selector>
+      <major-selector placeholder="Major" ng-model="educationTemp.major.name" on-select="onMajor" required></major-selector>
 
       <div ng-if="educationForm.major.$invalid && (educationForm.$submitted || educationForm.major.$touched)"
            ng-messages="educationForm.major.$error">
@@ -115,7 +115,7 @@
     <div class="form-group">
       <div class="form-group div-50 left"
            ng-class="{'has-error': educationForm.country.$invalid && (educationForm.$submitted || educationForm.country.$touched)}">
-        <country-selector placeholder="School Country" ng-model="educationTemp.country"
+        <country-selector placeholder="School Country" ng-model="educationTemp.country.name"
                           on-select="onCountry"></country-selector>
 
         <div ng-if="educationForm.country.$invalid && (educationForm.$submitted || educationForm.country.$touched)"
@@ -127,7 +127,7 @@
       </div>
       <div class="form-group div-50 right"
            ng-class="{'has-error': educationForm.state.$invalid && (educationForm.$submitted || educationForm.state.$touched)}">
-        <state-selector placeholder="School State" ng-model="educationTemp.state" on-select="onState"
+        <state-selector placeholder="School State" ng-model="educationTemp.state.name" on-select="onState"
                         country-id="educationTemp.country.id"></state-selector>
 
         <div ng-if="educationForm.state.$invalid && (educationForm.$submitted || educationForm.state.$touched)"

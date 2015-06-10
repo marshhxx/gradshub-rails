@@ -17,7 +17,7 @@ IsState = (State) ->
 
     initValidator = ->
       ctrl.$validators.state = (value) ->
-        return stateNames? and (value in stateNames or value == "")
+        return stateNames? and (value in stateNames or value == "" or !value?)
 
   }
 angular

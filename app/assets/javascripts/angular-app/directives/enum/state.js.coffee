@@ -15,6 +15,7 @@ StateSelector = (State) ->
   link: (scope, elm, attrs, ctrl) ->
     scope.isDisabled = true
     stateNameMap = {}
+    currentId = null
 
     scope.$watch(
       -> scope.countryId
@@ -23,12 +24,16 @@ StateSelector = (State) ->
         if id?
           scope.isDisabled = false
           initStates(id)
+        else
+          states = []
+          scope.isDisabled = true
     )
 
     scope.onSelect = (state) ->
-      scope.onSelectCallback(stateNameMap[state]) if state of stateNameMap
+      scope.onSelectCallback(stateNameMap[state])
 
     initStates = (id) ->
+      currentId = id
       State.query {country_id: id}, (states) ->
         scope.states = states.states.map (state) -> state.name
         for state in states.states

@@ -11,7 +11,7 @@ IsCountry = (Country) ->
 
     initValidator = ->
       ctrl.$validators.country = (value) ->
-        return !value? || value == "" || value in countryNames
+        return !value? or value == "" or value in countryNames
 
   }
 angular
