@@ -24,6 +24,7 @@ angular.module('mepedia.controllers').controller('employerProfileController',
                         $state.go('home.page');
                     }
                 );
+
             };
 
             // get data from db
@@ -60,6 +61,17 @@ angular.module('mepedia.controllers').controller('employerProfileController',
                 $scope.user.cover_image = coverImage;
                 //updateUser();
             }
+
+            $scope.updateEmployerCompanyImage = function (companyImage){
+                $scope.user.company_image = companyImage;
+                //updateUser();
+            }
+
+            $scope.updateEmployerProfileImage = function (profileImage) {
+                $scope.user.profile_image = profileImage;
+                //updateUser();
+            }
+
 
             // Description
             $scope.enableDescriptionEditor = function() {

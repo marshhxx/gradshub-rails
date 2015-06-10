@@ -15,11 +15,12 @@
   z-index: 99;
   overflow: hidden;
   border-radius: 150px;
-  //height: 215px;
-  height: 180px;
-  width: 180px;
+  height: 215px;
+  width: 215px;
   position: relative;
   margin: -34% auto;
+  background-color: #ececec;
+  border: 2px solid #ececec;
 }
 
 .companyDefaultPhoto {
@@ -114,10 +115,17 @@
 
 /* Employer profile image */
 .employerProfilePhotoWrapper {
+  z-index: 99;
+  overflow: hidden;
   position: absolute;
   top: -55px;
+  height: 160px;
+  width: 160px;
   left: 26%;
-  padding: 0;   
+  background-color: #cecece;
+  border: 2px solid #cecece;
+  padding: 0;
+  border-radius: 50%;
 }
 
 .employerBasicInfoWrapper {
