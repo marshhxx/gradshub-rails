@@ -2,7 +2,8 @@ Spinner = () ->
   {
   restrict: 'E',
   scope:{
-  showSpinner: '='
+    showSpinner: '=',
+    size: '='
   },
   templateUrl: 'angular-app/templates/directives/spinner.html',
   link: ($scope, $element) ->
