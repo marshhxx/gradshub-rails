@@ -88,17 +88,12 @@ angular
         initUser()
 
       initUser = ->
-        sessionService.requestCurrentUser().then(
+        $scope.userPromise.then(
           (user) ->
-            $state.go 'home.page' if !user?
             $scope.user = Utils.candidateFromObject(user.candidate)
             $scope.education.candidate_id = $scope.user.uid
             $scope.skills.candidate_id = $scope.user.uid
             $scope.candidateNationality.candidate_id = $scope.user.uid
-        ).catch(
-          (error) ->
-            console.log error
-            $state.go 'home.page'
         )
 
       validateAndCreate = (valid) ->
@@ -109,7 +104,7 @@ angular
         $q.all([saveCandidateNationality(), saveEducation(), saveSkills(), saveUser()]).then(
           (data) ->
             console.log(data)
-            $state.go 'main.candidate_profile'
+            $state.go 'main.candidate_profile', null, { reload: true }
         ).catch(alertService.defaultErrorCallback)
 
       saveEducation = ->
@@ -131,7 +126,7 @@ angular
           ->
             valid = Date.parse($scope.education.end_date) >= Date.parse($scope.education.start_date)
             valid = !$scope.education.end_date? || valid
-            $scope.innerScope.educationForm.$setValidity('validDates', valid) if $scope.innerScope
+            $scope.innerScope.educationForm.$setValidity('validDates', valid) if $scope.innerScope && scope.innerScope.educationForm
         )
 
       $scope.isCurrentEducation = true

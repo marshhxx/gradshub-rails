@@ -11,17 +11,12 @@ angular.module('mepedia.controllers').controller('employerProfileController',
                 /* INTERESTS */
                 initInterests();
 
-                sessionService.requestCurrentUser().then(
+                $scope.userPromise.then(
                     function (user) {
                         $scope.user = user.employer;
                         initEmployerProfile();
-
                         // Fire event to catch it in editCompany directive
                         $scope.$broadcast('userLoaded');
-                    },
-                    function (error) {
-                        console.log(error);
-                        $state.go('home.page');
                     }
                 );
 

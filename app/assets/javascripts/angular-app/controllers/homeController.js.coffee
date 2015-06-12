@@ -8,7 +8,6 @@ angular.module('mepedia.controllers').controller("HomeController", [
 				$state.go 'main.employer_profile'
 
 		init = ->
-			$scope.renderHtml = (htmlCode) -> $sce.trustAsHtml(htmlCode)
 			$scope.candidate = true
 			$scope.isCandidate = () -> $scope.candidate = true
 			$scope.isEmployer = () -> $scope.candidate = false
@@ -101,8 +100,8 @@ angular.module('mepedia.controllers').controller("HomeController", [
 			sessionService.login(user.email, user.password).then(
 				(resp) ->
 
-					$state.go 'main.signup_candidate.personal' if resp.type == 'Candidate'
-					$state.go 'main.signup_employer.personal' if resp.type == 'Employer'
+					$state.go 'main.signup_candidate.personal', null, { reload: true } if resp.type == 'Candidate'
+					$state.go 'main.signup_employer.personal', null, { reload: true } if resp.type == 'Employer'
 			).catch(
 				(errors) ->
 					console.log(errors)

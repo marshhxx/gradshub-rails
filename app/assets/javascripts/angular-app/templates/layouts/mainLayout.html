@@ -1,63 +1,63 @@
 <!-- Navigation -->
 <nav class="navbar navbar-default">
-	<div class="alert-top-fixed">
-		<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="alert.close()">
+  <div class="alert-top-fixed col-lg-6 col-md-6 col-sm-8 col-xs-12 col-md-offset-3 col-lg-offset-3 col-sm-offset-2">
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="alert.close()">
       <p ng-bind-html="'<strong>' + alert.title + '!</strong> ' + renderHtml(alert.msg)"></p>
     </alert>
-	</div>
-    <div class="container">
+  </div>
+  <div class="container">
 
-        <a ui-sref="home.page"><span class="logo-white"/></a>
+    <a ui-sref="home.page"><span class="logo-white"/></a>
 
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="hidden">
-                    <a href="#page-top"></a>
-                </li>
-                <li>
-	                <a class="page-scroll" ng-if="!logged" ui-sref="login">Login</a>
-	                <a class="page-scroll" ng-if="logged" ng-click="logout()">Logout</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header page-scroll">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
     </div>
-    <!-- /.container-fluid -->
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="hidden">
+          <a href="#page-top"></a>
+        </li>
+        <li>
+          <a class="page-scroll" ng-if="!logged" ui-sref="login">Login</a>
+          <a class="page-scroll" ng-if="logged" ng-click="logout()">Logout</a>
+        </li>
+      </ul>
+      <p class="navbar-text navbar-right">Hi {{username}}!</p>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container-fluid -->
 </nav>
 
 <ui-view></ui-view>
 
 <!--<footer id="main" class="text-center">-->
-    <!--<div class="footer-above">-->
-        <!--<div class="container">-->
-            <!--<div class="row">-->
-                <!--<div class="col-md-12 text-center">-->
-                    <!--<div class="footer-li-container">-->
-                    <!--<a href="#" class="footer-li ">About Mepedia</a>-->
-                    <!--</div>-->
-                    <!--<div class="footer-li-container">-->
-                    <!--<a href="#" class="footer-li ">Terms of Service</a>-->
-                    <!--</div>-->
-                    <!--<div class="footer-li-container">-->
-                    <!--<a href="#" class="footer-li ">Privacy Policy</a>-->
-                    <!--</div>-->
-                    <!--<div class="footer-li-container-none">-->
-                    <!--<a href="#" class="footer-li ">Contact Us</a>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
+<!--<div class="footer-above">-->
+<!--<div class="container">-->
+<!--<div class="row">-->
+<!--<div class="col-md-12 text-center">-->
+<!--<div class="footer-li-container">-->
+<!--<a href="#" class="footer-li ">About Mepedia</a>-->
+<!--</div>-->
+<!--<div class="footer-li-container">-->
+<!--<a href="#" class="footer-li ">Terms of Service</a>-->
+<!--</div>-->
+<!--<div class="footer-li-container">-->
+<!--<a href="#" class="footer-li ">Privacy Policy</a>-->
+<!--</div>-->
+<!--<div class="footer-li-container-none">-->
+<!--<a href="#" class="footer-li ">Contact Us</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
 <!--</footer>-->
