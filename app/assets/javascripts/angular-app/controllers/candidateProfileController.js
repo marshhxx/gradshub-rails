@@ -97,16 +97,13 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
 
                 $scope.updateUser = updateUser;
 
-                sessionService.requestCurrentUser().then(
+                $scope.userPromise.then(
                     function (user) {
                         $scope.user = user.candidate;
                         initCandidateProfile();
-                    },
-                    function (error) {
-                        console.log(error);
-                        $state.go('home.page');
                     }
                 );
+
             };
 
             /* INIT FUNCTIONS */

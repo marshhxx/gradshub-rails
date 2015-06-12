@@ -78,18 +78,13 @@ angular
         initUser()
 
       initUser = ->
-        sessionService.requestCurrentUser().then(
+        $scope.userPromise.then(
           (user) ->
-            $state.go 'home.page' if !user?
             $scope.user = Utils.employerFromObject(user.employer)
             $scope.employerCompany.employer_id = $scope.user.uid
             $scope.skills.employer_id = $scope.user.uid
             $scope.interests.employer_id = $scope.user.uid
             $scope.employerNationality.employer_id = $scope.user.uid
-        ).catch(
-          (error) ->
-            console.log error
-            $state.go 'home.page'
         )
 
       validateAndCreate = (valid) ->
@@ -105,7 +100,7 @@ angular
             .then(
               (data) ->
                 console.log(data)
-                $state.go 'main.employer_profile'
+                $state.go 'main.employer_profile', null, { reload: true }
             ).catch(alertService.defaultErrorCallback)
         ).catch(alertService.defaultErrorCallback)
 

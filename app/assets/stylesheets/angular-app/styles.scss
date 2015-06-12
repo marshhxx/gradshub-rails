@@ -1209,11 +1209,12 @@ footer#main .footer-above {
 }
 
 .signup.background {
+  min-height: 700px;
   height: 95%;
   padding-top: 60px;
   overflow: hidden;
 
-  background: url('signup/signup5.png') no-repeat center center;
+  background:  url('signup/background-signup1.png') no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -1946,8 +1947,6 @@ label {
   position: fixed;
   top: 0;
   left: 0;
-  width: 50%;
-  margin-left: 25%;
   z-index: 7000;
   margin-top: 5px;
 }
