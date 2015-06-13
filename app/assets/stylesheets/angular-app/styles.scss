@@ -991,7 +991,7 @@ section#section-eight {
 }
 
 section#section-nine {
-  padding: 20px 0;
+  padding: 30px 0;
 }
 
 .section-nine.column-left {
@@ -1002,7 +1002,7 @@ section#section-nine {
 
 .section-nine.img {
   height: 500px;
-  background: url('home-candidate.png') no-repeat center center;
+  background: url('mobile-candidate.png') no-repeat center center;
   background-size: 100%;
 }
 
@@ -1031,19 +1031,19 @@ section#section-nine {
   background-image: url(tabs4.svg);
 }
 
-.how-it-works-row-img.lgm-img-1 {
+.section-nine.row-img.e-img-1 {
   background-image: url(tabs1.svg);
 }
 
-.how-it-works-row-img.lgm-img-2 {
+.section-nine.row-img.e-img-2 {
   background-image: url(tabs2.svg);
 }
 
-.how-it-works-row-img.lgm-img-3 {
+.section-nine.row-img.e-img-3 {
   background-image: url(tabs3.svg);
 }
 
-.how-it-works-row-img.lgm-img-4 {
+.section-nine.row-img.e-img-4 {
   background-image: url(tabs4.svg);
 }
 
@@ -1074,11 +1074,21 @@ section#section-nine {
   background-size: cover;
 }
 
+section#section-eleven{
+  padding: 30px 0;
+}
+
 .section-eleven.img {
   height: 500px;
-  background: url('home-employer.png') no-repeat center center;
+  background: url('mobile-employer.png') no-repeat center center;
   background-size: 100%;
 }
+
+section#section-twelve {
+  padding: 50px 0px;
+  background-color: #011B25;
+}
+
 
 /* Small Devices, Tablets */
 @media only screen and (min-width: 768px) {
