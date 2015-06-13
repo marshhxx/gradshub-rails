@@ -20,6 +20,10 @@ h3 {
   margin-top: 182px;
 }
 
+.spinner.small {
+  margin-top: 60px;
+}
+
 .spinner > div {
   background-color: #374776;
   border-color: #374776;
@@ -111,7 +115,10 @@ h3 {
 .image-picker.wrapper{
   height: 100%;
   width: 100%;
+  overflow: hidden;
   text-align: center;
+  z-index: 99;
+  border-radius: 50%;  
 }
 
 .image-picker.default-image {
@@ -138,12 +145,20 @@ h3 {
   z-index: 5;
 }
 
-.image-picker.upload-btn-left {
+.image-picker.upload-btn-right {
   width: 60px;
   height: 55px;
-  background: url('ic-photo.svg') center center no-repeat;
+  background: url('camera.svg') center center no-repeat;
   background-size: 45px 40px;
   cursor: pointer;
+  position: relative;
+  float: right;
+  margin: -7% 1% 0 0;
+}
+
+.image-picker.upload-btn-right:hover {
+  background: url('camera-hover.svg') center center no-repeat;
+  background-size: 45px 40px;
 }
 
 .image-picker.upload-btn-wrapper-center {
@@ -154,11 +169,17 @@ h3 {
 
 .image-picker.upload-btn-center {
   height: 45px;
+  width: 45px;
+  margin: 0 auto;
   background: url('ic-photo.svg') center center no-repeat;
   background-size: 45px 40px;
   position: relative;
   cursor: pointer;
-  top: 180px;
+  top: -55px;
+}
+
+.image-picker.upload-btn-center.small {
+  height: 55px;
 }
 
 .image-picker.upload-btn:hover {
@@ -237,6 +258,16 @@ h3 {
   border: 1px solid #374776;
 }
 
+.image-picker.edit-btn.small {
+  width: 50px;
+  font-size: 10px;
+}
+
+.image-picker.edit-btn.small:hover {
+  width: 50px;
+  font-size: 10px;
+}
+
 .image-picker.btn-wrapper-right{
   position: absolute;
   bottom: 15px;
@@ -247,7 +278,7 @@ h3 {
 
 .image-picker.btn-wrapper-center{
   position: relative;
-  top: 180px;
+  margin-top: -30%;
   text-align: center;
   z-index: 20;
 }
