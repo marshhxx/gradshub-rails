@@ -122,7 +122,6 @@ h3 {
 }
 
 .image-picker.default-image {
-  //background: url('default-cover-photo.png') center center no-repeat;
   background-repeat: no-repeat;
   background-size: cover;
   -webkit-background-size: cover;
@@ -153,7 +152,7 @@ h3 {
   cursor: pointer;
   position: relative;
   float: right;
-  margin: -7% 1% 0 0;
+  margin: -34% 1% 0 0;
 }
 
 .image-picker.upload-btn-right:hover {
@@ -171,7 +170,7 @@ h3 {
   height: 45px;
   width: 45px;
   margin: 0 auto;
-  background: url('ic-photo.svg') center center no-repeat;
+  background: url('camera.svg') center center no-repeat;
   background-size: 45px 40px;
   position: relative;
   cursor: pointer;
@@ -182,8 +181,8 @@ h3 {
   height: 55px;
 }
 
-.image-picker.upload-btn:hover {
-  background: url('ic-photo-hover.svg') center center no-repeat;
+.image-picker.upload-btn-center:hover {
+  background: url('camera-hover.svg') center center no-repeat;
   background-size: 45px 40px;
 }
 
@@ -290,7 +289,7 @@ h3 {
   left: 320px;
   position: absolute;
   text-transform: uppercase;
-  text-shadow: 0 0 3px rgba(0,0,0,.6);
+  text-shadow: 0 0 3px rgba(0,0,0,.3);
   z-index: 10;
 }
 
@@ -300,7 +299,7 @@ h3 {
   bottom: 20px;
   left: 320px;
   position: absolute;
-  text-shadow: 0 0 3px rgba(0,0,0,.6);
+  text-shadow: 0 0 3px rgba(0,0,0,.3);
   z-index: 10;
 }
 
@@ -353,18 +352,18 @@ h3 {
 .profileImage.img {
   height: 100%;
   width: 100%;
-  background: url(not_known.svg) no-repeat;
+  background: url(profile/not_known.svg) no-repeat;
   background-size: 100%;
   position: absolute;
 }
 
 .male {
-  background-image: url(male.svg) !important;
+  background-image: url(profile/male.svg) !important;
 
 }
 
 .female {
-  background-image: url(female.svg) !important;
+  background-image: url(profile/female.svg) !important;
 }
 
 .profileHeadline.wrapper {
@@ -442,7 +441,6 @@ h3 {
 
 .profile-content {
   width: 100%;
-  display: inline-block;
 }
 
 .profileLeftContent.cont{
@@ -454,10 +452,10 @@ h3 {
   display: inline-block;
   width: 100%;
   min-width: 285px;
-  background-color: $primary-blue;
+  background-color: $primary-white;
   margin-top: 20px;
   border-radius: 6px;
-  border: 1px solid $border-gray;
+  border: 1px solid $primary-gray;
   padding: 30px 20px 30px 20px;
 }
 
@@ -474,19 +472,19 @@ h3 {
 }
 
 .profile-img.location{
-  background: url('map_marker.svg') center center no-repeat;
+  background: url('profile/candidate/map_marker.svg') center center no-repeat;
 }
 
 .profile-img.education{
-  background: url('graduation_hat.svg') center center no-repeat;
+  background: url('profile/candidate/graduation_hat.svg') center center no-repeat;
 }
 
 .profile-img.jobposition{
-  background: url('case.svg') center center no-repeat;
+  background: url('profile/candidate/case.svg') center center no-repeat;
 }
 
 .profile-img.company{
-  background: url('portfolio.svg') center center no-repeat;
+  background: url('profile/candidate/portfolio.svg') center center no-repeat;
 }
 
 .profile-communication-panel-img{
@@ -531,7 +529,7 @@ p {
 }
 
 .horizontal-line.blue{
-  border-bottom:1px solid $border-blue;
+  border-bottom:1px solid $primary-blue;
 }
 
 .img-col {
@@ -575,29 +573,35 @@ p {
 }
 
 .edit-pencil{
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   background: url(pencil.svg) no-repeat;
-  background-size: 20px;
+  background-size: 22px;
   float: right;
   cursor: pointer;
   position: relative;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-25%);
+}
+
+.edit-pencil:hover{
+  background: url(pencil-hover.svg) no-repeat;
+  background-size: 22px;
+  cursor: pointer;
 }
 
 .edit-pencil-hover:hover{
   background: url(pencil-hover.svg) no-repeat;
-  background-size: 20px;
+  background-size: 22px;
   cursor: pointer;
 }
 
 .edit-pencil-hover{
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   float: right;
   background: url(pencil.svg) no-repeat;
-  background-size: 20px;
+  background-size: 22px;
   cursor: pointer;
   visibility: hidden;
   position: relative;
@@ -630,8 +634,8 @@ p {
 }
 
 .btn-add{
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   background: url(add.svg) no-repeat;
   background-size: 30px;
   float: right;
@@ -639,7 +643,7 @@ p {
 }
 
 .btn-add:hover {
-  background: url(add-hover.svg) no-repeat;
+  background: url(add_hover.svg) no-repeat;
   background-size: 30px;
 }
 
@@ -671,7 +675,7 @@ p {
 
 .profile-right-header{
   width: 100%;
-  padding: 40px 20px 10px 30px;
+  padding: 30px 20px 10px 30px;
   display: inline-block;
 }
 
@@ -682,32 +686,32 @@ p {
 }
 
 .profile-right-header-img.summary{
-  background: url(summary.svg) no-repeat;
+  background: url(profile/not_known.svg) no-repeat;
   background-size: 40px;
 }
 
 .profile-right-header-img.skills{
-  background: url(rocket.svg) no-repeat;
+  background: url(profile/candidate/rocket.svg) no-repeat;
   background-size: 40px;
 }
 
 .profile-right-header-img.education{
-  background: url(graduation_hat_orange.svg) no-repeat;
+  background: url(profile/candidate/graduation_hat.svg) no-repeat;
   background-size: 40px;
 }
 
 .profile-right-header-img.experience{
-  background: url(books.svg) no-repeat;
+  background: url(profile/candidate/books.svg) no-repeat;
   background-size: 40px;
 }
 
 .profile-right-header-img.interests{
-  background: url(light_bulb.svg) no-repeat;
+  background: url(profile/candidate/light_bulb.svg) no-repeat;
   background-size: 40px;
 }
 
 .profile-right-header-img.languages{
-  background: url(message_bubble.svg) no-repeat;
+  background: url(profile/candidate/message.svg) no-repeat;
   background-size: 40px;
 }
 
@@ -731,12 +735,12 @@ p {
 .profile-right-content{
   width: 100%;
   display: inline-block;
-  padding: 0px 20px 0px 20px;
+  padding: 0px 20px 20px 20px;
 }
 
 .border-container {
   width: 100%;
-  padding: 10px 00px 20px 10px;
+  padding: 10px 0px 10px 10px;
   border-top: 1px solid #ececec;
 }
 
@@ -779,7 +783,7 @@ textarea{
 
 .header-highlight-title {
   font: 18px Segoe-Print;
-  color: $primary-white;
+  color: $primary-blue;
   text-align: center;
 }
 
@@ -791,7 +795,7 @@ textarea{
 }
 
 .header-highlight-txt{
-  color: $primary-white;
+  color: $primary-blue;
   font: 14px Segoe-Print;
   line-height: 35px;
 }
