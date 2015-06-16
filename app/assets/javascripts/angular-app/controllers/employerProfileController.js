@@ -47,6 +47,8 @@ angular.module('mepedia.controllers').controller('employerProfileController',
                     return interest.name;
                 });
 
+                $scope.employerCompanyImage = $scope.employerCompany.image
+
                 // hide
                 $scope.descriptionEnable = false;
             }
@@ -58,8 +60,8 @@ angular.module('mepedia.controllers').controller('employerProfileController',
             }
 
             $scope.updateEmployerCompanyImage = function (companyImage){
-                $scope.user.company_image = companyImage;
-                //updateUser();
+                $scope.employerCompany.image = companyImage;
+                $scope.saveEmployerCompany();
             }
 
             $scope.updateEmployerProfileImage = function (profileImage) {
