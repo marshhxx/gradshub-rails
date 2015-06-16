@@ -8,10 +8,10 @@
             </div>
             <div class="profileHeadline wrapper">
                 <div class="companyImage wrapper">
-                    <simpleimagepicker update-image="updateEmployerCompanyImage" default="logocircle-employer.svg" circular="true" size="'SMALL'"></simpleimagepicker>
+                    <simpleimagepicker update-image="updateEmployerCompanyImage" default="logocircle-employer.svg" circular="true"></simpleimagepicker>
                 </div>
                 <div class="companyNameWrapper">
-                    <h1>Company Name</h1>
+                    <h1>{{employerCompany.name}}</h1>
                 </div>
             </div>
         </div>
@@ -23,7 +23,7 @@
                         <div class="employerProfileImageEdit wrapper">
                             <div class="employerProfileImageEdit img"></div>
                         </div>-->
-                        <simpleimagepicker update-image="updateEmployerProfileImage" default="{{ user.gender ? user.gender : 'not_known' }}.svg" circular="true" size="'SMALL'"></simpleimagepicker>
+                        <simpleimagepicker update-image="updateEmployerProfileImage" default="{{ user.gender ? user.gender : 'not_known' }}.svg" circular="true" size="'SMALL'" image-url="user.profile_image"></simpleimagepicker>
                     </div>
                     <div class="employerBasicInfoWrapper col-xs-12">
                         <div class="employerNameWrapper">
