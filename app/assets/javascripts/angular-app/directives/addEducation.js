@@ -1,4 +1,4 @@
-angular.module('mepedia.directives').directive('addEducation', function () {
+angular.module('mepedia.directives').directive('addEducation', function (Utils) {
     return {
         scope: {
             education: '=data', //Education array
@@ -8,6 +8,8 @@ angular.module('mepedia.directives').directive('addEducation', function () {
         },
         templateUrl: 'angular-app/templates/directives/add-education.html',
         link: function (scope, element, attrs) {
+
+            scope.notMe = Utils.notMe();
 
             scope.addEducation = function () {
                 scope.addEducationEnable = true;

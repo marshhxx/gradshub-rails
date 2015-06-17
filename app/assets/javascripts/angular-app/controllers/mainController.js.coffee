@@ -1,8 +1,8 @@
 angular
 .module('mepedia.controllers')
 .controller('mainController',
-  ['$scope', '$rootScope', 'sessionService', '$state', 'alertService', '$sce', 'Utils',
-    ($scope, $rootScope, sessionService, $state, alertService, $sce, Utils) ->
+  ['$scope', '$rootScope', '$q', 'sessionService', '$state','alertService', '$sce', 'Utils',
+    ($scope, $rootScope, $q, sessionService, $state, alertService, $sce, Utils) ->
 
       init = ->
         $scope.logged = sessionService.isAuthenticated();
@@ -13,23 +13,21 @@ angular
 
       logout = ->
         sessionService.logout().then(
-          -> $state.go 'main.page'
+          -> $state.go 'main.page', null, {reload: true}
         ).catch(
           (error)-> console.log(error)
         )
 
       initUser = ->
-        $scope.userPromise = sessionService.requestCurrentUser().then(
+        deferrred = $q.defer()
+        sessionService.requestCurrentUser().then(
           (user) ->
             $state.go 'main.page' if !user?
             type = sessionService.sessionType().toLowerCase()
             $scope.username = user[type].name
-            return user
-        ).catch(
-          (error) ->
-            console.log error
-            $state.go 'main.page'
-        )
+            deferrred.resolve(user)
+        ).catch (error) -> deferrred.reject(error)
+        $scope.userPromise = deferrred.promise
 
       init()
   ])

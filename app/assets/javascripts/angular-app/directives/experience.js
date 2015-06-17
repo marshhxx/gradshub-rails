@@ -9,6 +9,8 @@ angular.module('mepedia.directives').directive('experience', [ 'Utils', function
         templateUrl: 'angular-app/templates/directives/experience.html',
         link: function (scope, element, attrs) {
 
+            scope.notMe = Utils.notMe();
+
             scope.onExperienceEditor = function () {
                 scope.experienceTemp = angular.copy(scope.experience);
                 scope.experienceEditor = true;

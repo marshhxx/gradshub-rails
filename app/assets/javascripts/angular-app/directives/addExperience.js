@@ -1,4 +1,4 @@
-angular.module('mepedia.directives').directive('addExperience', function () {
+angular.module('mepedia.directives').directive('addExperience', function (Utils) {
     return {
         scope: {
             experience: '=data', //Experience array
@@ -8,6 +8,8 @@ angular.module('mepedia.directives').directive('addExperience', function () {
         },
         templateUrl: 'angular-app/templates/directives/add-experience.html',
         link: function (scope, element, attrs) {
+
+            scope.notMe = Utils.notMe();
 
             scope.addExperience = function () {
                 scope.addExperienceEnable = true;

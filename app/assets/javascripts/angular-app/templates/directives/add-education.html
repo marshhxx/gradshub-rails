@@ -8,7 +8,7 @@
 		<div class="profile-right-header edit">
 			<div class="editwrapper">
 
-				<div ng-click="addEducation()" class="btn btn-add" ng-hide="addEducationEnable"></div>
+				<div ng-click="addEducation()" class="btn btn-add" ng-hide="addEducationEnable" ng-if="!notMe"></div>
 
 				<div ng-show="addEducationEnable" class="edit-buttons-wrapper">
 					<button type="submit" class="btn btn-edit">

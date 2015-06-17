@@ -18,7 +18,7 @@
                 <p ng-show="user.experiences.length > 0" class="header-highlight-txt"> {{user.experiences[0].job_title}}</p>
             </div>
             <div class="ph-col">
-                <div class="edit-pencil-hover" ng-click="onExperienceEditor()"></div>
+                <div class="edit-pencil-hover" ng-click="onExperienceEditor()" ng-if="!notMe"></div>
             </div>
         </div>
 
@@ -33,7 +33,7 @@
 	            <p ng-show="user.experiences.length > 0" class="header-highlight-txt"> {{user.experiences[0].company_name}}</p>
             </div>
             <div class="ph-col">
-                <div class="edit-pencil-hover" ng-click="onExperienceEditor()"></div>
+                <div class="edit-pencil-hover" ng-click="onExperienceEditor()" ng-if="!notMe"></div>
             </div>
         </div>
 
@@ -48,7 +48,7 @@
 	            <p ng-show="user.educations.length > 0" class="header-highlight-txt"> {{user.educations[0].school.name}}</p>
             </div>
             <div class="ph-col">
-                <div class="edit-pencil-hover" ng-click="onEducationEditor()"></div>
+                <div class="edit-pencil-hover" ng-click="onEducationEditor()" ng-if="!notMe"></div>
             </div>
         </div>
 

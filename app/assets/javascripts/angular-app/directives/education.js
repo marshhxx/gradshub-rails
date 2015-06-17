@@ -8,6 +8,8 @@ angular.module('mepedia.directives').directive('education', function (Utils) {
         templateUrl: 'angular-app/templates/directives/education.html',
         link: function (scope, element, attrs) {
 
+            scope.notMe = Utils.notMe();
+
             scope.onEducationEditor = function () {
                 scope.educationTemp =  angular.copy(scope.education);
                 scope.educationTemp.country_id = scope.education.country ? scope.education.country.id : null;
