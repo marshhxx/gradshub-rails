@@ -1860,20 +1860,20 @@ label {
   text-decoration: none;
 }
 
-.tagsinput {
-  //  margin-bottom: 0px !important;
-  display: inline-block;
+.tagsinput-right {
+  float: right;
 }
 
-.tagsinput.cont.left {
-  width: 85%;
-  display: inline-block;
+.tagsinput-left {
+  display: block;
+  overflow: hidden;
+  padding-right:5px;
 }
 
-.tagsinput.cont.right {
-  width: 10%;
-  display: inline-block;
+.tagsinput-left input{
+  width: 100%;
 }
+
 
 .tagsinput.addbutton {
   // background: #3D9ED8;

@@ -564,7 +564,7 @@ p {
 }
 
 .editwrapper{
-  height: 30px;
+  height: 40px;
   width: 100%;
 }
 
@@ -581,7 +581,7 @@ p {
   cursor: pointer;
   position: relative;
   top: 50%;
-  transform: translateY(-25%);
+  transform: translateY(-40%);
 }
 
 .edit-pencil:hover{
@@ -841,3 +841,20 @@ textarea{
 .inline {
   display: inline-block;
 }
+//
+//.prueba{
+//  height: 10px;
+//  overflow: hidden; /* clear the float */
+//  border: 1px solid #000
+//}
+//
+//.left{
+//  width: 100px;
+//  float: left;
+//  border-right: 1px solid #000
+//}
+//
+//.right{
+//  overflow: hidden;
+//  background: #ccc
+//}
