@@ -15,7 +15,7 @@ angular.module('mepedia.controllers').controller('loginController',
                         promise.then(
                             function (resp) {
                                 if (resp.type == 'Candidate')
-                                    $state.go('main.candidate_profile');
+                                    $state.go('main.candidate_profile', {uid: 'me'});
                                 else if (resp.type == 'Employer')
                                     $state.go('main.employer_profile');
                             }

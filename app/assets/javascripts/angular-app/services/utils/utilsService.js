@@ -1,4 +1,4 @@
-var Utils = function(Candidate, Employer) {
+var Utils = function(Candidate, Employer, $stateParams) {
 
     var utils = {};
 
@@ -58,6 +58,10 @@ var Utils = function(Candidate, Employer) {
 
     utils.sortByStartDate = function (array) {
         array.sort(compareDates)
+    };
+
+    utils.notMe = function () {
+        return $stateParams.uid && $stateParams.uid != '' && $stateParams.uid != 'me';
     };
 
     return utils;

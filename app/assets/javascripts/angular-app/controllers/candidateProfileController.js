@@ -1,10 +1,10 @@
 angular.module('mepedia.controllers').controller('candidateProfileController',
-    ['$scope', '$rootScope', '$http', '$upload', '$location', '$anchorScroll','sessionService', '$state', 'Country',
+    ['$scope', '$rootScope', '$http', '$upload', '$location', '$anchorScroll','sessionService', '$state', '$stateParams', 'Country',
         'State', 'Candidate', 'Employer', 'Skill', 'Interest', 'School', 'Major', 'Degree', 'Education', 'CandidateSkills',
         'CandidateInterests', 'CandidateLanguages', 'Utils', 'Experience', 'alertService', 'modalService', 'ALERT_CONSTANTS',
 
 
-        function ($scope, $rootScope, $httpProvider, $upload, $location, $anchorScroll, sessionService, $state, Country,
+        function ($scope, $rootScope, $httpProvider, $upload, $location, $anchorScroll, sessionService, $state, $stateParams, Country,
                   State, Candidate, Employer, Skill, Interest, School, Major, Degree, Education, CandidateSkills,
                   CandidateInterests, CandidateLanguages, Utils, Experience, alertService, modalService, ALERT_CONSTANTS) {
 
@@ -14,62 +14,6 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
             $scope.defaultInterests = "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed cursus quam erat, non fringilla dui efficitur vitae. Pellentesque nec sodales lacus. Fusce rutrum diam a dolor vestibulum, at sodales turpis congue. Curabitur condimentum velit elit, id ornare velit eleifend id. In vel lorem ut mi suscipit placerat ut eu nunc. ";
             $scope.defaultLanguages = "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed cursus quam erat, non fringilla dui efficitur vitae. Pellentesque nec sodales lacus. Fusce rutrum diam a dolor vestibulum, at sodales turpis congue. Curabitur condimentum velit elit, id ornare velit eleifend id. In vel lorem ut mi suscipit placerat ut eu nunc. ";
             $scope.defaultEducation = "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed cursus quam erat, non fringilla dui efficitur vitae. Pellentesque nec sodales lacus. Fusce rutrum diam a dolor vestibulum, at sodales turpis congue. Curabitur condimentum velit elit, id ornare velit eleifend id. In vel lorem ut mi suscipit placerat ut eu nunc. ";
-
-            var updateUser = function () {
-                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
-                Utils.candidateFromObject($scope.user).$update(function (response) { //Creates resource User from object $scope.user
-                        $scope.user = response.candidate;
-                        initCandidateProfile(); //Update profile variables;
-                    }
-                ).catch(alertService.defaultErrorCallback);
-            };
-
-
-            $scope.updateCoverImage = function (coverImage){
-                $scope.user.cover_image = coverImage;
-                updateUser();
-            };
-
-            $scope.updateProfileImage = function (profileImage){
-                $scope.user.profile_image = profileImage;
-                updateUser();
-            };
-
-            //<<<<<<<<<<<<<<< utilities functions >>>>>>>>>>>>>>>
-
-            // function called when the user leave the page
-            window.onbeforeunload = function () {
-                if ($scope.coverPhotoInProgress || $scope.profilePhotoInProgress) {
-                    return 'You have unsaved changes.\nTo save press the save button over your cover photo.';
-                }
-            };
-
-            function checkProfileActionActive() {
-                var isAvailable = false;
-                if ($scope.coverPhotoInProgress || $scope.profilePhotoInProgress) {
-                    if (confirm('You have unsaved changes.\nTo save press the save button over your cover photo.'))
-                        return true;
-                }
-                return isAvailable;
-            }
-
-            // Drag and drop for photos -- NOT IMPLEMENTED!!
-            // Modify the look and fill of the dropzone when files are being dragged over it
-            $scope.dragOverClass = function ($event) {
-                var items = $event.dataTransfer.items;
-                var hasFile = false;
-                if (items != null) {
-                    for (var i = 0; i < items.length; i++) {
-                        if (items[i].kind == 'file') {
-                            hasFile = true;
-                            break;
-                        }
-                    }
-                } else {
-                    hasFile = true;
-                }
-                return hasFile ? "dragover" : "dragover-err";
-            };
 
             /* ---- PERSONAL INFORMATION ---- */
 
@@ -96,17 +40,28 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 initLanguages();
 
                 $scope.updateUser = updateUser;
+                // returns true if the profile is from the logged user
+                $scope.notMe = Utils.notMe();
 
-                $scope.userPromise.then(
-                    function (user) {
-                        $scope.user = user.candidate;
-                        initCandidateProfile();
-                    }
-                );
+                if ($scope.notMe) {
+                    Candidate.get({id: $stateParams.uid}, setUser, alertService.defaultErrorCallback);
+                } else {
+                    $scope.userPromise.then(setUser, notLoggedInError);
+                }
 
             };
 
             /* INIT FUNCTIONS */
+
+            var setUser = function (user) {
+                $scope.user = user.candidate;
+                initCandidateProfile();
+            };
+
+            var notLoggedInError = function (error) {
+                alertService.addErrorMessage('You are currently not logged in.', ALERT_CONSTANTS.ERROR_TIMEOUT);
+                $state.go('main.page', null, {reload: true})
+            };
 
             var initCandidateProfile = function () {
                 $scope.selectedSkills = $scope.user.skills.map(function (skill) {
@@ -244,24 +199,8 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
             /* GETTERS */
 
             var getData = function () {
-                Country.query(function (countries) {
-                    $scope.countries = countries.countries;
-                });
-
                 Skill.query(function (skills) {
                     $scope.skillsTags = skills.skills;
-                });
-
-                School.query(function (schools) {
-                    $scope.schools = schools.schools;
-                });
-
-                Major.query(function (majors) {
-                    $scope.majors = majors.majors;
-                });
-
-                Degree.query(function (degrees) {
-                    $scope.degrees = degrees.degrees;
                 });
 
                 Interest.query(function (interests) {
@@ -519,9 +458,64 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     array.sort();
             };
 
-            /* OTHER FUNCTIONS */
+            var updateUser = function () {
+                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
+                Utils.candidateFromObject($scope.user).$update(function (response) { //Creates resource User from object $scope.user
+                        $scope.user = response.candidate;
+                        initCandidateProfile(); //Update profile variables;
+                    }
+                ).catch(alertService.defaultErrorCallback);
+            };
 
-            getData();
+
+            $scope.updateCoverImage = function (coverImage){
+                $scope.user.cover_image = coverImage;
+                updateUser();
+            };
+
+            $scope.updateProfileImage = function (profileImage){
+                $scope.user.profile_image = profileImage;
+                updateUser();
+            };
+
+            //<<<<<<<<<<<<<<< utilities functions >>>>>>>>>>>>>>>
+
+            // function called when the user leave the page
+            window.onbeforeunload = function () {
+                if ($scope.coverPhotoInProgress || $scope.profilePhotoInProgress) {
+                    return 'You have unsaved changes.\nTo save press the save button over your cover photo.';
+                }
+            };
+
+            function checkProfileActionActive() {
+                var isAvailable = false;
+                if ($scope.coverPhotoInProgress || $scope.profilePhotoInProgress) {
+                    if (confirm('You have unsaved changes.\nTo save press the save button over your cover photo.'))
+                        return true;
+                }
+                return isAvailable;
+            }
+
+            // Drag and drop for photos -- NOT IMPLEMENTED!!
+            // Modify the look and fill of the dropzone when files are being dragged over it
+            $scope.dragOverClass = function ($event) {
+                var items = $event.dataTransfer.items;
+                var hasFile = false;
+                if (items != null) {
+                    for (var i = 0; i < items.length; i++) {
+                        if (items[i].kind == 'file') {
+                            hasFile = true;
+                            break;
+                        }
+                    }
+                } else {
+                    hasFile = true;
+                }
+                return hasFile ? "dragover" : "dragover-err";
+            };
+
+
+            /* OTHER FUNCTIONS */
 
             init();
 

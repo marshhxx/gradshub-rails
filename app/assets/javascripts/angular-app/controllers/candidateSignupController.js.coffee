@@ -104,7 +104,7 @@ angular
         $q.all([saveCandidateNationality(), saveEducation(), saveSkills(), saveUser()]).then(
           (data) ->
             console.log(data)
-            $state.go 'main.candidate_profile', null, { reload: true }
+            $state.go 'main.candidate_profile', {uid: 'me'}, { reload: true }
         ).catch(alertService.defaultErrorCallback)
 
       saveEducation = ->

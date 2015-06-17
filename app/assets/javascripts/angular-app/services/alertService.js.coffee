@@ -48,6 +48,9 @@ AlertService = ($rootScope, $timeout, ALERT_CONSTANTS) ->
       reasons += '</ul>'
       alertService.add("danger", reasons, timeout)
 
+  alertService.addErrorMessage = (msg, timeout) ->
+    alertService.add("danger", msg, timeout)
+
   alertService.defaultErrorCallback = (error) ->
     alertService.addErrors(error.data.error, ALERT_CONSTANTS.ERROR_TIMEOUT)
 
