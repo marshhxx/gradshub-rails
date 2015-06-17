@@ -15,7 +15,7 @@ class Employer < ActiveRecord::Base
   validates_associated :nationalities, :interests, :skills
 
   def self.find_by_uid(uid)
-    User.find_by_uid!(uid).meta
+    check_type User.find_by_uid!(uid)
   end
 
   def self.find_by_email(email)
@@ -23,6 +23,14 @@ class Employer < ActiveRecord::Base
   end
 
   def self.find(id)
-    User.find_by_uid!(id).meta
+    check_type User.find_by_uid!(id)
+  end
+
+  private
+
+  def self.check_type(user)
+    if user.meta_type == 'Employer'
+      user.meta
+    end
   end
 end
