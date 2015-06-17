@@ -57,7 +57,7 @@
     url: "/interests",
     templateUrl: "angular-app/templates/views/form-interests.html",
   }).state("main.signup_employer.personal", {
-    url: "/personal",
+    url: "/info",
     templateUrl: "angular-app/templates/views/form-personal.html",
   }).state("main.signup_employer.company", {
     url: "/company",
