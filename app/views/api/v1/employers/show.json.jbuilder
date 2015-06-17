@@ -20,7 +20,6 @@ json.employer do
       json.image        @employer.employer_company.image
     end
   end
-  json.company_image @employer.company_image
   json.profile_image @employer.user.profile_image
   json.cover_image @employer.user.cover_image
   json.job_title @employer.job_title

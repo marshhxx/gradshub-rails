@@ -25,7 +25,7 @@ class Candidate < ActiveRecord::Base
                        :interests, :skills, :publications, :nationalities
 
   def self.find_by_uid(uid)
-    User.find_by_uid!(uid).meta
+    check_type User.find_by_uid!(uid)
   end
 
   def self.find_by_email(email)
@@ -33,7 +33,13 @@ class Candidate < ActiveRecord::Base
   end
 
   def self.find(id)
-    User.find_by_uid!(id).meta
+    check_type User.find_by_uid!(id)
+  end
+
+  def self.check_type(user)
+    if user.meta_type == 'Candidate'
+      user.meta
+    end
   end
 
 end
