@@ -89,7 +89,11 @@ input {
   color: #505050;
   font-family: Lato-Regular !important;
   font-size: 13px !important;
-  box-sizing: border-border;
+  box-shadow: inset 0 1px #f5f5f5;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid $border-gray;
+  height: 30px;
 }
 
 input::-webkit-input-placeholder {
@@ -97,6 +101,9 @@ input::-webkit-input-placeholder {
   font-size: 14px !important;
   font-family: Lato-Regular !important;
 }
+
+input:focus ,textarea:focus {outline:none !important; border: 1px solid $border-gray-focus !important; box-shadow: none !important;}
+input:hover ,textarea:hover {outline:none !important; border: 1px solid $border-gray-focus !important; box-shadow: none !important;}
 
 .align-left {
   float: left !important;
@@ -1846,10 +1853,11 @@ label {
 
 .tags .tag {
   border-radius: 0px;
-  background-color: #EFEFEF;
-  color: #3D9ED8;
-  border: 1px solid #DDD;
-  padding: 3px 4px;
+  background-color: $primary-pastel-green;
+  color: $primary-blue;
+  border: 1px solid $primary-pastel-green;
+  border-radius: 3px;
+  padding: 4px 5px;
   margin: 5px 10px 5px 0px;
   display: inline-block;
   float: left;
@@ -1858,6 +1866,10 @@ label {
 
 .tags .tag:hover {
   text-decoration: none;
+}
+
+.tagsinput-container{
+  padding-bottom: 10px;
 }
 
 .tagsinput-right {
@@ -1874,20 +1886,18 @@ label {
   width: 100%;
 }
 
-
 .tagsinput.addbutton {
-  // background: #3D9ED8;
-  text-decoration: none;
-  color: #3D9ED8;
-  border: 1px solid #3D9ED8;
-  //  border-radius: 0px;
-  cursor: pointer;
-  margin-left: 5px;
+  height: 28px;
   float: right;
+  color: $primary-turquoise;
+  border: 1px solid $primary-turquoise;
+  margin-left: 5px;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .tagsinput.addbutton:hover {
-  background: #3D9ED8;
+  background: $primary-turquoise;
   color: #FFF;
 }
 

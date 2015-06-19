@@ -455,7 +455,7 @@ h3 {
   background-color: $primary-white;
   margin-top: 20px;
   border-radius: 6px;
-  border: 1px solid $primary-gray;
+  border: 1px solid $border-gray;
   padding: 30px 20px 30px 20px;
 }
 
@@ -623,14 +623,14 @@ p {
   background: none;
   color: #9197A3;
   font: 13px Roboto-Light, Georgia, "Times New Roman", Times, serif;
-  border: 1px solid #9197A3;
-  border-radius: 0 !important;
+  border: 1px solid $border-gray;
+  border-radius: 3px !important;
 }
 
 .btn-edit:hover {
   color: #FFF;
-  background: #3D9ED8;
-  border: 1px solid #3D9ED8;
+  background: $primary-turquoise;
+  border: 1px solid $primary-turquoise;
 }
 
 .btn-add{
@@ -680,14 +680,17 @@ p {
 }
 
 .profile-right-header-img{
-  width: 60px;
+  width: 40px;
   height: 40px;
+  margin-right: 20px;
   float: left;
 }
 
 .profile-right-header-img.summary{
   background: url(profile/not_known.svg) no-repeat;
   background-size: 40px;
+  box-shadow: 0 0 0 2px #f7f5f4;
+  border-radius: 50%;
 }
 
 .profile-right-header-img.skills{
@@ -734,19 +737,23 @@ p {
 
 .profile-right-content{
   width: 100%;
-  display: inline-block;
   padding: 0px 20px 20px 20px;
 }
 
 .border-container {
   width: 100%;
-  padding: 10px 0px 10px 10px;
-  border-top: 1px solid #ececec;
+  padding: 20px 10px 10px 10px;
+  border-top: 1px solid $bg-gray;
+}
+
+.border-container.skills{
+  padding: 20px 10px 0px 10px !important;
+  display: inline-block;
 }
 
 .profile-add-right-content{
   width: 100%;
-  padding: 25px 20px 20px 30px;
+  padding: 20px 30px;
   display: inline-block;
   background: #ececec;
 }
@@ -759,6 +766,8 @@ p {
 textarea{
   color: #505050;
   font: 14px Lato-Regular;
+  resize: none;
+  outline: 0;
 }
 
 .header-title{
