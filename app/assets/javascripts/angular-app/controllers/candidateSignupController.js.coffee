@@ -103,7 +103,6 @@ angular
         $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
         $q.all([saveCandidateNationality(), saveEducation(), saveSkills(), saveUser()]).then(
           (data) ->
-            console.log(data)
             $state.go 'main.candidate_profile', {uid: 'me'}, { reload: true }
         ).catch(alertService.defaultErrorCallback)
 

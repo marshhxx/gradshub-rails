@@ -97,11 +97,8 @@ angular
             $q.all([saveEmployerNationality(), saveCompany(company.company.id), saveSkills(),
                     saveInterests(),
                     saveUser()])
-            .then(
-              (data) ->
-                console.log(data)
-                $state.go 'main.employer_profile', null, { reload: true }
-            ).catch(alertService.defaultErrorCallback)
+            .then((data) -> $state.go 'main.employer_profile', {uid: 'me'}, { reload: true })
+            .catch(alertService.defaultErrorCallback)
         ).catch(alertService.defaultErrorCallback)
 
       createCompany = ->

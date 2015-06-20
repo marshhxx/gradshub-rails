@@ -8,6 +8,8 @@ angular.module('mepedia.directives').directive('editCompany', ['EmployerCompany'
         },
         templateUrl: 'angular-app/templates/directives/editCompany.html',
         link: function (scope, element, attrs) {
+
+            scope.notMe = Utils.notMe();
             scope.editCompanyEnable = false;
 
             var temporaryEmployerCompany = '';

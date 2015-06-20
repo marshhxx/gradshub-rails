@@ -1,12 +1,12 @@
 angular.module('mepedia.controllers').controller('candidateProfileController',
     ['$scope', '$rootScope', '$http', '$upload', '$location', '$anchorScroll','sessionService', '$state', '$stateParams', 'Country',
         'State', 'Candidate', 'Employer', 'Skill', 'Interest', 'School', 'Major', 'Degree', 'Education', 'CandidateSkills',
-        'CandidateInterests', 'CandidateLanguages', 'Utils', 'Experience', 'alertService', 'modalService', 'ALERT_CONSTANTS',
+        'CandidateInterests', 'CandidateLanguages', 'Utils', 'Experience', 'alertService', 'modalService', 'ALERT_CONSTANTS', 'errors',
 
 
         function ($scope, $rootScope, $httpProvider, $upload, $location, $anchorScroll, sessionService, $state, $stateParams, Country,
                   State, Candidate, Employer, Skill, Interest, School, Major, Degree, Education, CandidateSkills,
-                  CandidateInterests, CandidateLanguages, Utils, Experience, alertService, modalService, ALERT_CONSTANTS) {
+                  CandidateInterests, CandidateLanguages, Utils, Experience, alertService, modalService, ALERT_CONSTANTS, errors) {
 
             $scope.defaultSummary = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dignissim orci in eros auctor, at fringilla orci hendrerit. Quisque consequat eros enim. Nullam luctus lectus sed justo ullamcorper, tempor commodo leo sagittis. Quisque egestas tempus nulla. Aenean sit amet mauris leo.";
             $scope.defaultSkills = "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed cursus quam erat, non fringilla dui efficitur vitae. Pellentesque nec sodales lacus. Fusce rutrum diam a dolor vestibulum, at sodales turpis congue. Curabitur condimentum velit elit, id ornare velit eleifend id. In vel lorem ut mi suscipit placerat ut eu nunc. ";
@@ -44,23 +44,25 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 $scope.notMe = Utils.notMe();
 
                 if ($scope.notMe) {
-                    Candidate.get({id: $stateParams.uid}, setUser, alertService.defaultErrorCallback);
+                    Candidate.get({id: $stateParams.uid}, setUser, errors.userNotFound);
                 } else {
-                    $scope.userPromise.then(setUser, notLoggedInError);
+                    $scope.userPromise.then(checkAndSetUser, errors.notLoggedIn);
                 }
-
             };
 
             /* INIT FUNCTIONS */
 
-            var setUser = function (user) {
+            var setUser = function(user) {
                 $scope.user = user.candidate;
                 initCandidateProfile();
             };
 
-            var notLoggedInError = function (error) {
-                alertService.addErrorMessage('You are currently not logged in.', ALERT_CONSTANTS.ERROR_TIMEOUT);
-                $state.go('main.page', null, {reload: true})
+            var checkAndSetUser = function (user) {
+                if (sessionService.sessionType() == 'Employer') {
+                    $state.go('main.employer_profile', {uid: 'me'}, { reload: true })
+                } else {
+                    setUser(user);
+                }
             };
 
             var initCandidateProfile = function () {

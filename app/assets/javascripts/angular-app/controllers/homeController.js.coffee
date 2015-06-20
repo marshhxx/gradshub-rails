@@ -3,9 +3,9 @@ angular.module('mepedia.controllers').controller("HomeController", [
 	($http, $scope, Candidate, Employer, $state, $anchorScroll, $location, sessionService, $sce, $stateParams, registerService, alertService)->
 		if sessionService.isAuthenticated()
 			if sessionService.sessionType() == "Candidate"
-				$state.go 'main.candidate_profile'
+				$state.go 'main.candidate_profile', {uid: 'me'}
 			else
-				$state.go 'main.employer_profile'
+				$state.go 'main.employer_profile', {uid: 'me'}
 
 		init = ->
 			$scope.candidate = true
