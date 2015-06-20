@@ -45,16 +45,6 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout) ->
 
       #Call Cloudinary upload Image method to upload image to cloudinary server
       delete $httpProvider.defaults.headers.common['Authorization']
-      # if imageUrl
-      #   publicIdSplitArray = imageUrl.split('/')
-      #   publicId = (publicIdSplitArray[publicIdSplitArray.length-1]).split('.')
-      #   Cloudinary.uploadImage(publicId[0]).then((data)->
-      #     #On success
-      #     $scope.cloudinaryPhotoData = data
-      #   ).catch((error)->
-      #     console.log(error)
-      #   )
-
       Cloudinary.uploadImage(file).then((data) ->
         $scope.cloudinaryPhotoData = data
       ).catch((error)->

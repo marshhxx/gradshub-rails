@@ -5,7 +5,6 @@ var Cloudinary = function ($upload, $q, crypt, $httpProvider) {
     var apiKey = '723254833421314';
     var apiSecret = '05hwa4MfqVrK_tKFwz1Nx1Umg38';
     var cloudName = 'mepediacobas';
-    // var uploadPreset = 'mepediacobas_unsigned_name';
 
     cloudinary.config = function () {
         $.cloudinary.config({
