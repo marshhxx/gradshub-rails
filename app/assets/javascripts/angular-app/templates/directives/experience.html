@@ -6,28 +6,23 @@
     <div class="border-container">
       <div class="profile-edit-on-hover">
         <div class="form-cont">
-          <input type="hidden" ng-value="experience.id"/>
-
-          <div class="width85 height25">
+            <input type="hidden" ng-value="experience.id"/>
             <span class="header-title"> {{experience.company_name}} </span>
-          </div>
-          <div class="width15 height25">
             <div id="experienceEdit{{$parent.$index}}" class="edit-pencil-hover" ng-click="onExperienceEditor()"></div>
-          </div>
         </div>
         <div class="form-cont">
           <span class="header-subtitle"> {{experience.job_title}}</span>
         </div>
         <div class="form-cont">
-                <span class="header-light-txt" ng-if="experience.end_date"> 
+                <span class="header-light-txt-s" ng-if="experience.end_date">
                     {{getMonth(experience.start_date.split('-')[1])}} {{experience.start_date.split('-')[0]}} - {{getMonth(experience.end_date.split('-')[1])}} {{experience.end_date.split('-')[0]}} 
                 </span>
-                <span class="header-light-txt" ng-if="!experience.end_date">
+                <span class="header-light-txt-s" ng-if="!experience.end_date">
                     {{getMonth(experience.start_date.split('-')[1])}} {{experience.start_date.split('-')[0]}} - Ongoing 
                 </span>
         </div>
-        <div class="form-cont">
-          <p class="header-regular-txt"> {{experience.description}} </p>
+        <div class="form-cont" ng-if="experience.description">
+          <p class="header-light-txt-m"> {{experience.description}} </p>
         </div>
       </div>
     </div>
@@ -110,7 +105,7 @@
 
     <div class="form-group inline">
       <div class="profile-datepicker-container" style="margin-right:0px;">
-        <span class="profile-switch-experience-label"> Is my current job? </span>
+        <span class="profile-switch-experience-label"> Is this my current job? </span>
         <input
           class="switchEditingJob"
           checked="true"
