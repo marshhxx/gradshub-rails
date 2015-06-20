@@ -5,23 +5,29 @@ var Cloudinary = function ($upload, $q, crypt, $httpProvider) {
     var apiKey = '723254833421314';
     var apiSecret = '05hwa4MfqVrK_tKFwz1Nx1Umg38';
     var cloudName = 'mepediacobas';
-    var uploadPreset = 'mepediacobas_unsigned_name';
 
     cloudinary.config = function () {
         $.cloudinary.config({
-            'cloud_name': cloudName,
-            'upload_preset': uploadPreset
+            'cloud_name': cloudName
         });
     }
 
     cloudinary.uploadImage = function (file) {
         var deferred = $q.defer();
+        var timestamp = (new Date).getTime() / 1000, // in seconds
+            max_width = '1920', //in pixels
+            max_height = '1080', //in pixels
+            transformation_parameter = 'w_'+max_width+',h_'+max_height+',c_limit',
+            tags = 'temp_cover',
+            signature = crypt.hash('tags='+tags+'&timestamp='+timestamp+'&transformation='+transformation_parameter+apiSecret);
+
         $upload.upload({
-            url: "https://api.cloudinary.com/v1_1/" + $.cloudinary.config().cloud_name + "/upload",
+            url: "https://api.cloudinary.com/v1_1/" + $.cloudinary.config().cloud_name + "/image/upload?transformation=" + transformation_parameter,
             data: {
-                upload_preset: $.cloudinary.config().upload_preset,
-                tags: 'temp_cover',
-                context: 'photo=' + title
+                api_key: apiKey,
+                timestamp: timestamp,
+                signature: signature,
+                tags: tags
             },
             file: file
         }).progress(function (e) {

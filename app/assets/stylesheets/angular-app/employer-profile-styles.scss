@@ -78,6 +78,7 @@
   font-family: Montserrat-Regular;
   font-size: 32px;
   text-transform: uppercase;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
 }
 
 
@@ -260,7 +261,7 @@
 .form-group.employer-company {
   float: right;
   margin: 6px 0px 0px 10px;
-  width: 75%;
+  width: 80%;
 }
 
 .edit-buttons-wrapper.edit-company {
@@ -357,6 +358,10 @@
   text-transform: inherit;
   background: url('website_employer.svg') center center no-repeat;
   background-size: 30px !important;
+}
+
+.place-holder-company-info {
+  color: #a7a9ab;
 }
 
 .company-info-header {
