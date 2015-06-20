@@ -17,11 +17,11 @@ angular.module('mepedia.controllers').controller('loginController',
                                 if (resp.type == 'Candidate')
                                     $state.go('main.candidate_profile', {uid: 'me'});
                                 else if (resp.type == 'Employer')
-                                    $state.go('main.employer_profile');
+                                    $state.go('main.employer_profile', {uid: 'me'});
                             }
                         ).catch(
                             function (resp) {
-                                alertService.addErrors(resp.data.error, 10000)
+                                alertService.addErrors(resp.error, 10000)
                             }
                         );
                     }

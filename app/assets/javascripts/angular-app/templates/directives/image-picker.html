@@ -15,7 +15,7 @@
         </div>
     </div>
 </div>
-<div ng-class="{'image-picker upload-btn-wrapper-center': circular, 'image-picker upload-btn-wrapper-left': !circular}" ng-show="uploadImageBtn">
+<div ng-if="!notMe" ng-class="{'image-picker upload-btn-wrapper-center': circular, 'image-picker upload-btn-wrapper-left': !circular}" ng-show="uploadImageBtn">
     <div ng-class="{'image-picker upload-btn-center': circular, 'image-picker upload-btn-right': !circular, 'small': size=='SMALL'}" ng-file-select="onFileSelect($files)" data-multiple="false" title="Cover Photo" onclick="this.value = null"></div>
 </div>
 <div ng-class="{'image-picker btn-wrapper-center': circular, 'image-picker btn-wrapper-right': !circular}" ng-show="photoButtons">
