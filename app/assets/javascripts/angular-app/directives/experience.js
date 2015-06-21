@@ -39,16 +39,6 @@ angular.module('mepedia.directives').directive('experience', [ 'Utils', function
 
             scope.experience.end_date ? scope.isCurrentJob = false : scope.isCurrentJob = true;
 
-            angular.element('.switchEditingJob').bootstrapSwitch({
-                state: scope.isCurrentJob
-            });
-            
-            angular.element('.switchEditingJob').on('switchChange.bootstrapSwitch', function(event, state) {
-                scope.experienceTemp.end_date = null;
-                state ? scope.isCurrentJob = true : scope.isCurrentJob = false;
-                scope.$apply();
-            });
-
             scope.$watchGroup(['experienceTemp.start_date', 'experienceTemp.end_date'], function () {
                 if (scope.experienceTemp) {
                     var valid = Date.parse(scope.experienceTemp.end_date) >= Date.parse(scope.experienceTemp.start_date);

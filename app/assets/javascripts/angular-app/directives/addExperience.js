@@ -34,23 +34,11 @@ angular.module('mepedia.directives').directive('addExperience', function () {
             };
 
             /* Methods */
-
             scope.onCancel = function () {
                 scope.addExperienceEnable = false;
                 scope.experience = [];
                 scope.onCancelClick();
             };
-
-
-            angular.element('#switchJob').bootstrapSwitch();
-
-            scope.isCurrentJob = true;
-            
-            angular.element('#switchJob').on('switchChange.bootstrapSwitch', function(event, state) {
-                scope.experience.end_date = null;
-                state ? scope.isCurrentJob = true : scope.isCurrentJob = false;
-                scope.$apply();
-            });
 
             scope.$watchGroup(['experience.start_date', 'experience.end_date'], function () {
                 var valid = Date.parse(scope.experience.end_date) >= Date.parse(scope.experience.start_date);

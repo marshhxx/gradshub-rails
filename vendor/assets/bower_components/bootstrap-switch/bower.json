@@ -4,7 +4,7 @@
   "version": "3.3.2",
   "main": [
     "./dist/js/bootstrap-switch.js",
-    "./dist/css/bootstrap3/bootstrap-switch.css"
+    "./dist/css/bootstrap3/bootstrap-switch.scss"
   ],
   "ignore": [
     "docs",

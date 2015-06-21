@@ -66,25 +66,6 @@ angular.module('mepedia.directives').directive('addEducation', function () {
                 valid = scope.education.end_date == null ||valid;
                 scope.newEducationForm.$setValidity('validDates', valid)
             });
-
-            scope.$watch('addEducationEnable', function (value) {
-                if (value) {
-                    initSwitch();
-                }
-            });
-
-            var initSwitch = function () {
-                // switch education
-                angular.element('#switchEducation').bootstrapSwitch();
-
-                scope.isCurrentEducation = true;
-
-                angular.element('#switchEducation').on('switchChange.bootstrapSwitch', function(event, state) {
-                    scope.education.end_date = null;
-                    state ? scope.isCurrentEducation = true : scope.isCurrentEducation = false;
-                    scope.$apply();
-                });
-            }
         }
     };
 });
