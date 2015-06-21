@@ -15,4 +15,8 @@ class Api::V1::CandidateLanguagesController < Api::NestedController
   def query_params
     params.permit(:candidate_id, :id)
   end
+
+  def class_name
+    'Language'
+  end
 end

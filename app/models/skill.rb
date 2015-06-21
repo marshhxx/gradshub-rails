@@ -1,8 +1,13 @@
 class Skill < ActiveRecord::Base
+  # candidate association
+  has_many :candidate_skills
+  has_many :candidates, :through => :candidate_skills
+  # employer association
+  has_many :employer_skills
+  has_many :employers, :through => :employer_skills
+
   before_create :to_lower_case
   validates_uniqueness_of :name
-  has_and_belongs_to_many :candidates, join_table: 'candidates_skills'
-  has_and_belongs_to_many :employers, join_table: 'employers_skills'
   after_find :capitalize_name
 
   private

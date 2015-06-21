@@ -1,7 +1,9 @@
 angular.module('mepedia.controllers').controller('employerProfileController',
-    ['$scope', '$rootScope', '$http', '$upload', 'sessionService', '$state', 'Skill', 'Country', 'State', 'EmployerSkills', 'EmployerCompany', 'Utils', 'EmployerInterests',
+    ['$scope', '$rootScope', '$http', '$upload', 'sessionService', '$state', '$stateParams','Skill', 'Country', 'State',
+        'Employer', 'EmployerSkills', 'EmployerCompany', 'Utils', 'EmployerInterests', 'alertService', 'errors',
 
-        function($scope, $rootScope,$httpProvider, $upload, sessionService, $state, Skill, Country, State, EmployerSkills, EmployerCompany, Utils, EmployerInterests) {
+        function($scope, $rootScope,$httpProvider, $upload, sessionService, $state, $stateParams,Skill, Country, State,
+                 Employer, EmployerSkills, EmployerCompany, Utils, EmployerInterests, alertService, errors) {
             var init = function () {
                 getData();
 
@@ -11,20 +13,30 @@ angular.module('mepedia.controllers').controller('employerProfileController',
                 /* INTERESTS */
                 initInterests();
 
-                sessionService.requestCurrentUser().then(
-                    function (user) {
-                        $scope.user = user.employer;
-                        initEmployerProfile();
+                // returns true if the profile is from the logged user
+                $scope.notMe = Utils.notMe();
 
-                        // Fire event to catch it in editCompany directive
-                        $scope.$broadcast('userLoaded');
-                    },
-                    function (error) {
-                        console.log(error);
-                        $state.go('home.page');
-                    }
-                );
+                if ($scope.notMe) {
+                    Employer.get({id: $stateParams.uid}, setUser, errors.userNotFound);
+                } else {
+                    $scope.userPromise.then(checkAndSetUser, errors.notLoggedIn);
+                }
 
+            };
+
+            var setUser = function (user) {
+                $scope.user = user.employer;
+                initEmployerProfile();
+                // Fire event to catch it in editCompany directive
+                $scope.$broadcast('userLoaded');
+            };
+
+            var checkAndSetUser = function (user) {
+                if (sessionService.sessionType() == 'Candidate') {
+                    $state.go('main.candidate_profile', {uid: 'me'}, { reload: true })
+                } else {
+                    setUser(user);
+                }
             };
 
             // get data from db
@@ -52,6 +64,8 @@ angular.module('mepedia.controllers').controller('employerProfileController',
                     return interest.name;
                 });
 
+                $scope.employerCompanyImage = $scope.employerCompany.image
+
                 // hide
                 $scope.descriptionEnable = false;
             }
@@ -63,8 +77,8 @@ angular.module('mepedia.controllers').controller('employerProfileController',
             }
 
             $scope.updateEmployerCompanyImage = function (companyImage){
-                $scope.user.company_image = companyImage;
-                //updateUser();
+                $scope.employerCompany.image = companyImage;
+                $scope.saveEmployerCompany();
             }
 
             $scope.updateEmployerProfileImage = function (profileImage) {

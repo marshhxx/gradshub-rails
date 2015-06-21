@@ -10,7 +10,7 @@
         </div>
         <div class="profile-left-header edit">
             <div class="editwrapper">
-                <div class="edit-pencil employer" ng-click="enableCompanyEditor()" ng-hide="editCompanyEnable"></div>
+                <div class="edit-pencil employer" ng-click="enableCompanyEditor()" ng-hide="editCompanyEnable" ng-if="!notMe"></div>
             </div>
         </div>
     </div>
@@ -56,7 +56,12 @@
             </div>
             <div class="cont-col employer-company" ng-hide="editCompanyEnable">
                 <!--<p class="lead" style="font-size: 14px; width: 185px">-->
-                {{employerCompany.state.name}}, {{employerCompany.country.name}}
+                <div ng-if="employerCompany.state.name && employerCompany.country.name">
+                    {{employerCompany.state.name}}, {{employerCompany.country.name}}
+                </div>
+                <div class="place-holder-company-info" ng-if="!employerCompany.state.name && !employerCompany.country.name">
+                    Company Location
+                </div>
                 <!--</p>-->
             </div>
             <div class="form-group employer-company" ng-show="editCompanyEnable">
@@ -92,11 +97,16 @@
                 <div class="profile-img company-url"></div>
             </div>
             <div class="cont-col employer-company" ng-hide="editCompanyEnable">
-                {{employerCompany.site_url}}
+                <div ng-if="employerCompany.site_url">
+                    {{employerCompany.site_url}}
+                </div>
+                <div class="place-holder-company-info" ng-if="!employerCompany.site_url">
+                    Company url address
+                </div>
             </div>
             <div class="form-group employer-company" ng-show="editCompanyEnable">
                 <input name="site_url" type="text" ng-model="employerCompany.site_url" required
-                    class="form-control employer-company input-company-url" id="companyIndustry">
+                    class="form-control employer-company input-company-url" id="companyIndustry" placeholder="Site url">
                 <div ng-if="companyForm.site_url.$invalid && (companyForm.$submitted || companyForm.site_url.$touched)" ng-messages="companyForm.site_url.$error">
                     <div class="help-block" ng-message="required">
                         You must provide a web address

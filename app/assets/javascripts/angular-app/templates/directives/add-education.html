@@ -1,14 +1,14 @@
 <!-- Education add component!-->
 <form name="newEducationForm" ng-submit="saveEducation(newEducationForm.$valid)" novalidate>
-    <div class="profile-right-header">
-        <div class="profile-right-header title">
-            <div class="profile-right-header-img education"></div>
-            <h3>Education</h3>
-        </div>
-        <div class="profile-right-header edit">
-            <div class="editwrapper">
+	<div class="profile-right-header">
+		<div class="profile-right-header title">
+			<div class="profile-right-header-img education"></div>
+			<h3>Education</h3>
+		</div>
+		<div class="profile-right-header edit">
+			<div class="editwrapper">
 
-                <div ng-click="addEducation()" class="btn-add" ng-hide="addEducationEnable"></div>
+				<div ng-click="addEducation()" class="btn-add" ng-hide="addEducationEnable" ng-if="!notMe"></div>
 
                 <div ng-show="addEducationEnable" class="edit-buttons-wrapper">
                     <button type="submit" class="btn btn-edit">

@@ -1,10 +1,12 @@
 angular.module('mepedia.controllers').controller('loginController',
-    ['$scope', '$state', 'sessionService',
-        function ($scope, $state, sessionService) {
-            $scope.randomLogin = function () {
+    ['$scope', '$state', 'sessionService', 'alertService',
+        function ($scope, $state, sessionService, alertService) {
+            var randomLogin = function () {
                 var images = ['one', 'other'];
                 return images[Math.floor((Math.random() * 2) + 1) - 1];
             };
+
+            $scope.randomPhoto = randomLogin();
 
             $scope.login = function (isValid) {
                 if (isValid) {
@@ -13,13 +15,13 @@ angular.module('mepedia.controllers').controller('loginController',
                         promise.then(
                             function (resp) {
                                 if (resp.type == 'Candidate')
-                                    $state.go('main.candidate_profile');
+                                    $state.go('main.candidate_profile', {uid: 'me'});
                                 else if (resp.type == 'Employer')
-                                    $state.go('main.employer_profile');
+                                    $state.go('main.employer_profile', {uid: 'me'});
                             }
-                            ,
+                        ).catch(
                             function (resp) {
-                                $scope.serverErrors = resp.error;
+                                alertService.addErrors(resp.error, 10000)
                             }
                         );
                     }

@@ -1,4 +1,4 @@
-AlertService = ($rootScope, $timeout) ->
+AlertService = ($rootScope, $timeout, ALERT_CONSTANTS) ->
   alertService = {};
 
   titles = {'danger': 'Something went wrong', 'warning': 'Warning', 'success': 'Success'}
@@ -47,6 +47,12 @@ AlertService = ($rootScope, $timeout) ->
         reasons += '<li>' + reason + '</li>'
       reasons += '</ul>'
       alertService.add("danger", reasons, timeout)
+
+  alertService.addErrorMessage = (msg, timeout) ->
+    alertService.add("danger", msg, timeout)
+
+  alertService.defaultErrorCallback = (error) ->
+    alertService.addErrors(error.data.error, ALERT_CONSTANTS.ERROR_TIMEOUT)
 
   alertService;
 

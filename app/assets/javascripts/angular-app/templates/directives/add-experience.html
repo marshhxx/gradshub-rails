@@ -9,7 +9,7 @@
         <div class="profile-right-header edit">
             <div class="editwrapper">
 
-                <a ng-click="addExperience()" class="btn-add" ng-hide="addExperienceEnable"></a>
+                <a ng-click="addExperience()" class="btn-add" ng-hide="addExperienceEnable" ng-if="!notMe"></a>
 
                 <div ng-show="addExperienceEnable" class="edit-buttons-wrapper">
                     <button type="submit" class="btn btn-edit">

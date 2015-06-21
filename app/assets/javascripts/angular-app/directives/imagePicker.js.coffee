@@ -1,4 +1,4 @@
-ImagePicker = (Cloudinary, $httpProvider, $timeout) ->
+ImagePicker = (Cloudinary, $httpProvider, $timeout, Utils) ->
   {
   scope:{
     updateImage: '=',
@@ -8,6 +8,9 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout) ->
   },
   templateUrl: 'angular-app/templates/directives/image-picker.html',
   link: ($scope, $element, attr) ->
+
+    # flag that shows if user is seeing its profile.
+    $scope.notMe = Utils.notMe()
     
     $scope.default = attr.default
     $scope.$watch(
@@ -139,4 +142,4 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout) ->
 
 angular
 .module('mepedia.directives')
-.directive('simpleimagepicker', ['Cloudinary', '$http', '$timeout', ImagePicker]);
+.directive('simpleimagepicker', ['Cloudinary', '$http', '$timeout', 'Utils', ImagePicker]);

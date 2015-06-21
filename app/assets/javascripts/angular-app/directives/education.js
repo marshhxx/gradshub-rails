@@ -1,4 +1,4 @@
-angular.module('mepedia.directives').directive('education', ['State', 'Country', 'School', 'Major', 'Degree', function (State, Country, School, Major, Degree) {
+angular.module('mepedia.directives').directive('education', function (Utils) {
     return {
         scope: {
             education: '=data',
@@ -8,8 +8,12 @@ angular.module('mepedia.directives').directive('education', ['State', 'Country',
         templateUrl: 'angular-app/templates/directives/education.html',
         link: function (scope, element, attrs) {
 
+            scope.notMe = Utils.notMe();
+
             scope.onEducationEditor = function () {
                 scope.educationTemp =  angular.copy(scope.education);
+                scope.educationTemp.country_id = scope.education.country ? scope.education.country.id : null;
+                scope.educationTemp.state_id = scope.education.state ? scope.education.state.id : null;
                 scope.educationEditor = true;
             };
 
@@ -20,8 +24,8 @@ angular.module('mepedia.directives').directive('education', ['State', 'Country',
                     scope.education.school_id = scope.educationTemp.school.id;
                     scope.education.major_id = scope.educationTemp.major.id;
                     scope.education.degree_id = scope.educationTemp.degree.id;
-                    scope.education.country_id = scope.educationTemp.country.id;
-                    scope.education.state_id = scope.educationTemp.state.id;
+                    scope.education.country_id = scope.educationTemp.country_id;
+                    scope.education.state_id = scope.educationTemp.state_id;
                     scope.education.description = scope.educationTemp.description;
                     scope.education.start_date = scope.educationTemp.start_date;
                     if (scope.isCurrentEducation)
@@ -42,18 +46,23 @@ angular.module('mepedia.directives').directive('education', ['State', 'Country',
             };
 
             scope.onSchool = function (school) {
-                if (school != undefined)
+                if (school != undefined) {
                     scope.educationTemp.school_id = school.id;
+                    scope.educationTemp.school = school;
+                }
             };
 
             scope.onState = function (state) {
-                if (state != undefined)
-                    scope.educationTemp.state_id = state.id;
+                scope.educationTemp.state_id = state ? state.id : null;
+                scope.educationTemp.state = state;
             };
 
             scope.onCountry = function (country) {
-                if (scope.educationTemp.country != undefined)
-                    scope.educationTemp.country_id = country.id;
+                scope.educationTemp.country_id = country ? country.id : null;
+                //scope.educationTemp.country.id = country ? country.id : null;
+                scope.educationTemp.country = country;
+                scope.educationTemp.state = null;
+                scope.educationTemp.state_id = null;
             };
 
             scope.onMajor = function (major) {
@@ -66,6 +75,8 @@ angular.module('mepedia.directives').directive('education', ['State', 'Country',
                     scope.educationTemp.degree_id = degree.id;
             };
 
+            scope.getMonth = Utils.getMonthByNumber;
+
             scope.education.end_date ? scope.isCurrentEducation = false : scope.isCurrentEducation = true;
 
             scope.$watchGroup(['educationTemp.start_date', 'educationTemp.end_date'], function () {
@@ -77,4 +88,4 @@ angular.module('mepedia.directives').directive('education', ['State', 'Country',
             });
         }
     };
-}]);
+});
