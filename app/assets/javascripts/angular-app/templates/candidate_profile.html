@@ -9,12 +9,15 @@
         </div>
         <div class="coverBorder">
             <simpleimagepicker update-image="updateCoverImage"
-                               circular="false" default="default_cover.png"></simpleimagepicker>
+                               image-url="user.cover_image"
+                               default="default_cover.png"
+                               circular="false" ></simpleimagepicker>
         </div>
     </div>
     <div class="profileHeadline wrapper">
         <div class="profile-image wrapper">
             <simpleimagepicker update-image="updateProfileImage"
+                               image-url="user.profile_image"
                                default="profile/{{ user.gender ? user.gender : 'not_known' }}.svg"
                                circular="true"></simpleimagepicker>
         </div>
@@ -206,9 +209,7 @@
                 </div>
             </div>
         </div>
-
     </div>
-
 </div>
 
 </div>
