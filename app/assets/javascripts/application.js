@@ -28,7 +28,6 @@
 //= require cloudinary_ng
 //= require ng-file-upload
 //= require jquery-guillotine
-//= require bootstrap-switch
 
 //= require cryptojslib/rollups/sha1
 
