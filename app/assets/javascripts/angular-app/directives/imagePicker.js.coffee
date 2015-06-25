@@ -132,6 +132,7 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout, Utils) ->
       guillotinePhotoElement.guillotine('remove') #Reset guillotine plugin
       $scope.uploadImageBtn = true
       $scope.guillotinePhoto = false
+      $scope.photoButtons = false
 
       deleteImage($scope.cloudinaryPhotoData.secure_url);
 
