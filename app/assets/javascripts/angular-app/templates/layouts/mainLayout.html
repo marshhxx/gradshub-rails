@@ -30,8 +30,9 @@
           <a class="page-scroll" ng-if="logged" ng-click="logout()">Logout</a>
         </li>
       </ul>
-      <p ng-if="logged" class="navbar-text navbar-right">Hi {{username}}!</p>
+      <p class="navbar-name navbar-right" ng-if="logged" >Hi {{username}}!</p>
     </div>
+
     <!-- /.navbar-collapse -->
   </div>
   <!-- /.container-fluid -->
