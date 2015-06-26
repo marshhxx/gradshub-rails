@@ -1,4 +1,8 @@
 /* COVER PHOTO */
+#employerProfileTopSection {
+  height: 425px;
+}
+
 .coverBorder.coverBorderEmployer {
   height: 355px;
 }
@@ -15,12 +19,16 @@
   z-index: 99;
   overflow: hidden;
   border-radius: 150px;
-  height: 215px;
-  width: 215px;
-  position: relative;
-  margin: -34% auto;
+  height: 200px;
+  width: 200px;
+  top: 5%;
+  position: absolute;
   background-color: #ececec;
   border: 2px solid #ececec;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .companyDefaultPhoto {
@@ -68,33 +76,37 @@
 
 .companyNameWrapper {
   color: white;
-  position: relative;
+  position: absolute;
   width: 40%;
   text-align: center;
-  margin: 35% auto 0px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  top:30%;
+  z-index: 1;
 }
 
 .companyNameWrapper h1 {
   font-family: Montserrat-Regular;
   font-size: 32px;
   text-transform: uppercase;
-  text-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
 }
-
 
 /*-------------------*/
 
-.employerProfileContent{
+.employerProfileContent {
   width: 100%;
   display: inline-block;
 }
 
-.employerProfileLeftContent.cont{
+.employerProfileLeftContent.cont {
   padding-left: 0px !important;
   padding-right: 0px !important;
 }
 
-.employerProfileLeftContent .section{
+.employerProfileLeftContent .section {
   overflow: auto;
   display: inline-block;
   width: 100%;
@@ -110,7 +122,7 @@
   padding: 60px 20px 25px 20px;
 }
 
-.employerProfileLeftContent .section.company-wrapper{
+.employerProfileLeftContent .section.company-wrapper {
   background-color: #00a5e4;
 }
 
@@ -137,7 +149,7 @@
 .employerNameWrapper {
   margin: 35px 0px 0px 0px;
   font-size: 26px;
-  
+
 }
 
 .employerTagWrapper {
@@ -239,6 +251,7 @@
   margin: 10px 0px 0px 0px;
   float: left;
 }
+
 .img-col.employer {
   float: left;
   width: 10%;
@@ -268,7 +281,7 @@
   float: left;
   color: white;
   font: 13px Lato-Regular, Georgia, "Times New Roman", Times, serif;
-  border: 2px solid white;  
+  border: 2px solid white;
   cursor: pointer;
   text-decoration: none;
 }
@@ -286,7 +299,7 @@
 }
 
 .btn.btn-edit.employer-company input {
-  font-family: inherit !important; 
+  font-family: inherit !important;
   color: inherit;
   background-color: inherit;
   border: 0px;
@@ -299,20 +312,21 @@
 
 /* Edit company directive */
 .country-selector-wrapper {
-  float: left; 
+  float: left;
   width: 90%;
   margin-bottom: 2%;
 }
 
 .state-selector-wrapper {
-  float: left; 
+  float: left;
   width: 90%;
 }
+
 .help-block {
-  color: #a94442;  
+  color: #a94442;
 }
 
-.profile-img.company-name{
+.profile-img.company-name {
   background: url('companyname_employer.svg') center center no-repeat;
   background-size: 30px !important;
 }
@@ -380,7 +394,7 @@
 }
 
 .cont-col.employer-company {
-  font-family: Segoe-Print; 
+  font-family: Segoe-Print;
   width: 85%;
   font-size: 14px;
   color: white;

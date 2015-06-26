@@ -1,9 +1,10 @@
 <div class="profile background">
   <div class="profile wrapper col-md-8 col-md-offset-2">
-    <div id="employerProfileTopSection" style="overflow: auto;">
+    <div id="employerProfileTopSection">
       <div id="employer-profile-cover" class="cover-wrap">
         <div class="coverBorder coverBorderEmployer">
-          <simpleimagepicker update-image="updateEmployerCoverImage" circular="false" default="background6.png" image-url="user.cover_image"></simpleimagepicker>
+          <simpleimagepicker update-image="updateEmployerCoverImage" circular="false"
+                             default="/profile/default_cover_2.png" image-url="user.cover_image"></simpleimagepicker>
         </div>
       </div>
       <div class="profileHeadline wrapper">
@@ -19,35 +20,25 @@
       <div class="employerProfileLeftContent cont col-md-4">
         <div class="section employer-info-wrapper padding-135">
           <div class="employerProfilePhotoWrapper">
-        <!--<div class="img-circle employerDefaultProfileImage img" ng-class="user.gender"></div>
-              <div class="employerProfileImageEdit wrapper">
-                <div class="employerProfileImageEdit img"></div>
-              </div>-->
+      
             <simpleimagepicker update-image="updateEmployerProfileImage" default="/profile/{{ user.gender ? user.gender : 'not_known' }}.svg" circular="true" size="'SMALL'" image-url="user.profile_image"></simpleimagepicker>
           </div>
           <div class="employerBasicInfoWrapper col-xs-12">
             <div class="employerNameWrapper">
               <p>{{user.name}} {{user.lastname}}</p>
-            </div><!-- Uncomment to enable tag visibility
-            <div class="employerTagWrapper">
-              <p>{{user.tag}}</p>
-            </div>-->
+            </div>
             <div class="employerPositionWrapper">
               <p>{{user.job_title}}</p>
             </div>                     
           </div>
         </div>
-        <!-- EDIT COMPANY (DIRECTIVE)-->
-          <div edit-company data="employerCompany" save-company="saveCompany" add-company-enable="addCompanyEnabled"></div>
-          <!-- Enable to add comunication icons
-          <div class="profileLeftContent section">
-            <div class="profile-communication-panel-img message"></div>
-            <div class="profile-communication-panel-img videocam"></div>
-          </div>-->
+
+        <div edit-company data="employerCompany" save-company="saveCompany"
+             add-company-enable="addCompanyEnabled"></div>
+ 
       </div>
 
       <div class="employerProfileRightContent col-md-8">
-      <!-- DESCRIPTION -->
         <div class="profile-right-container">
           <div class="profile-right-header">
             <div class="profile-right-header title">
@@ -80,96 +71,6 @@
             <textarea class="form-control" rows="5" ng-show="descriptionEnable" ng-model="employerCompany.description" placeholder="Tell us something about your company..."></textarea>
           </div>
         </div>
-
-        <!-- SKILLS -->
-        <!-- Uncomment if you want to enable
-        <div class="profile-right-container">
-          <div class="profile-right-header">
-            <div class="profile-right-header title">
-              <div class="profile-right-header-img skills"></div>
-              <h3> SKILLS </h3>
-            </div>
-
-            <div class="employerProfileRightContent col-md-8">
-                <!-- DESCRIPTION -->
-                <div class="profile-right-container">
-                    <div class="profile-right-header">
-                        <div class="profile-right-header title">
-                            <div class="company-logo-summary"></div><h3>About this company</h3>
-                        </div>
-                        <div class="profile-right-header edit">
-                            <div class="editwrapper">
-                                <div class="edit-pencil employer" ng-click="enableDescriptionEditor()"
-                                     ng-hide="descriptionEnable" ng-if="!notMe"></div>
-
-                                <div ng-show="editorDescriptionEnabled" class="edit-buttons-wrapper">
-                                    <a ng-click="saveDescription()" class="btn btn-edit">
-                                        SAVE </span>
-                                    </a>
-                                    <a ng-click="disableDescriptionEditor()" class="btn btn-edit margin-l5">
-                                        CANCEL </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="profile-right-content">
-                        <div ng-hide="descriptionEnable" class="profile-right-text">
-                            {{employerCompany.description}}
-                        </div>
-                        <textarea class="form-control" rows="5" ng-show="descriptionEnable" ng-model="employerCompany.description"></textarea>
-                    </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="profile-right-content">
-            <div ng-hide="editorSkillsEnabled" class="profile-right-text">
-              <div class="tags">
-                <a class="tag" ng-model="tag" ng-repeat="tag in selectedSkills">{{tag}}</a>
-              </div>
-            </div>
-            <div class="form-group">
-              <tags-input tags="skillsTags" ng-show="editorSkillsEnabled" placeholder="Add your skills..." info="employerSelectedSkills"></tags-input>
-            </div>
-          </div>
-        </div>
-
-        <!-- INTERESTS -->
-        <!-- Uncomment if you want to enable.
-        <div class="profile-right-container">
-          <div class="profile-right-header">
-            <div class="profile-right-header title">
-              <div class="profile-right-header-img interests"></div> 
-              <h3> INTERESTS </h3>
-            </div>
-            <div class="profile-right-header edit">
-              <div class="editwrapper">
-                <div class="edit-pencil" ng-click="enableInterestsEditor()" ng-hide="editorInterestsEnabled"></div>
-                <div ng-show="editorInterestsEnabled" class="edit-buttons-wrapper">
-                  <a ng-click="saveInterests()" class="btn btn-edit">
-                    <span>SAVE</span>
-                  </a>
-                  <a ng-click="disableInterestsEditor()" class="btn btn-edit margin-l5">
-                    <span>CANCEL</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="profile-right-content">
-            <div ng-hide="editorInterestsEnabled" class="profile-right-text">
-              <div class="tags">
-                <a class="tag" ng-model="tag" ng-repeat="tag in selectedInterests">{{tag}}</a>
-              </div>
-            </div>
-            <div class="form-group">
-              <tags-input tags="skillsTags" ng-show="editorInterestsEnabled" placeholder="Add your interests..." info="employerSelectedInterests"></tags-input>
-            </div>
-          </div>
-        </div> -->
       </div>
     </div>
   </div>
