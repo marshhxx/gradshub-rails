@@ -82,7 +82,7 @@ h3 {
 .profile.background {
   width: 100%;
   display: inline-block;
-  background-color: #F7f5f4;
+  background-color: $bg-gray;
 }
 
 .profile.wrapper {
@@ -122,7 +122,6 @@ h3 {
 }
 
 .image-picker.default-image {
-  //background: url('default-cover-photo.png') center center no-repeat;
   background-repeat: no-repeat;
   background-size: cover;
   -webkit-background-size: cover;
@@ -137,7 +136,16 @@ h3 {
 
 .edit-buttons-wrapper {
   float: right;
-  height: 30px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.delete-buttons-wrapper{
+  float: left;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .image-picker.upload-btn-wrapper-left {
@@ -178,6 +186,13 @@ h3 {
   top: -55px;
 }
 
+.image-picker.upload-btn-center.small {
+  height: 55px;
+}
+
+.image-picker.upload-btn-center:hover {
+  background: url('camera-hover.svg') center center no-repeat;
+  
 .image-picker.upload-btn-center.small {
   height: 55px;
 }
@@ -284,13 +299,13 @@ h3 {
 }
 
 .profile-username-txt{
-  font: 26px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+  font: 32px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
   color: #FFF;
   bottom: 45px;
   left: 320px;
   position: absolute;
   text-transform: uppercase;
-  text-shadow: 0 0 3px rgba(0,0,0,.6);
+  text-shadow: 0 0 3px rgba(0,0,0,.2);
   z-index: 10;
 }
 
@@ -300,7 +315,7 @@ h3 {
   bottom: 20px;
   left: 320px;
   position: absolute;
-  text-shadow: 0 0 3px rgba(0,0,0,.6);
+  text-shadow: 0 0 3px rgba(0,0,0,.2);
   z-index: 10;
 }
 
@@ -353,28 +368,24 @@ h3 {
 .profileImage.img {
   height: 100%;
   width: 100%;
-  background: url(not_known.svg) no-repeat;
+  background: url(profile/not_known.svg) no-repeat;
   background-size: 100%;
   position: absolute;
 }
 
 .male {
-  background-image: url(male.svg) !important;
+  background-image: url(profile/male.svg) !important;
 
 }
 
 .female {
-  background-image: url(female.svg) !important;
+  background-image: url(profile/female.svg) !important;
 }
 
 .profileHeadline.wrapper {
   height: 60px;
   width: 100%;
   background-color: #FFF;
-  border: 1px solid #505050;
-  border-right-color: rgba(80, 80, 80, .2);
-  border-left-color: rgba(80, 80, 80, .2);
-  border-color: rgba(80, 80, 80, .2);
 }
 
 .profileImageEdit.wrapper {
@@ -442,7 +453,6 @@ h3 {
 
 .profile-content {
   width: 100%;
-  display: inline-block;
 }
 
 .profileLeftContent.cont{
@@ -454,7 +464,7 @@ h3 {
   display: inline-block;
   width: 100%;
   min-width: 285px;
-  background-color: $primary-blue;
+  background-color: $primary-white;
   margin-top: 20px;
   border-radius: 6px;
   border: 1px solid $border-gray;
@@ -474,19 +484,19 @@ h3 {
 }
 
 .profile-img.location{
-  background: url('map_marker.svg') center center no-repeat;
+  background: url('profile/candidate/map_marker.svg') center center no-repeat;
 }
 
 .profile-img.education{
-  background: url('graduation_hat.svg') center center no-repeat;
+  background: url('profile/candidate/graduation_hat.svg') center center no-repeat;
 }
 
 .profile-img.jobposition{
-  background: url('case.svg') center center no-repeat;
+  background: url('profile/candidate/case.svg') center center no-repeat;
 }
 
 .profile-img.company{
-  background: url('portfolio.svg') center center no-repeat;
+  background: url('profile/candidate/portfolio.svg') center center no-repeat;
 }
 
 .profile-communication-panel-img{
@@ -518,7 +528,7 @@ p {
 
 .profileLeft {
   width: 100%;
-  padding: 10px 0;
+  padding: 10px 0 10px 10px;
   float: left;
 }
 
@@ -531,7 +541,7 @@ p {
 }
 
 .horizontal-line.blue{
-  border-bottom:1px solid $border-blue;
+  border-bottom:1px solid $primary-blue;
 }
 
 .img-col {
@@ -566,19 +576,15 @@ p {
 }
 
 .editwrapper{
-  height: 30px;
   width: 100%;
-}
-
-.delete-buttons-wrapper{
-  float: left;
+  height: 40px;
 }
 
 .edit-pencil{
-  width: 20px;
-  height: 20px;
+  width: 17px;
+  height: 17px;
   background: url(pencil.svg) no-repeat;
-  background-size: 20px;
+  background-size: 17px;
   float: right;
   cursor: pointer;
   position: relative;
@@ -586,23 +592,27 @@ p {
   transform: translateY(-50%);
 }
 
-.edit-pencil-hover:hover{
+.edit-pencil:hover{
   background: url(pencil-hover.svg) no-repeat;
-  background-size: 20px;
+  background-size: 17px;
   cursor: pointer;
 }
 
 .edit-pencil-hover{
-  width: 20px;
-  height: 20px;
+  width: 17px;
+  height: 17px;
   float: right;
   background: url(pencil.svg) no-repeat;
-  background-size: 20px;
+  background-size: 17px;
   cursor: pointer;
   visibility: hidden;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+  margin-right: -10px;
+}
+
+.edit-pencil-hover:hover{
+  background: url(pencil-hover.svg) no-repeat;
+  background-size: 17px;
+  cursor: pointer;
 }
 
 .profile-edit-on-hover:hover .edit-pencil-hover{
@@ -618,29 +628,36 @@ p {
   padding: 5px 0px;
   background: none;
   color: #9197A3;
-  font: 13px Roboto-Light, Georgia, "Times New Roman", Times, serif;
-  border: 1px solid #9197A3;
-  border-radius: 0 !important;
+  font: 12px Lato-Regular, Georgia, serif;
+  border: 1px solid $border-gray;
+  border-radius: 3px !important;
+  outline: none !important;
 }
 
 .btn-edit:hover {
   color: #FFF;
-  background: #3D9ED8;
-  border: 1px solid #3D9ED8;
+  background: $primary-turquoise;
+  border: 1px solid $primary-turquoise;
+}
+
+.btn-edit:active {
+  color: #FFF;
+  background: $primary-turquoise-hover;
+  border: 1px solid $primary-turquoise-hover;
 }
 
 .btn-add{
-  width: 35px;
-  height: 35px;
+  width: 25px;
+  height: 25px;
   background: url(add.svg) no-repeat;
-  background-size: 30px;
+  background-size: 25px;
   float: right;
   cursor: pointer;
 }
 
 .btn-add:hover {
-  background: url(add-hover.svg) no-repeat;
-  background-size: 30px;
+  background: url(add_hover.svg) no-repeat;
+  background-size: 25px;
 }
 
 .btn-delete{
@@ -667,47 +684,51 @@ p {
   margin: 20px 0 20px 20px;
   border-radius: 6px;
   border: 1px solid $border-gray;
+  border-bottom-width: 3px;
 }
 
 .profile-right-header{
   width: 100%;
-  padding: 40px 20px 10px 30px;
+  padding: 30px 20px 10px 30px;
   display: inline-block;
 }
 
 .profile-right-header-img{
-  width: 60px;
+  width: 40px;
   height: 40px;
+  margin-right: 20px;
   float: left;
 }
 
 .profile-right-header-img.summary{
-  background: url(not_known.svg) no-repeat;
+  background: url(profile/not_known.svg) no-repeat;
   background-size: 40px;
+  box-shadow: 0 0 0 2px $bg-gray;
+  border-radius: 50%;
 }
 
 .profile-right-header-img.skills{
-  background: url(rocket.svg) no-repeat;
+  background: url(profile/candidate/rocket.svg) no-repeat;
   background-size: 40px;
 }
 
 .profile-right-header-img.education{
-  background: url(graduation_hat_orange.svg) no-repeat;
+  background: url(profile/candidate/graduation_hat.svg) no-repeat;
   background-size: 40px;
 }
 
 .profile-right-header-img.experience{
-  background: url(books.svg) no-repeat;
+  background: url(profile/candidate/books.svg) no-repeat;
   background-size: 40px;
 }
 
 .profile-right-header-img.interests{
-  background: url(light_bulb.svg) no-repeat;
+  background: url(profile/candidate/light_bulb.svg) no-repeat;
   background-size: 40px;
 }
 
 .profile-right-header-img.languages{
-  background: url(message_bubble.svg) no-repeat;
+  background: url(profile/candidate/message.svg) no-repeat;
   background-size: 40px;
 }
 
@@ -730,80 +751,96 @@ p {
 
 .profile-right-content{
   width: 100%;
-  display: inline-block;
-  padding: 0px 20px 0px 20px;
+  padding: 0px 20px 20px 20px;
+}
+
+.profile-right-content.languages{
+  width: 100%;
+  padding: 0px 20px;
 }
 
 .border-container {
   width: 100%;
-  padding: 10px 00px 20px 10px;
-  border-top: 1px solid #ececec;
+  padding: 20px 10px 10px 10px;
+  border-top: 2px solid $bg-gray-dark;
+}
+
+.border-container.skills{
+  padding: 20px 10px 0px 10px !important;
+  display: inline-block;
+}
+
+.border-container.languages {
+  width: 100%;
+  padding: 10px 10px 30px 10px;
+  border-top: none;
 }
 
 .profile-add-right-content{
   width: 100%;
-  padding: 25px 20px 20px 30px;
+  padding: 20px 30px;
   display: inline-block;
-  background: #ececec;
+  background: $bg-gray-dark;
 }
 
 .profile-right-text{
-  color: #999999;
-  font: 15px Lato-Regular;
+  color: $text-regular;
+  font: 15px Lato-Light;
 }
 
 textarea{
-  color: #505050;
+  color: $text-regular;
   font: 14px Lato-Regular;
+  resize: none;
+  outline: 0;
+}
+
+.form-cont{
+  margin-bottom: 5px;
 }
 
 .header-title{
-  color: #505050;
+  color: $text-bold;
   font: 17px Lato-Regular;
 }
 
 .header-subtitle{
-  color: #999999;
+  color: $text-regular;
   font: 15px Lato-Regular;
 }
 
-.header-light-txt{
-  color: #999999;
+.header-light-txt-s{
+  color: $text-regular;
   font: 13px Lato-Light;
 }
 
-.header-regular-txt{
-  color: #999999;
-  font: 14px Lato-Regular;
+.header-light-txt-m{
+  color: $text-regular;
+  font: 14px Lato-Light;
 }
 
 .header-highlight-title {
   font: 18px Segoe-Print;
-  color: $primary-white;
+  color: $primary-blue;
   text-align: center;
 }
 
 .header-highlight-placeholder{
   margin-left: 5px;
-  color: $text-light-gray;
+  color: $text-placeholder;
   font: 14px Segoe-Print;
   line-height: 35px;
 }
 
 .header-highlight-txt{
-  color: $primary-white;
+  color: $primary-blue;
   font: 14px Segoe-Print;
   line-height: 35px;
 }
 
-.form-cont{
-  overflow: auto;
-  margin-bottom: 5px;
-}
-
 .profile-placeholder-txt{
   font: 15px Lato-Light, Georgia, "Times New Roman", Times, serif;
-  color: #999999;
+  color: $text-placeholder;
 }
 
 .profile-datepicker-container{
@@ -812,10 +849,9 @@ textarea{
   margin-right: 15px;
 }
 
-
 .profile-datepicker-label {
   display: inline-block;
-  color: #122028;
+  color: $text-bold;
   float: left;
   line-height: 25px;
 }
@@ -836,4 +872,36 @@ textarea{
 
 .inline {
   display: inline-block;
+}
+
+.align-vertical {
+  display: inherit;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.form-cont-languages{
+  height: 50px;
+  margin-bottom: 0px;
+}
+
+.btn-language-level{
+  width: 120px;
+  font: 12px Lato-Regular, Georgia, serif !important;
+  color: $primary-white !important;
+  background: $primary-turquoise;
+  border: 1px solid $primary-turquoise;
+}
+
+.btn-language-level:hover{
+  color: $primary-white;
+  background: $primary-turquoise;
+  border: 1px solid $primary-turquoise;
+}
+
+.btn-language-level:active{
+  color: $primary-white;
+  background: $primary-turquoise-hover;
+  border: 1px solid $primary-turquoise-hover;
 }

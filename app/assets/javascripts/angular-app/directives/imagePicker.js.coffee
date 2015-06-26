@@ -113,6 +113,7 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout, Utils) ->
 
       #Update user image url
       $scope.updateImage($scope.imageUrl)
+      $scope.photoButtons = false
 
       $timeout (->
         $scope.spinnerVisible = false; #Hide spinner

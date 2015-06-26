@@ -79,16 +79,6 @@ angular.module('mepedia.directives').directive('education', function (Utils) {
 
             scope.education.end_date ? scope.isCurrentEducation = false : scope.isCurrentEducation = true;
 
-            angular.element('.switchEditingEducation').bootstrapSwitch({
-                state: scope.isCurrentEducation
-            });
-            
-            angular.element('.switchEditingEducation').on('switchChange.bootstrapSwitch', function(event, state) {
-                scope.educationTemp.end_date = null;
-                state ? scope.isCurrentEducation = true : scope.isCurrentEducation = false;
-                scope.$apply();
-            });
-
             scope.$watchGroup(['educationTemp.start_date', 'educationTemp.end_date'], function () {
                 if(scope.educationTemp) {
                     var valid = Date.parse(scope.educationTemp.end_date) >= Date.parse(scope.educationTemp.start_date);

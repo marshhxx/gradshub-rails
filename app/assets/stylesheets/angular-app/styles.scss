@@ -89,7 +89,10 @@ input {
   color: #505050;
   font-family: Lato-Regular !important;
   font-size: 13px !important;
-  box-sizing: border-border;
+  box-shadow: inset 0 1px #f5f5f5;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid $border-gray;
 }
 
 input::-webkit-input-placeholder {
@@ -97,6 +100,9 @@ input::-webkit-input-placeholder {
   font-size: 14px !important;
   font-family: Lato-Regular !important;
 }
+
+input:focus ,textarea:focus {outline:none !important; border: 1px solid $border-gray-focus !important; box-shadow: none !important;}
+input:hover ,textarea:hover {outline:none !important; border: 1px solid $border-gray-focus !important; box-shadow: none !important;}
 
 .align-left {
   float: left !important;
@@ -336,17 +342,26 @@ input::-webkit-input-placeholder {
 }
 
 .navbar-default .nav li a {
-  font-family: 'Lato-Regular';
-  color: #fff;
+  font: 14px 'Lato-Regular' !important;
+  color: $primary-white;
   cursor: pointer;
 }
 
 .navbar-default .nav li a:hover,
 .navbar-default .nav li a:focus {
   outline: 0;
-  color: #FFF;
-  font-family: 'Lato-Regular' !important;
+  color: $primary-white;
+  font: 14px 'Lato-Regular' !important;
   cursor: pointer;
+}
+
+.navbar-default .navbar-name{
+  color:$primary-turquoise !important;
+  font: 14px Lato-Regular;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  line-height: 20px;
+  margin: 0px;
 }
 
 .navbar-default .navbar-nav > .active > a {
@@ -1840,8 +1855,6 @@ label {
 /* Tags input directive */
 
 .tags {
-  margin: 20px 0px 0px 0px;
-  min-height: 34px;
   width: 100%;
   float: left;
   background-color: rgba(255, 255, 255, 0.1);
@@ -1849,10 +1862,11 @@ label {
 
 .tags .tag {
   border-radius: 0px;
-  background-color: #EFEFEF;
-  color: #3D9ED8;
-  border: 1px solid #DDD;
-  padding: 3px 4px;
+  background-color: $primary-pastel-green;
+  color: $primary-blue;
+  border: 1px solid $primary-pastel-green;
+  border-radius: 3px;
+  padding: 4px 5px;
   margin: 5px 10px 5px 0px;
   display: inline-block;
   float: left;
@@ -1863,34 +1877,37 @@ label {
   text-decoration: none;
 }
 
-.tagsinput {
-  //  margin-bottom: 0px !important;
-  display: inline-block;
+.tagsinput-container{
+  padding-bottom: 10px;
 }
 
-.tagsinput.cont.left {
-  width: 85%;
-  display: inline-block;
-}
-
-.tagsinput.cont.right {
-  width: 10%;
-  display: inline-block;
-}
-
-.tagsinput.addbutton {
-  // background: #3D9ED8;
-  text-decoration: none;
-  color: #3D9ED8;
-  border: 1px solid #3D9ED8;
-  //  border-radius: 0px;
-  cursor: pointer;
-  margin-left: 5px;
+.tagsinput-right {
   float: right;
 }
 
+.tagsinput-left {
+  display: block;
+  overflow: hidden;
+  padding-right:5px;
+}
+
+.tagsinput-left input{
+  width: 100%;
+}
+
+.tagsinput.addbutton {
+  height: 28px;
+  float: right;
+  color: $primary-turquoise;
+  border: 1px solid $primary-turquoise;
+  font: 12px Lato-Regular, Georgia, serif !important;
+  margin-left: 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .tagsinput.addbutton:hover {
-  background: #3D9ED8;
+  background: $primary-turquoise;
   color: #FFF;
 }
 

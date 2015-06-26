@@ -11,7 +11,7 @@ Errors = (alertService, ALERT_CONSTANTS, $state, $stateParams) ->
     userNotFound: (error) ->
       type = getType()
       alertService.addErrorMessage("#{type} not found. Please check you selected the right id.", ALERT_CONSTANTS.ERROR_TIMEOUT)
-      $state.go("main.#{getType.lowercase}_profile", {uid: 'me'}, {reload: true})
+      $state.go("main.#{type.lowercase}_profile", {uid: 'me'}, {reload: true})
   }
 
 angular

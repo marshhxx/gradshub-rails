@@ -9,12 +9,16 @@
         </div>
         <div class="coverBorder">
             <simpleimagepicker update-image="updateCoverImage"
-                               circular="false" default="background6.png"></simpleimagepicker>
+                               image-url="user.cover_image"
+                               default="default_cover.png"
+                               circular="false" ></simpleimagepicker>
         </div>
     </div>
     <div class="profileHeadline wrapper">
         <div class="profile-image wrapper">
-            <simpleimagepicker update-image="updateProfileImage" default="{{ user.gender ? user.gender : 'not_known' }}.svg"
+            <simpleimagepicker update-image="updateProfileImage"
+                               image-url="user.profile_image"
+                               default="profile/{{ user.gender ? user.gender : 'not_known' }}.svg"
                                circular="true"></simpleimagepicker>
         </div>
     </div>
@@ -88,22 +92,20 @@
             </div>
 
             <div class="profile-right-content">
-                <div class="border-container">
-
+                <div class="border-container skills">
                     <p class="profile-placeholder-txt" ng-show="selectedSkills.length == 0 && !editorSkillsEnabled">
                         {{defaultSkills}}</p>
 
-                    <div ng-hide="editorSkillsEnabled" class="profile-right-text margin-t15">
+                    <div ng-hide="editorSkillsEnabled" class="profile-right-text">
                         <div class="tags">
                             <a class="tag" ng-model="tag" ng-repeat="tag in selectedSkills">{{tag}}</a>
                         </div>
                     </div>
-                    <div class="profile-content margin-t15"
+                    <div class="profile-content"
                          ng-hide="selectedSkills.length == 0 && !editorSkillsEnabled">
                         <tags-input tags="skillsTags" ng-show="editorSkillsEnabled"
                                     info="candidateSelectedSkills"></tags-input>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -176,13 +178,13 @@
                         {{defaultInterests}}
                     </p>
 
-                    <div ng-hide="editorInterestsEnabled" class="profile-right-text margin-t15">
+                    <div ng-hide="editorInterestsEnabled" class="profile-right-text">
                         <div class="tags">
                             <a class="tag" ng-model="tag" ng-repeat="tag in selectedInterests">{{tag}}</a>
                         </div>
                     </div>
 
-                    <div class="profile-content margin-t15"
+                    <div class="profile-content"
                          ng-hide="selectedInterests.length == 0 && !editorInterestsEnabled">
                         <tags-input tags="interestsTags" ng-show="editorInterestsEnabled"
                                     info="candidateSelectedInterests"></tags-input>
@@ -207,9 +209,7 @@
                 </div>
             </div>
         </div>
-
     </div>
-
 </div>
 
 </div>
