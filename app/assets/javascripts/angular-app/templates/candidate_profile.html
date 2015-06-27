@@ -1,20 +1,20 @@
 <div class="profile background">
 <div class="profile wrapper col-md-8 col-md-offset-2">
-<div id="profileTopSection">
-    <div id="profileCover" class="coverWrap">
+<div id="profile-top-section">
+    <div id="profile-cover" class="coverWrap">
         <div>
             <p class="profile-username-txt"> {{user.name }} {{user.lastname}}</p>
 
             <p class="profile-tag-txt">{{user.tag}}</p>
         </div>
-        <div class="coverBorder">
+        <div class="cover-border">
             <simpleimagepicker update-image="updateCoverImage"
                                image-url="user.cover_image"
                                default="default_cover.png"
                                circular="false" ></simpleimagepicker>
         </div>
     </div>
-    <div class="profileHeadline wrapper">
+    <div class="profile-headline wrapper">
         <div class="profile-image wrapper">
             <simpleimagepicker update-image="updateProfileImage"
                                image-url="user.profile_image"
@@ -25,11 +25,11 @@
 
 </div>
 <div class="profile-content">
-    <div class="profileLeftContent cont col-md-4">
+    <div class="profile-left-content cont col-md-4">
         <profile-highlights user="user"></profile-highlights>
     </div>
 
-    <div class="profileMainContent col-md-8">
+    <div class="profile-main-content col-md-8">
 
         <div class="profile-right-container">
             <div class="profile-right-header">

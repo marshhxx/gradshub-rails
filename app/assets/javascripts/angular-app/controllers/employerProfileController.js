@@ -64,8 +64,6 @@ angular.module('mepedia.controllers').controller('employerProfileController',
                     return interest.name;
                 });
 
-                $scope.employerCompanyImage = $scope.employerCompany.image
-
                 // hide
                 $scope.descriptionEnable = false;
             }
@@ -73,7 +71,7 @@ angular.module('mepedia.controllers').controller('employerProfileController',
 
             $scope.updateEmployerCoverImage = function (coverImage){
                 $scope.user.cover_image = coverImage;
-                //updateUser();
+                updateUser();
             }
 
             $scope.updateEmployerCompanyImage = function (companyImage){
@@ -83,9 +81,17 @@ angular.module('mepedia.controllers').controller('employerProfileController',
 
             $scope.updateEmployerProfileImage = function (profileImage) {
                 $scope.user.profile_image = profileImage;
-                //updateUser();
+                updateUser();
             }
-
+            
+            var updateUser = function () {
+                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
+                Utils.employerFromObject($scope.user).$update(function (response) { //Creates resource User from object $scope.user
+                        $scope.user = response.employer;
+                        initEmployerProfile(); //Update profile variables;
+                    }
+                ).catch(alertService.defaultErrorCallback);
+            };
 
             // Description
             $scope.enableDescriptionEditor = function() {
@@ -200,6 +206,7 @@ angular.module('mepedia.controllers').controller('employerProfileController',
                 employerCompany.country_id = empCom.country.id;
                 employerCompany.state_id = empCom.state.id;
                 employerCompany.description = empCom.description;
+                employerCompany.image = empCom.image;
                 employerCompany.site_url = empCom.site_url;
                 
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();

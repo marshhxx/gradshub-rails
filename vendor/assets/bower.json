@@ -15,7 +15,6 @@
     "ng-file-upload-shim": "1.6.x",
     "ng-file-upload": "1.6.x",
     "cryptojslib": "latest",
-    "jquery-guillotine": ">=1.3.0",
-    "bootstrap-switch": "latest"
+    "jquery-guillotine": ">=1.3.0"
   }
 }

@@ -6,13 +6,14 @@ angular.module('mepedia.directives').directive('editCompany', ['EmployerCompany'
             saveCompany: '=',
             addCompanyEnabled: '='
         },
-        templateUrl: 'angular-app/templates/directives/editCompany.html',
+        templateUrl: 'angular-app/templates/directives/edit-company.html',
         link: function (scope, element, attrs) {
 
             scope.notMe = Utils.notMe();
             scope.editCompanyEnable = false;
 
-            var temporaryEmployerCompany = '';
+            var temporaryEmployerCompany = {};
+            var temporaryEmployerCompanyName = '';
 
             var init = function() {
                 getData();
@@ -25,35 +26,42 @@ angular.module('mepedia.directives').directive('editCompany', ['EmployerCompany'
             }
 
             scope.enableCompanyEditor = function() {
+                console.log(scope.employerCompany);
                 scope.editCompanyEnable = true;
-                temporaryEmployerCompany = scope.employerCompany.site_url;
+                temporaryEmployerCompany.site_url = scope.employerCompany.site_url;
+                temporaryEmployerCompanyName = scope.employerCompany.country.name;
+                temporaryEmployerCompany.state = scope.employerCompany.state;
             }
 
             scope.saveCompany = function() {
                 if (scope.companyForm.$valid) {
                     scope.editCompanyEnable = false;
                     scope.$parent.saveEmployerCompany();
-                    temporaryEmployerCompany = scope.employerCompany.site_url;
+                    temporaryEmployerCompany.site_url = scope.employerCompany.site_url;
                 }
             }
 
             scope.onCancel = function() {
                 scope.editCompanyEnable = false;
-                scope.employerCompany.site_url = temporaryEmployerCompany;
+                scope.employerCompany.site_url = temporaryEmployerCompany.site_url;
+                scope.employerCompany.country.name = temporaryEmployerCompanyName;
+                scope.employerCompany.state = temporaryEmployerCompany.state;
             }
 
 
 
             scope.onCountry = function(country) {
                 if (country) {
-                    scope.country = country.name;
                     scope.country_id = country.id;
+
+                    scope.employerCompany.state = null;
+                    scope.employerCompany.state_id = null;
                 }
             }
 
             scope.onCompanyState = function(state) {
                 if (state) {
-                    scope.companyState = state.name;
+                    scope.employerCompany.state = state
                     scope.state_id = state.id;
                 }
             }

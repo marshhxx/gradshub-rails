@@ -1,63 +1,68 @@
 <!-- Profile Highlights default component-->
 
-<div class="profileLeftContent section">
-    <!-- ToDo edit panel !-->
+<div class="profile-left-content section">
+  <!-- ToDo edit panel !-->
 
-    <div class="profileLeftContentWrapper">
+  <div class="profile-left-content-wrapper">
 
-        <div class="profileLeft">
-            <p class="header-highlight-title">PERSONAL INFO</p>
-        </div>
-
-        <div class="horizontal-line blue margin-b15"></div>
-
-        <div class="profileLeft">
-            <div class="img-col">
-                <div class="profile-img jobposition"></div>
-            </div>
-            <div class="cont-col">
-	              <p ng-hide="user.experiences.length > 0" class="header-highlight-placeholder">Job Position</p>
-                <p ng-show="user.experiences.length > 0" class="header-highlight-txt"> {{user.experiences[0].job_title}}</p>
-            </div>
-            <div class="ph-col">
-                <div class="edit-pencil-hover" ng-click="onExperienceEditor()" ng-if="!notMe"></div>
-            </div>
-        </div>
-
-        <div class="profileLeft">
-            <div class="img-col">
-                <div class="profile-img company"></div>
-            </div>
-            <div class="cont-col">
-	            <p ng-hide="user.experiences.length > 0" class="header-highlight-placeholder">Company Name</p>
-	            <p ng-show="user.experiences.length > 0" class="header-highlight-txt"> {{user.experiences[0].company_name}}</p>
-            </div>
-            <div class="ph-col">
-                <div class="edit-pencil-hover" ng-click="onExperienceEditor()" ng-if="!notMe"></div>
-            </div>
-        </div>
-
-        <div class="profileLeft">
-            <div class="img-col">
-                <div class="profile-img education"></div>
-            </div>
-            <div class="cont-col">
-	            <p ng-hide="user.educations.length > 0" class="header-highlight-placeholder">School Name</p>
-	            <p ng-show="user.educations.length > 0" class="header-highlight-txt"> {{user.educations[0].school.name}}</p>
-            </div>
-            <div class="ph-col">
-                <div class="edit-pencil-hover" ng-click="onEducationEditor()" ng-if="!notMe"></div>
-            </div>
-        </div>
-
-        <div class="profileLeft" id="focusExperience">
-            <div class="img-col">
-                <div class="profile-img location"></div>
-            </div>
-            <div class="cont-col">
-	            <p ng-hide="user.state && user.country" class="header-highlight-placeholder">Location</p>
-	            <p ng-show="user.state && user.country" class="header-highlight-txt"> {{user.state.name}},  {{user.country.name}} </p>
-            </div>
-        </div>
+    <div class="profile-left">
+      <p class="header-highlight-title">PERSONAL INFO</p>
     </div>
+
+    <div class="horizontal-line blue margin-b15"></div>
+
+    <div class="profile-left">
+      <div class="img-col">
+        <div class="profile-img jobposition"></div>
+      </div>
+      <div class="cont-col">
+        <p ng-hide="user.experiences.length > 0" class="header-highlight-placeholder">Job Position</p>
+
+        <p ng-show="user.experiences.length > 0" class="header-highlight-txt"> {{user.experiences[0].job_title}}</p>
+      </div>
+      <div class="ph-col">
+        <div class="edit-pencil-hover" ng-click="onExperienceEditor()" ng-if="!notMe"></div>
+      </div>
+    </div>
+
+    <div class="profile-left">
+      <div class="img-col">
+        <div class="profile-img company"></div>
+      </div>
+      <div class="cont-col">
+        <p ng-hide="user.experiences.length > 0" class="header-highlight-placeholder">Company Name</p>
+
+        <p ng-show="user.experiences.length > 0" class="header-highlight-txt"> {{user.experiences[0].company_name}}</p>
+      </div>
+      <div class="ph-col">
+        <div class="edit-pencil-hover" ng-click="onExperienceEditor()" ng-if="!notMe"></div>
+      </div>
+    </div>
+
+    <div class="profile-left">
+      <div class="img-col">
+        <div class="profile-img education"></div>
+      </div>
+      <div class="cont-col">
+        <p ng-hide="user.educations.length > 0" class="header-highlight-placeholder">School Name</p>
+
+        <p ng-show="user.educations.length > 0" class="header-highlight-txt"> {{user.educations[0].school.name}}</p>
+      </div>
+      <div class="ph-col">
+        <div class="edit-pencil-hover" ng-click="onEducationEditor()" ng-if="!notMe"></div>
+      </div>
+    </div>
+
+    <div class="profile-left" id="focusExperience">
+      <div class="img-col">
+        <div class="profile-img location"></div>
+      </div>
+      <div class="cont-col">
+        <p ng-hide="user.state && user.country" class="header-highlight-placeholder">Location</p>
+
+        <p ng-show="user.state && user.country" class="header-highlight-txt"> {{user.state.name}},
+          {{user.country.name}} </p>
+      </div>
+    </div>
+  </div>
 </div>

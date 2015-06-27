@@ -55,18 +55,17 @@
                 <div class="profile-img company-location"></div>
             </div>
             <div class="cont-col employer-company" ng-hide="editCompanyEnable">
-                <!--<p class="lead" style="font-size: 14px; width: 185px">-->
                 <div ng-if="employerCompany.state.name && employerCompany.country.name">
                     {{employerCompany.state.name}}, {{employerCompany.country.name}}
                 </div>
-                <div class="place-holder-company-info" ng-if="!employerCompany.state.name && !employerCompany.country.name">
+                <div class="place-holder-employer-company" ng-if="!employerCompany.state.name && !employerCompany.country.name">
                     Company Location
                 </div>
-                <!--</p>-->
             </div>
             <div class="form-group employer-company" ng-show="editCompanyEnable">
                 <div class="country-selector-wrapper">
-                    <country-selector placeholder="Country" ng-model="employerCompany.country" on-select="onCountry" required></country-selector>
+                    <country-selector placeholder="Country" ng-model="employerCompany.country.name" on-select="onCountry" required></country-selector>
+
                     <div ng-if="companyForm.country.$invalid && (companyForm.$submitted || companyForm.country.$dirty)" ng-messages="companyForm.country.$error">
                         <div class="help-block" ng-message="required">
                             Please select a country!
@@ -77,7 +76,7 @@
                     </div>
                 </div>
                 <div class="state-selector-wrapper">
-                    <state-selector placeholder="Company's State" ng-model="employerCompany.state" on-select="onCompanyState" country-id="country_id" required></state-selector>
+                    <state-selector placeholder="Company's State" ng-model="employerCompany.state.name" on-select="onCompanyState" country-id="country_id" required></state-selector>
                     <div ng-if="companyForm.state.$invalid && (companyForm.$submitted || companyForm.state.$dirty)" ng-messages="companyForm.state.$error">
                         <div class="help-block" ng-message="required">
                             Please select a state!
@@ -100,21 +99,12 @@
                 <div ng-if="employerCompany.site_url">
                     {{employerCompany.site_url}}
                 </div>
-                <div class="place-holder-company-info" ng-if="!employerCompany.site_url">
+                <div class="place-holder-employer-company" ng-if="!employerCompany.site_url">
                     Company url address
                 </div>
             </div>
             <div class="form-group employer-company" ng-show="editCompanyEnable">
-                <input name="site_url" type="text" ng-model="employerCompany.site_url" required
-                    class="form-control employer-company input-company-url" id="companyIndustry" placeholder="Site url">
-                <div ng-if="companyForm.site_url.$invalid && (companyForm.$submitted || companyForm.site_url.$touched)" ng-messages="companyForm.site_url.$error">
-                    <div class="help-block" ng-message="required">
-                        You must provide a web address
-                    </div>
-                    <div ng-show="companyForm.site_url.$invalid">
-                        You must provide a valid web address
-                    </div>
-                </div>
+                <input name="site_url" type="text" ng-model="employerCompany.site_url" class="form-control employer-company input-company-url" id="companyIndustry" placeholder="Site url">
             </div>
         </div>
         <div ng-show="editCompanyEnable" class="edit-buttons-wrapper edit-company col-xs-12">

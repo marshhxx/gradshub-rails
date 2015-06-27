@@ -9,8 +9,7 @@
           <input type="hidden" ng-value="education.id"/>
             <span class="header-title"> {{education.school.name}} </span>
             <div id="educationEdit{{$parent.$index}}" class="edit-pencil-hover" ng-click="onEducationEditor()"
-                 ng-hide="educationEditor" ng-if="!notMe"></div>
-          </div>
+                 ng-hide="educationEditor"></div>
         </div>
         <div class="form-cont">
           <span class="header-subtitle"> {{education.degree.name}} - {{education.major.name}} </span>
@@ -49,14 +48,14 @@
         <a ng-click="onDelete($parent.$index)" class="btn btn-edit">DELETE</a>
       </div>
 
-            <div class="edit-buttons-wrapper">
-                <button type="submit" class="btn btn-edit"> 
-                    <span>SAVE</span>
-                </button>
-                <a ng-click="onCancel()" class="btn btn-edit margin-l5">
-                    <span>CANCEL</span>
-                </a>
-            </div>
+      <div class="edit-buttons-wrapper">
+        <button type="submit" class="btn btn-edit">
+          <span>SAVE</span>
+        </button>
+        <a ng-click="onCancel()" class="btn btn-edit margin-l5">
+          <span>CANCEL</span>
+        </a>
+      </div>
 
     </div>
   </div>
@@ -161,21 +160,16 @@
       </div>
     </div>
 
-      <div class="form-group inline">
-        <div class="profile-datepicker-container div-40">
-          <span class="profile-switch-experience-label"> Is my current school? </span>
-          <input
-            class="switchEditingEducation"
-            checked="true"
-            data-on-text=""
-            data-on-color="success"
-            data-off-text=""
-            data-off-color="danger"
-            data-size="small"
-            data-label-width=0
-            type="checkbox">
-        </div>
+    <div class="form-group inline">
+      <div class="profile-datepicker-container div-40">
+        <span class="profile-switch-experience-label"> Is my current school? </span>
+        <input
+          class="switchEditingEducation"
+          checked="true"
+          ng-model="isCurrentEducation"
+          type="checkbox">
       </div>
+    </div>
 
     <textarea class="form-control" rows="5" ng-model="educationTemp.description"
               placeholder="Description..."></textarea>
