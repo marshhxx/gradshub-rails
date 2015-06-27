@@ -1,4 +1,4 @@
-var Cloudinary = function ($upload, $q, crypt, $httpProvider) {
+var Cloudinary = function ($upload, $q, crypt, $httpProvider, alertService) {
 
     var cloudinary = {}
     var title;
@@ -14,6 +14,12 @@ var Cloudinary = function ($upload, $q, crypt, $httpProvider) {
 
     cloudinary.uploadImage = function (file) {
         var deferred = $q.defer();
+        if (file.size > 10485760) {
+            alertService.addcustomErrorMsg('danger', 'The file is too big, please select a file with no more than 10 mb', 10000);
+            deferred.reject('Image is too large');
+            return deferred.promise;
+        }
+
         var timestamp = (new Date).getTime() / 1000, // in seconds
             max_width = '1920', //in pixels
             max_height = '1080', //in pixels
@@ -83,4 +89,4 @@ var Cloudinary = function ($upload, $q, crypt, $httpProvider) {
 }
 angular
     .module('mepedia.services')
-    .factory('Cloudinary', ['$upload', '$q', 'crypt', '$http', Cloudinary]);
+    .factory('Cloudinary', ['$upload', '$q', 'crypt', '$http', 'alertService',Cloudinary]);
