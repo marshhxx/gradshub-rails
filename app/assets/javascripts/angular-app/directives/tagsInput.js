@@ -34,7 +34,6 @@ angular.module('mepedia.directives').directive('tagsInput', function () {
                 // Capture all keypresses
             input.bind('keypress', function ( event ) {
                 // But we only care when Enter was pressed
-                console.log(event.keyCode);
                 if ( event.keyCode == 13 ) {
                     // There's probably a better way to handle this...
                     $scope.$apply( $scope.add );
