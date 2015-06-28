@@ -52,15 +52,12 @@
         </div>
     </div>
     <div class="profile-add-right-content">
-        <div class="form-group"
-             ng-class="{'has-error': experienceForm.company_name.$invalid && (experienceForm.$submitted || experienceForm.company_name.$dirty)}">
+        <div class="form-group" ng-class="{'has-error': experienceForm.company_name.$invalid && (experienceForm.$submitted || experienceForm.company_name.$dirty)}">
+            <label class="label-edit">Company Name</label>
             <input type="text" ng-model="experienceTemp.company_name" required class="form-control input-sm"
                    id="company_name"
                    placeholder="Company Name" name="company_name">
-
-            <div
-                    ng-if="experienceForm.company_name.$invalid && (experienceForm.$submitted || experienceForm.company_name.$dirty)"
-                    ng-messages="experienceForm.company_name.$error">
+            <div ng-if="experienceForm.company_name.$invalid && (experienceForm.$submitted || experienceForm.company_name.$dirty)" ng-messages="experienceForm.company_name.$error">
                 <div class="help-block" ng-message="required">
                     Please provide your company's name!
                 </div>
@@ -69,6 +66,7 @@
 
         <div class="form-group"
              ng-class="{'has-error': experienceForm.job_title.$invalid && (experienceForm.$submitted || experienceForm.job_title.$dirty)}">
+            <label class="label-edit">Job Title</label>
             <input type="text" ng-model="experienceTemp.job_title" required class="form-control input-sm" id="job_title"
                    placeholder="Job Title" name="job_title">
 

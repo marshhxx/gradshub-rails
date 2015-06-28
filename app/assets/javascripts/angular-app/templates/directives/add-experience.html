@@ -20,23 +20,24 @@
                     </a>
                 </div>
 
-	        </div>
-	    </div>
-	</div>
-	<div class="profile-add-right-content" ng-show="addExperienceEnable">
-	    <div class="form-group"
-	         ng-class="{'has-error': newExperienceForm.company_name.$invalid && (newExperienceForm.$submitted || newExperienceForm.company_name.$dirty)}">
-	        <input type="text" ng-model="experience.company_name" required id="company"
-	               placeholder="Company Name" class="form-control input-sm" name="company_name">
-			    <div ng-if="newExperienceForm.company_name.$invalid && (newExperienceForm.$submitted || newExperienceForm.company_name.$dirty)" ng-messages="newExperienceForm.company_name.$error">
-				    <div class="help-block" ng-message="required">
-					    Please provide your company's name!
-				    </div>
-			    </div>
-	    </div>
-
+            </div>
+        </div>
+    </div>
+    <div class="profile-add-right-content" ng-show="addExperienceEnable">
         <div class="form-group"
-             ng-class="{'has-error': newExperienceForm.job_title.$invalid && (newExperienceForm.$submitted || newExperienceForm.job_title.$dirty)}">
+             ng-class="{'has-error': newExperienceForm.company_name.$invalid && (newExperienceForm.$submitted || newExperienceForm.company_name.$dirty)}">
+            <label class="label-edit">Company Name</label>
+            <input type="text" ng-model="experience.company_name" required id="company"
+                   placeholder="Company Name" class="form-control input-sm" name="company_name">
+                <div ng-if="newExperienceForm.company_name.$invalid && (newExperienceForm.$submitted || newExperienceForm.company_name.$dirty)" ng-messages="newExperienceForm.company_name.$error">
+                    <div class="help-block" ng-message="required">
+                        Please provide your company's name!
+                    </div>
+                </div>
+        </div>
+
+        <div class="form-group" ng-class="{'has-error': newExperienceForm.job_title.$invalid && (newExperienceForm.$submitted || newExperienceForm.job_title.$dirty)}">
+            <label class="label-edit">Job Title</label>
             <input type="text" name="job_title" ng-model="experience.job_title" required
                    class="form-control input-sm" id="jobtitle"
                    placeholder="Job Title">
@@ -47,29 +48,29 @@
                 </div>
         </div>
 
-			<div class="form-group inline" ng-class="{'has-error': !experience.start_date && newExperienceForm.$submitted}">
-				<div class="profile-datepicker-container">
-	        <span class="profile-datepicker-label">From: </span>
-	        <simpledatepicker no-day="true" ng-model="experience.start_date" is-date></simpledatepicker>
-		    </div>
+            <div class="form-group inline" ng-class="{'has-error': !experience.start_date && newExperienceForm.$submitted}">
+                <div class="profile-datepicker-container">
+            <span class="profile-datepicker-label">From: </span>
+            <simpledatepicker no-day="true" ng-model="experience.start_date" is-date></simpledatepicker>
+            </div>
 
-		    <div class="profile-datepicker-container">
-		        <span class="profile-datepicker-label">To: </span>
-		        <simpledatepicker no-day="true" ng-model="experience.end_date" disabled="isCurrentJob"></simpledatepicker>
-		    </div>
+            <div class="profile-datepicker-container">
+                <span class="profile-datepicker-label">To: </span>
+                <simpledatepicker no-day="true" ng-model="experience.end_date" disabled="isCurrentJob"></simpledatepicker>
+            </div>
 
-				<div class="div-100 left" ng-if="newExperienceForm.$submitted && !experience.start_date" >
-					<div class="help-block">
-						Please select a start date!
-					</div>
-				</div>
+                <div class="div-100 left" ng-if="newExperienceForm.$submitted && !experience.start_date" >
+                    <div class="help-block">
+                        Please select a start date!
+                    </div>
+                </div>
 
-				<div class="div-100 left" ng-if="newExperienceForm.$invalid && (newExperienceForm.$submitted)" ng-messages="newExperienceForm.$error">
-					<div class="help-block text-center" ng-message="validDates">
-						The end date must be greater than the start date!
-					</div>
-				</div>
-			</div>
+                <div class="div-100 left" ng-if="newExperienceForm.$invalid && (newExperienceForm.$submitted)" ng-messages="newExperienceForm.$error">
+                    <div class="help-block text-center" ng-message="validDates">
+                        The end date must be greater than the start date!
+                    </div>
+                </div>
+            </div>
 
       <div class="form-group inline">
         <div class="profile-datepicker-container" style="margin-right:0px;">
