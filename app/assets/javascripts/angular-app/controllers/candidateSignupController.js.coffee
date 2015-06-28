@@ -76,14 +76,6 @@ angular
 
         $scope.$state = $state
 
-        $scope.$on '$viewContentLoaded', (event) ->
-          angular.element('#switchEducationSignup').bootstrapSwitch state: $scope.isCurrentEducation
-
-          angular.element('#switchEducationSignup').on 'switchChange.bootstrapSwitch', (event, state) ->
-            if state then ($scope.isCurrentEducation = true) else ($scope.isCurrentEducation = false)
-            $scope.$apply()
-            return
-
         dateValidation()
         initUser()
 
@@ -127,8 +119,6 @@ angular
             valid = !$scope.education.end_date? || valid
             $scope.innerScope.educationForm.$setValidity('validDates', valid) if $scope.innerScope && scope.innerScope.educationForm
         )
-
-      $scope.isCurrentEducation = true
 
       init()
   ])

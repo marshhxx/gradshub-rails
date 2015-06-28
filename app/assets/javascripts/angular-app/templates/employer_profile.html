@@ -9,7 +9,8 @@
       </div>
       <div class="profile-headline wrapper">
         <div class="company-image wrapper">
-          <simpleimagepicker update-image="updateEmployerCompanyImage" default="logocircle-employer.svg" circular="true" image-url="employerCompany.image"></simpleimagepicker>
+          <simpleimagepicker update-image="updateEmployerCompanyImage" default="logocircle-employer.svg" circular="true"
+                             image-url="employerCompany.image"></simpleimagepicker>
         </div>
         <div class="company-name-wrapper">
           <h1>{{employerCompany.name}}</h1>
@@ -18,24 +19,24 @@
     </div>
     <div class="employer-profile-content">
       <div class="employer-profile-left-content cont col-md-4">
-        <div class="section employer-info-wrapper padding-135">
-          <div class="employer-profile-photo-wrapper">
-      
-            <simpleimagepicker update-image="updateEmployerProfileImage" default="/profile/{{ user.gender ? user.gender : 'not_known' }}.svg" circular="true" size="'SMALL'" image-url="user.profile_image"></simpleimagepicker>
+        <div class="employer-info-wrapper">
+          <div class="employer-profile-image-wrapper">
+            <simpleimagepicker update-image="updateEmployerProfileImage"
+                               default="/profile/{{ user.gender ? user.gender : 'not_known' }}.svg" circular="true"
+                               size="'SMALL'" image-url="user.profile_image"></simpleimagepicker>
           </div>
-          <div class="employer-basic-info-wrapper col-xs-12">
-            <div class="employer-name-wrapper">
-              <p>{{user.name}} {{user.lastname}}</p>
+          <div class="employer-profile-wrapper">
+            <div class="margin-t90">
+              <p class="employer-name-txt">{{user.name}} {{user.lastname}}</p>
             </div>
-            <div class="employer-position-wrapper">
-              <p>{{user.job_title}}</p>
-            </div>                     
+            <div class="margin-t5">
+              <p class="employer-position-txt">{{user.job_title}}</p>
+            </div>
           </div>
         </div>
 
         <div edit-company data="employerCompany" save-company="saveCompany"
              add-company-enable="addCompanyEnabled"></div>
- 
       </div>
 
       <div class="employer-profile-right-content col-md-8">
@@ -47,7 +48,8 @@
             </div>
             <div class="profile-right-header edit">
               <div class="editwrapper">
-                <div class="edit-pencil employer" ng-click="enableDescriptionEditor()" ng-hide="descriptionEnable"></div>
+                <div class="edit-pencil employer" ng-click="enableDescriptionEditor()"
+                     ng-hide="descriptionEnable"></div>
                 <div ng-show="editorDescriptionEnabled" class="edit-buttons-wrapper">
                   <a ng-click="saveDescription()" class="btn btn-edit">
                     <span>SAVE</span>
@@ -60,15 +62,18 @@
             </div>
           </div>
           <div class="profile-right-content">
-            <div ng-hide="descriptionEnable" class="profile-right-text">
-              <div ng-if="employerCompany.description">
-                {{employerCompany.description}}
+            <div class="border-container">
+              <div ng-hide="descriptionEnable">
+                <p class="profile-right-text" ng-if="employerCompany.description">
+                  {{employerCompany.description}}
+                </p>
+                <p class="profile-placeholder-txt" ng-if="!employerCompany.description">
+                  Tell us something about your company...
+                </p>
               </div>
-              <div ng-class="place-holder-employer-company" ng-if="!employerCompany.description">
-                Tell us something about your company...
-              </div>
+              <textarea class="form-control" rows="5" ng-show="descriptionEnable" ng-model="employerCompany.description"
+                        placeholder="Tell us something about your company..."></textarea>
             </div>
-            <textarea class="form-control" rows="5" ng-show="descriptionEnable" ng-model="employerCompany.description" placeholder="Tell us something about your company..."></textarea>
           </div>
         </div>
       </div>
