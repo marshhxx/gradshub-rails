@@ -9,7 +9,7 @@
           <input type="hidden" ng-value="education.id"/>
             <span class="header-title"> {{education.school.name}} </span>
             <div id="educationEdit{{$parent.$index}}" class="edit-pencil-hover" ng-click="onEducationEditor()"
-                 ng-hide="educationEditor"></div>
+                 ng-hide="educationEditor" ng-if="!notMe"></div>
         </div>
         <div class="form-cont">
           <span class="header-subtitle"> {{education.degree.name}} - {{education.major.name}} </span>
