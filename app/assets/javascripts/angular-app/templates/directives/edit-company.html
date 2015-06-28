@@ -1,117 +1,97 @@
 <!-- Education add component!-->
 <form class="company-form" novalidate class="css-form" name="companyForm">
-<!--<div class="section company-wrapper">-->
-<div class="container-fluid container-edit-company">
-    <div class="row">
-    <!--<div class="profile-left-header">-->
-    <div class="col-xs-12 company-info-header">
-        <div class="profile-left-header company-header-title">
-            <span>Company info</span>
-        </div>
-        <div class="profile-left-header edit">
-            <div class="editwrapper">
-                <div class="edit-pencil employer" ng-click="enableCompanyEditor()" ng-hide="editCompanyEnable" ng-if="!notMe"></div>
-            </div>
-        </div>
+  <div class="container-fluid container-edit-company">
+
+    <div class="profile-left">
+      <div class="editwrapper-employer">
+        <div class="edit-pencil employer" ng-click="enableCompanyEditor()" ng-hide="editCompanyEnable"
+             ng-if="!notMe"></div>
+      </div>
+      <p class="header-highlight-title">COMPANY INFO</p>
     </div>
-    <div class="col-xs-12 company-info-content">
-        <div class="col-xs-12 company-info-row">
-            <div class="img-col employer">
-                <div class="profile-img company-name"></div>
-            </div>
-            <div class="cont-col employer-company">
-                {{employerCompany.name}}
-            </div>
-            <!-- ** Uncomment if you want to enable the Company Name editor
-            <div class="form-group employer-company" ng-show="editCompanyEnable">
-                <input focus-input="editCompanyNameEnable" type="text" ng-model="employerCompany.name" required
-                    class="form-control employer-company" id="companyName" name="companyName" />
-            </div>
-            -->
+
+    <div class="horizontal-line blue margin-b15"></div>
+
+    <div class="company-info-content">
+      <div class="profile-left">
+        <div class="img-col">
+          <div class="profile-img company-name"></div>
         </div>
-
-        <div class="col-xs-12 col-xs-offset-1 separator-employer-company"></div>
-
-        <div class="col-xs-12 company-info-row">
-            <div class="img-col employer">
-                <div class="profile-img company-industry"></div>
-            </div>
-            <div class="cont-col employer-company">
-                {{employerCompany.industry}}
-            </div>
-
-            <!-- ** Uncomment if you want to enable the industry editor
-            <div class="form-group employer-company" ng-show="editCompanyEnable">
-                <input focus-input="" type="text" ng-model="employerCompany.industry" required
-                    class="form-control employer-company" id="companyIndustry">
-            </div>
-            -->
+        <div class="cont-col">
+          <p class="header-highlight-txt">{{employerCompany.name}}</p>
         </div>
+      </div>
 
-        <div class="col-xs-12 col-xs-offset-1 separator-employer-company"></div>
-
-        <div class="col-xs-12 company-info-row">
-            <div class="img-col employer">
-                <div class="profile-img company-location"></div>
-            </div>
-            <div class="cont-col employer-company" ng-hide="editCompanyEnable">
-                <div ng-if="employerCompany.state.name && employerCompany.country.name">
-                    {{employerCompany.state.name}}, {{employerCompany.country.name}}
-                </div>
-                <div class="place-holder-employer-company" ng-if="!employerCompany.state.name && !employerCompany.country.name">
-                    Company Location
-                </div>
-            </div>
-            <div class="form-group employer-company" ng-show="editCompanyEnable">
-                <div class="country-selector-wrapper">
-                    <country-selector placeholder="Country" ng-model="employerCompany.country.name" on-select="onCountry" required></country-selector>
-
-                    <div ng-if="companyForm.country.$invalid && (companyForm.$submitted || companyForm.country.$dirty)" ng-messages="companyForm.country.$error">
-                        <div class="help-block" ng-message="required">
-                            Please select a country!
-                        </div>
-                        <div class="help-block" ng-message="country">
-                            Please select a valid country!
-                        </div>
-                    </div>
-                </div>
-                <div class="state-selector-wrapper">
-                    <state-selector placeholder="Company's State" ng-model="employerCompany.state.name" on-select="onCompanyState" country-id="country_id" required></state-selector>
-                    <div ng-if="companyForm.state.$invalid && (companyForm.$submitted || companyForm.state.$dirty)" ng-messages="companyForm.state.$error">
-                        <div class="help-block" ng-message="required">
-                            Please select a state!
-                        </div>
-                        <div class="help-block" ng-message="state">
-                            Please select a valid state!
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="profile-left">
+        <div class="img-col">
+          <div class="profile-img company-industry"></div>
         </div>
+        <div class="cont-col">
+          <p class="header-highlight-txt">{{employerCompany.industry}}</p>
+        </div>
+      </div>
 
-        <div class="col-xs-12 col-xs-offset-1 separator-employer-company"></div>
+      <div class="profile-left" ng-class="{'width15' : editCompanyEnable}">
+        <div class="img-col">
+          <div class="profile-img company-location"></div>
+        </div>
+        <div class="cont-col" ng-hide="editCompanyEnable">
+            <p class="header-highlight-txt" ng-if="employerCompany.state.name && employerCompany.country.name">{{employerCompany.state.name}}, {{employerCompany.country.name}}</p>
+            <p class="header-highlight-placeholder"
+               ng-if="!employerCompany.state.name && !employerCompany.country.name">Company Location</p>
+          </div>
+        </div>
+        <div class="form-group employer-company" ng-show="editCompanyEnable">
+          <div class="country-selector-wrapper">
+            <country-selector placeholder="Country" ng-model="employerCompany.country.name" on-select="onCountry"
+                              required></country-selector>
 
-        <div class="col-xs-12 company-info-row">
-            <div class="img-col employer">
-                <div class="profile-img company-url"></div>
+            <div ng-if="companyForm.country.$invalid && (companyForm.$submitted || companyForm.country.$dirty)"
+                 ng-messages="companyForm.country.$error">
+              <div class="help-block" ng-message="required">
+                Please select a country!
+              </div>
+              <div class="help-block" ng-message="country">
+                Please select a valid country!
+              </div>
             </div>
-            <div class="cont-col employer-company" ng-hide="editCompanyEnable">
-                <div ng-if="employerCompany.site_url">
-                    {{employerCompany.site_url}}
-                </div>
-                <div class="place-holder-employer-company" ng-if="!employerCompany.site_url">
-                    Company url address
-                </div>
+          </div>
+          <div class="company-selector-wrapper">
+            <state-selector placeholder="Company's State" ng-model="employerCompany.state.name"
+                            on-select="onCompanyState" country-id="country_id" required></state-selector>
+            <div ng-if="companyForm.state.$invalid && (companyForm.$submitted || companyForm.state.$dirty)"
+                 ng-messages="companyForm.state.$error">
+              <div class="help-block" ng-message="required">
+                Please select a state!
+              </div>
+              <div class="help-block" ng-message="state">
+                Please select a valid state!
+              </div>
             </div>
-            <div class="form-group employer-company" ng-show="editCompanyEnable">
-                <input name="site_url" type="text" ng-model="employerCompany.site_url" class="form-control employer-company input-company-url" id="companyIndustry" placeholder="Site url">
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-left">
+        <div class="img-col">
+          <div class="profile-img company-url"></div>
+        </div>
+        <div class="cont-col" ng-hide="editCompanyEnable">
+            <p class="header-highlight-txt" ng-if="employerCompany.site_url">{{employerCompany.site_url}}</p>
+          <p class="header-highlight-placeholder" ng-if="!employerCompany.site_url">
+            Company url address</p>
+        </div>
+        <div class="form-group employer-company" ng-show="editCompanyEnable">
+          <div class="company-selector-wrapper">
+          <input name="site_url" type="text" ng-model="employerCompany.site_url"
+                 class="form-control input-sm" id="companyIndustry" placeholder="Site url">
             </div>
         </div>
-        <div ng-show="editCompanyEnable" class="edit-buttons-wrapper edit-company col-xs-12">
-            <a class="edit-company-btn-wrapper" ng-click="saveCompany()">SAVE</a>
-            <a class="edit-company-btn-wrapper" ng-click="onCancel()">CANCEL</a>
-        </div>
+      </div>
+      <div ng-show="editCompanyEnable" class="edit-buttons-wrapper-edit-company">
+        <a class="btn btn-edit" ng-click="saveCompany()">SAVE</a>
+        <a class="btn btn-edit" ng-click="onCancel()">CANCEL</a>
+      </div>
     </div>
-    </div>
-</div>
+  </div>
 </form>
