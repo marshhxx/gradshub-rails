@@ -52,6 +52,8 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout, Utils) ->
         $scope.cloudinaryPhotoData = data
       ).catch((error)->
         console.log(error)
+        $scope.spinnerVisible = false
+        $scope.uploadImageBtn = true
       )
 
     #On guillotine image load

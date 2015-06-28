@@ -16,8 +16,7 @@ angular.module('mepedia.directives').directive('tagsInput', function () {
             '</div>'
         },
         link: function ( $scope, $element) {
-
-            var input = angular.element( $element.children()[0].childNodes[0] );
+            var input = angular.element( $element.children()[0].childNodes[1] );
 
             // This adds the new tag to the tags array
             $scope.add = function() {

@@ -21,7 +21,8 @@ angular.module('mepedia.controllers').controller('loginController',
                             }
                         ).catch(
                             function (resp) {
-                                alertService.addErrors(resp.error, 10000)
+                                // console.log(resp.error);
+                                alertService.addCustomError(resp.error, 10000)
                             }
                         );
                     }
