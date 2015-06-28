@@ -22,22 +22,6 @@ AlertService = ($rootScope, $timeout, ALERT_CONSTANTS) ->
       ,
         timeout)
 
-  alertService.addcustomErrorMsg = (type, msg, timeout) ->
-    $rootScope.alerts = []
-    $rootScope.alerts.push(
-      {
-      'title': msg,
-      'type': type,
-      # 'msg': msg,
-      'close': -> alertService.closeAlert(this)
-      })
-    if timeout?
-      $timeout(
-        ->
-          alertService.closeAlert(this)
-      ,
-          timeout)
-
   alertService.addInfo = (msg, timeout) ->
     alertService.add("success", msg, timeout)
 
@@ -53,10 +37,6 @@ AlertService = ($rootScope, $timeout, ALERT_CONSTANTS) ->
   alertService.addError = (error, timeout) ->
     for reason in error.reasons
       alertService.add("danger", reason, timeout)
-
-  alertService.addCustomError = (error, timeout) ->
-    for reason in error.reasons
-      alertService.addcustomErrorMsg("danger", reason, timeout)
 
   alertService.addErrors = (errors, timeout) ->
     if errors.reasons.length <= 1

@@ -15,7 +15,8 @@ var Cloudinary = function ($upload, $q, crypt, $httpProvider, alertService) {
     cloudinary.uploadImage = function (file) {
         var deferred = $q.defer();
         if (file.size > 10485760) {
-            alertService.addcustomErrorMsg('danger', 'The file is too big, please select a file with no more than 10 mb', 10000);
+            var reasons = ['The file is too big, please select a file with no more than 10 mb'];
+            alertService.addError({ reasons }, 10000);
             deferred.reject('Image is too large');
             return deferred.promise;
         }

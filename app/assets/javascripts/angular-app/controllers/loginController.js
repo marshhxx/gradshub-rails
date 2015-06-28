@@ -1,12 +1,16 @@
-angular.module('mepedia.controllers').controller('loginController',
-    ['$scope', '$state', 'sessionService', 'alertService',
-        function ($scope, $state, sessionService, alertService) {
+angular.module('mepedia.controllers').controller('loginController',  
+    ['$scope', '$state', 'sessionService', 'alertService', '$sce',
+        function ($scope, $state, sessionService, alertService, $sce) {
             var randomLogin = function () {
                 var images = ['one', 'other'];
                 return images[Math.floor((Math.random() * 2) + 1) - 1];
             };
 
             $scope.randomPhoto = randomLogin();
+
+            $scope.renderHtml = function(htmlCode) {
+                return $sce.trustAsHtml(htmlCode);
+            }
 
             $scope.login = function (isValid) {
                 if (isValid) {
@@ -21,8 +25,7 @@ angular.module('mepedia.controllers').controller('loginController',
                             }
                         ).catch(
                             function (resp) {
-                                // console.log(resp.error);
-                                alertService.addCustomError(resp.error, 10000)
+                                alertService.addError(resp.error, 10000)
                             }
                         );
                     }
