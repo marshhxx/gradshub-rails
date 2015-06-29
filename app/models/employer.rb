@@ -13,6 +13,9 @@ class Employer < ActiveRecord::Base
   has_many :skills, :through => :employer_skills
 
   validates_associated :nationalities, :interests, :skills
+  # elasticsearch index update
+  update_index 'users#employer', self
+
 
   def self.find_by_uid(uid)
     check_type User.find_by_uid!(uid)

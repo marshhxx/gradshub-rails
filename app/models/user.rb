@@ -74,6 +74,14 @@ class User < ActiveRecord::Base
     user
   end
 
+  def self.search(query, limit=50, per_page=0)
+    index.query(query_string: {query: query}).limit(limit).load.to_a
+  end
+
+  def self.index
+    UsersIndex
+  end
+
   protected
   def set_uid
     # This only works before_create obviously, otherwise it would
@@ -87,4 +95,5 @@ class User < ActiveRecord::Base
     self.generate_authentication_token!
     self.save
   end
+
 end
