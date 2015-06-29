@@ -8,11 +8,19 @@ angular.module('mepedia.directives').directive('profileHighlights', function (cl
             scope.notMe = Utils.notMe();
 
             scope.onExperienceEditor = function () {
-                click("experienceEdit0");
+                if (user.experiences.length != 0) {
+                    click("experienceEdit0");
+                } else {
+                    click('addExperience');
+                }
             };
 
             scope.onEducationEditor = function () {
-                click('educationEdit0');
+                if (user.education.length != 0) {
+                    click('educationEdit0');
+                } else {
+                    click('addEducation');
+                }
             };
         }
     };
