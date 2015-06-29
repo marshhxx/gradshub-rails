@@ -454,8 +454,8 @@ header {
   padding: 15px 0;
   margin: 0 10px;
   font: 18px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
-  border: 2px solid $primary-turquoise;
-  color: $primary-turquoise;
+  border: 2px solid $primary-blue;
+  color: $primary-blue;
   border-radius: 4px !important;
   background-color: transparent;
   display: inline-block;
@@ -464,13 +464,13 @@ header {
 }
 
 .header-signup .employer-btn-active {
-  background-color: $primary-turquoise;
+  background-color: $primary-blue;
   color: $primary-white;
   text-decoration: none;
 }
 
 .header-signup .employer-btn:hover {
-  background-color: $primary-turquoise;
+  background-color: $primary-blue;
   color: $primary-white;
 }
 
@@ -479,8 +479,8 @@ header {
   padding: 15px 0;
   margin: 0 10px;
   font: 18px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
-  border: 2px solid $primary-turquoise;
-  color: $primary-turquoise;
+  border: 2px solid $primary-blue;
+  color: $primary-white;
   background-color: transparent;
   border-radius: 4px !important;
   display: inline-block;
@@ -489,13 +489,13 @@ header {
 }
 
 .header-signup .candidate-btn-active {
-  background-color: $primary-turquoise;
+  background-color: $primary-blue;
   color: $primary-white;
   text-decoration: none;
 }
 
 .header-signup .candidate-btn:hover {
-  background-color: $primary-turquoise;
+  background-color: $primary-blue;
   color: $primary-white;
 }
 
@@ -514,7 +514,7 @@ section#signup {
 .header-signup .buttons {
   width: 100%;
   display: inline-block;
-  padding: 40px 0px 30px 0px;
+  padding: 30px 0px;
 }
 
 .header-signup .home-col.name {
@@ -772,7 +772,7 @@ header .home-carousel-container {
 
   section#signup {
     position: absolute;
-    padding: 30px 0px 20px 0px;
+    padding: 80px 0px 20px 0px;
   }
 
   section#signup .home-col.name {
