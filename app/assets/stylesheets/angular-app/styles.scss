@@ -105,10 +105,11 @@ input {
   border: 1px solid $border-gray;
 }
 
-input::-webkit-input-placeholder {
-  color: #bbb;
-  font-size: 14px !important;
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  color: #aaa !important;
+  font-size: 13px !important;
   font-family: Lato-Regular !important;
+  line-height: 1.4em !important;
 }
 
 input:focus, textarea:focus {
@@ -123,11 +124,25 @@ input:hover, textarea:hover {
   box-shadow: none !important;
 }
 
+input[type="checkbox"]{
+  float: left;
+
+  margin: 3px 0px 0px 7px;
+}
+
 textarea {
   color: $text-inputs !important;
-  font: 14px Lato-Regular !important;
+  font: 13px Lato-Regular !important;
   resize: none;
   outline: 0;
+}
+
+.custom-placeholder{
+  color: #aaa;
+  font-size: 13px !important;
+  font-family: Lato-Regular !important;
+  text-align: left;
+  padding: 5px 10px;
 }
 
 .align-left {
@@ -302,6 +317,10 @@ textarea {
   margin-bottom: 30px;
 }
 
+.margin-lt-7{
+  margin: 7px 7px 0 !important;
+}
+
 .col-margin {
   width: 10%;
   float: left;
@@ -357,21 +376,21 @@ textarea {
 }
 
 ::-webkit-input-placeholder {
-  font: 14px Lato-Regular;
+  font: 13px Lato-Regular;
 }
 
 :-moz-placeholder {
   /* Firefox 18- */
-  font: 14px Lato-Regular;
+  font: 13px Lato-Regular;
 }
 
 ::-moz-placeholder {
   /* Firefox 19+ */
-  font: 14px Lato-Regular;
+  font: 13px Lato-Regular;
 }
 
 :-ms-input-placeholder {
-  font: 14px Lato-Regular;
+  font: 13px Lato-Regular;
 }
 
 .navbar-default {
@@ -498,8 +517,8 @@ header {
   padding: 15px 0;
   margin: 0px 0px 15px 0px;
   font: 18px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
-  border: 3px solid $primary-blue;
-  color: $primary-blue;
+  border: 3px solid $primary-turquoise;
+  color: $primary-turquoise;
   border-radius: 4px !important;
   background-color: transparent;
   display: inline-block;
@@ -508,13 +527,13 @@ header {
 }
 
 .header-signup .employer-btn-active {
-  background-color: $primary-blue;
+  background-color: $primary-turquoise;
   color: $primary-white;
   text-decoration: none;
 }
 
 .header-signup .employer-btn:hover {
-  background-color: $primary-blue;
+  background-color: $primary-turquoise;
   color: $primary-white;
 }
 
@@ -523,8 +542,8 @@ header {
   padding: 15px 0;
   margin: 0 15px;
   font: 18px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
-  border: 3px solid $primary-blue;
-  color: $primary-white;
+  border: 3px solid $primary-turquoise;
+  color: $primary-turquoise;
   background-color: transparent;
   border-radius: 4px !important;
   display: inline-block;
@@ -533,13 +552,13 @@ header {
 }
 
 .header-signup .candidate-btn-active {
-  background-color: $primary-blue;
+  background-color: $primary-turquoise;
   color: $primary-white;
   text-decoration: none;
 }
 
 .header-signup .candidate-btn:hover {
-  background-color: $primary-blue;
+  background-color: $primary-turquoise;
   color: $primary-white;
 }
 
@@ -578,9 +597,9 @@ section#signup {
 }
 
 .header-signup .form-btn {
-  padding: 15px 40px;
-  background: none;
-  color: $primary-blue;
+  padding: 10px 30px;
+  background-color: $primary-blue;
+  color: $primary-white;
   font: 18px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
   border: 3px solid $primary-blue;
   border-radius: 4px !important;
@@ -593,7 +612,7 @@ section#signup {
 .form-btn.active,
 .form-btn.dropdown-toggle.form-btn {
   background-color: $primary-blue;
-  color: #fff;
+  color: $primary-white;
 }
 
 .home-carousel-container {
@@ -626,7 +645,7 @@ section#signup {
   }
 
   .header-signup .subtitle {
-    font-size: 1.4em;
+    font-size: 1.3em;
   }
 
 }
@@ -636,7 +655,7 @@ section#signup {
   .header-signup .title {
     padding: 0px;
     line-height: 40px;
-    font-size: 3.0em;
+    font-size: 2.8em;
   }
 
   .header-signup .subtitle {
@@ -693,7 +712,7 @@ section#signup .form-control:focus {
 
 .signup-title {
   width: 100%;
-  height: 60px;
+  height: 75px;
   margin-top: 20px;
   text-align: center;
   color: #ffffff;
@@ -704,9 +723,9 @@ section#signup .form-control:focus {
   display: block;
   margin: auto;
   position: relative;
-  top: -25px;
-  width: 55px;
-  margin-bottom: -28px;
+  top: -40px;
+  width: 75px;
+  margin-bottom: -40px;
 }
 
 .personal {
@@ -751,10 +770,6 @@ section#signup .form-control:focus {
 .form-group.error {
   margin-bottom: 0px !important;
 }
-
-//.form-group {
-//  margin-bottom: 20px !important;
-//}
 
 .login-group.error input {
   border-color: #FFF;
@@ -889,7 +904,7 @@ section#section-two {
   margin-top: 0;
   margin-bottom: 15px;
   font-size: 1.8em;
-  color: $primary-turquoise;
+  color: $primary-blue;
   text-transform: uppercase;
   font-family: Montserrat-Bold, Georgia, "Times New Roman", Times, serif;
 }
@@ -1049,7 +1064,7 @@ section#section-eight {
 
 .section-eight.img {
   height: 450px;
-  background: url('home-background-candidate.jpg') no-repeat center center;
+  background: url('homepage/home-background-candidate.png') no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -1133,17 +1148,17 @@ section#section-nine {
 }
 
 .section-nine .title {
-  color: #011B25;
-  font-size: 18px;
+  color: $text-title;
+  font-size: 20px;
   text-align: left;
-  font-family: 'Montserrat-Light', Georgia, "Times New Roman", Times, serif;
+  font-family: 'Montserrat-Regular', Georgia, "Times New Roman", Times, serif;
 }
 
 .section-nine .subtitle {
-  color: #67666B !important;
-  font-size: 14px;
+  color: $text-regular !important;
+  font-size: 16px;
   text-align: left;
-  font-family: 'Lato-Regular', Georgia, "Times New Roman", Times, serif;
+  font-family: 'Lato-Light-Italic', Georgia, "Times New Roman", Times, serif;
 }
 
 .section-nine .row {
@@ -1152,7 +1167,7 @@ section#section-nine {
 
 .section-ten.img {
   height: 450px;
-  background: url('home-background-candidate.jpg') no-repeat center center;
+  background: url('homepage/home-background-candidate.png') no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -1193,17 +1208,25 @@ section#section-thirteen {
 }
 
 .section-thirteen-top-padding {
-  padding: 100px;
-  height: 400px;
+  padding: 60px 80px;
+  height: 350px;
 }
 
 .section-thirteen.img {
-  height: 400px;
-  background: url('home-background-candidate.jpg') no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  height: 350px;
+  background-size: auto 350px !important;
+}
+
+.section-thirteen.img.testimonial-1{
+  background: url('homepage/testimonials-1.png') no-repeat center center;
+}
+
+.section-thirteen.img.testimonial-2{
+  background: url('homepage/testimonials-2.png') no-repeat center center;
+}
+
+.section-thirteen.img.testimonial-3{
+  background: url('homepage/testimonials-3.png') no-repeat center center;
 }
 
 .section-thirteen.title {
@@ -1274,8 +1297,8 @@ footer#home .button {
 }
 
 .footer-li:hover {
-  font-size: 17px;
-  color: $primary-white;
+  font-size: 16px;
+  color: $primary-turquoise;
   cursor: pointer;
   text-decoration: none;
 }
@@ -1327,9 +1350,9 @@ footer#main .footer-above {
 }
 
 .signup .subtitle {
-  font-size: 1.1em;
+  font-size: 14px;
   font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
-  color: #122028;
+  color: $text-title;
 }
 
 .signup .form-box-cont {
@@ -1342,10 +1365,18 @@ footer#main .footer-above {
 }
 
 .signup-label {
-  font: 14px Lato-Regular !important;
-  color: #9197A3;
+  font: 13px Lato-Regular !important;
+  color: $text-regular;
   float: left;
-  width: 60px;
+  text-align: left;
+}
+
+.signup-label.date {
+  width: 100px;
+}
+
+.signup-label.placeholder{
+
 }
 
 .btn-next {
@@ -1382,11 +1413,12 @@ footer#main .footer-above {
 }
 
 .btn-primary-70 {
-  width: 70px;
+  width: 75px;
   background-color: rgb(255, 255, 255) !important;
   border-color: #CCCCCC !important;
   color: #555555 !important;
   padding: 2px !important;
+  font-size: 13px !important;
 }
 
 .btn-primary-70 :hover {
@@ -1401,6 +1433,7 @@ footer#main .footer-above {
   border-color: #CCCCCC !important;
   color: #555555 !important;
   padding: 2px !important;
+  font-size: 13px !important;
 }
 
 .btn-primary-120 :hover {
@@ -1895,7 +1928,7 @@ label {
   border: 1px solid $primary-pastel-green;
   border-radius: 3px;
   padding: 4px 5px;
-  margin: 5px 10px 5px 0px;
+  margin: 5px 0px 5px 5px;
   display: inline-block;
   float: left;
   font: 14px Lato-Regular;
@@ -1928,7 +1961,7 @@ label {
   float: right;
   color: $primary-turquoise;
   border: 1px solid $primary-turquoise;
-  font: 12px Lato-Regular, Georgia, serif !important;
+  font: 13px Lato-Regular, Georgia, serif !important;
   margin-left: 5px;
   text-decoration: none;
   cursor: pointer;
@@ -1943,7 +1976,6 @@ label {
   background: #FFFFFF;
   min-height: 100px;
   border: 1px solid #cccccc;
-  padding-left: 5px;
 }
 
 .div-100 {
@@ -2031,64 +2063,6 @@ section#home-end-quote {
   padding: 70px 0;
 }
 
-/* Medium Devices, Desktops */
-@media only screen and (min-width: 992px) {
-}
-
-/* Large Devices, Wide Screens */
-@media only screen and (min-width: 1200px) {
-
-}
-
-/* End middle quote section */
-
-/* Start reallifestories section */
-
-section#reallifestories {
-  text-align: center;
-  padding-top: 50px;
-  padding-bottom: 60px;
-  width: 100%;
-  background: url(home-reallifestories-background.jpg) no-repeat center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover;
-}
-
-.reallifestories {
-  color: #FFF;
-  text-align: center;
-  width: 100%;
-}
-
-.reallifestories-img {
-  width: 160px;
-  height: 160px;
-  background-size: 160px;
-  background-repeat: no-repeat;
-  margin: 10px 0;
-  display: inline-block; /* so that it behaves like the img element */
-}
-
-/* Small Devices, Tablets */
-@media only screen and (min-width: 768px) {
-  .reallifestories-carousel .carousel-indicators {
-    bottom: -50px !important;
-  }
-}
-
-/* Medium Devices, Desktops */
-@media only screen and (min-width: 992px) {
-}
-
-/* Large Devices, Wide Screens */
-@media only screen and (min-width: 1200px) {
-
-}
-
-/* End reallifestories section */
-
 /*****************************************************************************************/
 
 /* Small Devices, Tablets */
@@ -2132,7 +2106,7 @@ section#reallifestories {
   /* section three */
 
   section#section-three {
-    padding: 50px 0px 120px 0px;
+    padding: 0px 0px 120px 0px;
   }
 
   /* section seven */
@@ -2179,7 +2153,7 @@ section#reallifestories {
   }
 
   .section-four.img {
-    height: 400px;
+    height: 360px;
     float: right;
   }
 

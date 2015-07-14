@@ -4,8 +4,10 @@
       <div id="top" class="container">
         <div class="header-signup title-box">
           <div class="col-lg-6 col-md-6 col-sm-12 text-center">
-            <div class="header-signup title">LOREM LIPSUM TITLE</div>
-            <div class="header-signup subtitle">CREATE A COMPELLING PROFILE AND INSPIRE PEOPLE TO HIRE YOU</div>
+            <div class="header-signup title">SHOWCASE THE REAL YOU</div>
+            <div class="header-signup subtitle" ng-show="candidate">CREATE A COMPELLING PROFILE AND BE DISCOVERED BY EMPLOYERS. FIND THE RIGHT JOB!</div>
+            <div class="header-signup subtitle" ng-show="!candidate">SHOW THE SOUL OF YOUR COMPANY AND ATTRACT THE TALENT YOU ARE SEARCHING FOR. HIRE THE BEST GRADS!</div>
+
           </div>
         </div>
 
@@ -99,7 +101,7 @@
                     <div>{{ error }}</div>
                   </div>
                 </div>
-                <button type="submit" class="header-signup form-btn btn">Join project B for free </button>
+                <button type="submit" class="header-signup form-btn btn">Join Project B </button>
               </div>
             </div>
           </form>
@@ -121,7 +123,7 @@
 <section id="section-two">
   <div class="container home-section-two-container">
     <div class="col-lg-12 text-center">
-      <h2 class="home-section-two section-heading">Showcase the real you</h2>
+      <h2 class="home-section-two section-heading">EXPLORE</h2>
 
       <h3 class="home-section-two section-subheading text-muted">Getting a job is easier now</h3>
     </div>
@@ -169,13 +171,13 @@
   </div>
 
   <div class="col-md-6">
-    <img src="/assets/imac-mockup.png" class="section-four img">
+    <img src="/assets/homepage/feature-1.png" class="section-four img">
   </div>
 </section>
 
 <section id="section-five">
   <div class="col-md-6">
-    <img src="/assets/imac-mockup.png" class="section-five img">
+    <img src="/assets/homepage/feature-2.png" class="section-five img">
   </div>
   <div class="col-md-6">
     <p class="features-title right">PERSONALIZATION</p>
@@ -208,7 +210,7 @@
   </div>
 
   <div class="col-md-6">
-    <img src="/assets/imac-mockup.png" class="section-four img">
+    <img src="/assets/homepage/feature-3.png" class="section-four img">
   </div>
 
 </section>
@@ -237,7 +239,7 @@
           <div class="section-nine row-img c-img-1"></div>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-8">
-          <span class="section-nine title"> CREATE YOUR COMPANY PROFILE </span>
+          <span class="section-nine title"> CREATE YOUR <strong>PROFILE</strong> </span>
           <br/>
           <span class="text-muted section-nine subtitle"> Build a power profile to market your company with current job openings, work culture to attract great talent. </span>
         </div>
@@ -247,7 +249,7 @@
           <div class="section-nine row-img c-img-2"></div>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-8">
-          <span class="section-nine title"> FIND GREAT MINDS </span>
+          <span class="section-nine title"> FIND <strong>GREAT MINDS</strong> </span>
           <br/>
           <span class="text-muted section-nine subtitle"> Our automated search finds the most ideal candidate for your company, based on your requirements. </span>
         </div>
@@ -257,7 +259,7 @@
           <div class="section-nine row-img c-img-3"></div>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-8">
-          <span class="section-nine title"> HIRE FAST </span>
+          <span class="section-nine title"> HIRE <strong>FAST</strong> </span>
           <br/>
           <span class="text-muted section-nine subtitle"> Our personalization platform allows you to interact efficiently, thereby making the hiring process pleasant. </span>
         </div>
@@ -267,7 +269,7 @@
           <div class="section-nine row-img c-img-4"></div>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-8">
-          <span class="section-nine title"> BUILD A GREAT COMPANY </span>
+          <span class="section-nine title"> BUILD A <strong>GREAT COMPANY</strong> </span>
           <br/>
           <span class="text-muted section-nine subtitle"> Hiring the best minds creates opportunities for growth, leadership and success. </span>
         </div>
@@ -300,7 +302,7 @@
           <div class="section-nine row-img e-img-1"></div>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-8">
-          <span class="section-nine title"> CREATE YOUR PROFILE </span>
+          <span class="section-nine title"> CREATE <strong>YOUR PROFILE</strong></span>
           <br/>
           <span class="text-muted section-nine subtitle"> Build your powerful profile to market yourself for the job that you want. </span>
         </div>
@@ -310,7 +312,7 @@
           <div class="section-nine row-img e-img-2"></div>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-8">
-          <span class="section-nine title"> APPLY FOR A JOB </span>
+          <span class="section-nine title"> APPLY FOR A <strong>JOB</strong> </span>
           <br/>
           <span class="text-muted section-nine subtitle">Our automated search finds the most ideal job opportunity for you based on your education, skills and interests. </span>
         </div>
@@ -320,7 +322,7 @@
           <div class="section-nine row-img e-img-3"></div>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-8">
-          <span class="section-nine title">  GET HIRED </span>
+          <span class="section-nine title">  GET <strong>HIRED</strong> </span>
           <br/>
           <span class="text-muted section-nine subtitle"> Our personalization platform provides you with instant communication, thereby making the hiring process pleasant. </span>
         </div>
@@ -330,7 +332,7 @@
           <div class="section-nine row-img e-img-4"></div>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-8">
-          <span class="section-nine title">  DO A GREAT JOB </span>
+          <span class="section-nine title">  DO A <strong>GREAT JOB</strong> </span>
           <br/>
           <span class="text-muted section-nine subtitle"> Excelling at your job is fulfilling, rewarding and enriching with new experiences in life. </span>
         </div>
@@ -352,7 +354,7 @@
 <section id="section-thirteen">
   <div class="section-thirteen top">
     <div class="col-md-4 col-sm-12 padding-0">
-      <div class="section-thirteen img"></div>
+      <div class="section-thirteen img testimonial-2"></div>
     </div>
     <div class="col-md-4 col-sm-12 text-center section-thirteen-top-padding">
       <p class="section-thirteen title">Kate Coghlan</p>
@@ -363,7 +365,7 @@
         position here at Boost! They helped ease the anxiety of entering the job market for the first time.</p>
     </div>
     <div class="col-md-4 col-sm-12 padding-0">
-      <div class="section-thirteen img"></div>
+      <div class="section-thirteen img testimonial-3"></div>
     </div>
   </div>
 </section>
@@ -379,7 +381,7 @@
         position here at Boost! They helped ease the anxiety of entering the job market for the first time.</p>
     </div>
     <div class="col-md-4 col-sm-12 padding-0">
-      <div class="section-thirteen img"></div>
+      <div class="section-thirteen img testimonial-1"></div>
     </div>
 
     <div class="col-md-4 col-sm-12 text-center section-thirteen-top-padding">

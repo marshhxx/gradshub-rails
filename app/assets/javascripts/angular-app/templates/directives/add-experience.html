@@ -74,16 +74,17 @@
 
       <div class="form-group inline">
         <div class="profile-datepicker-container" style="margin-right:0px;">
-            <span class="profile-switch-experience-label"> Is this my current job? </span>
+            <span class="profile-switch-label"> Is this my current job? </span>
             <input
                 id="switchJob" 
                 checked="false" 
                 ng-model="isCurrentJob"
-                type="checkbox" >
+                type="checkbox"
+                class="margin-lt-7">
         </div>
       </div>
 
         <textarea class="form-control" rows="5" ng-model="experience.description"
-                  placeholder="Add a description..."></textarea>
+                  placeholder="I was a summer intern at Company X and was responsible for increasing sales of their network test software.  I was able to increase the sales by 10% in 3 months.  My strategy to sell SW maintenance contracts to their existing customers contributed to this growth.  I received the “best intern” award. (It is not sufficient to just write the job responsibility.  Please write about the impact you could make.)"></textarea>
     </div>
 </form>

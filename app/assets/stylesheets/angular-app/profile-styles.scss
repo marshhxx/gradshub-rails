@@ -840,6 +840,7 @@ textarea {
 .profile-placeholder-txt {
   font: 15px Lato-Light, Georgia, "Times New Roman", Times, serif;
   color: $text-placeholder;
+  line-height: 1.5em;
 }
 
 .profile-datepicker-container {
@@ -849,6 +850,13 @@ textarea {
 }
 
 .profile-datepicker-label {
+  display: inline-block;
+  color: $text-bold;
+  float: left;
+  line-height: 25px;
+}
+
+.profile-switch-label{
   display: inline-block;
   color: $text-bold;
   float: left;

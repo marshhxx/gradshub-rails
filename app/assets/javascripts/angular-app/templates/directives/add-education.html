@@ -31,7 +31,7 @@
         <div class="form-group"
              ng-class="{'has-error': newEducationForm.school.$invalid && (newEducationForm.$submitted || newEducationForm.school.$touched)}">
             <label class="label-edit">School</label>
-            <school-selector placeholder="School" ng-model="school" on-select="onSchool" required></school-selector>
+            <school-selector placeholder="University of Maryland, College Park" ng-model="school" on-select="onSchool" required></school-selector>
 
             <div ng-if="newEducationForm.school.$invalid && (newEducationForm.$submitted || newEducationForm.school.$touched)"
                  ng-messages="newEducationForm.school.$error">
@@ -47,7 +47,7 @@
         <div class="form-group"
              ng-class="{'has-error': newEducationForm.degree.$invalid && (newEducationForm.$submitted || newEducationForm.degree.$touched)}">
             <label class="label-edit">Degree</label>
-            <degree-selector placeholder="Degree" ng-model="degree" on-select="onDegree" required></degree-selector>
+            <degree-selector placeholder="Bachelor of Science in Electrical Engineering" ng-model="degree" on-select="onDegree" required></degree-selector>
 
             <div ng-if="newEducationForm.degree.$invalid && (newEducationForm.$submitted || newEducationForm.degree.$touched)"
                  ng-messages="newEducationForm.degree.$error">
@@ -63,7 +63,7 @@
         <div class="form-group"
              ng-class="{'has-error': newEducationForm.major.$invalid && (newEducationForm.$submitted || newEducationForm.major.$touched)}">
             <label class="label-edit">Major</label>
-            <major-selector placeholder="Major" ng-model="major" on-select="onMajor" required></major-selector>
+            <major-selector placeholder="Engineering" ng-model="major" on-select="onMajor" required></major-selector>
 
             <div ng-if="newEducationForm.major.$invalid && (newEducationForm.$submitted || newEducationForm.major.$touched)"
                  ng-messages="newEducationForm.major.$error">
@@ -115,7 +115,7 @@
 
 
             <div class="profile-datepicker-container div-40">
-                <span class="profile-datepicker-label">To: </span>
+                <span class="profile-datepicker-label">Graduation Year: </span>
                 <simpledatepicker no-day="true" no-month="false" ng-model="education.end_date"
                                   disabled="isCurrentEducation"></simpledatepicker>
             </div>
@@ -137,11 +137,12 @@
 
         <div class="form-group inline">
             <div class="profile-datepicker-container div-40" style="margin-right:0px;">
-                <span class="profile-switch-education-label"> Is my current school? </span>
+                <span class="profile-switch-label"> Is my current school? </span>
                 <input
                         id="switchEducation"
                         checked="false"
                         type="checkbox"
+                        class="margin-lt-7"
                         ng-model="isCurrentEducation">
             </div>
         </div>

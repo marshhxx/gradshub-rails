@@ -13,7 +13,7 @@ angular
 
       logout = ->
         sessionService.logout().then(
-          -> $state.go 'main.page', null, {reload: true}
+          -> $state.go 'home.page', null, {reload: true}
         ).catch(
           (error)-> console.log(error)
         )
@@ -22,7 +22,7 @@ angular
         deferrred = $q.defer()
         sessionService.requestCurrentUser().then(
           (user) ->
-            $state.go 'main.page' if !user?
+            $state.go 'home.page' if !user?
             type = sessionService.sessionType().toLowerCase()
             $scope.username = user[type].name
             deferrred.resolve(user)

@@ -7,11 +7,15 @@
   $httpProvider.defaults.headers.common.Accept = 'application/mepedia.v1'
   $httpProvider.defaults.headers.common['Content-type'] = 'application/json'
   $urlRouterProvider.otherwise "/home"
-  $stateProvider.state("main", {
+  $stateProvider.state("home", {
+    abstract: true,
+    templateUrl: "angular-app/templates/layouts/homeLayout.html",
+    controller: "mainController",
+  }).state("main", {
     abstract: true,
     templateUrl: "angular-app/templates/layouts/mainLayout.html",
     controller: "mainController",
-  }).state("main.page", {
+  }).state("home.page", {
     url: "/home",
     templateUrl: "angular-app/templates/home.html",
     controller: "HomeController",

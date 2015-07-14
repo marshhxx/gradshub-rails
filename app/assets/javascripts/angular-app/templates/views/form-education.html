@@ -1,14 +1,13 @@
 <form id="education-form" name="educationForm" ng-submit="validateEducation(educationForm.$valid)"
       ng-init="setInnerScope(this)" novalidate>
   <div class="signup form-container col-md-8 col-md-offset-2">
-
-      <p> Donec aliquet molestie urna, accumsan commodo diam vulputate dapibus. Ut tempor velit diam, et sagittis enim interdum sed.</p>
+      <p class="subtitle"> We are well on our way to build your profile. </p>
 
     <div class="signup form-box-cont">
       <div class="row">
         <div class="form-group"
              ng-class="{'has-error': educationForm.school.$invalid && (educationForm.$submitted || educationForm.school.$touched)}">
-          <school-selector placeholder="School" ng-model="school" on-select="onSchool" required></school-selector>
+          <school-selector placeholder="What is your school name?" ng-model="school" on-select="onSchool" required></school-selector>
           <div ng-if=" educationForm.school.$invalid && (educationForm.$submitted || educationForm.school.$touched)"
                ng-messages="educationForm.school.$error">
             <div class="help-block" ng-message="required">
@@ -65,9 +64,9 @@
       </div>
 
       <div class="row">
-        <div class="form-group" ng-class="{'has-error': educationForm.$submitted && !education.start_date}">
-          <div class="row align-left max-width">
-            <span class="signup-label">From: </span>
+        <div ng-class="{'has-error': educationForm.$submitted && !education.start_date}">
+          <div class="max-width">
+            <span class="signup-label date">From: </span>
             <simpledatepicker no-day="true" ng-model="education.start_date" is-date></simpledatepicker>
           </div>
 
@@ -77,8 +76,8 @@
             </div>
           </div>
 
-          <div class="row align-left max-width margin-t5">
-            <span class="signup-label">To: </span>
+          <div class="max-width margin-t5">
+            <span class="signup-label date">Graduation Year</span>
             <simpledatepicker no-day="true" ng-model="education.end_date"
                               disabled="isCurrentEducation"></simpledatepicker>
           </div>
@@ -93,8 +92,8 @@
       </div>
 
       <div class="row form-group">
-        <div class="row align-left max-width margin-t5">
-          <span>Is my current education?</span>
+        <div class="max-width margin-t5">
+          <span class="signup-label">Is my current education?</span>
           <input
               id="switchEducationSignup"
               checked="false"
