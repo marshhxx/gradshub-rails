@@ -66,6 +66,5 @@ gem 'tzinfo-data', platforms: [:x64_mingw, :mingw, :mswin]
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-group :development, :production do
-  gem 'therubyracer'
-end
+
+# gem 'therubyracer'
