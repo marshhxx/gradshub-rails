@@ -1,4 +1,9 @@
 @import "colors";
+@import "constants";
+@import "navigation";
+@import "profile-candidate";
+@import "profile-employer";
+@import "search";
 
 @font-face {
   font-family: 'Opensans-regular';
@@ -45,6 +50,11 @@
 @font-face {
   font-family: 'Oswald-Regular';
   src: url(Oswald-Regular.otf);
+}
+
+@font-face {
+  font-family: 'Montserrat-Bold';
+  src: url(Montserrat-Bold.otf);
 }
 
 @font-face {
@@ -398,11 +408,12 @@ textarea {
   margin-bottom: 0px !important;
   border-radius: 0px;
   border: 0 !important;
-  // background-color: #1C2A33;
+  min-height: 70px !important;
   background-color: $primary-blue;
 }
 
 .navbar-default .navbar-collapse {
+  padding: 10px 0 !important;
   border-color: rgba(255, 255, 255, .02);
 }
 

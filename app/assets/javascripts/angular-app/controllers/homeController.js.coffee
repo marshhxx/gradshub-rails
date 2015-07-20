@@ -107,5 +107,8 @@ angular.module('mepedia.controllers').controller("HomeController", [
 					console.log(errors)
 			)
 
+    # Search test
+
+
 		init()
 ])
