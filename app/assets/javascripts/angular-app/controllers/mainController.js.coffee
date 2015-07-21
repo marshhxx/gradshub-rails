@@ -29,5 +29,9 @@ angular
         ).catch (error) -> deferrred.reject(error)
         $scope.userPromise = deferrred.promise
 
+        # Search test
+      $scope.onSearchSubmit = ->
+         $state.go 'main.search'
+
       init()
   ])

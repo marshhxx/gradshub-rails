@@ -31,8 +31,8 @@
         </li>
       </ul>
       <!-- Collect the nav links, forms, and other content for toggling -->
-      <form class="search-container" action="//llamaswill.tumblr.com/search">
-        <input id="search-box" type="text" class="search-box" name="q" />
+      <form class="search-container" ng-submit="onSearchSubmit()">
+        <input id="search-box" type="text" class="search-box" name="navbar-search" />
         <label for="search-box"><span class="glyphicon glyphicon-search search-icon"></span></label>
         <input type="submit" id="search-submit" />
       </form>
