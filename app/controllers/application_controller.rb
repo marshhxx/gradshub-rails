@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   rescue_from ArgumentError, :with => :bad_request
   rescue_from CanCan::AccessDenied, :with => :unauthorized
   rescue_from ActiveRecord::RecordNotUnique, :with => :not_unique
+  rescue_from CloudinaryException, :with => :bad_request
 
   def unauthorized
     @error = {:reasons => ['The user has no permission to perform this action.'], :code => FORBIDDEN}

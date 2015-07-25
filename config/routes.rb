@@ -51,6 +51,7 @@ Demo::Application.routes.draw do
       resources :companies, :only => [:index, :create]
       resource :image, :only => [:upload] do
         post :upload, on: :member
+        delete :delete, on: :member
       end
     end
   end

@@ -84,13 +84,12 @@ ImagePicker = (Cloudinary, $httpProvider, sessionService, $timeout, Utils, image
 
     deleteImage = (imageUrl)->
       #Delete previous uploaded image
-      delete $httpProvider.defaults.headers.common['Authorization'];
+      $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
       if imageUrl
         publicIdSplitArray = imageUrl.split('/')
         publicId = (publicIdSplitArray[publicIdSplitArray.length-1]).split('.')
-        Cloudinary.deleteImage(publicId[0]).then((data)->
-          #On success
-          data = data
+        imageService.deleteImage(publicId[0]).then((data)->
+          # image deleted successfully
         ).catch((error)->
           console.log(error)
         )
