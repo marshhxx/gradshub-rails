@@ -1,4 +1,4 @@
-ImagePicker = (Cloudinary, $httpProvider, $timeout, Utils) ->
+ImagePicker = (Cloudinary, $httpProvider, sessionService, $timeout, Utils, imageService) ->
   {
   scope:{
     updateImage: '=',
@@ -47,9 +47,9 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout, Utils) ->
       $scope.spinnerVisible = true          # - photo save and cancel buttons
 
       #Call Cloudinary upload Image method to upload image to cloudinary server
-      delete $httpProvider.defaults.headers.common['Authorization']
-      Cloudinary.uploadImage(file).then((data) ->
-        $scope.cloudinaryPhotoData = data
+      $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
+      imageService.uploadImage(file).then((data) ->
+        $scope.cloudinaryPhotoData = data.image_upload
       ).catch((error)->
         $scope.spinnerVisible = false
         $scope.uploadImageBtn = true
@@ -145,4 +145,4 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout, Utils) ->
 
 angular
 .module('mepedia.directives')
-.directive('simpleimagepicker', ['Cloudinary', '$http', '$timeout', 'Utils', ImagePicker]);
+.directive('simpleimagepicker', ['Cloudinary', '$http', 'sessionService','$timeout', 'Utils', 'imageService', ImagePicker]);

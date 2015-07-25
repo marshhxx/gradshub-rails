@@ -55,6 +55,8 @@ end
 
 gem 'tzinfo-data', platforms: [:x64_mingw, :mingw, :mswin]
 
+gem 'cloudinary'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

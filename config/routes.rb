@@ -49,6 +49,9 @@ Demo::Application.routes.draw do
       resources :interests, :only => [:index, :create, :show]
       resources :communication, :only => [:create]
       resources :companies, :only => [:index, :create]
+      resource :image, :only => [:upload] do
+        post :upload, on: :member
+      end
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
