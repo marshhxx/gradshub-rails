@@ -8,7 +8,8 @@ class Api::V1::ImagesController < ApplicationController
       render_api_error and return
     end
 
-    @response = Cloudinary::Uploader.upload(params[:file],
+    @response = Cloudinary::Uploader.upload(
+      params[:file],
       :tags => "users_photos",
       :transformation => transformation_options)
 
@@ -29,7 +30,7 @@ class Api::V1::ImagesController < ApplicationController
   def transformation_options
     { :crop => "limit", :width => 1920, :height => 1080 }
   end
-  
+
   def check_configuration
     render 'configuration_missing' if Cloudinary.config.api_key.blank?
   end
