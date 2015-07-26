@@ -1,4 +1,4 @@
-ImagePicker = (Cloudinary, $httpProvider, sessionService, $timeout, Utils, imageService) ->
+ImagePicker = ($httpProvider, sessionService, $timeout, Utils, imageService, alertService) ->
   {
   scope:{
     updateImage: '=',
@@ -26,7 +26,7 @@ ImagePicker = (Cloudinary, $httpProvider, sessionService, $timeout, Utils, image
     guillotinePhotoElement = $element.find('#guillotine-photo')
     imageWrapper = $element.find('.image-picker.wrapper')
 
-    Cloudinary.config(); #init Cloudinary settings
+    imageService.config() #init Cloudinary settings
 
     #This method will be called when 'User' variable value changes
     $scope.$watch "imageUrl", (value) ->
@@ -47,10 +47,16 @@ ImagePicker = (Cloudinary, $httpProvider, sessionService, $timeout, Utils, image
       $scope.spinnerVisible = true          # - photo save and cancel buttons
 
       #Call Cloudinary upload Image method to upload image to cloudinary server
-      $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
+      $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
       imageService.uploadImage(file).then((data) ->
         $scope.cloudinaryPhotoData = data.image_upload
       ).catch((error)->
+        if error == 'cloudinary_image_size_error'
+          reason = 'The file is too big, please select a file with no more than 10 mb'
+        else
+          reason = error
+        alertService.addErrorMessage(reason, 10000)
+
         $scope.spinnerVisible = false
         $scope.uploadImageBtn = true
       )
@@ -84,7 +90,7 @@ ImagePicker = (Cloudinary, $httpProvider, sessionService, $timeout, Utils, image
 
     deleteImage = (imageUrl)->
       #Delete previous uploaded image
-      $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
+      $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
       if imageUrl
         publicIdSplitArray = imageUrl.split('/')
         publicId = (publicIdSplitArray[publicIdSplitArray.length-1]).split('.')
@@ -102,7 +108,7 @@ ImagePicker = (Cloudinary, $httpProvider, sessionService, $timeout, Utils, image
       imageData.h = Math.round(imageData.h / imageData.scale)
       imageData.x = Math.round(imageData.x / imageData.scale)
       imageData.y = Math.round(imageData.y / imageData.scale)
-      coverPhotoThumbernail = Cloudinary.getThumbnail(imageData, $scope.cloudinaryPhotoData) #Get Cropped Thumbernail
+      coverPhotoThumbernail = imageService.getThumbnail(imageData, $scope.cloudinaryPhotoData) #Get Cropped Thumbernail
 
       #Delete uploaded Image
       deleteImage($scope.imageUrl)
@@ -144,4 +150,5 @@ ImagePicker = (Cloudinary, $httpProvider, sessionService, $timeout, Utils, image
 
 angular
 .module('mepedia.directives')
-.directive('simpleimagepicker', ['Cloudinary', '$http', 'sessionService','$timeout', 'Utils', 'imageService', ImagePicker]);
+.directive('simpleimagepicker', ['$http', 'sessionService','$timeout', 'Utils', 
+  'imageService', 'alertService', ImagePicker])

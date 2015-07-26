@@ -1,13 +1,26 @@
-var Upload  = function($http, $q, $upload, alertService) {
+var Upload  = function($http, $q, $upload) {
   var service = {}
+  var cloudName = 'mepediacobas';
+
+  service.config = function () {
+    $.cloudinary.config({
+      'cloud_name': cloudName
+    });
+  }
+  service.checkFileSize = function(size) {
+    var flag = true;
+    // Check if the file is bigger thank 10 mb
+    if (size > 10485760) {
+      flag = false;
+    }
+    return flag;
+  }
 
   service.uploadImage = function(file) {
     var error = false;
     var deferred = $q.defer();
-    if (file.size > 10485760) {
-      var reason = 'The file is too big, please select a file with no more than 10 mb';
-      alertService.addErrorMessage(reason, 10000);
-      deferred.reject('Image is too large');
+    if (!service.checkFileSize(file.size)) {
+      deferred.reject('cloudinary_image_size_error');
       error = true;
     }
 
@@ -21,6 +34,17 @@ var Upload  = function($http, $q, $upload, alertService) {
       });
     }
     return deferred.promise;
+  }
+
+  service.getThumbnail = function(imageData, cloudinaryData) {
+    return $.cloudinary.image(cloudinaryData.public_id, {
+      secure: true,
+      width: imageData.w,
+      height: imageData.h,
+      x: imageData.x,
+      y: imageData.y,
+      crop: 'crop'
+    });
   }
 
   service.deleteImage = function(publicId) {
@@ -38,8 +62,8 @@ var Upload  = function($http, $q, $upload, alertService) {
   }
 
   return service;
-};  
+};
 
 //Upload.$inject
 angular.module('mepedia.services')
-.factory('imageService', ['$http','$q','$upload', 'alertService', Upload]);
+.factory('imageService', ['$http','$q','$upload', Upload]);
