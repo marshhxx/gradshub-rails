@@ -51,11 +51,7 @@ ImagePicker = ($httpProvider, sessionService, $timeout, Utils, imageService, ale
       imageService.uploadImage(file).then((data) ->
         $scope.cloudinaryPhotoData = data.image_upload
       ).catch((error)->
-        if error == 'cloudinary_image_size_error'
-          reason = 'The file is too big, please select a file with no more than 10 mb'
-        else
-          reason = error
-        alertService.addErrorMessage(reason, 10000)
+        alertService.addErrorMessage(error.reasons[0], 10000)
 
         $scope.spinnerVisible = false
         $scope.uploadImageBtn = true

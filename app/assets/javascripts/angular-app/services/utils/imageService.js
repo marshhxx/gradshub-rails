@@ -1,4 +1,4 @@
-var Upload  = function($http, $q, $upload) {
+var Upload  = function($http, $q, $upload, Cloudinary) {
   var service = {}
   var cloudName = 'mepediacobas';
 
@@ -20,7 +20,7 @@ var Upload  = function($http, $q, $upload) {
     var error = false;
     var deferred = $q.defer();
     if (!service.checkFileSize(file.size)) {
-      deferred.reject('cloudinary_image_size_error');
+      deferred.reject({reasons: ['The file is too big, please select a file with no more than 10 mb']});
       error = true;
     }
 
@@ -37,19 +37,11 @@ var Upload  = function($http, $q, $upload) {
   }
 
   service.getThumbnail = function(imageData, cloudinaryData) {
-    return $.cloudinary.image(cloudinaryData.public_id, {
-      secure: true,
-      width: imageData.w,
-      height: imageData.h,
-      x: imageData.x,
-      y: imageData.y,
-      crop: 'crop'
-    });
+    return Cloudinary.getThumbnail(imageData, cloudinaryData);
   }
 
   service.deleteImage = function(publicId) {
     var deferred = $q.defer();
-    var delete_url = "/api/image/delete";
 
     $http.delete('/api/image/delete', {params: {public_id: publicId}}).
       success(function (response) {
@@ -66,4 +58,4 @@ var Upload  = function($http, $q, $upload) {
 
 //Upload.$inject
 angular.module('mepedia.services')
-.factory('imageService', ['$http','$q','$upload', Upload]);
+.factory('imageService', ['$http','$q','$upload', 'Cloudinary', Upload]);
