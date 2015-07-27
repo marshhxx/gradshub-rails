@@ -1,6 +1,6 @@
 angular.module('mepedia.services').factory('sessionService',
-    ['$location', '$http','$q','Session',
-        function($location, $http, $q, Session) {
+    ['$location', '$http','$q','Session', 'oauthService',
+        function($location, $http, $q, Session, oauthService) {
         // Redirect to the given url (defaults to '/')
         var service = {
             login: function(email, password, rememberMe) {
@@ -74,6 +74,23 @@ angular.module('mepedia.services').factory('sessionService',
                         deferred.reject(msg);
                         console.log(msg, code);
                     });
+                return deferred.promise;
+            },
+
+            loginLinkedin: function(member_id, oauth_token, type) {
+                var deferred = $q.defer();
+                oauthService.linkedin(member_id, oauth_token, type).then(
+                    function (response) {
+                        var type = Session.create(response.data.session, false);
+                        if (service.isAuthenticated()) {
+                            deferred.resolve({type: type})
+                        }
+                    }
+                ).catch(
+                    function(response) {
+                        deferred.reject(response)
+                    }
+                );
                 return deferred.promise;
             }
 

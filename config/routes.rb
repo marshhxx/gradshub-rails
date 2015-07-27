@@ -17,6 +17,11 @@ Demo::Application.routes.draw do
     end
   end
 
+  # configure linkedin oauth
+  resource :oauth, only: [:linkedin] do
+    get :linkedin, on: :member
+  end
+
   namespace :api, defaults: {format: 'json'} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1) do
     # We are going to list our resources here

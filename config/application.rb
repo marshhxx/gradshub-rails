@@ -25,6 +25,7 @@ module Demo
     # config.i18n.default_locale = :de
     # Bower asset paths
     config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
     root.join('vendor', 'assets', 'bower_components').to_s.tap do |bower_path|
       config.sass.load_paths << bower_path
       config.assets.paths << bower_path
@@ -41,6 +42,5 @@ module Demo
 
     config.angular_templates.htmlcompressor = false
     config.skip_session_storage = [:http_auth, :token_auth]
-    config.session_store :disabled
   end
 end

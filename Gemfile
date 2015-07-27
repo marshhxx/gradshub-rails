@@ -28,6 +28,7 @@ gem 'oj_mimic_json'
 gem  'multi_json'
 
 gem 'rest-client'
+gem 'linkedin'
 
 # Authorization gem.
 gem 'cancancan'

@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :null_session
+  respond_to :json
 
   include Authenticable
 
@@ -23,8 +24,8 @@ class ApplicationController < ActionController::Base
   end
 
   def not_found(exception)
-    @error = {:reasons => [exception.message], :code => INVALID_PARAMS_ERROR}
-    render_error :bad_request
+    @error = {:reasons => [exception.message], :code => ROUTING_ERROR}
+    render :json => @error, :status => :not_found
   end
 
   def not_unique(exception)
@@ -42,7 +43,7 @@ class ApplicationController < ActionController::Base
   end
 
   def render_error(status)
-    render 'api/v1/common/error', status: status
+    render 'api/v1/common/error', format: :json,  status: status
   end
 
 end
