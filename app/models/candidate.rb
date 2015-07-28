@@ -42,6 +42,10 @@ class Candidate < ActiveRecord::Base
     end
   end
 
+  # Finds or create the candidate for the give auth object. (Auth object
+  # saves the information of the oauth integration)
+  #
+  # @param auth the oauth integration object.
   def self.find_for_oauth(auth, signed_in_resource = nil)
     user = User.find_for_oauth(auth, signed_in_resource)
     if user.new_record?
@@ -56,7 +60,6 @@ class Candidate < ActiveRecord::Base
           state: country ? country.states.sample : nil,
           experiences: experiences
       )
-      # user.save!
       candidate.save!
     end
     user.meta

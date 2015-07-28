@@ -33,6 +33,9 @@ class User < ActiveRecord::Base
     authenticate
   end
 
+  # Finds or creates the user from the auth object.
+  #
+  # @param auth the oauth integration object.
   def self.find_for_oauth(auth, signed_in_resource = nil)
 
     # Get the identity and user if they exist

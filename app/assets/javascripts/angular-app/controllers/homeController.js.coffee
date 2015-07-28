@@ -124,7 +124,7 @@ angular.module('mepedia.controllers').controller("HomeController", [
       )
 
     getType = ->
-      if $scope.isCandidate() then Candidate.className else Employer.className
+      if $scope.candidate then Candidate.className else Employer.className
 
     init()
 ])

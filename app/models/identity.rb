@@ -1,3 +1,5 @@
+# Saves the mapping between an oauth integration (i.e linkedin)
+# and a user.
 class Identity < ActiveRecord::Base
   belongs_to :user
   validates_presence_of :uid, :provider

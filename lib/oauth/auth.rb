@@ -14,9 +14,11 @@ class Auth
 
   private
 
+  # Calls the linkedin API to get the user information.
   def call_api
     client = ::LinkedIn::Client.new
     consumer = client.consumer
+    # here we get the oauth1 token from the oauth2 access_token
     @token = consumer.get_access_token(nil, {}, {
                                               'xoauth_oauth2_access_token' => @access_token
                                           })
