@@ -58,6 +58,11 @@
 }
 
 @font-face {
+  font-family: 'Montserrat-Bold';
+  src: url(Montserrat-Bold.otf);
+}
+
+@font-face {
   font-family: 'Lato-Regular';
   src: url(Lato-Regular.ttf);
 }
@@ -604,6 +609,8 @@ section#signup {
   border: 3px solid $primary-blue;
   border-radius: 4px !important;
   margin: 10px 0;
+  width: 200px;
+  height: 47px;
 }
 
 .header-signup .form-btn:hover,
@@ -613,6 +620,23 @@ section#signup {
 .form-btn.dropdown-toggle.form-btn {
   background-color: $primary-blue;
   color: $primary-white;
+}
+
+.header-signup .linkedin-signup {
+  background: url("linkedin_signup-default.png") no-repeat;
+  background-size: 200px 47px;
+  width: 200px;
+  height: 47px;
+  padding: 10px 30px;
+
+  &:active {
+    background: url("linkedin_signup-active.png") no-repeat;
+    background-size: 200px 47px;
+  }
+  &:hover {
+    background: url("linkedin_signup-hover.png") no-repeat;
+    background-size: 200px 47px;
+  }
 }
 
 .home-carousel-container {

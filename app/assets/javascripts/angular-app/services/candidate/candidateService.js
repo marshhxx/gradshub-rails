@@ -9,6 +9,8 @@ angular
             }
         });
 
+        Candidate.className = 'Candidate';
+
         Candidate.prototype.isEmployer = false;
         return Candidate;
 });

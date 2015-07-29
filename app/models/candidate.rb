@@ -1,5 +1,5 @@
 class Candidate < ActiveRecord::Base
-  has_one :user, as: :meta, dependent: :destroy
+  has_one :user, as: :meta, dependent: :destroy, autosave: true
   accepts_nested_attributes_for :user
 
   belongs_to :country
@@ -40,6 +40,29 @@ class Candidate < ActiveRecord::Base
     if user.meta_type == 'Candidate'
       user.meta
     end
+  end
+
+  # Finds or create the candidate for the give auth object. (Auth object
+  # saves the information of the oauth integration)
+  #
+  # @param auth the oauth integration object.
+  def self.find_for_oauth(auth, signed_in_resource = nil)
+    user = User.find_for_oauth(auth, signed_in_resource)
+    if user.new_record?
+      country = Country.find_by_name(auth.info.location.name)
+      experiences = auth.info.positions.all.map {
+          |position| Experience.from_linkedin(position) if position
+      }
+      candidate = Candidate.new(
+          user: user,
+          summary: auth.info.summary,
+          country: country,
+          state: country ? country.states.sample : nil,
+          experiences: experiences
+      )
+      candidate.save!
+    end
+    user.meta
   end
 
 end

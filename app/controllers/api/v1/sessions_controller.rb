@@ -5,10 +5,7 @@ class Api::V1::SessionsController < ApplicationController
     user_email = params[:session][:email]
     @user = user_email.present? && User.find_by(email: user_email)
 
-    if not @user.nil? and @user.valid_password?(user_password)
-      sign_in @user, store: false
-      @user.generate_authentication_token!
-      @user.save
+    if not @user.nil? and  @user.authenticate_with_password(user_password)
       render :create, status: :ok
     else
       @error = {:reasons => ['Invalid email or password'], :code => AUTH_ERROR}
