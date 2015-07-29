@@ -51,7 +51,7 @@ ImagePicker = ($httpProvider, sessionService, $timeout, Utils, imageService, ale
       imageService.uploadImage(file).then((data) ->
         $scope.cloudinaryPhotoData = data.image_upload
       ).catch((error)->
-        alertService.addErrorMessage(error.reasons[0], 10000)
+        alertService.addError(error.error, 10000)
 
         $scope.spinnerVisible = false
         $scope.uploadImageBtn = true

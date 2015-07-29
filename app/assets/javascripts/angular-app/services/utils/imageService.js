@@ -20,7 +20,7 @@ var Upload  = function($http, $q, $upload, Cloudinary) {
     var error = false;
     var deferred = $q.defer();
     if (!service.checkFileSize(file.size)) {
-      deferred.reject({reasons: ['The file is too big, please select a file with no more than 10 mb']});
+      deferred.reject({error: {reasons: ['The file is too big, please select a file with no more than 10 mb']}});
       error = true;
     }
 
