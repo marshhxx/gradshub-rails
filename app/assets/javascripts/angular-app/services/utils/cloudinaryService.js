@@ -1,4 +1,4 @@
-var Cloudinary = function ($upload, $q, crypt, $httpProvider, alertService) {
+var Cloudinary = function () {
 
     var cloudinary = {}
     var cloudName = 'mepediacobas';
@@ -25,4 +25,4 @@ var Cloudinary = function ($upload, $q, crypt, $httpProvider, alertService) {
 }
 angular
     .module('mepedia.services')
-    .factory('cloudinaryService', ['$upload', '$q', 'crypt', '$http', 'alertService',Cloudinary]);
+    .factory('cloudinaryService', Cloudinary);
