@@ -1,4 +1,4 @@
-var Upload  = function($http, $q, $upload, Cloudinary) {
+var Upload  = function($http, $q, $upload, cloudinaryService) {
   var service = {}
   var cloudName = 'mepediacobas';
 
@@ -37,7 +37,7 @@ var Upload  = function($http, $q, $upload, Cloudinary) {
   }
 
   service.getThumbnail = function(imageData, cloudinaryData) {
-    return Cloudinary.getThumbnail(imageData, cloudinaryData);
+    return cloudinaryService.getThumbnail(imageData, cloudinaryData);
   }
 
   service.deleteImage = function(publicId) {
@@ -58,4 +58,4 @@ var Upload  = function($http, $q, $upload, Cloudinary) {
 
 //Upload.$inject
 angular.module('mepedia.services')
-.factory('imageService', ['$http','$q','$upload', 'Cloudinary', Upload]);
+.factory('imageService', ['$http','$q','$upload', 'cloudinaryService', Upload]);
