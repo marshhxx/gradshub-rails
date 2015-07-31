@@ -16,3 +16,7 @@ asset 'cryptojslib'
 
 asset 'jquery-guillotine', '>=1.3.0'
 
+asset 'angulartics'
+asset 'angulartics-google-analytics'
+
+

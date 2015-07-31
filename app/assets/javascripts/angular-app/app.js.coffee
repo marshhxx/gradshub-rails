@@ -1,6 +1,7 @@
 @app = angular.module("mepedia",
-  ["ui.router", "templates", "mepedia.config", "mepedia.services", "mepedia.controllers", "ngSanitize", 'ngMessages'])
-.config ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) ->
+  ["ui.router", "templates", "mepedia.config", "mepedia.services", "mepedia.controllers", "ngSanitize", 'ngMessages',
+   'angulartics', 'angulartics.google.analytics'])
+.config ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider, $analyticsProvider) ->
 #	$httpProvider.defaults.withCredentials = true;
 #	$httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
 #	$httpProvider.interceptors.push('errorInterceptor')
