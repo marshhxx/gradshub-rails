@@ -31,6 +31,9 @@
 
 //= require cryptojslib/rollups/sha1
 
+//= require angulartics
+//= require angulartics-google-analytics
+
 //= require angular-rails-templates
 //= require bootstrap-sass-official/assets/javascripts/bootstrap
 //= require bootstrap-sass-official/assets/javascripts/bootstrap-sprockets
