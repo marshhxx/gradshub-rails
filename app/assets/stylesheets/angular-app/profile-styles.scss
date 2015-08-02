@@ -847,6 +847,7 @@ textarea {
   float: left;
   display: inline-block;
   margin-right: 15px;
+  margin-bottom: 10px;
 }
 
 .profile-datepicker-label {
@@ -854,6 +855,7 @@ textarea {
   color: $text-bold;
   float: left;
   line-height: 25px;
+  width: 110px;
 }
 
 .profile-switch-label{
