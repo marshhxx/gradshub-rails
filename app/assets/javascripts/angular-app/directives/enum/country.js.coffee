@@ -8,15 +8,15 @@ CountrySelector = (Country) ->
   },
   template: (elem, attr) ->
     required = if attr.required == "" then "required" else ""
-    placeholder = if attr.placeholder then attr.placeholder else ""
-    '<input name="country" type="text" ng-model="data" ' + required +
-      ' typeahead="country for country in countries | filter:$viewValue | limitTo:6"   ng-blur=onSelect(data) ' +
-      'class="form-control input-sm" id="country" typeahead-on-select="onSelect($item)" placeholder="' + placeholder + '" is-country>'
+    '<select id="country" ng-model="data" ng-change="onSelect()" name="country" class="form-control input-sm" ng-disabled="disabled" ' + required + '>' +
+      '<option disabled value="" >Select Country</option>' +
+      '<option value="{{country}}" ng-repeat="country in countries">{{country}}</option>' +
+    '</select>'
   link: (scope, elm, attrs, ctrl) ->
     countryNameMap = {}
 
-    scope.onSelect = (country) ->
-      scope.onSelectCallback(countryNameMap[country])
+    scope.onSelect = () ->
+      scope.onSelectCallback(countryNameMap[scope.data])
 
     Country.query (countries) ->
       scope.countries = countries.countries.map((country) -> country.name)
