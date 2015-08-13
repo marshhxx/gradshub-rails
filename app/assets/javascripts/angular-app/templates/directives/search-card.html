@@ -1,6 +1,17 @@
-<div class="search-card">
-  <div class="header">
-    <div class="cover-img"></div>
-    <div class="profile-img"></div>
+<div class="search-card-wrapper">
+  <div class="search-card">
+    <div class="header">
+      <img ng-src="{{user.cover_image}}" class="cover-ph"/>
+
+      <div class="profile-ph-wrapper">
+        <img ng-src="{{user.profile_image}}" class="profile-ph"/>
+      </div>
+    </div>
+    <div class="content">
+      <div><p class="name">{{user.name}} {{user.lastname}}</p></div>
+      <div><p class="headline">{{user.headline}}</p></div>
+      <div><p class="current-position">{{user.current_position}}, {{user.company}}</p></div>
+      <div><p class="city">{{user.city}}</p></div>
+    </div>
   </div>
 </div>

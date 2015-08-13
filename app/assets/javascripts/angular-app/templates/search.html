@@ -1,1 +1,22 @@
-<search-card></search-card>
+<div class="search">
+
+  <div class="search-header">
+    <div class="container">
+      <div class="wrapper">
+        <span class="search-keyword">{{keyword}}</span>
+        <span class="search-results">+ 2000 results</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-line"></div>
+
+  <div class="search-content">
+    <div class="container">
+      <!-- For each user show user search card !-->
+      <div class="results-container" ng-repeat="user in users">
+        <search-card data="user"></search-card>
+      </div>
+    </div>
+  </div>
+</div>

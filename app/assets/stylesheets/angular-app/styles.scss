@@ -983,74 +983,6 @@ section#section-three {
   cursor: pointer;
 }
 
-section#section-four {
-  width: 100%;
-  padding: 50px;
-  background: url('homepage/background-1.png') no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  overflow: hidden;
-}
-
-.section-four.img {
-  height: 325px;
-}
-
-.features-title {
-  font-size: 4.0em;
-  color: $primary-white;
-  text-transform: uppercase;
-  font-family: Montserrat-Bold, Georgia, "Times New Roman", Times, serif;
-  line-height: normal;
-}
-
-.features-title.hr {
-  width: 50px;
-  height: 1px;
-  margin: 10px 0;
-  padding: 3px 0;
-  border: 0;
-  background: $primary-white;
-}
-
-.features-description {
-  font-size: 1.4em;
-  color: $primary-white;
-  margin-top: 20px;
-  font-family: Lato-Regular, Georgia, "Times New Roman", Times, serif;
-  line-height: normal;
-  line-height: 1.8em;
-}
-
-section#section-five {
-  width: 100%;
-  background: url('homepage/background-2.png') no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  padding: 50px;
-  margin: 10px 0px;
-  overflow: hidden;
-}
-
-section#section-six {
-  width: 100%;
-  background: url('homepage/background-3.png') no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  padding: 50px;
-  overflow: hidden;
-}
-
-.section-five.img {
-  height: 400px;
-}
-
 /*** End features section ***/
 
 /*** Start section How it works ***/
@@ -1059,12 +991,13 @@ section#section-six {
 
 section#section-seven {
   padding: 50px 0px;
+  background-color: $primary-turquoise;
 }
 
 .section-seven.title {
   font-size: 1.8em;
   font-family: Montserrat-Bold, Georgia, "Times New Roman", Times, serif;
-  color: $primary-blue;
+  color: $primary-white;
 }
 
 /*** End section seven ***/
