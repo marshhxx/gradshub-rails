@@ -1,9 +1,9 @@
 angular.module('mepedia.controllers').controller('employerProfileController',
     ['$scope', '$rootScope', '$http', '$upload', 'sessionService', '$state', '$stateParams','Skill', 'Country', 'State',
-        'Employer', 'EmployerSkills', 'EmployerCompany', 'Utils', 'EmployerInterests', 'alertService', 'errors',
+        'Employer', 'EmployerSkills', 'EmployerCompany', 'Utils', 'EmployerInterests', 'alertService', 'errors', '$analytics',
 
         function($scope, $rootScope,$httpProvider, $upload, sessionService, $state, $stateParams,Skill, Country, State,
-                 Employer, EmployerSkills, EmployerCompany, Utils, EmployerInterests, alertService, errors) {
+                 Employer, EmployerSkills, EmployerCompany, Utils, EmployerInterests, alertService, errors, $analytics) {
             var init = function () {
                 getData();
 
@@ -72,16 +72,25 @@ angular.module('mepedia.controllers').controller('employerProfileController',
             $scope.updateEmployerCoverImage = function (coverImage){
                 $scope.user.cover_image = coverImage;
                 updateUser();
+
+                // Log event in Google Analytics
+                $analytics.eventTrack('Cover photo', {  category: 'Employer', label: 'Save button cover photo' });
             }
 
             $scope.updateEmployerCompanyImage = function (companyImage){
                 $scope.employerCompany.image = companyImage;
                 $scope.saveEmployerCompany();
+
+                // Log event in Google Analytics
+                $analytics.eventTrack('Company logo photo', {  category: 'Employer', label: 'Save button company logo' });
             }
 
             $scope.updateEmployerProfileImage = function (profileImage) {
                 $scope.user.profile_image = profileImage;
                 updateUser();
+
+                // Log event in Google Analytics
+                $analytics.eventTrack('Profile photo', {  category: 'Employer', label: 'Save button profile photo' });
             }
             
             var updateUser = function () {
@@ -105,6 +114,9 @@ angular.module('mepedia.controllers').controller('employerProfileController',
                 $scope.saveEmployerCompany();
                 
                 $scope.disableDescriptionEditor();
+
+                // Log event in Google Analytics
+                $analytics.eventTrack('About', {  category: 'Employer', label: 'Save button about' });
             }
 
             $scope.disableDescriptionEditor = function() {

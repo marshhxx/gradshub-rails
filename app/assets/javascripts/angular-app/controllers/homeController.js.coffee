@@ -1,8 +1,8 @@
 angular.module('mepedia.controllers').controller("HomeController", [
   '$http', '$scope', 'Candidate', 'Employer', '$state', '$anchorScroll', '$location', 'sessionService', '$sce',
-  '$stateParams', 'registerService', 'alertService', '$window',
+  '$stateParams', 'registerService', 'alertService', '$window', '$analytics', 
   ($http, $scope, Candidate, Employer, $state, $anchorScroll, $location, sessionService, $sce, $stateParams,
-   registerService, alertService, $window)->
+   registerService, alertService, $window, $analytics)->
 
     $scope.onLoad = (algo) ->
       console.log "Hellooo" + algo
@@ -38,25 +38,35 @@ angular.module('mepedia.controllers').controller("HomeController", [
         IN.User.authorize( ->
           sessionService.loginLinkedin(IN.ENV.auth.member_id, IN.ENV.auth.oauth_token, type).then(
             (response) ->
+              # track event in Google Analytics
+              $analytics.eventTrack 'Linkedin Sign-in/up', { category: response.type, label: 'Signup with Linkedin' }
               $state.go "main.#{response.type.toLowerCase()}_profile", {uid: 'me'}, {reload: true}
           ).catch(
             (error) ->
+              #Add alert service error.
               console.log(error)
           )
         )
 
     registerUser = (isValid) ->
+      userType = ''
+
       if isValid
         if $scope.candidate
           user = new Candidate()
+          userType = 'Candidate'
         else
           user = new Employer()
+          userType = 'Employer'
         user.name = $scope.name
         user.lastname = $scope.lastname
         user.email = $scope.email
         user.password = $scope.password
         registerService.register(user).then(
           (payload) ->
+            # track event in Google Analytics
+            $analytics.eventTrack 'Signup', {  category: userType, label: 'Signup' }
+
             login(registerService.currentUser())
         ).catch(
           (response)->
