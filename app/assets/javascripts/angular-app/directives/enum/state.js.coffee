@@ -9,9 +9,10 @@ StateSelector = (State) ->
   },
   template: (elem, attr) ->
     required = if attr.required == "" then "required" else ""
-    placeholder = if attr.placeholder then attr.placeholder else ""
-    '<input name="state" type="text" ng-model="data" typeahead="state for state in states | filter:$viewValue | limitTo:6" ng-blur="onSelect(data)" ' +
-      required + ' class="form-control input-sm" ng-disabled="isDisabled" id="state" typeahead-on-select="onSelect($item)" placeholder="' + placeholder + '" is-state>'
+    '<select id="state" ng-model="data" ng-change="onSelect()" name="state" class="form-control input-sm" ng-disabled="isDisabled" ' + required + '>' +
+      '<option disabled value="" >Select State</option>' +
+      '<option value="{{state}}" ng-repeat="state in states">{{state}}</option>' +
+    '</select>'
   link: (scope, elm, attrs, ctrl) ->
     scope.isDisabled = true
     stateNameMap = {}
@@ -29,8 +30,8 @@ StateSelector = (State) ->
           scope.isDisabled = true
     )
 
-    scope.onSelect = (state) ->
-      scope.onSelectCallback(stateNameMap[state])
+    scope.onSelect = () ->
+      scope.onSelectCallback(stateNameMap[scope.data])
 
     initStates = (id) ->
       currentId = id

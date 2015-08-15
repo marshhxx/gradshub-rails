@@ -22,17 +22,11 @@
       </div>
       <div class="row text-center">
         <div class="form-group" ng-class="{'has-error': !user.gender && personalForm.$submitted}">
-          <div class="btn-group" dropdown>
-            <button type="button" class="btn btn-primary-120 dropdown-toggle" dropdown-toggle>
-              {{userGender}} <span class="caret"></span>
-            </button>
-            <input name="gender" type="hidden" ng-model="gender" required>
-            <ul class="dropdown-menu gender-dropdown dropdown-menu-gender" role="menu">
-              <li ng-repeat="gender in genders">
-                <a ng-click="onGender($index)">{{gender}}</a>
-              </li>
-            </ul>
-          </div>
+          <select ng-init="user.type='Select Gender'" ng-model="user.gender" name="gender" class="form-control btn btn-primary-120 input-sm" required>
+            <option disabled value="" >Select Gender</option>
+            <option value="{{$index}}" ng-repeat="gender in genders"> {{gender}}</option>
+          </select>
+
           <div ng-if="personalForm.gender.$invalid && (personalForm.$submitted || personalForm.gender.$touched)"
                ng-messages="personalForm.gender.$error">
             <div class="help-block" ng-message="required">

@@ -1,4 +1,4 @@
-ImagePicker = (Cloudinary, $httpProvider, $timeout, Utils) ->
+ImagePicker = ($httpProvider, sessionService, $timeout, Utils, imageService, alertService) ->
   {
   scope:{
     updateImage: '=',
@@ -26,7 +26,7 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout, Utils) ->
     guillotinePhotoElement = $element.find('#guillotine-photo')
     imageWrapper = $element.find('.image-picker.wrapper')
 
-    Cloudinary.config(); #init Cloudinary settings
+    imageService.config() #init Cloudinary settings
 
     #This method will be called when 'User' variable value changes
     $scope.$watch "imageUrl", (value) ->
@@ -47,10 +47,12 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout, Utils) ->
       $scope.spinnerVisible = true          # - photo save and cancel buttons
 
       #Call Cloudinary upload Image method to upload image to cloudinary server
-      delete $httpProvider.defaults.headers.common['Authorization']
-      Cloudinary.uploadImage(file).then((data) ->
-        $scope.cloudinaryPhotoData = data
+      $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
+      imageService.uploadImage(file).then((data) ->
+        $scope.cloudinaryPhotoData = data.image_upload
       ).catch((error)->
+        alertService.addError(error.error, 10000)
+
         $scope.spinnerVisible = false
         $scope.uploadImageBtn = true
       )
@@ -84,13 +86,12 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout, Utils) ->
 
     deleteImage = (imageUrl)->
       #Delete previous uploaded image
-      delete $httpProvider.defaults.headers.common['Authorization'];
+      $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
       if imageUrl
         publicIdSplitArray = imageUrl.split('/')
         publicId = (publicIdSplitArray[publicIdSplitArray.length-1]).split('.')
-        Cloudinary.deleteImage(publicId[0]).then((data)->
-          #On success
-          data = data
+        imageService.deleteImage(publicId[0]).then((data)->
+          # image deleted successfully
         ).catch((error)->
           console.log(error)
         )
@@ -103,7 +104,7 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout, Utils) ->
       imageData.h = Math.round(imageData.h / imageData.scale)
       imageData.x = Math.round(imageData.x / imageData.scale)
       imageData.y = Math.round(imageData.y / imageData.scale)
-      coverPhotoThumbernail = Cloudinary.getThumbnail(imageData, $scope.cloudinaryPhotoData) #Get Cropped Thumbernail
+      coverPhotoThumbernail = imageService.getThumbnail(imageData, $scope.cloudinaryPhotoData) #Get Cropped Thumbernail
 
       #Delete uploaded Image
       deleteImage($scope.imageUrl)
@@ -145,4 +146,5 @@ ImagePicker = (Cloudinary, $httpProvider, $timeout, Utils) ->
 
 angular
 .module('mepedia.directives')
-.directive('simpleimagepicker', ['Cloudinary', '$http', '$timeout', 'Utils', ImagePicker]);
+.directive('simpleimagepicker', ['$http', 'sessionService','$timeout', 'Utils', 
+  'imageService', 'alertService', ImagePicker])

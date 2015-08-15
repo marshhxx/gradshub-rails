@@ -18,13 +18,8 @@ angular
           "Other"
         ]
 
-        $scope.userGender = "Select Gender"
         $scope.selectedFrom = "From"
         $scope.selectedTo = "To"
-
-        $scope.onGender = (index) ->
-          $scope.user.gender = index
-          $scope.gender = $scope.userGender = $scope.genders[index]
 
         $scope.onCountry = (country) ->
           $scope.user.country_id = country.id if country?

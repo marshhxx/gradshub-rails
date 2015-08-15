@@ -17,6 +17,11 @@ Demo::Application.routes.draw do
     end
   end
 
+  # configure linkedin oauth
+  resource :oauth, only: [:linkedin] do
+    get :linkedin, on: :member
+  end
+
   namespace :api, defaults: {format: 'json'} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1) do
     # We are going to list our resources here
@@ -49,6 +54,10 @@ Demo::Application.routes.draw do
       resources :interests, :only => [:index, :create, :show]
       resources :communication, :only => [:create]
       resources :companies, :only => [:index, :create]
+      resource :image, :only => [:upload] do
+        post :upload, on: :member
+        delete :delete, on: :member
+      end
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

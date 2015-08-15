@@ -50,7 +50,8 @@ DatePicker = (Utils) ->
 			refreshDate()
 
 		refreshDate = () ->
-			$scope.date = [$scope.dateYear, Utils.getMonthNumber($scope.dateMonth), $scope.dateDay].join('-') if $scope.dateYear != "Year" and $scope.dateMonth != "Month" and $scope.dateDay != "Day"
+      $scope.date = [$scope.dateYear, Utils.getMonthNumber($scope.dateMonth),
+                     $scope.dateDay].join('-') if $scope.dateYear != "Year" and $scope.dateMonth != "Month" and $scope.dateDay != "Day"
 	}
 angular
 	.module('mepedia.directives')

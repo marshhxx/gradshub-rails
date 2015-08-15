@@ -1,4 +1,9 @@
-FactoryGirl.define do
+FactoryGirl.define do  factory :identity do
+    user nil
+provider "MyString"
+uid "MyString"
+  end
+
   factory :user do
     uid      "unique"
     name     "Michael"

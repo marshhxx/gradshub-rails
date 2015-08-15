@@ -28,6 +28,7 @@ gem 'oj_mimic_json'
 gem  'multi_json'
 
 gem 'rest-client'
+gem 'linkedin'
 
 # Authorization gem.
 gem 'cancancan'
@@ -54,6 +55,8 @@ group :development, :test do
 end
 
 gem 'tzinfo-data', platforms: [:x64_mingw, :mingw, :mswin]
+
+gem 'cloudinary'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

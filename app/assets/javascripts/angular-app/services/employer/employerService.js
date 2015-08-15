@@ -8,6 +8,8 @@ angular
             }
         });
 
+        Employer.className = 'Employer';
+
         Employer.prototype.isEmployer = true;
         return Employer;
 });

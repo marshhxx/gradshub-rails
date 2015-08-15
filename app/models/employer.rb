@@ -26,6 +26,19 @@ class Employer < ActiveRecord::Base
     check_type User.find_by_uid!(id)
   end
 
+  # Finds or create the employer for the give auth object. (Auth object
+  # saves the information of the oauth integration)
+  #
+  # @param auth the oauth integration object.
+  def self.find_for_oauth(auth, signed_in_resource = nil)
+    user = User.find_for_oauth(auth, signed_in_resource)
+    if user.new_record?
+      employer = Employer.new(user: user)
+      employer.save!
+    end
+    user.meta
+  end
+
   private
 
   def self.check_type(user)
