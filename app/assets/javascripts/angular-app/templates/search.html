@@ -12,9 +12,9 @@
   <div class="search-line"></div>
 
   <div class="search-content">
-    <div class="container">
+    <div class="container" infinite-scroll='loadMoreResults()' infinite-scroll-distance='2'>
       <!-- For each user show user search card !-->
-      <div class="results-container" ng-repeat="user in users">
+      <div class="results-container" ng-repeat='user in users'>
         <search-card data="user"></search-card>
       </div>
     </div>

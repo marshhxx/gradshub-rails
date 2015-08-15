@@ -7,8 +7,10 @@ angular
       init = ()->
         $scope.keyword = $stateParams.keyword
         # Call search service
+
+      # Display results
+      $scope.loadMoreResults = ()->
         $scope.users = searchService.search($scope.keyword)
-        # Display results
 
       init()
   ])
