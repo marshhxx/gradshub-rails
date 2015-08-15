@@ -1,8 +1,8 @@
 angular
 .module('mepedia.controllers')
 .controller('mainController',
-  ['$scope', '$rootScope', '$q', 'sessionService', '$state','alertService', '$sce', 'Utils',
-    ($scope, $rootScope, $q, sessionService, $state, alertService, $sce, Utils) ->
+  ['$scope', '$rootScope', '$q', 'sessionService', '$state','alertService', '$sce',
+    ($scope, $rootScope, $q, sessionService, $state, alertService, $sce) ->
 
       init = ->
         $scope.logged = sessionService.isAuthenticated();
@@ -28,6 +28,11 @@ angular
             deferrred.resolve(user)
         ).catch (error) -> deferrred.reject(error)
         $scope.userPromise = deferrred.promise
+
+      # On search submit redirect to search view. Send keyword parameter. Todo ver como pasar directo la variable
+      $scope.onSearchSubmit = () ->
+        if($scope.searchKeyword)
+          $state.go 'main.search', {keyword: $scope.searchKeyword}
 
       init()
   ])

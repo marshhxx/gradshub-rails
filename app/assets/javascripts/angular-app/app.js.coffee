@@ -78,6 +78,10 @@
     url: "/employer/:uid",
     templateUrl: "angular-app/templates/employer_profile.html",
     controller: "employerProfileController",
+  }).state("main.search", {
+    url: "/search/:keyword",
+    templateUrl: "angular-app/templates/search.html",
+    controller: "searchController",
   })
 
   return
