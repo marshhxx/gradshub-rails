@@ -29,11 +29,10 @@ angular
         ).catch (error) -> deferrred.reject(error)
         $scope.userPromise = deferrred.promise
 
-      $scope.searchKeyword = ""
       # On search submit redirect to search view. Send keyword parameter. Todo ver como pasar directo la variable
       $scope.onSearchSubmit = () ->
         if($scope.searchKeyword)
-          $state.go 'main.search', {keyword: $scope.searchKeyword}, { reload: true }
+          $state.go 'main.search', {keyword: $scope.searchKeyword}
 
       init()
   ])
