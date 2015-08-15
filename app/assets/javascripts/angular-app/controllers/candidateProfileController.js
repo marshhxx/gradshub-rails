@@ -2,11 +2,12 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
     ['$scope', '$rootScope', '$http', '$upload', '$location', '$anchorScroll','sessionService', '$state', '$stateParams', 'Country',
         'State', 'Candidate', 'Employer', 'Skill', 'Interest', 'School', 'Major', 'Degree', 'Education', 'CandidateSkills',
         'CandidateInterests', 'CandidateLanguages', 'Utils', 'Experience', 'alertService', 'modalService', 'ALERT_CONSTANTS', 'errors',
+        '$analytics', 
 
 
         function ($scope, $rootScope, $httpProvider, $upload, $location, $anchorScroll, sessionService, $state, $stateParams, Country,
                   State, Candidate, Employer, Skill, Interest, School, Major, Degree, Education, CandidateSkills,
-                  CandidateInterests, CandidateLanguages, Utils, Experience, alertService, modalService, ALERT_CONSTANTS, errors) {
+                  CandidateInterests, CandidateLanguages, Utils, Experience, alertService, modalService, ALERT_CONSTANTS, errors, $analytics) {
 
             $scope.defaultSummary = "Please add your career interests, skills, accomplishments in a concise 2-3 sentences.  The summary needs to grab the interest of the hiring manager. It will help to find the right job for you! ";
             $scope.defaultSkills = "Please list 3-5 skills that align with your desired role.";
@@ -247,6 +248,9 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                         initCandidateProfile(); //Update profile variables;
                         $scope.defaultSummaryEnable = false;
                         alertService.addInfo('Summary successfully updated!', ALERT_CONSTANTS.SUCCESS_TIMEOUT);
+
+                        // Log event in Google Analytics
+                        $analytics.eventTrack('About me', {  category: 'Candidate', label: 'Save button about me' });
                     }
                 ).catch(alertService.defaultErrorCallback);
             };
@@ -266,6 +270,9 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                             return skill.name;
                         });
                         alertService.addInfo('Skills successfully added!', ALERT_CONSTANTS.SUCCESS_TIMEOUT);
+
+                        // Log event in Google Analytics
+                        $analytics.eventTrack('Skills', {  category: 'Candidate', label: 'Save button skills' });
                     }
                 ).catch(alertService.defaultErrorCallback);
             };
@@ -285,6 +292,9 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                             return interest.name;
                         });
                         alertService.addInfo('Interests successfully added!', ALERT_CONSTANTS.SUCCESS_TIMEOUT);
+
+                        // Log event in Google Analytics
+                        $analytics.eventTrack('Interests', {  category: 'Candidate', label: 'Save button interests' });
                     }
                 ).catch(alertService.defaultErrorCallback())
             };
@@ -298,6 +308,9 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     function (response) {
                         addAndSort($scope.user.educations, response.education, Utils.sortByStartDate);
                         alertService.addInfo('Education successfully added!', ALERT_CONSTANTS.SUCCESS_TIMEOUT);
+
+                        // Log event in Google Analytics
+                        $analytics.eventTrack('Education', {  category: 'Candidate', label: 'Save button education' });
                     }
                 ).catch(alertService.defaultErrorCallback);
             };
@@ -312,6 +325,8 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                         addAndSort($scope.user.experiences, response.experience, Utils.sortByStartDate);
                         alertService.addInfo('Experience successfully added!', ALERT_CONSTANTS.SUCCESS_TIMEOUT);
 
+                        // Log event in Google Analytics
+                        $analytics.eventTrack('Experience', {  category: 'Candidate', label: 'Save button experience' });
                     }
                 ).catch(alertService.defaultErrorCallback);
             };
@@ -332,6 +347,9 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                     function(response) {
                         addAndSort($scope.user.languages, response.language);
                         alertService.addInfo('Language successfully added!', ALERT_CONSTANTS.SUCCESS_TIMEOUT);
+
+                        // Log event in Google Analytics
+                        $analytics.eventTrack('Language', {  category: 'Candidate', label: 'Save button language' });
                     }
                 ).catch(alertService.defaultErrorCallback)
             };
@@ -473,11 +491,17 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
             $scope.updateCoverImage = function (coverImage){
                 $scope.user.cover_image = coverImage;
                 updateUser();
+
+                // Log event in Google Analytics
+                $analytics.eventTrack('Cover photo', {  category: 'Candidate', label: 'Save button cover photo' });
             };
 
             $scope.updateProfileImage = function (profileImage){
                 $scope.user.profile_image = profileImage;
                 updateUser();
+
+                // Log event in Google Analytics
+                $analytics.eventTrack('Profile photo', {  category: 'Candidate', label: 'Save button profile photo' });
             };
 
             //<<<<<<<<<<<<<<< utilities functions >>>>>>>>>>>>>>>

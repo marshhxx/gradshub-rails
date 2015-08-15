@@ -1,8 +1,8 @@
 angular
 .module('mepedia.controllers')
 .controller('mainController',
-  ['$scope', '$rootScope', '$q', 'sessionService', '$state','alertService', '$sce', 'Utils',
-    ($scope, $rootScope, $q, sessionService, $state, alertService, $sce, Utils) ->
+  ['$scope', '$rootScope', '$q', 'sessionService', '$state','alertService', '$sce', 'Utils', '$analytics',
+    ($scope, $rootScope, $q, sessionService, $state, alertService, $sce, Utils, $analytics) ->
 
       init = ->
         $scope.logged = sessionService.isAuthenticated();
@@ -10,8 +10,11 @@ angular
         $scope.renderHtml = (htmlCode) -> $sce.trustAsHtml(htmlCode)
 
         initUser()
-
+        
       logout = ->
+        # Log event in Google Analytics
+        $analytics.eventTrack 'Logout', {  category: sessionService.sessionType(), label: 'Save button company logo' }
+        
         sessionService.logout().then(
           -> $state.go 'home.page', null, {reload: true}
         ).catch(
