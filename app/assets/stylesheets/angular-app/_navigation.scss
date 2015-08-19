@@ -1,4 +1,5 @@
 @import "directives/search-card";
+@import "base/colors";
 /* Search bar */
 
 $tl: 0.4s; // transition length
@@ -7,30 +8,33 @@ $tl: 0.4s; // transition length
 
 .search-box {
   transition: width $tl, border-radius $tl, background $tl, box-shadow $tl;
-  width: 120px; height: 40px;
-  border-radius: 20px; border: none;
+  width: 180px;
+  height: 40px;
+  border-radius: 20px;
+  border: none;
+  border: 1px solid $secondary-gray !important;
+  background: $primary-white;
+  font: 15px Lato-Regular !important;
   cursor: pointer;
-  background: rgb(235, 235, 235);
-  & + label .search-icon { color: black; }
+  padding-left: 35px;
+  & + label .search-icon {
+    color: $secondary-gray;
+  }
   &:hover {
-    color: white;
-    background: rgb(200, 200, 200);
-    box-shadow: 0 0 0 5px rgb(61, 71, 82);
-    & + label .search-icon { color: white; }
+    border: 1px solid $secondary-gray !important;
   }
-  &:focus {
-    transition: width $tl, border-radius $tl, background $tl; //cubic-bezier(0,1.22,.66,1.39)
-    border: none; outline: none;
+}
+
+.search-box.focus{
+    transition: width $tl, border-radius $tl, background $tl;
     box-shadow: none;
-    padding-left: 15px;
     cursor: text;
-    width: 260px;
+    width: 300px;
     border-radius: auto;
-    background: rgb(235, 235, 235);
+    border: 1px solid $primary-turquoise-hover !important; outline: none;
+    background: $primary-white;
     color: black;
-    & + label .search-icon { color: black; }
-  }
-  &:not(:focus) { padding-left: 15px; } // for more-graceful falling back (:not browsers likely support indent)
+    &:not(:focus) { } // for more-graceful falling back (:not browsers likely support indent)
 }
 
 #search-submit {
@@ -39,8 +43,18 @@ $tl: 0.4s; // transition length
 
 .search-icon {
   position: relative;
-  left: -30px;
-  color: white;
-  cursor: pointer;
+  left: 30px;
   top: 3px;
+  color: $secondary-gray;
+  cursor: pointer;
+}
+
+.remove-icon{
+  position: relative;
+  left: -40px;
+  top: 3px;
+  color: $secondary-gray;
+  cursor: pointer;
+  z-index: 99;
+  padding: 10px;
 }

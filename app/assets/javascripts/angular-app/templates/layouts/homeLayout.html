@@ -30,11 +30,12 @@
           <a class="page-scroll" ng-if="logged" ng-click="logout()">Logout</a>
         </li>
       </ul>
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="search-container">
+      <!-- Collect the nav links, forms, and other content for toggling // glyphicon-search glyphicon-remove glyphicon glyphicon-remove-sign-->
+      <div class="search-container" >
         <form ng-submit="onSearchSubmit()">
-          <input id="search-box" type="text" class="search-box" ng-model="searchKeyword" name="navbar-search" placeholder="Search" />
           <label for="search-box"><span class="glyphicon glyphicon-search search-icon"></span></label>
+          <input id="search-box" type="text" onfocus="focus" ng-class="{'search-box': blur, 'search-box focus': focus }" ng-model="searchKeyword" name="navbar-search" placeholder="Search" autocomplete="off"  ng-focus="focused()" ng-blur="blurred()" />
+          <span class="glyphicon glyphicon-remove remove-icon" ng-show="searchKeyword.length" ng-mousedown="clearSearch()"></span>
           <input type="submit" id="search-submit" />
         </form>
       </div>

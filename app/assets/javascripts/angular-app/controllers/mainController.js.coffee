@@ -34,5 +34,29 @@ angular
         if($scope.searchKeyword)
           $state.go 'main.search', {keyword: $scope.searchKeyword}
 
+      $scope.clearSearch = () ->
+        $scope.searchKeyword = ""
+        $scope.clear = true
+        $scope.focus = true
+
+      $scope.blur = true
+      $scope.focus = false
+
+      $scope.focused = ()->
+        console.log("got focus");
+        $scope.focus = true
+        $scope.blur = false
+
+      $scope.blurred = ()->
+        console.log("got blurred");
+        if(!$scope.clear)
+          $scope.focus = false
+          $scope.blur = true
+        else
+          $scope.focus = true
+          $scope.blur = false
+          $scope.clear = false
+
+
       init()
   ])
