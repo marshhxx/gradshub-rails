@@ -1289,15 +1289,31 @@ section#signup .form-control:focus {
       padding: 20px 20px 20px 20px;
     }
 
+.button-primary {
+  background-color: rgb(255, 255, 255) !important;
+  border-color: #CCCCCC !important;
+  color: #555555 !important;
+  padding: 2px !important;
+  font-size: 13px !important;
+
+  &:hover {
+    background-color: rgb(255, 255, 255) !important;
+    border-color: rgb(255, 255, 255) !important;
+    color: #555555 !important;
   }
 
-  /* Large Devices, Wide Screens */
-  @media only screen and (min-width: 1200px) {
-
+  &.w75 {
+    width: 75px;
   }
 
-  /* BASIC STYLINGS
-  ============================================================================= */
+  &.w100 {
+    width: 97px;
+  }
+
+  &.w120 {
+    width: 120px;
+  }
+}
 
   /* form styling */
   #form-container {

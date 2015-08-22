@@ -14,7 +14,7 @@ class Employer < ActiveRecord::Base
 
   validates_associated :nationalities, :interests, :skills
   # elasticsearch index update
-  update_index 'users#employer', self
+  update_index 'users#employer', :self
 
 
   def self.find_by_uid(uid)

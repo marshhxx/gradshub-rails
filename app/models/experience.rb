@@ -1,5 +1,7 @@
 class Experience < ActiveRecord::Base
   belongs_to :candidate
+  # update index
+  update_index 'users#candidate', :candidate
 
   validates_presence_of :company_name, :start_date, :job_title
   validates_uniqueness_of :company_name, scope: [:candidate_id, :job_title],

@@ -26,7 +26,7 @@ class UsersIndex < Chewy::Index
       # experience
       field :experience_titles, value: -> { experiences.map(&:job_title)}
       field :experience_company, value: -> { experiences.map(&:company_name)}
-      field :experience_description, boost: 0.5, value: -> {experience.map(&:description).flatten}
+      field :experience_description, boost: 0.5, value: -> {experiences.map(&:description).flatten}
 
   end
 
@@ -41,8 +41,8 @@ class UsersIndex < Chewy::Index
     field :skills, value: -> { skills.map(&:name) }
     field :interests, value: -> { interests.map(&:name) }
     # company
-    field :company_name, value: -> { employer_company.company.name }
-    field :company_description, boost: 0.5, value: -> { employer_company.description}
+    field :company_name, value: -> { employer_company.company.name  if employer_company}
+    field :company_description, boost: 0.5, value: -> { employer_company.description if employer_company}
   end
 
 end

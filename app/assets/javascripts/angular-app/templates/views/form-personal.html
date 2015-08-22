@@ -22,7 +22,7 @@
       </div>
       <div class="row text-center">
         <div class="form-group" ng-class="{'has-error': !user.gender && personalForm.$submitted}">
-          <select ng-init="user.type='Select Gender'" ng-model="user.gender" name="gender" class="form-control btn btn-primary-120 input-sm" required>
+          <select ng-init="user.type='Select Gender'" ng-model="user.gender" name="gender" class="form-control btn button-primary w120 input-sm" required>
             <option disabled value="" >Select Gender</option>
             <option value="{{$index}}" ng-repeat="gender in genders"> {{gender}}</option>
           </select>
@@ -55,8 +55,8 @@
       <div class="row">
         <div class="form-group"
              ng-class="{'has-error': personalForm.state.$invalid && (personalForm.$submitted || personalForm.state.$touched)}">
-          <state-selector placeholder="What state do you live in?" ng-model="state" on-select="onState" country-id="user.country_id"
-                          required></state-selector>
+          <state-selector placeholder="What state do you live in?" ng-model="state"
+                          on-select="onState" country-id="user.country_id" required></state-selector>
           <div ng-if="personalForm.state.$invalid && (personalForm.$submitted || personalForm.state.$touched)"
                ng-messages="personalForm.state.$error">
             <div class="help-block" ng-message="required">

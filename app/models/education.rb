@@ -5,6 +5,8 @@ class Education < ActiveRecord::Base
   belongs_to :degree
   belongs_to :country
   belongs_to :state
+  # update index
+  update_index 'users#candidate', :candidate
 
   validates_presence_of :start_date, :school_id, :major_id, :degree_id
   validates_uniqueness_of :candidate_id, scope: [:school_id, :major_id, :degree_id,

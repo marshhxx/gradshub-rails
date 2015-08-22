@@ -24,7 +24,7 @@ class Candidate < ActiveRecord::Base
   validates_associated :educations, :experiences, :candidate_languages,
                        :interests, :skills, :publications, :nationalities
   # elasticsearch index update
-  update_index 'users#candidate', self
+  update_index 'users#candidate', :self
 
   def self.find_by_uid(uid)
     check_type User.find_by_uid!(uid)
