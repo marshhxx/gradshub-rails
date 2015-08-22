@@ -29,34 +29,15 @@ angular
         ).catch (error) -> deferrred.reject(error)
         $scope.userPromise = deferrred.promise
 
-      # On search submit redirect to search view. Send keyword parameter. Todo ver como pasar directo la variable
+      #On search submit redirect to search view. Send keyword parameter.
       $scope.onSearchSubmit = () ->
         if($scope.searchKeyword)
           $state.go 'main.search', {keyword: $scope.searchKeyword}
 
-      $scope.clearSearch = () ->
-        $scope.searchKeyword = ""
-        $scope.clear = true
-        $scope.focus = true
-
-      $scope.blur = true
-      $scope.focus = false
-
-      $scope.focused = ()->
-        console.log("got focus");
-        $scope.focus = true
-        $scope.blur = false
-
-      $scope.blurred = ()->
-        console.log("got blurred");
-        if(!$scope.clear)
-          $scope.focus = false
-          $scope.blur = true
-        else
-          $scope.focus = true
-          $scope.blur = false
-          $scope.clear = false
-
+      #On mouse down method, clears input when input cross y pressed.
+      $scope.clearSearch = ($event) ->
+        $event.preventDefault(); #Trick to keep input focused.
+        $scope.searchKeyword = "" #Clear
 
       init()
   ])

@@ -23,9 +23,7 @@ $tl: 0.4s; // transition length
   &:hover {
     border: 1px solid $secondary-gray !important;
   }
-}
-
-.search-box.focus{
+  &:focus{
     transition: width $tl, border-radius $tl, background $tl;
     box-shadow: none;
     cursor: text;
@@ -35,6 +33,7 @@ $tl: 0.4s; // transition length
     background: $primary-white;
     color: black;
     &:not(:focus) { } // for more-graceful falling back (:not browsers likely support indent)
+  }
 }
 
 #search-submit {
