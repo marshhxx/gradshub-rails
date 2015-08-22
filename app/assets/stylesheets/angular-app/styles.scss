@@ -1291,14 +1291,14 @@ section#signup .form-control:focus {
 
 .button-primary {
   background-color: rgb(255, 255, 255) !important;
-  border-color: #CCCCCC !important;
+  border-color: $border-gray !important;
   color: #555555 !important;
   padding: 2px !important;
   font-size: 13px !important;
 
   &:hover {
     background-color: rgb(255, 255, 255) !important;
-    border-color: rgb(255, 255, 255) !important;
+    border-color: $border-gray-focus;
     color: #555555 !important;
   }
 

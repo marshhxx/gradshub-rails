@@ -82,6 +82,8 @@ angular
             $scope.education.candidate_id = $scope.user.uid
             $scope.skills.candidate_id = $scope.user.uid
             $scope.candidateNationality.candidate_id = $scope.user.uid
+            # change default gender
+            $scope.user.gender = ''
         )
 
       validateAndCreate = (valid) ->

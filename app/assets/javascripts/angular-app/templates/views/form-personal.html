@@ -22,9 +22,9 @@
       </div>
       <div class="row text-center">
         <div class="form-group" ng-class="{'has-error': !user.gender && personalForm.$submitted}">
-          <select ng-init="user.type='Select Gender'" ng-model="user.gender" name="gender" class="form-control btn button-primary w120 input-sm" required>
-            <option disabled value="" >Select Gender</option>
-            <option value="{{$index}}" ng-repeat="gender in genders"> {{gender}}</option>
+          <select ng-model="user.gender" name="gender" class="form-control btn button-primary w120 input-sm" required>
+            <option selected disabled value="" >Select Gender</option>
+            <option value="{{gender | lowercase}}" ng-repeat="gender in genders"> {{gender}}</option>
           </select>
 
           <div ng-if="personalForm.gender.$invalid && (personalForm.$submitted || personalForm.gender.$touched)"

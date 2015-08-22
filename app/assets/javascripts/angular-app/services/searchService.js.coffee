@@ -1,4 +1,4 @@
-SearchService = () ->
+SearchService = ($http) ->
   service = {}
 
   #Fake search service, creates an array of fake users and returns
@@ -16,14 +16,15 @@ SearchService = () ->
 
   #Infinite scroll option, add 8 "temp" users when scroll reachs bottom
   service.search = (keyword) ->
-    last = users[users.length - 1]
-    i = 1
-    while i <= 8
-      users.push userTemp
-      i++
-    return users;
+    return $http.get('/api/search', {params: {q: keyword, max: 100}})
+#    last = users[users.length - 1]
+#    i = 1
+#    while i <= 8
+#      users.push userTemp
+#      i++
+#    return users;
 
-  service
+  return service
 
 angular
 .module('mepedia.services')

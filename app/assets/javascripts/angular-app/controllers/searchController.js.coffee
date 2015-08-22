@@ -10,7 +10,10 @@ angular
 
       # Display results
       $scope.loadMoreResults = ()->
-        $scope.users = searchService.search($scope.keyword)
+        searchService.search($scope.keyword).then(
+          (response) ->
+            $scope.users = response.data.users
+        )
 
       init()
   ])

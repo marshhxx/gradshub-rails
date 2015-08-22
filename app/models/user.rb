@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   before_create :set_uid
   before_save
 
-  enum gender: {male: 0, female: 1, not_known:2}
+  enum gender: {male: 0, female: 1, other:2}
 
   belongs_to :meta, polymorphic: true
   has_one :identity, autosave: true
