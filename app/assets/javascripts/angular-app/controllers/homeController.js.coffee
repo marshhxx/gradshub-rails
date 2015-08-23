@@ -71,16 +71,13 @@ angular.module('mepedia.controllers').controller("HomeController", [
 
     slides = [
       {
-        image: "/assets/background-marqui.png"
+        image: "/assets/homepage/home-background.jpeg"
       }
       {
-        image: "/assets/background-luli.png"
+        image: "/assets/homepage/home-background.jpeg"
       }
       {
-        image: "/assets/background-nico.png"
-      }
-      {
-        image: "/assets/background-mumi.png"
+        image: "/assets/homepage/home-background.png"
       }
     ]
 

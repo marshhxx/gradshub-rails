@@ -39,5 +39,4 @@ angular
         $event.preventDefault(); #Trick to keep input focused.
         $scope.searchKeyword = "" #Clear
 
-      init()
   ])

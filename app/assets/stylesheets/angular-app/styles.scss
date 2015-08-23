@@ -174,15 +174,15 @@ textarea {
   font-family: 'Opensans-light', Georgia, "Times New Roman", Times, serif;
 }
 
-.title {
-  font-size: 2.2em;
-  font-family: Oswald-regular, Georgia, "Times New Roman", Times, serif;
-}
+//.title {
+//  font-size: 2.2em;
+//  font-family: Oswald-regular, Georgia, "Times New Roman", Times, serif;
+//}
 
-.subtitle {
-  font-size: 1.3em;
-  font-family: Opensans-regular, Georgia, "Times New Roman", Times, serif;
-}
+//.subtitle {
+//  font-size: 1.3em;
+//  font-family: Opensans-regular, Georgia, "Times New Roman", Times, serif;
+//}
 
 .hr {
   border: 1px solid #dce0e0;
@@ -408,82 +408,82 @@ textarea {
   font: 13px Lato-Regular;
 }
 
-.navbar-default {
-  position: inherit;
-  margin-bottom: 0px !important;
-  border-radius: 0px;
-  border: 0 !important;
-  min-height: 70px !important;
-  background-color: $primary-blue;
-}
-
-.navbar-default .navbar-collapse {
-  padding: 10px 0 !important;
-  border-color: rgba(255, 255, 255, .02);
-}
-
-.navbar-default .navbar-toggle {
-  border-color: #3D9ED8;
-  background-color: #3D9ED8;
-}
-
-.navbar-default .navbar-toggle .icon-bar {
-  background-color: #fff;
-}
-
-.navbar-default .navbar-toggle:hover,
-.navbar-default .navbar-toggle:focus {
-  background-color: #3D9ED8;
-}
-
-.navbar-default .nav li a {
-  font: 14px 'Lato-Regular' !important;
-  color: $primary-white;
-  cursor: pointer;
-}
-
-.navbar-default .nav li a:hover,
-.navbar-default .nav li a:focus {
-  outline: 0;
-  color: $primary-white;
-  font: 14px 'Lato-Regular' !important;
-  cursor: pointer;
-}
-
-.navbar-default .navbar-name {
-  color: $primary-turquoise !important;
-  font: 14px Lato-Regular;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  margin: 0px;
-}
-
-.navbar-default .navbar-nav > .active > a {
-  border-radius: 0;
-  background-color: #3D9ED8;
-  cursor: pointer;
-}
-
-@media(min-width: 768px) {
-
-  .navbar-default .navbar-nav > .active > a {
-    border-radius: 0px;
-  }
-
-  .navbar-default.navbar-shrink {
-    padding: 10px 0;
-    background-color: #222;
-  }
-
-  .navbar-default.navbar-shrink .navbar-brand {
-    font-size: 1.5em;
-  }
-
-  .col-margin {
-    width: 5%;
-  }
-
-}
+//.navbar-default {
+//  position: inherit;
+//  margin-bottom: 0px !important;
+//  border-radius: 0px;
+//  border: 0 !important;
+//  min-height: 70px !important;
+//  background-color: $primary-blue;
+//}
+//
+//.navbar-default .navbar-collapse {
+//  padding: 10px 0 !important;
+//  border-color: rgba(255, 255, 255, .02);
+//}
+//
+//.navbar-default .navbar-toggle {
+//  border-color: #3D9ED8;
+//  background-color: #3D9ED8;
+//}
+//
+//.navbar-default .navbar-toggle .icon-bar {
+//  background-color: #fff;
+//}
+//
+//.navbar-default .navbar-toggle:hover,
+//.navbar-default .navbar-toggle:focus {
+//  background-color: #3D9ED8;
+//}
+//
+//.navbar-default .nav li a {
+//  font: 14px 'Lato-Regular' !important;
+//  color: $primary-white;
+//  cursor: pointer;
+//}
+//
+//.navbar-default .nav li a:hover,
+//.navbar-default .nav li a:focus {
+//  outline: 0;
+//  color: $primary-white;
+//  font: 14px 'Lato-Regular' !important;
+//  cursor: pointer;
+//}
+//
+//.navbar-default .navbar-name {
+//  color: $primary-turquoise !important;
+//  font: 14px Lato-Regular;
+//  padding-top: 15px;
+//  padding-bottom: 15px;
+//  margin: 0px;
+//}
+//
+//.navbar-default .navbar-nav > .active > a {
+//  border-radius: 0;
+//  background-color: #3D9ED8;
+//  cursor: pointer;
+//}
+//
+//@media(min-width: 768px) {
+//
+//  .navbar-default .navbar-nav > .active > a {
+//    border-radius: 0px;
+//  }
+//
+//  .navbar-default.navbar-shrink {
+//    padding: 10px 0;
+//    background-color: #222;
+//  }
+//
+//  .navbar-default.navbar-shrink .navbar-brand {
+//    font-size: 1.5em;
+//  }
+//
+//  .col-margin {
+//    width: 5%;
+//  }
+//
+//}
 
 /** Logo Header **/
 
@@ -501,166 +501,200 @@ section#logo .logo {
 }
 
 /** Sign up **/
+/*h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: 700;
+}*/
+
+/*
+.intro-message {
+  position: relative;
+  padding-top: 10%;
+  padding-bottom: 10%;
+}
+
+.intro-message > h1 {
+  margin: 0;
+  text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+  font-size: 5em;
+}
+
+.intro-message > h4 {
+  text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+}
+
+.intro-message > h5 {
+  text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+}
+*/
+
+.intro-divider {
+  width: 400px;
+  border-top: 1px solid #f8f8f8;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+@media(max-width:767px) {
+  /*.intro-message {
+    padding-bottom: 15%;
+  }
+
+  .intro-message > h1 {
+    font-size: 3em;
+  }
+
+  ul.intro-social-buttons > li {
+    display: block;
+    margin-bottom: 20px;
+    padding: 0;
+  }
+
+  ul.intro-social-buttons > li:last-child {
+    margin-bottom: 0;
+  }*/
+
+  .intro-divider {
+    width: 100%;
+  }
+}
 
 header {
-  width: 100%;
-  height: 630px;
-}
-
-.header-signup .title-box {
-  margin: 10px 0;
-}
-
-.header-signup .title {
-  padding: 0px;
-  line-height: 30px;
-  font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
-  font-size: 1.8em;
-  color: $text-title;
-}
-
-.header-signup .subtitle {
-  padding: 5px 0px 5px 0px;
-  margin: 15px 0px 10px 0px;
-  font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
-  font-size: 1.2em;
-  line-height: 22px;
-  color: $text-title;
-}
-
-.header-signup .employer-btn {
-  width: 210px;
-  padding: 15px 0;
-  margin: 0px 0px 15px 0px;
-  font: 18px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
-  border: 3px solid $primary-turquoise;
-  color: $primary-turquoise;
-  border-radius: 4px !important;
-  background-color: transparent;
-  display: inline-block;
-  cursor: pointer;
+  padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+  padding-bottom: 50px;
   text-align: center;
 }
 
-.header-signup .employer-btn-active {
-  background-color: $primary-turquoise;
-  color: $primary-white;
-  text-decoration: none;
-}
+.header-signup{
+  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+  text-shadow: 2px 2px 3px rgba(0,0,0,0.4);
+  color: #f8f8f8;
+  margin: 0;
+  padding: 10% 0;
 
-.header-signup .employer-btn:hover {
-  background-color: $primary-turquoise;
-  color: $primary-white;
-}
+  .title {
+    font-size: 5em;
+    font-weight: 700;
+  }
 
-.header-signup .candidate-btn {
-  width: 210px;
-  padding: 15px 0;
-  margin: 0 15px;
-  font: 18px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
-  border: 3px solid $primary-turquoise;
-  color: $primary-turquoise;
-  background-color: transparent;
-  border-radius: 4px !important;
-  display: inline-block;
-  cursor: pointer;
-  text-align: center;
-}
+  .subtitle {
+    font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+    font-size: 2.8em;
+    margin-top: 20px;
+  }
 
-.header-signup .candidate-btn-active {
-  background-color: $primary-turquoise;
-  color: $primary-white;
-  text-decoration: none;
-}
+  .detail {
+    font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+    font-size: 1.7em;
+    margin-top: 5px;
+  }
 
-.header-signup .candidate-btn:hover {
-  background-color: $primary-turquoise;
-  color: $primary-white;
+  .type-btn {
+    width: 210px;
+    padding: 15px 0;
+    margin: 0px 15px;
+    font: 18px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+    border: 3px solid $primary-white;
+    color: $primary-white;
+    border-radius: 4px !important;
+    background-color: transparent;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+
+    &:hover {
+      background-color: $primary-turquoise-hover;
+      border: 3px solid $primary-turquoise-hover;
+      color: $primary-white;
+    }
+  }
+
+  .type-btn-active{
+    background-color: $primary-turquoise;
+    border: 3px solid $primary-turquoise;
+    color: $primary-white;
+    text-decoration: none;
+  }
+
+  .buttons {
+    padding: 30px 0px;
+  }
+
+  .home-col.name {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .home-col.lastname {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .form-btn-container {
+    width: 100%;
+    display: inline-block;
+    padding: 20px 0px;
+  }
+
+  .form-btn {
+    padding: 10px 30px;
+    background-color: $primary-blue;
+    color: $primary-white;
+    font: 18px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+    border: 3px solid $primary-blue;
+    border-radius: 4px !important;
+    margin: 10px 0;
+    width: 200px;
+    height: 47px;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.dropdown-toggle.form-btn{
+      background-color: $primary-blue;
+      color: $primary-white;
+    }
+  }
+
+  .linkedin-signup {
+    background: url("linkedin_signup-default.png") no-repeat;
+    background-size: 200px 47px;
+    width: 200px;
+    height: 47px;
+    padding: 10px 30px;
+
+    &:active {
+      background: url("linkedin_signup-active.png") no-repeat;
+      background-size: 200px 47px;
+    }
+    &:hover {
+      background: url("linkedin_signup-hover.png") no-repeat;
+      background-size: 200px 47px;
+    }
+  }
 }
 
 section#signup {
   width: 100%;
-  padding: 40px 20px;
   overflow: hidden;
   z-index: 2;
 }
 
-.header-signup .wrapper {
-  width: 100%;
-  display: inline-block;
-}
-
-.header-signup .buttons {
-  width: 100%;
-  display: inline-block;
-  padding: 30px 0px;
-}
-
-.header-signup .home-col.name {
-  padding-left: 0px;
-  padding-right: 0px;
-}
-
-.header-signup .home-col.lastname {
-  padding-left: 0px;
-  padding-right: 0px;
-}
-
-.header-signup .form-btn-container {
-  width: 100%;
-  display: inline-block;
-  padding: 20px 0px;
-}
-
-.header-signup .form-btn {
-  padding: 10px 30px;
-  background-color: $primary-blue;
-  color: $primary-white;
-  font: 18px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
-  border: 3px solid $primary-blue;
-  border-radius: 4px !important;
-  margin: 10px 0;
-  width: 200px;
-  height: 47px;
-}
-
-.header-signup .form-btn:hover,
-.form-btn:focus,
-.form-btn:active,
-.form-btn.active,
-.form-btn.dropdown-toggle.form-btn {
-  background-color: $primary-blue;
-  color: $primary-white;
-}
-
-.header-signup .linkedin-signup {
-  background: url("linkedin_signup-default.png") no-repeat;
-  background-size: 200px 47px;
-  width: 200px;
-  height: 47px;
-  padding: 10px 30px;
-
-  &:active {
-    background: url("linkedin_signup-active.png") no-repeat;
-    background-size: 200px 47px;
-  }
-  &:hover {
-    background: url("linkedin_signup-hover.png") no-repeat;
-    background-size: 200px 47px;
-  }
-}
-
 .home-carousel-container {
   display: block;
-
 }
 
 .carousel-inner {
-  height: 630px;
+//  height: 630px;
 }
 
 .carousel-inner > .item img {
-  width: 100% !important;
+  //width: 100% !important;
+  background-size: cover;
 }
 
 /* Removes carousel buttons */
@@ -670,72 +704,6 @@ section#signup {
 
 .carousel-indicators li {
   display: none;
-}
-
-/* Extra Small Devices, Phones */
-@media only screen and (min-width: 480px) {
-
-  .header-signup .title {
-    font-size: 2.7em;
-  }
-
-  .header-signup .subtitle {
-    font-size: 1.3em;
-  }
-
-}
-
-/* Medium Devices, Desktops */
-@media(min-width: 768px) {
-  .header-signup .title {
-    padding: 0px;
-    line-height: 40px;
-    font-size: 2.8em;
-  }
-
-  .header-signup .subtitle {
-    line-height: 32px;
-    padding: 0px;
-  }
-}
-
-/* Medium Devices, Desktops */
-@media only screen and (min-width: 992px) {
-  .header-signup .subtitle {
-    line-height: 32px;
-    padding: 0px;
-  }
-
-  .home-carousel-container {
-    display: block;
-  }
-
-  .carousel-indicators li {
-    margin: 0 2px !important;
-    display: inline-block;
-  }
-
-  section#signup {
-    position: absolute;
-    padding: 80px 0px 20px 0px;
-  }
-
-  .header-signup .home-col.name {
-    padding-right: 7.5px;
-  }
-
-  .header-signup .home-col.lastname {
-    padding-left: 7.5px;
-  }
-
-}
-
-/* Large Devices, Wide Screens */
-@media only screen and (min-width: 1200px) {
-  .header-signup .subtitle {
-    line-height: 32px;
-    padding: 0px;
-  }
 }
 
 /* Sign up process */
@@ -867,7 +835,7 @@ header .home-carousel-container {
 
   section#signup {
     position: absolute;
-    padding: 80px 0px 20px 0px;
+    //padding: 80px 0px 20px 0px;
   }
 
   section#signup .home-col.name {
@@ -2128,3 +2096,49 @@ section#home-end-quote {
   }
 
 }
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width: 480px) {
+
+
+}
+
+/* Medium Devices, Desktops */
+@media(min-width: 768px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width: 992px) {
+
+
+  .home-carousel-container {
+    display: block;
+  }
+
+  .carousel-indicators li {
+    //margin: 0 2px !important;
+   // display: inline-block;
+  }
+
+  section#signup {
+    position: absolute;
+    //padding: 80px 0px 20px 0px;
+  }
+
+  .header-signup .home-col.name {
+    padding-right: 7.5px;
+  }
+
+  .header-signup .home-col.lastname {
+    padding-left: 7.5px;
+  }
+
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width: 1200px) {
+
+}
+
+
