@@ -1,10 +1,11 @@
 <div class="search-card-wrapper">
   <div class="search-card">
     <div class="header">
-      <img ng-src="{{user.cover_image}}" class="cover-ph"/>
+      <img ng-src="{{user.cover_image && user.cover_image || '/assets/profile/default_cover.png'}}" class="cover-ph"/>
 
       <div class="profile-ph-wrapper">
-        <img ng-src="{{user.profile_image}}" class="profile-ph"/>
+        <img ng-src="{{user.profile_image && user.profile_image || '/assets/profile/' + user.gender + '.svg'}}"
+             class="profile-ph"/>
       </div>
     </div>
     <div class="content">
