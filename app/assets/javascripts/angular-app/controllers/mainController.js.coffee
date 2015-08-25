@@ -54,6 +54,5 @@ angular
       $scope.redirectToSettings = () ->
         $state.go 'main.user_settings'
 
-
       init()
   ])
