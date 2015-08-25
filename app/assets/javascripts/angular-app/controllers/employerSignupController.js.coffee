@@ -115,7 +115,7 @@ angular
         $scope.employerCompany.$save()
 
       saveEmployerNationality = ->
-        $scope.employerNationality.$save()
+        $scope.employerNationality.$save() if $scope.employerNationality.nationality_id
 
       saveSkills = ->
         $scope.skills.skills = $scope.selectedSkills.map((skill) -> {name: skill})
