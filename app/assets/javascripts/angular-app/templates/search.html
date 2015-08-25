@@ -12,7 +12,10 @@
   <div class="search-line"></div>
 
   <div class="search-content">
-    <div class="container" infinite-scroll='loadMoreResults()' infinite-scroll-distance='0'>
+    <div class="search-spinner">
+      <spinner show-spinner="spinnerVisible" ></spinner>
+    </div>
+    <div class="container">
       <!-- For each user show user search card !-->
       <div class="results-container" ng-repeat='user in users track by $index'>
         <search-card data="user"></search-card>

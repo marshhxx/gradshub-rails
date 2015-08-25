@@ -18,11 +18,10 @@ h3 {
   height: 30px;
   font-size: 10px;
   position: relative;
-  margin-top: 182px;
 }
 
-.spinner.small {
-  margin-top: 60px;
+.spinner-margin {
+  margin-top: 182px;
 }
 
 .spinner > div {
@@ -371,7 +370,7 @@ h3 {
 .profile-image.img {
   height: 100%;
   width: 100%;
-  background: url(profile/not_known.svg) no-repeat;
+  background: url(profile/other.svg) no-repeat;
   background-size: 100%;
   position: absolute;
 }
@@ -693,7 +692,7 @@ p {
 }
 
 .profile-right-header-img.summary {
-  background: url(profile/not_known.svg) no-repeat;
+  background: url(profile/other.svg) no-repeat;
   background-size: 40px;
   box-shadow: 0 0 0 2px $bg-gray;
   border-radius: 50%;

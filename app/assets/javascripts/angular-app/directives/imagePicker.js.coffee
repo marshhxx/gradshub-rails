@@ -4,11 +4,9 @@ ImagePicker = ($httpProvider, sessionService, $timeout, Utils, imageService, ale
     updateImage: '=',
     imageUrl: '=',
     circular: '=',
-    size: '=', #Size can be SMALL or NORMAL
   },
   templateUrl: 'angular-app/templates/directives/image-picker.html',
   link: ($scope, $element, attr) ->
-
     # flag that shows if user is seeing its profile.
     $scope.notMe = Utils.notMe()
     
