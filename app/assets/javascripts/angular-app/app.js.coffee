@@ -81,6 +81,10 @@
     url: "/search/:keyword",
     templateUrl: "angular-app/templates/search.html",
     controller: "searchController",
+  }).state("main.user_settings", {
+    url: "/settings/",
+    templateUrl: "angular-app/templates/settings.html",
+    controller: "settingsController"
   })
 
   return

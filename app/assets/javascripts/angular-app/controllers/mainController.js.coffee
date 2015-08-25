@@ -51,5 +51,9 @@ angular
         $location.hash old
         return
 
+      $scope.redirectToSettings = () ->
+        $state.go 'main.user_settings'
+
+
       init()
   ])

@@ -1,0 +1,40 @@
+.settings-wrapper {
+  label {
+    color: #000000;
+  }
+}
+
+.title-wrapper {
+  h3 {
+    text-transform: capitalize;
+  }
+}
+
+.line-wrapper {
+  .edit-button-settings {
+    background: url(pencil.svg) no-repeat;
+    background-size: 17px;
+    width: 17px;
+    height: 17px;
+    cursor: pointer;
+    visibility: hidden;
+    &:hover {
+      background: url(pencil-hover.svg) no-repeat;
+      background-size: 17px;
+    }
+  }
+
+  .input-wrapper {
+    text-transform: capitalize;
+  }
+
+  &:hover .edit-button-settings{
+    visibility: visible;
+  }
+}
+
+.box-edit-wrapper {
+  option, select {
+    text-transform: capitalize; 
+  }
+}

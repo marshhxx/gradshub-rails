@@ -36,7 +36,8 @@
           <a class="login-btn" ng-if="logged" ng-click="logout()">Logout</a>
         </li>
       </ul>
-      <!-- Collect the nav links, forms, and other content for toggling -->
+      <p class="navbar-name navbar-right" ng-if="logged">Hi {{username}}!</p>
+      <p class="access-setting-button" ng-if="logged" ng-click="redirectToSettings()">Settings</p>
     </div>
     <!-- /.navbar-collapse -->
   </div>
