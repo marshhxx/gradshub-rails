@@ -29,8 +29,6 @@ angular.module('mepedia.controllers').controller("HomeController", [
         $location.hash "top"
         $anchorScroll()
 
-      $scope.loginOnePgr = loginOnePgr
-
       $scope.registerUser = registerUser
 
       $scope.signupLinkedin = () ->
@@ -60,11 +58,7 @@ angular.module('mepedia.controllers').controller("HomeController", [
             login(registerService.currentUser())
         ).catch(
           (response)->
-            error = response.data.error
-            if error.code == "ERR02"
-              $state.go 'main.login_onepgr', {mail: user.email}
-            else
-              $scope.serverErrors = error
+            $scope.serverErrors = response.data.error
         )
       else
         $scope.submitted = true
@@ -100,19 +94,6 @@ angular.module('mepedia.controllers').controller("HomeController", [
               It was great to finally find someone that I could trust. </br> Ron Y. Murphy"
       }
     ]
-
-    ########  OnePgr login #########
-    $scope.onepgr_email = $stateParams.mail
-    loginOnePgr = () ->
-      user = registerService.currentUser()
-      user.onepgr_password = $scope.password
-      registerService.register(user).then(
-        () ->
-          login(registerService.currentUser())
-      ).catch(
-        (response) ->
-          console.log(response.data.error)
-      )
 
     login = (user) ->
       sessionService.login(user.email, user.password).then(

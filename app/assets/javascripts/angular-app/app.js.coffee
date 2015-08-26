@@ -24,10 +24,6 @@
     url: "/login",
     templateUrl: "angular-app/templates/login.html",
     controller: "loginController",
-  }).state("main.login_onepgr", {
-    url: "/login?mail",
-    templateUrl: "angular-app/templates/views/login_onepgr.html",
-    controller: "HomeController",
   }).state("main.forgotpssw", {
     url: "/forgotpssw",
     templateUrl: "angular-app/templates/views/forgot_pssw.html",

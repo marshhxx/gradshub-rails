@@ -34,8 +34,6 @@ class AddFieldsToUsers < ActiveRecord::Migration
       t.integer :meta_id
       t.string :meta_type
 
-      t.belongs_to :onepgr_account
-
       t.timestamp
     end
     add_index :users, [:meta_id, :meta_type]
@@ -47,14 +45,6 @@ class AddFieldsToUsers < ActiveRecord::Migration
 
       t.belongs_to :country
       t.belongs_to :state
-
-      t.timestamp
-    end
-
-    create_table :onepgr_accounts do |t|
-      t.string :onepgr_id
-      t.string :onepgr_password,        default: "", null: false
-      t.string :session_token
 
       t.timestamp
     end
