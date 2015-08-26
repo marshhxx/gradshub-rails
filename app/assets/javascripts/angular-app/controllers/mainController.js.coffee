@@ -45,4 +45,5 @@ angular
         $location.hash "top"
         $anchorScroll()
 
+      init()
   ])
