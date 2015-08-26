@@ -1,8 +1,8 @@
 angular
 .module('mepedia.controllers')
 .controller('mainController',
-  ['$scope', '$rootScope', '$q', 'sessionService', '$state','alertService', '$sce',
-    ($scope, $rootScope, $q, sessionService, $state, alertService, $sce) ->
+  ['$scope', '$rootScope', '$q', 'sessionService', '$state','alertService', '$sce', '$location',
+    ($scope, $rootScope, $q, sessionService, $state, alertService, $sce, $location) ->
 
       init = ->
         $scope.logged = sessionService.isAuthenticated();
@@ -38,5 +38,11 @@ angular
       $scope.clearSearch = ($event) ->
         $event.preventDefault(); #Trick to keep input focused.
         $scope.searchKeyword = "" #Clear
+
+      $scope.gotoTop = ->
+        # set the location.hash to the id of
+        # the element you wish to scroll to.
+        $location.hash "top"
+        $anchorScroll()
 
   ])
