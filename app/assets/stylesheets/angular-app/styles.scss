@@ -174,20 +174,6 @@ textarea {
   font-family: 'Opensans-light', Georgia, "Times New Roman", Times, serif;
 }
 
-//.title {
-//  font-size: 2.2em;
-//  font-family: Oswald-regular, Georgia, "Times New Roman", Times, serif;
-//}
-
-//.subtitle {
-//  font-size: 1.3em;
-//  font-family: Opensans-regular, Georgia, "Times New Roman", Times, serif;
-//}
-
-.hr {
-  border: 1px solid #dce0e0;
-}
-
 .form_label {
   color: #3f4752;
   font-size: 14px;
@@ -228,6 +214,10 @@ textarea {
 
 .padding-t-20{
   padding-top: 20px;
+}
+
+.padding-tb-20{
+  padding: 20px 0px;
 }
 
 .padding-t-60 {
@@ -408,82 +398,11 @@ textarea {
   font: 13px Lato-Regular;
 }
 
-//.navbar-default {
-//  position: inherit;
-//  margin-bottom: 0px !important;
-//  border-radius: 0px;
-//  border: 0 !important;
-//  min-height: 70px !important;
-//  background-color: $primary-blue;
-//}
-//
-//.navbar-default .navbar-collapse {
-//  padding: 10px 0 !important;
-//  border-color: rgba(255, 255, 255, .02);
-//}
-//
-//.navbar-default .navbar-toggle {
-//  border-color: #3D9ED8;
-//  background-color: #3D9ED8;
-//}
-//
-//.navbar-default .navbar-toggle .icon-bar {
-//  background-color: #fff;
-//}
-//
-//.navbar-default .navbar-toggle:hover,
-//.navbar-default .navbar-toggle:focus {
-//  background-color: #3D9ED8;
-//}
-//
-//.navbar-default .nav li a {
-//  font: 14px 'Lato-Regular' !important;
-//  color: $primary-white;
-//  cursor: pointer;
-//}
-//
-//.navbar-default .nav li a:hover,
-//.navbar-default .nav li a:focus {
-//  outline: 0;
-//  color: $primary-white;
-//  font: 14px 'Lato-Regular' !important;
-//  cursor: pointer;
-//}
-//
-//.navbar-default .navbar-name {
-//  color: $primary-turquoise !important;
-//  font: 14px Lato-Regular;
-//  padding-top: 15px;
-//  padding-bottom: 15px;
-//  margin: 0px;
-//}
-//
-//.navbar-default .navbar-nav > .active > a {
-//  border-radius: 0;
-//  background-color: #3D9ED8;
-//  cursor: pointer;
-//}
-//
-//@media(min-width: 768px) {
-//
-//  .navbar-default .navbar-nav > .active > a {
-//    border-radius: 0px;
-//  }
-//
-//  .navbar-default.navbar-shrink {
-//    padding: 10px 0;
-//    background-color: #222;
-//  }
-//
-//  .navbar-default.navbar-shrink .navbar-brand {
-//    font-size: 1.5em;
-//  }
-//
-//  .col-margin {
-//    width: 5%;
-//  }
-//
-//}
+.navbar-default .navbar-nav > li > a{
+  &:hover{
+    color: $primary-turquoise-hover;
+  }
+}
 
 /** Logo Header **/
 
@@ -500,38 +419,22 @@ section#logo .logo {
   background-size: 200px auto;
 }
 
-/** Sign up **/
-/*h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
-  font-weight: 700;
-}*/
+.login-btn {
+  color: $primary-turquoise !important;
+  font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+  font-size: 14px;
+  border: 2px solid $primary-turquoise;
+  border-radius: 4px !important;
+  padding: 6px !important;
+  cursor: pointer;
+  margin-top: 9px;
+  margin-left: 50px;
 
-/*
-.intro-message {
-  position: relative;
-  padding-top: 10%;
-  padding-bottom: 10%;
+  &:hover {
+    color: $primary-turquoise-hover !important;
+    border: 2px solid $primary-turquoise-hover;
+  }
 }
-
-.intro-message > h1 {
-  margin: 0;
-  text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
-  font-size: 5em;
-}
-
-.intro-message > h4 {
-  text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
-}
-
-.intro-message > h5 {
-  text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
-}
-*/
 
 .intro-divider {
   width: 400px;
@@ -540,66 +443,60 @@ h6 {
 }
 
 @media(max-width:767px) {
-  /*.intro-message {
-    padding-bottom: 15%;
-  }
-
-  .intro-message > h1 {
-    font-size: 3em;
-  }
-
-  ul.intro-social-buttons > li {
-    display: block;
-    margin-bottom: 20px;
-    padding: 0;
-  }
-
-  ul.intro-social-buttons > li:last-child {
-    margin-bottom: 0;
-  }*/
-
   .intro-divider {
     width: 100%;
   }
 }
 
 header {
+  width: 100%;
+  height: 830px;
+  background-size: cover !important;
   padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
   padding-bottom: 50px;
   text-align: center;
 }
 
 .header-signup{
-  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
-  text-shadow: 2px 2px 3px rgba(0,0,0,0.4);
-  color: #f8f8f8;
+  color: $primary-white;
   margin: 0;
-  padding: 10% 0;
+  padding: 6% 0;
 
   .title {
     font-size: 5em;
     font-weight: 700;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.4);
   }
 
   .subtitle {
     font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
-    font-size: 2.8em;
+    font-size: 2.0em;
     margin-top: 20px;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.3);
   }
 
   .detail {
-    font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
-    font-size: 1.7em;
+    font-family: 'Lato-Regular',Helvetica,Arial,sans-serif;
+    font-size: 1.5em;
     margin-top: 5px;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.3);
+  }
+
+  .divider {
+    width: 400px;
+    border-top: 1px solid #f8f8f8;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    margin-top: 10px !important;
+    margin-bottom: 25px;
   }
 
   .type-btn {
     width: 210px;
+    font: 18px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+    color: $primary-white;
     padding: 15px 0;
     margin: 0px 15px;
-    font: 18px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
     border: 3px solid $primary-white;
-    color: $primary-white;
     border-radius: 4px !important;
     background-color: transparent;
     display: inline-block;
@@ -637,43 +534,46 @@ header {
   .form-btn-container {
     width: 100%;
     display: inline-block;
-    padding: 20px 0px;
   }
 
   .form-btn {
-    padding: 10px 30px;
+    width: 100%;
+    height: 47px;
     background-color: $primary-blue;
     color: $primary-white;
-    font: 18px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
-    border: 3px solid $primary-blue;
+    font-size: 16px;
+    font-family: "Lato-Regular";
+    border: 1px solid $primary-blue;
     border-radius: 4px !important;
-    margin: 10px 0;
-    width: 200px;
-    height: 47px;
+    padding: 10px 30px;
 
     &:hover,
     &:focus,
     &:active,
-    &.dropdown-toggle.form-btn{
+    &.dropdown-toggle.form-btn {
       background-color: $primary-blue;
       color: $primary-white;
     }
-  }
 
-  .linkedin-signup {
-    background: url("linkedin_signup-default.png") no-repeat;
-    background-size: 200px 47px;
-    width: 200px;
-    height: 47px;
-    padding: 10px 30px;
+    &.linkedin {
+      background-color: $secondary-linkedin;
+      border: 1px solid $secondary-linkedin;
+      margin-top: 10px;
 
-    &:active {
-      background: url("linkedin_signup-active.png") no-repeat;
-      background-size: 200px 47px;
-    }
-    &:hover {
-      background: url("linkedin_signup-hover.png") no-repeat;
-      background-size: 200px 47px;
+      &.linkedin > p {
+       color: $primary-white;
+       font-size: 16px;
+       display: inline-block;
+      }
+
+      .icon {
+       width: 18px;
+       height: 16px;
+       background: url("homepage/ic_linkedin.png") no-repeat center;
+       background-size: 20px;
+       margin-right: 15px;
+       display: inline-block;
+     }
     }
   }
 }
@@ -689,11 +589,11 @@ section#signup {
 }
 
 .carousel-inner {
-//  height: 630px;
+  height: 830px;
 }
 
 .carousel-inner > .item img {
-  //width: 100% !important;
+  width: 100% !important;
   background-size: cover;
 }
 
@@ -916,7 +816,7 @@ section#section-two {
   margin-bottom: 40px;
   font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
   font-size: 1.2em;
-  color: $text-title;
+  color: $text-bold;
   float: none !important;
 }
 
@@ -929,7 +829,6 @@ section#section-three {
 }
 
 .features-image {
-  margin-bottom: 20px;
   width: 100px;
   height: 100px;
   background-size: 100px;
@@ -950,29 +849,27 @@ section#section-three {
 }
 
 .features-txt {
-  width: 195px;
+  width: 215px;
+  color: $primary-blue;
   font-size: 1.5em;
   font-family: Montserrat-Light, Georgia, "Times New Roman", Times, serif;
   left: 0;
   right: 0;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
-.features-arrow {
-  width: 35px;
-  height: 35px;
-  background: url("homepage/features_arrow.svg");
-  background-size: 35px;
-  display: block;
+.features-detail-txt {
+  color: $text-regular;
+  font-size: 1.2em;
+  font-family: Lato-Light, Georgia, "Times New Roman", Times, serif;
   left: 0;
   right: 0;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 20px;
-  cursor: pointer;
 }
+
 
 /*** End features section ***/
 
@@ -1144,13 +1041,13 @@ section#section-thirteen {
 }
 
 .section-thirteen-top-padding {
-  padding: 60px 80px;
-  height: 350px;
+  padding: 40px 80px;
+  //height: 280px;
 }
 
 .section-thirteen.img {
-  height: 350px;
-  background-size: auto 350px !important;
+  height: 280px;
+  background-size: auto 300px !important;
 }
 
 .section-thirteen.img.testimonial-1{
@@ -1182,7 +1079,7 @@ section#section-thirteen {
 
 .section-thirteen.txt {
   font-family: 'Lato-Light-Italic', Georgia, "Times New Roman", Times, serif;
-  font-size: 16px;
+  font-size: 1.2em;
   color: $text-regular;
 }
 
@@ -1200,7 +1097,7 @@ footer#home {
 
 footer#home .footer-above {
   background-color: $footer-bg;
-  padding: 100px 0px;
+  padding: 60px 0px 0px;
 }
 
 footer#home .button {
@@ -1227,20 +1124,18 @@ footer#home .button {
 .footer-li {
   float: left;
   color: $primary-white;
-  font: 16px Lato-Medium-Italic, Georgia, "Times New Roman", Times, serif;
+  font: 1.2em Lato-Regular, Georgia, "Times New Roman", Times, serif;
   cursor: pointer;
   text-decoration: none;
 }
 
 .footer-li:hover {
-  font-size: 16px;
   color: $primary-turquoise;
-  cursor: pointer;
   text-decoration: none;
 }
 
 .footer-sign-txt {
-  font: 14px Lato-Regular, Georgia, "Times New Roman", Times, serif;
+  font: 14px Lato-Light, Georgia, "Times New Roman", Times, serif;
   color: $primary-white;
 }
 
@@ -2002,7 +1897,7 @@ section#home-end-quote {
 
   /* section two */
   section#section-two {
-    padding: 120px 0px 30px 0;
+    padding: 120px 0px 40px 0;
   }
 
   .home-section-two-container {
@@ -2012,13 +1907,13 @@ section#home-end-quote {
 
   .home-section-two.section-heading {
     font-size: 4.5em;
-    margin-bottom: 40px;
+    margin-bottom: 25px;
   }
 
   .home-section-two.section-subheading {
     margin-bottom: 35px;
     margin-top: 15px;
-    font-size: 2.0em;
+    font-size: 1.8em;
   }
 
   .features-image {
@@ -2028,7 +1923,7 @@ section#home-end-quote {
   }
 
   .features-txt {
-    margin-bottom: 0px;
+    margin-bottom: 20px;
   }
 
   /* section three */
@@ -2052,7 +1947,7 @@ section#home-end-quote {
   }
 
   section#section-twelve {
-    padding: 150px 0px;
+    padding: 70px 0px;
   }
 
   .section-twelve.title {
@@ -2116,14 +2011,8 @@ section#home-end-quote {
     display: block;
   }
 
-  .carousel-indicators li {
-    //margin: 0 2px !important;
-   // display: inline-block;
-  }
-
   section#signup {
     position: absolute;
-    //padding: 80px 0px 20px 0px;
   }
 
   .header-signup .home-col.name {
