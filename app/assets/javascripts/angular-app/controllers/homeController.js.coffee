@@ -109,7 +109,7 @@ angular.module('mepedia.controllers').controller("HomeController", [
     login = (user) ->
       sessionService.login(user.email, user.password).then(
         (resp) ->
-          $state.go "main.signup_#{resp.type.toLowerCase()}.personal", null, {reload: true}
+          $state.go "simple.signup_#{resp.type.toLowerCase()}.personal", null, {reload: true}
       ).catch(
         (errors) ->
           console.log(errors)
