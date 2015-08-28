@@ -889,22 +889,24 @@ textarea {
 
 .btn-language-level {
   width: 120px;
+  height: $input-height-small;
   font: 12px Lato-Regular, Georgia, serif !important;
   color: $primary-white !important;
   background: $primary-turquoise;
   border: 1px solid $primary-turquoise;
-}
+  border-radius: 0px;
 
-.btn-language-level:hover {
-  color: $primary-white;
-  background: $primary-turquoise;
-  border: 1px solid $primary-turquoise;
-}
+  &:hover {
+    color: $primary-white;
+    background: $primary-turquoise;
+    border: 1px solid $primary-turquoise;
+  }
 
-.btn-language-level:active {
-  color: $primary-white;
-  background: $primary-turquoise-hover;
-  border: 1px solid $primary-turquoise-hover;
+  &:active {
+    color: $primary-white;
+    background: $primary-turquoise-hover;
+    border: 1px solid $primary-turquoise-hover;
+  }
 }
 
 

@@ -1,5 +1,6 @@
 Major.delete_all
 [
+    {:id => 0, :name => "Other"},
     {:name => "Agriculture, Agriculture Operations, and Related Sciences"},
     {:name => "Architecture and Related Services"},
     {:name => "Area, Ethnic, Cultural, Gender, and Group Studies"},

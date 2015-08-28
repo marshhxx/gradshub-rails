@@ -33,8 +33,12 @@ angular.module('mepedia.directives').directive('addEducation', function (Utils) 
             /* Methods */
 
             scope.onSchool = function (school) {
-                if (school != undefined)
+                if (!school) return;
+                if (Utils.isObject(school)) {
                     scope.education.school_id = school.id;
+                } else {
+                    scope.education.other_school = school
+                }
             };
 
             scope.onState = function (state) {
@@ -48,13 +52,21 @@ angular.module('mepedia.directives').directive('addEducation', function (Utils) 
             };
 
             scope.onMajor = function (major) {
-                if (major != undefined)
-                    scope.education.major_id = major.id
+                if (!major) return;
+                if (Utils.isObject(major)) {
+                    scope.education.major_id = major.id;
+                } else {
+                    scope.education.other_major = major
+                }
             };
 
             scope.onDegree = function (degree) {
-                if (degree != undefined)
-                    scope.education.degree_id = degree.id
+                if (!degree) return;
+                if (Utils.isObject(degree)) {
+                    scope.education.degree_id = degree.id;
+                } else {
+                    scope.education.other_degree = degree
+                }
             };
 
             scope.onCancel = function () {

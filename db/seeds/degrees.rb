@@ -1,5 +1,6 @@
 Degree.delete_all
 [
+    {:id => 0, :name => "Other"},
     {:name => "Bachelor of Architecture"},
     {:name => "Bachelor of Biomedical Science"},
     {:name => "Bachelor of Business Administration"},

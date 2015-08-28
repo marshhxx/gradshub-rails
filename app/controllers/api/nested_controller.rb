@@ -118,7 +118,7 @@ class Api::NestedController < Api::BaseController
   end
 
   def get_collection
-    if collection_params then
+    if collection_params
       collection_params["#{resource_name.pluralize}"].map {
           |x| resource_class.find_or_create_by(x)
       }

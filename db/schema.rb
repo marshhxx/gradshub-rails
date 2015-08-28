@@ -21,9 +21,10 @@ ActiveRecord::Schema.define(version: 20150705143428) do
   add_index "candidate_interests", ["candidate_id", "interest_id"], name: "index_candidate_interests_on_candidate_id_and_interest_id", unique: true, using: :btree
 
   create_table "candidate_languages", force: true do |t|
-    t.integer "candidate_id"
-    t.integer "language_id"
-    t.integer "level",        default: 0
+    t.integer "candidate_id",               null: false
+    t.integer "language_id",                null: false
+    t.string  "other_language"
+    t.integer "level",          default: 0
   end
 
   add_index "candidate_languages", ["candidate_id", "language_id"], name: "index_candidate_languages_on_candidate_id_and_language_id", unique: true, using: :btree
@@ -80,8 +81,11 @@ ActiveRecord::Schema.define(version: 20150705143428) do
   create_table "educations", force: true do |t|
     t.integer "candidate_id"
     t.integer "school_id",    null: false
+    t.string  "other_school"
     t.integer "major_id",     null: false
+    t.string  "other_major"
     t.integer "degree_id",    null: false
+    t.string  "other_degree"
     t.integer "country_id"
     t.integer "state_id"
     t.text    "description"

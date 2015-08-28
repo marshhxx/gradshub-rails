@@ -64,6 +64,10 @@ var Utils = function(Candidate, Employer, $stateParams) {
         return $stateParams.uid && $stateParams.uid != '' && $stateParams.uid != 'me';
     };
 
+    utils.isObject = function (value) {
+        return value instanceof Object;
+    };
+
     return utils;
 };
 angular

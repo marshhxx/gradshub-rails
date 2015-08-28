@@ -11,16 +11,13 @@ LanguageForm = (Language) ->
 	templateUrl: 'angular-app/templates/directives/language-form.html',
 	link: (scope, $element) ->
 
-		if scope.data? and !scope.data.level?
-			scope.level = "Select your level"
-		else
-			scope.level = scope.data.level
+		if scope.data?
+      scope.level = scope.data.level if scope.data.level?
 
 		scope.levels = ['Begginer', 'Intermediate', 'Advanced']
 
-		scope.languageSelected = (index) ->
-			scope.level = scope.levels[index]
-			scope.data.level = index
+		scope.onLevelSelect = () ->
+			scope.data.level = scope.level
 
 		scope.onLanguage = (language) ->
 			scope.data.language_id = language.id if language?
