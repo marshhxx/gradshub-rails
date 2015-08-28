@@ -16,6 +16,10 @@
     abstract: true,
     templateUrl: "angular-app/templates/layouts/mainLayout.html",
     controller: "mainController",
+  }).state("simple", {
+    abstract: true,
+    templateUrl: "angular-app/templates/layouts/simpleLayout.html",
+    controller: "mainController",
   }).state("home.page", {
     url: "/home",
     templateUrl: "angular-app/templates/home.html",

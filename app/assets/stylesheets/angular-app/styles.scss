@@ -397,10 +397,21 @@ textarea {
   font: 13px Lato-Regular;
 }
 
+.navbar {
+  margin-bottom: 0px !important;
+}
+
 .navbar-default .navbar-nav > li > a{
   &:hover{
     color: $primary-turquoise-hover;
   }
+}
+
+.username {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: $primary-blue;
+  font-family: Montserrat-Light, Georgia, "Times New Roman", Times, serif;
 }
 
 /** Logo Header **/
@@ -428,6 +439,7 @@ section#logo .logo {
   cursor: pointer;
   margin-top: 9px;
   margin-left: 50px;
+  margin-right: -15px;
 
   &:hover {
     color: $primary-turquoise-hover !important;
@@ -615,7 +627,7 @@ section#signup .form-control:focus {
 .signup-title {
   width: 100%;
   height: 75px;
-  margin-top: 20px;
+  margin-top: 50px;
   text-align: center;
   color: #ffffff;
   font: 22px Montserrat-Regular;
@@ -1181,17 +1193,13 @@ footer#main .footer-above {
 
 .signup .subtitle {
   font-size: 14px;
-  font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+  font-family: Montserrat-Light, Georgia, "Times New Roman", Times, serif;
   color: $text-title;
 }
 
 .signup .form-box-cont {
   padding: 0px 0px;
-  margin-top: 20px;
-}
-
-.signup .form-box-cont {
-  // padding: 0 30px;
+  margin-top: 25px;
 }
 
 .signup-label {
@@ -1309,7 +1317,7 @@ footer#main .footer-above {
   }
 
   .signup .signup-form {
-    padding: 40px 20px 20px 20px;
+    padding: 20px 20px 20px 20px;
   }
 
 }
@@ -1560,7 +1568,6 @@ label {
   border: 1px solid black;
   border-radius: 6px !important;
   padding: 10px;
-
 }
 
 .login.button-submit:hover {
