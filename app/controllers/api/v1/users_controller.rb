@@ -49,17 +49,13 @@ class Api::V1::UsersController < Api::BaseController
 
 
   def nest_user_attributes(parameters)
-    user_attr = parameters.slice(:name, :lastname, :email, :password, :gender, :birth, :profile_image, :cover_image, :tag)
-    parameters.slice!(:name, :lastname, :email, :password, :gender, :birth, :profile_image, :cover_image, :tag, :onepgr_password)
+    user_attr = parameters.slice(:name, :lastname, :email, :gender, :birth, :profile_image, :cover_image, :tag)
+    parameters.slice!(:name, :lastname, :email, :gender, :birth, :profile_image, :cover_image, :tag)
               .merge({:user_attributes => user_attr})
   end
 
   def user_params
     resource_params[:user_attributes]
-  end
-
-  def onepgr_password
-    params[resource_name][:onepgr_password]
   end
 
   def query_params
