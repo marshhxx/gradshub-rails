@@ -6,112 +6,108 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="header-signup">
-              <div class="title">Gradshub</div>
-              <hr class="divider">
-              <div class="subtitle">Showcase the real you</div>
-              <div class="detail" ng-show="candidate">Create a compelling profile and be discovered by employer. Find
-                the right job.
+              <div class="title">GRADSHUB</div>
+              <div class="subtitle" ng-show="candidate">Create a compelling profile and be discovered by employers.
               </div>
-              <div class="detail" ng-show="!candidate">Show the soul of your company and attract the talent you are
-                searching for. Hire the best grads.
+              <div class="subtitle" ng-show="!candidate">Show the soul of your company and attract the talent you are
+                searching for.
               </div>
 
-              <div class="col-lg-12 col-sm-12 text-center">
+              <div class="col-lg-4 col-lg-offset-4 col-sm-12 text-center">
                 <div class="buttons">
-                            <span id="employer-btn" class="type-btn"
+                            <span id="employer-btn" class="type-btn btn-left"
                                   ng-click="isEmployer()"
                                   ng-class="{'type-btn-active': !candidate}">EMPLOYER
                             </span>
-                             <span id="candidate-btn" class="type-btn" ng-click="isCandidate()"
+                             <span id="candidate-btn" class="type-btn btn-right" ng-click="isCandidate()"
                                    ng-class="{'type-btn-active': candidate}">CANDIDATE</span>
                 </div>
 
-                <div class="col-lg-4 col-lg-offset-4  col-sm-12 text-center">
-                  <form name="homeForm" ng-submit="registerUser(homeForm.$valid)" novalidate>
-                    <div class="form">
-                      <div class="col-md-6 col-sm-6 home-col name">
-                        <div class="form-group"
-                             ng-class="{'has-error': homeForm.name.$invalid && (homeForm.$submitted || homeForm.name.$dirty)}">
-                          <input type="text" name="name" class="form-control" ng-model="name"
-                                 placeholder="Your Name" required>
 
-                          <div ng-if="homeForm.name.$invalid && (homeForm.$submitted || homeForm.name.$dirty)"
-                               ng-messages="homeForm.name.$error">
-                            <div class="help-block" ng-message="required">
-                              Enter your name.
-                            </div>
-                          </div>
+                <form name="homeForm" ng-submit="registerUser(homeForm.$valid)" novalidate>
+                  <div class="form">
+
+                    <div class="form-group signup"
+                         ng-class="{'has-error': homeForm.name.$invalid && (homeForm.$submitted || homeForm.name.$dirty)}">
+                      <input type="text" name="name" class="form-control" ng-model="name"
+                             placeholder="Your Name" required>
+
+                      <div ng-if="homeForm.name.$invalid && (homeForm.$submitted || homeForm.name.$dirty)"
+                           ng-messages="homeForm.name.$error">
+                        <div class="help-block" ng-message="required">
+                          Enter your name.
                         </div>
                       </div>
-
-                      <div class="col-md-6 col-sm-6 home-col lastname">
-                        <div class="form-group"
-                             ng-class="{'has-error': homeForm.lastname.$invalid && (homeForm.$submitted || homeForm.lastname.$dirty)}">
-                          <input type="text" name="lastname" class="form-control" ng-model="lastname"
-                                 placeholder="Your Last Name" required>
-
-                          <div ng-if="homeForm.lastname.$invalid && (homeForm.$submitted || homeForm.lastname.$dirty)"
-                               ng-messages="homeForm.lastname.$error">
-                            <div class="help-block" ng-message="required">
-                              Enter your last name.
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="form-group control-group"
-                           ng-class="{'has-error': homeForm.email.$invalid && (homeForm.$submitted || homeForm.email.$touched)}">
-                        <input type="email" name="email" class="form-control" ng-model="email"
-                               placeholder="Your Email" required>
-
-                        <div ng-if="homeForm.email.$invalid && (homeForm.$submitted || homeForm.email.$touched)"
-                             ng-messages="homeForm.email.$error">
-                          <div class="help-block" ng-message="required">
-                            Enter your email.
-                          </div>
-                          <div class="help-block" ng-message="email">
-                            Enter a valid email.
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="form-group control-group"
-                           ng-class="{'has-error': homeForm.password.$invalid && (homeForm.$submitted || homeForm.password.$touched)}">
-                        <input type="password" name="password" class="form-control" ng-model="password"
-                               placeholder="Your Password"
-                               ng-minlength="5" ng-maxlength="20" required>
-
-                        <div ng-if="homeForm.password.$invalid && (homeForm.$submitted || homeForm.password.$touched)"
-                             ng-messages="homeForm.password.$error">
-                          <div class="help-block" ng-message="required">
-                            Enter your password.
-                          </div>
-                          <div class="help-block" ng-message="minlength">
-                            Your password is too short.
-                          </div>
-                          <div class="help-block" ng-message="maxlength">
-                            Your password is too long.
-                          </div>
-                        </div>
-                      </div>
-
                     </div>
 
-                    <div class="form-btn-container">
-                      <div class="control-group has-error" ng-messages="serverErrors">
-                        <div class="help-block" ng-repeat="error in serverErrors.reasons">
-                          <div>{{ error }}</div>
+
+                    <div class="form-group signup"
+                         ng-class="{'has-error': homeForm.lastname.$invalid && (homeForm.$submitted || homeForm.lastname.$dirty)}">
+                      <input type="text" name="lastname" class="form-control" ng-model="lastname"
+                             placeholder="Your Last Name" required>
+
+                      <div ng-if="homeForm.lastname.$invalid && (homeForm.$submitted || homeForm.lastname.$dirty)"
+                           ng-messages="homeForm.lastname.$error">
+                        <div class="help-block" ng-message="required">
+                          Enter your last name.
                         </div>
                       </div>
-                      <button type="submit" class="form-btn btn" ng-if="!candidate">Sign up as <strong>Employer</strong>
-                      </button>
-                      <button type="submit" class="form-btn btn" ng-if="candidate">Sign up as <strong>Candidate</strong>
-                      </button>
-                      <div ng-click="signupLinkedin()" class="form-btn linkedin btn"><span class="icon"></span>
-                        <p href="">Sign up with <strong>Linkedin</strong></p> <span></span></div>
                     </div>
-                  </form>
-                </div>
+
+                    <div class="form-group signup control-group"
+                         ng-class="{'has-error': homeForm.email.$invalid && (homeForm.$submitted || homeForm.email.$touched)}">
+                      <input type="email" name="email" class="form-control" ng-model="email"
+                             placeholder="Your Email" required>
+
+                      <div ng-if="homeForm.email.$invalid && (homeForm.$submitted || homeForm.email.$touched)"
+                           ng-messages="homeForm.email.$error">
+                        <div class="help-block" ng-message="required">
+                          Enter your email.
+                        </div>
+                        <div class="help-block" ng-message="email">
+                          Enter a valid email.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group signup control-group"
+                         ng-class="{'has-error': homeForm.password.$invalid && (homeForm.$submitted || homeForm.password.$touched)}">
+                      <input type="password" name="password" class="form-control" ng-model="password"
+                             placeholder="Your Password"
+                             ng-minlength="5" ng-maxlength="20" required>
+
+                      <div ng-if="homeForm.password.$invalid && (homeForm.$submitted || homeForm.password.$touched)"
+                           ng-messages="homeForm.password.$error">
+                        <div class="help-block" ng-message="required">
+                          Enter your password.
+                        </div>
+                        <div class="help-block" ng-message="minlength">
+                          Your password is too short.
+                        </div>
+                        <div class="help-block" ng-message="maxlength">
+                          Your password is too long.
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="form-btn-container">
+                    <div class="control-group has-error" ng-messages="serverErrors">
+                      <div class="help-block" ng-repeat="error in serverErrors.reasons">
+                        <div>{{ error }}</div>
+                      </div>
+                    </div>
+                    <button type="submit" class="form-btn btn" ng-if="!candidate">Sign up as <strong>Employer</strong>
+                    </button>
+                    <button type="submit" class="form-btn btn" ng-if="candidate">Sign up as <strong>Candidate</strong>
+                    </button>
+                    <div ng-click="signupLinkedin()" class="form-btn linkedin btn"><span class="icon"></span>
+
+                      <p href="">Sign up with <strong>Linkedin</strong></p> <span></span></div>
+                  </div>
+                </form>
+
               </div>
 
             </div>

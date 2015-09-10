@@ -6,7 +6,7 @@ angular
     ($scope, $rootScope, $q, $httpProvider, $state, sessionService, Skill, Candidate, Interest, CandidateNationalities,
      Education, CandidateSkills, Utils, alertService)->
       init = ->
-        $state.go 'simple.signup_candidate.personal'
+        $state.go 'main.signup_candidate.personal'
         $scope.selectedTags = []
         $scope.education = new Education()
         $scope.skills = new CandidateSkills()
@@ -54,16 +54,16 @@ angular
         $scope.selectedSkills = [];
 
         $scope.validatePersonal = (valid) ->
-          $state.go 'simple.signup_candidate.education' if valid
+          $state.go 'main.signup_candidate.education' if valid
 
         $scope.validateEducation = (valid) ->
-          $state.go 'simple.signup_candidate.interests' if valid
+          $state.go 'main.signup_candidate.interests' if valid
 
         $scope.backToPersonal = ->
-          $state.go 'simple.signup_candidate.personal'
+          $state.go 'main.signup_candidate.personal'
 
         $scope.backToEducation = ->
-          $state.go 'simple.signup_candidate.education'
+          $state.go 'main.signup_candidate.education'
 
         $scope.validateAndCreate = validateAndCreate
 
