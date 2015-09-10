@@ -1,20 +1,20 @@
 
-<div ng-if="!noDay" class="btn-group" dropdown>
-  <select ng-model="dateDay" ng-change="refreshDate()" name="gender" class="form-control btn btn-primary-70 input-sm" ng-disabled="disabled" required>
+<div ng-show="!noDay" class="btn-group">
+  <select ng-model="dateDay" ng-change="refreshDate()" name="day" class="form-control btn button-primary w100 input-sm" ng-disabled="disabled" required>
     <option disabled value="Day" >Day</option>
     <option value="{{day}}" ng-repeat="day in days"> {{day}}</option>
   </select>
 </div>
 
-<div ng-if="!noMonth" class="btn-group margin-l10" dropdown >
-  <select ng-model="dateMonth" ng-change="refreshDate()" name="gender" class="form-control btn btn-primary-70 input-sm" ng-disabled="disabled" required>
+<div ng-show="!noMonth" class="btn-group margin-l10" >
+  <select ng-model="dateMonth" ng-change="refreshDate()" name="month" class="form-control btn button-primary w100 input-sm" ng-disabled="disabled" required>
     <option disabled value="Month" >Month</option>
     <option value="{{month}}" ng-repeat="month in months"> {{month}}</option>
   </select>
 </div>
 
-<div class="btn-group margin-l10" dropdown >
-  <select ng-model="dateYear" ng-change="refreshDate()" class="form-control btn btn-primary-70 input-sm" ng-disabled="disabled" required>
+<div class="btn-group margin-l10" >
+  <select ng-model="dateYear" ng-change="refreshDate()" name="year" class="form-control btn button-primary w100 input-sm" ng-disabled="disabled" required>
     <option disabled value="Year" >Year</option>
     <option value="{{year}}" ng-repeat="year in years"> {{year}}</option>
   </select>

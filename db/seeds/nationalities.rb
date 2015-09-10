@@ -183,7 +183,6 @@ Nationality.delete_all
     {:name => "Venezuelan"},
     {:name => "Vietnamese"},
     {:name => "Welsh"},
-    {:name => "Zambian"},
     {:name => "Yemeni"},
     {:name => "Zambian"},
     {:name => "Zimbabwean"},

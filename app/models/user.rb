@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   before_create :set_uid
   before_save
 
-  enum gender: {male: 0, female: 1, not_known:2}
+  enum gender: {male: 0, female: 1, other:2}
 
   belongs_to :meta, polymorphic: true
   has_one :identity, autosave: true
@@ -74,6 +74,14 @@ class User < ActiveRecord::Base
     user
   end
 
+  def self.search(query, limit=50, per_page=0)
+    index.query(query_string: {query: query}).limit(limit).load.to_a
+  end
+
+  def self.index
+    UsersIndex
+  end
+
   protected
   def set_uid
     # This only works before_create obviously, otherwise it would
@@ -87,4 +95,5 @@ class User < ActiveRecord::Base
     self.generate_authentication_token!
     self.save
   end
+
 end

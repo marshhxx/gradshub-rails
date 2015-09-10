@@ -6,6 +6,7 @@ angular
     ($scope, $q, $httpProvider, $state, sessionService, Skill, Employer, Interest, EmployerNationalities,
      Company, EmployerCompany, EmployerSkills, EmployerInterests, Utils, alertService) ->
       init = ->
+        $scope.user = {} # init user because some of the input requires it.
         $state.go 'main.signup_employer.personal'
         $scope.selectedInterests = []
         $scope.selectedSkills = []
@@ -80,6 +81,8 @@ angular
             $scope.skills.employer_id = $scope.user.uid
             $scope.interests.employer_id = $scope.user.uid
             $scope.employerNationality.employer_id = $scope.user.uid
+            # change default gender
+            $scope.user.gender = ''
         )
 
       validateAndCreate = (valid) ->

@@ -1,16 +1,25 @@
 angular
 .module('mepedia.controllers')
 .controller("searchController",
-  ['$scope', '$rootScope', '$q', '$http', '$state', 'sessionService', '$stateParams', 'searchService'
-    ($scope, $rootScope, $q, $httpProvider, $state, sessionService, $stateParams, searchService)->
+  ['$scope', '$rootScope', '$q', '$http', '$state', 'sessionService', '$stateParams', 'searchService', 'alertService',
+    ($scope, $rootScope, $q, $httpProvider, $state, sessionService, $stateParams, searchService, alertService)->
 
       init = ()->
+        $scope.spinnerVisible = false
         $scope.keyword = $stateParams.keyword
-        # Call search service
+        loadResults($scope.keyword)
 
       # Display results
-      $scope.loadMoreResults = ()->
-        $scope.users = searchService.search($scope.keyword)
+      loadResults = (keyword)->
+        $scope.spinnerVisible = true
+        searchService.search(keyword).then(
+          (response) ->
+            $scope.users = response.data.users
+        ).catch(
+          (error) -> alertService.defaultErrorCallback(error)
+        ).finally(
+          -> $scope.spinnerVisible = false
+        )
 
       init()
   ])

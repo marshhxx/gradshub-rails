@@ -21,8 +21,13 @@ class Candidate < ActiveRecord::Base
   has_many :candidate_nationalities
   has_many :nationalities, :through => :candidate_nationalities
 
+  #transient attributes
+  attr_accessor :current_position
+
   validates_associated :educations, :experiences, :candidate_languages,
                        :interests, :skills, :publications, :nationalities
+  # elasticsearch index update
+  update_index 'users#candidate', :self
 
   def self.find_by_uid(uid)
     check_type User.find_by_uid!(uid)
@@ -34,12 +39,6 @@ class Candidate < ActiveRecord::Base
 
   def self.find(id)
     check_type User.find_by_uid!(id)
-  end
-
-  def self.check_type(user)
-    if user.meta_type == 'Candidate'
-      user.meta
-    end
   end
 
   # Finds or create the candidate for the give auth object. (Auth object
@@ -63,6 +62,28 @@ class Candidate < ActiveRecord::Base
       candidate.save!
     end
     user.meta
+  end
+
+  # Transient property for displaying the latest position while searching.
+  def current_position
+    @current_position ||= calculate_position
+  end
+
+  def calculate_position
+    ongoing = self.experiences.map { |e| e if !e.end_date }.compact
+    positions = ongoing.any? ? ongoing : self.experiences
+    sorted = positions.sort {
+        |left, right| left.start_date <=> right.start_date
+    }
+    sorted[0] if sorted.any?
+  end
+
+  private
+
+  def self.check_type(user)
+    if user.meta_type == 'Candidate'
+      user.meta
+    end
   end
 
 end

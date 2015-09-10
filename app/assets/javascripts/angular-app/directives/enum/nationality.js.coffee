@@ -8,15 +8,15 @@ NationalitiesSelector = (Nationality) ->
   },
   template: (elem, attr) ->
     required = if attr.required == "" then "required" else ""
-    placeholder = if attr.placeholder then attr.placeholder else ""
-    '<input name="nationality" type="text" ng-model="data" ' + required +
-      ' typeahead="nationality for nationality in nationalities | filter:$viewValue | limitTo:6" ng-blur="onSelect(data)" ' +
-      'required class="form-control input-sm" id="nationality" typeahead-on-select="onSelect($item)" placeholder="' + placeholder + '" is-nationality>'
+    '<select id="nationality" ng-model="data" ng-change="onSelect()" name="country" class="form-control input-sm" ng-disabled="disabled" ' + required + '>' +
+      '<option disabled value="" >Select Nationality</option>' +
+      '<option value="{{nationality}}" ng-repeat="nationality in nationalities">{{nationality}}</option>' +
+    '</select>'
   link: (scope, elm, attrs, ctrl) ->
     nationalityNameMap = {}
 
-    scope.onSelect = (nationality) ->
-      scope.onSelectCallback(nationalityNameMap[nationality]) if nationality of nationalityNameMap
+    scope.onSelect = () ->
+      scope.onSelectCallback(nationalityNameMap[scope.data])
 
     Nationality.query (nationalities) ->
       scope.nationalities = nationalities.nationalities.map (nationality) -> nationality.name

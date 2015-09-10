@@ -58,6 +58,9 @@ gem 'tzinfo-data', platforms: [:x64_mingw, :mingw, :mswin]
 
 gem 'cloudinary'
 
+# elasticsearch integration
+gem 'chewy'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

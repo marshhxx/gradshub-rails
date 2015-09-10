@@ -29,11 +29,6 @@
 //= require ng-file-upload
 //= require jquery-guillotine
 
-//Search
-//= require ngInfiniteScroll
-
-//= require cryptojslib/rollups/sha1
-
 //= require angulartics
 //= require angulartics-google-analytics
 

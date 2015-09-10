@@ -13,6 +13,9 @@ class Employer < ActiveRecord::Base
   has_many :skills, :through => :employer_skills
 
   validates_associated :nationalities, :interests, :skills
+  # elasticsearch index update
+  update_index 'users#employer', :self
+
 
   def self.find_by_uid(uid)
     check_type User.find_by_uid!(uid)
@@ -37,6 +40,17 @@ class Employer < ActiveRecord::Base
       employer.save!
     end
     user.meta
+  end
+
+  # Transient property for displaying the latest position while searching.
+  def current_position
+    @current_position ||= calculate_position
+  end
+
+  def calculate_position
+    title = self.job_title ? self.job_title : ''
+    company_name = self.employer_company ? self.employer_company.company.name : ''
+    OpenStruct.new({:job_title => title, :company_name => company_name})
   end
 
   private

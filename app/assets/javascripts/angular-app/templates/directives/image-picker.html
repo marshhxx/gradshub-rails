@@ -1,5 +1,7 @@
 <div class="image-picker wrapper">
-    <spinner show-spinner="spinnerVisible" size="size"></spinner>
+    <div class="spinner-margin">
+      <spinner show-spinner="spinnerVisible" ></spinner>
+    </div>
     <img class="image-picker default-image" ng-show="defaultImage" src="/assets/{{default}}"/>
 
     <div ng-class="{'image-picker content-shadow':!circular, 'image-picker content':circular}" ng-show="photo">
@@ -16,13 +18,13 @@
     </div>
 </div>
 <div ng-if="!notMe" ng-class="{'image-picker upload-btn-wrapper-center': circular, 'image-picker upload-btn-wrapper-left': !circular}" ng-show="uploadImageBtn">
-    <div ng-class="{'image-picker upload-btn-center': circular, 'image-picker upload-btn-right': !circular, 'small': size=='SMALL'}" ng-file-select="onFileSelect($files)" data-multiple="false" title="Cover Photo" onclick="this.value = null"></div>
+    <div ng-class="{'image-picker upload-btn-center': circular, 'image-picker upload-btn-right': !circular}" ng-file-select="onFileSelect($files)" data-multiple="false" title="Cover Photo" onclick="this.value = null"></div>
 </div>
 <div ng-class="{'image-picker btn-wrapper-center': circular, 'image-picker btn-wrapper-right': !circular}" ng-show="photoButtons">
-    <a ng-click="savePhoto()" class="btn image-picker edit-btn" ng-class="{'small': size=='SMALL'}">
+    <a ng-click="savePhoto()" class="btn image-picker edit-btn" >
         <span>SAVE</span>
     </a>
-    <a ng-click="cancelPhoto()" class="btn image-picker edit-btn margin-l5" ng-class="{'small': size=='SMALL'}">
+    <a ng-click="cancelPhoto()" class="btn image-picker edit-btn margin-l5">
         <span>CANCEL</span>
     </a>
 </div>
