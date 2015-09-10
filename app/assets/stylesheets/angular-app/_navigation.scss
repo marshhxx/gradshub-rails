@@ -4,7 +4,28 @@
 
 $tl: 0.4s; // transition length
 
-.search-container{ margin-top: 4px;}
+
+.navbar {
+  margin-bottom: 0px !important;
+}
+
+.navbar-default {
+  background-color: $primary-blue !important;
+  border-color: $primary-blue !important;;
+}
+
+.navbar-default .navbar-brand {
+  color: $primary-white !important;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: $primary-white !important;
+  &:hover {
+    color: $primary-turquoise-hover;
+  }
+}
+
+.search-container{ margin-top: 5px; float: right; margin-left: 40px}
 
 .search-box {
   transition: width $tl, border-radius $tl, background $tl, box-shadow $tl;
@@ -12,7 +33,7 @@ $tl: 0.4s; // transition length
   height: 40px;
   border-radius: 20px;
   border: none;
-  border: 1px solid $secondary-gray !important;
+  border: 1px solid $border-gray !important;
   background: $primary-white;
   font: 15px Lato-Regular !important;
   cursor: pointer;
@@ -21,7 +42,7 @@ $tl: 0.4s; // transition length
     color: $secondary-gray;
   }
   &:hover {
-    border: 1px solid $secondary-gray !important;
+    border: 1px solid $border-gray-focus !important;
   }
   &:focus{
     transition: width $tl, border-radius $tl, background $tl;
@@ -29,7 +50,7 @@ $tl: 0.4s; // transition length
     cursor: text;
     width: 300px;
     border-radius: auto;
-    border: 1px solid $primary-turquoise-hover !important; outline: none;
+    border: 1px solid $border-gray-focus !important; outline: none;
     background: $primary-white;
     color: black;
     &:not(:focus) { } // for more-graceful falling back (:not browsers likely support indent)

@@ -115,7 +115,6 @@ input {
   color: $text-inputs !important;
   font-family: Lato-Regular !important;
   font-size: 13px !important;
-  //box-shadow: inset 0 1px #f5f5f5;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   border: 1px solid $border-gray;
@@ -174,20 +173,6 @@ textarea {
   font-family: 'Opensans-light', Georgia, "Times New Roman", Times, serif;
 }
 
-.title {
-  font-size: 2.2em;
-  font-family: Oswald-regular, Georgia, "Times New Roman", Times, serif;
-}
-
-.subtitle {
-  font-size: 1.3em;
-  font-family: Opensans-regular, Georgia, "Times New Roman", Times, serif;
-}
-
-.hr {
-  border: 1px solid #dce0e0;
-}
-
 .form_label {
   color: #3f4752;
   font-size: 14px;
@@ -228,6 +213,10 @@ textarea {
 
 .padding-t-20{
   padding-top: 20px;
+}
+
+.padding-tb-20{
+  padding: 20px 0px;
 }
 
 .padding-t-60 {
@@ -408,81 +397,11 @@ textarea {
   font: 13px Lato-Regular;
 }
 
-.navbar-default {
-  position: inherit;
-  margin-bottom: 0px !important;
-  border-radius: 0px;
-  border: 0 !important;
-  min-height: 70px !important;
-  background-color: $primary-blue;
-}
-
-.navbar-default .navbar-collapse {
-  padding: 10px 0 !important;
-  border-color: rgba(255, 255, 255, .02);
-}
-
-.navbar-default .navbar-toggle {
-  border-color: #3D9ED8;
-  background-color: #3D9ED8;
-}
-
-.navbar-default .navbar-toggle .icon-bar {
-  background-color: #fff;
-}
-
-.navbar-default .navbar-toggle:hover,
-.navbar-default .navbar-toggle:focus {
-  background-color: #3D9ED8;
-}
-
-.navbar-default .nav li a {
-  font: 14px 'Lato-Regular' !important;
-  color: $primary-white;
-  cursor: pointer;
-}
-
-.navbar-default .nav li a:hover,
-.navbar-default .nav li a:focus {
-  outline: 0;
-  color: $primary-white;
-  font: 14px 'Lato-Regular' !important;
-  cursor: pointer;
-}
-
-.navbar-default .navbar-name {
-  color: $primary-turquoise !important;
-  font: 14px Lato-Regular;
+.username {
   padding-top: 15px;
   padding-bottom: 15px;
-  margin: 0px;
-}
-
-.navbar-default .navbar-nav > .active > a {
-  border-radius: 0;
-  background-color: #3D9ED8;
-  cursor: pointer;
-}
-
-@media(min-width: 768px) {
-
-  .navbar-default .navbar-nav > .active > a {
-    border-radius: 0px;
-  }
-
-  .navbar-default.navbar-shrink {
-    padding: 10px 0;
-    background-color: #222;
-  }
-
-  .navbar-default.navbar-shrink .navbar-brand {
-    font-size: 1.5em;
-  }
-
-  .col-margin {
-    width: 5%;
-  }
-
+  color: $primary-white;
+  font-family: Montserrat-Light, Georgia, "Times New Roman", Times, serif;
 }
 
 /** Logo Header **/
@@ -500,167 +419,158 @@ section#logo .logo {
   background-size: 200px auto;
 }
 
-/** Sign up **/
+.login-btn {
+  color: $primary-turquoise !important;
+  background-color: $primary-turquoise;
+  font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+  font-size: 14px;
+  border: 2px solid $primary-turquoise;
+  border-radius: 4px !important;
+  padding: 6px !important;
+  cursor: pointer;
+  margin-top: 9px;
+  margin-left: 50px;
+  margin-right: -15px;
+
+  &:hover {
+    color: $primary-turquoise-hover !important;
+    border: 2px solid $primary-turquoise-hover;
+    background-color: $primary-turquoise-hover !important;
+  }
+}
 
 header {
   width: 100%;
-  height: 630px;
-}
-
-.header-signup .title-box {
-  margin: 10px 0;
-}
-
-.header-signup .title {
-  padding: 0px;
-  line-height: 30px;
-  font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
-  font-size: 1.8em;
-  color: $text-title;
-}
-
-.header-signup .subtitle {
-  padding: 5px 0px 5px 0px;
-  margin: 15px 0px 10px 0px;
-  font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
-  font-size: 1.2em;
-  line-height: 22px;
-  color: $text-title;
-}
-
-.header-signup .employer-btn {
-  width: 210px;
-  padding: 15px 0;
-  margin: 0px 0px 15px 0px;
-  font: 18px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
-  border: 3px solid $primary-turquoise;
-  color: $primary-turquoise;
-  border-radius: 4px !important;
-  background-color: transparent;
-  display: inline-block;
-  cursor: pointer;
+  height: 830px;
+  background-size: cover !important;
+  padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+  padding-bottom: 50px;
   text-align: center;
 }
 
-.header-signup .employer-btn-active {
-  background-color: $primary-turquoise;
+.header-signup {
   color: $primary-white;
-  text-decoration: none;
-}
+  margin: 0;
+  padding: 10% 0;
+  overflow: hidden;
+  width: 100%;
 
-.header-signup .employer-btn:hover {
-  background-color: $primary-turquoise;
-  color: $primary-white;
-}
+  .title {
+    font-size: 5em;
+    font-weight: 700;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.4);
+  }
 
-.header-signup .candidate-btn {
-  width: 210px;
-  padding: 15px 0;
-  margin: 0 15px;
-  font: 18px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
-  border: 3px solid $primary-turquoise;
-  color: $primary-turquoise;
-  background-color: transparent;
-  border-radius: 4px !important;
-  display: inline-block;
-  cursor: pointer;
-  text-align: center;
-}
+  .subtitle {
+    font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+    font-size: 1.6em;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.3);
+  }
 
-.header-signup .candidate-btn-active {
-  background-color: $primary-turquoise;
-  color: $primary-white;
-  text-decoration: none;
-}
+  .type-btn {
+    width: 165px;
+    font: 18px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+    color: $primary-white;
+    padding: 15px 0;
+    margin-bottom: 15px;
+    border: 3px solid $primary-white;
+    border-radius: 4px !important;
+    background-color: transparent;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    &.btn-left {
+      float: left;
+    }
+    &.btn-right {
+      float: right;
+    }
 
-.header-signup .candidate-btn:hover {
-  background-color: $primary-turquoise;
-  color: $primary-white;
+    &:hover {
+      background-color: $primary-turquoise-hover;
+      border: 3px solid $primary-turquoise-hover;
+      color: $primary-white;
+    }
+  }
+
+  .type-btn-active{
+    background-color: $primary-turquoise;
+    border: 3px solid $primary-turquoise;
+    color: $primary-white;
+    text-decoration: none;
+  }
+
+  .buttons {
+    width: 100%;
+    margin-top: 30px;
+    overflow: hidden;
+  }
+
+  .form-btn-container {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 15px;
+  }
+
+  .form-btn {
+    width: 100%;
+    height: 47px;
+    background-color: $primary-blue;
+    color: $primary-white;
+    font-size: 16px;
+    font-family: "Lato-Regular";
+    border: 1px solid $primary-blue;
+    border-radius: 4px !important;
+    padding: 10px 30px;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.dropdown-toggle.form-btn {
+      background-color: $primary-blue;
+      color: $primary-white;
+    }
+
+    &.linkedin {
+      background-color: $secondary-linkedin;
+      border: 1px solid $secondary-linkedin;
+      margin-top: 10px;
+
+      &.linkedin > p {
+       color: $primary-white;
+       font-size: 16px;
+       display: inline-block;
+      }
+
+      .icon {
+       width: 18px;
+       height: 16px;
+       background: url("homepage/ic_linkedin.png") no-repeat center;
+       background-size: 20px;
+       margin-right: 15px;
+       display: inline-block;
+     }
+    }
+  }
 }
 
 section#signup {
   width: 100%;
-  padding: 40px 20px;
   overflow: hidden;
   z-index: 2;
 }
 
-.header-signup .wrapper {
-  width: 100%;
-  display: inline-block;
-}
-
-.header-signup .buttons {
-  width: 100%;
-  display: inline-block;
-  padding: 30px 0px;
-}
-
-.header-signup .home-col.name {
-  padding-left: 0px;
-  padding-right: 0px;
-}
-
-.header-signup .home-col.lastname {
-  padding-left: 0px;
-  padding-right: 0px;
-}
-
-.header-signup .form-btn-container {
-  width: 100%;
-  display: inline-block;
-  padding: 20px 0px;
-}
-
-.header-signup .form-btn {
-  padding: 10px 30px;
-  background-color: $primary-blue;
-  color: $primary-white;
-  font: 18px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
-  border: 3px solid $primary-blue;
-  border-radius: 4px !important;
-  margin: 10px 0;
-  width: 200px;
-  height: 47px;
-}
-
-.header-signup .form-btn:hover,
-.form-btn:focus,
-.form-btn:active,
-.form-btn.active,
-.form-btn.dropdown-toggle.form-btn {
-  background-color: $primary-blue;
-  color: $primary-white;
-}
-
-.header-signup .linkedin-signup {
-  background: url("linkedin_signup-default.png") no-repeat;
-  background-size: 200px 47px;
-  width: 200px;
-  height: 47px;
-  padding: 10px 30px;
-
-  &:active {
-    background: url("linkedin_signup-active.png") no-repeat;
-    background-size: 200px 47px;
-  }
-  &:hover {
-    background: url("linkedin_signup-hover.png") no-repeat;
-    background-size: 200px 47px;
-  }
-}
-
 .home-carousel-container {
   display: block;
-
 }
 
 .carousel-inner {
-  height: 630px;
+  height: 830px;
 }
 
 .carousel-inner > .item img {
   width: 100% !important;
+  background-size: cover;
 }
 
 /* Removes carousel buttons */
@@ -670,72 +580,6 @@ section#signup {
 
 .carousel-indicators li {
   display: none;
-}
-
-/* Extra Small Devices, Phones */
-@media only screen and (min-width: 480px) {
-
-  .header-signup .title {
-    font-size: 2.7em;
-  }
-
-  .header-signup .subtitle {
-    font-size: 1.3em;
-  }
-
-}
-
-/* Medium Devices, Desktops */
-@media(min-width: 768px) {
-  .header-signup .title {
-    padding: 0px;
-    line-height: 40px;
-    font-size: 2.8em;
-  }
-
-  .header-signup .subtitle {
-    line-height: 32px;
-    padding: 0px;
-  }
-}
-
-/* Medium Devices, Desktops */
-@media only screen and (min-width: 992px) {
-  .header-signup .subtitle {
-    line-height: 32px;
-    padding: 0px;
-  }
-
-  .home-carousel-container {
-    display: block;
-  }
-
-  .carousel-indicators li {
-    margin: 0 2px !important;
-    display: inline-block;
-  }
-
-  section#signup {
-    position: absolute;
-    padding: 80px 0px 20px 0px;
-  }
-
-  .header-signup .home-col.name {
-    padding-right: 7.5px;
-  }
-
-  .header-signup .home-col.lastname {
-    padding-left: 7.5px;
-  }
-
-}
-
-/* Large Devices, Wide Screens */
-@media only screen and (min-width: 1200px) {
-  .header-signup .subtitle {
-    line-height: 32px;
-    padding: 0px;
-  }
 }
 
 /* Sign up process */
@@ -748,7 +592,7 @@ section#signup .form-control:focus {
 .signup-title {
   width: 100%;
   height: 75px;
-  margin-top: 20px;
+  margin-top: 50px;
   text-align: center;
   color: #ffffff;
   font: 22px Montserrat-Regular;
@@ -802,1329 +646,1364 @@ section#signup .form-control:focus {
   font-size: 13px;
 }
 
-.form-group.error {
-  margin-bottom: 0px !important;
+.form-group {
+  &.signup {
+    margin-bottom: 0px !important;
+  }
+  &.error {
+    margin-bottom: 0px !important;
+  }
 }
-
-.login-group.error input {
-  border-color: #FFF;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-}
-
-.login-group.error p {
-  color: #FFF;
-  padding: 0px 12px;
-  margin-top: 3px;
-  margin-bottom: 10px;
-  float: left;
-  font-size: 13px;
-}
-
-header .home-carousel-container {
-  display: none;
-  position: absolute;
-  width: 100%;
-}
-
-/* Custom, iPhone Retina */
-@media only screen and (min-width: 320px) {
-
-}
-
-/* Extra Small Devices, Phones */
-@media only screen and (min-width: 480px) {
-
-}
-
-/* Small Devices, Tablets */
-@media only screen and (min-width: 768px) {
-
-  section#signup {
-    //  width: 100%;
-    overflow: hidden;
-    //position: absolute; -> cambiarlo
-    z-index: 2;
+  .login-group.error input {
+    border-color: #FFF;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   }
 
-  section#signup .home-col.name {
-    padding-right: 7.5px;
+  .login-group.error p {
+    color: #FFF;
+    padding: 0px 12px;
+    margin-top: 3px;
+    margin-bottom: 10px;
+    float: left;
+    font-size: 13px;
   }
-
-  section#signup .home-col.lastname {
-    padding-left: 7.5px;
-  }
-
-}
-
-/* Medium Devices, Desktops */
-@media only screen and (min-width: 992px) {
 
   header .home-carousel-container {
-    display: block;
-  }
-
-  section#signup {
+    display: none;
     position: absolute;
-    padding: 80px 0px 20px 0px;
+    width: 100%;
   }
 
-  section#signup .home-col.name {
-    padding-right: 7.5px;
+  /* Custom, iPhone Retina */
+  @media only screen and (min-width: 320px) {
+
   }
 
-  section#signup .home-col.lastname {
-    padding-left: 7.5px;
+  /* Extra Small Devices, Phones */
+  @media only screen and (min-width: 480px) {
+
   }
 
-}
+  /* Small Devices, Tablets */
+  @media only screen and (min-width: 768px) {
 
-/* Large Devices, Wide Screens */
-@media only screen and (min-width: 1200px) {
+    section#signup {
+      //  width: 100%;
+      overflow: hidden;
+      //position: absolute; -> cambiarlo
+      z-index: 2;
+    }
 
-  section#signup {
-    //  padding: 60px 0px 40px 0px;
+    section#signup .home-col.name {
+      padding-right: 7.5px;
+    }
+
+    section#signup .home-col.lastname {
+      padding-left: 7.5px;
+    }
+
   }
 
-}
+  /* Medium Devices, Desktops */
+  @media only screen and (min-width: 992px) {
 
-.btn-xl {
-  padding: 10px 40px;
-  background: none;
-  color: #011B25;
-  font: 18px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
-  border: 1px solid #011B25;
-  border-radius: 0 !important;
-  margin: 10px 0;
-}
+    header .home-carousel-container {
+      display: block;
+    }
 
-.btn-xl:hover,
-.btn-xl:focus,
-.btn-xl:active,
-.btn-xl.active,
-.open .dropdown-toggle.btn-xl {
-  background-color: #011B25;
-  color: #fff;
-}
+    section#signup {
+      position: absolute;
+      //padding: 80px 0px 20px 0px;
+    }
 
-.btn-xs {
-  padding: 10px 30px;
-  background: none;
-  color: #011B25;
-  font: 14px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
-  border: 1px solid #011B25;
-}
+    section#signup .home-col.name {
+      padding-right: 7.5px;
+    }
 
-.btn-xs:hover {
-  background: #011B25;
-  color: #FFF;
-  font: 14px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
-}
+    section#signup .home-col.lastname {
+      padding-left: 7.5px;
+    }
 
-@media(min-width: 768px) {
+  }
+
+  /* Large Devices, Wide Screens */
+  @media only screen and (min-width: 1200px) {
+
+    section#signup {
+      //  padding: 60px 0px 40px 0px;
+    }
+
+  }
+
+  .btn-xl {
+    padding: 10px 40px;
+    background: none;
+    color: #011B25;
+    font: 18px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+    border: 1px solid #011B25;
+    border-radius: 0 !important;
+    margin: 10px 0;
+  }
+
+  .btn-xl:hover,
+  .btn-xl:focus,
+  .btn-xl:active,
+  .btn-xl.active,
+  .open .dropdown-toggle.btn-xl {
+    background-color: #011B25;
+    color: #fff;
+  }
+
   .btn-xs {
+    padding: 10px 30px;
+    background: none;
+    color: #011B25;
+    font: 14px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+    border: 1px solid #011B25;
+  }
+
+  .btn-xs:hover {
+    background: #011B25;
+    color: #FFF;
+    font: 14px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+  }
+
+  @media(min-width: 768px) {
+    .btn-xs {
+      float: right;
+    }
+
+  }
+
+  /*** Start features section header ***/
+
+  section#section-two {
+    padding: 50px 0px 30px 0;
+  }
+
+  .home-section-two.section-heading {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.8em;
+    color: $primary-blue;
+    text-transform: uppercase;
+    font-family: Montserrat-Bold, Georgia, "Times New Roman", Times, serif;
+  }
+
+  .home-section-two.section-subheading {
+    margin-bottom: 40px;
+    font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+    font-size: 1.2em;
+    color: $text-bold;
+    float: none !important;
+  }
+
+  /*** End features section header ***/
+
+  /*** Start features section ***/
+
+  section#section-three {
+    padding: 20px 0px 50px 0px;
+  }
+
+  .features-image {
+    width: 100px;
+    height: 100px;
+    background-size: 100px;
+    background-repeat: no-repeat;
+    display: inline-block; /* so that it behaves like the img element */
+  }
+
+  .features-image.img-left {
+    background-image: url("homepage/ic_compelling_profile.svg");
+  }
+
+  .features-image.img-middle {
+    background-image: url("homepage/ic_search_engine.svg");
+  }
+
+  .features-image.img-right {
+    background-image: url("homepage/ic_personalization_platform.svg");
+  }
+
+  .features-txt {
+    width: 215px;
+    color: $primary-blue;
+    font-size: 1.5em;
+    font-family: Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+  }
+
+  .features-detail-txt {
+    color: $text-regular;
+    font-size: 1.2em;
+    font-family: Lato-Light, Georgia, "Times New Roman", Times, serif;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
+  /*** End features section ***/
+
+  /*** Start section How it works ***/
+
+  /*** Start section seven ***/
+
+  section#section-seven {
+    padding: 50px 0px;
+    background-color: $primary-turquoise;
+  }
+
+  .section-seven.title {
+    font-size: 1.8em;
+    font-family: Montserrat-Bold, Georgia, "Times New Roman", Times, serif;
+    color: $primary-white;
+  }
+
+  /*** End section seven ***/
+
+  section#section-eight {
+    width: 100%;
+    height: 450px;
+  }
+
+  .section-eight.img {
+    height: 450px;
+    background: url('homepage/home-background-candidate.png') no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  .home-title.white {
+    font-size: 1.8em;
+    font-family: Montserrat-Bold, Georgia, "Times New Roman", Times, serif;
+    color: $primary-white;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  section#section-nine {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  /* Start how it works section */
+
+  .section-nine.img {
+    height: 500px;
+    width: 660px;
+    background: url('mobile-employer.png') no-repeat center center;
+    background-size: 660px 500px;
+    bottom: 0;
     float: right;
   }
 
-}
-
-/*** Start features section header ***/
-
-section#section-two {
-  padding: 50px 0px 30px 0;
-}
-
-.home-section-two.section-heading {
-  margin-top: 0;
-  margin-bottom: 15px;
-  font-size: 1.8em;
-  color: $primary-blue;
-  text-transform: uppercase;
-  font-family: Montserrat-Bold, Georgia, "Times New Roman", Times, serif;
-}
-
-.home-section-two.section-subheading {
-  margin-bottom: 40px;
-  font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
-  font-size: 1.2em;
-  color: $text-title;
-  float: none !important;
-}
-
-/*** End features section header ***/
-
-/*** Start features section ***/
-
-section#section-three {
-  padding: 20px 0px 50px 0px;
-}
-
-.features-image {
-  margin-bottom: 20px;
-  width: 100px;
-  height: 100px;
-  background-size: 100px;
-  background-repeat: no-repeat;
-  display: inline-block; /* so that it behaves like the img element */
-}
-
-.features-image.img-left {
-  background-image: url("homepage/ic_compelling_profile.svg");
-}
-
-.features-image.img-middle {
-  background-image: url("homepage/ic_search_engine.svg");
-}
-
-.features-image.img-right {
-  background-image: url("homepage/ic_personalization_platform.svg");
-}
-
-.features-txt {
-  width: 195px;
-  font-size: 1.5em;
-  font-family: Montserrat-Light, Georgia, "Times New Roman", Times, serif;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 50px;
-}
-
-.features-arrow {
-  width: 35px;
-  height: 35px;
-  background: url("homepage/features_arrow.svg");
-  background-size: 35px;
-  display: block;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
-  cursor: pointer;
-}
-
-/*** End features section ***/
-
-/*** Start section How it works ***/
-
-/*** Start section seven ***/
-
-section#section-seven {
-  padding: 50px 0px;
-  background-color: $primary-turquoise;
-}
-
-.section-seven.title {
-  font-size: 1.8em;
-  font-family: Montserrat-Bold, Georgia, "Times New Roman", Times, serif;
-  color: $primary-white;
-}
-
-/*** End section seven ***/
-
-section#section-eight {
-  width: 100%;
-  height: 450px;
-}
-
-.section-eight.img {
-  height: 450px;
-  background: url('homepage/home-background-candidate.png') no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-.home-title.white {
-  font-size: 1.8em;
-  font-family: Montserrat-Bold, Georgia, "Times New Roman", Times, serif;
-  color: $primary-white;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-section#section-nine {
-  width: 100%;
-  overflow: hidden;
-}
-
-/* Start how it works section */
-
-.section-nine.img {
-  height: 500px;
-  width: 660px;
-  background: url('mobile-employer.png') no-repeat center center;
-  background-size: 660px 500px;
-  bottom: 0;
-  float: right;
-}
-
-.section-nine-rows-cont {
-  margin-top: 100px;
-  margin-bottom: 50px;
-}
-
-.section-nine.row {
-  padding: 15px 0;
-}
-
-.section-nine.row-img {
-  width: 60px;
-  height: 60px;
-  float: right;
-  background-size: 60px 60px;
-  background-repeat: no-repeat;
-  display: inline-block; /* So that it behaves like the img element */
-}
-
-.section-nine.row-img.c-img-1 {
-  background-image: url(homepage/ic_person.svg);
-}
-
-.section-nine.row-img.c-img-2 {
-  background-image: url(homepage/ic_lightbulb.svg);
-}
-
-.section-nine.row-img.c-img-3 {
-  background-image: url(homepage/ic_loupe.svg);
-}
-
-.section-nine.row-img.c-img-4 {
-  background-image: url(homepage/ic_tick.svg);
-}
-
-.section-nine.row-img.e-img-1 {
-  background-image: url(homepage/ic_person.svg);
-}
-
-.section-nine.row-img.e-img-2 {
-  background-image: url(homepage/ic_lightbulb.svg);
-}
-
-.section-nine.row-img.e-img-3 {
-  background-image: url(homepage/ic_loupe.svg);
-}
-
-.section-nine.row-img.e-img-4 {
-  background-image: url(homepage/ic_tick.svg);
-}
-
-.section-nine .title {
-  color: $text-title;
-  font-size: 20px;
-  text-align: left;
-  font-family: 'Montserrat-Regular', Georgia, "Times New Roman", Times, serif;
-}
-
-.section-nine .subtitle {
-  color: $text-regular !important;
-  font-size: 16px;
-  text-align: left;
-  font-family: 'Lato-Light-Italic', Georgia, "Times New Roman", Times, serif;
-}
-
-.section-nine .row {
-  padding: 10px 0;
-}
-
-.section-ten.img {
-  height: 450px;
-  background: url('homepage/home-background-candidate.png') no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-section#section-eleven {
-  width: 100%;
-  overflow: hidden;
-}
-
-.section-eleven.img {
-  height: 500px;
-  width: 660px;
-  background: url('mobile-candidate.png') no-repeat center center;
-  background-size: 660px 500px;
-  bottom: 0;
-  float: left;
-}
-
-section#section-twelve {
-  padding: 50px 0px;
-  background-color: $primary-blue;
-}
-
-.section-twelve.title {
-  font-size: 1.8em;
-  font-family: Montserrat-Bold, Georgia, "Times New Roman", Times, serif;
-  color: $primary-white;
-}
-
-section#section-thirteen {
-  overflow: hidden;
-}
-
-.section-thirteen.top {
-  width: 100%;
-}
-
-.section-thirteen-top-padding {
-  padding: 60px 80px;
-  height: 350px;
-}
-
-.section-thirteen.img {
-  height: 350px;
-  background-size: auto 350px !important;
-}
-
-.section-thirteen.img.testimonial-1{
-  background: url('homepage/testimonials-1.png') no-repeat center center;
-}
-
-.section-thirteen.img.testimonial-2{
-  background: url('homepage/testimonials-2.png') no-repeat center center;
-}
-
-.section-thirteen.img.testimonial-3{
-  background: url('homepage/testimonials-3.png') no-repeat center center;
-}
-
-.section-thirteen.title {
-  font-family: 'Montserrat-Regular', Georgia, "Times New Roman", Times, serif;
-  font-size: 22px;
-  color: $text-title;
-  text-transform: uppercase;
-  margin-bottom: 15px;
-}
-
-.section-thirteen.subtitle {
-  font-family: 'Lato-Regular', Georgia, "Times New Roman", Times, serif;
-  font-size: 18px;
-  color: $text-regular;
-  margin-bottom: 25px;
-}
-
-.section-thirteen.txt {
-  font-family: 'Lato-Light-Italic', Georgia, "Times New Roman", Times, serif;
-  font-size: 16px;
-  color: $text-regular;
-}
-
-section#section-fourteen {
-  overflow: hidden;
-}
-
-/* End how it works section */
-
-/* End quotes section */
-
-footer#home {
-  padding: 0px 0px !important;
-}
-
-footer#home .footer-above {
-  background-color: $footer-bg;
-  padding: 100px 0px;
-}
-
-footer#home .button {
-  padding: 15px 40px;
-  background: $primary-blue;
-  color: $primary-white;
-  font: 18px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
-  border: 3px solid $primary-blue;
-  border-radius: 4px !important;
-  margin-bottom: 50px;
-}
-
-.footer-divider {
-  float: left;
-  color: $primary-white;
-  font: 16px Lato-Regular, Georgia, "Times New Roman", Times, serif;
-  padding: 0px 50px;
-}
-
-.footer-li-container {
-  display: inline-block;
-}
-
-.footer-li {
-  float: left;
-  color: $primary-white;
-  font: 16px Lato-Medium-Italic, Georgia, "Times New Roman", Times, serif;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.footer-li:hover {
-  font-size: 16px;
-  color: $primary-turquoise;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.footer-sign-txt {
-  font: 14px Lato-Regular, Georgia, "Times New Roman", Times, serif;
-  color: $primary-white;
-}
-
-/** Main footer **/
-
-footer#main {
-  padding: 0px 0px !important;
-}
-
-footer#main .footer-above {
-  background-color: #122028;
-  padding: 15px 0px;
-}
-
-/** Signup **/
-
-.col-8 {
-  width: 90%;
-}
-
-.signup.background {
-  min-height: 700px;
-  height: 95%;
-  padding-top: 60px;
-  overflow: hidden;
-
-  background: url('signup/background-signup1.png') no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-.signup .title {
-  font-size: 2.0em;
-  font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
-  color: #3D9ED8;
-  text-transform: uppercase;
-}
-
-.signup .subtitle-container {
-  padding: 0 30px;
-}
-
-.signup .subtitle {
-  font-size: 14px;
-  font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
-  color: $text-title;
-}
-
-.signup .form-box-cont {
-  padding: 0px 0px;
-  margin-top: 20px;
-}
-
-.signup .form-box-cont {
-  // padding: 0 30px;
-}
-
-.signup-label {
-  font: 13px Lato-Regular !important;
-  color: $text-regular;
-  float: left;
-  text-align: left;
-}
-
-.signup-label.date {
-  width: 100px;
-}
-
-.signup-label.placeholder{
-
-}
-
-.btn-next {
-  background: url(signup/next.svg) no-repeat;
-  background-size: 100%;
-  width: 40px;
-  height: 40px;
-}
-
-.btn-next:hover {
-  background: url(signup/next-hover.svg) no-repeat;
-  background-size: 100%;
-  width: 40px;
-  height: 40px;
-}
-
-.btn-back {
-  background: url(signup/back.svg) no-repeat;
-  background-size: 100%;
-  width: 40px;
-  height: 40px;
-}
-
-.btn-back:hover {
-  background: url(signup/back-hover.svg) no-repeat;
-  background-size: 100%;
-  width: 40px;
-  height: 40px;
-}
-
-.btn-form.double {
-  width: 150px;
-  margin-top: 40px;
-}
-
-.btn-primary-70 {
-  width: 75px;
-  background-color: rgb(255, 255, 255) !important;
-  border-color: #CCCCCC !important;
-  color: #555555 !important;
-  padding: 2px !important;
-  font-size: 13px !important;
-}
-
-.btn-primary-70 :hover {
-  background-color: rgb(255, 255, 255) !important;
-  border-color: rgb(255, 255, 255) !important;
-  color: #555555 !important;
-}
-
-.btn-primary-120 {
-  width: 120px;
-  background-color: rgb(255, 255, 255) !important;
-  border-color: #CCCCCC !important;
-  color: #555555 !important;
-  padding: 2px !important;
-  font-size: 13px !important;
-}
-
-.btn-primary-120 :hover {
-  background-color: rgb(255, 255, 255) !important;
-  border-color: rgb(255, 255, 255) !important;
-  color: #555555 !important;
-}
-
-.dropdown-menu-gender {
-  max-height: 140px;
-  z-index: 999;
-  font: 14px Lato-Regular !important;
-  cursor: pointer;
-}
-
-.caret {
-  margin-left: 5px !important;
-}
-
-/* Extra Small Devices, Phones */
-@media only screen and (min-width: 494px) {
-
-  .signup .looking_btn {
-    margin-right: 10px;
-    margin-bottom: 0px;
+  .section-nine-rows-cont {
+    margin-top: 100px;
+    margin-bottom: 50px;
   }
 
-}
-
-/* Small Devices, Tablets */
-@media only screen and (min-width: 768px) {
-
-  .signup .form-box-cont {
-    // padding: 0 70px;
+  .section-nine.row {
+    padding: 15px 0;
   }
+
+  .section-nine.row-img {
+    width: 60px;
+    height: 60px;
+    float: right;
+    background-size: 60px 60px;
+    background-repeat: no-repeat;
+    display: inline-block; /* So that it behaves like the img element */
+  }
+
+  .section-nine.row-img.c-img-1 {
+    background-image: url(homepage/ic_person.svg);
+  }
+
+  .section-nine.row-img.c-img-2 {
+    background-image: url(homepage/ic_lightbulb.svg);
+  }
+
+  .section-nine.row-img.c-img-3 {
+    background-image: url(homepage/ic_loupe.svg);
+  }
+
+  .section-nine.row-img.c-img-4 {
+    background-image: url(homepage/ic_tick.svg);
+  }
+
+  .section-nine.row-img.e-img-1 {
+    background-image: url(homepage/ic_person.svg);
+  }
+
+  .section-nine.row-img.e-img-2 {
+    background-image: url(homepage/ic_lightbulb.svg);
+  }
+
+  .section-nine.row-img.e-img-3 {
+    background-image: url(homepage/ic_loupe.svg);
+  }
+
+  .section-nine.row-img.e-img-4 {
+    background-image: url(homepage/ic_tick.svg);
+  }
+
+  .section-nine .title {
+    color: $text-title;
+    font-size: 20px;
+    text-align: left;
+    font-family: 'Montserrat-Regular', Georgia, "Times New Roman", Times, serif;
+  }
+
+  .section-nine .subtitle {
+    color: $text-regular !important;
+    font-size: 16px;
+    text-align: left;
+    font-family: 'Lato-Light-Italic', Georgia, "Times New Roman", Times, serif;
+  }
+
+  .section-nine .row {
+    padding: 10px 0;
+  }
+
+  .section-ten.img {
+    height: 450px;
+    background: url('homepage/home-background-candidate.png') no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  section#section-eleven {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .section-eleven.img {
+    height: 500px;
+    width: 660px;
+    background: url('mobile-candidate.png') no-repeat center center;
+    background-size: 660px 500px;
+    bottom: 0;
+    float: left;
+  }
+
+  section#section-twelve {
+    padding: 50px 0px;
+    background-color: $primary-blue;
+  }
+
+  .section-twelve.title {
+    font-size: 1.8em;
+    font-family: Montserrat-Bold, Georgia, "Times New Roman", Times, serif;
+    color: $primary-white;
+  }
+
+  section#section-thirteen {
+    overflow: hidden;
+  }
+
+  .section-thirteen.top {
+    width: 100%;
+  }
+
+  .section-thirteen-top-padding {
+    padding: 40px 80px;
+    //height: 280px;
+  }
+
+  .section-thirteen.img {
+    height: 280px;
+    background-size: auto 300px !important;
+  }
+
+  .section-thirteen.img.testimonial-1{
+    background: url('homepage/testimonials-1.png') no-repeat center center;
+  }
+
+  .section-thirteen.img.testimonial-2{
+    background: url('homepage/testimonials-2.png') no-repeat center center;
+  }
+
+  .section-thirteen.img.testimonial-3{
+    background: url('homepage/testimonials-3.png') no-repeat center center;
+  }
+
+  .section-thirteen.title {
+    font-family: 'Montserrat-Regular', Georgia, "Times New Roman", Times, serif;
+    font-size: 22px;
+    color: $text-title;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+  }
+
+  .section-thirteen.subtitle {
+    font-family: 'Lato-Regular', Georgia, "Times New Roman", Times, serif;
+    font-size: 18px;
+    color: $text-regular;
+    margin-bottom: 25px;
+  }
+
+  .section-thirteen.txt {
+    font-family: 'Lato-Light-Italic', Georgia, "Times New Roman", Times, serif;
+    font-size: 1.2em;
+    color: $text-regular;
+  }
+
+  section#section-fourteen {
+    overflow: hidden;
+  }
+
+  /* End how it works section */
+
+  /* End quotes section */
+
+  footer#home {
+    padding: 0px 0px !important;
+  }
+
+  footer#home .footer-above {
+    background-color: $footer-bg;
+    padding: 60px 0px 0px;
+  }
+
+  footer#home .button {
+    padding: 15px 40px;
+    background: $primary-blue;
+    color: $primary-white;
+    font: 18px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+    border: 3px solid $primary-blue;
+    border-radius: 4px !important;
+    margin-bottom: 50px;
+  }
+
+  .footer-divider {
+    float: left;
+    color: $primary-white;
+    font: 16px Lato-Regular, Georgia, "Times New Roman", Times, serif;
+    padding: 0px 50px;
+  }
+
+  .footer-li-container {
+    display: inline-block;
+  }
+
+  .footer-li {
+    float: left;
+    color: $primary-white;
+    font: 1.2em Lato-Regular, Georgia, "Times New Roman", Times, serif;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .footer-li:hover {
+    color: $primary-turquoise;
+    text-decoration: none;
+  }
+
+  .footer-sign-txt {
+    font: 14px Lato-Light, Georgia, "Times New Roman", Times, serif;
+    color: $primary-white;
+  }
+
+  /** Main footer **/
+
+  footer#main {
+    padding: 0px 0px !important;
+  }
+
+  footer#main .footer-above {
+    background-color: #122028;
+    padding: 15px 0px;
+  }
+
+  /** Signup **/
 
   .col-8 {
-    width: 60%;
+    width: 90%;
+  }
+
+  .signup.background {
+    min-height: 700px;
+    height: 95%;
+    padding-top: 60px;
+    overflow: hidden;
+
+    background: url('signup/background-signup1.png') no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
   }
 
   .signup .title {
-    font-size: 2.5em;
+    font-size: 2.0em;
+    font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+    color: #3D9ED8;
+    text-transform: uppercase;
   }
 
-  .signup .signup-form {
-    padding: 40px 20px 20px 20px;
+  .signup .subtitle-container {
+    padding: 0 30px;
   }
 
-}
-
-/* Large Devices, Wide Screens */
-@media only screen and (min-width: 1200px) {
-
-}
-
-/* BASIC STYLINGS
-============================================================================= */
-
-/* form styling */
-#form-container {
-  display: inline-block;
-}
-
-#form-container .page-header {
-  margin: 0;
-  padding: 20px 30px;
-}
-
-/* numbered buttons */
-#status-buttons-work {
-}
-
-#status-buttons-work a {
-  color: #122028;
-  display: inline-block;
-  font-size: 12px;
-  margin-right: 10px;
-  text-align: center;
-  text-transform: uppercase;
-  text-decoration: none !important;
-  font-family: Montserrat-Regular, Georgia, "Times New Roman"
-}
-
-#status-buttons-work a:hover {
-  text-decoration: none !important;
-}
-
-#status-buttons-work span {
-  display: block;
-  height: 30px;
-  margin: 25px auto 10px;
-  padding-top: 5px;
-  width: 30px;
-  text-decoration: none
-}
-
-.ic-wizard {
-  background-size: 45px 45px;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-
-/* active buttons */
-#status-buttons-work a.active span {
-  text-decoration: none !important;
-}
-
-/* numbered buttons */
-#status-buttons-hire {
-}
-
-#status-buttons-hire a {
-  color: #FFF;
-  display: inline-block;
-  font-size: 12px;
-  margin-right: 10px;
-  text-align: center;
-  text-transform: uppercase;
-  text-decoration: none !important;
-  font-family: Opensans-light, Georgia, "Times New Roman"
-}
-
-#status-buttons-hire a:hover {
-  text-decoration: none !important;
-}
-
-#status-buttons-hire span {
-  display: block;
-  height: 30px;
-  margin: 25px auto 10px;
-  padding-top: 5px;
-  width: 30px;
-  text-decoration: none
-}
-
-label {
-  color: #FFF;
-}
-
-/* ANIMATION STYLINGS
-============================================================================= */
-#signup-form {
-  position: relative;
-  min-height: 330px;
-  margin-top: 20px;
-}
-
-//overflow:hidden;
-
-/* basic styling for entering and leaving */
-/* left and right added to ensure full width */
-#form-views.ng-enter,
-#form-views.ng-leave {
-  position: absolute;
-  left: 0px;
-  right: 0px;
-  transition: 0.5s all ease;
-  -moz-transition: 0.5s all ease;
-  -webkit-transition: 0.5s all ease;
-}
-
-/* enter animation */
-#form-views.ng-enter {
-  -webkit-animation: slideInRight 0.5s both ease;
-  -moz-animation: slideInRight 0.5s both ease;
-  animation: slideInRight 0.5s both ease;
-}
-
-/* leave animation */
-#form-views.ng-leave {
-  -webkit-animation: slideOutLeft 0.5s both ease;
-  -moz-animation: slideOutLeft 0.5s both ease;
-  animation: slideOutLeft 0.5s both ease;
-}
-
-/* ANIMATIONS
-============================================================================= */
-/* slide out to the left */
-@keyframes slideOutLeft {
-  to {
-    transform: translateX(-200%);
+  .signup .subtitle {
+    font-size: 14px;
+    font-family: Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+    color: $text-title;
   }
-}
 
-@-moz-keyframes slideOutLeft {
-  to {
-    -moz-transform: translateX(-200%);
+  .signup .form-box-cont {
+    padding: 0px 0px;
+    margin-top: 25px;
   }
-}
 
-@-webkit-keyframes slideOutLeft {
-  to {
-    -webkit-transform: translateX(-200%);
+  .signup-label {
+    font: 13px Lato-Regular !important;
+    color: $text-regular;
+    float: left;
+    text-align: left;
   }
-}
 
-/* slide in from the right */
-@keyframes slideInRight {
-  from {
-    transform: translateX(200%);
+  .signup-label.date {
+    width: 100px;
   }
-  to {
-    transform: translateX(0);
+
+  .signup-label.placeholder{
+
   }
-}
 
-@-moz-keyframes slideInRight {
-  from {
-    -moz-transform: translateX(200%);
+  .btn-next {
+    background: url(signup/next.svg) no-repeat;
+    background-size: 100%;
+    width: 40px;
+    height: 40px;
   }
-  to {
-    -moz-transform: translateX(0);
+
+  .btn-next:hover {
+    background: url(signup/next-hover.svg) no-repeat;
+    background-size: 100%;
+    width: 40px;
+    height: 40px;
   }
-}
 
-@-webkit-keyframes slideInRight {
-  from {
-    -webkit-transform: translateX(200%);
+  .btn-back {
+    background: url(signup/back.svg) no-repeat;
+    background-size: 100%;
+    width: 40px;
+    height: 40px;
   }
-  to {
-    -webkit-transform: translateX(0);
+
+  .btn-back:hover {
+    background: url(signup/back-hover.svg) no-repeat;
+    background-size: 100%;
+    width: 40px;
+    height: 40px;
   }
-}
 
-/*=========================================================================== */
+  .btn-form.double {
+    width: 150px;
+    margin-top: 40px;
+  }
 
-.auto-width {
-  width: auto;
-  overflow: hidden;
-}
+  .btn-primary-70 {
+    width: 75px;
+    background-color: rgb(255, 255, 255) !important;
+    border-color: #CCCCCC !important;
+    color: #555555 !important;
+    padding: 2px !important;
+    font-size: 13px !important;
+  }
 
-/** START login **/
+  .btn-primary-70 :hover {
+    background-color: rgb(255, 255, 255) !important;
+    border-color: rgb(255, 255, 255) !important;
+    color: #555555 !important;
+  }
 
-.login.background.one {
-  background: url("login/background2.png") no-repeat center center;
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  height: 100%;
-}
+  .btn-primary-120 {
+    width: 120px;
+    background-color: rgb(255, 255, 255) !important;
+    border-color: #CCCCCC !important;
+    color: #555555 !important;
+    padding: 2px !important;
+    font-size: 13px !important;
+  }
 
-.login.background.other {
-  background: url("login/background3.png") no-repeat center center;
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  height: 100%;
-}
+  .btn-primary-120 :hover {
+    background-color: rgb(255, 255, 255) !important;
+    border-color: rgb(255, 255, 255) !important;
+    color: #555555 !important;
+  }
 
-.login.logo-container {
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
-  background-color: #000000;
-  margin: -50px auto auto;
-}
+  .dropdown-menu-gender {
+    max-height: 140px;
+    z-index: 999;
+    font: 14px Lato-Regular !important;
+    cursor: pointer;
+  }
 
-.login.form-container {
-  padding: 160px 0 0 0;
-}
+  .caret {
+    margin-left: 5px !important;
+  }
 
-.login.form-box {
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 6px;
-}
+  /* Extra Small Devices, Phones */
+  @media only screen and (min-width: 494px) {
 
-.login.form-box-cont {
-  padding: 15px 30px 30px 30px;
-}
+    .signup .looking_btn {
+      margin-right: 10px;
+      margin-bottom: 0px;
+    }
 
-.login-ic {
-  width: 40px;
-  margin: auto;
-}
+  }
 
-.ic-email {
-  background: url("login/email.svg") no-repeat;
-  width: 30px;
-  height: 30px;
-}
+  /* Small Devices, Tablets */
+  @media only screen and (min-width: 768px) {
 
-.ic-password {
-  background: url("login/password.svg") no-repeat;
-  width: 30px;
-  height: 30px;
-}
+    .signup .form-box-cont {
+      // padding: 0 70px;
+    }
 
-.login.button-submit {
-  width: 50%;
-  background: none;
-  font: 14px Lato-Regular, Georgia, "Times New Roman", Times, serif;
-  border: 1px solid black;
-  border-radius: 6px !important;
-  padding: 10px;
+    .col-8 {
+      width: 60%;
+    }
 
-}
+    .signup .title {
+      font-size: 2.5em;
+    }
 
-.login.button-submit:hover {
-  background: #122028;
-  color: #FFF;
-}
+    .signup .signup-form {
+      padding: 20px 20px 20px 20px;
+    }
 
-.login.forgotpssw {
-  color: white;
-  overflow: auto;
-}
+  }
 
-.login.forgotpssw a,
-.login label {
-  float: left;
-  font-weight: normal;
-  color: black;
-  font: 11px Lato-Regular, Georgia, "Times New Roman", Times, serif;
-}
+  /* Large Devices, Wide Screens */
+  @media only screen and (min-width: 1200px) {
 
-.login.forgotpssw a {
-  cursor: pointer;
-}
+  }
 
-.login.rememberme {
-  overflow: auto;
-  margin-top: 20px;
-}
+  /* BASIC STYLINGS
+  ============================================================================= */
 
-.login.rememberme-checkbox {
-  float: left;
-  margin-left: 10px;
-  font-size: 13px;
-}
+  /* form styling */
+  #form-container {
+    display: inline-block;
+  }
 
-.sign-up-login {
-  color: #3D9ED8 !important;
-}
+  #form-container .page-header {
+    margin: 0;
+    padding: 20px 30px;
+  }
 
-/* Custom, iPhone Retina */
-@media only screen and (min-width: 320px) {
+  /* numbered buttons */
+  #status-buttons-work {
+  }
+
+  #status-buttons-work a {
+    color: #122028;
+    display: inline-block;
+    font-size: 12px;
+    margin-right: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none !important;
+    font-family: Montserrat-Regular, Georgia, "Times New Roman"
+  }
+
+  #status-buttons-work a:hover {
+    text-decoration: none !important;
+  }
+
+  #status-buttons-work span {
+    display: block;
+    height: 30px;
+    margin: 25px auto 10px;
+    padding-top: 5px;
+    width: 30px;
+    text-decoration: none
+  }
+
+  .ic-wizard {
+    background-size: 45px 45px;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
+  /* active buttons */
+  #status-buttons-work a.active span {
+    text-decoration: none !important;
+  }
+
+  /* numbered buttons */
+  #status-buttons-hire {
+  }
+
+  #status-buttons-hire a {
+    color: #FFF;
+    display: inline-block;
+    font-size: 12px;
+    margin-right: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none !important;
+    font-family: Opensans-light, Georgia, "Times New Roman"
+  }
+
+  #status-buttons-hire a:hover {
+    text-decoration: none !important;
+  }
+
+  #status-buttons-hire span {
+    display: block;
+    height: 30px;
+    margin: 25px auto 10px;
+    padding-top: 5px;
+    width: 30px;
+    text-decoration: none
+  }
+
+  label {
+    color: #FFF;
+  }
+
+  /* ANIMATION STYLINGS
+  ============================================================================= */
+  #signup-form {
+    position: relative;
+    min-height: 330px;
+    margin-top: 20px;
+  }
+
+  //overflow:hidden;
+
+  /* basic styling for entering and leaving */
+  /* left and right added to ensure full width */
+  #form-views.ng-enter,
+  #form-views.ng-leave {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    transition: 0.5s all ease;
+    -moz-transition: 0.5s all ease;
+    -webkit-transition: 0.5s all ease;
+  }
+
+  /* enter animation */
+  #form-views.ng-enter {
+    -webkit-animation: slideInRight 0.5s both ease;
+    -moz-animation: slideInRight 0.5s both ease;
+    animation: slideInRight 0.5s both ease;
+  }
+
+  /* leave animation */
+  #form-views.ng-leave {
+    -webkit-animation: slideOutLeft 0.5s both ease;
+    -moz-animation: slideOutLeft 0.5s both ease;
+    animation: slideOutLeft 0.5s both ease;
+  }
+
+  /* ANIMATIONS
+  ============================================================================= */
+  /* slide out to the left */
+  @keyframes slideOutLeft {
+    to {
+      transform: translateX(-200%);
+    }
+  }
+
+  @-moz-keyframes slideOutLeft {
+    to {
+      -moz-transform: translateX(-200%);
+    }
+  }
+
+  @-webkit-keyframes slideOutLeft {
+    to {
+      -webkit-transform: translateX(-200%);
+    }
+  }
+
+  /* slide in from the right */
+  @keyframes slideInRight {
+    from {
+      transform: translateX(200%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @-moz-keyframes slideInRight {
+    from {
+      -moz-transform: translateX(200%);
+    }
+    to {
+      -moz-transform: translateX(0);
+    }
+  }
+
+  @-webkit-keyframes slideInRight {
+    from {
+      -webkit-transform: translateX(200%);
+    }
+    to {
+      -webkit-transform: translateX(0);
+    }
+  }
+
+  /*=========================================================================== */
+
+  .auto-width {
+    width: auto;
+    overflow: hidden;
+  }
+
+  /** START login **/
+
+  .login.background.one {
+    background: url("login/background2.png") no-repeat center center;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    height: 100%;
+  }
+
+  .login.background.other {
+    background: url("login/background3.png") no-repeat center center;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    height: 100%;
+  }
+
+  .login.logo-container {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background-color: #000000;
+    margin: -50px auto auto;
+  }
+
+  .login.form-container {
+    padding: 160px 0 0 0;
+  }
 
   .login.form-box {
-    padding-top: 1px;
-  }
-}
-
-/* Extra Small Devices, Phones */
-@media only screen and (min-width: 650px) {
-
-  .login.background {
-    height: 100vh !important;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 6px;
   }
 
-}
+  .login.form-box-cont {
+    padding: 15px 30px 30px 30px;
+  }
 
-/* Small Devices, Tablets */
-@media only screen and (min-width: 768px) {
+  .login-ic {
+    width: 40px;
+    margin: auto;
+  }
 
-}
+  .ic-email {
+    background: url("login/email.svg") no-repeat;
+    width: 30px;
+    height: 30px;
+  }
 
-/* Medium Devices, Desktops */
-@media only screen and (min-width: 992px) {
+  .ic-password {
+    background: url("login/password.svg") no-repeat;
+    width: 30px;
+    height: 30px;
+  }
 
-}
+  .login.button-submit {
+    width: 50%;
+    background: none;
+    font: 14px Lato-Regular, Georgia, "Times New Roman", Times, serif;
+    border: 1px solid black;
+    border-radius: 6px !important;
+    padding: 10px;
+  }
 
-/** END login **/
+  .login.button-submit:hover {
+    background: #122028;
+    color: #FFF;
+  }
 
-/** START forgot password **/
-.forgotpssw.background {
-  height: 100vh;
-  background-color: #ececec;
-}
+  .login.forgotpssw {
+    color: white;
+    overflow: auto;
+  }
 
-.forgotpssw.cont {
-  margin-top: 40px;
-  padding: 0 40px;
-}
+  .login.forgotpssw a,
+  .login label {
+    float: left;
+    font-weight: normal;
+    color: black;
+    font: 11px Lato-Regular, Georgia, "Times New Roman", Times, serif;
+  }
 
-.forgotpssw.form {
-  margin-top: 5px;
-  padding: 40px 50px 40px 50px;
-  background-color: #FFF;
-}
+  .login.forgotpssw a {
+    cursor: pointer;
+  }
 
-.forgotpssw.form-checkemail {
-  margin-top: 5px;
-  padding: 30px 50px 30px 50px;
-  background-color: #FFF;
-}
+  .login.rememberme {
+    overflow: auto;
+    margin-top: 20px;
+  }
 
-.forgotpssw.title-container {
-  vertical-align: middle;
-  padding: 5px 0px;
-}
+  .login.rememberme-checkbox {
+    float: left;
+    margin-left: 10px;
+    font-size: 13px;
+  }
 
-.forgotpssw.title {
-  font: 16px Opensans-regular, Georgia, "Times New Roman", Times, serif;
-  color: #3D9ED8;
-  line-height: 27px;
-}
+  .sign-up-login {
+    color: #3D9ED8 !important;
+  }
 
-.forgotpssw.subtitle {
-  font: 16px Opensans-regular, Georgia, "Times New Roman", Times, serif;
-  color: #3f4752;
-}
+  /* Custom, iPhone Retina */
+  @media only screen and (min-width: 320px) {
 
-.forgotpssw.img {
-  background: url('_logo.svg') no-repeat center center;
-  width: 30px;
-  height: 30px;
-}
+    .login.form-box {
+      padding-top: 1px;
+    }
+  }
 
-.forgotpssw.btn-form {
-  width: 100%;
-  margin: 20px 0;
-  padding: 10px 0px;
-  background: none;
-  color: #3D9ED8;
-  font: 14px Opensans-regular, Georgia, "Times New Roman", Times, serif;
-  border: 1px solid #3D9ED8;
-  border-radius: 0 !important;
-}
+  /* Extra Small Devices, Phones */
+  @media only screen and (min-width: 650px) {
 
-.forgotpssw.btn-form:hover {
-  padding: 10px 0px;
-  background: #3D9ED8;
-  color: #FFF;
-}
+    .login.background {
+      height: 100vh !important;
+    }
 
-.forgotpssw.btn-form.reset {
-  margin: 0px 0;
-}
+  }
 
-.forgotpssw.text {
-  color: #3f4752;
-  font: 14px Opensans-light, Georgia, "Times New Roman", Times, serif;
-}
+  /* Small Devices, Tablets */
+  @media only screen and (min-width: 768px) {
 
-.forgotpssw.text-blue {
-  color: #3D9ED8;
-  font: 14px Opensans-regular, Georgia, "Times New Roman", Times, serif;
-  cursor: pointer;
-  text-decoration: none;
-}
+  }
 
-.forgotpssw.hr {
-  background: #3D9ED8;
-}
+  /* Medium Devices, Desktops */
+  @media only screen and (min-width: 992px) {
 
-/* Small Devices, Tablets */
-@media only screen and (min-width: 768px) {
+  }
+
+  /** END login **/
+
+  /** START forgot password **/
+  .forgotpssw.background {
+    height: 100vh;
+    background-color: #ececec;
+  }
 
   .forgotpssw.cont {
-    padding: 0px 50px;
-    margin-top: 120px;
+    margin-top: 40px;
+    padding: 0 40px;
   }
 
-  .footer-li-container-none {
+  .forgotpssw.form {
+    margin-top: 5px;
+    padding: 40px 50px 40px 50px;
+    background-color: #FFF;
+  }
+
+  .forgotpssw.form-checkemail {
+    margin-top: 5px;
+    padding: 30px 50px 30px 50px;
+    background-color: #FFF;
+  }
+
+  .forgotpssw.title-container {
+    vertical-align: middle;
+    padding: 5px 0px;
+  }
+
+  .forgotpssw.title {
+    font: 16px Opensans-regular, Georgia, "Times New Roman", Times, serif;
+    color: #3D9ED8;
+    line-height: 27px;
+  }
+
+  .forgotpssw.subtitle {
+    font: 16px Opensans-regular, Georgia, "Times New Roman", Times, serif;
+    color: #3f4752;
+  }
+
+  .forgotpssw.img {
+    background: url('_logo.svg') no-repeat center center;
+    width: 30px;
+    height: 30px;
+  }
+
+  .forgotpssw.btn-form {
+    width: 100%;
+    margin: 20px 0;
+    padding: 10px 0px;
+    background: none;
+    color: #3D9ED8;
+    font: 14px Opensans-regular, Georgia, "Times New Roman", Times, serif;
+    border: 1px solid #3D9ED8;
+    border-radius: 0 !important;
+  }
+
+  .forgotpssw.btn-form:hover {
+    padding: 10px 0px;
+    background: #3D9ED8;
+    color: #FFF;
+  }
+
+  .forgotpssw.btn-form.reset {
+    margin: 0px 0;
+  }
+
+  .forgotpssw.text {
+    color: #3f4752;
+    font: 14px Opensans-light, Georgia, "Times New Roman", Times, serif;
+  }
+
+  .forgotpssw.text-blue {
+    color: #3D9ED8;
+    font: 14px Opensans-regular, Georgia, "Times New Roman", Times, serif;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .forgotpssw.hr {
+    background: #3D9ED8;
+  }
+
+  /* Small Devices, Tablets */
+  @media only screen and (min-width: 768px) {
+
+    .forgotpssw.cont {
+      padding: 0px 50px;
+      margin-top: 120px;
+    }
+
+    .footer-li-container-none {
+      display: inline-block;
+      padding: 5px 50px;
+    }
+
+  }
+
+  /* Medium Devices, Desktops */
+  @media only screen and (min-width: 992px) {
+
+    .forgotpssw.cont {
+      padding: 0px 0px;
+    }
+
+  }
+
+  /* Tags input directive */
+
+  .tags {
+    width: 100%;
+    float: left;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .tags .tag {
+    border-radius: 0px;
+    background-color: $primary-pastel-green;
+    color: $primary-blue;
+    border: 1px solid $primary-pastel-green;
+    border-radius: 3px;
+    padding: 4px 5px;
+    margin: 5px 0px 5px 5px;
     display: inline-block;
-    padding: 5px 50px;
+    float: left;
+    font: 14px Lato-Regular;
   }
 
-}
-
-/* Medium Devices, Desktops */
-@media only screen and (min-width: 992px) {
-
-  .forgotpssw.cont {
-    padding: 0px 0px;
+  .tags .tag:hover {
+    text-decoration: none;
   }
 
-}
+  .tagsinput-container {
+    padding-bottom: 10px;
+  }
 
-/* Tags input directive */
+  .tagsinput-right {
+    float: right;
+  }
 
-.tags {
-  width: 100%;
-  float: left;
-  background-color: rgba(255, 255, 255, 0.1);
-}
+  .tagsinput-left {
+    display: block;
+    overflow: hidden;
+    padding-right: 5px;
+  }
 
-.tags .tag {
-  border-radius: 0px;
-  background-color: $primary-pastel-green;
-  color: $primary-blue;
-  border: 1px solid $primary-pastel-green;
-  border-radius: 3px;
-  padding: 4px 5px;
-  margin: 5px 0px 5px 5px;
-  display: inline-block;
-  float: left;
-  font: 14px Lato-Regular;
-}
+  .tagsinput-left input {
+    width: 100%;
+  }
 
-.tags .tag:hover {
-  text-decoration: none;
-}
+  .tagsinput.addbutton {
+    height: 28px;
+    float: right;
+    color: $primary-turquoise;
+    border: 1px solid $primary-turquoise;
+    font: 13px Lato-Regular, Georgia, serif !important;
+    margin-left: 5px;
+    text-decoration: none;
+    cursor: pointer;
+  }
 
-.tagsinput-container {
-  padding-bottom: 10px;
-}
+  .tagsinput.addbutton:hover {
+    background: $primary-turquoise;
+    color: #FFF;
+  }
 
-.tagsinput-right {
-  float: right;
-}
+  .tags-box {
+    background: #FFFFFF;
+    min-height: 100px;
+    border: 1px solid #cccccc;
+  }
 
-.tagsinput-left {
-  display: block;
-  overflow: hidden;
-  padding-right: 5px;
-}
+  .div-100 {
+    width: 100% !important;
+  }
 
-.tagsinput-left input {
-  width: 100%;
-}
+  .div-90 {
+    width: 89% !important;
+  }
 
-.tagsinput.addbutton {
-  height: 28px;
-  float: right;
-  color: $primary-turquoise;
-  border: 1px solid $primary-turquoise;
-  font: 13px Lato-Regular, Georgia, serif !important;
-  margin-left: 5px;
-  text-decoration: none;
-  cursor: pointer;
-}
+  .div-50 {
+    width: 49% !important;
+  }
 
-.tagsinput.addbutton:hover {
-  background: $primary-turquoise;
-  color: #FFF;
-}
+  .div-25 {
+    width: 24% !important;
+  }
 
-.tags-box {
-  background: #FFFFFF;
-  min-height: 100px;
-  border: 1px solid #cccccc;
-}
+  .div-10 {
+    width: 9% !important;
+  }
 
-.div-100 {
-  width: 100% !important;
-}
+  .left {
+    float: left;
+  }
 
-.div-90 {
-  width: 89% !important;
-}
+  .right {
+    float: right;
+  }
 
-.div-50 {
-  width: 49% !important;
-}
+  .min-height-150 {
+    min-height: 150px;
+  }
 
-.div-25 {
-  width: 24% !important;
-}
+  .alert-top-fixed {
+    opacity: 0.95;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 7000;
+    margin-top: 5px;
+  }
 
-.div-10 {
-  width: 9% !important;
-}
+  .alert-top-fixed ul {
+    text-align: left;
+  }
 
-.left {
-  float: left;
-}
+  /* Start middle quote section */
 
-.right {
-  float: right;
-}
-
-.min-height-150 {
-  min-height: 150px;
-}
-
-.alert-top-fixed {
-  opacity: 0.95;
-  text-align: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 7000;
-  margin-top: 5px;
-}
-
-.alert-top-fixed ul {
-  text-align: left;
-}
-
-/* Start middle quote section */
-
-section#home-middle-quote {
-  padding: 70px 0;
-}
-
-.home-middle-quote-tlt {
-  font-family: Oswald-Regular, Georgia, "Times New Roman", Times, serif;
-  font-size: 1.5em;
-  color: #3D9ED8 !important;
-  text-transform: uppercase;
-}
-
-.home-middle-quote-txt {
-  font-family: Opensans-light, Georgia, "Times New Roman", Times, serif;
-  font-size: 1.3em;
-  color: #3f4752;
-}
-
-/* Small Devices, Tablets */
-@media only screen and (min-width: 768px) {
+  section#home-middle-quote {
+    padding: 70px 0;
+  }
 
   .home-middle-quote-tlt {
     font-family: Oswald-Regular, Georgia, "Times New Roman", Times, serif;
-    font-size: 3.5em;
+    font-size: 1.5em;
+    color: #3D9ED8 !important;
+    text-transform: uppercase;
   }
 
   .home-middle-quote-txt {
     font-family: Opensans-light, Georgia, "Times New Roman", Times, serif;
-    font-size: 1.5em;
+    font-size: 1.3em;
     color: #3f4752;
   }
 
-}
+  /* Small Devices, Tablets */
+  @media only screen and (min-width: 768px) {
 
-section#home-end-quote {
-  padding: 70px 0;
-}
+    .home-middle-quote-tlt {
+      font-family: Oswald-Regular, Georgia, "Times New Roman", Times, serif;
+      font-size: 3.5em;
+    }
 
-/*****************************************************************************************/
+    .home-middle-quote-txt {
+      font-family: Opensans-light, Georgia, "Times New Roman", Times, serif;
+      font-size: 1.5em;
+      color: #3f4752;
+    }
 
-/* Small Devices, Tablets */
-@media only screen and (min-width: 768px) {
-  /* header */
-  .header-signup .employer-btn {
-    margin: 0px 15px;
   }
 
-  /* section two */
-  section#section-two {
-    padding: 120px 0px 30px 0;
+  section#home-end-quote {
+    padding: 70px 0;
   }
 
-  .home-section-two-container {
-    padding-left: 80px;
-    padding-right: 80px;
+  /*****************************************************************************************/
+
+  /* Small Devices, Tablets */
+  @media only screen and (min-width: 768px) {
+    /* header */
+    .header-signup .employer-btn {
+      margin: 0px 15px;
+    }
+
+    /* section two */
+    section#section-two {
+      padding: 120px 0px 40px 0;
+    }
+
+    .home-section-two-container {
+      padding-left: 80px;
+      padding-right: 80px;
+    }
+
+    .home-section-two.section-heading {
+      font-size: 4.5em;
+      margin-bottom: 25px;
+    }
+
+    .home-section-two.section-subheading {
+      margin-bottom: 35px;
+      margin-top: 15px;
+      font-size: 1.8em;
+    }
+
+    .features-image {
+      width: 130px;
+      height: 130px;
+      background-size: 130px;
+    }
+
+    .features-txt {
+      margin-bottom: 20px;
+    }
+
+    /* section three */
+
+    section#section-three {
+      padding: 0px 0px 120px 0px;
+    }
+
+    /* section seven */
+
+    section#section-seven {
+      padding: 150px 0px;
+    }
+
+    .section-seven.title {
+      font-size: 4.5em;
+    }
+
+    .home-title.white {
+      font-size: 4.5em;
+    }
+
+    section#section-twelve {
+      padding: 70px 0px;
+    }
+
+    .section-twelve.title {
+      font-size: 4.5em;
+    }
+
   }
 
-  .home-section-two.section-heading {
-    font-size: 4.5em;
-    margin-bottom: 40px;
+  /* Medium Devices, Desktops */
+  @media only screen and (min-width: 992px) {
+
+    section#section-four {
+      padding: 100px;
+    }
+
+    section#section-five {
+      padding: 100px;
+    }
+
+    section#section-six {
+      padding: 100px;
+    }
+
+    .section-four.column-left {
+      float: left;
+    }
+
+    .section-four.img {
+      height: 360px;
+      float: right;
+    }
+
   }
 
-  .home-section-two.section-subheading {
-    margin-bottom: 35px;
-    margin-top: 15px;
-    font-size: 2.0em;
+  /* Large Devices, Wide Screens */
+  @media only screen and (min-width: 1200px) {
+
+    .home-section-two-container {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+
   }
 
-  .features-image {
-    width: 130px;
-    height: 130px;
-    background-size: 130px;
+  /* Extra Small Devices, Phones */
+  @media only screen and (min-width: 480px) {
+
+
   }
 
-  .features-txt {
-    margin-bottom: 0px;
+  /* Medium Devices, Desktops */
+  @media(min-width: 768px) {
+
   }
 
-  /* section three */
+  /* Medium Devices, Desktops */
+  @media only screen and (min-width: 992px) {
 
-  section#section-three {
-    padding: 0px 0px 120px 0px;
+
+    .home-carousel-container {
+      display: block;
+    }
+
+    section#signup {
+      position: absolute;
+    }
+
+    .header-signup .home-col.name {
+      padding-right: 7.5px;
+    }
+
+    .header-signup .home-col.lastname {
+      padding-left: 7.5px;
+    }
+
   }
 
-  /* section seven */
+  /* Large Devices, Wide Screens */
+  @media only screen and (min-width: 1200px) {
 
-  section#section-seven {
-    padding: 150px 0px;
   }
 
-  .section-seven.title {
-    font-size: 4.5em;
-  }
 
-  .home-title.white {
-    font-size: 4.5em;
-  }
 
-  section#section-twelve {
-    padding: 150px 0px;
-  }
-
-  .section-twelve.title {
-    font-size: 4.5em;
-  }
-
-}
-
-/* Medium Devices, Desktops */
-@media only screen and (min-width: 992px) {
-
-  section#section-four {
-    padding: 100px;
-  }
-
-  section#section-five {
-    padding: 100px;
-  }
-
-  section#section-six {
-    padding: 100px;
-  }
-
-  .section-four.column-left {
-    float: left;
-  }
-
-  .section-four.img {
-    height: 360px;
-    float: right;
-  }
-
-}
-
-/* Large Devices, Wide Screens */
-@media only screen and (min-width: 1200px) {
-
-  .home-section-two-container {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-
-}

@@ -23,11 +23,6 @@ angular.module('mepedia.controllers').controller("HomeController", [
       $scope.type = true
       $scope.showType = ->
         $scope.type = not $scope.type
-      $scope.gotoTop = ->
-        # set the location.hash to the id of
-        # the element you wish to scroll to.
-        $location.hash "top"
-        $anchorScroll()
 
       $scope.loginOnePgr = loginOnePgr
 
@@ -71,16 +66,13 @@ angular.module('mepedia.controllers').controller("HomeController", [
 
     slides = [
       {
-        image: "/assets/background-marqui.png"
+        image: "/assets/homepage/home-background.jpeg"
       }
       {
-        image: "/assets/background-luli.png"
+        image: "/assets/homepage/home-background.jpeg"
       }
       {
-        image: "/assets/background-nico.png"
-      }
-      {
-        image: "/assets/background-mumi.png"
+        image: "/assets/homepage/home-background.png"
       }
     ]
 
