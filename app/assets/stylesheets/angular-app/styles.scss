@@ -400,7 +400,7 @@ textarea {
 .username {
   padding-top: 15px;
   padding-bottom: 15px;
-  color: $primary-blue;
+  color: $primary-white;
   font-family: Montserrat-Light, Georgia, "Times New Roman", Times, serif;
 }
 
@@ -421,6 +421,7 @@ section#logo .logo {
 
 .login-btn {
   color: $primary-turquoise !important;
+  background-color: $primary-turquoise;
   font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
   font-size: 14px;
   border: 2px solid $primary-turquoise;
@@ -434,6 +435,7 @@ section#logo .logo {
   &:hover {
     color: $primary-turquoise-hover !important;
     border: 2px solid $primary-turquoise-hover;
+    background-color: $primary-turquoise-hover !important;
   }
 }
 
