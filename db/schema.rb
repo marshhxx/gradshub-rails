@@ -159,12 +159,6 @@ ActiveRecord::Schema.define(version: 20150705143428) do
     t.string "name"
   end
 
-  create_table "onepgr_accounts", force: true do |t|
-    t.string "onepgr_id"
-    t.string "onepgr_password", default: "", null: false
-    t.string "session_token"
-  end
-
   create_table "publications", force: true do |t|
     t.string "title"
     t.string "url"
@@ -204,7 +198,6 @@ ActiveRecord::Schema.define(version: 20150705143428) do
     t.datetime "reset_password_sent_at"
     t.integer  "meta_id"
     t.string   "meta_type"
-    t.integer  "onepgr_account_id"
     t.string   "auth_token",             default: ""
   end
 

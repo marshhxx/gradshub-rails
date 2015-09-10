@@ -20,23 +20,6 @@ class Api::V1::UsersController < Api::BaseController
   def create
     if resource_class.find_by_email(user_params[:email]).nil?
       set_resource(create_resource)
-      if get_resource.user.has_onepgr
-        if onepgr_password.nil?
-          @error = {
-              :reasons => ['The user already has a onepgr account, the password needs to be provided'],
-              :code => ONEPGR_REGISTER_ERROR
-          }
-          render_api_error and return
-        end
-        unless get_resource.user.login_to_onepgr(onepgr_password)
-          @error = {:reasons => get_resource.user.errors.full_messages, :code => ONEPGR_AUTH_ERROR}
-          render_api_error and return
-        end
-      else
-        unless get_resource.user.register_onepgr
-          @error = {:reasons => get_resource.user.errors.full_messages, :code => ONEPGR_REGISTER_ERROR}
-        end
-      end
       unless get_resource.user.valid?
         @error = {:reasons => get_resource.user.errors.full_messages, :code => INVALID_PARAMS_ERROR}
         render_api_error and return
@@ -66,17 +49,13 @@ class Api::V1::UsersController < Api::BaseController
 
 
   def nest_user_attributes(parameters)
-    user_attr = parameters.slice(:name, :lastname, :email, :password, :gender, :birth, :profile_image, :cover_image, :tag)
-    parameters.slice!(:name, :lastname, :email, :password, :gender, :birth, :profile_image, :cover_image, :tag, :onepgr_password)
+    user_attr = parameters.slice(:name, :lastname, :email, :gender, :birth, :profile_image, :cover_image, :tag)
+    parameters.slice!(:name, :lastname, :email, :gender, :birth, :profile_image, :cover_image, :tag)
               .merge({:user_attributes => user_attr})
   end
 
   def user_params
     resource_params[:user_attributes]
-  end
-
-  def onepgr_password
-    params[resource_name][:onepgr_password]
   end
 
   def query_params

@@ -12,7 +12,6 @@ class User < ActiveRecord::Base
 
   enum gender: {male: 0, female: 1, not_known:2}
 
-  belongs_to :onepgr_account
   belongs_to :meta, polymorphic: true
   has_one :identity, autosave: true
 
@@ -73,28 +72,6 @@ class User < ActiveRecord::Base
       identity.user = user
     end
     user
-  end
-
-  def register_onepgr
-    acc = OnepgrAccount.new
-    if acc.register(self.email)
-      self.onepgr_account = acc
-      return true
-    end
-    self.errors.add(:onepgr_account, acc.onepgr_errors)
-    false
-  end
-
-  def login_to_onepgr(password)
-    acc = OnepgrAccount.new(onepgr_password: password)
-    self.onepgr_account = acc
-    logged = acc.login
-    self.errors.add(:onepgr_account, acc.onepgr_errors) unless logged
-    logged
-  end
-
-  def has_onepgr
-    OnepgrAccount.new.is_user(self.email)
   end
 
   protected

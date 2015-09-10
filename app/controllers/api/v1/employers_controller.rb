@@ -1,12 +1,12 @@
 class Api::V1::EmployersController < Api::V1::UsersController
-  wrap_parameters include: [:name, :lastname, :email, :password, :onepgr_password, :gender,
+  wrap_parameters include: [:name, :lastname, :email, :password, :gender,
                               :birth, :profile_image, :cover_image, :tag, :job_title, :company_image]
 
   private
 
   def employer_params
     nest_user_attributes params.require(:employer).permit(
-                             :name, :lastname, :email, :password, :onepgr_password, :gender,
+                             :name, :lastname, :email, :password, :gender,
                              :birth, :profile_image, :cover_image, :tag, :job_title, :company_image) if params[:employer]
   end
 
