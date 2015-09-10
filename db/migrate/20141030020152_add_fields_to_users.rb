@@ -130,9 +130,9 @@ class AddFieldsToUsers < ActiveRecord::Migration
     end
 
     create_table :candidate_languages do |t|
-      t.belongs_to :candidate
-      t.belongs_to :language
-      t.integer :level, default: 0
+      t.belongs_to :candidate,  null: false
+      t.belongs_to :language,   null: false
+      t.integer :level, default: 'begginer'
 
       t.timestamp
     end
@@ -170,8 +170,11 @@ class AddFieldsToUsers < ActiveRecord::Migration
     create_table :educations do |t|
       t.belongs_to :candidate
       t.belongs_to :school,     null: false
+      t.string :other_school
       t.belongs_to :major,      null: false
+      t.string :other_major
       t.belongs_to :degree,     null: false
+      t.string :other_degree
       t.belongs_to :country
       t.belongs_to :state
       t.text :description

@@ -46,9 +46,12 @@ angular.module('mepedia.directives').directive('education', function (Utils) {
             };
 
             scope.onSchool = function (school) {
-                if (school != undefined) {
-                    scope.educationTemp.school_id = school.id;
+                if (!school) return;
+                if (Utils.isObject(school)) {
+                    scope.education.school_id = school.id;
                     scope.educationTemp.school = school;
+                } else {
+                    scope.education.other_school = school
                 }
             };
 
@@ -66,13 +69,21 @@ angular.module('mepedia.directives').directive('education', function (Utils) {
             };
 
             scope.onMajor = function (major) {
-                if (major != undefined)
-                    scope.educationTemp.major_id = major.id;
+                if (!major) return;
+                if (Utils.isObject(major)) {
+                    scope.education.major_id = major.id;
+                } else {
+                    scope.education.other_major = major
+                }
             };
 
             scope.onDegree = function (degree) {
-                if (degree != undefined)
-                    scope.educationTemp.degree_id = degree.id;
+                if (!degree) return;
+                if (Utils.isObject(degree)) {
+                    scope.education.degree_id = degree.id;
+                } else {
+                    scope.education.other_degree = degree
+                }
             };
 
             scope.getMonth = Utils.getMonthByNumber;

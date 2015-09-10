@@ -3,9 +3,14 @@ class Api::V1::EducationsController < Api::NestedController
 
   private
 
+  def create_resource
+    Education.create_with_other(resource_params)
+  end
+
   def education_params
-    params.require(:education).permit(:school_id, :major_id, :degree_id, :state_id, :country_id,
-                                      :degree_id, :description, :start_date, :end_date) if params[:education]
+    params.require(:education).permit(:school_id, :other_school, :major_id, :other_major, :degree_id, :other_degree,
+                                      :state_id, :country_id, :degree_id, :description,
+                                      :start_date, :end_date) if params[:education]
   end
 
   def query_params

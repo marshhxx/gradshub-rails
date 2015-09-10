@@ -37,17 +37,10 @@
 		</div>
 
 		<div class="align-vertical form-group div-50" ng-class="{'left': editable, 'right': !editable}">
-			<div class="btn-group" dropdown is-open="status.isopen">
-				<button type="button" class="btn btn-sm btn-language-level dropdown-toggle" dropdown-toggle>
-					{{level}}<span class="caret"></span>
-				</button>
-				<input name="level" type="hidden" ng-model="data.level" required>
-				<ul class="dropdown-menu" role="menu">
-					<li ng-repeat="level in levels">
-						<a ng-click="languageSelected($index)">{{level}}</a>
-					</li>
-				</ul>
-			</div>
+      <select id="level" ng-model="level" ng-change="onLevelSelect()" class="btn btn-sm btn-language-level" required="">
+        <option disabled value="" >Select your level</option>
+        <option value="{{l}}" ng-repeat="l in levels">{{l}}</option>
+      </select>
 
 			<div ng-if="languageForm.level.$invalid && (languageForm.$submitted || languageForm.level.$touched)" ng-messages="languageForm.level.$error">
 				<div class="help-block" ng-message="required">

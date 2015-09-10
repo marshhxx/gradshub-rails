@@ -31,7 +31,7 @@ class Api::BaseController < ApplicationController
   def index
     plural_resource_name = "@#{resource_name.pluralize}"
     if query_params.blank?
-      resources = resource_class.all
+      resources = list_resource
     else
       resources = resource_class.where(query_params)
     end
@@ -103,6 +103,11 @@ class Api::BaseController < ApplicationController
   def set_resource(resource = nil)
     resource ||= resource_class.find_by!(id: params[:id])
     instance_variable_set("@#{resource_name}", resource)
+  end
+
+  # Callback for listing all record of class ${#resource_class}
+  def list_resource
+    resource_class.all
   end
 
 end

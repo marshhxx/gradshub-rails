@@ -9,13 +9,17 @@ DegreeSelector = (Degree) ->
   template: (elem, attr) ->
     required = if attr.required == "" then "required" else ""
     placeholder = if attr.placeholder then attr.placeholder else ""
-    '<input name="degree" type="text" ng-model="data" ' + required + ' class="form-control input-sm" id="degree" placeholder="' + placeholder + '" ng-blur="onSelect(data)" ' +
-      'typeahead="degree for degree in degrees | filter:$viewValue | limitTo:6" class="form-control" typeahead-on-select="onSelect($item)" is-degree>'
+    '<input name="degree" type="text" ng-model="data" ' + required + ' class="form-control input-sm" id="degree" ' +
+      'placeholder="' + placeholder + '" ng-blur="onSelect(data)" typeahead-on-select="onSelect($item)" ' +
+      'typeahead="degree for degree in degrees | filter:$viewValue | limitTo:6" class="form-control" >'
   link: (scope, elm, attrs, ctrl) ->
     degreeNameMap = {}
 
     scope.onSelect = (degree) ->
-      scope.onSelectCallback(degreeNameMap[degree]) if degree of degreeNameMap
+      value = degree
+      if degree of degreeNameMap
+        value = degreeNameMap[degree]
+      scope.onSelectCallback(value)
 
     Degree.query (degrees) ->
       scope.degrees = degrees.degrees.map (degree) -> degree.name

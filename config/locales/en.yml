@@ -23,8 +23,8 @@ en:
   activerecord:
     models:
       experience:
-        attributes:
+        one:
           company_name: ""
       education:
-        attributes:
+        one:
           candidate_id: ""

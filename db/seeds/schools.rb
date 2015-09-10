@@ -1,5 +1,6 @@
 School.delete_all
 [
+    {:id => 0, :name => "Other"},
     {:name => "University of Alabama (Alabama)"},
     {:name => "University of Alabama at Birmingham (UAB)"},
     {:name => "University of Alabama in Huntsville (UAH)"},

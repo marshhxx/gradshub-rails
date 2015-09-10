@@ -3,6 +3,11 @@ class Api::V1::SchoolsController < Api::BaseController
 
   private
 
+  # Override so we don't return Other
+  def list_resource
+    resource_class.all_but_other
+  end
+
   def school_params
     params.require(:school).permit(:name) if params[:school]
   end

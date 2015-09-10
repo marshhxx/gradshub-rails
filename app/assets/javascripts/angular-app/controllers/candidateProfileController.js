@@ -213,9 +213,12 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
             var getEducation = function (educationObj) {
                 var education = new Education();
                 education.candidate_id = $scope.user.uid;
-                education.school_id = educationObj.school_id;
-                education.degree_id = educationObj.degree_id;
-                education.major_id = educationObj.major_id;
+                education.school_id = educationObj.school_id ? educationObj.school_id : null;
+                education.other_school = educationObj.other_school ? educationObj.other_school : null;
+                education.degree_id = educationObj.degree_id ? educationObj.degree_id : null;
+                education.other_degree = educationObj.other_degree ? educationObj.other_degree : null;
+                education.major_id = educationObj.major_id ? educationObj.major_id : null;
+                education.other_major = educationObj.other_major ? educationObj.other_major : null;
                 education.state_id = (educationObj.state_id != undefined) ? educationObj.state_id : null;
                 education.country_id = (educationObj.country_id != undefined) ? educationObj.country_id : null;
                 education.description = (educationObj.description != undefined) ? educationObj.description : null;
@@ -319,7 +322,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
             var getLanguage = function (language) {
               return new CandidateLanguages({
                   language_id: language.language_id,
-                  level: language.level,
+                  level: language.level.toLowerCase(),
                   candidate_id: $scope.user.uid
               })
             };
@@ -373,7 +376,7 @@ angular.module('mepedia.controllers').controller('candidateProfileController',
                 $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 language.$update().then(
                     function(response) {
-                        updateAndSort($scope.user.languages, response.language, index);
+                        updateAndSort($scope.user.languages, response.language);
                         alertService.addInfo('Language successfully updated!', ALERT_CONSTANTS.SUCCESS_TIMEOUT);
                     }
                 ).catch(alertService.defaultErrorCallback);
