@@ -21,10 +21,9 @@ ActiveRecord::Schema.define(version: 20150705143428) do
   add_index "candidate_interests", ["candidate_id", "interest_id"], name: "index_candidate_interests_on_candidate_id_and_interest_id", unique: true, using: :btree
 
   create_table "candidate_languages", force: true do |t|
-    t.integer "candidate_id",               null: false
-    t.integer "language_id",                null: false
-    t.string  "other_language"
-    t.integer "level",          default: 0
+    t.integer "candidate_id",             null: false
+    t.integer "language_id",              null: false
+    t.integer "level",        default: 0
   end
 
   add_index "candidate_languages", ["candidate_id", "language_id"], name: "index_candidate_languages_on_candidate_id_and_language_id", unique: true, using: :btree
