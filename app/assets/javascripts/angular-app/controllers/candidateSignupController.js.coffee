@@ -34,7 +34,11 @@ angular
         ####### Eduaction ######
 
         $scope.onSchool = (school) ->
-          $scope.education.school_id = school.id if school?
+          if school?
+            if Utils.isObject(school)
+              $scope.education.school_id = school.id
+            else
+              $scope.education.other_school = school
 
         $scope.onSchoolCountry = (country) ->
           $scope.education.country_id = country.id if country?
@@ -43,10 +47,18 @@ angular
           $scope.education.state_id = state.id if state?
 
         $scope.onMajor = (major) ->
-          $scope.education.major_id = major.id if major?
+          if major?
+            if Utils.isObject(major)
+              $scope.education.major_id = major.id
+            else
+              $scope.education.other_major = major
 
         $scope.onDegree = (degree) ->
-          $scope.education.degree_id = degree.id if degree?
+          if degree?
+            if Utils.isObject(degree)
+              $scope.education.degree_id = degree.id
+            else
+              $scope.education.other_degree = degree
 
         ####### Skills ######
         Skill.query (skills) ->
