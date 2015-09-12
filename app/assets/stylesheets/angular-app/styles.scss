@@ -456,14 +456,14 @@ header {
   width: 100%;
 
   .title {
-    font-size: 5em;
+    font-size: 4.5em;
     font-weight: 700;
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
   }
 
   .subtitle {
-    font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
-    font-size: 1.6em;
+    font-family: Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+    font-size: 1.3em;
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
   }
 
@@ -553,6 +553,51 @@ header {
     }
   }
 }
+
+/* Start sign up form homepage */
+
+.signup-input {
+  width: 100%;
+  padding: 11px 10px 11px 13px;
+  display: block;
+  margin: 0;
+  border: 0;
+  background: 0;
+  font: 16px/1.4 "Helvetica Neue","HelveticaNeue",Helvetica,Arial,sans-serif;
+  box-sizing: border-box;
+  outline: 0;
+
+  &:hover {
+    border: 0 !important;
+  }
+
+  &:focus {
+    border: 0 !important;
+  }
+}
+
+.form-row.signup{
+  background-color: $primary-white;
+  z-index: 2;
+}
+
+.form-row.first-child{
+  border-top: 0 !important;
+  border-top-left-radius: 4px !important;
+  border-top-right-radius: 4px !important;
+}
+
+.form-row.last-child{
+  border-bottom-left-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+}
+
+.form-row.childs {
+  position: relative;
+  border-top: 1px solid #e3e3e3;
+}
+
+/* End sign up form homepage */
 
 section#signup {
   width: 100%;
