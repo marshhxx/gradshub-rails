@@ -24,7 +24,7 @@ angular
         $scope.genders = [
           "male",
           "female",
-          "Other"
+          "other"
         ]
 
 
@@ -42,11 +42,6 @@ angular
         day = $scope.user.birth.charAt(8)
         $scope.birthday = $scope.user.birth
         if day = '0' then $scope.birthday = $scope.birthday.substr(0, 8) + $scope.birthday.substr(9)
-        checkGender()
-
-      checkGender = ->
-        if $scope.user.gender == 'not_known' then $scope.user.gender = 'Other'
-        $scope.gender = $scope.user.gender
 
       $scope.toggleFullNameEditing = (condition)->
         $scope.editFullName = !$scope.editFullName
@@ -90,14 +85,11 @@ angular
 
       # Save functions
       saveUser = () ->
-        $scope.user.gender = 'not_known' if $scope.user.gender == 'Other'
-
         $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
         Utils.candidateFromObject($scope.user).$update((response) ->
           console.log response
           $scope.user = response.candidate
           $scope.tag = ''
-          checkGender()
         ).catch alertService.defaultErrorCallback
 
       $scope.saveUserFullName = ->
@@ -130,12 +122,13 @@ angular
 
       $scope.seveUserNationality = ->
         $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
-        $scope.candidateNationality.$delete().then( ->
-          $scope.newNationality.$save().then( (data) ->
-            alertService.addInfo 'Nationality successfully edited', ALERT_CONSTANTS.SUCCESS_TIMEOUT
-            $scope.user.nationalities[0] = data.nationality
-            $scope.toggleNationalityEditing()
-          )
+        
+        $scope.candidateNationality.$delete().catch(alertService.defaultErrorCallback)
+
+        $scope.newNationality.$save().then( (data) ->
+          alertService.addInfo 'Nationality successfully edited', ALERT_CONSTANTS.SUCCESS_TIMEOUT
+          $scope.user.nationalities[0] = data.nationality
+          $scope.toggleNationalityEditing()
         ).catch(alertService.defaultErrorCallback)
 
       init()
