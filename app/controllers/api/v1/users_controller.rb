@@ -3,7 +3,7 @@ require 'active_support'
 class Api::V1::UsersController < Api::BaseController
   wrap_parameters include: [:name, :lastname, :email, :password, :onepgr_password, :gender,
                             :birth, :image_url, :tag, :profile_image, :cover_image]
-  before_action :authenticate_with_token!, only: [:update]
+  before_action :authenticate_with_token!, only: [:update, :password]
   before_action :set_resource, only: []
 
   # DELETE /api/users/1
@@ -33,12 +33,23 @@ class Api::V1::UsersController < Api::BaseController
   end
 
   def update
-    if get_resource.user.update(resource_params[:user_attributes]) and get_resource.update(resource_params.slice!(:user_attributes))
+    if get_resource.user.update(update_params[:user_attributes]) and get_resource.update(update_params.slice!(:user_attributes))
       logger.info 'User updated!'
       render :show, status: :accepted and return
     end
     @error = {:reasons => get_resource.errors.full_messages, :code => INVALID_PARAMS_ERROR}
     render_error :unprocessable_entity
+  end
+
+  # PATCH /api/{resource_class}/:id/password
+  def password
+    set_resource(resource_class.find_by_uid(params[:id]))
+    if get_resource.user.valid_password? password_params[:old_password] and get_resource.user.update_attribute(:password, password_params[:new_password])
+      render :nothing => true, status: :accepted and return
+    end
+    @error = {:reasons => ['Error while changing the password. Please make sure you passed the correct password.'],
+              :code => INVALID_PARAMS_ERROR}
+    render_api_error
   end
 
   private
@@ -62,6 +73,10 @@ class Api::V1::UsersController < Api::BaseController
     # this assumes that an album belongs to an artist and has an :artist_id
     # allowing us to filter by this
     params.permit(:name, :email)
+  end
+
+  def password_params
+    params.require("#{resource_name}").permit(:old_password, :new_password)
   end
 
 end

@@ -17,6 +17,12 @@ Demo::Application.routes.draw do
     end
   end
 
+  concern :password_changeable do
+    member do
+      put 'password'
+    end
+  end
+
   # configure linkedin oauth
   resource :oauth, only: [:linkedin] do
     get :linkedin, on: :member
@@ -26,11 +32,11 @@ Demo::Application.routes.draw do
     scope module: :v1, constraints: ApiConstraints.new(version: 1) do
     # We are going to list our resources here
       devise_for :users, :only => []
-      resources :employers, :only => [:show, :create, :update], concerns: [:skillable, :interestable] do
+      resources :employers, :only => [:show, :create, :update], concerns: [:skillable, :interestable, :password_changeable] do
         resource :company, :only => [:show, :create, :update]
         resources :nationalities, :only => [:index, :create, :show, :destroy]
       end
-      resources :candidates, :only => [:show, :create, :update], concerns: [:skillable, :interestable] do
+      resources :candidates, :only => [:show, :create, :update], concerns: [:skillable, :interestable, :password_changeable] do
         resources :experiences, :only => [:index, :create, :update, :destroy, :show]
         resources :educations, :only => [:index, :create, :update, :destroy, :show]
         resources :nationalities, :only => [:index, :create, :show, :destroy]
