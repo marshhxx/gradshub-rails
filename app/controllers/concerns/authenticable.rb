@@ -10,7 +10,7 @@ module Authenticable
   end
 
   def authenticate_with_token!
-    @error = {:resons => ["Not authenticated"], :code => AUTH_ERROR}
+    @error = {:reasons => ["Not authenticated"], :code => AUTH_ERROR}
     render 'api/v1/common/error', status: :unauthorized unless user_signed_in?
   end
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-EC2_INSTANCE=52.26.107.65
+EC2_INSTANCE=$1
 DIST_TAR=/tmp/projectb.tar
 DEPLOY_SCRIPT=/tmp/local_script.sh
 EC2_HOME=/home/ec2-user
