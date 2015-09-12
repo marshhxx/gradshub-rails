@@ -11,7 +11,7 @@ angular.module('mepedia.controllers').controller("HomeController", [
         $state.go 'main.employer_profile', {uid: 'me'}
 
     init = ->
-      $scope.candidate = true
+      $scope.renderHtml = (htmlCode) -> $sce.trustAsHtml(htmlCode)
       $scope.isCandidate = () -> $scope.candidate = true
       $scope.isEmployer = () -> $scope.candidate = false
       $scope.carouselInterval = 0 #4000

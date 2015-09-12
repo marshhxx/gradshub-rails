@@ -43,7 +43,7 @@ class Api::V1::SessionsController < ApplicationController
       logger.info('Password updated')
       render json: { message: 'Password successfully updated.'}, status: :accepted
     else
-      @error = {:reasons => [reset_user.errors.full_messages], :code => INVALID_PARAMS_ERROR}
+      @error = {:reasons => reset_user.errors.full_messages, :code => INVALID_PARAMS_ERROR}
       render_api_error
     end
   end

@@ -7,7 +7,6 @@ AlertService = ($rootScope, $timeout, ALERT_CONSTANTS) ->
   $rootScope.alerts = [];
 
   alertService.add = (type, msg, timeout) ->
-    $rootScope.alerts = []
     $rootScope.alerts.push(
       {
         'title': titles[type],
