@@ -42,7 +42,7 @@
           <p class="navbar-name navbar-right" ng-if="logged">{{username}}</p>
         </li>
         <li>
-          <a class="login-btn" ng-if="!logged" ui-sref="login">Login</a>
+          <a class="login-btn" ng-if="!logged" ui-sref="home.login">Login</a>
           <a class="login-btn" ng-if="logged" ng-click="logout()">Logout</a>
         </li>
       </ul>

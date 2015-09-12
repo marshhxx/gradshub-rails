@@ -3,7 +3,9 @@ angular.module('mepedia.controllers').controller("forgotPasswordController", [
   ($scope, sessionService, $state, $stateParams, alertService)->
     $scope.alerts = []
 
-    $scope.sendEmailForgotPassword = () ->
+    $scope.sendEmailForgotPassword = (valid) ->
+      if not valid
+        return
       if $scope.emailFgtPssw
         sessionService.sendFgtPsswEmail($scope.emailFgtPssw).then(
           (response) ->
@@ -13,13 +15,13 @@ angular.module('mepedia.controllers').controller("forgotPasswordController", [
     $scope.closeAlert = () ->
       $scope.alerts.splice(0, 1);
 
-    $scope.resetPassword = () ->
-      if $scope.password is not $scope.password_confirmation
-        console.log("Passwords don't match");
+    $scope.resetPassword = (valid) ->
+      if not valid
+        return
       user = {
         uid: $stateParams.r,
         password: $scope.password,
-        password_confirmation: $scope.password_confirmation,
+        password_confirmation: $scope.passwordConfirmation,
         reset_password_token: $stateParams.reset_token
       }
       sessionService.resetPassword(user).then(
