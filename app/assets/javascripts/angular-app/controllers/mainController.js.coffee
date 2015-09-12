@@ -1,8 +1,8 @@
 angular
 .module('mepedia.controllers')
 .controller('mainController',
-  ['$scope', '$rootScope', '$q', 'sessionService', '$state','alertService', '$sce', '$location',
-    ($scope, $rootScope, $q, sessionService, $state, alertService, $sce, $location) ->
+  ['$scope', '$rootScope', '$q', 'sessionService', '$state','alertService', '$sce', '$location', 'eventTracker',
+    ($scope, $rootScope, $q, sessionService, $state, alertService, $sce, $location, eventTracker) ->
 
       init = ->
         $scope.logged = sessionService.isAuthenticated();
@@ -12,6 +12,7 @@ angular
         initUser()
 
       logout = ->
+        eventTracker.logOut sessionService.sessionType()
         sessionService.logout().then(
           -> $state.go 'home.page', null, {reload: true}
         ).catch(

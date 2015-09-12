@@ -1,4 +1,5 @@
-angular.module('mepedia.directives').directive('editCompany', ['EmployerCompany', 'Utils', function (EmployerCompany, Utils) {
+angular.module('mepedia.directives').directive('editCompany', ['EmployerCompany', 'Utils', 'eventTracker',
+    function (EmployerCompany, Utils, eventTracker) {
     return {
         // NEEEED TO DO EVERYTHING
         scope: {
@@ -38,6 +39,8 @@ angular.module('mepedia.directives').directive('editCompany', ['EmployerCompany'
                     scope.editCompanyEnable = false;
                     scope.$parent.saveEmployerCompany();
                     temporaryEmployerCompany.site_url = scope.employerCompany.site_url;
+
+                    eventTracker.saveCompanyInfo('Employer');
                 }
             }
 

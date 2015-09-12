@@ -1,9 +1,9 @@
 angular.module('mepedia.controllers').controller('employerProfileController',
     ['$scope', '$rootScope', '$http', '$upload', 'sessionService', '$state', '$stateParams','Skill', 'Country', 'State',
-        'Employer', 'EmployerSkills', 'EmployerCompany', 'Utils', 'EmployerInterests', 'alertService', 'errors',
+        'Employer', 'EmployerSkills', 'EmployerCompany', 'Utils', 'EmployerInterests', 'alertService', 'errors', 'eventTracker',
 
         function($scope, $rootScope,$httpProvider, $upload, sessionService, $state, $stateParams,Skill, Country, State,
-                 Employer, EmployerSkills, EmployerCompany, Utils, EmployerInterests, alertService, errors) {
+                 Employer, EmployerSkills, EmployerCompany, Utils, EmployerInterests, alertService, errors, eventTracker) {
             var init = function () {
                 getData();
 
@@ -72,16 +72,22 @@ angular.module('mepedia.controllers').controller('employerProfileController',
             $scope.updateEmployerCoverImage = function (coverImage){
                 $scope.user.cover_image = coverImage;
                 updateUser();
+
+                eventTracker.saveCoverPhoto('Employer');
             }
 
             $scope.updateEmployerCompanyImage = function (companyImage){
                 $scope.employerCompany.image = companyImage;
                 $scope.saveEmployerCompany();
+
+                eventTracker.saveCompanyLogo('Employer');
             }
 
             $scope.updateEmployerProfileImage = function (profileImage) {
                 $scope.user.profile_image = profileImage;
                 updateUser();
+
+                eventTracker.saveProfilePhoto('Employer');
             }
             
             var updateUser = function () {
@@ -105,6 +111,8 @@ angular.module('mepedia.controllers').controller('employerProfileController',
                 $scope.saveEmployerCompany();
                 
                 $scope.disableDescriptionEditor();
+
+                eventTracker.saveAboutMe('Employer');
             }
 
             $scope.disableDescriptionEditor = function() {
