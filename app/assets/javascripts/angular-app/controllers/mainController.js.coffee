@@ -1,16 +1,18 @@
 angular
 .module('mepedia.controllers')
 .controller('mainController',
-  ['$scope', '$rootScope', '$q', 'sessionService', '$state','alertService', '$sce', '$location', 'eventTracker', '$anchorScroll',
-    ($scope, $rootScope, $q, sessionService, $state, alertService, $sce, $location, eventTracker, $anchorScroll) ->
+  ['$scope', '$rootScope', '$q', 'sessionService', '$state','alertService', '$sce', '$location', 'eventTracker', '$anchorScroll', '$document',
+    ($scope, $rootScope, $q, sessionService, $state, alertService, $sce, $location, eventTracker, $anchorScroll, $document) ->
 
       init = ->
         $scope.logged = sessionService.isAuthenticated();
         $scope.logout = logout
         $scope.renderHtml = (htmlCode) -> $sce.trustAsHtml(htmlCode)
         $scope.profileSpinner = false
+        $scope.isOptionsVisible = false
 
         initUser()
+
 
       logout = ->
         eventTracker.logOut sessionService.sessionType()
@@ -53,6 +55,18 @@ angular
 
       $scope.redirectToSettings = () ->
         $state.go 'main.user_settings'
+        
+      $scope.showSettingsPopup = ->
+        $scope.isOptionsVisible = !$scope.isOptionsVisible
+
+      $document.bind 'click', (event) ->
+        element = angular.element('.arrow-container')
+        isClickedElementChildOfPopup = element.find(event.target).length > 0
+
+        if isClickedElementChildOfPopup then return
+
+        $scope.isOptionsVisible = false
+        $scope.$apply()
 
       init()
   ])

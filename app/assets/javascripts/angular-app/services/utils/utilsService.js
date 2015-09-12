@@ -27,6 +27,8 @@ var Utils = function(Candidate, Employer, $stateParams) {
         candidate.cover_image = user.cover_image;
         candidate.tag = user.tag;
         candidate.summary = user.summary;
+        candidate.country_id = user.country.id;
+        candidate.state_id = user.state.id;
         return candidate;
     };
 

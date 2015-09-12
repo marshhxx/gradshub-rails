@@ -9,11 +9,15 @@
       </div>
     </div>
 
-    <div class="line-wrapper col-md-12" ng-show="editFullName">
-      <div class="label-wrapper col-md-4">
+    <div class="col-sm-12 col-md-12">
+      <div class="line-separator"></div>
+    </div>
+
+    <div class="line-wrapper col-sm-12 col-md-12" ng-show="editFullName">
+      <div class="label-wrapper col-sm-6 col-md-4">
         <label>Name</label>
       </div>
-      <div class="input-wrapper col-md-4">
+      <div class="input-wrapper col-sm-6 col-md-4">
         {{user.name}} {{user.lastname}}
       </div>
       <div class="edit-button-wrapper col-md-4">
@@ -21,30 +25,34 @@
       </div>
     </div>
     <div class="box-edit-wrapper col-md-12" ng-hide="editFullName">
-      <div class="label-edit-wrapper col-md-4">
+      <div class="label-edit-wrapper col-md-2">
         <label>Name</label>
       </div>
-      <div class="inputs-edit-wrapper col-md-8">
-        <div class="col-md-12">
+      <div class="inputs-edit-wrapper col-md-10">
+        <div class="col-md-12 input-line">
           <label>Name</label>
-          <input type="text" />
+          <input type="text" ng-model="user.name" class="input-sm" />
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12 input-line">
           <label>Last name</label>
-          <input type="text" />
+          <input type="text" ng-model="user.lastname" class="input-sm" />
         </div>
-        <div class="col-md-12">
-          <button>Save</button>
-          <button ng-click="toggleFullNameEditing(false)">Cancel</button>
+        <div class="col-md-12 buttons-line">
+          <button ng-click="saveUserFullName()" class="btn btn-edit">Save</button>
+          <button ng-click="toggleFullNameEditing(false)" class="btn btn-edit">Cancel</button>
         </div>
       </div>
     </div>
 
-    <div class="line-wrapper col-md-12" ng-show="editPassword">
-      <div class="label-wrapper col-md-4">
+    <div class="col-sm-12 col-md-12">
+      <div class="line-separator"></div>
+    </div>
+
+    <div class="line-wrapper col-sm-12 col-md-12" ng-show="editPassword">
+      <div class="label-wrapper col-sm-6 col-md-4">
         <label>Password</label>
       </div>
-      <div class="input-wrapper col-md-4">
+      <div class="input-wrapper col-sm-6 col-md-4">
         **********
       </div>
       <div class="edit-button-wrapper col-md-4">
@@ -52,28 +60,33 @@
       </div>
     </div>
     <div class="box-edit-wrapper col-md-12" ng-hide="editPassword">
-      <div class="label-edit-wrapper col-md-4">
+      <div class="label-edit-wrapper col-md-2">
         <label>Password</label>
       </div>
-      <div class="inputs-edit-wrapper col-md-8">
-        <div class="col-md-12">
-          <label>Password</label>
-          <input type="password" />
+      <div class="inputs-edit-wrapper col-md-10">
+        <div class="col-md-12 input-line">
+          <label>Current</label>
+          <input type="password" class="input-sm" />
         </div>
-        <div class="col-md-12">
-          <label>New password</label>
-          <input type="password" />
+        <div class="col-md-12 input-line">
+          <label>New</label>
+          <input type="password" class="input-sm" />
         </div>
-        <div class="col-md-12">
-          <label>Repeat new password</label>
-          <input type="password" />
+        <div class="col-md-12 input-line">
+          <label>Re-type new</label>
+          <input type="password" class="input-sm" />
         </div>
-        <div class="col-md-12">
-          <button>Save</button>
-          <button ng-click="togglePasswordEditing(false)">Cancel</button>
+        <div class="col-md-12 buttons-line">
+          <button class="btn btn-edit">Save</button>
+          <button ng-click="togglePasswordEditing(false)" class="btn btn-edit">Cancel</button>
         </div>
       </div>
     </div>
+
+    <div class="col-sm-12 col-md-12">
+      <div class="line-separator"></div>
+    </div>
+
   </section>
 
   <section class="col-md-12">
@@ -83,11 +96,15 @@
       </div>
     </div>
 
-    <div class="line-wrapper col-md-12" ng-show="editBirthday">
-      <div class="label-wrapper col-md-4">
+    <div class="col-sm-12 col-md-12">
+      <div class="line-separator"></div>
+    </div>
+
+    <div class="line-wrapper col-sm-12 col-md-12" ng-show="editBirthday">
+      <div class="label-wrapper col-sm-6 col-md-4">
         <label>Birthday</label>
       </div>
-      <div class="input-wrapper col-md-4">
+      <div class="input-wrapper col-sm-6 col-md-4">
         {{ user.birth | date: 'longDate'}}
       </div>
       <div class="edit-button-wrapper col-md-4">
@@ -95,54 +112,62 @@
       </div>
     </div>
     <div class="box-edit-wrapper col-md-12" ng-hide="editBirthday">
-      <div class="label-edit-wrapper col-md-4">
+      <div class="label-edit-wrapper col-md-2">
         <label>Birthday</label>
       </div>
-      <div class="inputs-edit-wrapper col-md-8">
-        <div class="col-md-12">
-          <simpledatepicker no-day="false" no-month="false" ng-model="newBirthday"></simpledatepicker>
+      <div class="inputs-edit-wrapper col-md-10">
+        <div class="col-md-12 select-line">
+          <simpledatepicker no-day="false" no-month="false" ng-model="birthday" ></simpledatepicker>
         </div>
-        <div class="col-md-12">
-          <button>Save</button>
-          <button ng-click="toggleBirthdayEditing(false)">Cancel</button>
+        <div class="col-md-12 buttons-line">
+          <button ng-click="saveUserBirth()" class="btn btn-edit">Save</button>
+          <button ng-click="toggleBirthdayEditing(false)" class="btn btn-edit">Cancel</button>
         </div>
       </div>
     </div>
 
-    <div class="line-wrapper col-md-12" ng-show="editGender">
-      <div class="label-wrapper col-md-4">
+    <div class="col-sm-12 col-md-12">
+      <div class="line-separator"></div>
+    </div>
+
+    <div class="line-wrapper col-sm-12 col-md-12" ng-show="editGender">
+      <div class="label-wrapper col-sm-6 col-md-4">
         <label>Gender</label>
       </div>
-      <div class="input-wrapper col-md-4">
-        {{user.gender}}
+      <div class="input-wrapper col-sm-6 col-md-4">
+        {{user.gender=='not_known' ? 'Other': user.gender}}
       </div>
       <div class="edit-button-wrapper col-md-4">
         <div class="edit-button-settings" ng-click="toggleGenderEditing(true)"></div>
       </div>
     </div>
     <div class="box-edit-wrapper col-md-12" ng-hide="editGender">
-      <div class="label-edit-wrapper col-md-4">
+      <div class="label-edit-wrapper col-md-2">
         <label>Gender</label>
       </div>
-      <div class="inputs-edit-wrapper col-md-8">
-        <div class="col-md-12">
+      <div class="inputs-edit-wrapper col-md-10">
+        <div class="col-md-12 single-select-line">
           <select ng-model="user.gender" ng-change="" class="form-control btn btn-primary-70 input-sm">
             <option disabled value="Gender">Gender</option>
             <option value="{{gender}}" ng-repeat="gender in genders"> {{gender}}</option>
           </select>
         </div>
-        <div class="col-md-12">
-          <button>Save</button>
-          <button ng-click="toggleGenderEditing(false)">Cancel</button>
+        <div class="col-md-12 buttons-line">
+          <button ng-click="saveUserGender()" class="btn btn-edit">Save</button>
+          <button ng-click="toggleGenderEditing(false)" class="btn btn-edit">Cancel</button>
         </div>
       </div>
     </div>    
 
-    <div class="line-wrapper col-md-12" ng-show="editHeadline">
-      <div class="label-wrapper col-md-4">
+    <div class="col-sm-12 col-md-12">
+      <div class="line-separator"></div>
+    </div>
+
+    <div class="line-wrapper col-sm-12 col-md-12" ng-show="editHeadline">
+      <div class="label-wrapper col-sm-6 col-md-4">
         <label>Headline</label>
       </div>
-      <div class="input-wrapper col-md-4">
+      <div class="input-wrapper col-sm-6 col-md-4">
         {{user.tag}}
       </div>
       <div class="edit-button-wrapper col-md-4">
@@ -150,42 +175,88 @@
       </div>
     </div>
     <div class="box-edit-wrapper col-md-12" ng-hide="editHeadline">
-      <div class="label-edit-wrapper col-md-4">
+      <div class="label-edit-wrapper col-md-2">
         <label>Headline</label>
       </div>
-      <div class="inputs-edit-wrapper col-md-8">
-        <div class="col-md-12">
-          <input type="text" />
+      <div class="inputs-edit-wrapper col-md-10">
+        <div class="col-md-12 input-line">
+          <label>Headline</label>
+          <input type="text" maxlength="55" ng-model="tag" placeholder="This will be your profile's headline" class="input-sm" />
         </div>
-        <div class="col-md-12">
-          <button>Save</button>
-          <button ng-click="toggleHeadlineEditing(false)">Cancel</button>
+        <div class="col-md-12 buttons-line">
+          <button ng-click="saveUserTag()" class="btn btn-edit">Save</button>
+          <button ng-click="toggleHeadlineEditing(false)" class="btn btn-edit">Cancel</button>
         </div>
-      </div>
-    </div>   
-
-    <div class="line-wrapper col-md-12">
-      <div class="label-wrapper col-md-4">
-        <label>Location</label>
-      </div>
-      <div class="input-wrapper col-md-4">
-        {{user.state.name}}, {{user.country.name}}
-      </div>
-      <div class="edit-button-wrapper col-md-4">
-        <div class="edit-button-settings"></div>
       </div>
     </div>
 
-    <div class="line-wrapper col-md-12">
-      <div class="label-wrapper col-md-4">
+    <div class="col-sm-12 col-md-12">
+      <div class="line-separator"></div>
+    </div>
+
+    <div class="line-wrapper col-sm-12 col-md-12" ng-show="editLocation">
+      <div class="label-wrapper col-sm-6 col-md-4">
+        <label>Location</label>
+      </div>
+      <div class="input-wrapper col-sm-6 col-md-4">
+        {{user.state.name}}, {{user.country.name}}
+      </div>
+      <div class="edit-button-wrapper col-md-4">
+        <div class="edit-button-settings" ng-click="toggleLocationEditing(true)"></div>
+      </div>
+    </div>
+    <div class="box-edit-wrapper col-md-12" ng-hide="editLocation">
+      <div class="label-edit-wrapper col-md-2">
+        <label>Location</label>
+      </div>
+      <div class="inputs-edit-wrapper col-md-10">
+        <div class="col-md-12 select-line">
+          <div class="col-md-4">
+            <country-selector placeholder="What country do you live in?" ng-model="country" on-select="onCountry" required></country-selector>
+          </div>
+          <div class="col-md-4">
+            <state-selector placeholder="What state do you live in?" ng-model="state" on-select="onState" country-id="user.country_id" required></state-selector>
+          </div>
+        </div>
+        <div class="col-md-12 buttons-line">
+          <button ng-click="saveUserLocation()" class="btn btn-edit">Save</button>
+          <button ng-click="toggleLocationEditing(false)" class="btn btn-edit">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-md-12">
+      <div class="line-separator"></div>
+    </div>
+
+    <div class="line-wrapper col-sm-12 col-md-12" ng-show="editNationality">
+      <div class="label-wrapper col-sm-6 col-md-4">
         <label>Nationality</label>
       </div>
-      <div class="input-wrapper col-md-4">
+      <div class="input-wrapper col-sm-6 col-md-4">
         {{user.nationalities[0].name}}
       </div>
       <div class="edit-button-wrapper col-md-4">
-        <div class="edit-button-settings"></div>
+        <div class="edit-button-settings" ng-click="toggleNationalityEditing(true)"></div>
       </div>
+    </div>
+    <div class="box-edit-wrapper col-md-12" ng-hide="editNationality">
+      <div class="label-edit-wrapper col-md-2">
+        <label>Nationality</label>
+      </div>
+      <div class="inputs-edit-wrapper col-md-10">
+        <div class="col-md-12">
+          <nationality-selector placeholder="What is your nationality?" ng-model="nationality" on-select="onNationality"></nationality-selector>
+        </div>
+        <div class="col-md-12 buttons-line">
+          <button ng-click="seveUserNationality()" class="btn btn-edit">Save</button>
+          <button ng-click="toggleNationalityEditing(false)" class="btn btn-edit">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-md-12">
+      <div class="line-separator"></div>
     </div>
   </section>
 </div>

@@ -32,12 +32,19 @@
         <li>
           <p class="username" ng-if="logged">{{username}}</p>
         </li>
-        <li>
-          <a class="login-btn" ng-if="logged" ng-click="logout()">Logout</a>
-        </li>
       </ul>
-      <p class="navbar-name navbar-right" ng-if="logged">Hi {{username}}!</p>
-      <p class="access-setting-button" ng-if="logged" ng-click="redirectToSettings()">Settings</p>
+      <div class="navbar-name navbar-right" ng-if="logged">
+        <label>Hi {{username}}!</label>
+        <div class="arrow-container" ng-click="showSettingsPopup()">
+          <div class="arrow-down"></div>
+        </div>
+        <div class="options-box" ng-show="isOptionsVisible">
+          <a ng-if="logged" ui-sref="main.user_settings" class="col-md-12 menu-setting-item">Settings</a>
+          <a ng-if="!logged" ui-sref="login" class="col-md-12 menu-setting-item">Login</a>
+          <a ng-if="logged" ui-sref="login" class="col-md-12 menu-setting-item">Logout</a>
+        </div>
+      </div>
+      <p class="access-setting-button"></p>
     </div>
     <!-- /.navbar-collapse -->
   </div>
