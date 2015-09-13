@@ -2,14 +2,17 @@ angular.module('mepedia.controllers').controller("forgotPasswordController", [
   '$scope', 'sessionService', '$state', '$stateParams', 'alertService',
   ($scope, sessionService, $state, $stateParams, alertService)->
     $scope.alerts = []
+    $scope.spinnerVisible = false
 
     $scope.sendEmailForgotPassword = (valid) ->
       if not valid
         return
       if $scope.emailFgtPssw
+        $scope.spinnerVisible = true
         sessionService.sendFgtPsswEmail($scope.emailFgtPssw).then(
           (response) ->
-            $state.go 'home.checkemail'
+            $scope.spinnerVisible = false
+            $state.go 'home.forgotpssw.checkemail'
         ).catch(alertService.defaultErrorCallback)
 
     $scope.closeAlert = () ->
@@ -26,6 +29,6 @@ angular.module('mepedia.controllers').controller("forgotPasswordController", [
       }
       sessionService.resetPassword(user).then(
         (payload) ->
-          $state.go 'home.resetsccss'
+          $state.go 'home.forgotpssw.resetsccss'
       ).catch(alertService.defaultErrorCallback)
 ])

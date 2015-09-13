@@ -25,20 +25,23 @@
     templateUrl: "angular-app/templates/login.html",
     controller: "loginController",
   }).state("home.forgotpssw", {
-    url: "/forgotpssw",
+    abstract: true,
     templateUrl: "angular-app/templates/views/forgot_pssw.html",
+  }).state("home.forgotpssw.email", {
+    url: "/forgotpssw",
+    templateUrl: "angular-app/templates/views/forgot/email.html",
     controller: "forgotPasswordController",
-  }).state("home.checkemail", {
+  }).state("home.forgotpssw.checkemail", {
     url: "/checkemail",
-    templateUrl: "angular-app/templates/views/forgot_pssw_checkemail.html",
+    templateUrl: "angular-app/templates/views/forgot/checkemail.html",
     controller: "forgotPasswordController",
-  }).state("home.resetpssw", {
+  }).state("home.forgotpssw.resetpssw", {
     url: "/resetpssw?r={resource}&reset_token={token}",
-    templateUrl: "angular-app/templates/views/forgot_pssw_reset.html",
+    templateUrl: "angular-app/templates/views/forgot/reset.html",
     controller: "forgotPasswordController",
-  }).state("resetsccss", {
+  }).state("home.forgotpssw.resetsccss", {
     url: "/resetsccss",
-    templateUrl: "angular-app/templates/views/forgot_pssw_success.html",
+    templateUrl: "angular-app/templates/views/forgot/success.html",
     controller: "forgotPasswordController",
   }).state("main.signup_candidate", {
     url: "/signup",
