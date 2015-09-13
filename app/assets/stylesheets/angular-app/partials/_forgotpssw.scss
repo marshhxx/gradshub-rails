@@ -1,0 +1,107 @@
+/** START forgot password **/
+.forgotpssw {
+
+  &.background {
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    height: 100vh;
+    background: url("login/background.png") no-repeat center center;
+  }
+
+  &.cont {
+    margin-top: 40px;
+    padding: 0 40px;
+  }
+
+  &.form {
+    margin-top: 5px;
+    padding: 40px 50px 40px 50px;
+    background-color: #FFF;
+  }
+
+  &.form-checkemail {
+    margin-top: 5px;
+    padding: 30px 50px 30px 50px;
+    background-color: #FFF;
+  }
+
+  &.title-container {
+    vertical-align: middle;
+    padding: 5px 0px;
+  }
+
+  &.title {
+    font: 16px Opensans-regular, Georgia, "Times New Roman", Times, serif;
+    color: #3D9ED8;
+    line-height: 27px;
+  }
+
+  &.subtitle {
+    font: 16px Opensans-regular, Georgia, "Times New Roman", Times, serif;
+    color: #3f4752;
+  }
+
+  &.img {
+    background: url('_logo.svg') no-repeat center center;
+    width: 30px;
+    height: 30px;
+  }
+
+  &.btn-form {
+    width: 100%;
+    margin: 20px 0;
+    padding: 10px 0px;
+    background: none;
+    color: #3D9ED8;
+    font: 14px Opensans-regular, Georgia, "Times New Roman", Times, serif;
+    border: 1px solid #3D9ED8;
+    border-radius: 0 !important;
+
+    &:hover {
+      padding: 10px 0px;
+      background: #3D9ED8;
+      color: #FFF;
+    }
+  }
+
+  &.btn-form.reset {
+    margin: 0px 0;
+  }
+
+  &.text {
+    color: #3f4752;
+    font: 14px Opensans-light, Georgia, "Times New Roman", Times, serif;
+  }
+
+  &.text-blue {
+    color: #3D9ED8;
+    font: 14px Opensans-regular, Georgia, "Times New Roman", Times, serif;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  &.hr {
+    background: #3D9ED8;
+  }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width: 768px) {
+
+  .forgotpssw.cont {
+    padding: 0px 50px;
+    margin-top: 120px;
+  }
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width: 992px) {
+
+  .forgotpssw.cont {
+    padding: 0px 0px;
+  }
+
+}

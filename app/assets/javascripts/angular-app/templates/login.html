@@ -1,17 +1,8 @@
-<div class="alert-top-fixed col-lg-6 col-md-6 col-sm-8 col-xs-12 col-md-offset-3 col-lg-offset-3 col-sm-offset-2">
-  <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="alert.close()">
-    <p ng-bind-html="'<strong>' + alert.title + '!</strong> ' + renderHtml(alert.msg)"></p>
-  </alert>
-</div>
 <div class="login background" ng-class="randomPhoto" xmlns="http://www.w3.org/1999/html">
   <div class="login form-container">
     <div class="container">
       <div class="row">
         <div class="login form-box col-lg-4 col-md-5 col-sm-5 col-lg-offset-4 col-md-offset-4 col-sm-offset-4 text-center">
-
-          <div class="login logo-container">
-
-          </div>
 
           <div class="login form-box-cont">
             <form name="loginForm" class="form-horizontal" ng-submit="login(loginForm.$valid)" novalidate>
@@ -20,9 +11,12 @@
                 <div class="form-group margin-t20"
                      ng-class="{'has-error': loginForm.email.$invalid && (loginForm.$submitted || loginForm.email.$touched)}">
 
-                  <div class="login-ic left">
-                    <div class="ic-email"></div>
-                  </div>
+                  <!--
+                  Comment this out to get the icons
+                  <div class="login ic left">-->
+                    <!--<div class="ic-email"></div>-->
+                  <!--</div>
+                  -->
                   <div class="auto-width">
                     <input type="email" name="email" class="form-control" ng-model="email"
                            placeholder="Your Email" required>
@@ -42,9 +36,12 @@
                 <div class="form-group login-group"
                      ng-class="{'has-error': loginForm.password.$invalid && (loginForm.$submitted || loginForm.password.$touched)}">
 
-                  <div class="login-ic left">
-                    <div class="ic-password"></div>
-                  </div>
+                  <!--
+                  Comment this out to get the icons
+                  <!--<div class="login-ic left">-->
+                    <!--<div class="ic-password"></div>-->
+                  <!--</div>
+                  -->
                   <div class="auto-width">
                     <input type="password" name="password" ng-model="password" class="form-control"
                            placeholder="Your Password" required ng-minlength="5" ng-maxlength="20">
@@ -66,17 +63,12 @@
                 </div>
               </div>
 
-              <div class="margin-t30 text-center">
-                <div class="control-group has-error" ng-messages="serverErrors">
-                  <div class="help-block" ng-repeat="error in serverErrors.reasons">
-                    <div>{{ error }}</div>
-                  </div>
-                </div>
+              <div class="form-group margin-t30 text-center">
                 <button type="submit" class="btn btn-default login button-submit">Log In</button>
               </div>
             </form>
 
-            <div class="margin-lr30">
+            <div class="margin-b20">
               <div class="login rememberme">
                 <label>Remember me</label>
                 <input class="login rememberme-checkbox" type="checkbox"
@@ -86,7 +78,7 @@
               <div class="login forgotpssw"><a ui-sref="home.forgotpssw">Forgot
                 password?&nbsp;</a><label>
                 / New
-                to GradsHub?&nbsp;</label><a class="sign-up-login" ui-sref="home.page">Sign up</a>
+                to GradsHub?&nbsp;</label><a class="login sign-up-login" ui-sref="home.page">Sign up</a>
               </div>
             </div>
           </div>
