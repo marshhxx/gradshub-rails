@@ -30,13 +30,13 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <a href="#contact">EXPLORE</a>
+          <a ng-click="scrollTo('explore')">EXPLORE</a>
         </li>
         <li>
-          <a href="#about">HOW IT WORKS</a>
+          <a ng-click="scrollTo('section-four')">HOW IT WORKS</a>
         </li>
         <li>
-          <a href="#services">REAL LIFE STORIES</a>
+          <a ng-click="scrollTo('section-twelve')">REAL LIFE STORIES</a>
         </li>
         <li>
           <p class="navbar-name navbar-right" ng-if="logged">{{username}}</p>
@@ -59,7 +59,7 @@
   <div class="footer-above">
     <div class="container">
       <div class="col-lg-12">
-        <button ng-click="gotoTop()" class="button">Join Gradshub for free</button>
+        <button ng-click="scrollTo('top')" class="button">Join Gradshub for free</button>
       </div>
       <div class="col-lg-12">
         <div class="footer-li-container">

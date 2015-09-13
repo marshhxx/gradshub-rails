@@ -828,7 +828,7 @@ header .home-carousel-container {
   }
 
   &.section-four {
-    @extend %bg-image; background-image: url('signup/background-signup1.png');
+    @extend %bg-image; background-image: url('homepage/background-howitworks.png');
   }
 
   &.section-twelve {
@@ -842,7 +842,7 @@ header .home-carousel-container {
   top: 50%;
   transform: translateY(-50%);
 
-  & .heading {
+  .heading {
     font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
     font-size: 1.8em;
     color: $primary-white;
@@ -853,7 +853,7 @@ header .home-carousel-container {
     }
   }
 
-  & .subheading {
+  .subheading {
     font-family: Montserrat-Light, Georgia, "Times New Roman", Times, serif;
     font-size: 1.2em;
     color: $primary-white;
@@ -984,45 +984,52 @@ section#section-thirteen {
 }
 
 .section-thirteen-top-padding {
-  padding: 40px 80px;
+  padding: 0px 20px;
+  height: 330px;
 }
 
-.section-thirteen.img {
-  height: 280px;
-  background-size: auto 300px !important;
-}
-
-.section-thirteen.img.testimonial-1 {
-  background: url('homepage/testimonials-1.png') no-repeat center center;
-}
-
-.section-thirteen.img.testimonial-2 {
-  background: url('homepage/testimonials-2.png') no-repeat center center;
-}
-
-.section-thirteen.img.testimonial-3 {
-  background: url('homepage/testimonials-3.png') no-repeat center center;
-}
-
-.section-thirteen.title {
-  font-family: 'Montserrat-Regular', Georgia, "Times New Roman", Times, serif;
-  font-size: 22px;
-  color: $text-title;
-  text-transform: uppercase;
-  margin-bottom: 15px;
-}
-
-.section-thirteen.subtitle {
-  font-family: 'Lato-Regular', Georgia, "Times New Roman", Times, serif;
-  font-size: 18px;
-  color: $text-regular;
-  margin-bottom: 25px;
-}
-
-.section-thirteen.txt {
-  font-family: 'Lato-Light-Italic', Georgia, "Times New Roman", Times, serif;
-  font-size: 1.2em;
-  color: $text-regular;
+.section-thirteen {
+  &.img {
+    height: 330px;
+    background-size: cover !important;
+    &.testimonial-1 {
+      background: url('homepage/testimonials-1.png') no-repeat center center;
+    }
+    &.testimonial-2 {
+      background: url('homepage/testimonials-2.png') no-repeat center center;
+    }
+    &.testimonial-3 {
+      background: url('homepage/testimonials-3.png') no-repeat center center;
+    }
+  }
+  .parent-wrapper {
+    height: 100%;
+    position: relative;
+  }
+  .wrapper {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0 20px;
+  }
+  &.title {
+    font-family: 'Montserrat-Regular', Georgia, "Times New Roman", Times, serif;
+    font-size: 22px;
+    color: $text-title;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+  }
+  &.subtitle {
+    font-family: 'Lato-Regular', Georgia, "Times New Roman", Times, serif;
+    font-size: 18px;
+    color: $text-regular;
+    margin-bottom: 25px;
+  }
+  &.txt {
+    font-family: 'Lato-Light-Italic', Georgia, "Times New Roman", Times, serif;
+    font-size: 1.2em;
+    color: $text-regular;
+  }
 }
 
 section#section-fourteen {
@@ -1066,7 +1073,7 @@ footer#home .button {
 .footer-li {
   float: left;
   color: $primary-white;
-  font: 1.2em Lato-Regular, Georgia, "Times New Roman", Times, serif;
+  font: 1.1em Lato-Regular, Georgia, "Times New Roman", Times, serif;
   cursor: pointer;
   text-decoration: none;
 }
