@@ -2,9 +2,11 @@
   <form name="emailForm" ng-submit="sendEmailForgotPassword(emailForm.$valid)" novalidate>
 
     <div class="forgotpssw form text-center">
-      <p ng-show="spinnerVisible">Please wait while the email is being sent.</p>
-      <div class="search-spinner">
-        <spinner show-spinner="spinnerVisible"></spinner>
+      <div ng-show="spinnerVisible" class="margin-t30">
+        <p ng-show="spinnerVisible">Please wait while the email is being sent.</p>
+        <div class="forgotpssw spinner">
+          <spinner show-spinner="spinnerVisible"></spinner>
+        </div>
       </div>
 
       <div ng-show="!spinnerVisible">

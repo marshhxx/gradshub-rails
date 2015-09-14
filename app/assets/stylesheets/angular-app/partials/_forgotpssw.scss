@@ -19,6 +19,7 @@
     margin-top: 5px;
     padding: 5% 20% 10% 20%;
     background-color: $primary-white;
+    min-height: 250px;
   }
 
   &.form-checkemail {
@@ -64,7 +65,7 @@
     color: $primary-white;
     font: 14px 'Lato-Regular', Georgia, "Times New Roman", Times, serif;
     border: 1px solid #3D9ED8;
-    border-radius: 0 !important;
+    border-radius: 4px !important;
 
     &:hover {
       padding: 10px 0px;
@@ -91,6 +92,12 @@
 
   &.hr {
     background: #3D9ED8;
+  }
+
+  &.spinner {
+    width: 100px;
+    margin: auto;
+    margin-top: 10px;
   }
 }
 
