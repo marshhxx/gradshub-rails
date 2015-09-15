@@ -943,12 +943,12 @@ section#section-six {
   padding: 45px 0;
 
   &.section-five {
+    padding-bottom: 0px;
+  }
+  &.section-six {
     padding-bottom: 60px;
   }
 
-  &.section-six {
-    padding-bottom: 0px;
-  }
 }
 
 .container-img {
