@@ -23,74 +23,71 @@
                                    ng-class="{'type-btn-active': candidate}">CANDIDATE</span>
                 </div>
 
-
                 <form name="homeForm" ng-submit="registerUser(homeForm.$valid)" novalidate>
-                  <div class="form">
-
-                    <div class="form-group signup"
-                         ng-class="{'has-error': homeForm.name.$invalid && (homeForm.$submitted || homeForm.name.$dirty)}">
-                      <input type="text" name="name" class="form-control" ng-model="name"
-                             placeholder="Your Name" required>
-
-                      <div ng-if="homeForm.name.$invalid && (homeForm.$submitted || homeForm.name.$dirty)"
-                           ng-messages="homeForm.name.$error">
-                        <div class="help-block" ng-message="required">
-                          Enter your name.
-                        </div>
-                      </div>
-                    </div>
-
-
-                    <div class="form-group signup"
-                         ng-class="{'has-error': homeForm.lastname.$invalid && (homeForm.$submitted || homeForm.lastname.$dirty)}">
-                      <input type="text" name="lastname" class="form-control" ng-model="lastname"
-                             placeholder="Your Last Name" required>
-
-                      <div ng-if="homeForm.lastname.$invalid && (homeForm.$submitted || homeForm.lastname.$dirty)"
-                           ng-messages="homeForm.lastname.$error">
-                        <div class="help-block" ng-message="required">
-                          Enter your last name.
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="form-group signup control-group"
-                         ng-class="{'has-error': homeForm.email.$invalid && (homeForm.$submitted || homeForm.email.$touched)}">
-                      <input type="email" name="email" class="form-control" ng-model="email"
-                             placeholder="Your Email" required>
-
-                      <div ng-if="homeForm.email.$invalid && (homeForm.$submitted || homeForm.email.$touched)"
-                           ng-messages="homeForm.email.$error">
-                        <div class="help-block" ng-message="required">
-                          Enter your email.
-                        </div>
-                        <div class="help-block" ng-message="email">
-                          Enter a valid email.
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="form-group signup control-group"
-                         ng-class="{'has-error': homeForm.password.$invalid && (homeForm.$submitted || homeForm.password.$touched)}">
-                      <input type="password" name="password" class="form-control" ng-model="password"
-                             placeholder="Your Password"
-                             ng-minlength="5" ng-maxlength="20" required>
-
-                      <div ng-if="homeForm.password.$invalid && (homeForm.$submitted || homeForm.password.$touched)"
-                           ng-messages="homeForm.password.$error">
-                        <div class="help-block" ng-message="required">
-                          Enter your password.
-                        </div>
-                        <div class="help-block" ng-message="minlength">
-                          Your password is too short.
-                        </div>
-                        <div class="help-block" ng-message="maxlength">
-                          Your password is too long.
-                        </div>
-                      </div>
-                    </div>
-
+                  <div class="form-row signup first-child childs"
+                       ng-class="{'has-error': homeForm.name.$invalid && (homeForm.$submitted || homeForm.name.$dirty)}">
+                    <input type="text" name="name" class="signup-input" ng-model="name"
+                           placeholder="Your Name" required>
                   </div>
+
+                  <div class="form-row signup childs"
+                       ng-class="{'has-error': homeForm.lastname.$invalid && (homeForm.$submitted || homeForm.lastname.$dirty)}">
+                    <input type="text" name="lastname" class="signup-input" ng-model="lastname"
+                           placeholder="Your Last Name" required>
+                  </div>
+
+                  <div class="form-row signup childs"
+                       ng-class="{'has-error': homeForm.email.$invalid && (homeForm.$submitted || homeForm.email.$touched)}">
+                    <input type="email" name="email" class="signup-input" ng-model="email"
+                           placeholder="Your Email" required>
+                  </div>
+
+                  <div class="form-row signup childs last-child"
+                       ng-class="{'has-error': homeForm.password.$invalid && (homeForm.$submitted || homeForm.password.$touched)}">
+                    <input type="password" name="password" class="signup-input" ng-model="password"
+                           placeholder="Your Password"
+                           ng-minlength="5" ng-maxlength="20" required>
+                  </div>
+
+                  <!-- Start Sign up Form Validation Errors Messages !-->
+                  <div ng-if="homeForm.name.$invalid && (homeForm.$submitted || homeForm.name.$dirty)"
+                       ng-messages="homeForm.name.$error">
+                    <div class="help-block" ng-message="required">
+                      Enter your name.
+                    </div>
+                  </div>
+
+                  <div ng-if="homeForm.lastname.$invalid && (homeForm.$submitted || homeForm.lastname.$dirty)"
+                       ng-messages="homeForm.lastname.$error">
+                    <div class="help-block" ng-message="required">
+                      Enter your last name.
+                    </div>
+                  </div>
+
+                  <div ng-if="homeForm.email.$invalid && (homeForm.$submitted || homeForm.email.$touched)"
+                       ng-messages="homeForm.email.$error">
+                    <div class="help-block" ng-message="required">
+                      Enter your email.
+                    </div>
+                    <div class="help-block" ng-message="email">
+                      Enter a valid email.
+                    </div>
+                  </div>
+
+                  <div ng-if="homeForm.password.$invalid && (homeForm.$submitted || homeForm.password.$touched)"
+                       ng-messages="homeForm.password.$error">
+                    <div class="help-block" ng-message="required">
+                      Enter your password.
+                    </div>
+                    <div class="help-block" ng-message="minlength">
+                      Your password is too short.
+                    </div>
+                    <div class="help-block" ng-message="maxlength">
+                      Your password is too long.
+                    </div>
+                  </div>
+
+                  <!-- End Sign up Form Validation Errors Messages !-->
 
                   <div class="form-btn-container">
                     <div class="control-group has-error" ng-messages="serverErrors">
@@ -127,12 +124,12 @@
 </header>
 
 <!-- Section two -->
-<section id="section-two">
-  <div class="container home-section-two-container">
+<section id="explore" class="section-title section-two">
+  <div class="container section-container">
     <div class="col-lg-12 text-center">
-      <h2 class="home-section-two section-heading">EXPLORE</h2>
+      <p class="heading">EXPLORE</p>
 
-      <h3 class="home-section-two section-subheading text-muted">Getting a job is easier now</h3>
+      <p class="subheading">Getting a job is easier now</p>
     </div>
   </div>
 </section>
@@ -173,10 +170,107 @@
 
 </section>
 
-<section id="section-twelve">
-  <div class="container">
+<section id="section-four" class="section-title section-four">
+  <div class="container section-container">
     <div class="col-lg-12 text-center">
-      <p class="section-twelve title"> REAL LIFE STORIES </p>
+      <p class="heading section-four">How it works</p>
+      <p class="subheading section-four">Create a compelling profile and showcase the real you</p>
+    </div>
+  </div>
+</section>
+
+<section id="section-five">
+  <div class="container container-wrapper">
+    <div class="container-top text-center">
+      <span class="type-btn type-btn-active">CANDIDATE</span>
+    </div>
+
+    <div class="container-bottom section-five">
+
+      <div class="container-img col-md-6 text-center">
+        <img src="/assets/homepage/cellphone_v.png">
+      </div>
+
+      <div class="container-txt col-md-6">
+        <div>
+          <div class="wrapper col-md-8 col-md-offset-2">
+            <p class="title">CREATE YOUR PROFILE</p>
+
+            <p class="detail">Build your powerful profile to market yourself
+              for the job that you want.</p>
+          </div>
+          <div class="wrapper col-md-8 col-md-offset-2">
+            <p class="title">APPLY FOR A JOB</p>
+
+            <p class="detail">Our automated search finds the most ideal job opportunity
+              for you based on your education, skills and interests.</p>
+          </div>
+          <div class="wrapper col-md-8 col-md-offset-2">
+            <p class="title">GET HIRED</p>
+
+            <p class="detail">Our personalization platform provides you with instant
+              communication, thereby making the hiring process pleasant.</p>
+          </div>
+          <div class="wrapper col-md-8 col-md-offset-2">
+            <p class="title">DO A GREAT JOB</p>
+
+            <p class="detail">Excelling at your job is fulfilling, rewarding and
+              enriching with new experiences in life.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="section-six">
+  <div class="container container-wrapper">
+    <div class="container-top text-center">
+      <span class="type-btn type-btn-active white">EMPLOYER</span>
+    </div>
+
+    <div class="container-bottom section-six">
+      <div class="container-txt col-md-6">
+        <div class="wrapper col-md-8 col-md-offset-2">
+          <p class="title">CREATE YOUR PROFILE</p>
+
+          <p class="detail">Build a power profile yo market your company with
+            current job openings, work culture to attract great talent.</p>
+        </div>
+        <div class="wrapper col-md-8 col-md-offset-2">
+          <p class="title">FIND GREAT MINDS</p>
+
+          <p class="detail">Our automated search finds the most ideal candidate
+            for your company, based on your requirements.</p>
+        </div>
+        <div class="wrapper col-md-8 col-md-offset-2">
+          <p class="title">HIRE FAST</p>
+
+          <p class="detail">Our personalization platform allows you to interact efficiently,
+            there by making the hiring process pleasant.</p>
+        </div>
+        <div class="wrapper col-md-8 col-md-offset-2">
+          <p class="title">BUILD A GREAT COMPANY</p>
+
+          <p class="detail">Hiring the best minds creates opportunities for growth,
+            leadership and success.</p>
+        </div>
+      </div>
+
+      <div class="container-img col-md-6 text-center">
+        <img src="/assets/homepage/cellphone_h.png">
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<section id="section-twelve" class="section-title section-twelve">
+  <div class="container section-container">
+    <div class="col-lg-12 text-center">
+      <p class="heading"> REAL LIFE STORIES </p>
     </div>
   </div>
 </section>
@@ -187,12 +281,16 @@
       <div class="section-thirteen img testimonial-2"></div>
     </div>
     <div class="col-md-4 col-sm-12 text-center section-thirteen-top-padding">
-      <p class="section-thirteen title">Kate Coghlan</p>
+      <div class="parent-wrapper">
+        <div class="wrapper">
+          <p class="section-thirteen title">Kate Coghlan</p>
 
-      <p class="section-thirteen subtitle">Social Media Assistant, Boost Media</p>
+          <p class="section-thirteen subtitle">Social Media Assistant, Boost Media</p>
 
-      <p class="section-thirteen txt">I visited Project B job board almost every day and ended up finding my current
-        position here at Boost! They helped ease the anxiety of entering the job market for the first time.</p>
+          <p class="section-thirteen txt">I visited Project B job board almost every day and ended up finding my current
+            position here at Boost! They helped ease the anxiety of entering the job market for the first time.</p>
+        </div>
+      </div>
     </div>
     <div class="col-md-4 col-sm-12 padding-0">
       <div class="section-thirteen img testimonial-3"></div>
@@ -203,24 +301,32 @@
 <section id="section-fourteen">
   <div class="section-thirteen top">
     <div class="col-md-4 col-sm-12 text-center section-thirteen-top-padding">
-      <p class="section-thirteen title">Kate Coghlan</p>
+      <div class="parent-wrapper">
+        <div class="wrapper">
+          <p class="section-thirteen title">Kate Coghlan</p>
 
-      <p class="section-thirteen subtitle">Social Media Assistant, Boost Media</p>
+          <p class="section-thirteen subtitle">Social Media Assistant, Boost Media</p>
 
-      <p class="section-thirteen txt">I visited Project B job board almost every day and ended up finding my current
-        position here at Boost! They helped ease the anxiety of entering the job market for the first time.</p>
+          <p class="section-thirteen txt">I visited Project B job board almost every day and ended up finding my current
+            position here at Boost! They helped ease the anxiety of entering the job market for the first time.</p>
+        </div>
+      </div>
     </div>
     <div class="col-md-4 col-sm-12 padding-0">
       <div class="section-thirteen img testimonial-1"></div>
     </div>
 
     <div class="col-md-4 col-sm-12 text-center section-thirteen-top-padding">
-      <p class="section-thirteen title">Kate Coghlan</p>
+      <div class="parent-wrapper">
+        <div class="wrapper">
+          <p class="section-thirteen title">Kate Coghlan</p>
 
-      <p class="section-thirteen subtitle">Social Media Assistant, Boost Media</p>
+          <p class="section-thirteen subtitle">Social Media Assistant, Boost Media</p>
 
-      <p class="section-thirteen txt">I visited Project B job board almost every day and ended up finding my current
-        position here at Boost! They helped ease the anxiety of entering the job market for the first time.</p>
+          <p class="section-thirteen txt">I visited Project B job board almost every day and ended up finding my current
+            position here at Boost! They helped ease the anxiety of entering the job market for the first time.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>

@@ -444,8 +444,6 @@ section#logo .logo {
 header {
   width: 100%;
   height: 830px;
-  background-size: cover !important;
-  padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
   padding-bottom: 50px;
   text-align: center;
 }
@@ -453,53 +451,20 @@ header {
 .header-signup {
   color: $primary-white;
   margin: 0;
-  padding: 10% 0;
+  padding: 14% 0;
   overflow: hidden;
   width: 100%;
 
   .title {
-    font-size: 5em;
-    font-weight: 700;
+    font-family: Montserrat-Bold, Georgia, "Times New Roman", Times, serif;
+    font-size: 4.5em;
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
   }
 
   .subtitle {
-    font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
-    font-size: 1.6em;
+    font-family: Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+    font-size: 1.5em;
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
-  }
-
-  .type-btn {
-    width: 165px;
-    font: 18px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
-    color: $primary-white;
-    padding: 15px 0;
-    margin-bottom: 15px;
-    border: 3px solid $primary-white;
-    border-radius: 4px !important;
-    background-color: transparent;
-    display: inline-block;
-    cursor: pointer;
-    text-align: center;
-    &.btn-left {
-      float: left;
-    }
-    &.btn-right {
-      float: right;
-    }
-
-    &:hover {
-      background-color: $primary-turquoise-hover;
-      border: 3px solid $primary-turquoise-hover;
-      color: $primary-white;
-    }
-  }
-
-  .type-btn-active {
-    background-color: $primary-turquoise;
-    border: 3px solid $primary-turquoise;
-    color: $primary-white;
-    text-decoration: none;
   }
 
   .buttons {
@@ -555,6 +520,84 @@ header {
     }
   }
 }
+
+.type-btn {
+  width: 165px;
+  font: 18px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+  color: $primary-white;
+  padding: 15px 0;
+  margin-bottom: 15px;
+  border: 3px solid $primary-white;
+  border-radius: 4px !important;
+  background-color: transparent;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+  &.btn-left {
+    float: left;
+  }
+  &.btn-right {
+    float: right;
+  }
+  &.white {
+    background-color: $primary-white;
+    color: $primary-turquoise;
+    border-color: $primary-white;
+  }
+}
+
+.type-btn-active {
+  background-color: $primary-turquoise;
+  border: 3px solid $primary-turquoise;
+  color: $primary-white;
+  text-decoration: none;
+  cursor: default;
+}
+
+/* Start sign up form homepage */
+
+.signup-input {
+  width: 100%;
+  padding: 11px 10px 11px 13px;
+  display: block;
+  margin: 0;
+  border: 0;
+  background: 0;
+  font: 16px/1.4 "Helvetica Neue","HelveticaNeue",Helvetica,Arial,sans-serif;
+  box-sizing: border-box;
+  outline: 0;
+
+  &:hover {
+    border: 0 !important;
+  }
+
+  &:focus {
+    border: 0 !important;
+  }
+}
+
+.form-row.signup{
+  background-color: $primary-white;
+  z-index: 2;
+}
+
+.form-row.first-child{
+  border-top: 0 !important;
+  border-top-left-radius: 4px !important;
+  border-top-right-radius: 4px !important;
+}
+
+.form-row.last-child{
+  border-bottom-left-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+}
+
+.form-row.childs {
+  position: relative;
+  border-top: 1px solid #e3e3e3;
+}
+
+/* End sign up form homepage */
 
 section#signup {
   width: 100%;
@@ -734,10 +777,6 @@ header .home-carousel-container {
 /* Large Devices, Wide Screens */
 @media only screen and (min-width: 1200px) {
 
-  section#signup {
-    //  padding: 60px 0px 40px 0px;
-  }
-
 }
 
 .btn-xl {
@@ -782,25 +821,50 @@ header .home-carousel-container {
 
 /*** Start features section header ***/
 
-section#section-two {
-  padding: 50px 0px 30px 0;
+.section-title {
+  height: 200px;
+  position: relative;
+
+  &.section-two {
+    background-color: $primary-dark-blue;
+  }
+
+  &.section-four {
+    @extend %bg-image; background-image: url('homepage/background-howitworks.png');
+  }
+
+  &.section-twelve {
+    background-color: $primary-orange;
+  }
 }
 
-.home-section-two.section-heading {
-  margin-top: 0;
-  margin-bottom: 15px;
-  font-size: 1.8em;
-  color: $primary-blue;
-  text-transform: uppercase;
-  font-family: Montserrat-Bold, Georgia, "Times New Roman", Times, serif;
-}
+.section-container {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 
-.home-section-two.section-subheading {
-  margin-bottom: 40px;
-  font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
-  font-size: 1.2em;
-  color: $text-bold;
-  float: none !important;
+  .heading {
+    font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+    font-size: 1.8em;
+    color: $primary-white;
+    text-transform: uppercase;
+
+    &.section-four {
+      color: $primary-blue;
+    }
+  }
+
+  .subheading {
+    font-family: Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+    font-size: 1.2em;
+    color: $primary-white;
+    margin-top: 18px;
+
+    &.section-four {
+      color: $text-title;
+    }
+  }
 }
 
 /*** End features section header ***/
@@ -857,162 +921,61 @@ section#section-three {
 
 /*** Start section How it works ***/
 
-/*** Start section seven ***/
-
-section#section-seven {
-  padding: 50px 0px;
-  background-color: $primary-turquoise;
+section#section-five {
+  background-color: $primary-dark-blue;
 }
 
-.section-seven.title {
-  font-size: 1.8em;
-  font-family: Montserrat-Bold, Georgia, "Times New Roman", Times, serif;
-  color: $primary-white;
+section#section-six {
+  background-color: $primary-dark-turquoise;
 }
 
-/*** End section seven ***/
 
-section#section-eight {
+.container-wrapper {
+  width:100%;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.container-top {
   width: 100%;
-  height: 450px;
 }
 
-.section-eight.img {
-  height: 450px;
-  background: url('homepage/home-background-candidate.png') no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+.container-bottom {
+  overflow: hidden;
+  padding: 45px 0;
+
+  &.section-five {
+    padding-bottom: 0px;
+  }
+  &.section-six {
+    padding-bottom: 60px;
+  }
+
 }
 
-.home-title.white {
-  font-size: 1.8em;
-  font-family: Montserrat-Bold, Georgia, "Times New Roman", Times, serif;
-  color: $primary-white;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-section#section-nine {
-  width: 100%;
+.container-img {
   overflow: hidden;
 }
 
-/* Start how it works section */
-
-.section-nine.img {
-  height: 500px;
-  width: 660px;
-  background: url('mobile-employer.png') no-repeat center center;
-  background-size: 660px 500px;
-  bottom: 0;
-  float: right;
-}
-
-.section-nine-rows-cont {
-  margin-top: 100px;
-  margin-bottom: 50px;
-}
-
-.section-nine.row {
-  padding: 15px 0;
-}
-
-.section-nine.row-img {
-  width: 60px;
-  height: 60px;
-  float: right;
-  background-size: 60px 60px;
-  background-repeat: no-repeat;
-  display: inline-block; /* So that it behaves like the img element */
-}
-
-.section-nine.row-img.c-img-1 {
-  background-image: url(homepage/ic_person.svg);
-}
-
-.section-nine.row-img.c-img-2 {
-  background-image: url(homepage/ic_lightbulb.svg);
-}
-
-.section-nine.row-img.c-img-3 {
-  background-image: url(homepage/ic_loupe.svg);
-}
-
-.section-nine.row-img.c-img-4 {
-  background-image: url(homepage/ic_tick.svg);
-}
-
-.section-nine.row-img.e-img-1 {
-  background-image: url(homepage/ic_person.svg);
-}
-
-.section-nine.row-img.e-img-2 {
-  background-image: url(homepage/ic_lightbulb.svg);
-}
-
-.section-nine.row-img.e-img-3 {
-  background-image: url(homepage/ic_loupe.svg);
-}
-
-.section-nine.row-img.e-img-4 {
-  background-image: url(homepage/ic_tick.svg);
-}
-
-.section-nine .title {
-  color: $text-title;
-  font-size: 20px;
-  text-align: left;
-  font-family: 'Montserrat-Regular', Georgia, "Times New Roman", Times, serif;
-}
-
-.section-nine .subtitle {
-  color: $text-regular !important;
-  font-size: 16px;
-  text-align: left;
-  font-family: 'Lato-Light-Italic', Georgia, "Times New Roman", Times, serif;
-}
-
-.section-nine .row {
-  padding: 10px 0;
-}
-
-.section-ten.img {
-  height: 450px;
-  background: url('homepage/home-background-candidate.png') no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-section#section-eleven {
-  width: 100%;
-  overflow: hidden;
-}
-
-.section-eleven.img {
-  height: 500px;
-  width: 660px;
-  background: url('mobile-candidate.png') no-repeat center center;
-  background-size: 660px 500px;
-  bottom: 0;
-  float: left;
-}
-
-section#section-twelve {
-  padding: 50px 0px;
-  background-color: $primary-blue;
-}
-
-.section-twelve.title {
-  font-size: 1.8em;
-  font-family: Montserrat-Bold, Georgia, "Times New Roman", Times, serif;
+.container-txt {
   color: $primary-white;
+  .wrapper {
+    margin-bottom: 20px;
+  }
+  .title {
+    font: 18px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+    float: left;
+  }
+  .detail{
+    font: 16px Lato-Light, Georgia, "Times New Roman", Times, serif;
+    float: left;
+    margin-top: 7px;
+  }
 }
+
+/*** End section How it works ***/
+
+/*** Start section thirteen ***/
 
 section#section-thirteen {
   overflow: hidden;
@@ -1023,46 +986,52 @@ section#section-thirteen {
 }
 
 .section-thirteen-top-padding {
-  padding: 40px 80px;
-  //height: 280px;
+  padding: 0px 20px;
+  height: 330px;
 }
 
-.section-thirteen.img {
-  height: 280px;
-  background-size: auto 300px !important;
-}
-
-.section-thirteen.img.testimonial-1 {
-  background: url('homepage/testimonials-1.png') no-repeat center center;
-}
-
-.section-thirteen.img.testimonial-2 {
-  background: url('homepage/testimonials-2.png') no-repeat center center;
-}
-
-.section-thirteen.img.testimonial-3 {
-  background: url('homepage/testimonials-3.png') no-repeat center center;
-}
-
-.section-thirteen.title {
-  font-family: 'Montserrat-Regular', Georgia, "Times New Roman", Times, serif;
-  font-size: 22px;
-  color: $text-title;
-  text-transform: uppercase;
-  margin-bottom: 15px;
-}
-
-.section-thirteen.subtitle {
-  font-family: 'Lato-Regular', Georgia, "Times New Roman", Times, serif;
-  font-size: 18px;
-  color: $text-regular;
-  margin-bottom: 25px;
-}
-
-.section-thirteen.txt {
-  font-family: 'Lato-Light-Italic', Georgia, "Times New Roman", Times, serif;
-  font-size: 1.2em;
-  color: $text-regular;
+.section-thirteen {
+  &.img {
+    height: 330px;
+    background-size: cover !important;
+    &.testimonial-1 {
+      background: url('homepage/testimonials-1.jpg') no-repeat center center;
+    }
+    &.testimonial-2 {
+      background: url('homepage/testimonials-2.jpg') no-repeat center center;
+    }
+    &.testimonial-3 {
+      background: url('homepage/testimonials-3.jpg') no-repeat center center;
+    }
+  }
+  .parent-wrapper {
+    height: 100%;
+    position: relative;
+  }
+  .wrapper {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0 20px;
+  }
+  &.title {
+    font-family: 'Montserrat-Regular', Georgia, "Times New Roman", Times, serif;
+    font-size: 22px;
+    color: $text-title;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+  }
+  &.subtitle {
+    font-family: 'Lato-Regular', Georgia, "Times New Roman", Times, serif;
+    font-size: 18px;
+    color: $text-regular;
+    margin-bottom: 25px;
+  }
+  &.txt {
+    font-family: 'Lato-Light-Italic', Georgia, "Times New Roman", Times, serif;
+    font-size: 1.2em;
+    color: $text-regular;
+  }
 }
 
 section#section-fourteen {
@@ -1106,7 +1075,7 @@ footer#home .button {
 .footer-li {
   float: left;
   color: $primary-white;
-  font: 1.2em Lato-Regular, Georgia, "Times New Roman", Times, serif;
+  font: 1.1em Lato-Regular, Georgia, "Times New Roman", Times, serif;
   cursor: pointer;
   text-decoration: none;
 }
@@ -1143,7 +1112,6 @@ footer#main .footer-above {
   height: 95%;
   padding-top: 60px;
   overflow: hidden;
-
   background: url('signup/background-signup1.png') no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -1658,25 +1626,20 @@ section#home-end-quote {
     margin: 0px 15px;
   }
 
-  /* section two */
-  section#section-two {
-    padding: 120px 0px 40px 0;
+  /* sections */
+  .section-title {
+    height: 350px;
+    position: relative;
   }
 
-  .home-section-two-container {
-    padding-left: 80px;
-    padding-right: 80px;
-  }
+  .section-container {
+    & .heading {
+      font-size: 4.2em;
+    }
 
-  .home-section-two.section-heading {
-    font-size: 4.5em;
-    margin-bottom: 25px;
-  }
-
-  .home-section-two.section-subheading {
-    margin-bottom: 35px;
-    margin-top: 15px;
-    font-size: 1.8em;
+    & .subheading {
+      font-size: 1.5em;
+    }
   }
 
   .features-image {
@@ -1692,11 +1655,10 @@ section#home-end-quote {
   /* section three */
 
   section#section-three {
-    padding: 0px 0px 120px 0px;
+    padding: 80px 0px;
   }
 
   /* section seven */
-
   section#section-seven {
     padding: 150px 0px;
   }
@@ -1708,50 +1670,15 @@ section#home-end-quote {
   .home-title.white {
     font-size: 4.5em;
   }
-
-  section#section-twelve {
-    padding: 70px 0px;
-  }
-
-  .section-twelve.title {
-    font-size: 4.5em;
-  }
-
 }
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width: 992px) {
 
-  section#section-four {
-    padding: 100px;
-  }
-
-  section#section-five {
-    padding: 100px;
-  }
-
-  section#section-six {
-    padding: 100px;
-  }
-
-  .section-four.column-left {
-    float: left;
-  }
-
-  .section-four.img {
-    height: 360px;
-    float: right;
-  }
-
 }
 
 /* Large Devices, Wide Screens */
 @media only screen and (min-width: 1200px) {
-
-  .home-section-two-container {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
 
 }
 

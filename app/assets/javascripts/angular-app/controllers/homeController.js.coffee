@@ -63,10 +63,10 @@ angular.module('mepedia.controllers').controller("HomeController", [
 
     slides = [
       {
-        image: "/assets/homepage/home-background.jpeg"
+        image: "/assets/homepage/home-background.png"
       }
       {
-        image: "/assets/homepage/home-background.jpeg"
+        image: "/assets/homepage/home-background.png"
       }
       {
         image: "/assets/homepage/home-background.png"

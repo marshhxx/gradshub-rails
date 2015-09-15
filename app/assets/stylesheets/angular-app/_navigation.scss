@@ -20,6 +20,7 @@ $tl: 0.4s; // transition length
 
 .navbar-default .navbar-nav > li > a {
   color: $primary-white !important;
+  cursor: pointer;
   &:hover {
     color: $primary-turquoise-hover;
   }
@@ -29,7 +30,7 @@ $tl: 0.4s; // transition length
 
 .search-box {
   transition: width $tl, border-radius $tl, background $tl, box-shadow $tl;
-  width: 180px;
+  width: 220px;
   height: 40px;
   border-radius: 20px;
   border: none;
@@ -48,7 +49,7 @@ $tl: 0.4s; // transition length
     transition: width $tl, border-radius $tl, background $tl;
     box-shadow: none;
     cursor: text;
-    width: 300px;
+    width: 320px;
     border-radius: auto;
     border: 1px solid $border-gray-focus !important; outline: none;
     background: $primary-white;
