@@ -1786,6 +1786,15 @@ section#home-end-quote {
 
 }
 
+.profile-loader {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  opacity: 0.5;
+  z-index: 9999999;
+  background-color: #000000;
+}
+
 /* Large Devices, Wide Screens */
 @media only screen and (min-width: 1200px) {
 

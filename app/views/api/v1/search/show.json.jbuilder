@@ -1,5 +1,6 @@
 json.users @users.compact do |user|
   json.uid user.user.uid
+  json.type user.user.meta_type
   json.name user.user.name
   json.lastname user.user.lastname
   json.email user.user.email
