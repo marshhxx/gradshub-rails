@@ -2,68 +2,68 @@
   <div class="login form-container">
     <div class="container">
       <div class="row">
-        <div class="login form-box col-lg-4 col-md-5 col-sm-5 col-lg-offset-4 col-md-offset-4 col-sm-offset-4 text-center">
+        <div
+          class="login form-box col-lg-4 col-md-5 col-sm-5 col-lg-offset-4 col-md-offset-4 col-sm-offset-4 text-center">
 
           <div class="login form-box-cont">
             <form name="loginForm" class="form-horizontal" ng-submit="login(loginForm.$valid)" novalidate>
 
               <div class="login">
-                <div class="form-group margin-t20"
+                <div class="margin-t20 login"
                      ng-class="{'has-error': loginForm.email.$invalid && (loginForm.$submitted || loginForm.email.$touched)}">
 
                   <!--
                   Comment this out to get the icons
                   <div class="login ic left">-->
-                    <!--<div class="ic-email"></div>-->
+                  <!--<div class="ic-email"></div>-->
                   <!--</div>
                   -->
-                  <div class="auto-width">
-                    <input type="email" name="email" class="form-control" ng-model="email"
-                           placeholder="Your Email" required>
+                  <input type="email" name="email" class="login login-input first-input" ng-model="email"
+                         placeholder="Your Email" required>
 
-                    <div ng-if="loginForm.email.$invalid && (loginForm.$submitted || loginForm.email.$touched)"
-                         ng-messages="loginForm.email.$error">
-                      <div class="help-block" ng-message="required">
-                        Enter your email.
-                      </div>
-                      <div class="help-block" ng-message="email">
-                        Enter a valid email.
-                      </div>
-                    </div>
-                  </div>
 
                 </div>
-                <div class="form-group login-group"
+                <div class="login"
                      ng-class="{'has-error': loginForm.password.$invalid && (loginForm.$submitted || loginForm.password.$touched)}">
 
                   <!--
                   Comment this out to get the icons
                   <!--<div class="login-ic left">-->
-                    <!--<div class="ic-password"></div>-->
+                  <!--<div class="ic-password"></div>-->
                   <!--</div>
                   -->
-                  <div class="auto-width">
-                    <input type="password" name="password" ng-model="password" class="form-control"
-                           placeholder="Your Password" required ng-minlength="5" ng-maxlength="20">
+                  <input type="password" name="password" ng-model="password" class="login login-input last-input"
+                         placeholder="Your Password" required ng-minlength="5" ng-maxlength="20">
 
-                    <div ng-if="loginForm.password.$invalid && (loginForm.$submitted || loginForm.password.$touched)"
-                         ng-messages="loginForm.password.$error">
-                      <div class="help-block" ng-message="required">
-                        Enter your password.
-                      </div>
-                      <div class="help-block" ng-message="minlength">
-                        Your password is too short.
-                      </div>
-                      <div class="help-block" ng-message="maxlength">
-                        Your password is too long.
-                      </div>
+
+                </div>
+                <div class="row">
+                  <div ng-if="loginForm.email.$invalid && (loginForm.$submitted || loginForm.email.$touched)"
+                       ng-messages="loginForm.email.$error">
+                    <div class="help-block" ng-message="required">
+                      Enter your email.
+                    </div>
+                    <div class="help-block" ng-message="email">
+                      Enter a valid email.
                     </div>
                   </div>
 
+                  <div ng-if="loginForm.password.$invalid && (loginForm.$submitted || loginForm.password.$touched)"
+                       ng-messages="loginForm.password.$error">
+                    <div class="help-block" ng-message="required">
+                      Enter your password.
+                    </div>
+                    <div class="help-block" ng-message="minlength">
+                      Your password is too short.
+                    </div>
+                    <div class="help-block" ng-message="maxlength">
+                      Your password is too long.
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <div class="form-group margin-t30 text-center">
+              <div class="margin-t30 text-center">
                 <button type="submit" class="btn btn-default login button-submit">Log In</button>
               </div>
             </form>

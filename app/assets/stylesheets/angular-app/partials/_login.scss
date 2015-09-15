@@ -75,6 +75,29 @@
   &.sign-up-login {
     color: #3D9ED8 !important;
   }
+
+  .login-input {
+    width: 100%;
+    padding: 11px 10px 11px 13px;
+    display: block;
+    margin: 0;
+    background: 0;
+    font: 16px/1.4 "Helvetica Neue","HelveticaNeue",Helvetica,Arial,sans-serif;
+    box-sizing: border-box;
+    border: 1px solid $border-gray;
+
+    &.first-input {
+      border-top-left-radius: 4px !important;
+      border-top-right-radius: 4px !important;
+    }
+
+    &.last-input {
+      border-bottom-left-radius: 4px !important;
+      border-bottom-right-radius: 4px !important;
+    }
+
+  }
+
 }
 
 /* Custom, iPhone Retina */
