@@ -2,7 +2,7 @@
 
 .results-container { display: inline-block; }
 .search-card-wrapper { display: inline-block; padding: 10px; }
-.search-card { width: 260px; background-color: $primary-white; border: 1px solid #e1e8ed; border-radius: 5px; -moz-box-sizing: border-box; box-sizing: border-box; text-align: left;}
+.search-card { width: 260px; background-color: $primary-white; border: 1px solid #e1e8ed; border-radius: 5px; -moz-box-sizing: border-box; box-sizing: border-box; text-align: left; cursor: pointer}
 .search-card .header {
   .cover-ph { @extend %bg-image; height: 90px; border-radius: 5px 5px 0 0;} //background-image: url('homepage/home-background-candidate.png');
   .profile-ph-wrapper {  width: 92px; height: 92px; margin-left: 15px; margin-top: -65px; border: 2px solid white; border-radius: 50%; box-shadow: 0 0 0 1px #f7f5f4; position: absolute; overflow: hidden; background-color: $primary-white; }

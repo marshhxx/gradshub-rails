@@ -8,6 +8,7 @@ angular
         $scope.logged = sessionService.isAuthenticated();
         $scope.logout = logout
         $scope.renderHtml = (htmlCode) -> $sce.trustAsHtml(htmlCode)
+        $scope.profileSpinner = false
 
         initUser()
 
@@ -21,11 +22,13 @@ angular
 
       initUser = ->
         deferrred = $q.defer()
+        $scope.profileSpinner = true
         sessionService.requestCurrentUser().then(
           (user) ->
             $state.go 'home.page' if !user?
             type = sessionService.sessionType().toLowerCase()
             $scope.username = user[type].name
+            $scope.profileSpinner = false
             deferrred.resolve(user)
         ).catch (error) -> deferrred.reject(error)
         $scope.userPromise = deferrred.promise
