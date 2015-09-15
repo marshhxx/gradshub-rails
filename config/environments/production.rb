@@ -79,4 +79,17 @@ Demo::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.log_level = :warn
+
+  # Don't care if the mailer can't send.
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { :host => 'gradshub.com' }
+  config.action_mailer.smtp_settings = {
+      address: 'smtp.office365.com',
+      port: 587,
+      authentication: :login,
+      enable_starttls_auto: true,
+      user_name: ENV['mailer.username'],
+      password: ENV['mailer.password']
+  }
 end

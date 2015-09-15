@@ -7,7 +7,6 @@ angular
      Education, CandidateSkills, Utils, alertService)->
       init = ->
         $scope.user = {} # init user because some of the input requires it.
-        $state.go 'main.signup_candidate.personal'
         $scope.selectedTags = []
         $scope.education = new Education()
         $scope.skills = new CandidateSkills()

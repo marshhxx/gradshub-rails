@@ -20,26 +20,29 @@
     url: "/home",
     templateUrl: "angular-app/templates/home.html",
     controller: "HomeController",
-  }).state("login", {
+  }).state("home.login", {
     url: "/login",
     templateUrl: "angular-app/templates/login.html",
     controller: "loginController",
-  }).state("main.forgotpssw", {
-    url: "/forgotpssw",
+  }).state("home.forgotpssw", {
+    abstract: true,
     templateUrl: "angular-app/templates/views/forgot_pssw.html",
+  }).state("home.forgotpssw.email", {
+    url: "/forgotpssw",
+    templateUrl: "angular-app/templates/views/forgot/email.html",
     controller: "forgotPasswordController",
-  }).state("main.checkemail", {
+  }).state("home.forgotpssw.checkemail", {
     url: "/checkemail",
-    templateUrl: "angular-app/templates/views/forgot_pssw_checkemail.html",
+    templateUrl: "angular-app/templates/views/forgot/checkemail.html",
     controller: "forgotPasswordController",
-  }).state("main.resetpssw", {
+  }).state("home.forgotpssw.resetpssw", {
     url: "/resetpssw?r={resource}&reset_token={token}",
-    templateUrl: "angular-app/templates/views/forgot_pssw_reset.html",
+    templateUrl: "angular-app/templates/views/forgot/reset.html",
     controller: "forgotPasswordController",
-  }).state("main.resetsccss", {
+  }).state("home.forgotpssw.resetsccss", {
     url: "/resetsccss",
-    templateUrl: "angular-app/templates/views/forgot_pssw_success.html",
-    controller: "forgotPasswordController ",
+    templateUrl: "angular-app/templates/views/forgot/success.html",
+    controller: "forgotPasswordController",
   }).state("main.signup_candidate", {
     url: "/signup",
     templateUrl: "angular-app/templates/signup.html",

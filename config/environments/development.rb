@@ -15,12 +15,12 @@ Demo::Application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => ENV['host'] }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-      address: "smtp.gmail.com",
+      address: 'smtp.office365.com',
       port: 587,
-      authentication: "plain",
+      authentication: :login,
       enable_starttls_auto: true,
       user_name: ENV['mailer.username'],
       password: ENV['mailer.password']
@@ -37,5 +37,5 @@ Demo::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  config.log_level = :warn
+  config.log_level = :error
 end

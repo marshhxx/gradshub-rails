@@ -8,7 +8,6 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email, :case_sensitive => false
   before_create :generate_authentication_token!
   before_create :set_uid
-  before_save
 
   enum gender: {male: 0, female: 1, other:2}
 
@@ -23,7 +22,7 @@ class User < ActiveRecord::Base
 
   # authinticate the user with the given password
   def authenticate_with_password(input_password)
-    return false if self.nil? and not self.valid_password?(input_password)
+    return false unless self.valid_password?(input_password)
     authenticate
   end
 

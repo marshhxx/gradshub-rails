@@ -8,10 +8,6 @@ angular.module('mepedia.controllers').controller('loginController',
 
             $scope.randomPhoto = randomLogin();
 
-            $scope.renderHtml = function(htmlCode) {
-                return $sce.trustAsHtml(htmlCode);
-            }
-
             $scope.login = function (isValid) {
                 if (isValid) {
                     if ($scope.email && $scope.password) {

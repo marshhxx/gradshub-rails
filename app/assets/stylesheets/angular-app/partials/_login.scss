@@ -1,0 +1,140 @@
+.login {
+  &.background {
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    height: 100%;
+
+    &.one {
+      background: url("login/background.png") no-repeat center center;
+    }
+
+    &.other {
+      background: url("login/background.png") no-repeat center center;
+    }
+  }
+
+  &.form-container {
+    padding: 160px 0 0 0;
+  }
+
+  &.form-box {
+    background: $primary-white;
+    border-radius: 4px;
+  }
+
+  &.form-box-cont {
+    padding: 25px 40px 30px 35px;
+  }
+
+  &.ic {
+    width: 40px;
+    margin: auto;
+  }
+
+  &.button-submit {
+    width: 100%;
+    font: 14px Lato-Regular, Georgia, "Times New Roman", Times, serif;
+    color: $primary-white;
+    padding: 10px;
+    background: $primary-blue;
+
+    &:hover {
+      background: $primary-turquoise-hover;
+    }
+  }
+
+  &.forgotpssw {
+    color: white;
+    overflow: auto;
+
+    a {
+      cursor: pointer;
+    }
+  }
+
+  label, .forgotpssw a {
+    float: left;
+    font-weight: normal;
+    color: black;
+    font: 11px Lato-Regular, Georgia, "Times New Roman", Times, serif;
+  }
+
+  &.rememberme {
+    overflow: auto;
+    margin-top: 40px;
+  }
+
+  &.rememberme-checkbox {
+    float: left;
+    margin-left: 10px;
+    font-size: 13px;
+  }
+
+  &.sign-up-login {
+    color: #3D9ED8 !important;
+  }
+
+  .login-input {
+    width: 100%;
+    padding: 11px 10px 11px 13px;
+    display: block;
+    margin: 0;
+    background: 0;
+    font: 16px/1.4 "Helvetica Neue","HelveticaNeue",Helvetica,Arial,sans-serif;
+    box-sizing: border-box;
+    border: 1px solid $border-gray;
+
+    &.first-input {
+      border-top-left-radius: 4px !important;
+      border-top-right-radius: 4px !important;
+    }
+
+    &.last-input {
+      border-bottom-left-radius: 4px !important;
+      border-bottom-right-radius: 4px !important;
+    }
+
+  }
+
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width: 320px) {
+
+  .login.form-box {
+    padding-top: 1px;
+  }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width: 650px) {
+
+  .login.background {
+    height: 100vh !important;
+  }
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width: 768px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width: 992px) {
+
+}
+
+.ic-email {
+  background: url("login/email.svg") no-repeat;
+  width: 30px;
+  height: 30px;
+}
+
+.ic-password {
+  background: url("login/password.svg") no-repeat;
+  width: 30px;
+  height: 30px;
+}

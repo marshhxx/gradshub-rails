@@ -1,0 +1,40 @@
+<div class="row">
+  <form name="emailForm" ng-submit="sendEmailForgotPassword(emailForm.$valid)" novalidate>
+
+    <div class="forgotpssw form text-center">
+      <div ng-show="spinnerVisible" class="margin-t30">
+        <p ng-show="spinnerVisible">Please wait while the email is being sent.</p>
+        <div class="forgotpssw spinner">
+          <spinner show-spinner="spinnerVisible"></spinner>
+        </div>
+      </div>
+
+      <div ng-show="!spinnerVisible">
+        <div class="margin-b30">
+          <span class="forgotpssw subtitle">Find your GradsHub account </span>
+        </div>
+        <div class="form-group"
+             ng-class="{'has-error': emailForm.email.$invalid && (emailForm.$submitted || emailForm.email.$touched)}">
+          <input type="email" class="form-control" ng-model="emailFgtPssw" placeholder="Your Email"
+                 id="email" name="email" required>
+        </div>
+        <div ng-if="emailForm.email.$invalid && (emailForm.$submitted || emailForm.email.$touched)"
+             ng-messages="emailForm.email.$error">
+          <div class="help-block" ng-message="required">
+            Please enter your email.
+          </div>
+          <div class="help-block" ng-message="email">
+            Please enter a valid email.
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12 text-center">
+            <button type="submit" class="btn forgotpssw btn-form"> Search</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </form>
+</div>
