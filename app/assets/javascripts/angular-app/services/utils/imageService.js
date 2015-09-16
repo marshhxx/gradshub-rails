@@ -57,5 +57,6 @@ var Upload  = function($http, $q, $upload, cloudinaryService) {
 };
 
 //Upload.$inject
-angular.module('mepedia.services')
-.factory('imageService', ['$http','$q','$upload', 'cloudinaryService', Upload]);
+angular
+    .module('gradshub-ng.services')
+    .factory('imageService', ['$http','$q','$upload', 'cloudinaryService', Upload]);

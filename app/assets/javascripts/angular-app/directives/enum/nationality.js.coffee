@@ -25,5 +25,5 @@ NationalitiesSelector = (Nationality) ->
 
   }
 angular
-.module('mepedia.directives')
+.module('gradshub-ng.directives')
 .directive('nationalitySelector', NationalitiesSelector)

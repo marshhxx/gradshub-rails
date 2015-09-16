@@ -28,5 +28,5 @@ SchoolSelector = (School) ->
 
   }
 angular
-.module('mepedia.directives')
+.module('gradshub-ng.directives')
 .directive('schoolSelector', SchoolSelector)

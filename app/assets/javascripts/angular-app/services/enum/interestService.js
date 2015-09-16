@@ -18,5 +18,5 @@ var Interest = function($resource) {
         })
 };
 angular
-    .module('mepedia.services')
+    .module('gradshub-ng.services')
     .factory('Interest', Interest);

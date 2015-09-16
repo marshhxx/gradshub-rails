@@ -41,5 +41,5 @@ DatePicker = (Utils) ->
     initDate($scope.date)
 }
 angular
-  .module('mepedia.directives')
+  .module('gradshub-ng.directives')
   .directive('simpledatepicker', DatePicker);

@@ -41,5 +41,5 @@ StateSelector = (State) ->
           stateNameMap[state.name] = state
   }
 angular
-.module('mepedia.directives')
+.module('gradshub-ng.directives')
 .directive('stateSelector', StateSelector)

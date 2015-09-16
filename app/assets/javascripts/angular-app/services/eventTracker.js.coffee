@@ -46,5 +46,5 @@ EventTracker = ($analytics) ->
   eventTracker;
 
 angular
-.module('mepedia.services')
+.module('gradshub-ng.services')
 .factory('eventTracker', EventTracker);

@@ -1,5 +1,5 @@
-@app = angular.module("mepedia",
-  ["ui.router", "templates", "mepedia.config", "mepedia.services", "mepedia.controllers", "ngSanitize", 'ngMessages',
+@app = angular.module("gradshub-ng",
+  ["ui.router", "templates", "gradshub-ng.config", "gradshub-ng.services", "gradshub-ng.controllers", "ngSanitize", 'ngMessages',
    'angulartics', 'angulartics.google.analytics'])
 .config ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider, $analyticsProvider) ->
 #	$httpProvider.defaults.withCredentials = true;

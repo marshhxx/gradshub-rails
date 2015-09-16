@@ -15,5 +15,5 @@ IsLanguage = (Language) ->
 
   }
 angular
-.module('mepedia.directives')
+.module('gradshub-ng.directives')
 .directive('isLanguage', IsLanguage)

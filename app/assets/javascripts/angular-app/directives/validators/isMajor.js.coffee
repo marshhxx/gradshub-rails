@@ -15,5 +15,5 @@ IsMajor = (Major) ->
 
   }
 angular
-.module('mepedia.directives')
+.module('gradshub-ng.directives')
 .directive('isMajor', IsMajor)

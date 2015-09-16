@@ -1,4 +1,4 @@
-angular.module('mepedia.controllers').controller('employerProfileController',
+angular.module('gradshub-ng.controllers').controller('employerProfileController',
     ['$scope', '$rootScope', '$http', '$upload', 'sessionService', '$state', '$stateParams','Skill', 'Country', 'State',
         'Employer', 'EmployerSkills', 'EmployerCompany', 'Utils', 'EmployerInterests', 'alertService', 'errors', 'eventTracker',
 

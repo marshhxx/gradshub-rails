@@ -24,5 +24,5 @@ Language = (Utils) ->
       scope.updateLanguage(valid, language)
   }
 angular
-.module('mepedia.directives')
+.module('gradshub-ng.directives')
 .directive('language', Language)

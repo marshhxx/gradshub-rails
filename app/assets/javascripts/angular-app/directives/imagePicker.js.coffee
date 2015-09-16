@@ -143,6 +143,6 @@ ImagePicker = ($httpProvider, sessionService, $timeout, Utils, imageService, ale
   }
 
 angular
-.module('mepedia.directives')
+.module('gradshub-ng.directives')
 .directive('simpleimagepicker', ['$http', 'sessionService','$timeout', 'Utils', 
   'imageService', 'alertService', ImagePicker])

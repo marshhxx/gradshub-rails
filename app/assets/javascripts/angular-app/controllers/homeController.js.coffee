@@ -1,4 +1,4 @@
-angular.module('mepedia.controllers').controller("HomeController", [
+angular.module('gradshub-ng.controllers').controller("HomeController", [
   '$http', '$scope', 'Candidate', 'Employer', '$state', '$anchorScroll', '$location', 'sessionService', '$sce',
   '$stateParams', 'registerService', 'alertService', '$window', 'eventTracker',
   ($http, $scope, Candidate, Employer, $state, $anchorScroll, $location, sessionService, $sce, $stateParams,

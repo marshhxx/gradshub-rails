@@ -10,5 +10,5 @@ Language = ($resource) ->
 		}
 	)
 angular
-	.module('mepedia.services')
+	.module('gradshub-ng.services')
 	.factory('Language', Language)

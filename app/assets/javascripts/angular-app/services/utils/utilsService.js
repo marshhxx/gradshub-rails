@@ -79,5 +79,5 @@ var Utils = function(Candidate, Employer, $stateParams) {
     return utils;
 };
 angular
-    .module('mepedia.services')
+    .module('gradshub-ng.services')
     .factory('Utils', Utils);

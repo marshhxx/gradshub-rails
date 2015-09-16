@@ -4,5 +4,5 @@ Constants = {
 }
 
 angular
-  .module('mepedia.config')
+  .module('gradshub-ng.config')
   .constant('ALERT_CONSTANTS', Constants)

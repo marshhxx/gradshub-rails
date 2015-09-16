@@ -12,5 +12,5 @@ Interests = ($resource) ->
 		})
 
 angular
-.module('mepedia.services')
+.module('gradshub-ng.services')
 .factory('EmployerInterests', Interests);

@@ -1,5 +1,5 @@
 angular
-.module('mepedia.controllers')
+.module('gradshub-ng.controllers')
 .controller("employerSignupController",
   ['$scope', '$q', '$http', '$state', 'sessionService', 'Skill', 'Employer', 'Interest', 'EmployerNationalities',
    'Company', 'EmployerCompany', 'EmployerSkills', 'EmployerInterests', 'Utils', 'alertService'

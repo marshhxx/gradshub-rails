@@ -1,4 +1,4 @@
-angular.module('mepedia.controllers').controller("forgotPasswordController", [
+angular.module('gradshub-ng.controllers').controller("forgotPasswordController", [
   '$scope', 'sessionService', '$state', '$stateParams', 'alertService',
   ($scope, sessionService, $state, $stateParams, alertService)->
     $scope.alerts = []

@@ -12,5 +12,5 @@ Skill = ($resource) ->
 		})
 
 angular
-	.module('mepedia.services')
+	.module('gradshub-ng.services')
 	.factory('EmployerSkills', Skill);

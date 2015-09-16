@@ -1,4 +1,4 @@
-angular.module('mepedia.controllers').controller('loginController',  
+angular.module('gradshub-ng.controllers').controller('loginController',
     ['$scope', '$state', 'sessionService', 'alertService', '$sce', 'eventTracker',
         function ($scope, $state, sessionService, alertService, $sce, eventTracker) {
             var randomLogin = function () {

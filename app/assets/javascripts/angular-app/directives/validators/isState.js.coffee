@@ -21,5 +21,5 @@ IsState = (State) ->
 
   }
 angular
-.module('mepedia.directives')
+.module('gradshub-ng.directives')
 .directive('isState', IsState)

@@ -15,5 +15,5 @@ Errors = (alertService, ALERT_CONSTANTS, $state, $stateParams) ->
   }
 
 angular
-.module('mepedia.services')
-.factory('errors', Errors)
+  .module('gradshub-ng.services')
+  .factory('errors', Errors)

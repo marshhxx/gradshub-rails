@@ -11,5 +11,5 @@ OauthService = ($http)->
   service
 
 angular
-  .module('mepedia.services')
+  .module('gradshub-ng.services')
   .factory("oauthService", OauthService)

@@ -10,5 +10,5 @@ Spinner = () ->
   }
 
 angular
-.module('mepedia.directives')
+.module('gradshub-ng.directives')
 .directive('spinner', Spinner);
