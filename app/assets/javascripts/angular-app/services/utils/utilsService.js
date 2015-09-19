@@ -27,6 +27,10 @@ var Utils = function(Candidate, Employer, $stateParams) {
         candidate.cover_image = user.cover_image;
         candidate.tag = user.tag;
         candidate.summary = user.summary;
+        if (user.country && user.state) {
+            candidate.country_id = user.country.id;
+            candidate.state_id = user.state.id;
+        }
         return candidate;
     };
 
@@ -43,6 +47,10 @@ var Utils = function(Candidate, Employer, $stateParams) {
         employer.profile_image = user.profile_image;
         employer.cover_image = user.cover_image;
         employer.job_title = user.job_title;
+        if (user.country && user.state) {
+            employer.country_id = user.country.id;
+            employer.state_id = user.state.id;
+        }
         return employer;
     };
 

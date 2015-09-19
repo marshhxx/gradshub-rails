@@ -6,6 +6,10 @@ angular
             update: {
                 method: 'PUT',
                 isArray: false
+            },
+            changePassword: {
+                method: 'PUT',
+                url: '/api/candidates/:id/password'
             }
         });
 

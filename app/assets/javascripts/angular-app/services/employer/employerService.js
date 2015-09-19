@@ -5,6 +5,10 @@ angular
         {
             update: {
                 method: 'PUT'
+            },
+            changePassword: {
+                method: 'PUT',
+                url: '/api/employers/:id/password'
             }
         });
 

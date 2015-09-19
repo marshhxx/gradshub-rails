@@ -10,7 +10,7 @@ NationalitiesSelector = (Nationality) ->
     required = if attr.required == "" then "required" else ""
     '<select id="nationality" ng-model="data" ng-change="onSelect()" name="country" class="form-control input-sm" ng-disabled="disabled" ' + required + '>' +
       '<option disabled value="" >Select Nationality</option>' +
-      '<option value="{{nationality}}" ng-repeat="nationality in nationalities">{{nationality}}</option>' +
+      '<option value="{{nationality}}" ng-repeat="nationality in nationalities track by $index">{{nationality}}</option>' +
     '</select>'
   link: (scope, elm, attrs, ctrl) ->
     nationalityNameMap = {}

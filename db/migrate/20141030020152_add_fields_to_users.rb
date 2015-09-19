@@ -34,6 +34,9 @@ class AddFieldsToUsers < ActiveRecord::Migration
       t.integer :meta_id
       t.string :meta_type
 
+      t.belongs_to :country
+      t.belongs_to :state
+
       t.timestamp
     end
     add_index :users, [:meta_id, :meta_type]
@@ -42,9 +45,6 @@ class AddFieldsToUsers < ActiveRecord::Migration
       t.text :summary
       t.text :early_life
       t.text :personal_life
-
-      t.belongs_to :country
-      t.belongs_to :state
 
       t.timestamp
     end

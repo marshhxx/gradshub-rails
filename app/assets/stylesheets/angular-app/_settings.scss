@@ -1,6 +1,20 @@
+@import "base/colors";
+
 .settings-wrapper {
+
+  margin-top: 70px;
+  border-left: 1px solid $primary-gray;
+  padding-bottom: 20px;
+
   label {
-    color: #000000;
+    font-weight: normal;
+    color: $text-inputs;
+  }
+
+  .settings-header {
+    border-bottom: 2px solid $primary-blue;
+    width: 90%;
+    margin: 0 auto;    
   }
 }
 
@@ -11,6 +25,8 @@
 }
 
 .line-wrapper {
+  margin: 5px 0;
+
   .edit-button-settings {
     background: url(pencil.svg) no-repeat;
     background-size: 17px;
@@ -18,6 +34,9 @@
     height: 17px;
     cursor: pointer;
     visibility: hidden;
+    float: right;
+    margin-right: 10%;
+
     &:hover {
       background: url(pencil-hover.svg) no-repeat;
       background-size: 17px;
@@ -28,13 +47,64 @@
     text-transform: capitalize;
   }
 
+  .input-wrapper-headline {
+    text-transform: none;
+  }
+
   &:hover .edit-button-settings{
     visibility: visible;
   }
 }
 
+.line-separator {
+  border-top: 1px solid $primary-gray;
+  width: 96%;
+  margin: 0 auto 5px;
+}
+.line-separator.primary {
+  border-color: $primary-blue;
+}
+
+.label-edit-wrapper {
+  label {
+    margin: 5%;
+    font-size: 18px;
+  }
+}
+
+.no-padding-left {
+  padding-left: 0px;
+}
+
 .box-edit-wrapper {
+
+  background-color: $bg-gray;
+
   option, select {
     text-transform: capitalize; 
+  }
+
+  .inputs-edit-wrapper {
+    margin: 1% 0;
+
+    .inputs-top {
+      margin-top: 2%;
+    }
+
+    .inputs-bottom {
+      margin-bottom: 2%;
+    }
+
+    .buttons-wrapper {
+      margin: 2% 0;
+    }
+
+    input {
+      width: 100%;
+    }
+
+    .birthday select {
+      width: inherit;
+    }
   }
 }

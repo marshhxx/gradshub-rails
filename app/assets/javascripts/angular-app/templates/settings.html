@@ -9,71 +9,149 @@
       </div>
     </div>
 
-    <div class="line-wrapper col-md-12" ng-show="editFullName">
-      <div class="label-wrapper col-md-4">
-        <label>Name</label>
-      </div>
-      <div class="input-wrapper col-md-4">
-        {{user.name}} {{user.lastname}}
-      </div>
-      <div class="edit-button-wrapper col-md-4">
-        <div class="edit-button-settings" ng-click="toggleFullNameEditing(true)"></div>
-      </div>
-    </div>
-    <div class="box-edit-wrapper col-md-12" ng-hide="editFullName">
-      <div class="label-edit-wrapper col-md-4">
-        <label>Name</label>
-      </div>
-      <div class="inputs-edit-wrapper col-md-8">
-        <div class="col-md-12">
-          <label>Name</label>
-          <input type="text" />
-        </div>
-        <div class="col-md-12">
-          <label>Last name</label>
-          <input type="text" />
-        </div>
-        <div class="col-md-12">
-          <button>Save</button>
-          <button ng-click="toggleFullNameEditing(false)">Cancel</button>
-        </div>
-      </div>
+    <div class="col-xs-12 col-md-12">
+      <div class="line-separator primary"></div>
     </div>
 
-    <div class="line-wrapper col-md-12" ng-show="editPassword">
-      <div class="label-wrapper col-md-4">
-        <label>Password</label>
+    <div class="line-wrapper col-xs-12 col-md-12" ng-hide="viewForm == 'fullNameEditing'">
+      <div class="label-wrapper col-xs-4 col-md-4">
+        <label>Name</label>
       </div>
-      <div class="input-wrapper col-md-4">
-        **********
+      <div class="input-wrapper col-xs-4 col-md-6">
+        <div class="col-md-12">
+          {{user.name}} {{user.lastname}}
+        </div>
       </div>
-      <div class="edit-button-wrapper col-md-4">
-        <div class="edit-button-settings" ng-click="togglePasswordEditing(true)"></div>
+      <div class="edit-button-wrapper col-xs-4 col-md-2">
+        <div class="edit-button-settings" ng-click="toggleSection('fullNameEditing')"></div>
       </div>
     </div>
-    <div class="box-edit-wrapper col-md-12" ng-hide="editPassword">
+    <form name="fullNameForm" novalidate>
+    <div class="box-edit-wrapper col-md-12" ng-show="viewForm == 'fullNameEditing'">
+      <div class="label-edit-wrapper col-md-4">
+        <label>Name</label>
+      </div>
+      <div class="inputs-edit-wrapper col-md-6">
+        <div class="col-md-12 inputs-top">
+          <label>Name</label>
+        </div>
+        <div class="col-md-8">
+          <input name="name" type="text" ng-model="user.name" class="input-sm" required />
+        </div>
+        <div ng-if="fullNameForm.name.$invalid && (fullNameForm.$submitted || fullNameForm.name.$touched)" ng-messages="fullNameForm.name.$error" class="col-md-10 col-md-offset-2">
+          <div class="help-block" ng-message="required">
+            Enter your name.
+          </div>
+        </div>
+        <div class="col-md-12 inputs-top">
+          <label>Last name</label>
+        </div>
+        <div class="col-md-8 inputs-bottom">
+          <input name="lastName" type="text" ng-model="user.lastname" class="input-sm" required />
+        </div>
+        <div ng-if="fullNameForm.lastName.$invalid && (fullNameForm.$submitted || fullNameForm.lastName.$touched)" ng-messages="fullNameForm.lastName.$error" class="col-md-10 col-md-offset-2">
+          <div class="help-block" ng-message="required">
+            Enter your last name.
+          </div>
+        </div>
+        <div class="col-md-12 buttons-wrapper">
+          <button class="btn btn-edit" type="submit" ng-click="saveUserFullName(fullNameForm.$valid)">Save</button>
+          <button ng-click="toggleSection('')" class="btn btn-edit">Cancel</button>
+        </div>
+      </div>
+    </div>
+    </form>
+
+    <div class="col-xs-12 col-md-12">
+      <div class="line-separator"></div>
+    </div>
+
+    <div class="line-wrapper col-xs-12 col-md-12" ng-hide="viewForm == 'passwordEditing'">
+      <div class="label-wrapper col-xs-4 col-md-4">
+        <label>Password</label>
+      </div>
+      <div class="input-wrapper col-xs-4 col-md-6">
+        <div class="col-md-12">
+          **********
+        </div>
+      </div>
+      <div class="edit-button-wrapper col-xs-4 col-md-2">
+        <div class="edit-button-settings" ng-click="toggleSection('passwordEditing')"></div>
+      </div>
+    </div>
+    <form name="passwordForm" ng-submit="savePassword(passwordForm.$valid)" novalidate>
+    <div class="form-group box-edit-wrapper col-md-12" ng-show="viewForm == 'passwordEditing'"
+      ng-class="{'has-error': passwordForm.password.$invalid && (passwordForm.$submitted || passwordForm.password.$touched)}">
       <div class="label-edit-wrapper col-md-4">
         <label>Password</label>
       </div>
-      <div class="inputs-edit-wrapper col-md-8">
-        <div class="col-md-12">
-          <label>Password</label>
-          <input type="password" />
+      <div class="inputs-edit-wrapper col-md-6">
+        <div class="col-md-12 inputs-top">
+          <label>Current</label>
         </div>
-        <div class="col-md-12">
-          <label>New password</label>
-          <input type="password" />
+        <div class="col-md-8">
+          <input name="oldPassword" type="password" class="input-sm" ng-model="oldPassword" ng-minlength="5" ng-maxlength="20" required/>
         </div>
-        <div class="col-md-12">
-          <label>Repeat new password</label>
-          <input type="password" />
+        <div ng-if="!passwordForm.oldPassword.$pristine && passwordForm.oldPassword.$invalid && (passwordForm.$submitted || passwordForm.oldPassword.$touched)" ng-messages="passwordForm.oldPassword.$error" class="col-md-12">
+          <div class="help-block" ng-message="required">
+            Enter your current password.
+          </div>
+          <div class="help-block" ng-message="minlength">
+            Your current password is too short.
+          </div>
+          <div class="help-block" ng-message="maxlength">
+            Your current password is too long.
+          </div>
         </div>
-        <div class="col-md-12">
-          <button>Save</button>
-          <button ng-click="togglePasswordEditing(false)">Cancel</button>
+        <div class="col-md-12 inputs-top">
+          <label>New</label>
+        </div>
+        <div class="col-md-8">
+          <input name="newPassword" type="password" class="input-sm" ng-model="newPassword" ng-minlength="5" ng-maxlength="20" required/>
+        </div>
+        <div ng-if="!passwordForm.newPassword.$pristine && passwordForm.newPassword.$invalid && (passwordForm.$submitted || passwordForm.newPassword.$touched)" ng-messages="passwordForm.newPassword.$error" class="col-md-12">
+          <div class="help-block" ng-message="required">
+            Enter your new password.
+          </div>
+          <div class="help-block" ng-message="minlength">
+            Your new password is too short.
+          </div>
+          <div class="help-block" ng-message="maxlength">
+            Your new password is too long.
+          </div>
+        </div>
+        <div class="col-md-12 inputs-top">
+          <label>Re-type new</label>
+        </div>
+        <div class="col-md-8 inputs-bottom">
+          <input name="reNewPassword" password-validation="newPassword" type="password" class="input-sm" ng-model="reNewPassword" ng-minlength="5" ng-maxlength="20" required/>
+        </div>
+        <div ng-if="!passwordForm.reNewPassword.$pristine && passwordForm.reNewPassword.$invalid && (passwordForm.$submitted || passwordForm.reNewPassword.$touched)" ng-messages="passwordForm.reNewPassword.$error" class="col-md-12">
+          <div class="help-block" ng-message="required">
+            Enter again your new password.
+          </div>
+          <div class="help-block" ng-message="minlength">
+            Your new password is too short.
+          </div>
+          <div class="help-block" ng-message="maxlength">
+            Your new password is too long.
+          </div>
+          <div class="help-block" ng-show="passwordForm.reNewPassword.$error.match">
+            Your password doesn't match!
+          </div>
+        </div>
+        <div class="col-md-12 buttons-wrapper">
+          <button class="btn btn-edit" type="submit">Save</button>
+          <button ng-click="toggleSection('')" class="btn btn-edit" type="reset">Cancel</button>
         </div>
       </div>
     </div>
+    </form>
+
+    <div class="col-xs-12 col-md-12">
+      <div class="line-separator"></div>
+    </div>
+
   </section>
 
   <section class="col-md-12">
@@ -83,109 +161,184 @@
       </div>
     </div>
 
-    <div class="line-wrapper col-md-12" ng-show="editBirthday">
-      <div class="label-wrapper col-md-4">
-        <label>Birthday</label>
-      </div>
-      <div class="input-wrapper col-md-4">
-        {{ user.birth | date: 'longDate'}}
-      </div>
-      <div class="edit-button-wrapper col-md-4">
-        <div class="edit-button-settings" ng-click="toggleBirthdayEditing(true)"></div>
-      </div>
-    </div>
-    <div class="box-edit-wrapper col-md-12" ng-hide="editBirthday">
-      <div class="label-edit-wrapper col-md-4">
-        <label>Birthday</label>
-      </div>
-      <div class="inputs-edit-wrapper col-md-8">
-        <div class="col-md-12">
-          <simpledatepicker no-day="false" no-month="false" ng-model="newBirthday"></simpledatepicker>
-        </div>
-        <div class="col-md-12">
-          <button>Save</button>
-          <button ng-click="toggleBirthdayEditing(false)">Cancel</button>
-        </div>
-      </div>
+    <div class="col-xs-12 col-md-12">
+      <div class="line-separator primary"></div>
     </div>
 
-    <div class="line-wrapper col-md-12" ng-show="editGender">
-      <div class="label-wrapper col-md-4">
-        <label>Gender</label>
+    <div class="line-wrapper col-xs-12 col-md-12" ng-hide="viewForm == 'birthdayEditing'">
+      <div class="label-wrapper col-xs-4 col-md-4">
+        <label>Birthday</label>
       </div>
-      <div class="input-wrapper col-md-4">
-        {{user.gender}}
+      <div class="input-wrapper col-xs-4 col-md-6">
+        <div class="col-md-12">
+          {{ user.birth | date: 'longDate'}}
+        </div>
       </div>
-      <div class="edit-button-wrapper col-md-4">
-        <div class="edit-button-settings" ng-click="toggleGenderEditing(true)"></div>
+      <div class="edit-button-wrapper col-xs-4 col-md-2">
+        <div class="edit-button-settings" ng-click="toggleSection('birthdayEditing')"></div>
       </div>
     </div>
-    <div class="box-edit-wrapper col-md-12" ng-hide="editGender">
+    <form name="birthdayForm" novalidate>
+    <div class="box-edit-wrapper col-md-12" ng-show="viewForm == 'birthdayEditing'">
+      <div class="label-edit-wrapper col-md-4">
+        <label>Birthday</label>
+      </div>
+      <div class="inputs-edit-wrapper col-md-6">
+        <div class="col-md-12 inputs-top inputs-bottom birthday">
+          <simpledatepicker no-day="false" no-month="false" ng-model="birthday" ></simpledatepicker>
+        </div>
+        <div class="col-md-12 buttons-wrapper">
+          <button ng-click="saveUserBirth()" class="btn btn-edit">Save</button>
+          <button ng-click="toggleSection('')" class="btn btn-edit">Cancel</button>
+        </div>
+      </div>
+    </div>
+    </form>
+
+    <div class="col-xs-12 col-md-12">
+      <div class="line-separator"></div>
+    </div>
+
+    <div class="line-wrapper col-xs-12 col-md-12" ng-hide="viewForm == 'genderEditing'">
+      <div class="label-wrapper col-xs-4 col-md-4">
+        <label>Gender</label>
+      </div>
+      <div class="input-wrapper col-xs-6 col-md-6">
+        <div class="col-md-12">
+          {{user.gender=='not_known' ? 'Other': user.gender}}
+        </div>
+      </div>
+      <div class="edit-button-wrapper col-xs-2 col-md-2">
+        <div class="edit-button-settings" ng-click="toggleSection('genderEditing')"></div>
+      </div>
+    </div>
+    <form name="genderForm" novalidate>
+    <div class="box-edit-wrapper col-md-12" ng-show="viewForm == 'genderEditing'">
       <div class="label-edit-wrapper col-md-4">
         <label>Gender</label>
       </div>
       <div class="inputs-edit-wrapper col-md-8">
-        <div class="col-md-12">
+        <div class="col-md-12 inputs-top inputs-bottom">
           <select ng-model="user.gender" ng-change="" class="form-control btn btn-primary-70 input-sm">
             <option disabled value="Gender">Gender</option>
             <option value="{{gender}}" ng-repeat="gender in genders"> {{gender}}</option>
           </select>
         </div>
-        <div class="col-md-12">
-          <button>Save</button>
-          <button ng-click="toggleGenderEditing(false)">Cancel</button>
+        <div class="col-md-12 buttons-wrapper">
+          <button ng-click="saveUserGender()" class="btn btn-edit">Save</button>
+          <button ng-click="toggleSection('')" class="btn btn-edit">Cancel</button>
         </div>
       </div>
-    </div>    
+    </div>
+    </form>
 
-    <div class="line-wrapper col-md-12" ng-show="editHeadline">
-      <div class="label-wrapper col-md-4">
+    <div class="col-xs-12 col-md-12">
+      <div class="line-separator"></div>
+    </div>
+
+    <div class="line-wrapper col-xs-12 col-md-12" ng-hide="viewForm == 'headlineEditing'">
+      <div class="label-wrapper col-xs-4 col-md-4">
         <label>Headline</label>
       </div>
-      <div class="input-wrapper col-md-4">
-        {{user.tag}}
+      <div class="input-wrapper-headline col-xs-4 col-md-6">
+        <div class="col-md-12">
+          {{user.tag}}
+        </div>
       </div>
-      <div class="edit-button-wrapper col-md-4">
-        <div class="edit-button-settings" ng-click="toggleHeadlineEditing(true)"></div>
+      <div class="edit-button-wrapper col-xs-4 col-md-2">
+        <div class="edit-button-settings" ng-click="toggleSection('headlineEditing')"></div>
       </div>
     </div>
-    <div class="box-edit-wrapper col-md-12" ng-hide="editHeadline">
+    <form name="headlineForm" novalidate>
+    <div class="box-edit-wrapper col-md-12" ng-show="viewForm == 'headlineEditing'">
       <div class="label-edit-wrapper col-md-4">
         <label>Headline</label>
       </div>
       <div class="inputs-edit-wrapper col-md-8">
-        <div class="col-md-12">
-          <input type="text" />
+        <div class="col-md-8 inputs-top inputs-bottom">
+          <input type="text" maxlength="55" ng-model="user.tag" placeholder="This will be your profile's headline" class="input-sm" />
         </div>
-        <div class="col-md-12">
-          <button>Save</button>
-          <button ng-click="toggleHeadlineEditing(false)">Cancel</button>
+        <div class="col-md-12 buttons-wrapper">
+          <button ng-click="saveUserTag()" class="btn btn-edit">Save</button>
+          <button ng-click="toggleSection('')" class="btn btn-edit">Cancel</button>
         </div>
       </div>
-    </div>   
+    </div>
+    </form>
 
-    <div class="line-wrapper col-md-12">
-      <div class="label-wrapper col-md-4">
+    <div class="col-xs-12 col-md-12">
+      <div class="line-separator"></div>
+    </div>
+
+    <div class="line-wrapper col-xs-12 col-md-12" ng-hide="viewForm == 'locationEditing'">
+      <div class="label-wrapper col-xs-4 col-md-4">
         <label>Location</label>
       </div>
-      <div class="input-wrapper col-md-4">
-        {{user.state.name}}, {{user.country.name}}
+      <div class="input-wrapper col-xs-4 col-md-6">
+        <div class="col-md-12">
+          {{user.state.name}}, {{user.country.name}}
+        </div>
       </div>
-      <div class="edit-button-wrapper col-md-4">
-        <div class="edit-button-settings"></div>
+      <div class="edit-button-wrapper col-xs-4 col-md-2">
+        <div class="edit-button-settings" ng-click="toggleLocationSection('locationEditing')"></div>
+      </div>
+    </div>
+    <form name="locationForm" novalidate>
+    <div class="box-edit-wrapper col-md-12" ng-show="viewForm == 'locationEditing'">
+      <div class="label-edit-wrapper col-md-4">
+        <label>Location</label>
+      </div>
+      <div class="inputs-edit-wrapper col-md-8">
+        <div class="col-md-12 inputs-top inputs-bottom">
+          <div class="col-md-4 no-padding-left">
+            <country-selector placeholder="What country do you live in?" ng-model="country" on-select="onCountry" required></country-selector>
+          </div>
+          <div class="col-md-4">
+            <state-selector placeholder="What state do you live in?" ng-model="state" on-select="onState" country-id="user.country_id" required></state-selector>
+          </div>
+        </div>
+        <div class="col-md-12 buttons-wrapper">
+          <button ng-click="saveUserLocation()" class="btn btn-edit">Save</button>
+          <button ng-click="toggleLocationSection('')" class="btn btn-edit">Cancel</button>
+        </div>
+      </div>
+    </div>
+    </form>
+
+    <div class="col-xs-12 col-md-12">
+      <div class="line-separator"></div>
+    </div>
+
+    <div class="line-wrapper col-xs-12 col-md-12" ng-hide="viewForm == 'nationalityEditing'">
+      <div class="label-wrapper col-xs-4">
+        <label>Nationality</label>
+      </div>
+      <div class="input-wrapper col-xs-6">
+        <div class="col-md-12">
+          {{user.nationalities[0].name}}
+        </div>
+      </div>
+      <div class="edit-button-wrapper col-xs-2">
+        <div class="edit-button-settings" ng-click="toggleNationalitySection('nationalityEditing')"></div>
+      </div>
+    </div>
+    <div class="box-edit-wrapper col-md-12" ng-show="viewForm == 'nationalityEditing'">
+      <div class="label-edit-wrapper col-md-4">
+        <label>Nationality</label>
+      </div>
+      <div class="inputs-edit-wrapper col-md-8">
+        <div class="col-md-5 inputs-top inputs-bottom">
+          <nationality-selector placeholder="What is your nationality?" ng-model="nationality" on-select="onNationality"></nationality-selector>
+        </div>
+        <div class="col-md-12 buttons-wrapper">
+          <button ng-click="saveUserNationality()" class="btn btn-edit">Save</button>
+          <button ng-click="toggleNationalitySection('')" class="btn btn-edit">Cancel</button>
+        </div>
       </div>
     </div>
 
-    <div class="line-wrapper col-md-12">
-      <div class="label-wrapper col-md-4">
-        <label>Nationality</label>
-      </div>
-      <div class="input-wrapper col-md-4">
-        {{user.nationalities[0].name}}
-      </div>
-      <div class="edit-button-wrapper col-md-4">
-        <div class="edit-button-settings"></div>
-      </div>
+    <div class="col-xs-12 col-md-12">
+      <div class="line-separator"></div>
     </div>
   </section>
 </div>
