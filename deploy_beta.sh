@@ -14,12 +14,12 @@ cat > ${DEPLOY_SCRIPT} << EOF
 
 sudo service httpd stop
 
-rm -rf ${EC2_HOME}/mepedia-rails.bak
-mv ${EC2_HOME}/mepedia-rails ${EC2_HOME}/mepedia-rails.bak
-mkdir ${EC2_HOME}/mepedia-rails
-tar xvf ${DIST_TAR} -C ${EC2_HOME}/mepedia-rails
+rm -rf ${EC2_HOME}/gradshub-rails.bak
+mv ${EC2_HOME}/gradshub-rails ${EC2_HOME}/gradshub-rails.bak
+mkdir ${EC2_HOME}/gradshub-rails
+tar xvf ${DIST_TAR} -C ${EC2_HOME}/gradshub-rails
 
-cd ${EC2_HOME}/mepedia-rails
+cd ${EC2_HOME}/gradshub-rails
 ${EC2_HOME}/bin/bundle install
 
 echo "gem 'therubyracer', platforms: :ruby" >> Gemfile
