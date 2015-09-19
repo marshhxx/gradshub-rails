@@ -1,5 +1,5 @@
 angular
-.module('mepedia.controllers')
+.module('gradshub-ng.controllers')
 .controller("settingsController",
   ['$scope', '$rootScope', '$q', '$http', '$state', 'sessionService', '$stateParams', 'Candidate', 'Utils', 'errors', 
     'alertService', 'ALERT_CONSTANTS', 'Country', 'CandidateNationalities', '$animate', '$timeout', 'EmployerNationalities',
