@@ -21,16 +21,7 @@ angular.module('gradshub-ng.services').factory('sessionService',
             },
 
             logout: function() {
-                var deferred = $q.defer();
-                $http.delete('/api/sessions/' + Session.getToken())
-                    .success(function(response) {
-                        Session.destroy();
-                        deferred.resolve({logout: true})
-                    })
-                    .error(function(response) {
-                        deferred.reject(response.error);
-                    });
-                return deferred.promise;
+                return $http.delete('/api/sessions/' + Session.getToken());
             },
 
             sessionType: function() {

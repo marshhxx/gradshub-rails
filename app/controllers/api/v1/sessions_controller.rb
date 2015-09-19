@@ -16,8 +16,8 @@ class Api::V1::SessionsController < ApplicationController
   def destroy
     @user = User.find_by(auth_token: params[:id])
     if @user.nil?
-      @error = {:reasons => ['Invalid authentication token. User might not be logged in.'],
-                :code => AUTH_ERROR}
+      @error = {:reasons => ['Your session is invalid or has expired.'],
+                :code => INVALID_TOKEN}
       render_error :forbidden
     else
       @user.generate_authentication_token!

@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :null_session
   respond_to :json
+  # update last seen record for the user
+  after_filter :refresh_session, if: proc { user_signed_in? }
 
   include Authenticable
 

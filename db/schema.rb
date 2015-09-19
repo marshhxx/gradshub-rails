@@ -201,6 +201,7 @@ ActiveRecord::Schema.define(version: 20150705143428) do
     t.string   "meta_type"
     t.integer  "country_id"
     t.integer  "state_id"
+    t.datetime "last_seen_at"
     t.string   "auth_token",             default: ""
   end
 

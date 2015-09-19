@@ -34,12 +34,19 @@ class AddFieldsToUsers < ActiveRecord::Migration
       t.integer :meta_id
       t.string :meta_type
 
+      # Session
+      t.datetime :last_seen_at
+      t.string :auth_token, default: ''
+
       t.belongs_to :country
       t.belongs_to :state
 
       t.timestamp
     end
     add_index :users, [:meta_id, :meta_type]
+    add_index :users, :name
+    add_index :users, :email, unique: true
+    add_index :users, :auth_token, unique: true
 
     create_table :candidates do |t|
       t.text :summary

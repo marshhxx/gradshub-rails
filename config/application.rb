@@ -42,5 +42,7 @@ module GradshubRails
 
     config.angular_templates.htmlcompressor = false
     config.skip_session_storage = [:http_auth, :token_auth]
+
+    config.session_ttl = 12.hours
   end
 end

@@ -6,6 +6,9 @@ class Api::V1::UsersController < Api::BaseController
   before_action :authenticate_with_token!, only: [:update, :password]
   before_action :set_resource, only: []
 
+  # error rescuing overriding
+  rescue_from ActiveRecord::RecordNotFound, :with => :user_not_found
+
   # DELETE /api/users/1
   def destroy
     head :not_implemented
@@ -77,6 +80,11 @@ class Api::V1::UsersController < Api::BaseController
 
   def password_params
     params.require("#{resource_name}").permit(:old_password, :new_password)
+  end
+
+  def user_not_found
+    @error = {:reasons => ["User with uid #{params[:id]} doesn't exist."], :code => INVALID_PARAMS_ERROR}
+    render_error :bad_request
   end
 
 end

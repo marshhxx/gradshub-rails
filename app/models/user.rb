@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   def generate_authentication_token!
     begin
       self.auth_token = Devise.friendly_token
+      self.last_seen_at = DateTime.now
     end while self.class.exists?(auth_token: auth_token)
   end
 
