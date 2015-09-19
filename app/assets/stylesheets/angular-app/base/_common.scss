@@ -1,0 +1,31 @@
+@import "mixins";
+/* Paddings */
+
+.padding-zero {
+  padding: 0;
+}
+
+/* Margins */
+
+.margin-zero {
+  margin: 0 !important;
+}
+
+/* Align */
+
+.align-right {
+  float: right;
+}
+
+.align-bottom {
+  position: relative;
+  .child {
+    position:absolute;
+    bottom:0;
+    left: 0;
+  }
+}
+
+.vertical-align {
+  @include vertical-align();
+}

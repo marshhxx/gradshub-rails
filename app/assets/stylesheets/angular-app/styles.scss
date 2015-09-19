@@ -1,14 +1,15 @@
 @import "base/colors";
-@import "base/constants";
+@import "base/common";
 @import "base/placeholders";
-@import "navigation";
-@import "profile-candidate";
-@import "profile-employer";
-@import "search";
+@import "base/mixins";
+@import "partials/navigation";
+@import "partials/profile-candidate";
+@import "partials/profile-employer";
+@import "partials/search";
 @import "settings";
 @import "partials/login";
+@import "partials/signup";
 @import "partials/forgotpssw";
-@import "settings";
 
 @font-face {
   font-family: 'Opensans-regular';
@@ -225,16 +226,6 @@ textarea {
 
 .padding-t-60 {
   padding-top: 60px;
-}
-
-@media(min-width: 768px) {
-  .title {
-    font-size: 3.5em;
-  }
-
-  .subtitle {
-    font-size: 1.1em;
-  }
 }
 
 .text-center {
@@ -619,6 +610,12 @@ header {
     color: $primary-turquoise;
     border-color: $primary-white;
   }
+  &.large {
+    width: 200px;
+    font-size: 20px;
+    padding: 20px 0;
+    margin-bottom: 0px !important;
+  }
 }
 
 .type-btn-active {
@@ -702,78 +699,7 @@ section#signup {
   display: none;
 }
 
-/* Sign up process */
 
-section#signup .form-control:focus {
-  border-color: #3D9ED8;
-  box-shadow: none;
-}
-
-.signup-title {
-  width: 100%;
-  height: 75px;
-  margin-top: 50px;
-  text-align: center;
-  color: #ffffff;
-  font: 22px Montserrat-Regular;
-}
-
-.signup-title img {
-  display: block;
-  margin: auto;
-  position: relative;
-  top: -40px;
-  width: 75px;
-  margin-bottom: -40px;
-}
-
-.personal {
-  background: $primary-lightblue;
-}
-
-.education {
-  background: $primary-green;
-}
-
-.interests {
-  background: $primary-violet;
-}
-
-.company {
-  background: $primary-green;
-}
-
-.looking {
-  background: $primary-violet;
-}
-
-.signup-form {
-  display: inline-block;
-}
-
-.control-group.error input {
-  border-color: #122028;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-}
-
-.control-group.error p {
-  color: #122028;
-  padding: 0px 12px;
-  margin-top: 2px;
-  margin-bottom: 8px;
-  font-size: 13px;
-}
-
-.form-group {
-  &.signup {
-    margin-bottom: 0px !important;
-  }
-  &.error {
-    margin-bottom: 0px !important;
-  }
-}
 
 .login-group.error input {
   border-color: #FFF;
@@ -1004,7 +930,6 @@ section#section-six {
   background-color: $primary-dark-turquoise;
 }
 
-
 .container-wrapper {
   width:100%;
   margin-right: 0;
@@ -1017,25 +942,34 @@ section#section-six {
 
 .container-bottom {
   overflow: hidden;
-  padding: 45px 0;
-
-  &.section-five {
-    padding-bottom: 0px;
-  }
-  &.section-six {
-    padding-bottom: 60px;
-  }
-
+  position: relative;
 }
 
 .container-img {
-  overflow: hidden;
+  &.align-center {
+    right: 0px;
+  }
 }
 
 .container-txt {
   color: $primary-white;
+  padding: 100px 0;
+  .row-img {
+    width: 40px;
+    height: 40px;
+    float: right;
+    background-size: 40px;
+    background-repeat: no-repeat;
+    display: inline-block; // So that it behaves like the img element
+  }
+  .url-img-employer {
+    background-image: url(homepage/ic_tick_blue.svg);
+  }
+  .url-img-candidate {
+    background-image: url(homepage/ic_tick_turquoise.svg);
+  }
   .wrapper {
-    margin-bottom: 20px;
+    margin-bottom: 40px;
   }
   .title {
     font: 18px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
@@ -1049,73 +983,6 @@ section#section-six {
 }
 
 /*** End section How it works ***/
-
-/*** Start section thirteen ***/
-
-section#section-thirteen {
-  overflow: hidden;
-}
-
-.section-thirteen.top {
-  width: 100%;
-}
-
-.section-thirteen-top-padding {
-  padding: 0px 20px;
-  height: 330px;
-}
-
-.section-thirteen {
-  &.img {
-    height: 330px;
-    background-size: cover !important;
-    &.testimonial-1 {
-      background: url('homepage/testimonials-1.jpg') no-repeat center center;
-    }
-    &.testimonial-2 {
-      background: url('homepage/testimonials-2.jpg') no-repeat center center;
-    }
-    &.testimonial-3 {
-      background: url('homepage/testimonials-3.jpg') no-repeat center center;
-    }
-  }
-  .parent-wrapper {
-    height: 100%;
-    position: relative;
-  }
-  .wrapper {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    padding: 0 20px;
-  }
-  &.title {
-    font-family: 'Montserrat-Regular', Georgia, "Times New Roman", Times, serif;
-    font-size: 22px;
-    color: $text-title;
-    text-transform: uppercase;
-    margin-bottom: 15px;
-  }
-  &.subtitle {
-    font-family: 'Lato-Regular', Georgia, "Times New Roman", Times, serif;
-    font-size: 18px;
-    color: $text-regular;
-    margin-bottom: 25px;
-  }
-  &.txt {
-    font-family: 'Lato-Light-Italic', Georgia, "Times New Roman", Times, serif;
-    font-size: 1.2em;
-    color: $text-regular;
-  }
-}
-
-section#section-fourteen {
-  overflow: hidden;
-}
-
-/* End how it works section */
-
-/* End quotes section */
 
 footer#home {
   padding: 0px 0px !important;
@@ -1176,144 +1043,7 @@ footer#main .footer-above {
   padding: 15px 0px;
 }
 
-/** Signup **/
 
-.col-8 {
-  width: 90%;
-}
-
-.signup.background {
-  min-height: 700px;
-  height: 95%;
-  padding-top: 60px;
-  overflow: hidden;
-  background: url('signup/background-signup1.png') no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-.signup .title {
-  font-size: 2.0em;
-  font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
-  color: #3D9ED8;
-  text-transform: uppercase;
-}
-
-.signup .subtitle-container {
-  padding: 0 30px;
-}
-
-.signup .subtitle {
-  font-size: 14px;
-  font-family: Montserrat-Light, Georgia, "Times New Roman", Times, serif;
-  color: $text-title;
-}
-
-.signup .form-box-cont {
-  padding: 0px 0px;
-  margin-top: 25px;
-}
-
-.signup-label {
-  font: 13px Lato-Regular !important;
-  color: $text-regular;
-  float: left;
-  text-align: left;
-}
-
-.signup-label.date {
-  width: 100px;
-}
-
-.signup-label.placeholder {
-
-}
-
-.btn-next {
-  background: url(signup/next.svg) no-repeat;
-  background-size: 100%;
-  width: 40px;
-  height: 40px;
-}
-
-.btn-next:hover {
-  background: url(signup/next-hover.svg) no-repeat;
-  background-size: 100%;
-  width: 40px;
-  height: 40px;
-}
-
-.btn-back {
-  background: url(signup/back.svg) no-repeat;
-  background-size: 100%;
-  width: 40px;
-  height: 40px;
-}
-
-.btn-back:hover {
-  background: url(signup/back-hover.svg) no-repeat;
-  background-size: 100%;
-  width: 40px;
-  height: 40px;
-}
-
-.btn-form.double {
-  width: 150px;
-  margin-top: 40px;
-}
-
-.btn-primary-70 {
-  width: 75px;
-  background-color: rgb(255, 255, 255) !important;
-  border-color: #CCCCCC !important;
-  color: #555555 !important;
-  padding: 2px !important;
-  font-size: 13px !important;
-}
-
-.btn-primary-70 :hover {
-  background-color: rgb(255, 255, 255) !important;
-  border-color: rgb(255, 255, 255) !important;
-  color: #555555 !important;
-}
-
-.btn-primary-120 {
-  width: 120px;
-  background-color: rgb(255, 255, 255) !important;
-  border-color: #CCCCCC !important;
-  color: #555555 !important;
-  padding: 2px !important;
-  font-size: 13px !important;
-}
-
-.btn-primary-120 :hover {
-  background-color: rgb(255, 255, 255) !important;
-  border-color: rgb(255, 255, 255) !important;
-  color: #555555 !important;
-}
-
-.dropdown-menu-gender {
-  max-height: 140px;
-  z-index: 999;
-  font: 14px Lato-Regular !important;
-  cursor: pointer;
-}
-
-.caret {
-  margin-left: 5px !important;
-}
-
-/* Extra Small Devices, Phones */
-@media only screen and (min-width: 494px) {
-
-  .signup .looking_btn {
-    margin-right: 10px;
-    margin-bottom: 0px;
-  }
-
-}
 
 /* Small Devices, Tablets */
 @media only screen and (min-width: 768px) {
@@ -1379,71 +1109,12 @@ footer#main .footer-above {
   padding: 20px 30px;
 }
 
-/* numbered buttons */
-#status-buttons-work {
-}
 
-#status-buttons-work a {
-  color: #122028;
-  display: inline-block;
-  font-size: 12px;
-  margin-right: 10px;
-  text-align: center;
-  text-transform: uppercase;
-  text-decoration: none !important;
-  font-family: Montserrat-Regular, Georgia, "Times New Roman"
-}
-
-#status-buttons-work a:hover {
-  text-decoration: none !important;
-}
-
-#status-buttons-work span {
-  display: block;
-  height: 30px;
-  margin: 25px auto 10px;
-  padding-top: 5px;
-  width: 30px;
-  text-decoration: none
-}
 
 .ic-wizard {
   background-size: 45px 45px;
   background-repeat: no-repeat;
   background-position: center center;
-}
-
-/* active buttons */
-#status-buttons-work a.active span {
-  text-decoration: none !important;
-}
-
-/* numbered buttons */
-#status-buttons-hire {
-}
-
-#status-buttons-hire a {
-  color: #FFF;
-  display: inline-block;
-  font-size: 12px;
-  margin-right: 10px;
-  text-align: center;
-  text-transform: uppercase;
-  text-decoration: none !important;
-  font-family: Opensans-light, Georgia, "Times New Roman"
-}
-
-#status-buttons-hire a:hover {
-  text-decoration: none !important;
-}
-
-#status-buttons-hire span {
-  display: block;
-  height: 30px;
-  margin: 25px auto 10px;
-  padding-top: 5px;
-  width: 30px;
-  text-decoration: none
 }
 
 label {
@@ -1485,57 +1156,6 @@ label {
   -moz-animation: slideOutLeft 0.5s both ease;
   animation: slideOutLeft 0.5s both ease;
 }
-
-/* ANIMATIONS
-============================================================================= */
-/* slide out to the left */
-@keyframes slideOutLeft {
-  to {
-    transform: translateX(-200%);
-  }
-}
-
-@-moz-keyframes slideOutLeft {
-  to {
-    -moz-transform: translateX(-200%);
-  }
-}
-
-@-webkit-keyframes slideOutLeft {
-  to {
-    -webkit-transform: translateX(-200%);
-  }
-}
-
-/* slide in from the right */
-@keyframes slideInRight {
-  from {
-    transform: translateX(200%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-@-moz-keyframes slideInRight {
-  from {
-    -moz-transform: translateX(200%);
-  }
-  to {
-    -moz-transform: translateX(0);
-  }
-}
-
-@-webkit-keyframes slideInRight {
-  from {
-    -webkit-transform: translateX(200%);
-  }
-  to {
-    -webkit-transform: translateX(0);
-  }
-}
-
-/*=========================================================================== */
 
 .auto-width {
   width: auto;
@@ -1692,7 +1312,7 @@ section#home-end-quote {
   padding: 70px 0;
 }
 
-/*****************************************************************************************/
+/*==========================> Responsive Design <=========================*/
 
 /* Small Devices, Tablets */
 @media only screen and (min-width: 768px) {
