@@ -1,3 +1,358 @@
+/*** Start Header ***/
+
+header {
+  width: 100%;
+  height: 830px;
+  padding-bottom: 50px;
+  text-align: center;
+  @extend %bg-image;
+  background-image: url('homepage/home-background.png');
+}
+
+.header-signup {
+  color: $primary-white;
+  margin: 0;
+  padding: 14% 0;
+  overflow: hidden;
+  width: 100%;
+
+  .title {
+    font-family: Montserrat-Bold, Georgia, "Times New Roman", Times, serif;
+    font-size: 4.5em;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
+  }
+
+  .subtitle {
+    font-family: Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+    font-size: 1.5em;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  .buttons {
+    width: 100%;
+    margin-top: 30px;
+    overflow: hidden;
+  }
+
+  .form-btn-container {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 15px;
+  }
+
+  .form-btn {
+    width: 100%;
+    height: 47px;
+    background-color: $primary-blue;
+    color: $primary-white;
+    font-size: 16px;
+    font-family: "Lato-Regular";
+    border: 1px solid $primary-blue;
+    border-radius: 4px !important;
+    padding: 10px 30px;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.dropdown-toggle.form-btn {
+      background-color: $primary-blue;
+      color: $primary-white;
+    }
+
+    &.linkedin {
+      background-color: $secondary-linkedin;
+      border: 1px solid $secondary-linkedin;
+      margin-top: 10px;
+
+      &.linkedin > p {
+        color: $primary-white;
+        font-size: 16px;
+        display: inline-block;
+      }
+
+      .icon {
+        width: 18px;
+        height: 16px;
+        background: url("homepage/ic_linkedin.png") no-repeat center;
+        background-size: 20px;
+        margin-right: 15px;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.type-btn {
+  width: 165px;
+  font: 18px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+  color: $primary-white;
+  padding: 15px 0;
+  margin-bottom: 15px;
+  border: 3px solid $primary-white;
+  border-radius: 4px !important;
+  background-color: transparent;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+  &.btn-left {
+    float: left;
+  }
+  &.btn-right {
+    float: right;
+  }
+  &.white {
+    background-color: $primary-white;
+    color: $primary-turquoise;
+    border-color: $primary-white;
+  }
+  &.large {
+    width: 200px;
+    font-size: 20px;
+    padding: 20px 0;
+    margin-bottom: 0px !important;
+  }
+}
+
+.type-btn-active {
+  background-color: $primary-turquoise;
+  border: 3px solid $primary-turquoise;
+  color: $primary-white;
+  text-decoration: none;
+  cursor: default;
+}
+
+/** Carousel **/
+.home-carousel-container {
+  display: none;
+  position: absolute;
+  width: 100%;
+}
+
+/* Removes carousel buttons */
+.right.carousel-control, .left.carousel-control {
+  display: none;
+}
+
+.carousel-indicators li {
+  display: none;
+}
+
+/*** End Header ***/
+
+/*** Start Sign Up form ***/
+
+section#home-signup {
+  width: 100%;
+  position: absolute;
+  z-index: 2;
+}
+
+.signup-input {
+  width: 100%;
+  padding: 11px 10px 11px 13px;
+  display: block;
+  margin: 0;
+  border: 0;
+  background: 0;
+  font: 16px/1.4 "Helvetica Neue","HelveticaNeue",Helvetica,Arial,sans-serif;
+  box-sizing: border-box;
+  outline: 0;
+
+  &:hover {
+    border: 0 !important;
+  }
+
+  &:focus {
+    border: 0 !important;
+  }
+}
+
+.form-row.signup{
+  background-color: $primary-white;
+  z-index: 2;
+}
+
+.form-row {
+  &.first-child {
+    border-top: 0 !important;
+    border-top-left-radius: 4px !important;
+    border-top-right-radius: 4px !important;
+  }
+
+  &.last-child {
+    border-bottom-left-radius: 4px !important;
+    border-bottom-right-radius: 4px !important;
+  }
+
+  &.childs {
+    position: relative;
+    border-top: 1px solid #e3e3e3;
+  }
+}
+/*** End Sign Up form  ***/
+
+/*** Start Section Title  ***/
+
+.section-title {
+  height: 200px;
+  position: relative;
+
+  &.section-two {
+    background-color: $primary-dark-blue;
+  }
+
+  &.section-how-it-works-header {
+    @extend %bg-image; background-image: url('homepage/background-howitworks.png');
+  }
+
+  &.section-testimonials-header {
+    background-color: $primary-orange;
+  }
+}
+
+.section-container {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  .heading {
+    font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+    font-size: 1.8em;
+    color: $primary-white;
+    text-transform: uppercase;
+
+    &.section-how-it-works-header {
+      color: $primary-blue;
+    }
+  }
+
+  .subheading {
+    font-family: Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+    font-size: 1.2em;
+    color: $primary-white;
+    margin-top: 18px;
+
+    &.section-how-it-works-header {
+      color: $text-title;
+    }
+  }
+}
+
+/*** End Section Title  ***/
+
+
+/*** Start features section ***/
+
+section#section-features {
+  padding: 20px 0px 50px 0px;
+}
+
+.features-image {
+  width: 100px;
+  height: 100px;
+  background-size: 100px;
+  background-repeat: no-repeat;
+  display: inline-block; /* so that it behaves like the img element */
+  &.img-left {
+    background-image: url("homepage/ic_compelling_profile.svg");
+  }
+  &.img-middle {
+    background-image: url("homepage/ic_search_engine.svg");
+  }
+  &.img-right {
+    background-image: url("homepage/ic_personalization_platform.svg");
+  }
+}
+
+.features-txt {
+  width: 215px;
+  color: $primary-blue;
+  font-size: 1.5em;
+  font-family: Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
+.features-detail-txt {
+  color: $text-regular;
+  font-size: 1.2em;
+  font-family: Lato-Light, Georgia, "Times New Roman", Times, serif;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*** End features section ***/
+
+/*** Start How it Works section ***/
+
+section#section-how-it-works-candidate {
+  background-color: $primary-dark-blue;
+}
+
+section#section-how-it-works-employer {
+  background-color: $primary-dark-turquoise;
+}
+
+.container-wrapper {
+  width:100%;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.container-top {
+  width: 100%;
+}
+
+.container-bottom {
+  overflow: hidden;
+  position: relative;
+}
+
+.container-img {
+  &.align-center {
+    right: 0px;
+  }
+}
+
+.container-txt {
+  color: $primary-white;
+  padding: 100px 0;
+  .row-img {
+    width: 40px;
+    height: 40px;
+    float: right;
+    background-size: 40px;
+    background-repeat: no-repeat;
+    display: inline-block; // So that it behaves like the img element
+  }
+  .url-img-employer {
+    background-image: url(homepage/ic_tick_blue.svg);
+  }
+  .url-img-candidate {
+    background-image: url(homepage/ic_tick_turquoise.svg);
+  }
+  .wrapper {
+    margin-bottom: 40px;
+  }
+  .title {
+    font: 18px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+    float: left;
+  }
+  .detail{
+    font: 16px Lato-Light, Georgia, "Times New Roman", Times, serif;
+    float: left;
+    margin-top: 7px;
+  }
+}
+
+/*** End How it Works section ***/
+
 /*** Start section Testimonials ***/
 
 .section-testimonials {
@@ -53,3 +408,78 @@
 }
 
 /* End section Testimonials */
+
+/*==========================> Responsive Design <=========================*/
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width: 480px) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width: 768px) {
+
+  /* header */
+  .header-signup .employer-btn {
+    margin: 0px 15px;
+  }
+
+  /* sections */
+  .section-title {
+    height: 350px;
+    position: relative;
+  }
+
+  .section-container {
+    & .heading {
+      font-size: 4.2em;
+    }
+
+    & .subheading {
+      font-size: 1.5em;
+    }
+  }
+
+  /* section features */
+  section#section-features {
+    padding: 80px 0px;
+  }
+
+  .home-title.white {
+    font-size: 4.5em;
+  }
+
+  .features-image {
+    width: 130px;
+    height: 130px;
+    background-size: 130px;
+  }
+
+  .features-txt {
+    margin-bottom: 20px;
+  }
+
+}
+
+/* Medium Devices, Desktops */
+@media(min-width: 768px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width: 992px) {
+
+  header {
+    background: none;
+  }
+
+  .home-carousel-container {
+    display: block;
+  }
+
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width: 1200px) {
+
+}

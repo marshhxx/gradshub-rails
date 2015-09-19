@@ -79,3 +79,176 @@ $tl: 0.4s; // transition length
   z-index: 99;
   padding: 10px;
 }
+
+/*** Login Button ***/
+
+.login-btn {
+  color: $primary-turquoise !important;
+  background-color: $primary-turquoise;
+  font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+  font-size: 14px;
+  border: 2px solid $primary-turquoise;
+  border-radius: 4px !important;
+  padding: 6px !important;
+  cursor: pointer;
+  margin-top: 9px;
+  margin-left: 50px;
+  margin-right: -15px;
+
+  &:hover {
+    color: $primary-turquoise-hover !important;
+    border: 2px solid $primary-turquoise-hover;
+    background-color: $primary-turquoise-hover !important;
+  }
+}
+
+/*** End Login Button ***/
+
+/*** Logged Username ***/
+
+.username {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: $primary-white;
+  font-family: Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+}
+
+.user-menu {
+  label {
+    color: $primary-turquoise !important;
+    font: 14px Lato-Regular;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin: 0px;
+  }
+
+  .arrow-container {
+    position: relative;
+    float: right;
+    width: 25px;
+    height: 20px;
+    top: 13px;
+  }
+
+  .arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid $primary-lightblue;
+    margin: 7px 0px 0px 7px;
+  }
+
+  .options-box {
+    width: 90px;
+    position: absolute;
+    background: $primary-white;
+    border: 2px solid $primary-blue;
+    z-index: 100;
+    top: 40px;
+    margin-left: 16px;
+    box-shadow: 0px 0px 5px $primary-gray;
+    border-radius: 3px;
+
+    &:after, &:before {
+      bottom: 100%;
+      left: 75%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+    &:after {
+      border-color: rgba(255, 245, 245, 0);
+      border-bottom-color: $primary-white;
+      border-width: 7px;
+      margin-left: -7px;
+    }
+    &:before {
+      border-color: rgba(72, 103, 153, 0);
+      border-bottom-color: $primary-blue;
+      border-width: 10px;
+      margin-left: -10px;
+    }
+
+    .menu-setting-item {
+      text-align: center;
+      margin: 5px auto;
+      text-decoration: none;
+      cursor: pointer;
+
+      &:first-child {
+        margin-bottom: 0px;
+      }
+    }
+  }
+}
+
+/*** End Logged Username ***/
+
+/*** General Alert ***/
+
+.alert-top-fixed {
+  opacity: 0.95;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 7000;
+  margin-top: 5px;
+}
+
+.alert-top-fixed ul {
+  text-align: left;
+}
+
+/***End General Alert ***/
+
+/*** Start Footer ***/
+
+footer#footer {
+  background-color: $footer-bg;
+  padding: 60px 0px 0px;
+
+  .button {
+    padding: 15px 40px;
+    background: $primary-blue;
+    color: $primary-white;
+    font: 18px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+    border: 3px solid $primary-blue;
+    border-radius: 4px !important;
+    margin-bottom: 50px;
+  }
+  .divider {
+    float: left;
+    color: $primary-white;
+    font: 16px Lato-Regular, Georgia, "Times New Roman", Times, serif;
+    padding: 0px 50px;
+  }
+  .link-container {
+    display: inline-block;
+  }
+  .link {
+    float: left;
+    color: $primary-white;
+    font: 1.1em Lato-Regular, Georgia, "Times New Roman", Times, serif;
+    cursor: pointer;
+    text-decoration: none;
+    &:hover {
+      color: $primary-turquoise;
+      text-decoration: none;
+    }
+  }
+  .sign {
+    font: 14px Lato-Light, Georgia, "Times New Roman", Times, serif;
+    color: $primary-white;
+  }
+}
+
+/*** End Footer ***/
+
+
+
+
