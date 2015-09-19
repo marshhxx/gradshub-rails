@@ -3,7 +3,7 @@
 .settings-wrapper {
 
   margin-top: 70px;
-  border-left: 1px solid $primary-blue;
+  border-left: 1px solid $primary-gray;
   padding-bottom: 20px;
 
   label {
@@ -47,22 +47,33 @@
     text-transform: capitalize;
   }
 
+  .input-wrapper-headline {
+    text-transform: none;
+  }
+
   &:hover .edit-button-settings{
     visibility: visible;
   }
 }
 
 .line-separator {
-  border-top: 1px solid $primary-blue;
+  border-top: 1px solid $primary-gray;
   width: 96%;
   margin: 0 auto 5px;
+}
+.line-separator.primary {
+  border-color: $primary-blue;
 }
 
 .label-edit-wrapper {
   label {
-    margin: 10%;
+    margin: 5%;
     font-size: 18px;
   }
+}
+
+.no-padding-left {
+  padding-left: 0px;
 }
 
 .box-edit-wrapper {
@@ -74,29 +85,26 @@
   }
 
   .inputs-edit-wrapper {
-    .input-line {
-      margin: 1% 0;
-      label {
-        width: 15%;
-        text-align: right;
-      }
-      input {
-        width: 40%;
-      }
+    margin: 1% 0;
+
+    .inputs-top {
+      margin-top: 2%;
     }
 
-    .buttons-line {
-      margin: 1% 0% 1% 10%;
+    .inputs-bottom {
+      margin-bottom: 2%;
     }
 
-    .select-line {
-      margin: 1% 0% 1% 10%;
-      select{
-        width: 100%;
-      }
+    .buttons-wrapper {
+      margin: 2% 0;
     }
-    .single-select-line {
-      margin: 1% 0% 1% 10%;
+
+    input {
+      width: 100%;
+    }
+
+    .birthday select {
+      width: inherit;
     }
   }
 }

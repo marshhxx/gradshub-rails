@@ -36,7 +36,7 @@
         <div class="options-box" ng-show="isOptionsVisible">
           <a ng-if="logged" ui-sref="main.user_settings" class="col-md-12 menu-setting-item">Settings</a>
           <a ng-if="!logged" ui-sref="login" class="col-md-12 menu-setting-item">Login</a>
-          <a ng-if="logged" ui-sref="login" class="col-md-12 menu-setting-item">Logout</a>
+          <a ng-if="logged" ng-click="logout()" class="col-md-12 menu-setting-item">Logout</a>
         </div>
       </div>
       <p class="access-setting-button"></p>

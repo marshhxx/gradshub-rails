@@ -13,6 +13,8 @@ angular
         else
           $scope.userPromise.then checkAndSetUser, errors.notLoggedIn
 
+        $scope.viewForm = ''
+
         $scope.editFullName = true
         $scope.editPassword = true
         $scope.editBirthday = true
@@ -20,6 +22,7 @@ angular
         $scope.editHeadline = true
         $scope.editLocation = true
         $scope.editNationality = true
+        $scope.newNationality = new CandidateNationalities()
 
         $scope.genders = [
           "male",
@@ -27,10 +30,10 @@ angular
           "other"
         ]
 
-
       setUser = (user) ->
         $scope.user = user.candidate
-        initCandidateUser()
+        $scope.realUser = angular.copy $scope.user
+        formatDate()
 
       checkAndSetUser = (user) ->
         if sessionService.sessionType() == 'Employer'
@@ -38,33 +41,28 @@ angular
         else
           setUser(user)
 
-      initCandidateUser = ->
+      formatDate = ->
         day = $scope.user.birth.charAt(8)
         $scope.birthday = $scope.user.birth
         if day = '0' then $scope.birthday = $scope.birthday.substr(0, 8) + $scope.birthday.substr(9)
 
-      $scope.toggleFullNameEditing = (condition)->
-        $scope.editFullName = !$scope.editFullName
+      $scope.toggleSection = (show) ->
+        if show == 'save' then show = '' else $scope.user = angular.copy $scope.realUser
+          
+        $scope.viewForm = show
 
-      $scope.togglePasswordEditing = (condition) ->
-        $scope.editPassword = !$scope.editPassword
+      $scope.toggleLocationSection = (show) ->
+        if show == 'save' then show = '' else $scope.user = angular.copy $scope.realUser
 
-      $scope.toggleBirthdayEditing = (condition) ->
-        $scope.editBirthday = !$scope.editBirthday
+        $scope.viewForm = show
+        $scope.country = ''
+        $scope.state = ''
 
-      $scope.toggleGenderEditing = (condition) ->
-        $scope.editGender = !$scope.editGender
+      $scope.toggleNationalitySection = (show) ->
+        if show == 'save' then show = '' else $scope.user = angular.copy $scope.realUser
 
-      $scope.toggleHeadlineEditing = (condition) ->
-        $scope.editHeadline = !$scope.editHeadline
-
-      $scope.toggleLocationEditing = (condition) ->
-        $scope.editLocation = !$scope.editLocation
-
-      $scope.toggleNationalityEditing = (condition) ->
-        $scope.nationality = null
-        $scope.editNationality = !$scope.editNationality
-
+        $scope.nationality = ''
+        $scope.viewForm = show
 
       $scope.onCountry = (country) ->
         $scope.user.country_id = country.id if country?
@@ -75,11 +73,6 @@ angular
         $scope.user.state = state
 
       $scope.onNationality = (nationality) ->
-        $scope.candidateNationality = new CandidateNationalities()
-        $scope.candidateNationality.candidate_id = $scope.user.uid
-        $scope.candidateNationality.id = $scope.user.nationalities[0].id if $scope.user.nationalities.length > 0
-
-        $scope.newNationality = new CandidateNationalities()
         $scope.newNationality.candidate_id = $scope.user.uid
         $scope.newNationality.nationality_id = nationality.id if nationality?
 
@@ -87,48 +80,83 @@ angular
       saveUser = () ->
         $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
         Utils.candidateFromObject($scope.user).$update((response) ->
-          console.log response
           $scope.user = response.candidate
-          $scope.tag = ''
-        ).catch alertService.defaultErrorCallback
+          $scope.realUser = angular.copy $scope.user
+          return true
+        ).catch( ->
+          alertService.defaultErrorCallback
+          return false
+        )
 
-      $scope.saveUserFullName = ->
-        saveUser()
-        alertService.addInfo 'Name successfully edited', ALERT_CONSTANTS.SUCCESS_TIMEOUT
-        $scope.toggleFullNameEditing()
+      $scope.saveUserFullName = (valid) ->
+        if !valid
+          return
 
-      $scope.saveUserBirth = ->
-        console.log $scope.birthday
+        if saveUser()
+          alertService.addInfo 'Name successfully edited', ALERT_CONSTANTS.SUCCESS_TIMEOUT
+          $scope.toggleSection 'save'
+
+      clearInput = (formName, inputName) ->
+        $scope[inputName] = ''
+        $scope[formName][inputName].$setPristine()
+
+      $scope.savePassword = (valid) ->
+        if !valid
+          return
+
+        candidate = new Candidate()
+        candidate.uid = $scope.user.uid
+        candidate.old_password = $scope.oldPassword
+        candidate.new_password = $scope.newPassword
+        $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
+        candidate.$changePassword().then((response) ->
+          alertService.addInfo 'Password successfully changed', ALERT_CONSTANTS.SUCCESS_TIMEOUT
+          
+          $scope.toggleSection 'save'
+
+        ).catch(alertService.defaultErrorCallback)
+        .finally( ->
+          clearInput 'passwordForm', 'oldPassword'
+          clearInput 'passwordForm', 'newPassword'
+          clearInput 'passwordForm', 'reNewPassword'
+        )
+
+      $scope.saveUserBirth = (valid) ->
         $scope.user.birth = $scope.birthday
-        saveUser()
-        alertService.addInfo 'Birthday successfully edited', ALERT_CONSTANTS.SUCCESS_TIMEOUT
-        $scope.toggleBirthdayEditing()
+        if saveUser()
+          alertService.addInfo 'Birthday successfully edited', ALERT_CONSTANTS.SUCCESS_TIMEOUT
+          $scope.toggleSection 'save'
 
       $scope.saveUserGender = ->
-        saveUser()
-        alertService.addInfo 'Gender successfully edited', ALERT_CONSTANTS.SUCCESS_TIMEOUT
-        $scope.toggleGenderEditing()
+        if saveUser()
+          alertService.addInfo 'Gender successfully edited', ALERT_CONSTANTS.SUCCESS_TIMEOUT
+          $scope.toggleSection 'save'
 
       $scope.saveUserTag = ->
-        $scope.user.tag = $scope.tag
-        saveUser()
-        alertService.addInfo 'Headline successfully edited', ALERT_CONSTANTS.SUCCESS_TIMEOUT
-        $scope.toggleHeadlineEditing()
+        if saveUser()
+          alertService.addInfo 'Headline successfully edited', ALERT_CONSTANTS.SUCCESS_TIMEOUT
+          $scope.toggleSection 'save'
 
       $scope.saveUserLocation = ->
-        saveUser()
-        alertService.addInfo 'Location successfully edited', ALERT_CONSTANTS.SUCCESS_TIMEOUT
-        $scope.toggleLocationEditing()
+        if saveUser()
+          alertService.addInfo 'Location successfully edited', ALERT_CONSTANTS.SUCCESS_TIMEOUT
+          $scope.toggleLocationSection 'save'
 
-      $scope.seveUserNationality = ->
+      $scope.saveUserNationality = ->
+
         $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
-        
-        $scope.candidateNationality.$delete().catch(alertService.defaultErrorCallback)
+
+        if user.nationalities.length > 0
+          $scope.candidateNationality = new CandidateNationalities()
+          $scope.candidateNationality.candidate_id = $scope.user.uid
+          $scope.candidateNationality.id = $scope.user.nationalities[0].id if $scope.user.nationalities.length > 0
+          $scope.candidateNationality.$delete().catch(alertService.defaultErrorCallback)
 
         $scope.newNationality.$save().then( (data) ->
           alertService.addInfo 'Nationality successfully edited', ALERT_CONSTANTS.SUCCESS_TIMEOUT
           $scope.user.nationalities[0] = data.nationality
-          $scope.toggleNationalityEditing()
+          $scope.toggleNationalitySection()
+          $scope.newNationality = new CandidateNationalities()
         ).catch(alertService.defaultErrorCallback)
 
       init()
