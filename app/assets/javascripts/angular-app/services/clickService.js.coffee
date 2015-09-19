@@ -18,5 +18,5 @@ Click = ($timeout, $location, $anchorScroll) ->
 					element.triggerHandler('click')
 		)
 angular
-.module('mepedia.services')
-.factory('click',['$timeout', '$location', '$anchorScroll', Click])
+  .module('gradshub-ng.services')
+  .factory('click',['$timeout', '$location', '$anchorScroll', Click])

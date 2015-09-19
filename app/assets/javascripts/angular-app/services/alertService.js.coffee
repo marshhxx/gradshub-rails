@@ -57,5 +57,5 @@ AlertService = ($rootScope, $timeout, ALERT_CONSTANTS) ->
   alertService;
 
 angular
-.module('mepedia.services')
-.factory('alertService', AlertService);
+  .module('gradshub-ng.services')
+  .factory('alertService', AlertService);

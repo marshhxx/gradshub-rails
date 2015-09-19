@@ -1,4 +1,4 @@
-angular.module('mepedia.controllers').controller('candidateProfileController',
+angular.module('gradshub-ng.controllers').controller('candidateProfileController',
         ['$scope', '$rootScope', '$http', '$upload', '$location', '$anchorScroll','sessionService', '$state', '$stateParams', 
         'Country', 'State', 'Candidate', 'Employer', 'Skill', 'Interest', 'School', 'Major', 'Degree', 'Education', 
         'CandidateSkills', 'CandidateInterests', 'CandidateLanguages', 'Utils', 'Experience', 'alertService', 'modalService', 

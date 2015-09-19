@@ -10,5 +10,5 @@ Confirm = ->
         return value == scope.reference
   }
 angular
-.module('mepedia.directives')
+.module('gradshub-ng.directives')
 .directive('confirmPassword', Confirm)

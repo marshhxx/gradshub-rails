@@ -1,4 +1,4 @@
-angular.module('mepedia.directives').directive('addExperience', function (Utils) {
+angular.module('gradshub-ng.directives').directive('addExperience', function (Utils) {
     return {
         scope: {
             experience: '=data', //Experience array

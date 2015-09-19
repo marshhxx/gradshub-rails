@@ -30,5 +30,5 @@ AddLanguage = (Utils) ->
   }
 
 angular
-.module('mepedia.directives')
+.module('gradshub-ng.directives')
 .directive('addLanguage', AddLanguage)

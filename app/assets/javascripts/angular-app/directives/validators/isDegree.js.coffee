@@ -15,5 +15,5 @@ IsDegree = (Degree) ->
 
   }
 angular
-.module('mepedia.directives')
+.module('gradshub-ng.directives')
 .directive('isDegree', IsDegree)

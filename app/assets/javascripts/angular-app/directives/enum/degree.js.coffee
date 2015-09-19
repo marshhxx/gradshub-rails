@@ -28,5 +28,5 @@ DegreeSelector = (Degree) ->
 
   }
 angular
-.module('mepedia.directives')
+.module('gradshub-ng.directives')
 .directive('degreeSelector', DegreeSelector)

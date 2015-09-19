@@ -1,5 +1,4 @@
-angular.module('mepedia.directives').directive('editCompany', ['EmployerCompany', 'Utils', 'eventTracker',
-    function (EmployerCompany, Utils, eventTracker) {
+EditCompany = function (EmployerCompany, Utils, eventTracker) {
     return {
         // NEEEED TO DO EVERYTHING
         scope: {
@@ -74,4 +73,7 @@ angular.module('mepedia.directives').directive('editCompany', ['EmployerCompany'
         }
 
     };
-}]);
+};
+angular.module('gradshub-ng.directives')
+       .directive('editCompany', ['EmployerCompany', 'Utils', 'eventTracker', EditCompany]);
+

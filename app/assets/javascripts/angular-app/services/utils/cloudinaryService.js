@@ -22,7 +22,7 @@ var Cloudinary = function () {
 
     return cloudinary;
 
-}
+};
 angular
-    .module('mepedia.services')
+    .module('gradshub-ng.services')
     .factory('cloudinaryService', Cloudinary);

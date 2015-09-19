@@ -1,4 +1,4 @@
-angular.module('mepedia.services').factory('sessionService',
+angular.module('gradshub-ng.services').factory('sessionService',
     ['$location', '$http','$q','Session', 'oauthService',
         function($location, $http, $q, Session, oauthService) {
         // Redirect to the given url (defaults to '/')

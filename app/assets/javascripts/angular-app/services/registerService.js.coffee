@@ -12,5 +12,5 @@ RegisterService = () ->
 	service
 
 angular
-	.module('mepedia.services')
+	.module('gradshub-ng.services')
 	.factory("registerService", RegisterService)

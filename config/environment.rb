@@ -2,7 +2,7 @@
 require File.expand_path('../application', __FILE__)
 
 # Initialize the Rails application.
-Demo::Application.initialize!
+GradshubRails::Application.initialize!
 
 # Loggers
 Rails.logger = Logger.new(STDOUT)

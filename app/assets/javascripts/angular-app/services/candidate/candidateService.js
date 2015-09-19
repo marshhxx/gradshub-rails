@@ -1,6 +1,4 @@
-angular
-    .module('mepedia.services')
-    .factory('Candidate', function($resource) {
+CandidateService = function($resource) {
         var Candidate = $resource('/api/candidates/:id', { id: '@uid' },
         {
             update: {
@@ -17,4 +15,7 @@ angular
 
         Candidate.prototype.isEmployer = false;
         return Candidate;
-});
+};
+angular
+    .module('gradshub-ng.services')
+    .factory('Candidate', CandidateService);

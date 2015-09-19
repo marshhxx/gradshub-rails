@@ -16,5 +16,5 @@ ErrorInterceptor = ($q, alertService, $location) ->
   }
 
 angular
-	.module('mepedia.services')
+	.module('gradshub-ng.services')
 	.factory('errorInterceptor', ErrorInterceptor)

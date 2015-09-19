@@ -1,4 +1,4 @@
-angular.module('mepedia.services').factory "cookieJar", ($cookieStore) ->
+CookieJar = ($cookieStore) ->
 	service = {
 		get: (name) ->
 			$cookieStore.get(name)
@@ -12,3 +12,7 @@ angular.module('mepedia.services').factory "cookieJar", ($cookieStore) ->
 		isDefined: (name) ->
 			this.get(name)?
 	}
+
+angular
+  .module('gradshub-ng.services')
+  .factory "cookieJar", CookieJar

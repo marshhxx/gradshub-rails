@@ -1,5 +1,5 @@
 angular
-.module('mepedia.controllers')
+.module('gradshub-ng.controllers')
 .controller('mainController',
   ['$scope', '$rootScope', '$q', 'sessionService', '$state','alertService', '$sce', '$location', 'eventTracker', '$anchorScroll', '$document',
     ($scope, $rootScope, $q, sessionService, $state, alertService, $sce, $location, eventTracker, $anchorScroll, $document) ->

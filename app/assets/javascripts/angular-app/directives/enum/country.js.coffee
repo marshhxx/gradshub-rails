@@ -26,5 +26,5 @@ CountrySelector = (Country) ->
 
   }
 angular
-.module('mepedia.directives')
+.module('gradshub-ng.directives')
 .directive('countrySelector', CountrySelector)

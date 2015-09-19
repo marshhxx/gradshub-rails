@@ -15,5 +15,5 @@ IsSchool = (School) ->
 
   }
 angular
-.module('mepedia.directives')
+.module('gradshub-ng.directives')
 .directive('isSchool', IsSchool)

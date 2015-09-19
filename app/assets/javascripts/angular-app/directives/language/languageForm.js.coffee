@@ -22,5 +22,5 @@ LanguageForm = (Language) ->
 
   }
 angular
-  .module('mepedia.directives')
+  .module('gradshub-ng.directives')
   .directive('languageForm', LanguageForm);

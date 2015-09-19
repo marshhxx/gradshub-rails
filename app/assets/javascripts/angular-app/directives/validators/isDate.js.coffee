@@ -10,5 +10,5 @@ isDate = () ->
 	}
 
 angular
-	.module('mepedia.directives')
+	.module('gradshub-ng.directives')
 	.directive('isDate', isDate)

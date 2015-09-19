@@ -1,4 +1,4 @@
-angular.module('mepedia.directives').directive('profileHighlights', function (click, Utils) {
+Highlights = function (click, Utils) {
     return {
         scope: {
             user: '='
@@ -24,4 +24,5 @@ angular.module('mepedia.directives').directive('profileHighlights', function (cl
             };
         }
     };
-});
+};
+angular.module('gradshub-ng.directives').directive('profileHighlights', Highlights)

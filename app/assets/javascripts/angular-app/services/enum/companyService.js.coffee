@@ -9,5 +9,5 @@ Company = ($resource) ->
 		}
 	)
 angular
-	.module('mepedia.services')
+	.module('gradshub-ng.services')
 	.factory('Company', Company);

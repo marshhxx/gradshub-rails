@@ -1,5 +1,5 @@
 angular
-.module('mepedia.controllers')
+.module('gradshub-ng.controllers')
 .controller("searchController",
   ['$scope', '$rootScope', '$q', '$http', '$state', 'sessionService', '$stateParams', 'searchService', 'alertService',
     ($scope, $rootScope, $q, $httpProvider, $state, sessionService, $stateParams, searchService, alertService)->

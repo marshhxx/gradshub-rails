@@ -1,6 +1,6 @@
 require 'api_constraints'
 
-Demo::Application.routes.draw do
+GradshubRails::Application.routes.draw do
   concern :skillable do
     resources :skills, :only => [:index, :create, :show, :destroy] do
       collection do

@@ -1,4 +1,4 @@
-angular.module('mepedia.directives').directive('education', function (Utils) {
+angular.module('gradshub-ng.directives').directive('education', function (Utils) {
     return {
         scope: {
             education: '=data',

@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Demo::Application.config.secret_key_base = '06f7aceef726ea080ef66355caa0d78463dfd8a7142b1129d59cc9796ac1d7c373eaf3ffb3b22674249764b3c230ab42882a8691e42decde1f218472ef194892'
+GradshubRails::Application.config.secret_key_base = '06f7aceef726ea080ef66355caa0d78463dfd8a7142b1129d59cc9796ac1d7c373eaf3ffb3b22674249764b3c230ab42882a8691e42decde1f218472ef194892'

@@ -15,5 +15,5 @@ IsNationality = (Nationality) ->
 
   }
 angular
-.module('mepedia.directives')
+.module('gradshub-ng.directives')
 .directive('isNationality', IsNationality)

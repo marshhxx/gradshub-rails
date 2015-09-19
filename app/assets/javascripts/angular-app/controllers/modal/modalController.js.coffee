@@ -10,5 +10,5 @@ ModalController = ($scope, $modalInstance, message) ->
 #ModalController.$inject = ['$scope']
 
 angular
-	.module('mepedia.controllers')
+	.module('gradshub-ng.controllers')
 	.controller('ModalController', ModalController)

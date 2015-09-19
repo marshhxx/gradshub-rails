@@ -1,4 +1,4 @@
-angular.module('mepedia.directives').directive('tagsInput', function () {
+TagsInput = function () {
     return {
         restrict: 'E',
         scope: { tags: '=', currentTags: '=info'},
@@ -43,4 +43,5 @@ angular.module('mepedia.directives').directive('tagsInput', function () {
 
         }
     };
-});
+};
+angular.module('gradshub-ng.directives').directive('tagsInput', TagsInput)
