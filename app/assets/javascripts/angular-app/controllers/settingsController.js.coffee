@@ -2,8 +2,9 @@ angular
 .module('mepedia.controllers')
 .controller("settingsController",
   ['$scope', '$rootScope', '$q', '$http', '$state', 'sessionService', '$stateParams', 'Candidate', 'Utils', 'errors', 
-    'alertService', 'ALERT_CONSTANTS', 'Country', 'CandidateNationalities', '$animate', '$timeout'
-    ($scope, $rootScope, $q, $httpProvider, $state, sessionService, $stateParams, Candidate, Utils, errors, alertService, ALERT_CONSTANTS, Country, CandidateNationalities, animate, $timeout) ->
+    'alertService', 'ALERT_CONSTANTS', 'Country', 'CandidateNationalities', '$animate', '$timeout', 'EmployerNationalities',
+    'Employer',
+    ($scope, $rootScope, $q, $httpProvider, $state, sessionService, $stateParams, Candidate, Utils, errors, alertService, ALERT_CONSTANTS, Country, CandidateNationalities, animate, $timeout, EmployerNationalities, Employer) ->
 
       init = ()->
         $scope.notMe = Utils.notMe()
@@ -23,6 +24,7 @@ angular
         $scope.editLocation = true
         $scope.editNationality = true
         $scope.newNationality = new CandidateNationalities()
+        $scope.newEmployerNationality = new EmployerNationalities()
 
         $scope.genders = [
           "male",
@@ -31,15 +33,21 @@ angular
         ]
 
       setUser = (user) ->
-        $scope.user = user.candidate
+        if user.candidate 
+          $scope.user = user.candidate
+          $scope.user.isCandidate = true
+        else
+          $scope.user = user.employer
+  
         $scope.realUser = angular.copy $scope.user
         formatDate()
 
       checkAndSetUser = (user) ->
-        if sessionService.sessionType() == 'Employer'
-          $state.go 'main.employer_profile', {uid: 'me'}, { reload: true }
-        else
-          setUser(user)
+        # if sessionService.sessionType() == 'Employer'
+        #   $state.go 'main.employer_profile', {uid: 'me'}, { reload: true }
+        # else
+        #   setUser(user)
+        setUser(user)
 
       formatDate = ->
         day = $scope.user.birth.charAt(8)
@@ -79,14 +87,24 @@ angular
       # Save functions
       saveUser = () ->
         $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
-        Utils.candidateFromObject($scope.user).$update((response) ->
-          $scope.user = response.candidate
-          $scope.realUser = angular.copy $scope.user
-          return true
-        ).catch( ->
-          alertService.defaultErrorCallback
-          return false
-        )
+        if $scope.user.isCandidate
+          Utils.candidateFromObject($scope.user).$update((response) ->
+            $scope.user = response.candidate
+            $scope.realUser = angular.copy $scope.user
+            return true
+          ).catch( ->
+            alertService.defaultErrorCallback
+            return false
+          )
+        else
+          Utils.employerFromObject($scope.user).$update((response) ->
+            $scope.user = response.employer
+            $scope.realUser = angular.copy $scope.user
+            return true
+          ).catch( ->
+            alertService.defaultErrorCallback
+            return false
+          )
 
       $scope.saveUserFullName = (valid) ->
         if !valid
@@ -104,12 +122,13 @@ angular
         if !valid
           return
 
-        candidate = new Candidate()
-        candidate.uid = $scope.user.uid
-        candidate.old_password = $scope.oldPassword
-        candidate.new_password = $scope.newPassword
+        if $scope.user.isCandidate then user = new Candidate() else user = new Employer()
+
+        user.uid = $scope.user.uid
+        user.old_password = $scope.oldPassword
+        user.new_password = $scope.newPassword
         $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
-        candidate.$changePassword().then((response) ->
+        user.$changePassword().then((response) ->
           alertService.addInfo 'Password successfully changed', ALERT_CONSTANTS.SUCCESS_TIMEOUT
           
           $scope.toggleSection 'save'
@@ -119,7 +138,7 @@ angular
           clearInput 'passwordForm', 'oldPassword'
           clearInput 'passwordForm', 'newPassword'
           clearInput 'passwordForm', 'reNewPassword'
-        )
+        )      
 
       $scope.saveUserBirth = (valid) ->
         $scope.user.birth = $scope.birthday

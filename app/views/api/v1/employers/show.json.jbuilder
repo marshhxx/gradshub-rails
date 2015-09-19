@@ -6,8 +6,11 @@ json.employer do
   json.birth    @employer.user.birth
   json.gender   @employer.user.gender
   json.tag      @employer.user.tag
+  json.country @employer.user.country
+  json.state @employer.user.state
   json.skills  @employer.skills
   json.interests @employer.interests
+  json.nationalities @employer.nationalities
   json.company do
     if @employer.employer_company
       json.company_id   @employer.employer_company.company.id

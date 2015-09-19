@@ -5,8 +5,8 @@ json.candidate do
   json.email    @candidate.user.email
   json.birth    @candidate.user.birth
   json.gender   @candidate.user.gender
-  json.country  @candidate.country
-  json.state    @candidate.state
+  json.country  @candidate.user.country
+  json.state    @candidate.user.state
   json.tag      @candidate.user.tag
   json.nationalities @candidate.nationalities
   json.educations  @candidate.educations.order(:start_date).reverse do |education|

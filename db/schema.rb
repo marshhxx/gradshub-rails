@@ -50,11 +50,9 @@ ActiveRecord::Schema.define(version: 20150705143428) do
   add_index "candidate_skills", ["candidate_id", "skill_id"], name: "index_candidate_skills_on_candidate_id_and_skill_id", unique: true, using: :btree
 
   create_table "candidates", force: true do |t|
-    t.text    "summary"
-    t.text    "early_life"
-    t.text    "personal_life"
-    t.integer "country_id"
-    t.integer "state_id"
+    t.text "summary"
+    t.text "early_life"
+    t.text "personal_life"
   end
 
   create_table "companies", force: true do |t|
@@ -201,6 +199,8 @@ ActiveRecord::Schema.define(version: 20150705143428) do
     t.datetime "reset_password_sent_at"
     t.integer  "meta_id"
     t.string   "meta_type"
+    t.integer  "country_id"
+    t.integer  "state_id"
     t.string   "auth_token",             default: ""
   end
 

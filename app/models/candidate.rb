@@ -2,9 +2,6 @@ class Candidate < ActiveRecord::Base
   has_one :user, as: :meta, dependent: :destroy, autosave: true
   accepts_nested_attributes_for :user
 
-  belongs_to :country
-  belongs_to :state
-
   has_many :candidate_languages, dependent: :destroy
   has_many :experiences, dependent: :destroy
   has_many :educations, dependent: :destroy

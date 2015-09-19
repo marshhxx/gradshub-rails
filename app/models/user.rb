@@ -14,6 +14,9 @@ class User < ActiveRecord::Base
   belongs_to :meta, polymorphic: true
   has_one :identity, autosave: true
 
+  belongs_to :country
+  belongs_to :state
+
   def generate_authentication_token!
     begin
       self.auth_token = Devise.friendly_token
