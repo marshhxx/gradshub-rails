@@ -23,8 +23,6 @@ angular
         $scope.editHeadline = true
         $scope.editLocation = true
         $scope.editNationality = true
-        $scope.newNationality = new CandidateNationalities()
-        $scope.newEmployerNationality = new EmployerNationalities()
 
         $scope.genders = [
           "male",
@@ -36,9 +34,11 @@ angular
         if user.candidate 
           $scope.user = user.candidate
           $scope.user.isCandidate = true
+          $scope.newUserNationality = new CandidateNationalities()
         else
           $scope.user = user.employer
-  
+          $scope.newUserNationality = new EmployerNationalities()
+        
         $scope.realUser = angular.copy $scope.user
         formatDate()
 
@@ -81,8 +81,8 @@ angular
         $scope.user.state = state
 
       $scope.onNationality = (nationality) ->
-        $scope.newNationality.candidate_id = $scope.user.uid
-        $scope.newNationality.nationality_id = nationality.id if nationality?
+        if $scope.user.isCandidate then $scope.newUserNationality.candidate_id = $scope.user.uid else $scope.newUserNationality.employer_id = $scope.user.uid
+        $scope.newUserNationality.nationality_id = nationality.id if nationality?
 
       # Save functions
       saveUser = () ->
@@ -166,16 +166,23 @@ angular
         $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
 
         if user.nationalities.length > 0
-          $scope.candidateNationality = new CandidateNationalities()
-          $scope.candidateNationality.candidate_id = $scope.user.uid
-          $scope.candidateNationality.id = $scope.user.nationalities[0].id if $scope.user.nationalities.length > 0
-          $scope.candidateNationality.$delete().catch(alertService.defaultErrorCallback)
+          if $scope.user.isCandidate 
+            nationality = new CandidateNationalities()
+            nationality.candidate_id = $scope.user.uid
+          else 
+            nationality = new EmployerNationalities()
+            nationality.employer_id = $scope.user.uid
+          nationality.id = $scope.user.nationalities[0].id if $scope.user.nationalities.length > 0
+          nationality.$delete().catch(alertService.defaultErrorCallback)
 
-        $scope.newNationality.$save().then( (data) ->
-          alertService.addInfo 'Nationality successfully edited', ALERT_CONSTANTS.SUCCESS_TIMEOUT
+        $scope.newUserNationality.$save().then( (data) ->
+          console.log data
           $scope.user.nationalities[0] = data.nationality
-          $scope.toggleNationalitySection()
-          $scope.newNationality = new CandidateNationalities()
+          $scope.toggleNationalitySection 'save'
+
+          if $scope.user.isCandidate then $scope.newUserNationality = new CandidateNationalities() else $scope.newUserNationality = new EmployerNationalities()
+
+          alertService.addInfo 'Nationality successfully edited', ALERT_CONSTANTS.SUCCESS_TIMEOUT
         ).catch(alertService.defaultErrorCallback)
 
       init()
