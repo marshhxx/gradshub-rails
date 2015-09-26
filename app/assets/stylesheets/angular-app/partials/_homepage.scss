@@ -2,36 +2,48 @@
 
 header {
   width: 100%;
-  height: 830px;
-  padding-bottom: 50px;
+  height: auto;
+  position: relative;
   text-align: center;
-  @extend %bg-image;
-  background-image: url('homepage/home-background.png');
+  margin-top: 50px;
+  @extend %bg-image; background-image: url('homepage/home-background.png');
 }
 
 .header-signup {
   color: $primary-white;
-  margin: 0;
-  padding: 14% 0;
-  overflow: hidden;
+  margin: auto;
+  padding: 50px 0;
   width: 100%;
 
   .title {
     font-family: Montserrat-Bold, Georgia, "Times New Roman", Times, serif;
-    font-size: 4.5em;
+    font-size: 3.5em;
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
   }
 
   .subtitle {
     font-family: Montserrat-Light, Georgia, "Times New Roman", Times, serif;
-    font-size: 1.5em;
+    font-size: 1.3em;
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  .wrapper {
+    width: 300px;
+    right: 0;
+    left: 0;
+    margin: auto;
   }
 
   .buttons {
     width: 100%;
     margin-top: 30px;
     overflow: hidden;
+    .btn-left {
+      padding-right: 5px;
+    }
+    .btn-right {
+      padding-left: 5px;
+    }
   }
 
   .form-btn-container {
@@ -83,10 +95,10 @@ header {
 }
 
 .type-btn {
-  width: 165px;
-  font: 18px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+  width: 100%;
+  font: 16px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
   color: $primary-white;
-  padding: 15px 0;
+  padding: 12px 0;
   margin-bottom: 15px;
   border: 3px solid $primary-white;
   border-radius: 4px !important;
@@ -94,12 +106,6 @@ header {
   display: inline-block;
   cursor: pointer;
   text-align: center;
-  &.btn-left {
-    float: left;
-  }
-  &.btn-right {
-    float: right;
-  }
   &.white {
     background-color: $primary-white;
     color: $primary-turquoise;
@@ -124,7 +130,7 @@ header {
 /** Carousel **/
 .home-carousel-container {
   display: none;
-  position: absolute;
+  position: relative;
   width: 100%;
 }
 
@@ -143,7 +149,7 @@ header {
 
 section#home-signup {
   width: 100%;
-  position: absolute;
+  position: relative;
   z-index: 2;
 }
 
@@ -194,7 +200,7 @@ section#home-signup {
 /*** Start Section Title  ***/
 
 .section-title {
-  height: 200px;
+  height: 245px;
   position: relative;
 
   &.section-two {
@@ -218,7 +224,7 @@ section#home-signup {
 
   .heading {
     font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
-    font-size: 1.8em;
+    font-size: 2.6em;
     color: $primary-white;
     text-transform: uppercase;
 
@@ -229,9 +235,9 @@ section#home-signup {
 
   .subheading {
     font-family: Montserrat-Light, Georgia, "Times New Roman", Times, serif;
-    font-size: 1.2em;
+    font-size: 1.4em;
     color: $primary-white;
-    margin-top: 18px;
+    margin-top: 10px;
 
     &.section-how-it-works-header {
       color: $text-title;
@@ -245,7 +251,7 @@ section#home-signup {
 /*** Start features section ***/
 
 section#section-features {
-  padding: 20px 0px 50px 0px;
+  padding: 50px 0px;
 }
 
 .features-image {
@@ -285,6 +291,9 @@ section#section-features {
   right: 0;
   margin-left: auto;
   margin-right: auto;
+  &.padding-b {
+    padding-bottom: 50px;
+  }
 }
 
 /*** End features section ***/
@@ -303,6 +312,8 @@ section#section-how-it-works-employer {
   width:100%;
   margin-right: 0;
   margin-left: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .container-top {
@@ -312,9 +323,26 @@ section#section-how-it-works-employer {
 .container-bottom {
   overflow: hidden;
   position: relative;
+  &.align-bottom {
+    position: relative;
+    .child {
+      height: 550px;
+      position:relative;
+
+      img{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+      }
+    }
+  }
 }
 
 .container-img {
+  padding-top: 50px;
+  display: none;
   &.align-center {
     right: 0px;
   }
@@ -322,7 +350,8 @@ section#section-how-it-works-employer {
 
 .container-txt {
   color: $primary-white;
-  padding: 100px 0;
+  padding: 50px 0px;
+  overflow: hidden;
   .row-img {
     width: 40px;
     height: 40px;
@@ -338,6 +367,7 @@ section#section-how-it-works-employer {
     background-image: url(homepage/ic_tick_turquoise.svg);
   }
   .wrapper {
+    float: left;
     margin-bottom: 40px;
   }
   .title {
@@ -411,20 +441,77 @@ section#section-how-it-works-employer {
 
 /*==========================> Responsive Design <=========================*/
 
-/* Extra Small Devices, Phones */
-@media only screen and (min-width: 480px) {
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px) {
+  /* Styles */
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen
+and (min-width : 321px) {
+  /* Styles */
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen
+and (max-width : 320px) {
+  /* Styles */
+}
+
+/*Media Query Mobile General*/
+@media (min-width: 650px) {
 
 }
 
-/* Small Devices, Tablets */
-@media only screen and (min-width: 768px) {
+/* Tablets */
+@media only screen and (min-device-width: 1024px) {
+  .container-img {
+    display: block;
+    padding: 0px;
+  }
+}
 
-  /* header */
-  .header-signup .employer-btn {
-    margin: 0px 15px;
+/* iPads (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px) {
+}
+
+/* iPads (landscape) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : landscape) {
+  /* Styles */
+}
+
+/* iPads (portrait) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : portrait) {
+  /* Styles */
+}
+
+/* Desktops and laptops ----------- */
+@media only screen
+and (min-width : 1224px) {
+
+  header {
+    background: none;
   }
 
-  /* sections */
+  section#home-signup {
+    position: absolute;
+  }
+
+  .header-signup {
+    padding: 70px 0;
+  }
+
+  /* Section Title */
   .section-title {
     height: 350px;
     position: relative;
@@ -432,7 +519,7 @@ section#section-how-it-works-employer {
 
   .section-container {
     & .heading {
-      font-size: 4.2em;
+      font-size: 4.0em;
     }
 
     & .subheading {
@@ -440,13 +527,13 @@ section#section-how-it-works-employer {
     }
   }
 
-  /* section features */
-  section#section-features {
-    padding: 80px 0px;
+  .home-carousel-container {
+    display: block;
   }
 
-  .home-title.white {
-    font-size: 4.5em;
+  /* Section Features */
+  section#section-features {
+    padding: 80px 0px;
   }
 
   .features-image {
@@ -455,31 +542,37 @@ section#section-how-it-works-employer {
     background-size: 130px;
   }
 
-  .features-txt {
-    margin-bottom: 20px;
+  .features-detail-txt {
+    &.padding-b {
+      padding-bottom: 0px;
+    }
   }
 
-}
-
-/* Medium Devices, Desktops */
-@media(min-width: 768px) {
-
-}
-
-/* Medium Devices, Desktops */
-@media only screen and (min-width: 992px) {
-
-  header {
-    background: none;
+  /*** Start How it Works section ***/
+  .container-txt {
+    padding: 100px 0;
   }
 
-  .home-carousel-container {
-    display: block;
+  .container-bottom {
+    &.align-bottom {
+      .child {
+        position: absolute;
+      }
+    }
   }
-
 }
 
-/* Large Devices, Wide Screens */
-@media only screen and (min-width: 1200px) {
-
+/* Large screens ----------- */
+@media only screen
+and (min-width : 1824px) {
+  /* Styles */
 }
+
+/* iPhone 4 ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+  /* Styles */
+}
+
+/*==========================> End Responsive Design <=========================*/
