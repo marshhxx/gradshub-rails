@@ -56,23 +56,21 @@
 
 <div ui-view></div>
 
-<footer id="footer" class="text-center">
-  <div class="container">
-    <div class="col-lg-12">
-      <button ng-click="scrollTo('top')" class="button">Join Gradshub for free</button>
-    </div>
-    <div class="col-lg-8 col-lg-offset-2">
-      <div class="link-container">
-        <div class="col-md-4 padding-tb-10">
-          <a href="#" class="link">About Gradshub</a>
-        </div>
-        <div class="col-md-4 padding-tb-10">
-          <!--<p href="#" class="divider">|</p>-->
-          <a href="#" class="link">Terms of Service</a>
-        </div>
-        <div class="col-md-4 padding-tb-10">
-          <!--<p href="#" class="divider">|</p>-->
-          <a href="#" class="link">Privacy Policy</a>
+<footer id="home" class="text-center">
+  <div class="footer-above">
+    <div class="container">
+      <div class="col-lg-12">
+        <button ng-click="scrollTo('top')" class="button">Join Gradshub for free</button>
+      </div>
+      <div class="col-lg-12">
+        <div class="footer-li-container">
+          <a href="#" class="footer-li">About Gradshub</a>
+
+          <p class="footer-divider">|</p>
+          <a ui-sref="main.terms" class="footer-li">Terms of Service</a>
+
+          <p class="footer-divider">|</p>
+          <a ui-sref="main.privacy" class="footer-li">Privacy Policy</a>
         </div>
       </div>
     </div>
