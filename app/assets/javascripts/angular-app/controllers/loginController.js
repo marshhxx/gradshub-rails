@@ -24,7 +24,7 @@ angular.module('gradshub-ng.controllers').controller('loginController',
                             }
                         ).catch(
                             function (resp) {
-                                alertService.addError(resp.error, 10000);
+                                alertService.addError(resp, 10000);
                             }
                         );
                     }

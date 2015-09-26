@@ -18,11 +18,8 @@ angular
 
       logout = ->
         eventTracker.logOut sessionService.sessionType()
-        sessionService.logout().then(
-          -> $state.go 'home.page', null, {reload: true}
-        ).catch(
-          (error)-> console.log(error)
-        )
+        sessionService.logout()
+        $state.go 'home.page', null, {reload: true}
 
       initUser = ->
         deferrred = $q.defer()

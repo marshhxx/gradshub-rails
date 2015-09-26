@@ -42,9 +42,10 @@ GradshubRails::Application.routes.draw do
         resources :nationalities, :only => [:index, :create, :show, :destroy]
         resources :languages, :controller => :candidate_languages, :only => [:index, :create, :update, :show, :destroy]
       end
-      resources :sessions, :only => [:create, :destroy, :password_reset] do
+      resources :sessions, :only => [:create, :password_reset_request, :password_reset, :refresh] do
         collection do
           get :password_reset, to: 'sessions#password_reset_request'
+          get :refresh, to: 'sessions#refresh'
           post :password_reset, to: 'sessions#password_reset'
         end
       end

@@ -4,6 +4,7 @@
 .config ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider, $analyticsProvider) ->
 #	$httpProvider.defaults.withCredentials = true;
 #	$httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
+  $httpProvider.interceptors.push('authInterceptor')
   $httpProvider.interceptors.push('errorInterceptor')
   $httpProvider.defaults.headers.common.Accept = 'application/mepedia.v1'
   $httpProvider.defaults.headers.common['Content-type'] = 'application/json'
@@ -92,6 +93,8 @@
     url: "/terms",
     templateUrl: "angular-app/templates/terms.html"
   })
+.run (initializeApp) ->
+  initializeApp.initialize()
 
   return
 

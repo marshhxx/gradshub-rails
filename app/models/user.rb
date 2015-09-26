@@ -17,14 +17,9 @@ class User < ActiveRecord::Base
   belongs_to :country
   belongs_to :state
 
-  def generate_authentication_token!
-    begin
-      self.auth_token = Devise.friendly_token
-      self.last_seen_at = DateTime.now
-    end while self.class.exists?(auth_token: auth_token)
-  end
+  attr_accessor :token
 
-  # authinticate the user with the given password
+  # authenticate the user with the given password
   def authenticate_with_password(input_password)
     return false unless self.valid_password?(input_password)
     authenticate
@@ -33,6 +28,10 @@ class User < ActiveRecord::Base
   def authenticate_with_oauth
     return false if self.nil?
     authenticate
+  end
+
+  def authenticate
+    self.token = Session.new(self.uid).generate_token
   end
 
   # Finds or creates the user from the auth object.
@@ -92,11 +91,6 @@ class User < ActiveRecord::Base
     while self.uid.blank? or !User.find_by_uid(self.uid).blank?
       self.uid = '0U' + Digest::SHA1.hexdigest("#{self.name},#{self.lastname},#{self.email}#{Time.current.usec}").slice(0,8)
     end
-  end
-
-  def authenticate
-    self.generate_authentication_token!
-    self.save
   end
 
 end

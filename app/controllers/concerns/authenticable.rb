@@ -1,28 +1,24 @@
 module Authenticable
 
   def user_signed_in?
-    current_user.present?
-  end
-
-  def valid_session?
-    Session.new(current_user).valid?
+    session_from_header and current_user.present?
   end
 
   # Devise methods overwrites
   def current_user
-    @current_user ||= User.find_by(auth_token: request.headers['Authorization']) if request.headers['Authorization']
+    @current_user ||= User.find_by_uid(session_from_header.user)
   end
 
   def authenticate_with_token!
     authenticated = user_signed_in?
-    valid = valid_session?
+    valid = session_from_header.valid?
     @error = {:reasons => ['Bad credentials.'], :code => AUTH_ERROR} unless authenticated
     @error = {:reasons => ['The session has expired.'], :code => SESSION_EXPIRED} unless valid
     render 'api/v1/common/error', status: :unauthorized unless authenticated and valid
   end
 
-  def refresh_session
-    current_user.update(last_seen_at: DateTime.now)
+  def session_from_header
+    @session_from_header ||= Session.from_jwt(request.headers['Authorization'].split(' ').last)
   end
 
 end

@@ -7,6 +7,7 @@ asset 'angular-sanitize'
 asset 'angular-animate'
 asset 'angular-cookies'
 asset 'angular-messages'
+asset 'ngstorage'
 
 asset 'cloudinary_ng', '>=0.1.1'
 asset 'cloudinary_js', '1.0.21'

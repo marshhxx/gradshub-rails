@@ -21,6 +21,7 @@
 //= require angular-sanitize
 ////= require angular-animate
 //= require angular-cookies
+//= require ngstorage
 
 // Upload images (order is important)
 //= require cloudinary_js

@@ -9,5 +9,5 @@ StateWrapper = ($rootScope) ->
   return stateWrapper
 
 angular
-.module('mepedia.services')
+.module('gradshub-ng.services')
 .factory('stateWrapper', StateWrapper)
