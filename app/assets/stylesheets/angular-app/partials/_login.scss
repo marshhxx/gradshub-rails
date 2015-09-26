@@ -1,31 +1,41 @@
 .login {
   &.background {
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    height: 100%;
+    min-height: 100vh;
+    position: relative;
+
+    @extend %bg-image;
 
     &.one {
-      background: url("login/background.png") no-repeat center center;
+      background-image: url("login/background.png");
     }
 
     &.other {
-      background: url("login/background.png") no-repeat center center;
+      background-image: url("login/background.png");
     }
   }
 
-  &.form-container {
-    padding: 160px 0 0 0;
+  .form-container {
+    height: 100%;
+    width: 100%;
+    padding: 130px 0;
+    min-height:100%;
   }
 
-  &.form-box {
+  .form-row {
+    position: relative;
+  }
+
+  .form-box {
+    width: 300px;
     background: $primary-white;
     border-radius: 4px;
+    left: 0;
+    right: 0;
+    margin: auto;
   }
 
-  &.form-box-cont {
-    padding: 25px 40px 30px 35px;
+  .form-box-cont {
+    padding: 20px;
   }
 
   &.ic {
@@ -39,9 +49,11 @@
     color: $primary-white;
     padding: 10px;
     background: $primary-blue;
+    border: 3px solid $primary-blue;
 
     &:hover {
       background: $primary-turquoise-hover;
+      border: 3px solid $primary-turquoise-hover;
     }
   }
 
@@ -57,8 +69,8 @@
   label, .forgotpssw a {
     float: left;
     font-weight: normal;
-    color: black;
-    font: 11px Lato-Regular, Georgia, "Times New Roman", Times, serif;
+    color: $text-regular;
+    font: 12px Lato-Regular, Georgia, "Times New Roman", Times, serif;
   }
 
   &.rememberme {
@@ -84,20 +96,24 @@
     background: 0;
     font: 16px/1.4 "Helvetica Neue","HelveticaNeue",Helvetica,Arial,sans-serif;
     box-sizing: border-box;
-    border: 1px solid $border-gray;
 
     &.first-input {
+      border-bottom: 0px !important;
       border-top-left-radius: 4px !important;
       border-top-right-radius: 4px !important;
+      &:hover {
+        border-bottom: 1px solid $border-gray-focus !important;
+        + .last-input {
+          border-top: 0px !important;
+        }
+      }
     }
 
     &.last-input {
       border-bottom-left-radius: 4px !important;
       border-bottom-right-radius: 4px !important;
     }
-
   }
-
 }
 
 /* Custom, iPhone Retina */
@@ -112,7 +128,7 @@
 @media only screen and (min-width: 650px) {
 
   .login.background {
-    height: 100vh !important;
+   // height: 100vh !important;
   }
 
 }

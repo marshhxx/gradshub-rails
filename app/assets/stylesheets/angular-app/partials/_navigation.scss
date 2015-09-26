@@ -224,14 +224,15 @@ $tl: 0.4s; // transition length
 /*** Start Footer ***/
 
 footer#footer {
+  width: 100%;
   background-color: $footer-bg;
   padding: 60px 0px 0px;
 
   .button {
-    padding: 15px 40px;
+    padding: 12px 20px;
     background: $primary-blue;
     color: $primary-white;
-    font: 18px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+    font: 16px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
     border: 3px solid $primary-blue;
     border-radius: 4px !important;
     margin-bottom: 30px;
