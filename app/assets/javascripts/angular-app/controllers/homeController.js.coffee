@@ -66,7 +66,7 @@ angular.module('gradshub-ng.controllers').controller("HomeController", [
         image: "/assets/homepage/home-background.png"
       }
       {
-        image: "/assets/homepage/home-background.png"
+        image: "/assets/login/background.png"
       }
       {
         image: "/assets/homepage/home-background.png"

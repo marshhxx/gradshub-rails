@@ -1,26 +1,30 @@
 <header>
   <div class="carousel slide">
-    <section id="signup">
+    <section id="home-signup">
       <div id="top" class="container">
 
         <div class="row">
           <div class="col-lg-12">
             <div class="header-signup">
-              <div class="title">GRADSHUB</div>
+              <div class="title">GradsHub</div>
               <div class="subtitle" ng-show="candidate">Create a compelling profile and be discovered by employers.
               </div>
               <div class="subtitle" ng-show="!candidate">Show the soul of your company and attract the talent you are
                 searching for.
               </div>
 
-              <div class="col-lg-4 col-lg-offset-4 col-sm-12 text-center">
+              <div class="wrapper text-center">
                 <div class="buttons">
-                            <span id="employer-btn" class="type-btn btn-left"
+                  <div class="col-xs-6 padding-zero btn-left">
+                            <span id="employer-btn" class="type-btn"
                                   ng-click="isEmployer()"
                                   ng-class="{'type-btn-active': !candidate}">EMPLOYER
                             </span>
-                             <span id="candidate-btn" class="type-btn btn-right" ng-click="isCandidate()"
+                  </div>
+                  <div class="col-xs-6 padding-zero btn-right">
+                             <span id="candidate-btn" class="type-btn" ng-click="isCandidate()"
                                    ng-class="{'type-btn-active': candidate}">CANDIDATE</span>
+                  </div>
                 </div>
 
                 <form name="homeForm" ng-submit="registerUser(homeForm.$valid)" novalidate>
@@ -136,7 +140,7 @@
 
 <!-- Section features -->
 
-<section id="section-three">
+<section id="section-features">
   <div class="container">
     <div class="col-lg-12 text-center">
       <div class="row text-center">
@@ -144,7 +148,8 @@
           <div class="features-image img-left"></div>
           <p class="features-txt">COMPELLING PROFILE</p>
 
-          <p class="features-detail-txt">Make a powerful profile that showcase your skills, objects and accomplishments.
+          <p class="features-detail-txt padding-b">Make a powerful profile that showcase your skills, objects and
+            accomplishments.
             Market yourself with the profile for exciting new career opportunities.
           </p>
         </div>
@@ -152,7 +157,8 @@
           <div class="features-image img-middle"></div>
           <p class="features-txt">POWERFUL SEARCH ENGINE</p>
 
-          <p class="features-detail-txt">Our multi-dimensional, one click search engine finds your next great job
+          <p class="features-detail-txt padding-b">Our multi-dimensional, one click search engine finds your next great
+            job
             opportunity based on your skills, interests and education.
           </p>
         </div>
@@ -170,48 +176,67 @@
 
 </section>
 
-<section id="section-four" class="section-title section-four">
+<section id="section-how-it-works" class="section-title section-how-it-works-header">
   <div class="container section-container">
     <div class="col-lg-12 text-center">
-      <p class="heading section-four">How it works</p>
-      <p class="subheading section-four">Create a compelling profile and showcase the real you</p>
+      <p class="heading section-how-it-works-header">How it works</p>
+
+      <p class="subheading section-how-it-works-header">Create a compelling profile and showcase the real you</p>
     </div>
   </div>
 </section>
 
-<section id="section-five">
+<section id="section-how-it-works-candidate">
   <div class="container container-wrapper">
     <div class="container-top text-center">
-      <span class="type-btn type-btn-active">CANDIDATE</span>
+      <span class="type-btn type-btn-active large">CANDIDATE</span>
     </div>
 
-    <div class="container-bottom section-five">
+    <div class="container-bottom align-bottom section-five">
 
-      <div class="container-img col-md-6 text-center">
-        <img src="/assets/homepage/cellphone_v.png">
+      <div class="container-img child col-md-6 text-center">
+        <img src="/assets/homepage/cellphone_v.png"/>
       </div>
 
-      <div class="container-txt col-md-6">
-        <div>
-          <div class="wrapper col-md-8 col-md-offset-2">
+      <div class="container-txt align-right col-md-6">
+        <div class="col-xs-12">
+          <div class="col-md-2 left">
+            <div class="row-img url-img-candidate"></div>
+          </div>
+          <div class="wrapper col-xs-8">
             <p class="title">CREATE YOUR PROFILE</p>
 
             <p class="detail">Build your powerful profile to market yourself
               for the job that you want.</p>
           </div>
-          <div class="wrapper col-md-8 col-md-offset-2">
+        </div>
+        <div class="col-xs-12">
+          <div class="col-md-2 left">
+            <div class="row-img url-img-candidate"></div>
+          </div>
+          <div class="wrapper col-xs-8">
             <p class="title">APPLY FOR A JOB</p>
 
             <p class="detail">Our automated search finds the most ideal job opportunity
               for you based on your education, skills and interests.</p>
           </div>
-          <div class="wrapper col-md-8 col-md-offset-2">
+        </div>
+        <div class="col-xs-12">
+          <div class="col-md-2 left">
+            <div class="row-img url-img-candidate"></div>
+          </div>
+          <div class="wrapper col-xs-8">
             <p class="title">GET HIRED</p>
 
             <p class="detail">Our personalization platform provides you with instant
               communication, thereby making the hiring process pleasant.</p>
           </div>
-          <div class="wrapper col-md-8 col-md-offset-2">
+        </div>
+        <div class="col-xs-12">
+          <div class="col-md-2 left">
+            <div class="row-img url-img-candidate"></div>
+          </div>
+          <div class="wrapper margin-zero col-xs-8">
             <p class="title">DO A GREAT JOB</p>
 
             <p class="detail">Excelling at your job is fulfilling, rewarding and
@@ -221,44 +246,66 @@
       </div>
     </div>
   </div>
+  </div>
 </section>
 
-<section id="section-six">
+<section id="section-how-it-works-employer">
   <div class="container container-wrapper">
     <div class="container-top text-center">
-      <span class="type-btn type-btn-active white">EMPLOYER</span>
+      <span class="type-btn type-btn-active white large">EMPLOYER</span>
     </div>
 
-    <div class="container-bottom section-six">
+    <div class="container-bottom">
       <div class="container-txt col-md-6">
-        <div class="wrapper col-md-8 col-md-offset-2">
-          <p class="title">CREATE YOUR PROFILE</p>
-
-          <p class="detail">Build a power profile yo market your company with
-            current job openings, work culture to attract great talent.</p>
+        <div class="col-xs-12">
+        <div class="col-md-2 left">
+          <div class="row-img url-img-employer"></div>
         </div>
-        <div class="wrapper col-md-8 col-md-offset-2">
-          <p class="title">FIND GREAT MINDS</p>
 
-          <p class="detail">Our automated search finds the most ideal candidate
-            for your company, based on your requirements.</p>
+          <div class="wrapper col-xs-8">
+            <p class="title">CREATE YOUR PROFILE</p>
+
+            <p class="detail">Build a power profile yo market your company with
+              current job openings, work culture to attract great talent.</p>
+          </div>
         </div>
-        <div class="wrapper col-md-8 col-md-offset-2">
-          <p class="title">HIRE FAST</p>
+        <div class="col-xs-12">
+          <div class="col-md-2 left">
+            <div class="row-img url-img-employer"></div>
+          </div>
+          <div class="wrapper col-xs-8">
+            <p class="title">FIND GREAT MINDS</p>
 
-          <p class="detail">Our personalization platform allows you to interact efficiently,
-            there by making the hiring process pleasant.</p>
+            <p class="detail">Our automated search finds the most ideal candidate
+              for your company, based on your requirements.</p>
+          </div>
         </div>
-        <div class="wrapper col-md-8 col-md-offset-2">
-          <p class="title">BUILD A GREAT COMPANY</p>
+        <div class="col-xs-12">
+          <div class="col-md-2 left">
+            <div class="row-img url-img-employer"></div>
+          </div>
+          <div class="wrapper col-xs-8">
+            <p class="title">HIRE FAST</p>
 
-          <p class="detail">Hiring the best minds creates opportunities for growth,
-            leadership and success.</p>
+            <p class="detail">Our personalization platform allows you to interact efficiently,
+              there by making the hiring process pleasant.</p>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <div class="col-md-2 left">
+            <div class="row-img url-img-employer"></div>
+          </div>
+          <div class="wrapper col-xs-8 margin-zero">
+            <p class="title">BUILD A GREAT COMPANY</p>
+
+            <p class="detail">Hiring the best minds creates opportunities for growth,
+              leadership and success.</p>
+          </div>
         </div>
       </div>
 
-      <div class="container-img col-md-6 text-center">
-        <img src="/assets/homepage/cellphone_h.png">
+      <div class="container-img col-md-6 align-center text-center vertical-align">
+        <img src="/assets/homepage/cellphone_h.png"/>
       </div>
 
     </div>
@@ -266,8 +313,7 @@
   </div>
 </section>
 
-
-<section id="section-twelve" class="section-title section-twelve">
+<section id="section-testimonials" class="section-title section-testimonials-header">
   <div class="container section-container">
     <div class="col-lg-12 text-center">
       <p class="heading"> REAL LIFE STORIES </p>
@@ -275,55 +321,55 @@
   </div>
 </section>
 
-<section id="section-thirteen">
-  <div class="section-thirteen top">
-    <div class="col-md-4 col-sm-12 padding-0">
-      <div class="section-thirteen img testimonial-2"></div>
+<section id="section-testimonials-top" class="section-testimonials">
+  <div class="top">
+    <div class="col-md-4 col-sm-12 padding-zero">
+      <div class="img testimonial-2"></div>
     </div>
-    <div class="col-md-4 col-sm-12 text-center section-thirteen-top-padding">
+    <div class="col-md-4 col-sm-12 text-center cont">
       <div class="parent-wrapper">
         <div class="wrapper">
-          <p class="section-thirteen title">Kate Coghlan</p>
+          <p class="title">Kate Coghlan</p>
 
-          <p class="section-thirteen subtitle">Social Media Assistant, Boost Media</p>
+          <p class="subtitle">Social Media Assistant, Boost Media</p>
 
-          <p class="section-thirteen txt">I visited Project B job board almost every day and ended up finding my current
+          <p class="txt">I visited Project B job board almost every day and ended up finding my current
             position here at Boost! They helped ease the anxiety of entering the job market for the first time.</p>
         </div>
       </div>
     </div>
-    <div class="col-md-4 col-sm-12 padding-0">
-      <div class="section-thirteen img testimonial-3"></div>
+    <div class="col-md-4 col-sm-12 padding-zero">
+      <div class="img testimonial-3"></div>
     </div>
   </div>
 </section>
 
-<section id="section-fourteen">
-  <div class="section-thirteen top">
-    <div class="col-md-4 col-sm-12 text-center section-thirteen-top-padding">
+<section id="section-testimonials-bottom" class="section-testimonials">
+  <div class="top">
+    <div class="col-md-4 col-sm-12 text-center cont">
       <div class="parent-wrapper">
         <div class="wrapper">
-          <p class="section-thirteen title">Kate Coghlan</p>
+          <p class="title">Kate Coghlan</p>
 
-          <p class="section-thirteen subtitle">Social Media Assistant, Boost Media</p>
+          <p class="subtitle">Social Media Assistant, Boost Media</p>
 
-          <p class="section-thirteen txt">I visited Project B job board almost every day and ended up finding my current
+          <p class="txt">I visited Project B job board almost every day and ended up finding my current
             position here at Boost! They helped ease the anxiety of entering the job market for the first time.</p>
         </div>
       </div>
     </div>
-    <div class="col-md-4 col-sm-12 padding-0">
-      <div class="section-thirteen img testimonial-1"></div>
+    <div class="col-md-4 col-sm-12 padding-zero">
+      <div class="img testimonial-1"></div>
     </div>
 
-    <div class="col-md-4 col-sm-12 text-center section-thirteen-top-padding">
+    <div class="col-md-4 col-sm-12 text-center cont">
       <div class="parent-wrapper">
         <div class="wrapper">
-          <p class="section-thirteen title">Kate Coghlan</p>
+          <p class="title">Kate Coghlan</p>
 
-          <p class="section-thirteen subtitle">Social Media Assistant, Boost Media</p>
+          <p class="subtitle">Social Media Assistant, Boost Media</p>
 
-          <p class="section-thirteen txt">I visited Project B job board almost every day and ended up finding my current
+          <p class="txt">I visited Project B job board almost every day and ended up finding my current
             position here at Boost! They helped ease the anxiety of entering the job market for the first time.</p>
         </div>
       </div>

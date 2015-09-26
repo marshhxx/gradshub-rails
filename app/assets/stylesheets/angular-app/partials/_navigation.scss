@@ -1,0 +1,333 @@
+@import "angular-app/directives/search-card";
+@import "angular-app/base/colors";
+/* Search bar */
+
+$tl: 0.4s; // transition length
+
+
+.navbar {
+  margin-bottom: 0px !important;
+}
+
+.navbar-default {
+  background-color: $primary-blue !important;
+  border-color: $primary-blue !important;;
+}
+
+.navbar-default .navbar-brand {
+  color: $primary-white !important;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: $primary-white !important;
+  cursor: pointer;
+  &:hover {
+    color: $primary-turquoise-hover;
+  }
+}
+
+.navbar-nav > li > a {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+
+.navbar-default .navbar-toggle{
+  display: block;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #FFF;
+}
+
+.search-container{ margin-top: 5px; margin-left: 40px}
+
+.search-box {
+  transition: width $tl, border-radius $tl, background $tl, box-shadow $tl;
+  width: 200px;
+  height: 40px;
+  border-radius: 20px;
+  border: none;
+  border: 1px solid $border-gray !important;
+  background: $primary-white;
+  font: 15px Lato-Regular !important;
+  cursor: pointer;
+  padding-left: 35px;
+  padding-right: 28px;
+  & + label .search-icon {
+    color: $secondary-gray;
+  }
+  &:hover {
+    border: 1px solid $border-gray-focus !important;
+  }
+  &:focus{
+    transition: width $tl, border-radius $tl, background $tl;
+    box-shadow: none;
+    cursor: text;
+    width: 200px;
+    border-radius: auto;
+    border: 1px solid $border-gray-focus !important; outline: none;
+    background: $primary-white;
+    color: black;
+    &:not(:focus) { } // for more-graceful falling back (:not browsers likely support indent)
+  }
+}
+
+#search-submit {
+  display: none; position: relative; left: -5000px;
+}
+
+.search-icon {
+  position: relative;
+  left: 30px;
+  top: 3px;
+  color: $secondary-gray;
+  cursor: pointer;
+}
+
+.remove-icon{
+  position: relative;
+  left: -40px;
+  top: 3px;
+  color: $secondary-gray;
+  cursor: pointer;
+  z-index: 99;
+  padding: 10px;
+}
+
+/*** Login Button ***/
+
+.login-btn {
+  color: $primary-turquoise !important;
+  background-color: $primary-turquoise;
+  font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+  font-size: 14px;
+  border: 2px solid $primary-turquoise;
+  border-radius: 4px !important;
+  padding: 6px !important;
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+  cursor: pointer;
+  margin-top: 9px;
+  text-align: center;
+
+  &:hover {
+    color: $primary-turquoise-hover !important;
+    border: 2px solid $primary-turquoise-hover;
+    background-color: $primary-turquoise-hover !important;
+  }
+}
+
+/*** End Login Button ***/
+
+/*** Logged Username ***/
+
+.username {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: $primary-white;
+  font-family: Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+}
+
+.user-menu {
+  label {
+    color: $primary-turquoise !important;
+    font: 14px Lato-Regular;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin: 0px;
+  }
+
+  .arrow-container {
+    position: relative;
+    float: right;
+    width: 25px;
+    height: 20px;
+    top: 13px;
+  }
+
+  .arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid $primary-lightblue;
+    margin: 7px 0px 0px 7px;
+  }
+
+  .options-box {
+    width: 90px;
+    position: absolute;
+    background: $primary-white;
+    border: 2px solid $primary-blue;
+    z-index: 100;
+    top: 40px;
+    margin-left: 16px;
+    box-shadow: 0px 0px 5px $primary-gray;
+    border-radius: 3px;
+
+    &:after, &:before {
+      bottom: 100%;
+      left: 75%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+    &:after {
+      border-color: rgba(255, 245, 245, 0);
+      border-bottom-color: $primary-white;
+      border-width: 7px;
+      margin-left: -7px;
+    }
+    &:before {
+      border-color: rgba(72, 103, 153, 0);
+      border-bottom-color: $primary-blue;
+      border-width: 10px;
+      margin-left: -10px;
+    }
+
+    .menu-setting-item {
+      text-align: center;
+      margin: 5px auto;
+      text-decoration: none;
+      cursor: pointer;
+
+      &:first-child {
+        margin-bottom: 0px;
+      }
+    }
+  }
+}
+
+/*** End Logged Username ***/
+
+/*** General Alert ***/
+
+.alert-top-fixed {
+  opacity: 0.95;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 7000;
+  margin-top: 5px;
+}
+
+.alert-top-fixed ul {
+  text-align: left;
+}
+
+/***End General Alert ***/
+
+/*** Start Footer ***/
+
+footer#footer {
+  background-color: $footer-bg;
+  padding: 60px 0px 0px;
+
+  .button {
+    padding: 15px 40px;
+    background: $primary-blue;
+    color: $primary-white;
+    font: 18px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+    border: 3px solid $primary-blue;
+    border-radius: 4px !important;
+    margin-bottom: 30px;
+  }
+  .divider {
+    float: left;
+    color: $primary-white;
+    font: 16px Lato-Regular, Georgia, "Times New Roman", Times, serif;
+    padding: 0px 50px;
+  }
+  .link-container {
+    overflow: hidden;
+  }
+  .link {
+    color: $primary-white;
+    font: 1.1em Lato-Regular, Georgia, "Times New Roman", Times, serif;
+    cursor: pointer;
+    text-decoration: none;
+    &:hover {
+      color: $primary-turquoise;
+      text-decoration: none;
+    }
+  }
+  .sign {
+    font: 14px Lato-Light, Georgia, "Times New Roman", Times, serif;
+    color: $primary-white;
+  }
+}
+
+/*** End Footer ***/
+
+
+/*==========================> Responsive Design <=========================*/
+
+/* Mobile in portrait mode */
+@media only screen and (max-width: 320px) {
+
+}
+
+/* Mobile in landscape mode */
+@media only screen and (min-width: 321px) and (max-width: 480px) {
+
+}
+
+/* Tablets */
+@media only screen and (min-width: 768px) {
+
+  .navbar-default .navbar-toggle{
+    display: none;
+  }
+
+  .search-box {
+    width: 200px;
+    &:focus {
+      width: 240px;
+    }
+  }
+
+  .login-btn {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+}
+
+/* Medium Devices, Desktops */
+@media(min-width: 1224px) {
+
+  .navbar-nav > li > a {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+
+  .login-btn {
+    margin-left: 50px;
+  }
+
+  .search-box {
+    width: 220px;
+    &:focus {
+      width: 340px;
+    }
+  }
+
+}
+
+/* Large Devices, Desktops */
+@media screen and (min-width: 1440px) {
+
+}
+
+/* Very Large Devices, Wide Screens */
+@media only screen and (min-width: 1824px) {
+
+}
+
+
+
+

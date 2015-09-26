@@ -1,0 +1,578 @@
+/*** Start Header ***/
+
+header {
+  width: 100%;
+  height: auto;
+  position: relative;
+  text-align: center;
+  margin-top: 50px;
+  @extend %bg-image; background-image: url('homepage/home-background.png');
+}
+
+.header-signup {
+  color: $primary-white;
+  margin: auto;
+  padding: 50px 0;
+  width: 100%;
+
+  .title {
+    font-family: Montserrat-Bold, Georgia, "Times New Roman", Times, serif;
+    font-size: 3.5em;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
+  }
+
+  .subtitle {
+    font-family: Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+    font-size: 1.3em;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  .wrapper {
+    width: 300px;
+    right: 0;
+    left: 0;
+    margin: auto;
+  }
+
+  .buttons {
+    width: 100%;
+    margin-top: 30px;
+    overflow: hidden;
+    .btn-left {
+      padding-right: 5px;
+    }
+    .btn-right {
+      padding-left: 5px;
+    }
+  }
+
+  .form-btn-container {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 15px;
+  }
+
+  .form-btn {
+    width: 100%;
+    height: 47px;
+    background-color: $primary-blue;
+    color: $primary-white;
+    font-size: 16px;
+    font-family: "Lato-Regular";
+    border: 1px solid $primary-blue;
+    border-radius: 4px !important;
+    padding: 10px 30px;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.dropdown-toggle.form-btn {
+      background-color: $primary-blue;
+      color: $primary-white;
+    }
+
+    &.linkedin {
+      background-color: $secondary-linkedin;
+      border: 1px solid $secondary-linkedin;
+      margin-top: 10px;
+
+      &.linkedin > p {
+        color: $primary-white;
+        font-size: 16px;
+        display: inline-block;
+      }
+
+      .icon {
+        width: 18px;
+        height: 16px;
+        background: url("homepage/ic_linkedin.png") no-repeat center;
+        background-size: 20px;
+        margin-right: 15px;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.type-btn {
+  width: 100%;
+  font: 16px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+  color: $primary-white;
+  padding: 12px 0;
+  margin-bottom: 15px;
+  border: 3px solid $primary-white;
+  border-radius: 4px !important;
+  background-color: transparent;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+  &.white {
+    background-color: $primary-white;
+    color: $primary-turquoise;
+    border-color: $primary-white;
+  }
+  &.large {
+    width: 200px;
+    font-size: 20px;
+    padding: 20px 0;
+    margin-bottom: 0px !important;
+  }
+}
+
+.type-btn-active {
+  background-color: $primary-turquoise;
+  border: 3px solid $primary-turquoise;
+  color: $primary-white;
+  text-decoration: none;
+  cursor: default;
+}
+
+/** Carousel **/
+.home-carousel-container {
+  display: none;
+  position: relative;
+  width: 100%;
+}
+
+/* Removes carousel buttons */
+.right.carousel-control, .left.carousel-control {
+  display: none;
+}
+
+.carousel-indicators li {
+  display: none;
+}
+
+/*** End Header ***/
+
+/*** Start Sign Up form ***/
+
+section#home-signup {
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.signup-input {
+  width: 100%;
+  padding: 11px 10px 11px 13px;
+  display: block;
+  margin: 0;
+  border: 0;
+  background: 0;
+  font: 16px/1.4 "Helvetica Neue","HelveticaNeue",Helvetica,Arial,sans-serif;
+  box-sizing: border-box;
+  outline: 0;
+
+  &:hover {
+    border: 0 !important;
+  }
+
+  &:focus {
+    border: 0 !important;
+  }
+}
+
+.form-row.signup{
+  background-color: $primary-white;
+  z-index: 2;
+}
+
+.form-row {
+  &.first-child {
+    border-top: 0 !important;
+    border-top-left-radius: 4px !important;
+    border-top-right-radius: 4px !important;
+  }
+
+  &.last-child {
+    border-bottom-left-radius: 4px !important;
+    border-bottom-right-radius: 4px !important;
+  }
+
+  &.childs {
+    position: relative;
+    border-top: 1px solid #e3e3e3;
+  }
+}
+/*** End Sign Up form  ***/
+
+/*** Start Section Title  ***/
+
+.section-title {
+  height: 245px;
+  position: relative;
+
+  &.section-two {
+    background-color: $primary-dark-blue;
+  }
+
+  &.section-how-it-works-header {
+    @extend %bg-image; background-image: url('homepage/background-howitworks.png');
+  }
+
+  &.section-testimonials-header {
+    background-color: $primary-orange;
+  }
+}
+
+.section-container {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  .heading {
+    font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+    font-size: 2.6em;
+    color: $primary-white;
+    text-transform: uppercase;
+
+    &.section-how-it-works-header {
+      color: $primary-blue;
+    }
+  }
+
+  .subheading {
+    font-family: Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+    font-size: 1.4em;
+    color: $primary-white;
+    margin-top: 10px;
+
+    &.section-how-it-works-header {
+      color: $text-title;
+    }
+  }
+}
+
+/*** End Section Title  ***/
+
+
+/*** Start features section ***/
+
+section#section-features {
+  padding: 50px 0px;
+}
+
+.features-image {
+  width: 100px;
+  height: 100px;
+  background-size: 100px;
+  background-repeat: no-repeat;
+  display: inline-block; /* so that it behaves like the img element */
+  &.img-left {
+    background-image: url("homepage/ic_compelling_profile.svg");
+  }
+  &.img-middle {
+    background-image: url("homepage/ic_search_engine.svg");
+  }
+  &.img-right {
+    background-image: url("homepage/ic_personalization_platform.svg");
+  }
+}
+
+.features-txt {
+  width: 215px;
+  color: $primary-blue;
+  font-size: 1.5em;
+  font-family: Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
+.features-detail-txt {
+  color: $text-regular;
+  font-size: 1.2em;
+  font-family: Lato-Light, Georgia, "Times New Roman", Times, serif;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  &.padding-b {
+    padding-bottom: 50px;
+  }
+}
+
+/*** End features section ***/
+
+/*** Start How it Works section ***/
+
+section#section-how-it-works-candidate {
+  background-color: $primary-dark-blue;
+}
+
+section#section-how-it-works-employer {
+  background-color: $primary-dark-turquoise;
+}
+
+.container-wrapper {
+  width:100%;
+  margin-right: 0;
+  margin-left: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.container-top {
+  width: 100%;
+}
+
+.container-bottom {
+  overflow: hidden;
+  position: relative;
+  &.align-bottom {
+    position: relative;
+    .child {
+      height: 550px;
+      position:relative;
+
+      img{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+      }
+    }
+  }
+}
+
+.container-img {
+  padding-top: 50px;
+  display: none;
+  &.align-center {
+    right: 0px;
+  }
+}
+
+.container-txt {
+  color: $primary-white;
+  padding: 50px 0px;
+  overflow: hidden;
+  .row-img {
+    width: 40px;
+    height: 40px;
+    float: right;
+    background-size: 40px;
+    background-repeat: no-repeat;
+    display: inline-block; // So that it behaves like the img element
+  }
+  .url-img-employer {
+    background-image: url(homepage/ic_tick_blue.svg);
+  }
+  .url-img-candidate {
+    background-image: url(homepage/ic_tick_turquoise.svg);
+  }
+  .wrapper {
+    float: left;
+    margin-bottom: 40px;
+  }
+  .title {
+    font: 18px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+    float: left;
+  }
+  .detail{
+    font: 16px Lato-Light, Georgia, "Times New Roman", Times, serif;
+    float: left;
+    margin-top: 7px;
+  }
+}
+
+/*** End How it Works section ***/
+
+/*** Start section Testimonials ***/
+
+.section-testimonials {
+  overflow: hidden;
+  .top {
+    width: 100%;
+  }
+  .img {
+    height: 330px;
+    background-size: cover !important;
+    &.testimonial-1 {
+      background: url('homepage/testimonials-1.jpg') no-repeat center center;
+    }
+    &.testimonial-2 {
+      background: url('homepage/testimonials-2.jpg') no-repeat center center;
+    }
+    &.testimonial-3 {
+      background: url('homepage/testimonials-3.jpg') no-repeat center center;
+    }
+  }
+  .cont {
+    padding: 0px 20px;
+    height: 330px;
+  }
+  .parent-wrapper {
+    height: 100%;
+    position: relative;
+  }
+  .wrapper {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0 20px;
+  }
+  .title {
+    font-family: 'Montserrat-Regular', Georgia, "Times New Roman", Times, serif;
+    font-size: 22px;
+    color: $text-title;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+  }
+  .subtitle {
+    font-family: 'Lato-Regular', Georgia, "Times New Roman", Times, serif;
+    font-size: 18px;
+    color: $text-regular;
+    margin-bottom: 25px;
+  }
+  .txt {
+    font-family: 'Lato-Light-Italic', Georgia, "Times New Roman", Times, serif;
+    font-size: 1.2em;
+    color: $text-regular;
+  }
+}
+
+/* End section Testimonials */
+
+/*==========================> Responsive Design <=========================*/
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px) {
+  /* Styles */
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen
+and (min-width : 321px) {
+  /* Styles */
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen
+and (max-width : 320px) {
+  /* Styles */
+}
+
+/*Media Query Mobile General*/
+@media (min-width: 650px) {
+
+}
+
+/* Tablets */
+@media only screen and (min-device-width: 1024px) {
+  .container-img {
+    display: block;
+    padding: 0px;
+  }
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px) {
+}
+
+/* iPads (landscape) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : landscape) {
+  /* Styles */
+}
+
+/* iPads (portrait) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : portrait) {
+  /* Styles */
+}
+
+/* Desktops and laptops ----------- */
+@media only screen
+and (min-width : 1224px) {
+
+  header {
+    background: none;
+  }
+
+  section#home-signup {
+    position: absolute;
+  }
+
+  .header-signup {
+    padding: 70px 0;
+  }
+
+  /* Section Title */
+  .section-title {
+    height: 350px;
+    position: relative;
+  }
+
+  .section-container {
+    & .heading {
+      font-size: 4.0em;
+    }
+
+    & .subheading {
+      font-size: 1.5em;
+    }
+  }
+
+  .home-carousel-container {
+    display: block;
+  }
+
+  /* Section Features */
+  section#section-features {
+    padding: 80px 0px;
+  }
+
+  .features-image {
+    width: 130px;
+    height: 130px;
+    background-size: 130px;
+  }
+
+  .features-detail-txt {
+    &.padding-b {
+      padding-bottom: 0px;
+    }
+  }
+
+  /*** Start How it Works section ***/
+  .container-txt {
+    padding: 100px 0;
+  }
+
+  .container-bottom {
+    &.align-bottom {
+      .child {
+        position: absolute;
+      }
+    }
+  }
+}
+
+/* Large screens ----------- */
+@media only screen
+and (min-width : 1824px) {
+  /* Styles */
+}
+
+/* iPhone 4 ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+  /* Styles */
+}
+
+/*==========================> End Responsive Design <=========================*/
