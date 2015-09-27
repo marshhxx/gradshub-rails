@@ -14,7 +14,8 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand topnav" ui-sref="home.page">G</a>
+      <a class="navbar-brand topnav" href="#">G</a>
+
       <div class="search-container">
         <form ng-submit="onSearchSubmit()">
           <label for="search-box"><span class="glyphicon glyphicon-search search-icon"></span></label>
@@ -28,8 +29,27 @@
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right options-home" ng-if="navOptions">
+        <li>
+          <a ng-click="scrollTo('explore')">EXPLORE</a>
+        </li>
+        <li>
+          <a ng-click="scrollTo('section-how-it-works')">HOW IT WORKS</a>
+        </li>
+        <li>
+          <a ng-click="scrollTo('section-testimonials')">REAL LIFE STORIES</a>
+        </li>
+        <li>
+          <p class="navbar-name navbar-right" ng-if="logged">{{username}}</p>
+        </li>
+        <li>
+          <a class="login-btn" ng-if="!logged" ui-sref="main.login">Login</a>
+          <a class="login-btn" ng-if="logged" ng-click="logout()">Logout</a>
+        </li>
+      </ul>
+
       <div class="navbar-name navbar-right user-menu" ng-if="logged">
-        <label>Hi {{username}}!</label>
+        <label>{{username}}!</label>
         <div document-click-listener class="arrow-container" ng-click="showSettingsPopup()">
           <div class="arrow-down"></div>
         </div>
@@ -40,11 +60,39 @@
         </div>
       </div>
       <p class="access-setting-button"></p>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
     </div>
     <!-- /.navbar-collapse -->
   </div>
   <!-- /.container -->
 </nav>
 
-<ui-view></ui-view>
+<div ui-view></div>
+
+<footer id="footer" class="text-center">
+  <div class="container">
+    <div class="col-lg-12">
+      <button ng-click="scrollTo('top')" class="button">Join Gradshub for free</button>
+    </div>
+    <div class="col-lg-8 col-lg-offset-2">
+      <div class="link-container">
+        <div class="col-md-4 padding-tb-10">
+          <a href="#" class="link">About Gradshub</a>
+        </div>
+        <div class="col-md-4 padding-tb-10">
+          <!--<p href="#" class="divider">|</p>-->
+          <a href="#" class="link">Terms of Service</a>
+        </div>
+        <div class="col-md-4 padding-tb-10">
+          <!--<p href="#" class="divider">|</p>-->
+          <a href="#" class="link">Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-12 padding-tb-20">
+      <span class="sign"> Copyright &copy; Gradshub, Inc. 2015 </span>
+    </div>
+  </div>
+</footer>
 

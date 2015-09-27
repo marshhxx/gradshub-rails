@@ -21,7 +21,7 @@ angular
         logMeOut = ->
           eventTracker.logOut sessionService.sessionType()
           sessionService.logout()
-          $state.go 'home.page', null, {reload: true}
+          $state.go 'main.page', null, {reload: true}
         modalService.confirm("Are you sure you want to leave?").then(logMeOut)
 
       initUser = ->
@@ -29,7 +29,7 @@ angular
         $scope.profileSpinner = true
         sessionService.requestCurrentUser().then(
           (user) ->
-            $state.go 'home.page' if !user?
+            $state.go 'main.page' if !user?
             type = sessionService.sessionType().toLowerCase()
             $scope.username = user[type].name
             $scope.profileSpinner = false

@@ -6,7 +6,7 @@ Errors = (alertService, ALERT_CONSTANTS, $state, $stateParams, stateWrapper) ->
   return {
     notLoggedIn: (error) ->
       alertService.addErrorMessage('You are currently not logged in.', ALERT_CONSTANTS.ERROR_TIMEOUT)
-      $state.go('home.login')
+      $state.go('main.login')
 
     userNotFound: (error) ->
       type = getType()
