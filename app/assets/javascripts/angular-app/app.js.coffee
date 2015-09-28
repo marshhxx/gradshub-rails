@@ -85,6 +85,12 @@
     url: "/settings",
     templateUrl: "angular-app/templates/settings.html",
     controller: "settingsController"
+  }).state("main.privacy", {
+    url: "/privacy",
+    templateUrl: "angular-app/templates/privacy.html"
+  }).state("main.terms", {
+    url: "/terms",
+    templateUrl: "angular-app/templates/terms.html"
   })
 
   return

@@ -5,6 +5,8 @@ angular
     ($scope, $rootScope, $q, sessionService, $state, alertService, $sce, $location, eventTracker, $anchorScroll, $document) ->
 
       init = ->
+        $anchorScroll.yOffset = 0
+        $anchorScroll()
         $scope.logged = sessionService.isAuthenticated();
         $scope.logout = logout
         $scope.renderHtml = (htmlCode) -> $sce.trustAsHtml(htmlCode)
