@@ -15,10 +15,10 @@ class Api::V1::SessionsController < ApplicationController
 
   def refresh
     @user = @current_user
-    if @user.authenticate
+    if @user and @user.authenticate
       render :create, status: :ok
     else
-      @error = {:reasons => ['Could not refresh the token.'], :code => AUTH_ERROR}
+      @error = {:reasons => ['Could not refresh the token.'], :code => SESSION_EXPIRED}
       render_error :unauthorized
     end
   end

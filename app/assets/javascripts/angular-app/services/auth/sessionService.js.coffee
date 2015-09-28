@@ -64,6 +64,7 @@ SessionService = ($location, $http, $q, $localStorage, oauthService, Candidate, 
         deferred.resolve({type: response.data.session})
     ).catch(
       (response) ->
+        logout()
         deferred.reject(response)
     )
 

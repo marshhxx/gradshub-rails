@@ -1,8 +1,18 @@
-InitializeApp = (sessionService)->
+InitializeApp = (sessionService, $interval)->
 
   initialize = ->
+    initializeTimer()
+    refreshSession()
+      
+  initializeTimer = ->
+    $interval( ->
+      refreshSession()
+    , 3600000)
+
+  refreshSession = ->
     if sessionService.isAuthenticated()
       sessionService.refreshSession()
+
 
   return {
     initialize: initialize

@@ -41,8 +41,8 @@ class ApplicationController < ActionController::Base
   end
 
   def invalid_token
-    @error = {:reasons => ['Bad credentials.'], :code => AUTH_ERROR}
-    render_error :unauthorized
+    @error = {:reasons => ['Bad credentials.'], :code => INVALID_TOKEN}
+    render_error :bad_request
   end
 
   def render_api_error
