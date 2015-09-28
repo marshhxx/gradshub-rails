@@ -1,6 +1,8 @@
 class Api::V1::EmployersController < Api::V1::UsersController
   wrap_parameters include: [:name, :lastname, :email, :password, :gender,
-                              :birth, :country_id, :state_id, :profile_image, :cover_image, :tag, :job_title, :company_image]
+                              :birth, :country_id, :state_id, :profile_image, 
+                              :cover_image, :tag, :job_title, :company_image,
+                              :new_password, :old_password]
 
   private
 

@@ -124,7 +124,7 @@
           <label>Re-type new</label>
         </div>
         <div class="col-md-8 inputs-bottom">
-          <input name="reNewPassword" password-validation="newPassword" type="password" class="input-sm" ng-model="reNewPassword" ng-minlength="5" ng-maxlength="20" required/>
+          <input name="reNewPassword" type="password" class="input-sm" ng-model="reNewPassword" ng-minlength="5" ng-maxlength="20" required confirm-password to-confirm="newPassword"/>
         </div>
         <div ng-if="!passwordForm.reNewPassword.$pristine && passwordForm.reNewPassword.$invalid && (passwordForm.$submitted || passwordForm.reNewPassword.$touched)" ng-messages="passwordForm.reNewPassword.$error" class="col-md-12">
           <div class="help-block" ng-message="required">
@@ -136,8 +136,8 @@
           <div class="help-block" ng-message="maxlength">
             Your new password is too long.
           </div>
-          <div class="help-block" ng-show="passwordForm.reNewPassword.$error.match">
-            Your password doesn't match!
+          <div class="help-block" ng-message="passwordConfirmed">
+            Passwords do not match
           </div>
         </div>
         <div class="col-md-12 buttons-wrapper">
