@@ -59,14 +59,5 @@ angular
       $scope.showSettingsPopup = ->
         $scope.isOptionsVisible = !$scope.isOptionsVisible
 
-      $document.bind 'click', (event) ->
-        element = angular.element('.arrow-container')
-        isClickedElementChildOfPopup = element.find(event.target).length > 0
-
-        if isClickedElementChildOfPopup then return
-
-        $scope.isOptionsVisible = false
-        $scope.$apply()
-
       init()
   ])

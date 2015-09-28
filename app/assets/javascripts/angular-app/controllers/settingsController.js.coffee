@@ -33,7 +33,7 @@ angular
       setUser = (user) ->
         if user.candidate 
           $scope.user = user.candidate
-          $scope.user.isCandidate = true
+          $scope.isCandidate = true
           $scope.newUserNationality = new CandidateNationalities()
         else
           $scope.user = user.employer
@@ -43,10 +43,6 @@ angular
         formatDate()
 
       checkAndSetUser = (user) ->
-        # if sessionService.sessionType() == 'Employer'
-        #   $state.go 'main.employer_profile', {uid: 'me'}, { reload: true }
-        # else
-        #   setUser(user)
         setUser(user)
 
       formatDate = ->
@@ -77,17 +73,17 @@ angular
         $scope.user.country = country
 
       $scope.onState = (state) ->
-        $scope.user.state.state_id = state.id if state?
+        $scope.user.state_id = state.id if state?
         $scope.user.state = state
 
       $scope.onNationality = (nationality) ->
-        if $scope.user.isCandidate then $scope.newUserNationality.candidate_id = $scope.user.uid else $scope.newUserNationality.employer_id = $scope.user.uid
+        if $scope.isCandidate then $scope.newUserNationality.candidate_id = $scope.user.uid else $scope.newUserNationality.employer_id = $scope.user.uid
         $scope.newUserNationality.nationality_id = nationality.id if nationality?
 
       # Save functions
       saveUser = () ->
         $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
-        if $scope.user.isCandidate
+        if $scope.isCandidate
           Utils.candidateFromObject($scope.user).$update((response) ->
             $scope.user = response.candidate
             $scope.realUser = angular.copy $scope.user
@@ -122,7 +118,7 @@ angular
         if !valid
           return
 
-        if $scope.user.isCandidate then user = new Candidate() else user = new Employer()
+        if $scope.isCandidate then user = new Candidate() else user = new Employer()
 
         user.uid = $scope.user.uid
         user.old_password = $scope.oldPassword
@@ -166,24 +162,32 @@ angular
         $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
 
         if user.nationalities.length > 0
-          if $scope.user.isCandidate 
+          if $scope.isCandidate 
             nationality = new CandidateNationalities()
             nationality.candidate_id = $scope.user.uid
           else 
             nationality = new EmployerNationalities()
             nationality.employer_id = $scope.user.uid
           nationality.id = $scope.user.nationalities[0].id if $scope.user.nationalities.length > 0
-          nationality.$delete().catch(alertService.defaultErrorCallback)
+        
+        deferred = $q.defer()
 
-        $scope.newUserNationality.$save().then( (data) ->
-          console.log data
+        deleteNationality(nationality).then( (data) ->
+          return saveNationality()
+        ).then( (data) ->
           $scope.user.nationalities[0] = data.nationality
           $scope.toggleNationalitySection 'save'
 
-          if $scope.user.isCandidate then $scope.newUserNationality = new CandidateNationalities() else $scope.newUserNationality = new EmployerNationalities()
+          if $scope.isCandidate then $scope.newUserNationality = new CandidateNationalities() else $scope.newUserNationality = new EmployerNationalities()
 
           alertService.addInfo 'Nationality successfully edited', ALERT_CONSTANTS.SUCCESS_TIMEOUT
-        ).catch(alertService.defaultErrorCallback)
+        ).catch alertService.defaultErrorCallback
+
+      deleteNationality = (nationality)->
+        nationality.$delete() if $scope.user.nationalities.length > 0
+
+      saveNationality = ->
+        $scope.newUserNationality.$save()
 
       init()
   ])
