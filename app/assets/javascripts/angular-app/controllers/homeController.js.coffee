@@ -21,8 +21,8 @@ angular.module('gradshub-ng.controllers').controller("HomeController", [
         IN.User.authorize(->
           sessionService.loginLinkedin(IN.ENV.auth.member_id, IN.ENV.auth.oauth_token, type).then(
             (response) ->
-              eventTracker.signUpLinkedIn response.type
-              $state.go "main.#{response.type.toLowerCase()}_profile", {uid: 'me'}, {reload: true}
+              eventTracker.signUpLinkedIn response.session.type
+              $state.go "main.#{response.session.type.toLowerCase()}_profile", {uid: 'me'}, {reload: true}
           ).catch(
             (error) ->
               console.log(error)

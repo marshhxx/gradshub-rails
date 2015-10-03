@@ -1,14 +1,14 @@
 SessionService = ($location, $http, $q, $localStorage, oauthService, Candidate, Employer) ->
 
   login = (email, password) ->
-    deferred = $q.defer();
+    deferred = $q.defer()
     $http.post('/api/sessions', {session: {email: email, password: password}}).then((response) ->
       createSession(response.data.session)
-      deferred.resolve({type: response.data.session.type})
+      deferred.resolve({session: response.data.session})
     ).catch((response) ->
       deferred.reject(response)
     )
-    deferred.promise;
+    deferred.promise
 
   logout = ->
     delete $localStorage.token
@@ -16,7 +16,7 @@ SessionService = ($location, $http, $q, $localStorage, oauthService, Candidate, 
 
   requestCurrentUser = ->
     userInfo = parseUserInfo()
-    deferred = $q.defer();
+    deferred = $q.defer()
     if !userInfo or !userInfo.type
       deferred.reject({error: {reasons: ['There is no active session']}})
     else if userInfo.type == 'Candidate'
@@ -26,7 +26,7 @@ SessionService = ($location, $http, $q, $localStorage, oauthService, Candidate, 
     else if userInfo.type == 'Employer'
       Employer.get({id: userInfo.user_uid}, (employer) ->
         deferred.resolve(employer)
-      );
+      )
     deferred.promise
 
   isAuthenticated = ->
@@ -45,24 +45,24 @@ SessionService = ($location, $http, $q, $localStorage, oauthService, Candidate, 
   resetPassword = (user) ->
     $http.post('/api/sessions/password_reset', {user: user})
 
-  loginLinkedin = ->
-    deferred = $q.defer();
-    oauthService.linkedin(member_id, oauth_token, type).then(
+  loginLinkedin = (memberId, oauthToken, type)->
+    deferred = $q.defer()
+    oauthService.linkedin(memberId, oauthToken, type).then(
       (response) ->
         createSession(response.data.session)
-        deferred.resolve({type: response.data.session})
+        deferred.resolve({session: response.data.session})
     ).catch(
       (response) ->
         deferred.reject(response)
     )
-    return deferred.promise;
+    return deferred.promise
 
   refreshSession = ->
-    deferred = $q.defer();
+    deferred = $q.defer()
     $http.get('/api/sessions/refresh').then(
       (response) ->
         createSession(response.data.session)
-        deferred.resolve({type: response.data.session})
+        deferred.resolve({session: response.data.session})
     ).catch(
       (response) ->
         logout()

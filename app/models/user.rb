@@ -56,13 +56,16 @@ class User < ActiveRecord::Base
 
       # Create the user if it's a new registration
       if user.nil?
+        country = Country.find_by_name(auth.info.location.name)
         user = User.new(
             name: auth.info.first_name,
             lastname: auth.info.last_name,
             email: email,
             password: Devise.friendly_token[0,20],
             profile_image: auth.info.picture_url,
-            tag: auth.info.headline
+            tag: auth.info.headline,
+            country: country,
+            state: country ? country.states.sample : nil,
         )
       end
     end

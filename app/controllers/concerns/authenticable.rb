@@ -6,7 +6,7 @@ module Authenticable
 
   # Devise methods overwrites
   def current_user
-    @current_user ||= User.find_by_uid(session_from_header.user)
+    @current_user ||= User.find_by_uid(session_from_header.user) if request.headers['Authorization']
   end
 
   def authenticate_with_token!

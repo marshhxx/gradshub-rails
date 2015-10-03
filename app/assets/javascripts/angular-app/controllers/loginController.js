@@ -13,12 +13,12 @@ angular.module('gradshub-ng.controllers').controller('loginController',
                     if ($scope.email && $scope.password) {
                         var promise = sessionService.login($scope.email, $scope.password);
                         promise.then(
-                            function (resp) {
-                                if (resp.type == 'Candidate') {
-                                    eventTracker.login(resp.type);
+                            function (response) {
+                                if (response.session.type == 'Candidate') {
+                                    eventTracker.login(response.session.type);
                                     $state.go('main.candidate_profile', {uid: 'me'});
-                                } else if (resp.type == 'Employer') {
-                                    eventTracker.login(resp.type);
+                                } else if (response.session.type == 'Employer') {
+                                    eventTracker.login(response.session.type);
                                     $state.go('main.employer_profile', {uid: 'me'});
                                 }
                             }
@@ -30,7 +30,7 @@ angular.module('gradshub-ng.controllers').controller('loginController',
                     }
                 } else {
                     $scope.loginSubmit = true;
-                }
+                }3
             }
         }
     ]);

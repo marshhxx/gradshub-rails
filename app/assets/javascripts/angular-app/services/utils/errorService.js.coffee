@@ -1,4 +1,4 @@
-Errors = ($rootScope, alertService, ALERT_CONSTANTS, $state, $stateParams, stateWrapper) ->
+Errors = (alertService, ALERT_CONSTANTS, $state, $stateParams, stateWrapper) ->
 
   getType = () ->
     if $state.current.name.indexOf('candidate') >= 0 then 'Candidate' else 'Employer'
