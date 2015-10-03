@@ -18,5 +18,8 @@
     "jquery-guillotine": ">=1.3.0",
     "angulartics": "latest",
     "angulartics-google-analytics": "latest"
+  },
+  "resolutions": {
+    "angular": "1.4.7"
   }
 }
