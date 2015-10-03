@@ -177,6 +177,7 @@ angular
         ).then( (data) ->
           $scope.user.nationalities[0] = data.nationality
           $scope.toggleNationalitySection 'save'
+          $scope.realUser = angular.copy $scope.user
 
           if $scope.isCandidate then $scope.newUserNationality = new CandidateNationalities() else $scope.newUserNationality = new EmployerNationalities()
 
