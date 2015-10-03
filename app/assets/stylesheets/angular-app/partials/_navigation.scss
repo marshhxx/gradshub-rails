@@ -16,6 +16,7 @@ $tl: 0.4s; // transition length
 
 .navbar-default .navbar-brand {
   color: $primary-white !important;
+  cursor: pointer;
 }
 
 .navbar-default .navbar-nav > li > a {
@@ -23,6 +24,13 @@ $tl: 0.4s; // transition length
   cursor: pointer;
   &:hover {
     color: $primary-turquoise-hover;
+  }
+}
+
+.options-home {
+  display: block;
+  &.active {
+    display: block;
   }
 }
 

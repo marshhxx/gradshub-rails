@@ -1,8 +1,8 @@
 angular.module('gradshub-ng.controllers').controller("HomeController", [
   '$http', '$scope', 'Candidate', 'Employer', '$state', '$anchorScroll', '$location', 'sessionService', '$sce',
-  '$stateParams', 'registerService', 'alertService', '$window', 'eventTracker',
+  '$stateParams', 'registerService', 'alertService', '$window', 'eventTracker', 'navbarService',
   ($http, $scope, Candidate, Employer, $state, $anchorScroll, $location, sessionService, $sce, $stateParams,
-   registerService, alertService, $window, eventTracker)->
+   registerService, alertService, $window, eventTracker, navbarService)->
     init = ->
       $scope.renderHtml = (htmlCode) -> $sce.trustAsHtml(htmlCode)
       $scope.isCandidate = () -> $scope.candidate = true
@@ -15,6 +15,8 @@ angular.module('gradshub-ng.controllers').controller("HomeController", [
         $scope.type = not $scope.type
 
       $scope.registerUser = registerUser
+
+      navbarService.setOptions($state.current.data.navOptions) # Enable home navigation headers
 
       $scope.signupLinkedin = () ->
         type = getType()

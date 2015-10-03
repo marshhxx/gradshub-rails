@@ -1,10 +1,10 @@
 angular
 .module('gradshub-ng.controllers')
 .controller('mainController',
-  ['$scope', '$rootScope', '$q', 'sessionService', '$state','alertService', '$sce', '$location', 'eventTracker',
-   '$anchorScroll', 'stateWrapper', '$document', 'modalService',
-    ($scope, $rootScope, $q, sessionService, $state, alertService, $sce, $location, eventTracker,
-     $anchorScroll, stateWrapper, $document, modalService) ->
+  ['$scope', '$rootScope', '$q', 'sessionService', '$state','alertService', '$sce', '$location', 'eventTracker', 
+   '$anchorScroll', 'stateWrapper', 'modalService', 'navbarService',
+    ($scope, $rootScope, $q, sessionService, $state, alertService, $sce, $location, eventTracker, 
+     $anchorScroll, stateWrapper, modalService, navbarService) ->
 
       init = ->
         $anchorScroll.yOffset = 0
@@ -14,6 +14,7 @@ angular
         $scope.renderHtml = (htmlCode) -> $sce.trustAsHtml(htmlCode)
         $scope.profileSpinner = false
         $scope.isOptionsVisible = false
+        $scope.navbarService = navbarService #Set navbar service
 
         initUser()
 
@@ -61,5 +62,9 @@ angular
       $scope.showSettingsPopup = ->
         $scope.isOptionsVisible = !$scope.isOptionsVisible
 
+      #Clear navbar options
+      $rootScope.$on '$stateChangeStart', () ->
+        navbarService.clearOptions()
+        
       init()
   ])

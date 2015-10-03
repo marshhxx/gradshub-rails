@@ -13,12 +13,18 @@
     abstract: true,
     templateUrl: "angular-app/templates/layouts/mainLayout.html",
     controller: "mainController",
+    data: {
+      navOptions: {
+      }
+    }
   }).state("main.page", {
     url: "/home",
     templateUrl: "angular-app/templates/home.html",
     controller: "HomeController",
     data: {
-      navOptions: true
+      navOptions: {
+        home: true
+      }
     }
   }).state("main.login", {
     url: "/login",

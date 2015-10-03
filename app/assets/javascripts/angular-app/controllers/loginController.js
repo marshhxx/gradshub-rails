@@ -1,12 +1,12 @@
 angular.module('gradshub-ng.controllers').controller('loginController',
-    ['$scope', '$state', 'sessionService', 'alertService', '$sce', 'eventTracker',
-        function ($scope, $state, sessionService, alertService, $sce, eventTracker) {
-            var randomLogin = function () {
-                var images = ['one', 'other'];
-                return images[Math.floor((Math.random() * 2) + 1) - 1];
-            };
+  ['$scope', '$state', 'sessionService', 'alertService', '$sce', 'eventTracker',
+    function ($scope, $state, sessionService, alertService, $sce, eventTracker) {
+      var randomLogin = function () {
+        var images = ['one', 'other'];
+        return images[Math.floor((Math.random() * 2) + 1) - 1];
+      };
 
-            $scope.randomPhoto = randomLogin();
+      $scope.randomPhoto = randomLogin();
 
             $scope.login = function (isValid) {
                 if (isValid) {
@@ -16,10 +16,10 @@ angular.module('gradshub-ng.controllers').controller('loginController',
                             function (response) {
                                 if (response.session.type == 'Candidate') {
                                     eventTracker.login(response.session.type);
-                                    $state.go('main.candidate_profile', {uid: 'me'});
+                                    $state.go('main.candidate_profile', {uid: 'me'}, {reload: true});
                                 } else if (response.session.type == 'Employer') {
                                     eventTracker.login(response.session.type);
-                                    $state.go('main.employer_profile', {uid: 'me'});
+                                    $state.go('main.employer_profile', {uid: 'me'}, {reload: true});
                                 }
                             }
                         ).catch(
@@ -30,7 +30,7 @@ angular.module('gradshub-ng.controllers').controller('loginController',
                     }
                 } else {
                     $scope.loginSubmit = true;
-                }3
+                }
             }
-        }
-    ]);
+    }
+  ]);
