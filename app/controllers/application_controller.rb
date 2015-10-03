@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotUnique, :with => :not_unique
   rescue_from CloudinaryException, :with => :bad_request
   rescue_from ActionController::RoutingError, :with => :not_found
+  rescue_from JWT::DecodeError, :with => :invalid_token
 
   def unauthorized
     @error = {:reasons => ['The user has no permission to perform this action.'], :code => FORBIDDEN}
@@ -36,6 +37,11 @@ class ApplicationController < ActionController::Base
 
   def bad_request(exception)
     @error = {:reasons => [exception.message], :code => INVALID_PARAMS_ERROR}
+    render_error :bad_request
+  end
+
+  def invalid_token
+    @error = {:reasons => ['Bad credentials.'], :code => INVALID_TOKEN}
     render_error :bad_request
   end
 

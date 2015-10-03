@@ -91,7 +91,6 @@ angular.module('gradshub-ng.controllers').controller('employerProfileController'
             }
             
             var updateUser = function () {
-                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 Utils.employerFromObject($scope.user).$update(function (response) { //Creates resource User from object $scope.user
                         $scope.user = response.employer;
                         initEmployerProfile(); //Update profile variables;
@@ -151,7 +150,6 @@ angular.module('gradshub-ng.controllers').controller('employerProfileController'
                 });
 
                 // need to be updated in backend.
-                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 employerSkills.$update(
                     function (response) {
                         $scope.selectedSkills = response.skills.map(function (skill) {
@@ -194,7 +192,6 @@ angular.module('gradshub-ng.controllers').controller('employerProfileController'
                     return {name: skillName}
                 });
                 // need to be updated in backend.
-                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 employerInterests.$update(
                     function (response) {
                     },
@@ -217,8 +214,6 @@ angular.module('gradshub-ng.controllers').controller('employerProfileController'
                 employerCompany.image = empCom.image;
                 employerCompany.site_url = empCom.site_url;
                 
-                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
-
                 employerCompany.$update(
                     function(employerCompanyUpdated) {
                         $scope.user.company = employerCompanyUpdated.company;

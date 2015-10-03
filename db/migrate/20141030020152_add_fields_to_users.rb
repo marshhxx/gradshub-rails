@@ -40,6 +40,8 @@ class AddFieldsToUsers < ActiveRecord::Migration
       t.timestamp
     end
     add_index :users, [:meta_id, :meta_type]
+    add_index :users, :name
+    add_index :users, :email, unique: true
 
     create_table :candidates do |t|
       t.text :summary

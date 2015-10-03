@@ -101,7 +101,6 @@ angular
         createUser() if valid
 
       createUser = () ->
-        $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
         $q.all([saveCandidateNationality(), saveEducation(), saveSkills(), saveUser()]).then(
           (data) ->
             $state.go 'main.candidate_profile', {uid: 'me'}, { reload: true }

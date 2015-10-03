@@ -45,7 +45,6 @@ ImagePicker = ($httpProvider, sessionService, $timeout, Utils, imageService, ale
       $scope.spinnerVisible = true          # - photo save and cancel buttons
 
       #Call Cloudinary upload Image method to upload image to cloudinary server
-      $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
       imageService.uploadImage(file).then((data) ->
         $scope.cloudinaryPhotoData = data.image_upload
       ).catch((error)->
@@ -84,7 +83,6 @@ ImagePicker = ($httpProvider, sessionService, $timeout, Utils, imageService, ale
 
     deleteImage = (imageUrl)->
       #Delete previous uploaded image
-      $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
       if imageUrl
         publicIdSplitArray = imageUrl.split('/')
         publicId = (publicIdSplitArray[publicIdSplitArray.length-1]).split('.')

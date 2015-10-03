@@ -61,6 +61,9 @@ gem 'cloudinary'
 # elasticsearch integration
 gem 'chewy'
 
+# JWT token gem
+gem 'jwt'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

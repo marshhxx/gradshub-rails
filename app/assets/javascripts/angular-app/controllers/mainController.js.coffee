@@ -1,8 +1,10 @@
 angular
 .module('gradshub-ng.controllers')
 .controller('mainController',
-  ['$scope', '$rootScope', '$q', 'sessionService', '$state','alertService', '$sce', '$location', 'eventTracker', '$anchorScroll', '$document',
-    ($scope, $rootScope, $q, sessionService, $state, alertService, $sce, $location, eventTracker, $anchorScroll, $document) ->
+  ['$scope', '$rootScope', '$q', 'sessionService', '$state','alertService', '$sce', '$location', 'eventTracker',
+   '$anchorScroll', 'stateWrapper', '$document', 'modalService',
+    ($scope, $rootScope, $q, sessionService, $state, alertService, $sce, $location, eventTracker,
+     $anchorScroll, stateWrapper, $document, modalService) ->
 
       init = ->
         $anchorScroll.yOffset = 0
@@ -15,14 +17,12 @@ angular
 
         initUser()
 
-
       logout = ->
-        eventTracker.logOut sessionService.sessionType()
-        sessionService.logout().then(
-          -> $state.go 'home.page', null, {reload: true}
-        ).catch(
-          (error)-> console.log(error)
-        )
+        logMeOut = ->
+          eventTracker.logOut sessionService.sessionType()
+          sessionService.logout()
+          $state.go 'home.page', null, {reload: true}
+        modalService.confirm("Are you sure you want to leave?").then(logMeOut)
 
       initUser = ->
         deferrred = $q.defer()

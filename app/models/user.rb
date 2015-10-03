@@ -4,9 +4,7 @@ class User < ActiveRecord::Base
   devise  :database_authenticatable, :recoverable
   validates :name, :lastname, :email, :presence => true
   validates :email, :presence => true, :email => true
-  validates_uniqueness_of :auth_token
   validates_uniqueness_of :email, :case_sensitive => false
-  before_create :generate_authentication_token!
   before_create :set_uid
 
   enum gender: {male: 0, female: 1, other:2}
@@ -17,13 +15,9 @@ class User < ActiveRecord::Base
   belongs_to :country
   belongs_to :state
 
-  def generate_authentication_token!
-    begin
-      self.auth_token = Devise.friendly_token
-    end while self.class.exists?(auth_token: auth_token)
-  end
+  attr_accessor :token
 
-  # authinticate the user with the given password
+  # authenticate the user with the given password
   def authenticate_with_password(input_password)
     return false unless self.valid_password?(input_password)
     authenticate
@@ -32,6 +26,10 @@ class User < ActiveRecord::Base
   def authenticate_with_oauth
     return false if self.nil?
     authenticate
+  end
+
+  def authenticate
+    self.token = Session.new(self.uid).generate_token
   end
 
   # Finds or creates the user from the auth object.
@@ -58,13 +56,16 @@ class User < ActiveRecord::Base
 
       # Create the user if it's a new registration
       if user.nil?
+        country = Country.find_by_name(auth.info.location.name)
         user = User.new(
             name: auth.info.first_name,
             lastname: auth.info.last_name,
             email: email,
             password: Devise.friendly_token[0,20],
             profile_image: auth.info.picture_url,
-            tag: auth.info.headline
+            tag: auth.info.headline,
+            country: country,
+            state: country ? country.states.sample : nil,
         )
       end
     end
@@ -91,11 +92,6 @@ class User < ActiveRecord::Base
     while self.uid.blank? or !User.find_by_uid(self.uid).blank?
       self.uid = '0U' + Digest::SHA1.hexdigest("#{self.name},#{self.lastname},#{self.email}#{Time.current.usec}").slice(0,8)
     end
-  end
-
-  def authenticate
-    self.generate_authentication_token!
-    self.save
   end
 
 end

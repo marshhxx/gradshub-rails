@@ -89,7 +89,6 @@ angular
         createUser() if valid
 
       createUser = () ->
-        $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
         createCompany().then(
           (company) ->
             $q.all([saveEmployerNationality(), saveCompany(company.company.id), saveSkills(),

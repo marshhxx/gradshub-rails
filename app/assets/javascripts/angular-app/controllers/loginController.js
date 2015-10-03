@@ -11,26 +11,26 @@ angular.module('gradshub-ng.controllers').controller('loginController',
             $scope.login = function (isValid) {
                 if (isValid) {
                     if ($scope.email && $scope.password) {
-                        var promise = sessionService.login($scope.email, $scope.password, false);
+                        var promise = sessionService.login($scope.email, $scope.password);
                         promise.then(
-                            function (resp) {
-                                if (resp.type == 'Candidate') {
-                                    eventTracker.login(resp.type);
+                            function (response) {
+                                if (response.session.type == 'Candidate') {
+                                    eventTracker.login(response.session.type);
                                     $state.go('main.candidate_profile', {uid: 'me'});
-                                } else if (resp.type == 'Employer') {
-                                    eventTracker.login(resp.type);
+                                } else if (response.session.type == 'Employer') {
+                                    eventTracker.login(response.session.type);
                                     $state.go('main.employer_profile', {uid: 'me'});
-                                }   
+                                }
                             }
                         ).catch(
                             function (resp) {
-                                alertService.addError(resp.error, 10000);
+                                alertService.addError(resp.data.error, 10000);
                             }
                         );
                     }
                 } else {
                     $scope.loginSubmit = true;
-                }
+                }3
             }
         }
     ]);

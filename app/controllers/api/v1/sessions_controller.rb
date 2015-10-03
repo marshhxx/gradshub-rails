@@ -1,11 +1,12 @@
 class Api::V1::SessionsController < ApplicationController
+  before_action :authenticate_with_token!, only: [:refresh]
 
   def create
     user_password = params[:session][:password]
     user_email = params[:session][:email]
     @user = user_email.present? && User.find_by(email: user_email)
 
-    if not @user.nil? and  @user.authenticate_with_password(user_password)
+    if not @user.nil? and @user.authenticate_with_password(user_password)
       render :create, status: :ok
     else
       @error = {:reasons => ['Invalid email or password'], :code => AUTH_ERROR}
@@ -13,16 +14,13 @@ class Api::V1::SessionsController < ApplicationController
     end
   end
 
-  def destroy
-    @user = User.find_by(auth_token: params[:id])
-    if @user.nil?
-      @error = {:reasons => ['Invalid authentication token. User might not be logged in.'],
-                :code => AUTH_ERROR}
-      render_error :forbidden
+  def refresh
+    @user = @current_user
+    if @user and @user.authenticate
+      render :create, status: :ok
     else
-      @user.generate_authentication_token!
-      @user.save
-      render json: { message: 'Successfully logged out' }, status: :accepted
+      @error = {:reasons => ['Could not refresh the token.'], :code => SESSION_EXPIRED}
+      render_error :unauthorized
     end
   end
 

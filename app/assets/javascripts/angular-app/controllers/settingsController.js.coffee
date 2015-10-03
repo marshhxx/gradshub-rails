@@ -82,7 +82,6 @@ angular
 
       # Save functions
       saveUser = () ->
-        $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
         if $scope.isCandidate
           Utils.candidateFromObject($scope.user).$update((response) ->
             $scope.user = response.candidate
@@ -123,7 +122,6 @@ angular
         user.uid = $scope.user.uid
         user.old_password = $scope.oldPassword
         user.new_password = $scope.newPassword
-        $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
         user.$changePassword().then((response) ->
           alertService.addInfo 'Password successfully changed', ALERT_CONSTANTS.SUCCESS_TIMEOUT
           
@@ -158,8 +156,6 @@ angular
           $scope.toggleLocationSection 'save'
 
       $scope.saveUserNationality = ->
-
-        $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken()
 
         if user.nationalities.length > 0
           if $scope.isCandidate 
