@@ -1,6 +1,6 @@
 SessionService = ($location, $http, $q, $localStorage, oauthService, Candidate, Employer) ->
 
-  login = (email, password, rememberMe) ->
+  login = (email, password) ->
     deferred = $q.defer();
     $http.post('/api/sessions', {session: {email: email, password: password}}).then((response) ->
       createSession(response.data.session)
@@ -33,7 +33,8 @@ SessionService = ($location, $http, $q, $localStorage, oauthService, Candidate, 
     $localStorage.token != undefined and $localStorage.token != null
 
   sessionType = ->
-    parseUserInfo().type
+    info = parseUserInfo()
+    if info then info.type else 'undefined'
 
   authenticationToken = ->
     $localStorage.token

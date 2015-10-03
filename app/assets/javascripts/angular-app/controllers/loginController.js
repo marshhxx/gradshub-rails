@@ -11,7 +11,7 @@ angular.module('gradshub-ng.controllers').controller('loginController',
             $scope.login = function (isValid) {
                 if (isValid) {
                     if ($scope.email && $scope.password) {
-                        var promise = sessionService.login($scope.email, $scope.password, false);
+                        var promise = sessionService.login($scope.email, $scope.password);
                         promise.then(
                             function (resp) {
                                 if (resp.type == 'Candidate') {
@@ -20,7 +20,7 @@ angular.module('gradshub-ng.controllers').controller('loginController',
                                 } else if (resp.type == 'Employer') {
                                     eventTracker.login(resp.type);
                                     $state.go('main.employer_profile', {uid: 'me'});
-                                }   
+                                }
                             }
                         ).catch(
                             function (resp) {

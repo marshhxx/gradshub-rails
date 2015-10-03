@@ -245,7 +245,6 @@ angular.module('gradshub-ng.controllers').controller('candidateProfileController
             var saveSummary = function () {
                 $scope.summaryEditorEnable = false;
                 $scope.user.summary = $scope.summaryTemp;
-                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 Utils.candidateFromObject($scope.user).$update().then(
                     function (response) {
                         $scope.user = response.candidate;  // ToDO !! update only user.summary
@@ -266,7 +265,6 @@ angular.module('gradshub-ng.controllers').controller('candidateProfileController
                     return {name: skillName}
                 });
 
-                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 candidateSkills.$update().then(
                     function (response) {
                         $scope.selectedSkills = response.skills.map(function (skill) {
@@ -287,7 +285,6 @@ angular.module('gradshub-ng.controllers').controller('candidateProfileController
                     return {name: interestName}
                 });
 
-                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 candidateInterests.$update().then(
                     function(response) {
                         $scope.selectedInterests = response.interests.map(function (interest) {
@@ -319,7 +316,6 @@ angular.module('gradshub-ng.controllers').controller('candidateProfileController
                 if (!valid) return;
                 $scope.addExperienceEnable = false;
                 var experience = getExperience($scope.experience); //Create Experience Resource
-                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 experience.$save(
                     function (response) {
                         addAndSort($scope.user.experiences, response.experience, Utils.sortByStartDate);
@@ -341,7 +337,6 @@ angular.module('gradshub-ng.controllers').controller('candidateProfileController
             var saveLanguage = function (valid) {
                 if (!valid) return;
                 var language = getLanguage($scope.language); //Create Language Resource
-                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 language.$save().then(
                     function(response) {
                         addAndSort($scope.user.languages, response.language);
@@ -359,7 +354,6 @@ angular.module('gradshub-ng.controllers').controller('candidateProfileController
                 $scope.educationEditor = false;
                 var education = getEducation($scope.user.educations[$index]);
                 education.id = $scope.user.educations[$index].id;
-                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 education.$update().then(
                     function (response) {
                         updateAndSort($scope.user.educations, response.education, Utils.sortByStartDate);
@@ -373,7 +367,6 @@ angular.module('gradshub-ng.controllers').controller('candidateProfileController
                 $scope.experienceEditor = false;
                 var experience = getExperience($scope.user.experiences[index]);
                 experience.id = $scope.user.experiences[index].id;
-                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 experience.$update().then(
                     function (response) {
                         updateAndSort($scope.user.experiences, response.experience, Utils.sortByStartDate);
@@ -386,7 +379,6 @@ angular.module('gradshub-ng.controllers').controller('candidateProfileController
                 if (!valid) return;
                 var language = getLanguage(updated);
                 language.id = updated.id;
-                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 language.$update().then(
                     function(response) {
                         updateAndSort($scope.user.languages, response.language);
@@ -403,7 +395,6 @@ angular.module('gradshub-ng.controllers').controller('candidateProfileController
                         candidate_id: $scope.user.uid,
                         id: $scope.user.experiences[index].id
                     });
-                    $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                     experience.$delete().then(
                         function () {
                             removeElementAndSort($scope.user.experiences, index, Utils.sortByStartDate);
@@ -420,7 +411,6 @@ angular.module('gradshub-ng.controllers').controller('candidateProfileController
                         candidate_id: $scope.user.uid,
                         id: $scope.user.educations[index].id
                     });
-                    $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                     education.$delete().then(
                         function() {
                             removeElementAndSort($scope.user.educations, index, Utils.sortByStartDate);
@@ -437,7 +427,6 @@ angular.module('gradshub-ng.controllers').controller('candidateProfileController
                         candidate_id: $scope.user.uid,
                         id: language.id
                     });
-                    $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                     language.$delete().then(
                         function() {
                             var index = $scope.user.languages.map(function(elem) {return elem.id}).indexOf(language.id);
@@ -477,7 +466,6 @@ angular.module('gradshub-ng.controllers').controller('candidateProfileController
             };
 
             var updateUser = function () {
-                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 Utils.candidateFromObject($scope.user).$update(function (response) { //Creates resource User from object $scope.user
                         $scope.user = response.candidate;
                         initCandidateProfile(); //Update profile variables;
