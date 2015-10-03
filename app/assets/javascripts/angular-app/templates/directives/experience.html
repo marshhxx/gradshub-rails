@@ -53,7 +53,7 @@
     </div>
     <div class="profile-add-right-content">
         <div class="form-group" ng-class="{'has-error': experienceForm.company_name.$invalid && (experienceForm.$submitted || experienceForm.company_name.$dirty)}">
-            <label class="label-edit">Company Name</label>
+            <label class="label-edit">Company Name *</label>
             <input type="text" ng-model="experienceTemp.company_name" required class="form-control input-sm"
                    id="company_name"
                    placeholder="Company Name" name="company_name">
@@ -66,7 +66,7 @@
 
         <div class="form-group"
              ng-class="{'has-error': experienceForm.job_title.$invalid && (experienceForm.$submitted || experienceForm.job_title.$dirty)}">
-            <label class="label-edit">Job Title</label>
+            <label class="label-edit">Job Title *</label>
             <input type="text" ng-model="experienceTemp.job_title" required class="form-control input-sm" id="job_title"
                    placeholder="Job Title" name="job_title">
 
@@ -80,7 +80,7 @@
 
         <div class="form-group inline" ng-class="{'has-error': !experience.start_date && experienceForm.$submitted}">
             <div class="profile-datepicker-container">
-                <span class="profile-datepicker-label">From: </span>
+                <span class="profile-datepicker-label">From: *</span>
                 <simpledatepicker no-day="true" ng-model="experienceTemp.start_date" is-date></simpledatepicker>
             </div>
 

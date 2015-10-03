@@ -61,7 +61,7 @@
   </div>
   <div class="profile-add-right-content">
     <div class="form-group" ng-class="{'has-error': educationForm.school.$invalid && (educationForm.$submitted || educationForm.school.$touched)}">
-      <label class="label-edit">School</label>
+      <label class="label-edit">School *</label>
       <school-selector focus-codition="educationEditor" placeholder="School" ng-model="educationTemp.school.name" on-select="onSchool" required></school-selector>
 
       <div ng-if="educationForm.school.$invalid && (educationForm.$submitted || educationForm.school.$touched)"
@@ -76,7 +76,7 @@
     </div>
 
     <div class="form-group" ng-class="{'has-error': educationForm.degree.$invalid && (educationForm.$submitted || educationForm.degree.$touched)}">
-      <label class="label-edit">Degree</label>
+      <label class="label-edit">Degree *</label>
       <degree-selector placeholder="Degree" ng-model="educationTemp.degree.name" on-select="onDegree" required></degree-selector>
 
       <div ng-if="educationForm.degree.$invalid && (educationForm.$submitted || educationForm.degree.$touched)"
@@ -91,7 +91,7 @@
     </div>
 
     <div class="form-group" ng-class="{'has-error': educationForm.major.$invalid && (educationForm.$submitted || educationForm.major.$touched)}">
-      <label class="label-edit">Major</label>
+      <label class="label-edit">Major *</label>
       <major-selector placeholder="Major" ng-model="educationTemp.major.name" on-select="onMajor" required></major-selector>
 
       <div ng-if="educationForm.major.$invalid && (educationForm.$submitted || educationForm.major.$touched)" ng-messages="educationForm.major.$error">
@@ -131,7 +131,7 @@
 
     <div class="form-group inline" ng-class="{'has-error': !educationTemp.start_date && educationForm.$submitted}">
       <div class="profile-datepicker-container">
-        <span class="profile-datepicker-label">From: </span>
+        <span class="profile-datepicker-label">From: *</span>
         <simpledatepicker no-day="true" ng-model="educationTemp.start_date"></simpledatepicker>
       </div>
 

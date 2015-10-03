@@ -26,7 +26,7 @@
     <div class="profile-add-right-content" ng-show="addExperienceEnable">
         <div class="form-group"
              ng-class="{'has-error': newExperienceForm.company_name.$invalid && (newExperienceForm.$submitted || newExperienceForm.company_name.$dirty)}">
-            <label class="label-edit">Company Name</label>
+            <label class="label-edit">Company Name *</label>
             <input type="text" ng-model="experience.company_name" required id="company"
                    placeholder="Company Name" class="form-control input-sm" name="company_name">
                 <div ng-if="newExperienceForm.company_name.$invalid && (newExperienceForm.$submitted || newExperienceForm.company_name.$dirty)" ng-messages="newExperienceForm.company_name.$error">
@@ -37,7 +37,7 @@
         </div>
 
         <div class="form-group" ng-class="{'has-error': newExperienceForm.job_title.$invalid && (newExperienceForm.$submitted || newExperienceForm.job_title.$dirty)}">
-            <label class="label-edit">Job Title</label>
+            <label class="label-edit">Job Title *</label>
             <input type="text" name="job_title" ng-model="experience.job_title" required
                    class="form-control input-sm" id="jobtitle"
                    placeholder="Job Title">
@@ -50,7 +50,7 @@
 
             <div class="form-group inline" ng-class="{'has-error': !experience.start_date && newExperienceForm.$submitted}">
                 <div class="profile-datepicker-container">
-            <span class="profile-datepicker-label">From: </span>
+            <span class="profile-datepicker-label">From: *</span>
             <simpledatepicker no-day="true" ng-model="experience.start_date" is-date></simpledatepicker>
             </div>
 
