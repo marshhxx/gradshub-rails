@@ -6,7 +6,7 @@
     <div class="signup form-box-cont">
       <div class="row">
         <div class="form-group">
-          <input type="text" ng-model="user.tag" class="form-control input-sm" id="tag" placeholder="This will be your profile's headline">
+          <input type="text" ng-model="user.tag" class="form-control input-sm" id="tag" placeholder="This will be your profile's headline [Optional]">
         </div>
       </div>
 
@@ -72,8 +72,7 @@
       <div class="row">
         <div class="form-group"
              ng-class="{'has-error': personalForm.nationality.$invalid && (personalForm.$submitted || personalForm.nationality.$touched)}">
-          <nationality-selector placeholder="What is your nationality?" ng-model="nationality"
-                                on-select="onNationality"></nationality-selector>
+          <nationality-selector ng-model="nationality" on-select="onNationality"></nationality-selector>
           <div
             ng-if="personalForm.nationality.$invalid && (personalForm.$submitted || personalForm.nationality.$touched)"
             ng-messages="personalForm.nationality.$error">

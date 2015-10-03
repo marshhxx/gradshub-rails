@@ -30,7 +30,7 @@
         </div>
         <div class="form-group"
              ng-class="{'has-error': newEducationForm.school.$invalid && (newEducationForm.$submitted || newEducationForm.school.$touched)}">
-            <label class="label-edit">School</label>
+            <label class="label-edit">School *</label>
             <school-selector placeholder="University of Maryland, College Park" ng-model="school" on-select="onSchool" required></school-selector>
 
             <div ng-if="newEducationForm.school.$invalid && (newEducationForm.$submitted || newEducationForm.school.$touched)"
@@ -46,7 +46,7 @@
 
         <div class="form-group"
              ng-class="{'has-error': newEducationForm.degree.$invalid && (newEducationForm.$submitted || newEducationForm.degree.$touched)}">
-            <label class="label-edit">Degree</label>
+            <label class="label-edit">Degree *</label>
             <degree-selector placeholder="Bachelor of Science in Electrical Engineering" ng-model="degree" on-select="onDegree" required></degree-selector>
 
             <div ng-if="newEducationForm.degree.$invalid && (newEducationForm.$submitted || newEducationForm.degree.$touched)"
@@ -62,7 +62,7 @@
 
         <div class="form-group"
              ng-class="{'has-error': newEducationForm.major.$invalid && (newEducationForm.$submitted || newEducationForm.major.$touched)}">
-            <label class="label-edit">Major</label>
+            <label class="label-edit">Major *</label>
             <major-selector placeholder="Engineering" ng-model="major" on-select="onMajor" required></major-selector>
 
             <div ng-if="newEducationForm.major.$invalid && (newEducationForm.$submitted || newEducationForm.major.$touched)"
@@ -108,7 +108,7 @@
 
         <div class="form-group inline" ng-class="{'has-error': newEducationForm.$submitted && !education.start_date}">
             <div class="profile-datepicker-container div-40">
-                <span class="profile-datepicker-label">From: </span>
+                <span class="profile-datepicker-label">From: *</span>
                 <simpledatepicker no-day="true" no-month="false" ng-model="education.start_date"
                                   is-date></simpledatepicker>
             </div>
