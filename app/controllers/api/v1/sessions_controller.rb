@@ -1,4 +1,5 @@
 class Api::V1::SessionsController < ApplicationController
+  before_action :authenticate_with_token!, only: [:refresh]
 
   def create
     user_password = params[:session][:password]
