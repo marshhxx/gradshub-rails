@@ -1,9 +1,9 @@
 angular
 .module('gradshub-ng.controllers')
 .controller('mainController',
-  ['$scope', '$rootScope', '$q', 'sessionService', '$state','alertService', '$sce', '$location', 'eventTracker', 
+  ['$scope', '$rootScope', '$q', 'sessionService', '$state','alertService', '$sce', '$location', 'eventTracker',
    '$anchorScroll', 'stateWrapper', 'modalService', 'navbarService',
-    ($scope, $rootScope, $q, sessionService, $state, alertService, $sce, $location, eventTracker, 
+    ($scope, $rootScope, $q, sessionService, $state, alertService, $sce, $location, eventTracker,
      $anchorScroll, stateWrapper, modalService, navbarService) ->
 
       init = ->

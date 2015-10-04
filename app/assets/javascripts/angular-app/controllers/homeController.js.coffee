@@ -1,8 +1,8 @@
 angular.module('gradshub-ng.controllers').controller("HomeController", [
   '$http', '$scope', 'Candidate', 'Employer', '$state', '$anchorScroll', '$location', 'sessionService', '$sce',
-  '$stateParams', 'registerService', 'alertService', '$window', 'eventTracker', 'navbarService',
+  '$stateParams', 'registerService', 'alertService', 'eventTracker', 'navbarService',
   ($http, $scope, Candidate, Employer, $state, $anchorScroll, $location, sessionService, $sce, $stateParams,
-   registerService, alertService, $window, eventTracker, navbarService)->
+   registerService, alertService, eventTracker, navbarService)->
     init = ->
       $scope.renderHtml = (htmlCode) -> $sce.trustAsHtml(htmlCode)
       $scope.isCandidate = () -> $scope.candidate = true

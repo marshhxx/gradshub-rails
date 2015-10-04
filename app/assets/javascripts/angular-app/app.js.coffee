@@ -13,10 +13,6 @@
     abstract: true,
     templateUrl: "angular-app/templates/layouts/mainLayout.html",
     controller: "mainController",
-    data: {
-      navOptions: {
-      }
-    }
   }).state("main.page", {
     url: "/home",
     templateUrl: "angular-app/templates/home.html",
