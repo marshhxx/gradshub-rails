@@ -55,22 +55,22 @@
     controller: "employerSignupController",
   }).state("main.signup_candidate.personal", {
     url: "/personal",
-    templateUrl: "angular-app/templates/views/form-personal.html",
+    templateUrl: "angular-app/templates/views/signup/personal.html",
   }).state("main.signup_candidate.education", {
     url: "/education",
-    templateUrl: "angular-app/templates/views/form-education.html",
+    templateUrl: "angular-app/templates/views/signup/form-education.html",
   }).state("main.signup_candidate.interests", {
     url: "/interests",
-    templateUrl: "angular-app/templates/views/form-interests.html",
+    templateUrl: "angular-app/templates/views/signup/form-interests.html",
   }).state("main.signup_employer.personal", {
     url: "/info",
-    templateUrl: "angular-app/templates/views/form-personal.html",
+    templateUrl: "angular-app/templates/views/signup/personal.html",
   }).state("main.signup_employer.company", {
     url: "/company",
-    templateUrl: "angular-app/templates/views/form-company.html",
+    templateUrl: "angular-app/templates/views/signup/form-company.html",
   }).state("main.signup_employer.looking", {
     url: "/looking",
-    templateUrl: "angular-app/templates/views/form-lookingfor.html",
+    templateUrl: "angular-app/templates/views/signup/form-lookingfor.html",
   }).state("main.candidate_profile", {
     url: "/candidate/:uid",
     templateUrl: "angular-app/templates/candidate_profile.html",
