@@ -74,11 +74,12 @@ section#signup .form-control:focus {
 /** Signup **/
 
 .signup.background {
-  min-height: 700px;
-  height: 95%;
-  padding-top: 60px;
+  //min-height: 700px;
+  //height: 95%;
+  //padding-top: 60px;
+  margin-top: 51px;
   overflow: hidden;
-  background: url('signup/background-signup1.png') no-repeat center center;
+  //background: url('signup/background-signup1.png') no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

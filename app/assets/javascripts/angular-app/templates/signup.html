@@ -1,20 +1,20 @@
 <div class="signup background">
-  <div class="signup-title" ng-class="$state.current.name.split('.')[2]">
-    <img src="/assets/signup/signup-{{ $state.current.name.split('.')[2] }}.svg">
-    <span class="signup-header">{{ $state.current.name.split('.')[2] | uppercase }}</span>
-  </div>
+  <!--<div class="signup-title" ng-class="$state.current.name.split('.')[2]">-->
+  <!--<img src="/assets/signup/signup-{{ $state.current.name.split('.')[2] }}.svg">-->
+  <!--<span class="signup-header">{{ $state.current.name.split('.')[2] | uppercase }}</span>-->
+  <!--</div>-->
 
   <div class="container">
-    <div class="row">
-
-      <div class="col-lg-12 col-md-12 col-sm-12 text-center">
-
-        <div id="form-container" class="signup-form col-md-6 col-md-offset-3">
-          <!-- signup subviews injected here -->
-          <div id="form-views" ui-view></div>
-        </div>
-
-      </div>
+    <!--<div class="col-lg-12 col-md-12 col-sm-12 text-center">-->
+    <!--<div id="form-container" class="signup-form col-md-6 col-md-offset-3">-->
+    <!-- signup subviews injected here -->
+    <div class="col-lg-6">
+    <div id="form-views" ui-view></div>
     </div>
+    <div class="col-lg-6">
+      <div id="form-img" ui-view></div>
+    </div>
+    <!--</div>-->
   </div>
+  <!--</div>-->
 </div>
