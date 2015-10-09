@@ -3,23 +3,33 @@ angular
 .controller("searchController",
   ['$scope', '$rootScope', '$q', '$http', '$state', 'sessionService', '$stateParams', 'searchService', 'alertService',
     ($scope, $rootScope, $q, $httpProvider, $state, sessionService, $stateParams, searchService, alertService)->
-
       init = ()->
         $scope.spinnerVisible = false
         $scope.keyword = $stateParams.keyword
-        loadResults($scope.keyword)
+        # pagination params
+        $scope.totalResults = null
+        $scope.currentPage = 1
+        $scope.resultsPerPage = 16
+        # load initial results
+        $scope.loadResults = loadResults
+        loadResults($scope.keyword, $scope.currentPage)
 
       # Display results
-      loadResults = (keyword)->
+      loadResults = (keyword, page) ->
         $scope.spinnerVisible = true
-        searchService.search(keyword).then(
+        $scope.users = []
+        searchService.search(keyword, page).then(
           (response) ->
+            $scope.totalResults = response.headers()['x-total']
             $scope.users = response.data.users
         ).catch(
           (error) -> alertService.defaultErrorCallback(error)
         ).finally(
           -> $scope.spinnerVisible = false
         )
+
+      setPaginationParams = (headers) ->
+
 
       init()
   ])

@@ -4,7 +4,12 @@
     <div class="container">
       <div class="wrapper">
         <span class="search-keyword">{{keyword}}</span>
-        <span class="search-results">+ 2000 results</span>
+        <pagination class="pagination-sm" total-items="totalResults" items-per-page="resultsPerPage" ng-model="currentPage"
+                    ng-change="loadResults(keyword, currentPage)" direction-links="true"
+                    boundary-links="true" max-size="5" boundary-links="true" previous-text="&lsaquo;&lsaquo; Previous" next-text="Next &rsaquo;&rsaquo;"
+                    first-text="&lsaquo;&lsaquo; First" last-text="Last &rsaquo;&rsaquo;">
+        </pagination>
+        <!--<span class="search-results">+ 2000 results</span>-->
       </div>
     </div>
   </div>
@@ -22,4 +27,11 @@
       </div>
     </div>
   </div>
+</div>
+<div class="search-pages bottom">
+  <pagination class="pagination-sm" total-items="totalResults" items-per-page="resultsPerPage" ng-model="currentPage"
+              ng-change="loadResults(keyword, currentPage)" direction-links="true"
+              boundary-links="true" max-size="5" previous-text="&lsaquo;&lsaquo; Previous" next-text="Next &rsaquo;&rsaquo;"
+              first-text="&lsaquo;&lsaquo; First" last-text="Last &rsaquo;&rsaquo;">
+  </pagination>
 </div>

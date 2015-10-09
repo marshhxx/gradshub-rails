@@ -77,8 +77,8 @@ class User < ActiveRecord::Base
     user
   end
 
-  def self.search(query, limit=50, per_page=0)
-    index.query(query_string: {query: query}).limit(limit).load.to_a
+  def self.search(query)
+    index.query(query_string: {query: query}).load
   end
 
   def self.index
