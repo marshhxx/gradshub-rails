@@ -2,9 +2,9 @@ angular
 .module('gradshub-ng.controllers')
 .controller('mainController',
   ['$scope', '$rootScope', '$q', 'sessionService', '$state','alertService', '$sce', '$location', 'eventTracker',
-   '$anchorScroll', 'stateWrapper', '$document', 'modalService',
+   '$anchorScroll', 'stateWrapper', 'modalService', 'navbarService',
     ($scope, $rootScope, $q, sessionService, $state, alertService, $sce, $location, eventTracker,
-     $anchorScroll, stateWrapper, $document, modalService) ->
+     $anchorScroll, stateWrapper, modalService, navbarService) ->
 
       init = ->
         $anchorScroll.yOffset = 0
@@ -14,6 +14,7 @@ angular
         $scope.renderHtml = (htmlCode) -> $sce.trustAsHtml(htmlCode)
         $scope.profileSpinner = false
         $scope.isOptionsVisible = false
+        $scope.navbarService = navbarService #Set navbar service
 
         initUser()
 
@@ -21,7 +22,7 @@ angular
         logMeOut = ->
           eventTracker.logOut sessionService.sessionType()
           sessionService.logout()
-          $state.go 'home.page', null, {reload: true}
+          $state.go 'main.page', null, {reload: true}
         modalService.confirm("Are you sure you want to leave?").then(logMeOut)
 
       initUser = ->
@@ -29,7 +30,7 @@ angular
         $scope.profileSpinner = true
         sessionService.requestCurrentUser().then(
           (user) ->
-            $state.go 'home.page' if !user?
+            $state.go 'main.page' if !user?
             type = sessionService.sessionType().toLowerCase()
             $scope.username = user[type].name
             $scope.profileSpinner = false
@@ -61,5 +62,9 @@ angular
       $scope.showSettingsPopup = ->
         $scope.isOptionsVisible = !$scope.isOptionsVisible
 
+      #Clear navbar options
+      $rootScope.$on '$stateChangeStart', () ->
+        navbarService.clearOptions()
+        
       init()
   ])

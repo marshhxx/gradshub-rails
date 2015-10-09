@@ -9,38 +9,39 @@
   $httpProvider.defaults.headers.common.Accept = 'application/mepedia.v1'
   $httpProvider.defaults.headers.common['Content-type'] = 'application/json'
   $urlRouterProvider.otherwise "/home"
-  $stateProvider.state("home", {
-    abstract: true,
-    templateUrl: "angular-app/templates/layouts/homeLayout.html",
-    controller: "mainController",
-  }).state("main", {
+  $stateProvider.state("main", {
     abstract: true,
     templateUrl: "angular-app/templates/layouts/mainLayout.html",
     controller: "mainController",
-  }).state("home.page", {
+  }).state("main.page", {
     url: "/home",
     templateUrl: "angular-app/templates/home.html",
     controller: "HomeController",
-  }).state("home.login", {
+    data: {
+      navOptions: {
+        home: true
+      }
+    }
+  }).state("main.login", {
     url: "/login",
     templateUrl: "angular-app/templates/login.html",
     controller: "loginController",
-  }).state("home.forgotpssw", {
+  }).state("main.forgotpssw", {
     abstract: true,
     templateUrl: "angular-app/templates/views/forgot_pssw.html",
-  }).state("home.forgotpssw.email", {
+  }).state("main.forgotpssw.email", {
     url: "/forgotpssw",
     templateUrl: "angular-app/templates/views/forgot/email.html",
     controller: "forgotPasswordController",
-  }).state("home.forgotpssw.checkemail", {
+  }).state("main.forgotpssw.checkemail", {
     url: "/checkemail",
     templateUrl: "angular-app/templates/views/forgot/checkemail.html",
     controller: "forgotPasswordController",
-  }).state("home.forgotpssw.resetpssw", {
+  }).state("main.forgotpssw.resetpssw", {
     url: "/resetpssw?r={resource}&reset_token={token}",
     templateUrl: "angular-app/templates/views/forgot/reset.html",
     controller: "forgotPasswordController",
-  }).state("home.forgotpssw.resetsccss", {
+  }).state("main.forgotpssw.resetsccss", {
     url: "/resetsccss",
     templateUrl: "angular-app/templates/views/forgot/success.html",
     controller: "forgotPasswordController",

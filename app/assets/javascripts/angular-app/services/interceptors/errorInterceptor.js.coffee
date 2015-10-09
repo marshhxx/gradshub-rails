@@ -18,10 +18,10 @@ ErrorInterceptor = ($q, alertService, $injector) ->
       switch response.status
         when 403
           if response.data.error.code == 'ERR06'
-            logoutAndSendToState('home.page')
+            logoutAndSendToState('main.page')
         when 401
           if response.data.error.code in ['ERR07', 'ERR01']
-            alertLogoutAndSendToState(response, 'home.login')
+            alertLogoutAndSendToState(response, 'main.login')
       $q.reject(response)
 
   }
