@@ -276,7 +276,7 @@
       </div>
       <div class="input-wrapper col-xs-4 col-md-6">
         <div class="col-md-12">
-          {{user.state.name}}, {{user.country.name}}
+          {{user.state.name + (user.state.name || user.state.name ? ', ':'') + user.country.name}}
         </div>
       </div>
       <div class="edit-button-wrapper col-xs-4 col-md-2">

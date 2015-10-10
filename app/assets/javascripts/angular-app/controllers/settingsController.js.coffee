@@ -46,9 +46,8 @@ angular
         setUser(user)
 
       formatDate = ->
-        day = $scope.user.birth.charAt(8)
-        $scope.birthday = $scope.user.birth
-        if day = '0' then $scope.birthday = $scope.birthday.substr(0, 8) + $scope.birthday.substr(9)
+        if $scope.user.birth
+          $scope.birthday = $scope.user.birth
 
       $scope.toggleSection = (show) ->
         if show == 'save' then show = '' else $scope.user = angular.copy $scope.realUser
@@ -157,7 +156,7 @@ angular
 
       $scope.saveUserNationality = ->
 
-        if user.nationalities.length > 0
+        if $scope.user.nationalities.length > 0
           if $scope.isCandidate 
             nationality = new CandidateNationalities()
             nationality.candidate_id = $scope.user.uid
@@ -166,8 +165,6 @@ angular
             nationality.employer_id = $scope.user.uid
           nationality.id = $scope.user.nationalities[0].id if $scope.user.nationalities.length > 0
         
-        deferred = $q.defer()
-
         deleteNationality(nationality).then( (data) ->
           return saveNationality()
         ).then( (data) ->
@@ -181,7 +178,9 @@ angular
         ).catch alertService.defaultErrorCallback
 
       deleteNationality = (nationality)->
-        nationality.$delete() if $scope.user.nationalities.length > 0
+        if $scope.user.nationalities.length > 0
+          return nationality.$delete()
+        $q.when()
 
       saveNationality = ->
         $scope.newUserNationality.$save()
