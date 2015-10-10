@@ -16,6 +16,16 @@
   margin: auto;
 }
 
+.search-no-results {
+  text-align: center;
+  font: 16px Montserrat-Regular;
+  color: $text-regular;
+
+  strong {
+    color: $text-bold;
+  }
+}
+
 .search-pages {
   font-family: Montserrat-Regular;
   color: $text-title;

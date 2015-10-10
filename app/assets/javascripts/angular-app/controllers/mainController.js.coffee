@@ -10,11 +10,26 @@ angular
         $anchorScroll.yOffset = 0
         $anchorScroll()
         $scope.logged = sessionService.isAuthenticated();
-        $scope.logout = logout
-        $scope.renderHtml = (htmlCode) -> $sce.trustAsHtml(htmlCode)
         $scope.profileSpinner = false
         $scope.isOptionsVisible = false
         $scope.navbarService = navbarService #Set navbar service
+        # scope methods
+        $scope.goToProfile = gotToProfile
+        $scope.logout = logout
+        $scope.renderHtml = (htmlCode) -> $sce.trustAsHtml(htmlCode)
+        $scope.onSearchSubmit = onSearchSubmit
+        $scope.clearSearch = clearSearch
+        $scope.scrollTo = scrollTo
+
+        $scope.redirectToSettings = () ->
+          $state.go 'main.user_settings'
+
+        $scope.showSettingsPopup = ->
+          $scope.isOptionsVisible = !$scope.isOptionsVisible
+
+        #Clear navbar options
+        $rootScope.$on '$stateChangeStart', () ->
+          navbarService.clearOptions()
 
         initUser()
 
@@ -31,24 +46,24 @@ angular
         sessionService.requestCurrentUser().then(
           (user) ->
             $state.go 'main.page' if !user?
-            type = sessionService.sessionType().toLowerCase()
-            $scope.username = user[type].name
+            $scope.type = sessionService.sessionType().toLowerCase()
+            $scope.username = user[$scope.type].name
             $scope.profileSpinner = false
             deferrred.resolve(user)
         ).catch (error) -> deferrred.reject(error)
         $scope.userPromise = deferrred.promise
 
       #On search submit redirect to search view. Send keyword parameter.
-      $scope.onSearchSubmit = () ->
+      onSearchSubmit = ->
         if($scope.searchKeyword)
           $state.go 'main.search', {keyword: $scope.searchKeyword}
 
       #On mouse down method, clears input when input cross y pressed.
-      $scope.clearSearch = ($event) ->
+      clearSearch = ($event) ->
         $event.preventDefault(); #Trick to keep input focused.
         $scope.searchKeyword = "" #Clear
 
-      $scope.scrollTo = (id)->
+      scrollTo = (id)->
         old = $location.hash()
         $location.hash id
         $anchorScroll()
@@ -56,15 +71,8 @@ angular
         $location.hash old
         return
 
-      $scope.redirectToSettings = () ->
-        $state.go 'main.user_settings'
-        
-      $scope.showSettingsPopup = ->
-        $scope.isOptionsVisible = !$scope.isOptionsVisible
-
-      #Clear navbar options
-      $rootScope.$on '$stateChangeStart', () ->
-        navbarService.clearOptions()
+      gotToProfile = ->
+        $state.go("main.#{$scope.type}_profile", {uid: 'me'})
         
       init()
   ])
