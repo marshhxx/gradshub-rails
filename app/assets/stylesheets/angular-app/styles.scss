@@ -6,11 +6,13 @@
 @import "partials/profile-candidate";
 @import "partials/profile-employer";
 @import "partials/search";
-@import "settings";
 @import "partials/login";
 @import "partials/forgotpssw";
 @import "partials/signup";
 @import "partials/homepage";
+@import "directives/search-card";
+@import "directives/tagsinput";
+@import "settings";
 @import "terms-privacy";
 
 @font-face {
