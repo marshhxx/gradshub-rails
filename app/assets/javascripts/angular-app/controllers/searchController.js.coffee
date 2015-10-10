@@ -17,7 +17,7 @@ angular
       # Display results
       loadResults = (keyword, page) ->
         $scope.spinnerVisible = true
-        $scope.users = []
+        $scope.users = null
         searchService.search(keyword, page).then(
           (response) ->
             $scope.totalResults = response.headers()['x-total']
