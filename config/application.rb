@@ -36,8 +36,8 @@ module GradshubRails
     ::Sass::Script::Number.precision = [10, ::Sass::Script::Number.precision].max
 
     config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
-    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower')
-    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components', 'bootstrap-sass-official', 'assets', 'fonts')
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components', 'bootstrap-sass-official', 'assets', 'fonts', 'bootstrap')
 
 
     config.angular_templates.htmlcompressor = false
