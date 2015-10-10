@@ -85,7 +85,7 @@ class User < ActiveRecord::Base
     query = index.query(query_string: {query: query})
     # delete current_user from results
     if current_user
-      query = results.filter{ email != current_user.email }
+      query = query.filter{ email != current_user.email }
     end
     query.load
   end
