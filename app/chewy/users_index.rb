@@ -1,17 +1,18 @@
 class UsersIndex < Chewy::Index
   settings analysis: {
     analyzer: {
-        title: {
-            tokenizer: 'standard',
-            filter: %w(lowercase asciifolding)
-        }
+      email: {
+          type: 'keyword',
+          tokenizer: 'uax_url_email',
+          filter: ['standard', 'lowercase', 'stop']
+      }
     }
   }
 
   define_type Candidate.includes(:user, :skills, :interests, :experiences, :educations) do
       field :name, value: -> { user.name }
       field :lastname, value: -> { user.lastname }
-      field :email, analyzer: 'simple' ,value: -> { user.email }
+      field :email, analyzer: 'email', value: -> { user.email }
       field :tag, value: -> { user.tag }
       field :type, index: 'not_analyzed', value: -> { user.meta_type }
       field :summary, boost: 0.2
@@ -33,7 +34,7 @@ class UsersIndex < Chewy::Index
   define_type Employer.includes(:user, :skills, :interests, :employer_company) do
     field :name, value: -> { user.name }
     field :lastname, value: -> { user.lastname }
-    field :email, analyzer: 'simple' ,value: -> { user.email }
+    field :email, analyzer: 'email', value: -> { user.email }
     field :tag, index: 'not_analyzed', value: -> { user.tag }
     field :type, index: 'not_analyzed', value: -> { user.meta_type }
     field :job_title # should we unboost this?

@@ -64,6 +64,10 @@ gem 'chewy'
 # JWT token gem
 gem 'jwt'
 
+# pagination
+gem 'kaminari'
+gem 'api-pagination'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
