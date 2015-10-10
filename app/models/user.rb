@@ -77,10 +77,20 @@ class User < ActiveRecord::Base
     user
   end
 
-  def self.search(query)
-    index.query(query_string: {query: query}).load
+  # Queries the elasticsearch index matching the query_string: query.
+  # If current_user exists, we exclude it from the results.
+  # @param query: the string query to match.
+  # @param current_user: the user to exclude form the results.
+  def self.search(query, current_user=nil)
+    query = index.query(query_string: {query: query})
+    # delete current_user from results
+    if current_user
+      query = results.filter{ email != current_user.email }
+    end
+    query.load
   end
 
+  # The user index object.
   def self.index
     UsersIndex
   end

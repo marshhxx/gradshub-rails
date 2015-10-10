@@ -3,7 +3,7 @@ class Api::V1::SearchController < ApplicationController
 
   # supported key words: interests, skills, job_titles
   def show
-    @users = paginate User.search(query_params[:q]), per_page: per_page
+    @users = paginate User.search(query_params[:q], current_user), per_page: per_page
     render :show, status: :ok
   end
 

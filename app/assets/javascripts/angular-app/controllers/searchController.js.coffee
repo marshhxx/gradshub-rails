@@ -28,8 +28,5 @@ angular
           -> $scope.spinnerVisible = false
         )
 
-      setPaginationParams = (headers) ->
-
-
       init()
   ])

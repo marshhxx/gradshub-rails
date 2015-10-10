@@ -3,7 +3,7 @@ SearchService = ($http) ->
 
   # service that calls the search users endpoint
   service.search = (keyword, page=1, perPage=16) ->
-    return $http.get('/api/search', {params: {q: keyword, page: page, per_page: 16}})
+    return $http.get('/api/search', {params: {q: keyword, page: page, per_page: perPage}})
 
   return service
 
