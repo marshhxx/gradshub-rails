@@ -3,7 +3,6 @@
 
 $tl: 0.4s; // transition length
 
-
 .navbar {
   margin-bottom: 0px !important;
 }
@@ -138,10 +137,11 @@ $tl: 0.4s; // transition length
 .user-menu {
   label {
     color: $primary-turquoise !important;
-    font: 14px Lato-Regular;
+    font: 14px Montserrat-Bold;
     padding-top: 15px;
     padding-bottom: 15px;
     margin: 0px;
+    cursor: pointer;
   }
 
   .arrow-container {
@@ -149,7 +149,7 @@ $tl: 0.4s; // transition length
     float: right;
     width: 25px;
     height: 20px;
-    top: 13px;
+    top: 15px;
   }
 
   .arrow-down {
@@ -157,20 +157,21 @@ $tl: 0.4s; // transition length
     height: 0;
     border-left: 7px solid transparent;
     border-right: 7px solid transparent;
-    border-top: 7px solid $primary-lightblue;
+    border-top: 7px solid $primary-turquoise;
     margin: 7px 0px 0px 7px;
+    cursor: pointer;
   }
 
   .options-box {
-    width: 90px;
+    width: 150px;
     position: absolute;
     background: $primary-white;
-    border: 2px solid $primary-blue;
+    border: 1px solid $primary-gray;
     z-index: 100;
-    top: 40px;
-    margin-left: 16px;
-    box-shadow: 0px 0px 5px $primary-gray;
-    border-radius: 3px;
+    top: 52px;
+    margin-left: -40px;
+    border-radius: 4px;
+    padding: 10px;
 
     &:after, &:before {
       bottom: 100%;
@@ -190,9 +191,9 @@ $tl: 0.4s; // transition length
     }
     &:before {
       border-color: rgba(72, 103, 153, 0);
-      border-bottom-color: $primary-blue;
-      border-width: 10px;
-      margin-left: -10px;
+      border-bottom-color: $primary-gray;
+      border-width: 9px;
+      margin-left: -9px;
     }
 
     .menu-setting-item {
@@ -200,6 +201,7 @@ $tl: 0.4s; // transition length
       margin: 5px auto;
       text-decoration: none;
       cursor: pointer;
+      color: $text-regular;
 
       &:first-child {
         margin-bottom: 0px;
