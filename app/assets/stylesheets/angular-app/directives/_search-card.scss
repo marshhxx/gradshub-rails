@@ -10,6 +10,7 @@
 }
 .search-card .content {
   padding: 35px 10px 30px;
+  min-height: 150px;
   .name { font: 18px Montserrat-Regular; color: $text-title; line-height: 1.3; }
   .headline { font: 16px Lato-Regular; color: $text-bold; line-height: 1.3; }
   .current-position { font: 13px Lato-Regular; color: $text-regular; margin-top: 5px; line-height: 1.3; }
