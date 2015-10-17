@@ -72,7 +72,7 @@ angular
         return
 
       gotToProfile = ->
-        $state.go("main.#{$scope.type}_profile", {uid: 'me'})
+        $state.go("main.#{$scope.type}_profile", {uid: 'me'}, { reload: true })
         
       init()
   ])

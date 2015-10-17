@@ -99,7 +99,6 @@ angular
             alertService.defaultErrorCallback
             return false
           )
-        $state.reload()
 
       $scope.saveUserFullName = (valid) ->
         if !valid
@@ -108,6 +107,7 @@ angular
         if saveUser()
           alertService.addInfo 'Name successfully edited', ALERT_CONSTANTS.SUCCESS_TIMEOUT
           $scope.toggleSection 'save'
+          $state.reload()
 
 
       clearInput = (formName, inputName) ->
@@ -133,7 +133,6 @@ angular
           clearInput 'passwordForm', 'oldPassword'
           clearInput 'passwordForm', 'newPassword'
           clearInput 'passwordForm', 'reNewPassword'
-          $state.reload()
         )
 
       $scope.saveUserBirth = (valid) ->
@@ -178,7 +177,6 @@ angular
           if $scope.isCandidate then $scope.newUserNationality = new CandidateNationalities() else $scope.newUserNationality = new EmployerNationalities()
 
           alertService.addInfo 'Nationality successfully edited', ALERT_CONSTANTS.SUCCESS_TIMEOUT
-          $state.reload()
         ).catch alertService.defaultErrorCallback
 
       deleteNationality = (nationality)->
