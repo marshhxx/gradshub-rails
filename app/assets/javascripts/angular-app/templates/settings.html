@@ -241,8 +241,11 @@
         <label>Headline</label>
       </div>
       <div class="input-wrapper-headline col-xs-4 col-md-6">
-        <div class="col-md-12">
+        <div class="col-md-12" ng-if="user.tag != ''">
           {{user.tag}}
+        </div>
+        <div class="col-md-12 italic" ng-if="user.tag == ''">
+          This will be your profile's headline
         </div>
       </div>
       <div class="edit-button-wrapper col-xs-4 col-md-2">

@@ -107,6 +107,8 @@ angular
         if saveUser()
           alertService.addInfo 'Name successfully edited', ALERT_CONSTANTS.SUCCESS_TIMEOUT
           $scope.toggleSection 'save'
+          $state.reload()
+
 
       clearInput = (formName, inputName) ->
         $scope[inputName] = ''
@@ -131,7 +133,7 @@ angular
           clearInput 'passwordForm', 'oldPassword'
           clearInput 'passwordForm', 'newPassword'
           clearInput 'passwordForm', 'reNewPassword'
-        )      
+        )
 
       $scope.saveUserBirth = (valid) ->
         $scope.user.birth = $scope.birthday
