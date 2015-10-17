@@ -49,6 +49,11 @@
 
   .input-wrapper-headline {
     text-transform: none;
+
+    .italic {
+      font-family: "Opensans-light-italic";
+      color: $primary-gray;
+    }
   }
 
   &:hover .edit-button-settings{
