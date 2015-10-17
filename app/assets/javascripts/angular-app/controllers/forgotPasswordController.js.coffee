@@ -12,7 +12,7 @@ angular.module('gradshub-ng.controllers').controller("forgotPasswordController",
         sessionService.sendFgtPsswEmail($scope.emailFgtPssw).then(
           (response) ->
             $scope.spinnerVisible = false
-            $state.go 'home.forgotpssw.checkemail'
+            $state.go 'main.forgotpssw.checkemail'
         ).catch(alertService.defaultErrorCallback)
 
     $scope.closeAlert = () ->
@@ -29,6 +29,6 @@ angular.module('gradshub-ng.controllers').controller("forgotPasswordController",
       }
       sessionService.resetPassword(user).then(
         (payload) ->
-          $state.go 'home.forgotpssw.resetsccss'
+          $state.go 'main.forgotpssw.resetsccss'
       ).catch(alertService.defaultErrorCallback)
 ])

@@ -12,14 +12,14 @@
       <div class="row margin-t20">
         <div class="form-group"
              ng-class="{'has-error': confirmForm.password.$invalid && (confirmForm.$submitted || confirmForm.password.$touched)}">
-          <input type="text" class="form-control" ng-model="password" placeholder="Type your new password"
+          <input type="password" class="form-control" ng-model="password" placeholder="Type your new password"
                  id="password" name="password" required ng-minlength="5" ng-maxlength="20">
         </div>
       </div>
       <div class="row">
         <div class="form-group" ng-class="{'has-error': confirmForm.passwordConfirmation.$invalid && (confirmForm.$submitted || confirmForm.passwordConfirmation.$touched)
                 && confirmForm.password.$valid}">
-          <input type="text" class="form-control" ng-model="passwordConfirmation"
+          <input type="password" class="form-control" ng-model="passwordConfirmation"
                  placeholder="Type your new password again"
                  id="passwordConfirmation" name="passwordConfirmation" required
                  confirm-password to-confirm="password">

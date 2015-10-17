@@ -1,6 +1,10 @@
 /** START forgot password **/
 .forgotpssw {
 
+  .row {
+    margin: 0px;
+  }
+
   &.background {
     background-size: cover;
     -webkit-background-size: cover;
@@ -11,22 +15,25 @@
   }
 
   &.cont {
-    margin-top: 40px;
-    padding: 0 40px;
+    padding: 0px 50px;
+    width: 400px;
+    margin: 120px auto 0;
   }
 
   &.form {
     margin-top: 5px;
-    padding: 5% 20% 10% 20%;
+    padding: 10% 5% 10% 5%;
     background-color: $primary-white;
     min-height: 250px;
+    border-radius: 4px;
   }
 
   &.form-checkemail {
     margin-top: 5px;
-    padding: 30px 50px 30px 50px;
+    padding: 30px 30px 30px 30px;
     background-color: #FFF;
     min-height: 250px;
+    border-radius: 4px;
   }
 
   &.title-container {
@@ -105,11 +112,23 @@
 /* Small Devices, Tablets */
 @media only screen and (min-width: 768px) {
 
-  .forgotpssw.cont {
-    padding: 0px 50px;
-    margin-top: 120px;
-  }
+  .forgotpssw {
 
+    &.cont {
+      padding: 0px 0px;
+      width: 400px;
+      margin: 120px auto 0;
+    }
+
+    &.form {
+      padding: 10% 10% 10% 10%;
+
+    }
+
+    &.form-checkemail {
+      padding: 30px 50px 30px 50px;
+    }
+  }
 }
 
 /* Medium Devices, Desktops */
