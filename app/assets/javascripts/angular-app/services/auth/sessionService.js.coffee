@@ -1,4 +1,4 @@
-SessionService = ($location, $http, $q, $localStorage, oauthService, Candidate, Employer) ->
+SessionService = ($http, $q, $localStorage, oauthService, Candidate, Employer) ->
 
   login = (email, password) ->
     deferred = $q.defer()
@@ -68,6 +68,7 @@ SessionService = ($location, $http, $q, $localStorage, oauthService, Candidate, 
         logout()
         deferred.reject(response)
     )
+    deferred.promise
 
   parseUserInfo = ->
     JSON.parse($localStorage.userInfo) if $localStorage.userInfo
