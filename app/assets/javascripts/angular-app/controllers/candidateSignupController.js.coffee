@@ -68,8 +68,8 @@ angular
         $scope.validatePersonal = (valid) ->
           $state.go 'main.signup_candidate.education' if valid
 
-        $scope.validateEducation = (valid) ->
-          $state.go 'main.signup_candidate.interests' if valid
+        #$scope.validateEducation = (valid) ->
+        #  $state.go 'main.signup_candidate.interests' if valid
 
         $scope.backToPersonal = ->
           $state.go 'main.signup_candidate.personal'
@@ -83,7 +83,7 @@ angular
 
         $scope.$state = $state
 
-        dateValidation()
+        #dateValidation()
         initUser()
 
       initUser = ->
@@ -119,14 +119,14 @@ angular
       saveUser = ->
         $scope.user.$update()
 
-      dateValidation = ->
-        $scope.$watchGroup(
-          ['education.start_date', 'education.end_date'],
-          ->
-            valid = Date.parse($scope.education.end_date) >= Date.parse($scope.education.start_date)
-            valid = !$scope.education.end_date? || valid
-            $scope.innerScope.educationForm.$setValidity('validDates', valid) if $scope.innerScope && $scope.innerScope.educationForm
-        )
+#      dateValidation = ->
+#        $scope.$watchGroup(
+#          ['education.start_date', 'education.end_date'],
+#          ->
+#            valid = Date.parse($scope.education.end_date) >= Date.parse($scope.education.start_date)
+#            valid = !$scope.education.end_date? || valid
+#            $scope.innerScope.educationForm.$setValidity('validDates', valid) if $scope.innerScope && $scope.innerScope.educationForm
+#        )
 
       init()
   ])

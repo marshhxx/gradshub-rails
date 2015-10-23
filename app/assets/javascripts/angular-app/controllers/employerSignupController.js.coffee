@@ -60,7 +60,7 @@ angular
           $state.go 'main.signup_employer.company' if valid
 
         $scope.validateCompany = (valid) ->
-          $state.go 'main.signup_employer.looking' if valid
+          #$state.go 'main.signup_employer.looking' if valid
 
         $scope.backToPersonal = ->
           $state.go 'main.signup_employer.personal'
