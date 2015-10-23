@@ -55,22 +55,41 @@
     controller: "employerSignupController",
   }).state("main.signup_candidate.personal", {
     url: "/personal",
-    templateUrl: "angular-app/templates/views/signup/personal.html",
+    parent: 'main.signup_candidate',
+    views: {
+      'form': {
+       templateUrl: 'angular-app/templates/views/signup/personal/personal-form.html'
+      },
+      'img': {
+      templateUrl: 'angular-app/templates/views/signup/personal/personal-img.html',
+      }
+    }
   }).state("main.signup_candidate.education", {
     url: "/education",
-    templateUrl: "angular-app/templates/views/signup/form-education.html",
+    views: {
+      'form': {
+        templateUrl: 'angular-app/templates/views/signup/education/education-form.html'
+      },
+      'img': {
+        templateUrl: 'angular-app/templates/views/signup/education/education-img.html',
+      }
+    }
   }).state("main.signup_candidate.interests", {
     url: "/interests",
     templateUrl: "angular-app/templates/views/signup/form-interests.html",
   }).state("main.signup_employer.personal", {
     url: "/info",
-    templateUrl: "angular-app/templates/views/signup/personal.html",
+    templateUrl: "angular-app/templates/views/signup/personal/personal-form.html",
   }).state("main.signup_employer.company", {
     url: "/company",
-    templateUrl: "angular-app/templates/views/signup/form-company.html",
-  }).state("main.signup_employer.looking", {
-    url: "/looking",
-    templateUrl: "angular-app/templates/views/signup/form-lookingfor.html",
+    views: {
+      'form': {
+        templateUrl: 'angular-app/templates/views/signup/company/company-form.html'
+      },
+      'img': {
+        templateUrl: 'angular-app/templates/views/signup/company/company-img.html',
+      }
+    }
   }).state("main.candidate_profile", {
     url: "/candidate/:uid",
     templateUrl: "angular-app/templates/candidate_profile.html",

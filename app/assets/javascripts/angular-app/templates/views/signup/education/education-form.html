@@ -1,0 +1,116 @@
+<form id="education-form" name="educationForm" ng-submit="validateAndCreate(educationForm.$valid)"
+      ng-init="setInnerScope(this)" novalidate>
+  <div class="signup form-container col-md-8 col-md-offset-2">
+    <p class="title"> Education </p>
+
+    <p class="subtitle"> Can you please enter the following information about yourself? We will use the information to
+      build your profile and to match you with the jobs that are in your area. </p>
+
+    <div class="signup form-box-cont">
+      <p class="label">School</p>
+
+      <div class="form-group"
+           ng-class="{'has-error': educationForm.school.$invalid && (educationForm.$submitted || educationForm.school.$touched)}">
+        <school-selector placeholder="What is your school name?" ng-model="school" on-select="onSchool"
+                         required></school-selector>
+        <div ng-if=" educationForm.school.$invalid && (educationForm.$submitted || educationForm.school.$touched)"
+             ng-messages="educationForm.school.$error">
+          <div class="help-block" ng-message="required">
+            Please select a school
+          </div>
+          <div class="help-block" ng-message="school">
+            Please select a valid school
+          </div>
+        </div>
+      </div>
+      <p class="label">Major</p>
+
+      <div class="form-group"
+           ng-class="{'has-error': educationForm.major.$invalid && (educationForm.$submitted || educationForm.major.$touched)}">
+        <major-selector placeholder="Major" ng-model="major" on-select="onMajor" required></major-selector>
+        <div ng-if="educationForm.major.$invalid && (educationForm.$submitted || educationForm.major.$touched)"
+             ng-messages="educationForm.major.$error">
+          <div class="help-block" ng-message="required">
+            Please select a major
+          </div>
+          <div class="help-block" ng-message="major">
+            Please select a valid major
+          </div>
+        </div>
+      </div>
+      <p class="label">Degree</p>
+
+      <div class="form-group"
+           ng-class="{'has-error': educationForm.degree.$invalid && (educationForm.$submitted || educationForm.degree.$touched)}">
+        <degree-selector placeholder="Degree" ng-model="degree" on-select="onDegree" required></degree-selector>
+        <div ng-if="educationForm.degree.$invalid && (educationForm.$submitted || educationForm.degree.$touched)"
+             ng-messages="educationForm.degree.$error">
+          <div class="help-block" ng-message="required">
+            Please select a degree
+          </div>
+          <div class="help-block" ng-message="degree">
+            Please select a valid degree
+          </div>
+        </div>
+      </div>
+
+      <p class="label">Country</p>
+
+      <div class="form-group">
+        <country-selector placeholder="School Country" ng-model="schoolCountry"
+                          on-select="onSchoolCountry"></country-selector>
+      </div>
+      <p class="label">State</p>
+
+      <div class="form-group">
+        <state-selector placeholder="School State" ng-model="schoolState" on-select="onSchoolState"
+                        country-id="education.country_id"></state-selector>
+      </div>
+
+      <div ng-class="{'has-error': educationForm.$submitted}">
+        <!--<div class="max-width">-->
+        <!--<span class="signup-label date">From: </span>-->
+        <!--<simpledatepicker no-day="true" ng-model="education.start_date" is-date></simpledatepicker>-->
+        <!--</div>-->
+
+        <!--<div ng-if="educationForm.$submitted && !education.start_date">-->
+        <!--<div class="help-block">-->
+        <!--Please select a start date!-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <div class="max-width margin-t15">
+          <span class="label">Graduation Year</span>
+          <simpledatepicker no-day="true" ng-model="education.end_date"></simpledatepicker>
+        </div>
+
+        <div class="left" ng-if="educationForm.$submitted && !education.end_date"
+             ng-messages="educationForm.$error">
+          <div class="div-100 help-block text-center">
+            Please select a graduation date
+          </div>
+        </div>
+      </div>
+
+      <!--<div class="form-group">-->
+      <!--<div class="max-width margin-t5">-->
+      <!--<span class="signup-label">Is my current education?</span>-->
+      <!--<input-->
+      <!--id="switchEducationSignup"-->
+      <!--checked="false"-->
+      <!--type="checkbox"-->
+      <!--ng-model="isCurrentEducation">-->
+      <!--</div>-->
+      <!--</div>-->
+    </div>
+
+  </div>
+
+
+  <div class="col-xs-12 text-center">
+    <button class="btn btn-signup btn-back margin-lr10" ng-click="backToPersonal()">Back</button>
+    <button type="submit" class="btn btn-signup btn-next margin-lr10">Go to Profile</button>
+  </div>
+
+
+</form>

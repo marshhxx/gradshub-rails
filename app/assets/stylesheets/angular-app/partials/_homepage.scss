@@ -177,12 +177,9 @@ section#home-signup {
   }
 }
 
-.form-row.signup{
+.form-row {
   background-color: $primary-white;
   z-index: 2;
-}
-
-.form-row {
   &.first-child {
     border-top: 0 !important;
     border-top-left-radius: 4px !important;
