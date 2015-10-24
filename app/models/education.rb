@@ -11,7 +11,7 @@ class Education < ActiveRecord::Base
   after_initialize :override_other
   after_update :override_other
 
-  validates_presence_of :start_date, :school_id, :major_id, :degree_id
+  validates_presence_of :end_date, :school_id, :major_id, :degree_id
   validates_uniqueness_of :candidate_id, scope: [:school_id, :major_id, :degree_id,
                                                  :country_id, :state_id],
                           :message => 'Education already exists.'
