@@ -5,14 +5,18 @@ DatePicker = (Utils) ->
     noDay: '=?',
     noMonth: '=?',
     date: '=ngModel',
-    disabled: '=?'
+    disabled: '=?',
+    future: '=?'
   },
   templateUrl: 'angular-app/templates/directives/datepicker.html',
   link: ($scope, $element) ->
     $scope.noDay = $scope.noDay || false;
     $scope.noMonth = $scope.noMonth || false;
     $scope.days = (num for num in [1..31])
-    $scope.years = (num for num in [new Date().getFullYear()..1950])
+    startDate = new Date()
+    if $scope.future
+      startDate = new Date(startDate.getFullYear() + 30, 0, 0, 0, 0, 0, 0)
+    $scope.years = (num for num in [startDate.getFullYear()..1950])
     $scope.months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
                      "November", "December"]
 

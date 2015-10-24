@@ -81,7 +81,7 @@
 
         <div class="max-width margin-t15">
           <span class="label">Graduation Year</span>
-          <simpledatepicker no-day="true" ng-model="education.end_date"></simpledatepicker>
+          <simpledatepicker no-day="true" ng-model="education.end_date" future="true"></simpledatepicker>
         </div>
 
         <div class="left" ng-if="educationForm.$submitted && !education.end_date"
