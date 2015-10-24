@@ -12,16 +12,11 @@ json.employer do
   json.interests @employer.interests
   json.nationalities @employer.nationalities
   json.company do
-    if @employer.employer_company
-      json.company_id   @employer.employer_company.company.id
-      json.name         @employer.employer_company.company.name
-      json.industry     @employer.employer_company.company.industry
-      json.description  @employer.employer_company.description
-      json.state        @employer.employer_company.state
-      json.country      @employer.employer_company.country
-      json.site_url     @employer.employer_company.site_url
-      json.image        @employer.employer_company.image
-    end
+    json.name         @employer.user.company_name
+    json.description  @employer.user.description
+    json.site_url     @employer.user.company_url
+    json.tagline      @employer.user.company_tagline
+    json.logo         @employer.user.company_logo
   end
   json.profile_image @employer.user.profile_image
   json.cover_image @employer.user.cover_image

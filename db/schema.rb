@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150705143428) do
+ActiveRecord::Schema.define(version: 20151024183633) do
 
   create_table "candidate_interests", force: true do |t|
     t.integer "candidate_id"
@@ -55,17 +55,6 @@ ActiveRecord::Schema.define(version: 20150705143428) do
     t.text "personal_life"
   end
 
-  create_table "companies", force: true do |t|
-    t.string  "name"
-    t.string  "industry"
-    t.string  "specialties"
-    t.string  "category"
-    t.integer "state_id"
-    t.integer "country_id"
-    t.string  "size"
-    t.text    "description"
-  end
-
   create_table "countries", force: true do |t|
     t.string "name",     null: false
     t.string "iso_code", null: false
@@ -90,15 +79,6 @@ ActiveRecord::Schema.define(version: 20150705143428) do
     t.date    "end_date"
   end
 
-  create_table "employer_company", force: true do |t|
-    t.integer "company_id",  null: false
-    t.integer "country_id"
-    t.integer "state_id"
-    t.text    "description"
-    t.string  "site_url"
-    t.string  "image"
-  end
-
   create_table "employer_interests", force: true do |t|
     t.integer "employer_id"
     t.integer "interest_id"
@@ -121,8 +101,12 @@ ActiveRecord::Schema.define(version: 20150705143428) do
   add_index "employer_skills", ["employer_id", "skill_id"], name: "index_employer_skills_on_employer_id_and_skill_id", unique: true, using: :btree
 
   create_table "employers", force: true do |t|
-    t.integer "employer_company_id"
-    t.string  "job_title"
+    t.string "job_title"
+    t.string "company_name"
+    t.string "company_logo"
+    t.string "company_tagline"
+    t.string "company_url"
+    t.string "description"
   end
 
   create_table "experiences", force: true do |t|
