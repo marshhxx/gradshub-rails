@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
     authenticate
   end
 
+  # generate token
   def authenticate
     self.token = Session.new(self.uid).generate_token
   end
