@@ -33,7 +33,6 @@ GradshubRails::Application.routes.draw do
     # We are going to list our resources here
       devise_for :users, :only => []
       resources :employers, :only => [:show, :create, :update], concerns: [:skillable, :interestable, :password_changeable] do
-        resource :company, :only => [:show, :create, :update]
         resources :nationalities, :only => [:index, :create, :show, :destroy]
       end
       resources :candidates, :only => [:show, :create, :update], concerns: [:skillable, :interestable, :password_changeable] do

@@ -7,8 +7,6 @@ json.users @users do |user|
   json.tag user.user.tag
   json.profile_image user.user.profile_image
   json.gender user.user.gender
-  if user.current_position
-    json.current_position user.current_position.job_title
-    json.company user.current_position.company_name
-  end
+  json.current_position user.user.job_title
+  json.company user.user.company_name
 end

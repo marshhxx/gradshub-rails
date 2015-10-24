@@ -1,7 +1,6 @@
 class Employer < ActiveRecord::Base
   has_one :user, as: :meta, dependent: :destroy
   accepts_nested_attributes_for :user
-  belongs_to :employer_company
   # nationalities
   has_many :employer_nationalities
   has_many :nationalities, :through => :employer_nationalities
@@ -40,17 +39,6 @@ class Employer < ActiveRecord::Base
       employer.save!
     end
     user.meta
-  end
-
-  # Transient property for displaying the latest position while searching.
-  def current_position
-    @current_position ||= calculate_position
-  end
-
-  def calculate_position
-    title = self.job_title ? self.job_title : ''
-    company_name = self.employer_company ? self.employer_company.company.name : ''
-    OpenStruct.new({:job_title => title, :company_name => company_name})
   end
 
   private
