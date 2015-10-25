@@ -4,19 +4,30 @@
 /* Sign up process */
 
 .signup {
+  .row {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    min-height: 100vh;
+  }
+  .img-wrapper {
+    display: none;
+  }
   .form-container {
     margin-top: 51px;
-    height: 600px;
+    margin-bottom: 40px;
+    padding: 0px 15px;
   }
   .title {
     color: $primary-turquoise;
-    font: 32px Montserrat-Regular;
-    margin-top: 60px;
+    font: 24px Montserrat-Light;
+    margin-top: 80px;
   }
   .subtitle {
     color: $text-regular;
     font: 14px Lato-Light;
-    margin-top: 15px;
+    margin-top: 10px;
   }
   .label {
     color: $text-bold;
@@ -26,11 +37,12 @@
   }
   .form-box-cont {
     padding: 0px;
-    margin-top: 15px;
+    margin-top: 20px;
   }
   .background-img {
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    position: absolute;
     @extend %bg-image;
     padding: 0;
     &.personal {
@@ -38,20 +50,29 @@
     }
     &.education {
       background-color: $primary-dark-blue;
-
     }
     &.company {
       background-color: $primary-light-blue;
-
     }
   }
 
   .form-control {
     height: 32px !important;
     line-height: 32px !important;
-    &:focus {
-    border-color: $primary-turquoise;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
     box-shadow: none !important;
+    &:hover {
+      border-color: $border-gray-focus !important;
+    }
+    &:focus {
+      border-color: $primary-turquoise !important;
+    }
+    select:focus {
+      border-color: $primary-turquoise !important;
+    }
+    &.w100 {
+      width: 100px;
     }
   }
 
@@ -59,7 +80,6 @@
     height: 32px;
     line-height: 32px !important;
   }
-
 }
 
 .form-group {
@@ -73,95 +93,101 @@
   }
 }
 
-
-
-/** Signup **/
-
-.signup .subtitle-container {
-  padding: 0 30px;
-}
-
-.signup-label.date {
-  width: 100px;
-}
-
 .btn-signup {
   width: 115px;
   height: 40px;
+  margin: 0px 10px 50px 10px;
   @include font-style('Lato-Regular', 14px, $primary-white);
   &.btn-next {
     background-color: $primary-dark-blue;
-    &:hover{
+    &:hover {
       color: $primary-white;
     }
   }
   &.btn-back {
     background-color: $primary-blue;
-    &:hover{
+    &:hover {
       color: $primary-white;
     }
   }
-  &:focus{
+  &:focus {
     color: $primary-white !important;
   }
 }
 
-.btn-form.double {
-  width: 150px;
-  margin-top: 40px;
+/*==========================> Responsive Design <=========================*/
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  /* Styles */
 }
 
-.btn-primary-70 {
-  width: 75px;
-  background-color: rgb(255, 255, 255) !important;
-  border-color: #CCCCCC !important;
-  color: #555555 !important;
-  padding: 2px !important;
-  font-size: 13px !important;
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width: 321px) {
+  /* Styles */
 }
 
-.btn-primary-70 :hover {
-  background-color: rgb(255, 255, 255) !important;
-  border-color: rgb(255, 255, 255) !important;
-  color: #555555 !important;
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width: 320px) {
+  /* Styles */
 }
 
-.btn-primary-120 {
-  width: 120px;
-  background-color: rgb(255, 255, 255) !important;
-  border-color: #CCCCCC !important;
-  color: #555555 !important;
-  padding: 2px !important;
-  font-size: 13px !important;
-}
-
-.btn-primary-120 :hover {
-  background-color: rgb(255, 255, 255) !important;
-  border-color: rgb(255, 255, 255) !important;
-  color: #555555 !important;
-}
-
-.dropdown-menu-gender {
-  max-height: 140px;
-  z-index: 999;
-  font: 14px Lato-Regular !important;
-  cursor: pointer;
-}
-
-.caret {
-  margin-left: 5px !important;
-}
-
-/* Extra Small Devices, Phones */
-@media only screen and (min-width: 494px) {
-
+/*Media Query Mobile General*/
+@media (min-width: 650px) {
 
 }
 
-/* Small Devices, Tablets */
-@media only screen and (min-width: 768px) {
-
-  .signup .signup-form {
-    padding: 20px 20px 20px 20px;
+/* Tablets (portrait) */
+@media only screen and (min-device-width: 768px) {
+  .signup {
+    .title {
+      font: 32px Montserrat-Light;
+      margin-top: 130px;
+    }
   }
 }
+
+/* Tablets (landscape) */
+@media only screen and (min-device-width: 1024px) {
+  .signup {
+    .img-wrapper {
+      display: block;
+    }
+    .title {
+      margin-top: 70px;
+    }
+  }
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+
+}
+
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+  /* Styles */
+}
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  /* Styles */
+}
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width: 1224px) {
+
+}
+
+/* Large screens ----------- */
+@media only screen and (min-width: 1824px) {
+  /* Styles */
+}
+
+/* iPhone 4 ----------- */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (min-device-pixel-ratio: 1.5) {
+  /* Styles */
+}
+
+/*==========================> End Responsive Design <=========================*/
