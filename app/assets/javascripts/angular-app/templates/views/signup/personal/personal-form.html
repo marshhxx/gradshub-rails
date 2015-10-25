@@ -2,8 +2,7 @@
   <div class="signup form-container col-md-8 col-md-offset-2">
     <p class="title"> Personal </p>
 
-    <p class="subtitle"> Can you please enter the following information about yourself? We will use the information to
-      build your profile and to match you with the jobs that are in your area. </p>
+    <p class="subtitle"> Tell us about yourself. </p>
 
     <div class="signup form-box-cont">
       <p class="label">Country</p>
@@ -15,10 +14,10 @@
         <div ng-if="personalForm.country.$invalid && (personalForm.$submitted || personalForm.country.$touched)"
              ng-messages="personalForm.country.$error">
           <div class="help-block" ng-message="required">
-            Please select a country!
+            Select a country!
           </div>
           <div class="help-block" ng-message="country">
-            Please select a valid country!
+            Select a valid country
           </div>
         </div>
       </div>
@@ -31,10 +30,10 @@
         <div ng-if="personalForm.state.$invalid && (personalForm.$submitted || personalForm.state.$touched)"
              ng-messages="personalForm.state.$error">
           <div class="help-block" ng-message="required">
-            Please select a state!
+            Select a state
           </div>
           <div class="help-block" ng-message="state">
-            Please select a valid state!
+            Select a valid state
           </div>
         </div>
       </div>
@@ -44,14 +43,14 @@
         <simpledatepicker ng-model="user.birth" is-date></simpledatepicker>
         <div ng-if="personalForm.$submitted && !user.birth">
           <div class="help-block">
-            Please select a birth date!
+            Select a birth date
           </div>
         </div>
       </div>
       <p class="label">Gender</p>
 
       <div class="form-group" ng-class="{'has-error': !user.gender && personalForm.$submitted}">
-        <select ng-model="user.gender" name="gender" class="form-control btn button-primary w120 input-sm" required>
+        <select ng-model="user.gender" name="gender" class="form-control input-sm" required>
           <option selected disabled value="">Select Gender</option>
           <option value="{{gender | lowercase}}" ng-repeat="gender in genders"> {{gender}}</option>
         </select>
@@ -59,7 +58,7 @@
         <div ng-if="personalForm.gender.$invalid && (personalForm.$submitted || personalForm.gender.$touched)"
              ng-messages="personalForm.gender.$error">
           <div class="help-block" ng-message="required">
-            Please select a gender!
+            Select a gender
           </div>
         </div>
       </div>
@@ -73,10 +72,10 @@
             ng-if="personalForm.nationality.$invalid && (personalForm.$submitted || personalForm.nationality.$touched)"
             ng-messages="personalForm.nationality.$error">
           <div class="help-block" ng-message="required">
-            Please select a nationality!
+            Select a nationality
           </div>
           <div class="help-block" ng-message="nationality">
-            Please select a valid nationality!
+            Select a valid nationality
           </div>
         </div>
       </div>
@@ -89,7 +88,7 @@
   </div>
 
   <div class="col-xs-12 text-center">
-    <button type="submit" class="btn btn-signup btn-next margin-lr10">Next</button>
+    <button type="submit" class="btn btn-signup btn-next">Next</button>
   </div>
 
 </form>
