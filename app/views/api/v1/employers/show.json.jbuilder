@@ -12,11 +12,11 @@ json.employer do
   json.interests @employer.interests
   json.nationalities @employer.nationalities
   json.company do
-    json.name         @employer.user.company_name
-    json.description  @employer.user.description
-    json.site_url     @employer.user.company_url
-    json.tagline      @employer.user.company_tagline
-    json.logo         @employer.user.company_logo
+    json.name         @employer.user.meta.company_name
+    json.description  @employer.user.meta.description
+    json.site_url     @employer.user.meta.company_url
+    json.tagline      @employer.user.meta.company_tagline
+    json.logo         @employer.user.meta.company_logo
   end
   json.profile_image @employer.user.profile_image
   json.cover_image @employer.user.cover_image
