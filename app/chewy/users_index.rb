@@ -42,8 +42,8 @@ class UsersIndex < Chewy::Index
     field :skills, value: -> { skills.map(&:name) }
     field :interests, value: -> { interests.map(&:name) }
     # company
-    field :company_name, value: -> { user.company_name }
-    field :company_description, boost: 0.5, value: -> { user.description }
+    field :company_name, value: -> { user.meta.company_name }
+    field :company_description, boost: 0.5, value: -> { user.meta.description }
   end
 
 end
