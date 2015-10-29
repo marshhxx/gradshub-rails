@@ -59,7 +59,6 @@ GradshubRails::Application.routes.draw do
       resources :nationalities, :only => [:index, :show]
       resources :skills, :only => [:index, :create, :show]
       resources :interests, :only => [:index, :create, :show]
-      resources :communication, :only => [:create]
       resources :companies, :only => [:index, :create]
       resource :image, :only => [:upload] do
         post :upload, on: :member

@@ -1,14 +1,11 @@
 angular.module('gradshub-ng.controllers').controller('candidateProfileController',
-        ['$scope', '$rootScope', '$http', '$upload', '$location', '$anchorScroll','sessionService', '$state', '$stateParams', 
-        'Country', 'State', 'Candidate', 'Employer', 'Skill', 'Interest', 'School', 'Major', 'Degree', 'Education', 
-        'CandidateSkills', 'CandidateInterests', 'CandidateLanguages', 'Utils', 'Experience', 'alertService', 'modalService', 
-        'ALERT_CONSTANTS', 'errors', 'eventTracker',
+        ['$scope', '$rootScope','sessionService', '$state', '$stateParams', 'Candidate', 'Employer', 'Skill', 'Interest',
+        'CandidateSkills', 'CandidateInterests', 'CandidateLanguages', 'Utils', 'alertService', 'modalService',
+        'ALERT_CONSTANTS', 'errors', 'eventTracker', 'presenceService',
 
-
-        function ($scope, $rootScope, $httpProvider, $upload, $location, $anchorScroll, sessionService, $state, $stateParams, Country,
-                  State, Candidate, Employer, Skill, Interest, School, Major, Degree, Education, CandidateSkills,
-                  CandidateInterests, CandidateLanguages, Utils, Experience, alertService, modalService, ALERT_CONSTANTS, errors, 
-                  eventTracker) {
+        function ($scope, $rootScope, sessionService, $state, $stateParams, Candidate, Employer, Skill, Interest,
+                  CandidateSkills, CandidateInterests, CandidateLanguages, Utils, alertService, modalService,
+                  ALERT_CONSTANTS, errors, eventTracker, presenceService) {
 
             $scope.defaultSummary = "Please add your career interests, skills, accomplishments in a concise 2-3 sentences.  The summary needs to grab the interest of the hiring manager. It will help to find the right job for you! ";
             $scope.defaultSkills = "Please list 3-5 skills that align with your desired role.";
@@ -301,7 +298,6 @@ angular.module('gradshub-ng.controllers').controller('candidateProfileController
                 if (!valid) return;
                 $scope.addEducationEnable = false;
                 var education = getEducation($scope.education); // Create Education Resource
-                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 education.$save(
                     function (response) {
                         addAndSort($scope.user.educations, response.education, Utils.sortByStartDate);

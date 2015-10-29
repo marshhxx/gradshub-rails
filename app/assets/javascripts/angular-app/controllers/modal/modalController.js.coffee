@@ -7,7 +7,7 @@ ModalController = ($scope, $modalInstance, message) ->
 	$scope.cancel = () ->
 		$modalInstance.dismiss('cancel');
 
-#ModalController.$inject = ['$scope']
+ModalController.$inject = ['$scope', '$modalInstance', 'message']
 
 angular
 	.module('gradshub-ng.controllers')

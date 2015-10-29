@@ -33,6 +33,9 @@
 //= require angulartics
 //= require angulartics-google-analytics
 
+//= require pubnub-angular
+//= require pubnub-webrtc/index
+
 //= require angular-rails-templates
 //= require bootstrap-sass-official/assets/javascripts/bootstrap
 //= require bootstrap-sass-official/assets/javascripts/bootstrap-sprockets
