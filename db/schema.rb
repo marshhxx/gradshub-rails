@@ -106,7 +106,8 @@ ActiveRecord::Schema.define(version: 20151024183633) do
     t.string "company_logo"
     t.string "company_tagline"
     t.string "company_url"
-    t.string "description"
+    t.string "company_industry"
+    t.string "company_description"
   end
 
   create_table "experiences", force: true do |t|
