@@ -15,7 +15,7 @@
         <span class="icon-bar"></span>
       </button>
       <!-- <a class="navbar-brand topnav" ui-sref="main.page">G</a> -->
-      <div class="topnav nav-logo" ui-sref="main.page"></div>
+      <div class="topnav nav-logo" ng-class="{ imago: logged }" ui-sref="main.page"></div>
 
       <div class="search-container">
         <form ng-submit="onSearchSubmit()">

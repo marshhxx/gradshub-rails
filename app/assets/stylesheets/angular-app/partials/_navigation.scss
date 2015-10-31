@@ -19,10 +19,15 @@ $tl: 0.4s; // transition length
 
 .nav-logo {
   background: url('logos/logotype-white.svg') no-repeat center center;
-  background-size: 75px;
+  background-size: 95px;
   float: left;
   height: 50px;
-  width: 75px;
+  width: 100px;
+  cursor: pointer;
+}
+
+.imago {
+  background: url('logos/imagotype.svg') no-repeat center center;
 }
 
 .navbar-default .navbar-nav > li > a {
@@ -144,7 +149,7 @@ $tl: 0.4s; // transition length
 
 .user-menu {
   label {
-    color: $primary-turquoise !important;
+    color: $primary-white !important;
     font: 14px Montserrat-Bold;
     padding-top: 15px;
     padding-bottom: 15px;
