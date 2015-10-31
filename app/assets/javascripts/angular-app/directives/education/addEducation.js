@@ -74,12 +74,6 @@ angular.module('gradshub-ng.directives').directive('addEducation', function (Uti
                 scope.education = [];
                 scope.onCancelClick();
             };
-
-            scope.$watchGroup(['education.start_date', 'education.end_date'], function () {
-                var valid = Date.parse(scope.education.end_date) >= Date.parse(scope.education.start_date);
-                valid = scope.education.end_date == null || valid;
-                scope.newEducationForm.$setValidity('validDates', valid)
-            });
         }
     };
 });

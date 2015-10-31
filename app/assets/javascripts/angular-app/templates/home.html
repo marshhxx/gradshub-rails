@@ -27,7 +27,7 @@
                   </div>
                 </div>
 
-                <form name="homeForm" ng-submit="registerUser(homeForm.$valid)" novalidate>
+                <form name="homeForm" ng-submit="registerUser(homeForm.$valid)" novalidate autocomplete="off">
                   <div class="form-row first-child childs"
                        ng-class="{'has-error': homeForm.name.$invalid && (homeForm.$submitted || homeForm.name.$dirty)}">
                     <input type="text" name="name" class="signup-input" ng-model="name"
@@ -258,9 +258,9 @@
     <div class="container-bottom">
       <div class="container-txt col-md-6">
         <div class="col-xs-12">
-        <div class="col-md-2 left">
-          <div class="row-img url-img-employer"></div>
-        </div>
+          <div class="col-md-2 left">
+            <div class="row-img url-img-employer"></div>
+          </div>
 
           <div class="wrapper col-xs-8">
             <p class="title">CREATE YOUR PROFILE</p>

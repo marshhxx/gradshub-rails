@@ -79,7 +79,15 @@
     templateUrl: "angular-app/templates/views/signup/form-interests.html",
   }).state("main.signup_employer.personal", {
     url: "/info",
-    templateUrl: "angular-app/templates/views/signup/personal/personal-form.html",
+    parent: 'main.signup_employer',
+    views: {
+      'form': {
+        templateUrl: 'angular-app/templates/views/signup/personal/personal-form.html'
+      },
+      'img': {
+        templateUrl: 'angular-app/templates/views/signup/personal/personal-img.html',
+      }
+    }
   }).state("main.signup_employer.company", {
     url: "/company",
     views: {

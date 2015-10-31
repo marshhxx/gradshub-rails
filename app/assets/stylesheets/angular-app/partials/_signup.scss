@@ -76,7 +76,7 @@
     }
   }
 
-  input::-webkit-input-placeholder {
+  input::-webkit-input-placeholder, textarea::-webkit-input-placeholder{
     height: 32px;
     line-height: 32px !important;
   }
@@ -154,7 +154,7 @@
       display: block;
     }
     .title {
-      margin-top: 70px;
+      margin-top: 80px;
     }
   }
 }
