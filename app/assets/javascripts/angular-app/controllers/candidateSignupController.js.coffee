@@ -93,7 +93,7 @@ angular
         ).catch(alertService.defaultErrorCallback)
 
       saveEducation = ->
-        $scope.education.$save()
+        angular.copy($scope.education).$save()
 
       saveCandidateNationality = ->
         $scope.candidateNationality.$save() if $scope.candidateNationality.nationality_id

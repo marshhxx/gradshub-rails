@@ -72,7 +72,7 @@
            ng-class="{'has-error': educationForm.datepicker.$invalid && educationForm.$submitted}">
         <span class="label">Graduation Date</span>
         <simpledatepicker no-day="true" ng-model="education.end_date" future="true"
-                          name="datepicker"></simpledatepicker>
+                          name="'datepicker'"></simpledatepicker>
       </div>
 
       <div class="help-block" ng-messages="educationForm.datepicker.$error"
@@ -87,6 +87,11 @@
   <div class="col-xs-12 text-center">
     <button class="btn btn-signup btn-back" ng-click="backToPersonal()">Back</button>
     <button type="submit" class="btn btn-signup btn-next">Go to Profile</button>
+  </div>
+
+  <div class="col-xs-12 text-center">
+    <img src="/assets/signup/ic_circle_off.svg"/>
+    <img src="/assets/signup/ic_circle_on.svg"/>
   </div>
 
 </form>

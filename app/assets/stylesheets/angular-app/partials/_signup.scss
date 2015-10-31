@@ -96,7 +96,7 @@
 .btn-signup {
   width: 115px;
   height: 40px;
-  margin: 0px 10px 50px 10px;
+  margin: 0px 10px 25px 10px;
   @include font-style('Lato-Regular', 14px, $primary-white);
   &.btn-next {
     background-color: $primary-dark-blue;
