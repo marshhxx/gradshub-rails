@@ -1,4 +1,4 @@
-<form id="personal-form" name="personalForm" ng-submit="validatePersonal(personalForm.$valid)" novalidate>
+<form id="personal-form" name="personalForm" ng-submit="validatePersonal(personalForm.$valid)" novalidate autocomplete="off">
   <div class="signup form-container col-md-8 col-md-offset-2">
     <p class="title"> Personal </p>
 
@@ -39,14 +39,14 @@
       </div>
       <p class="label">Birthday</p>
 
-      <div class="form-group" ng-class="{'has-error': !user.birth && personalForm.$submitted}">
-        <simpledatepicker ng-model="user.birth" is-date></simpledatepicker>
-        <div ng-if="personalForm.$submitted && !user.birth">
-          <div class="help-block">
-            Select a birth date
-          </div>
-        </div>
+      <div class="form-group" ng-class="{'has-error': personalForm.datepicker.$invalid && personalForm.$submitted}">
+        <simpledatepicker ng-model="user.birth" name="datepicker"></simpledatepicker>
       </div>
+      <div class="help-block" ng-messages="personalForm.datepicker.$error"
+           ng-if="personalForm.datepicker.$invalid && personalForm.$submitted">
+        <p ng-message="required">Select a birth date</p>
+      </div>
+
       <p class="label">Gender</p>
 
       <div class="form-group" ng-class="{'has-error': !user.gender && personalForm.$submitted}">

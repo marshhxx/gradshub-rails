@@ -59,9 +59,6 @@ angular
         $scope.validatePersonal = (valid) ->
           $state.go 'main.signup_employer.company' if valid
 
-        $scope.validateCompany = (valid) ->
-          #$state.go 'main.signup_employer.looking' if valid
-
         $scope.backToPersonal = ->
           $state.go 'main.signup_employer.personal'
 
@@ -69,7 +66,6 @@ angular
           $state.go 'main.signup_employer.company'
 
         $scope.validateAndCreate = validateAndCreate
-        $scope.toggleAddCompany = toggleAddCompany
 
         initUser()
 
@@ -100,15 +96,12 @@ angular
 
       createCompany = ->
         deferred = $q.defer()
-        if !$scope.addCompanyEnabled
-          deferred.resolve({company: {id: $scope.employerCompany.company_id}})
-        else
-          $scope.newCompany.$save().then(
-            (company) ->
+        $scope.newCompany.$save().then(
+          (company) ->
               deferred.resolve({company: {id: company.company.id}})
           ).catch(
             (error) ->
-              deferred.reject(error)
+             deferred.reject(error)
           )
         deferred.promise
 
@@ -129,12 +122,6 @@ angular
 
       saveUser = ->
         $scope.user.$update()
-
-      toggleAddCompany = ->
-        if ($scope.addCompanyEnabled)
-          $scope.addCompanyEnabled = false
-        else
-          $scope.addCompanyEnabled = true
 
       init()
   ])

@@ -172,7 +172,6 @@ ActiveRecord::Schema.define(version: 20151024142658) do
     t.string   "meta_type"
     t.integer  "country_id"
     t.integer  "state_id"
-    t.string   "auth_token",             default: ""
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
