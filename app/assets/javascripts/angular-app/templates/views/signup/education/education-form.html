@@ -1,5 +1,5 @@
 <form id="education-form" name="educationForm" ng-submit="validateAndCreate(educationForm.$valid)"
-      ng-init="setInnerScope(this)" novalidate>
+      ng-init="setInnerScope(this)" novalidate autocomplete="off">
   <div class="signup form-container col-md-8 col-md-offset-2">
     <p class="title"> Education </p>
 
@@ -68,19 +68,18 @@
                         country-id="education.country_id"></state-selector>
       </div>
 
-      <div ng-class="{'has-error': educationForm.$submitted}">
-        <div class="max-width margin-t15">
-          <span class="label">Graduation Date</span>
-          <simpledatepicker no-day="true" ng-model="education.end_date" future="true"></simpledatepicker>
-        </div>
-
-        <div class="left" ng-if="educationForm.$submitted && !education.end_date"
-             ng-messages="educationForm.$error">
-          <div class="div-100 help-block text-center">
-            Select a graduation date
-          </div>
-        </div>
+      <div class="max-width margin-t15"
+           ng-class="{'has-error': educationForm.datepicker.$invalid && educationForm.$submitted}">
+        <span class="label">Graduation Date</span>
+        <simpledatepicker no-day="true" ng-model="education.end_date" future="true"
+                          name="datepicker"></simpledatepicker>
       </div>
+
+      <div class="help-block" ng-messages="educationForm.datepicker.$error"
+           ng-if="educationForm.datepicker.$invalid && educationForm.$submitted">
+        <p ng-message="required">Select a graduation date</p>
+      </div>
+
     </div>
 
   </div>
