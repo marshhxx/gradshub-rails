@@ -1,4 +1,4 @@
-<input class="hidden" ng-model="date" name="datepicker" required/>
+<input class="hidden" ng-model="date" name=“{{name()}}” required/>
 
 <div ng-show="!noDay" class="btn-group">
   <select ng-model="dateDay" ng-change="refreshDate()" name="day" class="form-control input-sm" ng-disabled="disabled"

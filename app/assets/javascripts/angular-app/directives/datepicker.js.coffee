@@ -7,6 +7,7 @@ DatePicker = (Utils) ->
     date: '=ngModel',
     disabled: '=?',
     future: '=?',
+    name: '&'
   },
   templateUrl: 'angular-app/templates/directives/datepicker.html',
   link: ($scope, $element) ->
