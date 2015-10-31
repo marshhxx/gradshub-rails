@@ -2,7 +2,7 @@ class ModifyCompany < ActiveRecord::Migration
   def change
 
     change_table :employers do |t|
-      t.string :company_name, :company_logo, :company_tagline, :company_url, :description
+      t.string :company_name, :company_logo, :company_tagline, :company_url, :company_industry, :company_description
     end
 
     remove_belongs_to :employers, :employer_company
