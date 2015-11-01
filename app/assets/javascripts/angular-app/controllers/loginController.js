@@ -1,12 +1,13 @@
 angular.module('gradshub-ng.controllers').controller('loginController',
-  ['$scope', '$state', 'sessionService', 'alertService', '$sce', 'eventTracker',
-    function ($scope, $state, sessionService, alertService, $sce, eventTracker) {
+  ['$scope', '$state', 'sessionService', 'alertService', '$sce', 'eventTracker', 'navbarService',
+    function ($scope, $state, sessionService, alertService, $sce, eventTracker, navbarService) {
       var randomLogin = function () {
         var images = ['one', 'other'];
         return images[Math.floor((Math.random() * 2) + 1) - 1];
       };
 
       $scope.randomPhoto = randomLogin();
+      navbarService.setOptions($state.current.data.navOptions) // Enable Navbar Options
 
             $scope.login = function (isValid) {
                 if (isValid) {

@@ -1,39 +1,37 @@
 /*** Start Header ***/
 
-header {
+section#home-signup {
   width: 100%;
   height: auto;
-  position: relative;
+  overflow: hidden;
   text-align: center;
-  margin-top: 50px;
   @extend %bg-image;
   background-image: url('homepage/home-background.png');
+  background-attachment: fixed;
+  margin-top: 50px;
+  #top{
+    height: 100%;
+  }
+}
+
+.center-align {
+   padding: 50px 0;
 }
 
 .header-signup {
   color: $primary-white;
   margin: auto;
-  padding: 50px 0;
   width: 100%;
 
-  .home-page-logo {
-    font-family: Montserrat-Bold, Georgia, "Times New Roman", Times, serif;
-    font-size: 3.5em;
-    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
-    background: url(logos/logotype-white.final.svg) no-repeat center center;
-    width: 250px;
-    height: 50px;
-    margin: 0 auto;
-  }
-
   .subtitle {
-    font-family: Montserrat-Light, Georgia, "Times New Roman", Times, serif;
-    font-size: 1.3em;
-    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+    font-family: Lato-Light, Georgia, "Times New Roman", Times, serif;
+    font-size: 1.25em;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+    margin-top: 10px;
   }
 
   .wrapper {
-    width: 300px;
+    width: 290px;
     right: 0;
     left: 0;
     margin: auto;
@@ -41,7 +39,7 @@ header {
 
   .buttons {
     width: 100%;
-    margin-top: 30px;
+    margin-top: 25px;
     overflow: hidden;
     .btn-left {
       padding-right: 5px;
@@ -58,19 +56,6 @@ header {
   }
 
   .form-btn {
-    width: 100%;
-    height: 47px;
-    background-color: $primary-blue;
-    color: $primary-white;
-    font-size: 16px;
-    font-family: "Lato-Regular";
-    border: 1px solid $primary-blue;
-    border-radius: 4px !important;
-    padding: 10px 30px;
-
-    &:hover,
-    &:focus,
-    &:active,
     &.dropdown-toggle.form-btn {
       background-color: $primary-blue;
       color: $primary-white;
@@ -79,7 +64,7 @@ header {
     &.linkedin {
       background-color: $secondary-linkedin;
       border: 1px solid $secondary-linkedin;
-      margin-top: 10px;
+      margin-top: 15px;
 
       &.linkedin > p {
         color: $primary-white;
@@ -101,23 +86,24 @@ header {
 
 .type-btn {
   width: 100%;
-  font: 16px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+  font: 1.1em Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
   color: $primary-white;
-  padding: 12px 0;
+  padding: 13px 0;
   margin-bottom: 15px;
-  border: 3px solid $primary-white;
+  border: 1px solid $primary-white;
   border-radius: 4px !important;
   background-color: transparent;
   display: inline-block;
   cursor: pointer;
   text-align: center;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
   &.white {
     background-color: $primary-white;
     color: $primary-turquoise;
     border-color: $primary-white;
   }
   &.large {
-    width: 200px;
+    width: 170px;
     font-size: 20px;
     padding: 20px 0;
     margin-bottom: 0px !important;
@@ -126,37 +112,16 @@ header {
 
 .type-btn-active {
   background-color: $primary-turquoise;
-  border: 3px solid $primary-turquoise;
+  border: 1px solid $primary-turquoise;
   color: $primary-white;
   text-decoration: none;
   cursor: default;
-}
-
-/** Carousel **/
-.home-carousel-container {
-  display: none;
-  position: relative;
-  width: 100%;
-}
-
-/* Removes carousel buttons */
-.right.carousel-control, .left.carousel-control {
-  display: none;
-}
-
-.carousel-indicators li {
-  display: none;
+  text-shadow: none;
 }
 
 /*** End Header ***/
 
 /*** Start Sign Up form ***/
-
-section#home-signup {
-  width: 100%;
-  position: relative;
-  z-index: 2;
-}
 
 .signup-input {
   width: 100%;
@@ -238,7 +203,7 @@ section#home-signup {
   }
 
   .subheading {
-    font-family: Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+    font-family: Lato-Light, Georgia, "Times New Roman", Times, serif;
     font-size: 1.4em;
     color: $primary-white;
     margin-top: 10px;
@@ -349,6 +314,14 @@ section#section-how-it-works-employer {
   &.align-center {
     right: 0px;
   }
+  .phone-image {
+    width: 100%;
+    height: 260px;
+    background-image: url("homepage/cellphone_h.png");
+    background-size: 520px auto;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
 }
 
 .container-txt {
@@ -356,10 +329,10 @@ section#section-how-it-works-employer {
   padding: 50px 0px;
   overflow: hidden;
   .row-img {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     float: right;
-    background-size: 40px;
+    background-size: 35px;
     background-repeat: no-repeat;
     display: inline-block; // So that it behaves like the img element
   }
@@ -374,11 +347,11 @@ section#section-how-it-works-employer {
     margin-bottom: 40px;
   }
   .title {
-    font: 18px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+    font: 1.4em Montserrat-Light, Georgia, "Times New Roman", Times, serif;
     float: left;
   }
   .detail {
-    font: 16px Lato-Light, Georgia, "Times New Roman", Times, serif;
+    font: 1.2em Lato-Light, Georgia, "Times New Roman", Times, serif;
     float: left;
     margin-top: 7px;
   }
@@ -394,7 +367,7 @@ section#section-how-it-works-employer {
     width: 100%;
   }
   .img {
-    height: 330px;
+    height: 300px;
     background-size: cover !important;
     &.testimonial-1 {
       background: url('homepage/testimonials-1.jpg') no-repeat center center;
@@ -408,7 +381,7 @@ section#section-how-it-works-employer {
   }
   .cont {
     padding: 0px 20px;
-    height: 330px;
+    height: 300px;
   }
   .parent-wrapper {
     height: 100%;
@@ -422,20 +395,20 @@ section#section-how-it-works-employer {
   }
   .title {
     font-family: 'Montserrat-Regular', Georgia, "Times New Roman", Times, serif;
-    font-size: 22px;
+    font-size: 1.4em;
     color: $text-title;
     text-transform: uppercase;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
   }
   .subtitle {
-    font-family: 'Lato-Regular', Georgia, "Times New Roman", Times, serif;
-    font-size: 18px;
+    font-family: 'Lato-Light', Georgia, "Times New Roman", Times, serif;
+    font-size: 1.15em;
     color: $text-regular;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
   }
   .txt {
     font-family: 'Lato-Light-Italic', Georgia, "Times New Roman", Times, serif;
-    font-size: 1.2em;
+    font-size: 1.15em;
     color: $text-regular;
   }
 }
@@ -461,6 +434,23 @@ section#section-how-it-works-employer {
 
 /*Media Query Mobile General*/
 @media (min-width: 650px) {
+
+  section#home-signup {
+    height: 100%;
+  }
+
+  .center-align {
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .header-signup {
+    .wrapper {
+      width: 290px;
+    }
+  }
 
 }
 
@@ -489,36 +479,20 @@ section#section-how-it-works-employer {
 /* Desktops and laptops ----------- */
 @media only screen and (min-width: 1224px) {
 
-  header {
-    background: none;
-  }
-
-  section#home-signup {
-    position: absolute;
-  }
-
-  .header-signup {
-    padding: 70px 0;
-  }
-
   /* Section Title */
   .section-title {
-    height: 350px;
+    height: 280px;
     position: relative;
   }
 
   .section-container {
     & .heading {
-      font-size: 4.0em;
+      font-size: 3.8em;
     }
 
     & .subheading {
       font-size: 1.5em;
     }
-  }
-
-  .home-carousel-container {
-    display: block;
   }
 
   /* Section Features */
