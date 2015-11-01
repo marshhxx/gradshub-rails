@@ -118,12 +118,12 @@
 }
 
 html {
-  height: 100%;
+ // height: 100%;
 }
 
 body {
-  min-height: 100% !important;
-  height: 100%;
+  height: 100vh;
+  min-height: 100vh !important;
   overflow-x: hidden !important;
   -webkit-overflow-scrolling: touch;
   -webkit-tap-highlight-color: transparent;
@@ -181,6 +181,12 @@ select {
   }
 }
 
+//form {
+//  padding: 0px !important;
+//  margin: 0px !important;
+//  overflow: hidden;
+//}
+
   .custom-placeholder {
     color: #aaa;
     font-size: 13px !important;
@@ -237,9 +243,6 @@ select {
     margin-left: 5px;
   }
 
-  .margin-r5 {
-    margin-right: 5px;
-  }
 
   .margin-l10 {
     margin-left: 10px;
@@ -267,14 +270,6 @@ select {
 
   .margin-t5 {
     margin-top: 5px;
-  }
-
-  .margin-t10 {
-    margin-top: 10px;
-  }
-
-  .margin-t15 {
-    margin-top: 15px;
   }
 
   .margin-t20 {
@@ -339,20 +334,6 @@ select {
     text-align: right;
   }
 
-  .align-vertical {
-    display: inherit;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  .align-vertical-inverse {
-    display: inherit;
-    position: relative;
-    top: 50%;
-    transform: translateY(50%);
-  }
-
   ::-webkit-input-placeholder {
     font: 13px Lato-Regular;
   }
@@ -370,32 +351,6 @@ select {
   :-ms-input-placeholder {
     font: 13px Lato-Regular;
   }
-
-  //.button-primary {
-  //  background-color: rgb(255, 255, 255) !important;
-  //  border-color: $border-gray !important;
-  //  color: #555555 !important;
-  //  padding: 2px !important;
-  //  font-size: 13px !important;
-  //
-  //  &:hover {
-  //    background-color: rgb(255, 255, 255) !important;
-  //    border-color: $border-gray-focus;
-  //    color: #555555 !important;
-  //  }
-  //
-  //  &.w75 {
-  //    width: 75px;
-  //  }
-  //
-  //  &.w100 {
-  //    width: 100px;
-  //  }
-  //
-  //  &.w120 {
-  //    width: 120px;
-  //  }
-  //}
 
   .div-100 {
     width: 100% !important;

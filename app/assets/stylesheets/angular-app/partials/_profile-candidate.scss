@@ -614,29 +614,6 @@ p {
   visibility: visible;
 }
 
-.btn-edit {
-  width: 70px;
-  padding: 5px 0px;
-  background: none;
-  color: #9197A3;
-  font: 12px Lato-Regular, Georgia, serif;
-  border: 1px solid $border-gray;
-  border-radius: 3px !important;
-  outline: none !important;
-}
-
-.btn-edit:hover {
-  color: #FFF;
-  background: $primary-turquoise;
-  border: 1px solid $primary-turquoise;
-}
-
-.btn-edit:active {
-  color: #FFF;
-  background: $primary-turquoise-hover;
-  border: 1px solid $primary-turquoise-hover;
-}
-
 .btn-add {
   width: 25px;
   height: 25px;
@@ -850,11 +827,8 @@ textarea {
 }
 
 .profile-datepicker-label {
-  display: inline-block;
   color: $text-bold;
-  float: left;
-  line-height: 25px;
-  width: 35px;
+  line-height: 30px;
 }
 
 .profile-switch-label{

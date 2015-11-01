@@ -40,11 +40,11 @@
       </div>
       <p class="label">Birthday</p>
 
-      <div class="form-group" ng-class="{'has-error': personalForm.datepicker.$invalid && personalForm.$submitted}">
-        <simpledatepicker ng-model="user.birth" name="datepicker"></simpledatepicker>
+      <div class="form-group" ng-class="{'has-error': personalForm.birthDate.$invalid && personalForm.$submitted}">
+        <simpledatepicker ng-model="user.birth" name="birthDate"></simpledatepicker>
       </div>
-      <div class="help-block" ng-messages="personalForm.datepicker.$error"
-           ng-if="personalForm.datepicker.$invalid && personalForm.$submitted">
+      <div class="help-block" ng-messages="personalForm.birthDate.$error"
+           ng-if="personalForm.birthDate.$invalid && personalForm.$submitted">
         <p ng-message="required">Select a birth date</p>
       </div>
 
@@ -93,7 +93,7 @@
   </div>
 
   <div class="col-xs-12 text-center">
-    <img src="/assets/signup/ic_circle_off.svg"/>
+    <img src="/assets/signup/ic_circle_on.svg"/>
     <img src="/assets/signup/ic_circle_off.svg"/>
   </div>
 
