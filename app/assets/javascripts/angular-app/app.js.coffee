@@ -74,9 +74,6 @@
         templateUrl: 'angular-app/templates/views/signup/education/education-img.html',
       }
     }
-  }).state("main.signup_candidate.interests", {
-    url: "/interests",
-    templateUrl: "angular-app/templates/views/signup/form-interests.html",
   }).state("main.signup_employer.personal", {
     url: "/info",
     parent: 'main.signup_employer',
