@@ -27,7 +27,8 @@ $tl: 0.4s; // transition length
 }
 
 .imago {
-  background: url('logos/imagotype.svg') no-repeat center center;
+  background: url('logos/imagotype-white.svg') no-repeat center center;
+  background-size: 30px;
 }
 
 .navbar-default .navbar-nav > li > a {
