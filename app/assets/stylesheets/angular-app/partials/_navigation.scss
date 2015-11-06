@@ -17,6 +17,20 @@ $tl: 0.4s; // transition length
   cursor: pointer;
 }
 
+.nav-logo {
+  background: url('logos/logotype-white.svg') no-repeat center center;
+  background-size: 95px;
+  float: left;
+  height: 50px;
+  width: 100px;
+  cursor: pointer;
+}
+
+.imago {
+  background: url('logos/imagotype-white.svg') no-repeat center center;
+  background-size: 30px;
+}
+
 .navbar-default .navbar-nav > li > a {
   color: $primary-white !important;
   cursor: pointer;
@@ -45,7 +59,7 @@ $tl: 0.4s; // transition length
   background-color: #FFF;
 }
 
-.search-container{ margin-top: 5px; margin-left: 40px}
+.search-container{ margin-top: 5px; float: left; }
 
 .search-box {
   transition: width $tl, border-radius $tl, background $tl, box-shadow $tl;
@@ -136,7 +150,7 @@ $tl: 0.4s; // transition length
 
 .user-menu {
   label {
-    color: $primary-turquoise !important;
+    color: $primary-white !important;
     font: 14px Montserrat-Bold;
     padding-top: 15px;
     padding-bottom: 15px;
