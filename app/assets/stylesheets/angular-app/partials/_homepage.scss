@@ -23,7 +23,7 @@ header {
   }
 
   .subtitle {
-    font-family: Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+    font-family: Lato-Light, Georgia, "Times New Roman", Times, serif;
     font-size: 1.3em;
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
   }
@@ -97,11 +97,11 @@ header {
 
 .type-btn {
   width: 100%;
-  font: 16px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+  font: 15px Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
   color: $primary-white;
-  padding: 12px 0;
-  margin-bottom: 15px;
-  border: 3px solid $primary-white;
+  padding: 13px 0;
+  margin-bottom: 10px;
+  border: 1px solid $primary-white;
   border-radius: 4px !important;
   background-color: transparent;
   display: inline-block;
@@ -122,7 +122,7 @@ header {
 
 .type-btn-active {
   background-color: $primary-turquoise;
-  border: 3px solid $primary-turquoise;
+  border: 1px solid $primary-turquoise;
   color: $primary-white;
   text-decoration: none;
   cursor: default;

@@ -181,6 +181,12 @@ select {
   }
 }
 
+form {
+  padding: 0px !important;
+  margin: 0px !important;
+  overflow: hidden;
+}
+
   .custom-placeholder {
     color: #aaa;
     font-size: 13px !important;

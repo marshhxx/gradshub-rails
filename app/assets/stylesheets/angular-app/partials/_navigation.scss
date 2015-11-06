@@ -45,17 +45,16 @@ $tl: 0.4s; // transition length
   background-color: #FFF;
 }
 
-.search-container{ margin-top: 5px; margin-left: 40px}
+.search-container{ margin-top: 8px; }
 
 .search-box {
-  transition: width $tl, border-radius $tl, background $tl, box-shadow $tl;
-  width: 200px;
-  height: 40px;
-  border-radius: 20px;
+  width: 230px;
+  height: 34px;
+  border-radius: 17px;
   border: none;
-  border: 1px solid $border-gray !important;
+  border: 1px solid $secondary-gray !important;
   background: $primary-white;
-  font: 15px Lato-Regular !important;
+  font: 13px Lato-Regular !important;
   cursor: pointer;
   padding-left: 35px;
   padding-right: 28px;
@@ -66,14 +65,12 @@ $tl: 0.4s; // transition length
     border: 1px solid $border-gray-focus !important;
   }
   &:focus{
-    transition: width $tl, border-radius $tl, background $tl;
     box-shadow: none;
     cursor: text;
-    width: 200px;
     border-radius: auto;
     border: 1px solid $border-gray-focus !important; outline: none;
     background: $primary-white;
-    color: black;
+    color: $text-inputs;
     &:not(:focus) { } // for more-graceful falling back (:not browsers likely support indent)
   }
 }
@@ -85,40 +82,41 @@ $tl: 0.4s; // transition length
 .search-icon {
   position: relative;
   left: 30px;
-  top: 3px;
+  top: 2px;
   color: $secondary-gray;
   cursor: pointer;
 }
 
 .remove-icon{
   position: relative;
-  left: -40px;
-  top: 3px;
+  margin-left: -40px;
+  top: 2px;
   color: $secondary-gray;
   cursor: pointer;
   z-index: 99;
-  padding: 10px;
+  padding: 7px;
+  visibility: hidden;
 }
+
+.remove-icon-status{ visibility: visible }
 
 /*** Login Button ***/
 
 .login-btn {
-  color: $primary-turquoise !important;
-  background-color: $primary-turquoise;
+  color: $primary-white !important;
   font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
-  font-size: 14px;
-  border: 2px solid $primary-turquoise;
+  font-size: 13px;
+  border: 1px solid $primary-white;
   border-radius: 4px !important;
   padding: 6px !important;
-  margin-left: 10px !important;
-  margin-right: 10px !important;
+  margin-left: 67px !important;
   cursor: pointer;
-  margin-top: 9px;
+  margin-top: 8px;
   text-align: center;
 
   &:hover {
-    color: $primary-turquoise-hover !important;
-    border: 2px solid $primary-turquoise-hover;
+    color: $primary-white !important;
+    border: 1px solid $primary-turquoise-hover;
     background-color: $primary-turquoise-hover !important;
   }
 }
@@ -293,13 +291,6 @@ footer#footer {
     display: none;
   }
 
-  .search-box {
-    width: 200px;
-    &:focus {
-      width: 240px;
-    }
-  }
-
   .login-btn {
     margin-left: 0px;
     margin-right: 0px;
@@ -317,13 +308,6 @@ footer#footer {
 
   .login-btn {
     margin-left: 50px;
-  }
-
-  .search-box {
-    width: 220px;
-    &:focus {
-      width: 340px;
-    }
   }
 
 }

@@ -16,16 +16,6 @@
       </button>
       <a class="navbar-brand topnav" ui-sref="main.page">G</a>
 
-      <div class="search-container">
-        <form ng-submit="onSearchSubmit()">
-          <label for="search-box"><span class="glyphicon glyphicon-search search-icon"></span></label>
-          <input id="search-box" type="search" class="search-box" ng-model="searchKeyword" name="navbar-search"
-                 placeholder="Search" autocomplete="off"/>
-          <span class="glyphicon glyphicon-remove remove-icon" ng-show="searchKeyword.length"
-                ng-mousedown="clearSearch($event)"></span>
-          <input type="submit" id="search-submit"/>
-        </form>
-      </div>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -43,16 +33,33 @@
       </div>
       <p class="access-setting-button"></p>
 
-      <ul class="nav navbar-nav navbar-right options-home" ng-if="navbarService.getOptions().home">
+      <ul class="nav navbar-nav navbar-left">
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+      <!--<ul class="nav navbar-nav navbar-right options-home" ng-if="navbarService.getOptions().home">-->
+        <!--<li>-->
+          <!--<a ng-click="scrollTo('explore')">EXPLORE</a>-->
+        <!--</li>-->
+        <!--<li>-->
+          <!--<a ng-click="scrollTo('section-how-it-works')">HOW IT WORKS</a>-->
+        <!--</li>-->
+        <!--<li>-->
+          <!--<a ng-click="scrollTo('section-testimonials')">REAL LIFE STORIES</a>-->
+        <!--</li>-->
         <li>
-          <a ng-click="scrollTo('explore')">EXPLORE</a>
+        <div class="search-container">
+          <form ng-submit="onSearchSubmit()">
+            <label for="search-box"><span class="glyphicon glyphicon-search search-icon"></span></label>
+            <input id="search-box" type="search" class="search-box" ng-model="searchKeyword" name="navbar-search"
+                   placeholder="Search" autocomplete="off"/>
+          <span class="glyphicon glyphicon-remove remove-icon" ng-class="{'remove-icon-status':searchKeyword.length }"
+                ng-mousedown="clearSearch($event)"></span>
+            <input type="submit" id="search-submit"/>
+          </form>
+        </div>
         </li>
-        <li>
-          <a ng-click="scrollTo('section-how-it-works')">HOW IT WORKS</a>
-        </li>
-        <li>
-          <a ng-click="scrollTo('section-testimonials')">REAL LIFE STORIES</a>
-        </li>
+
         <li>
           <a class="login-btn" ng-if="!logged" ui-sref="main.login">Login</a>
         </li>
