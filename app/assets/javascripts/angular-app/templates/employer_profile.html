@@ -68,13 +68,13 @@
             <div class="border-container">
               <div ng-hide="descriptionEnable">
                 <p class="profile-right-text" ng-if="employerCompany.description">
-                  {{employerCompany.description}}
+                  {{user.company.description}}
                 </p>
                 <p class="profile-placeholder-txt" ng-if="!employerCompany.description">
                   Tell us something about your company...
                 </p>
               </div>
-              <textarea class="form-control" rows="5" ng-show="descriptionEnable" ng-model="employerCompany.description"
+              <textarea class="form-control" rows="5" ng-show="descriptionEnable" ng-model="user.company_description"
                         placeholder="Tell us something about your company..."></textarea>
             </div>
           </div>

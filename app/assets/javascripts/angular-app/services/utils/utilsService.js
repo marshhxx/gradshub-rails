@@ -51,6 +51,15 @@ var Utils = function(Candidate, Employer, $stateParams) {
             employer.country_id = user.country.id;
             employer.state_id = user.state.id;
         }
+        employer.company = user.company;
+
+        employer.company_name = user.company_name;
+        employer.company_logo = user.company_logo;
+        employer.company_tagline = user.company_tagline;
+        employer.company_url = user.company_url;
+        employer.company_description = user.company_description;
+        employer.company_industry = user.company_industry;
+
         return employer;
     };
 
