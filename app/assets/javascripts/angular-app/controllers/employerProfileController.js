@@ -107,7 +107,9 @@ angular.module('gradshub-ng.controllers').controller('employerProfileController'
 
             $scope.saveDescription = function() {
                 // Description of employer is stored in employerCompany, a child obeject of employer user.
-                $scope.saveEmployerCompany();
+
+                $scope.user.company.description = $scope.user.company_description;
+                updateUser();
                 
                 $scope.disableDescriptionEditor();
 
