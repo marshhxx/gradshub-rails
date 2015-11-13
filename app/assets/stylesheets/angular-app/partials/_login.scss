@@ -1,10 +1,10 @@
 .login {
   &.background {
+    height: 100%;
     min-height: 100vh;
+
     position: relative;
-
     @extend %bg-image;
-
     &.one {
       background-image: url("login/background.png");
     }
@@ -17,7 +17,6 @@
   .form-container {
     height: 100%;
     width: 100%;
-    padding: 130px 0;
     min-height:100%;
   }
 
@@ -25,17 +24,13 @@
     position: relative;
   }
 
-  .form-box {
+  .form-box-cont {
     width: 300px;
-    background: $primary-white;
-    border-radius: 4px;
     left: 0;
     right: 0;
+    top:0;
+    bottom: 0;
     margin: auto;
-  }
-
-  .form-box-cont {
-    padding: 20px;
   }
 
   &.ic {
@@ -43,35 +38,19 @@
     margin: auto;
   }
 
-  &.button-submit {
-    width: 100%;
-    font: 14px Lato-Regular, Georgia, "Times New Roman", Times, serif;
-    color: $primary-white;
-    padding: 10px;
-    background: $primary-blue;
-    border: 3px solid $primary-blue;
-
-    &:hover {
-      background: $primary-turquoise-hover;
-      border: 3px solid $primary-turquoise-hover;
+  .forgotpssw {
+    font: 14px Lato-Light, Georgia, "Times New Roman", Times, serif;
+    text-align: center;
+    cursor: pointer;
+    padding: 0 !important;
+    color: $primary-white !important;
+    &.label{
+      cursor: text;
     }
-  }
-
-  &.forgotpssw {
-    margin-top: 40px;
-    color: white;
-    overflow: auto;
-
-    a {
-      cursor: pointer;
+    &.signup {
+      font: 14px Lato-Regular, Georgia, "Times New Roman", Times, serif;
+      color: $primary-turquoise !important;
     }
-  }
-
-  label, .forgotpssw a {
-    float: left;
-    font-weight: normal;
-    color: $text-regular;
-    font: 12px Lato-Regular, Georgia, "Times New Roman", Times, serif;
   }
 
   &.rememberme {
@@ -85,32 +64,25 @@
     font-size: 13px;
   }
 
-  &.sign-up-login {
-    color: #3D9ED8 !important;
-  }
-
   .login-input {
     width: 100%;
     padding: 11px 10px 11px 13px;
     display: block;
     margin: 0;
-    background: 0;
-    font: 16px/1.4 "Helvetica Neue","HelveticaNeue",Helvetica,Arial,sans-serif;
+    border: 0;
+    font: 16px/1.4 "Lato-Regular","HelveticaNeue",Helvetica,Arial,sans-serif;
     box-sizing: border-box;
+    background: $primary-white;
 
     &.first-input {
-      border-bottom: 0px !important;
+      border: 0px !important;
       border-top-left-radius: 4px !important;
       border-top-right-radius: 4px !important;
-      &:hover {
-        border-bottom: 1px solid $border-gray-focus !important;
-        + .last-input {
-          border-top: 0px !important;
-        }
-      }
     }
 
     &.last-input {
+      border: 0px !important;
+      border-top: 1px solid #e3e3e3 !important;
       border-bottom-left-radius: 4px !important;
       border-bottom-right-radius: 4px !important;
     }
@@ -119,7 +91,6 @@
 
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 320px) {
-
   .login.form-box {
     padding-top: 1px;
   }

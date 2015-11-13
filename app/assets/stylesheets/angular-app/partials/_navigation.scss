@@ -8,8 +8,8 @@ $tl: 0.4s; // transition length
 }
 
 .navbar-default {
-  background-color: $primary-blue !important;
-  border-color: $primary-blue !important;;
+  background-color: $primary-black-blue !important;
+  border-color: $primary-black-blue !important;;
 }
 
 .navbar-default .navbar-brand {
@@ -17,18 +17,21 @@ $tl: 0.4s; // transition length
   cursor: pointer;
 }
 
-.nav-logo {
-  background: url('logos/logotype-white.svg') no-repeat center center;
-  background-size: 95px;
-  float: left;
-  height: 50px;
-  width: 100px;
-  cursor: pointer;
+.topnav {
+  padding: 0 20px;
 }
 
-.imago {
+.navbar-right {
+  margin-right: 0 !important;
+}
+
+.nav-logo {
   background: url('logos/imagotype-white.svg') no-repeat center center;
-  background-size: 30px;
+  background-size: 28px;
+  height: 50px;
+  width: 30px;
+  float: left;
+  cursor: pointer;
 }
 
 .navbar-default .navbar-nav > li > a {
@@ -59,13 +62,12 @@ $tl: 0.4s; // transition length
   background-color: #FFF;
 }
 
-.search-container{ margin-top: 8px; }
+.search-container{ margin-top: 9px; overflow: hidden; padding-left: 25px}
 
 .search-box {
-  width: 230px;
-  height: 34px;
+  width: 250px;
+  height: 32px;
   border-radius: 17px;
-  border: none;
   border: 1px solid $secondary-gray !important;
   background: $primary-white;
   font: 13px Lato-Regular !important;
@@ -123,9 +125,9 @@ $tl: 0.4s; // transition length
   border: 1px solid $primary-white;
   border-radius: 4px !important;
   padding: 6px !important;
-  margin-left: 67px !important;
   cursor: pointer;
   margin-top: 8px;
+  margin-left: 25px;
   text-align: center;
 
   &:hover {
@@ -149,7 +151,7 @@ $tl: 0.4s; // transition length
 .user-menu {
   label {
     color: $primary-white !important;
-    font: 14px Montserrat-Bold;
+    font: 14px Montserrat-Regular;
     padding-top: 15px;
     padding-bottom: 15px;
     margin: 0px;
@@ -169,7 +171,7 @@ $tl: 0.4s; // transition length
     height: 0;
     border-left: 7px solid transparent;
     border-right: 7px solid transparent;
-    border-top: 7px solid $primary-turquoise;
+    border-top: 7px solid $primary-white;
     margin: 7px 0px 0px 7px;
     cursor: pointer;
   }
@@ -269,7 +271,7 @@ footer#footer {
   }
   .link {
     color: $primary-white;
-    font: 1.1em Lato-Regular, Georgia, "Times New Roman", Times, serif;
+    font: 1em Lato-Light, Georgia, "Times New Roman", Times, serif;
     cursor: pointer;
     text-decoration: none;
     &:hover {
@@ -278,7 +280,7 @@ footer#footer {
     }
   }
   .sign {
-    font: 14px Lato-Light, Georgia, "Times New Roman", Times, serif;
+    font: 1em Lato-Light, Georgia, "Times New Roman", Times, serif;
     color: $primary-white;
   }
 }
@@ -305,11 +307,15 @@ footer#footer {
     display: none;
   }
 
-  .login-btn {
-    margin-left: 0px;
-    margin-right: 0px;
-  }
+}
 
+@media only screen and (min-width: 1024px) {
+
+  footer#footer {
+    .sign {
+      float: right;
+    }
+  }
 }
 
 /* Medium Devices, Desktops */
@@ -318,10 +324,6 @@ footer#footer {
   .navbar-nav > li > a {
     padding-left: 15px !important;
     padding-right: 15px !important;
-  }
-
-  .login-btn {
-    margin-left: 50px;
   }
 
 }

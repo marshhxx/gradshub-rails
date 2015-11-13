@@ -1,17 +1,18 @@
-<div class="row">
+<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 col-xs-offset-0">
   <form name="emailForm" ng-submit="sendEmailForgotPassword(emailForm.$valid)" novalidate>
+    <div class="form text-center">
+      <div class="form-wrapper">
+      <div ng-show="spinnerVisible">
+        <p class="text margin-t15" ng-show="spinnerVisible">Please wait while the email is being sent.</p>
 
-    <div class="forgotpssw form text-center">
-      <div ng-show="spinnerVisible" class="margin-t30">
-        <p ng-show="spinnerVisible">Please wait while the email is being sent.</p>
-        <div class="forgotpssw spinner">
+        <div class="spinner">
           <spinner show-spinner="spinnerVisible"></spinner>
         </div>
       </div>
 
       <div ng-show="!spinnerVisible">
-        <div class="margin-b30">
-          <span class="forgotpssw subtitle">Find your GradsHub account </span>
+        <div class="subtitle-wrap">
+          <span class="subtitle">Find your GradsHub account </span>
         </div>
         <div class="form-group"
              ng-class="{'has-error': emailForm.email.$invalid && (emailForm.$submitted || emailForm.email.$touched)}">
@@ -28,11 +29,9 @@
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-xs-12 text-center">
-            <button type="submit" class="btn forgotpssw btn-form"> Search</button>
-          </div>
-        </div>
+        <button type="submit" class="form-btn btn"> Search</button>
+
+      </div>
       </div>
 
     </div>

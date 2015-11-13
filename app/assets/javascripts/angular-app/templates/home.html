@@ -1,16 +1,12 @@
 <header>
-  <div class="carousel slide">
     <section id="home-signup">
-      <div id="top" class="container">
-
-        <div class="row">
-          <div class="col-lg-12">
+      <div id="top" class="align">
+          <div class="col-lg-12 vertical-align max-width">
             <div class="header-signup">
-              <div class="title"></div>
-              <div class="subtitle" ng-show="candidate">Create a compelling profile and be discovered by employers.
+              <div class="logo-form"></div>
+              <div class="subtitle" ng-show="candidate">Create a compelling profile. Find the right job after graduation.
               </div>
-              <div class="subtitle" ng-show="!candidate">Show the soul of your company. Attract the talent you are
-                searching for.
+              <div class="subtitle" ng-show="!candidate"> Hire the best students. Fast, Simple. Post a job now.
               </div>
 
               <div class="wrapper text-center">
@@ -113,10 +109,9 @@
 
             </div>
           </div>
-        </div>
       </div>
     </section>
-
+  <div class="carousel slide">
     <div id="home-carousel-container" class="home-carousel-container">
       <carousel interval="carouselInterval" disable-ng-animate>
         <slide ng-repeat="slide in slides" active="slide.active">
@@ -155,7 +150,7 @@
         </div>
         <div class="col-md-4 text-center">
           <div class="features-image img-middle"></div>
-          <p class="features-txt">POWERFUL SEARCH ENGINE</p>
+          <p class="features-txt">POWERFUL <br/> SEARCH</p>
 
           <p class="features-detail-txt padding-b">Our multi-dimensional, one click search engine finds your next great
             job
@@ -192,9 +187,9 @@
       <span class="type-btn type-btn-active large">CANDIDATE</span>
     </div>
 
-    <div class="container-bottom align-bottom section-five">
+    <div class="container-bottom align section-five">
 
-      <div class="container-img child col-md-6 text-center">
+      <div class="container-img child align-left align-bottom col-md-6 text-center">
         <img src="/assets/homepage/cellphone_v.png"/>
       </div>
 
@@ -305,7 +300,7 @@
       </div>
 
       <div class="container-img col-md-6 align-center text-center vertical-align">
-        <img src="/assets/homepage/cellphone_h.png"/>
+        <div class="phone-image"> </div>
       </div>
 
     </div>

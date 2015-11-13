@@ -26,9 +26,14 @@
     url: "/login",
     templateUrl: "angular-app/templates/login.html",
     controller: "loginController",
+    data: {
+      navOptions: {
+        login: true
+      }
+    }
   }).state("main.forgotpssw", {
     abstract: true,
-    templateUrl: "angular-app/templates/views/forgot_pssw.html",
+    templateUrl: "angular-app/templates/views/forgot/forgot_pssw.html",
   }).state("main.forgotpssw.email", {
     url: "/forgotpssw",
     templateUrl: "angular-app/templates/views/forgot/email.html",
