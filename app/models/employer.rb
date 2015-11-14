@@ -4,14 +4,8 @@ class Employer < ActiveRecord::Base
   # nationalities
   has_many :employer_nationalities
   has_many :nationalities, :through => :employer_nationalities
-  # interests
-  has_many :employer_interests
-  has_many :interests, :through => :employer_interests
-  # skills
-  has_many :employer_skills
-  has_many :skills, :through => :employer_skills
 
-  validates_associated :nationalities, :interests, :skills
+  validates_associated :nationalities
   # elasticsearch index update
   update_index 'users#employer', :self
 

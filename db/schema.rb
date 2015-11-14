@@ -79,26 +79,12 @@ ActiveRecord::Schema.define(version: 20151024183633) do
     t.date    "end_date"
   end
 
-  create_table "employer_interests", force: true do |t|
-    t.integer "employer_id"
-    t.integer "interest_id"
-  end
-
-  add_index "employer_interests", ["employer_id", "interest_id"], name: "index_employer_interests_on_employer_id_and_interest_id", unique: true, using: :btree
-
   create_table "employer_nationalities", force: true do |t|
     t.integer "employer_id"
     t.integer "nationality_id"
   end
 
   add_index "employer_nationalities", ["employer_id", "nationality_id"], name: "employers_nationalities_index", unique: true, using: :btree
-
-  create_table "employer_skills", id: false, force: true do |t|
-    t.integer "employer_id"
-    t.integer "skill_id"
-  end
-
-  add_index "employer_skills", ["employer_id", "skill_id"], name: "index_employer_skills_on_employer_id_and_skill_id", unique: true, using: :btree
 
   create_table "employers", force: true do |t|
     t.string "job_title"

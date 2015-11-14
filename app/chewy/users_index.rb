@@ -31,16 +31,13 @@ class UsersIndex < Chewy::Index
 
   end
 
-  define_type Employer.includes(:user, :skills, :interests) do
+  define_type Employer.includes(:user) do
     field :name, value: -> { user.name }
     field :lastname, value: -> { user.lastname }
     field :email, analyzer: 'email', value: -> { user.email }
     field :tag, index: 'not_analyzed', value: -> { user.tag }
     field :type, index: 'not_analyzed', value: -> { user.meta_type }
     field :job_title # should we unboost this?
-    # skills and interests
-    field :skills, value: -> { skills.map(&:name) }
-    field :interests, value: -> { interests.map(&:name) }
     # company
     field :company_name, value: -> { user.meta.company_name }
     field :company_description, boost: 0.5, value: -> { user.meta.company_description }

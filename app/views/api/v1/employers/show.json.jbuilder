@@ -8,8 +8,6 @@ json.employer do
   json.tag      @employer.user.tag
   json.country @employer.user.country
   json.state @employer.user.state
-  json.skills  @employer.skills
-  json.interests @employer.interests
   json.nationalities @employer.nationalities
   json.company do
     json.name         @employer.user.meta.company_name
