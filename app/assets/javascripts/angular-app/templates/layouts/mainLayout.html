@@ -8,14 +8,14 @@
   <div class="topnav">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" ng-if="!navbarService.getOptions().login">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
       <!-- <a class="navbar-brand topnav" ui-sref="main.page">G</a> -->
-      <div class="topnav nav-logo" ng-class="{ imago: logged }" ui-sref="main.page"></div>
+      <div class="nav-logo" ng-class="{ imago: logged }" ui-sref="main.page"></div>
 
       <div class="search-container">
         <form ng-submit="onSearchSubmit()">
@@ -45,15 +45,12 @@
         </div>
       </div>
       <p class="access-setting-button"></p>
-      <ul class="nav navbar-nav navbar-left">
-      </ul>
+      <!-- left bar options !-->
+      <!--<ul class="nav navbar-nav navbar-left">-->
+      <!--</ul>-->
       <ul class="nav navbar-nav navbar-right">
         <li>
-
-        </li>
-
-        <li>
-          <a class="login-btn" ng-class="{'g-hidden': navbarService.getOptions().login == true || logged == true}"
+          <a class="login-btn" ng-if="!navbarService.getOptions().login && !logged"
              ui-sref="main.login">Login</a>
         </li>
       </ul>
