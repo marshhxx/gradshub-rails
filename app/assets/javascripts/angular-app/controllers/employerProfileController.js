@@ -1,9 +1,9 @@
 angular.module('gradshub-ng.controllers').controller('employerProfileController',
     ['$scope', '$rootScope', '$http', '$upload', 'sessionService', '$state', '$stateParams','Skill', 'Country', 'State',
-        'Employer', 'EmployerSkills', 'EmployerCompany', 'Utils', 'EmployerInterests', 'alertService', 'errors', 'eventTracker',
+        'Employer', 'EmployerSkills', 'Utils', 'EmployerInterests', 'alertService', 'errors', 'eventTracker',
 
         function($scope, $rootScope,$httpProvider, $upload, sessionService, $state, $stateParams,Skill, Country, State,
-                 Employer, EmployerSkills, EmployerCompany, Utils, EmployerInterests, alertService, errors, eventTracker) {
+                 Employer, EmployerSkills, Utils, EmployerInterests, alertService, errors, eventTracker) {
             var init = function () {
                 getData();
 
@@ -70,14 +70,16 @@ angular.module('gradshub-ng.controllers').controller('employerProfileController'
 
 
             $scope.updateEmployerCoverImage = function (coverImage){
-                $scope.user.cover_image = coverImage;
+                // NOT IMPLEMENTED IN THE NEW PROFILE
+                /*$scope.user.cover_image = coverImage;
                 $scope.updateUser();
 
-                eventTracker.saveCoverPhoto('Employer');
+                eventTracker.saveCoverPhoto('Employer');*/
             }
 
             $scope.updateEmployerCompanyImage = function (companyImage){
                 $scope.user.company_logo = companyImage;
+
                 $scope.updateUser();
 
                 eventTracker.saveCompanyLogo('Employer');
@@ -106,11 +108,10 @@ angular.module('gradshub-ng.controllers').controller('employerProfileController'
             }
 
             $scope.saveDescription = function() {
-                // Description of employer is stored in employerCompany, a child obeject of employer user.
-
+                // Employer description is stored on employerCompany.
                 $scope.user.company.description = $scope.user.company_description;
+
                 $scope.updateUser();
-                
                 $scope.disableDescriptionEditor();
 
                 eventTracker.saveAboutMe('Employer');
@@ -181,7 +182,7 @@ angular.module('gradshub-ng.controllers').controller('employerProfileController'
                 };
 
                 $scope.saveInterests = saveInterests;
-            };
+            }
 
 
             var saveInterests = function() {
@@ -200,29 +201,6 @@ angular.module('gradshub-ng.controllers').controller('employerProfileController'
                     function(error) {
                         console.log(error)
                 });
-            };
-            
-            // company info
-            $scope.saveEmployerCompany = function() {
-                var empCom = $scope.employerCompany;
-
-                // save
-                var employerCompany = new EmployerCompany();
-                employerCompany.employer_id = $scope.user.uid;
-                employerCompany.company_id = empCom.company_id;
-                employerCompany.country_id = empCom.country.id;
-                employerCompany.state_id = empCom.state.id;
-                employerCompany.description = empCom.description;
-                employerCompany.image = empCom.image;
-                employerCompany.site_url = empCom.site_url;
-                
-                employerCompany.$update(
-                    function(employerCompanyUpdated) {
-                        $scope.user.company = employerCompanyUpdated.company;
-                    }, function(error) {
-                        console.log(error);
-                    }
-                );
             }
 
             init();
