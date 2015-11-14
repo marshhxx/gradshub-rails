@@ -1,17 +1,11 @@
 angular.module('gradshub-ng.controllers').controller('employerProfileController',
     ['$scope', '$rootScope', '$http', '$upload', 'sessionService', '$state', '$stateParams','Skill', 'Country', 'State',
-        'Employer', 'EmployerSkills', 'Utils', 'EmployerInterests', 'alertService', 'errors', 'eventTracker',
+        'Employer', 'Utils', 'alertService', 'errors', 'eventTracker',
 
         function($scope, $rootScope,$httpProvider, $upload, sessionService, $state, $stateParams,Skill, Country, State,
-                 Employer, EmployerSkills, Utils, EmployerInterests, alertService, errors, eventTracker) {
+                 Employer, Utils, alertService, errors, eventTracker) {
             var init = function () {
                 getData();
-
-                /* SKILLS */
-                initSkills();
-
-                /* INTERESTS */
-                initInterests();
 
                 // returns true if the profile is from the logged user
                 $scope.notMe = Utils.notMe();
@@ -56,13 +50,6 @@ angular.module('gradshub-ng.controllers').controller('employerProfileController'
             var initEmployerProfile = function(){
 
                 $scope.employerCompany = $scope.user.company;
-
-                $scope.selectedSkills = $scope.user.skills.map(function (skill) {
-                    return skill.name;
-                });
-                $scope.selectedInterests = $scope.user.interests.map(function (interest) {
-                    return interest.name;
-                });
 
                 // hide
                 $scope.descriptionEnable = false;
@@ -120,87 +107,6 @@ angular.module('gradshub-ng.controllers').controller('employerProfileController'
             $scope.disableDescriptionEditor = function() {
                 $scope.descriptionEnable = false;
                 $scope.editorDescriptionEnabled = false;
-            }
-
-            // Skills
-            var initSkills = function() {
-                $scope.employerSelectedSkills = [];
-                $scope.selectedSkills = [];
-                $scope.editorSkillsEnabled = false;
-
-                $scope.enableSkillsEditor = function() {
-                    $scope.editorSkillsEnabled = true;
-                    if($scope.selectedSkills.length > 0) {
-                        $scope.employerSelectedSkills = $scope.selectedSkills.slice();
-                    }
-                };
-
-                $scope.disableSkillsEditor = function() {
-                    $scope.editorSkillsEnabled = false;
-                };
-
-                $scope.saveSkills = saveSkills;
-            };
-
-            var saveSkills = function(){
-                $scope.disableSkillsEditor();
-                $scope.selectedSkills = $scope.employerSelectedSkills.slice();
-
-                var employerSkills = new EmployerSkills();
-                employerSkills.employer_id = $scope.user.uid;
-                employerSkills.skills = $scope.selectedSkills.map(function(skillName) {
-                    return {name: skillName}
-                });
-
-                // need to be updated in backend.
-                employerSkills.$update(
-                    function (response) {
-                        $scope.selectedSkills = response.skills.map(function (skill) {
-                            return skill.name;
-                        });
-                    },
-                    function(error) {
-                        console.log(error)
-                });
-            };
-
-            // interests
-            var initInterests = function() {
-                $scope.employerSelectedInterests = [];
-                $scope.selectedInterests = [];
-                $scope.editorInterestsEnabled = false;
-
-                $scope.enableInterestsEditor = function() {
-                    $scope.editorInterestsEnabled = true;
-                    if($scope.selectedInterests.length > 0) {
-                        $scope.employerSelectedInterests = $scope.selectedInterests.slice();
-                    }
-                };
-
-                $scope.disableInterestsEditor = function() {
-                    $scope.editorInterestsEnabled = false;
-                };
-
-                $scope.saveInterests = saveInterests;
-            }
-
-
-            var saveInterests = function() {
-                $scope.disableInterestsEditor();
-                $scope.selectedInterests = $scope.employerSelectedInterests.slice();
-                
-                var employerInterests = new EmployerInterests();
-                employerInterests.employer_id = $scope.user.uid;
-                employerInterests.interests = $scope.selectedInterests.map(function(skillName) {
-                    return {name: skillName}
-                });
-                // need to be updated in backend.
-                employerInterests.$update(
-                    function (response) {
-                    },
-                    function(error) {
-                        console.log(error)
-                });
             }
 
             init();
