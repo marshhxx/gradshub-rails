@@ -71,26 +71,26 @@ angular.module('gradshub-ng.controllers').controller('employerProfileController'
 
             $scope.updateEmployerCoverImage = function (coverImage){
                 $scope.user.cover_image = coverImage;
-                updateUser();
+                $scope.updateUser();
 
                 eventTracker.saveCoverPhoto('Employer');
             }
 
             $scope.updateEmployerCompanyImage = function (companyImage){
-                $scope.employerCompany.image = companyImage;
-                $scope.saveEmployerCompany();
+                $scope.user.company_logo = companyImage;
+                $scope.updateUser();
 
                 eventTracker.saveCompanyLogo('Employer');
             }
 
             $scope.updateEmployerProfileImage = function (profileImage) {
                 $scope.user.profile_image = profileImage;
-                updateUser();
+                $scope.updateUser();
 
                 eventTracker.saveProfilePhoto('Employer');
             }
             
-            var updateUser = function () {
+            $scope.updateUser = function () {
                 Utils.employerFromObject($scope.user).$update(function (response) { //Creates resource User from object $scope.user
                         $scope.user = response.employer;
                         initEmployerProfile(); //Update profile variables;
@@ -109,7 +109,7 @@ angular.module('gradshub-ng.controllers').controller('employerProfileController'
                 // Description of employer is stored in employerCompany, a child obeject of employer user.
 
                 $scope.user.company.description = $scope.user.company_description;
-                updateUser();
+                $scope.updateUser();
                 
                 $scope.disableDescriptionEditor();
 
