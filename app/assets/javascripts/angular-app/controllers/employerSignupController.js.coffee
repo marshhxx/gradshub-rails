@@ -15,7 +15,6 @@ angular
         $scope.interests = new EmployerInterests();
         $scope.employerCompany = new EmployerCompany()
         $scope.employerNationality = new EmployerNationalities();
-#        $scope.newCompany = new Company()
 
         $scope.genders = [
           "Male",
@@ -25,9 +24,6 @@ angular
 
         $scope.selectedFrom = "From"
         $scope.selectedTo = "To"
-
-        ###Company.query (companies) ->
-          $scope.companies = companies.companies###
 
         $scope.onCountry = (country) ->
           $scope.user.country_id = country.id if country?
@@ -85,27 +81,12 @@ angular
         createUser() if valid
 
       createUser = () ->
-        ###createCompany().then(
-          (company) ->
-            $q.all([saveEmployerNationality(), saveCompany(company.company.id), saveSkills(),
-                    saveInterests(),
-                    saveUser()])
-            .then((data) -> $state.go 'main.employer_profile', {uid: 'me'}, { reload: true })
-            .catch(alertService.defaultErrorCallback)
-        ).catch(alertService.defaultErrorCallback)###
-        $q.all([saveEmployerUser(), saveEmployerNationality(), saveSkills(), saveInterests(), saveUser()])
+        $q.all([saveEmployerNationality(), saveSkills(), saveInterests(), saveUser()])
           .then((data) -> $state.go 'main.employer_profile', {uid: 'me'}, { reload: true})
           .catch(alertService.defaultErrorCallback)
 
       createCompany = ->
         deferred = $q.defer()
-        ###$scope.newCompany.$save().then(
-          (company) ->
-              deferred.resolve({company: {id: company.company.id}})
-          ).catch(
-            (error) ->
-             deferred.reject(error)
-          )###
         deferred.promise
 
       saveCompany = (id) ->
