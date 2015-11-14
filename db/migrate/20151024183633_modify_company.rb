@@ -10,5 +10,11 @@ class ModifyCompany < ActiveRecord::Migration
     drop_table :companies
     drop_table :employer_company
 
+    remove_index :employer_skills, [:employer_id, :skill_id]
+    remove_index :employer_interests, [:employer_id, :interest_id]
+
+    drop_table :employer_interests
+    drop_table :employer_skills
+
   end
 end
