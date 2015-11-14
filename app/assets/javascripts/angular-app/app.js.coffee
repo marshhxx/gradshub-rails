@@ -58,10 +58,10 @@
     parent: 'main.signup_candidate',
     views: {
       'form': {
-       templateUrl: 'angular-app/templates/views/signup/personal/personal-form.html'
+        templateUrl: 'angular-app/templates/views/signup/personal/personal-form.html'
       },
       'img': {
-      templateUrl: 'angular-app/templates/views/signup/personal/personal-img.html',
+        templateUrl: 'angular-app/templates/views/signup/personal/personal-img.html',
       }
     }
   }).state("main.signup_candidate.education", {
@@ -76,7 +76,6 @@
     }
   }).state("main.signup_employer.personal", {
     url: "/info",
-    parent: 'main.signup_employer',
     views: {
       'form': {
         templateUrl: 'angular-app/templates/views/signup/personal/personal-form.html'

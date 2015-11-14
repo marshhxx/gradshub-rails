@@ -13,7 +13,7 @@
       <div class="profile-headline wrapper">
         <div class="company-image wrapper">
           <simpleimagepicker update-image="updateEmployerCompanyImage" default="logocircle-employer.svg" circular="true"
-                             image-url="employerCompany.image"></simpleimagepicker>
+                             image-url="user.company.logo"></simpleimagepicker>
         </div>
         <div class="company-name-wrapper">
           <h1>{{employerCompany.name}}</h1>
@@ -38,7 +38,7 @@
           </div>
         </div>
 
-        <div edit-company data="employerCompany" save-company="saveCompany"
+        <div edit-company data="user" save-company="saveCompany"
              add-company-enable="addCompanyEnabled"></div>
       </div>
 
@@ -67,14 +67,14 @@
           <div class="profile-right-content">
             <div class="border-container">
               <div ng-hide="descriptionEnable">
-                <p class="profile-right-text" ng-if="employerCompany.description">
-                  {{employerCompany.description}}
+                <p class="profile-right-text" ng-if="user.company.description">
+                  {{user.company.description}}
                 </p>
-                <p class="profile-placeholder-txt" ng-if="!employerCompany.description">
+                <p class="profile-placeholder-txt" ng-if="!user.company.description">
                   Tell us something about your company...
                 </p>
               </div>
-              <textarea class="form-control" rows="5" ng-show="descriptionEnable" ng-model="employerCompany.description"
+              <textarea class="form-control" rows="5" ng-show="descriptionEnable" ng-model="user.company_description"
                         placeholder="Tell us something about your company..."></textarea>
             </div>
           </div>
