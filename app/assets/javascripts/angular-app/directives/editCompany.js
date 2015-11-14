@@ -12,8 +12,6 @@ EditCompany = function (EmployerCompany, Utils, eventTracker) {
             scope.notMe = Utils.notMe();
             scope.editCompanyEnable = false;
 
-            var temporaryEmployerCompanyName = '';
-
             var init = function() {
                 getData();
             }
