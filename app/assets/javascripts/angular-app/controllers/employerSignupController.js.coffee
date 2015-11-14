@@ -85,14 +85,6 @@ angular
           .then((data) -> $state.go 'main.employer_profile', {uid: 'me'}, { reload: true})
           .catch(alertService.defaultErrorCallback)
 
-      createCompany = ->
-        deferred = $q.defer()
-        deferred.promise
-
-      saveCompany = (id) ->
-        $scope.employerCompany.company_id = id
-        $scope.employerCompany.$save()
-
       saveEmployerNationality = ->
         $scope.employerNationality.$save() if $scope.employerNationality.nationality_id
 
