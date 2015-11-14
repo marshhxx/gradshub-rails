@@ -2,7 +2,7 @@ EditCompany = function (EmployerCompany, Utils, eventTracker) {
     return {
         // NEEEED TO DO EVERYTHING
         scope: {
-            employerCompany: '=data',
+            user: '=data',
             saveCompany: '=',
             addCompanyEnabled: '='
         },
@@ -12,7 +12,6 @@ EditCompany = function (EmployerCompany, Utils, eventTracker) {
             scope.notMe = Utils.notMe();
             scope.editCompanyEnable = false;
 
-            var temporaryEmployerCompany = {};
             var temporaryEmployerCompanyName = '';
 
             var init = function() {
@@ -22,22 +21,21 @@ EditCompany = function (EmployerCompany, Utils, eventTracker) {
             var getData = function(){
                 scope.$on('userLoaded', function() {
                     scope.employerUser = scope.$parent.user;
+                    scope.temporaryEmployerCompany = angular.copy(scope.employerUser.company);
                 });
             }
 
             scope.enableCompanyEditor = function() {
-                console.log(scope.employerCompany);
                 scope.editCompanyEnable = true;
-                temporaryEmployerCompany.site_url = scope.employerCompany.site_url;
-                temporaryEmployerCompanyName = scope.employerCompany.country.name;
-                temporaryEmployerCompany.state = scope.employerCompany.state;
             }
 
             scope.saveCompany = function() {
                 if (scope.companyForm.$valid) {
                     scope.editCompanyEnable = false;
-                    scope.$parent.saveEmployerCompany();
-                    temporaryEmployerCompany.site_url = scope.employerCompany.site_url;
+                    scope.user.company_name = scope.temporaryEmployerCompany.name;
+                    scope.user.company_url = scope.temporaryEmployerCompany.site_url;
+                    scope.user.company_industry = scope.temporaryEmployerCompany.industry;
+                    scope.$parent.updateUser();
 
                     eventTracker.saveCompanyInfo('Employer');
                 }
@@ -45,28 +43,10 @@ EditCompany = function (EmployerCompany, Utils, eventTracker) {
 
             scope.onCancel = function() {
                 scope.editCompanyEnable = false;
-                scope.employerCompany.site_url = temporaryEmployerCompany.site_url;
-                scope.employerCompany.country.name = temporaryEmployerCompanyName;
-                scope.employerCompany.state = temporaryEmployerCompany.state;
+
+                scope.temporaryEmployerCompany = angular.copy(scope.employerUser.company);
             }
 
-
-
-            scope.onCountry = function(country) {
-                if (country) {
-                    scope.country_id = country.id;
-
-                    scope.employerCompany.state = null;
-                    scope.employerCompany.state_id = null;
-                }
-            }
-
-            scope.onCompanyState = function(state) {
-                if (state) {
-                    scope.employerCompany.state = state
-                    scope.state_id = state.id;
-                }
-            }
             /* Methods */
 
             init();
