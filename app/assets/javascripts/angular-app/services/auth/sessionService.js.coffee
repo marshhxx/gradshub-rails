@@ -11,8 +11,7 @@ SessionService = ($http, $q, $localStorage, oauthService, Candidate, Employer, p
     deferred.promise
 
   logout = ->
-    if isCandidate()
-      presenceService.leave()
+    presenceService.leave()
     delete $localStorage.token
     delete $localStorage.userInfo
 
@@ -82,12 +81,7 @@ SessionService = ($http, $q, $localStorage, oauthService, Candidate, Employer, p
       type: session.type
     })
     presenceService.initialize(session.uid)
-    if isCandidate()
-      presenceService.join(session.uid)
-
-  isCandidate = ->
-    info = parseUserInfo()
-    info and info.type == "Candidate"
+    presenceService.join(session.uid)
 
   return {
     login: login,

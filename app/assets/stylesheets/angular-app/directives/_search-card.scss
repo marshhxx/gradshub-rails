@@ -1,19 +1,96 @@
 @import "../base/colors";
 
-.results-container { display: inline-block; padding: 10px; vertical-align: top; }
-.search-card-wrapper { display: inline-block; }
-.search-card { width: 260px; background-color: $primary-white; border: 1px solid #e1e8ed; border-radius: 5px; -moz-box-sizing: border-box; box-sizing: border-box; text-align: left; cursor: pointer}
-.search-card .header {
-  .cover-ph { @extend %bg-image; height: 90px; border-radius: 5px 5px 0 0;} //background-image: url('homepage/home-background-candidate.png');
-  .profile-ph-wrapper {  width: 92px; height: 92px; margin-left: 15px; margin-top: -65px; border: 2px solid white; border-radius: 50%; box-shadow: 0 0 0 1px #f7f5f4; position: absolute; overflow: hidden; background-color: $primary-white; }
-  .profile-ph { height: 100%; overflow: hidden; z-index: 9; @extend %bg-image; } //background-image: url('profile/female.svg');
+.results-container {
+  display: inline-block;
+  padding: 10px;
+  vertical-align: top;
 }
-.search-card .content {
-  margin: 35px 10px 30px;
-  min-height: 93px;
-  .name { font: 16px Montserrat-Regular; color: $text-title; line-height: 1.3; }
-  .headline { font: 14px Lato-Regular; color: $text-bold; line-height: 1.3; max-height: 36px; min-height: 18px; overflow:hidden;}
-  .current-position { font: 13px Lato-Regular; color: $text-regular; margin-top: 5px; line-height: 1.3; max-height: 16px; min-height:16px; overflow:hidden;}
-  .city { font: 13px Lato-Light; color: $text-regular; max-height: 16px; min-height:16px; overflow:hidden;}
+
+.search-card-wrapper {
+  display: inline-block;
+}
+
+.search-card {
+  width: 260px;
+  background-color: $primary-white;
+  border: 1px solid #e1e8ed;
+  border-radius: 5px;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  text-align: left;
+  cursor: pointer;
+
+  .header {
+    .cover-ph {
+      @extend %bg-image;
+      height: 90px;
+      border-radius: 5px 5px 0 0;
+    }
+
+    .profile-ph-wrapper {
+      width: 92px;
+      height: 92px;
+      margin-left: 15px;
+      margin-top: -65px;
+      border: 2px solid white;
+      border-radius: 50%;
+      box-shadow: 0 0 0 1px #f7f5f4;
+      position: absolute;
+      overflow: hidden;
+      background-color: $primary-white;
+    }
+
+    .profile-ph {
+      height: 100%;
+      overflow: hidden;
+      z-index: 9;
+      @extend %bg-image;
+    }
+  }
+
+  .content {
+    margin: 35px 10px 10px;
+    min-height: 123px;
+
+    .status {
+      margin-top: -30px;
+      min-height: 30px;
+      text-align: right;
+      p {
+        font: 14px Lato-Regular;
+        color: $text-bold;
+        line-height: 1.3;
+      }
+    }
+    .name {
+      font: 16px Montserrat-Regular;
+      color: $text-title;
+      line-height: 1.3;
+    }
+    .headline {
+      font: 14px Lato-Regular;
+      color: $text-bold;
+      line-height: 1.3;
+      max-height: 36px;
+      min-height: 18px;
+      overflow: hidden;
+    }
+    .current-position {
+      font: 13px Lato-Regular;
+      color: $text-regular;
+      margin-top: 5px;
+      line-height: 1.3;
+      max-height: 16px;
+      min-height: 16px;
+      overflow: hidden;
+    }
+    .city {
+      font: 13px Lato-Light;
+      color: $text-regular;
+      max-height: 16px;
+      min-height: 16px;
+      overflow: hidden;
+    }
+  }
 }
 

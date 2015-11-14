@@ -1,13 +1,18 @@
-ModalService = ($modal) ->
+ModalService = ($uibModal) ->
 	service = {}
 
-	service.confirm = (msg) ->
-		$modal.open({
-			size: 'sm',
+	service.confirm = (msg, confirmMsg='OK', rejectMsg='Cancel', size='sm') ->
+		$uibModal.open({
+			size: size,
 			controller: 'ModalController',
 			templateUrl: 'angular-app/templates/modals/confirm.html',
 			resolve: {
-				message: () -> msg
+				message:
+          -> msg
+        confirm:
+          -> confirmMsg
+        reject:
+          -> rejectMsg
 			}
 		}).result
 

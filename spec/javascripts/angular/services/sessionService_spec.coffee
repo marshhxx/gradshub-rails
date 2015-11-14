@@ -96,7 +96,7 @@ describe 'Unit test for the session service', ->
       @service.logout()
 
       expect(@presenceService.initialize).toHaveBeenCalled()
-      expect(@presenceService.leave).not.toHaveBeenCalled()
+      expect(@presenceService.leave).toHaveBeenCalled()
       expect(@localStorage.token).toBeUndefined()
       expect(@localStorage.userInfo).toBeUndefined()
 
@@ -200,9 +200,9 @@ describe 'Unit test for the session service', ->
       @service.requestCurrentUser().then(@failIfNotUndefined).catch (error) ->
         expect(error).toEqual({error: {reasons: ['There is no active session']}})
 
-  describe 'test presence subscription when', ->
+  describe 'test presence ', ->
 
-    it 'user is a Candidate', ->
+    it 'when user subscribes', ->
       session = @createSessionMock('uid', 'email@google.com', 'token', 'Candidate')
       @mockSessionCall('POST', '/api/sessions', 200, session)
 
@@ -214,28 +214,8 @@ describe 'Unit test for the session service', ->
       expect(@presenceService.initialize).toHaveBeenCalled()
       expect(@presenceService.join).toHaveBeenCalled()
 
-    it 'user is a not Candidate', ->
-      session = @createSessionMock('uid', 'email@google.com', 'token', 'Employer')
-      @mockSessionCall('POST', '/api/sessions', 200, session)
-
-      @service.login('email@google.com','password').then (response) ->
-        expect(response).toEqual(session)
-      .catch(@failIfNotUndefined)
-      @http.flush()
-
-      expect(@presenceService.initialize).toHaveBeenCalled()
-      expect(@presenceService.join).not.toHaveBeenCalled()
-
-  describe 'test presence unsubscription when', ->
-
-    it 'user is a Candidate', ->
+    it 'user unsubscribes', ->
       @createLocalSession("token", "uid", "Candidate")
       @service.logout()
 
       expect(@presenceService.leave).toHaveBeenCalled()
-
-    it 'user is not a Candidate', ->
-      @createLocalSession("token", "uid", "Employer")
-      @service.logout()
-
-      expect(@presenceService.leave).not.toHaveBeenCalled()

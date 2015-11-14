@@ -383,10 +383,18 @@ h3 {
   background-image: url(profile/female.svg) !important;
 }
 
-.profile-headline.wrapper {
-  height: 60px;
-  width: 100%;
-  background-color: #FFF;
+.profile-headline {
+  
+  &.wrapper {
+    height: 60px;
+    width: 100%;
+    background-color: #FFF;
+  }
+  
+  .status {
+    float: right;
+    margin: 20px;
+  }
 }
 
 .profile-image-edit.wrapper {
@@ -906,6 +914,28 @@ textarea {
     color: $primary-white;
     background: $primary-turquoise-hover;
     border: 1px solid $primary-turquoise-hover;
+  }
+}
+
+.call-btn {
+  color: $primary-white !important;
+  background-color: $primary-turquoise;
+  font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
+  font-size: 14px;
+  border: 2px solid $primary-turquoise;
+  border-radius: 4px !important;
+  padding: 6px !important;
+  cursor: pointer;
+  text-align: center;
+  position: absolute;
+  bottom: 15px;
+  left: 755px;
+  z-index: 10;
+
+  &:hover {
+    color: $primary-white  !important;
+    border: 2px solid $primary-turquoise-hover;
+    background-color: $primary-turquoise-hover !important;
   }
 }
 

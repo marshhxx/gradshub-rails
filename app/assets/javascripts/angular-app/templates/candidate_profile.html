@@ -7,14 +7,16 @@
     <div id="profile-cover" class="coverWrap">
         <div>
             <p class="profile-username-txt"> {{user.name }} {{user.lastname}}</p>
-
             <p class="profile-tag-txt">{{user.tag}}</p>
+            <a ng-if="logged && notMe && isEmployer" ng-click="callCandidate()" class="call-btn">Call now!</a>
         </div>
         <div class="cover-border">
             <simpleimagepicker update-image="updateCoverImage"
                                image-url="user.cover_image"
                                default="profile/default_cover.png"
-                               circular="false"></simpleimagepicker>
+                               circular="false">
+
+            </simpleimagepicker>
         </div>
     </div>
     <div class="profile-headline wrapper">
@@ -24,6 +26,7 @@
                                default="profile/{{ user.gender ? user.gender : 'other' }}.svg"
                                circular="true"></simpleimagepicker>
         </div>
+      <div ng-if="logged && notMe && isEmployer" class="status"> {{ candidateStatus }} </div>
     </div>
 
 </div>

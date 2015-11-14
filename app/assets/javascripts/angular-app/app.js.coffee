@@ -94,9 +94,12 @@
     url: "/terms",
     templateUrl: "angular-app/templates/terms.html"
   }).state("main.communication", {
-    url: "/call?caller={ca}&receiver={re}",
+    url: "/call/:receiver",
     templateUrl: "angular-app/templates/communication/call.html",
-    controller: "CommunicationController"
+    controller: "CommunicationController",
+    params: {
+      beingCalled: false
+    }
   })
 
 .run (initializeApp) ->
