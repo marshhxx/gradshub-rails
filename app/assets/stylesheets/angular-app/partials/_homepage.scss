@@ -6,7 +6,8 @@ header {
   position: relative;
   text-align: center;
   margin-top: 50px;
-  @extend %bg-image; background-image: url('homepage/home-background.png');
+  @extend %bg-image;
+  background-image: url('homepage/home-background.png');
 }
 
 .header-signup {
@@ -164,7 +165,7 @@ section#home-signup {
   margin: 0;
   border: 0;
   background: 0;
-  font: 16px/1.4 "Helvetica Neue","HelveticaNeue",Helvetica,Arial,sans-serif;
+  font: 16px/1.4 "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
   box-sizing: border-box;
   outline: 0;
 
@@ -177,12 +178,9 @@ section#home-signup {
   }
 }
 
-.form-row.signup{
+.form-row {
   background-color: $primary-white;
   z-index: 2;
-}
-
-.form-row {
   &.first-child {
     border-top: 0 !important;
     border-top-left-radius: 4px !important;
@@ -199,6 +197,7 @@ section#home-signup {
     border-top: 1px solid #e3e3e3;
   }
 }
+
 /*** End Sign Up form  ***/
 
 /*** Start Section Title  ***/
@@ -212,7 +211,8 @@ section#home-signup {
   }
 
   &.section-how-it-works-header {
-    @extend %bg-image; background-image: url('homepage/background-howitworks.png');
+    @extend %bg-image;
+    background-image: url('homepage/background-howitworks.png');
   }
 
   &.section-testimonials-header {
@@ -250,7 +250,6 @@ section#home-signup {
 }
 
 /*** End Section Title  ***/
-
 
 /*** Start features section ***/
 
@@ -313,7 +312,7 @@ section#section-how-it-works-employer {
 }
 
 .container-wrapper {
-  width:100%;
+  width: 100%;
   margin-right: 0;
   margin-left: 0;
   padding-left: 0;
@@ -331,9 +330,9 @@ section#section-how-it-works-employer {
     position: relative;
     .child {
       height: 550px;
-      position:relative;
+      position: relative;
 
-      img{
+      img {
         position: absolute;
         bottom: 0;
         left: 0;
@@ -378,7 +377,7 @@ section#section-how-it-works-employer {
     font: 18px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
     float: left;
   }
-  .detail{
+  .detail {
     font: 16px Lato-Light, Georgia, "Times New Roman", Times, serif;
     float: left;
     margin-top: 7px;
@@ -446,21 +445,17 @@ section#section-how-it-works-employer {
 /*==========================> Responsive Design <=========================*/
 
 /* Smartphones (portrait and landscape) ----------- */
-@media only screen
-and (min-device-width : 320px)
-and (max-device-width : 480px) {
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
   /* Styles */
 }
 
 /* Smartphones (landscape) ----------- */
-@media only screen
-and (min-width : 321px) {
+@media only screen and (min-width: 321px) {
   /* Styles */
 }
 
 /* Smartphones (portrait) ----------- */
-@media only screen
-and (max-width : 320px) {
+@media only screen and (max-width: 320px) {
   /* Styles */
 }
 
@@ -478,30 +473,21 @@ and (max-width : 320px) {
 }
 
 /* iPads (portrait and landscape) ----------- */
-@media only screen
-and (min-device-width : 768px)
-and (max-device-width : 1024px) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
 }
 
 /* iPads (landscape) ----------- */
-@media only screen
-and (min-device-width : 768px)
-and (max-device-width : 1024px)
-and (orientation : landscape) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
   /* Styles */
 }
 
 /* iPads (portrait) ----------- */
-@media only screen
-and (min-device-width : 768px)
-and (max-device-width : 1024px)
-and (orientation : portrait) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
   /* Styles */
 }
 
 /* Desktops and laptops ----------- */
-@media only screen
-and (min-width : 1224px) {
+@media only screen and (min-width: 1224px) {
 
   header {
     background: none;
@@ -567,15 +553,13 @@ and (min-width : 1224px) {
 }
 
 /* Large screens ----------- */
-@media only screen
-and (min-width : 1824px) {
+@media only screen and (min-width: 1824px) {
   /* Styles */
 }
 
 /* iPhone 4 ----------- */
-@media
-only screen and (-webkit-min-device-pixel-ratio : 1.5),
-only screen and (min-device-pixel-ratio : 1.5) {
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (min-device-pixel-ratio: 1.5) {
   /* Styles */
 }
 

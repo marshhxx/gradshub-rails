@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150705143428) do
+ActiveRecord::Schema.define(version: 20151024142658) do
 
   create_table "candidate_interests", force: true do |t|
     t.integer "candidate_id"
@@ -86,8 +86,8 @@ ActiveRecord::Schema.define(version: 20150705143428) do
     t.integer "country_id"
     t.integer "state_id"
     t.text    "description"
-    t.date    "start_date",   null: false
-    t.date    "end_date"
+    t.date    "start_date"
+    t.date    "end_date",     null: false
   end
 
   create_table "employer_company", force: true do |t|

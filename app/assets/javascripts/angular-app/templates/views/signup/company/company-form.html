@@ -1,0 +1,79 @@
+<form id="personal-form" name="companyForm" ng-submit="validateAndCreate(companyForm.$valid)" novalidate autocomplete="off">
+  <div class="signup form-container col-md-8 col-md-offset-2">
+
+    <p class="title"> Company </p>
+
+    <p class="subtitle"> Tell us about your company. </p>
+
+    <div class="signup form-box-cont">
+
+      <p class="label">Company Name</p>
+
+      <div class="form-group"
+           ng-class="{'has-error': companyForm.company.$invalid && (companyForm.$submitted || companyForm.company.$dirty)}">
+        <input name="company" type="text" ng-model="newCompany.company" required
+               class="form-control input-sm" id="company" placeholder="What is your company's name?">
+
+        <div
+            ng-if="companyForm.company.$invalid && (companyForm.$submitted || companyForm.company.$dirty)"
+            ng-messages="companyForm.company.$error">
+          <div class="help-block" ng-message="required">
+            Enter your company name
+          </div>
+        </div>
+      </div>
+
+      <p class="label">Job Title</p>
+
+      <div class="form-group">
+        <input type="text" ng-model="user.job_title" class="form-control input-sm" id="jobPosition"
+               placeholder="What is your job position?" class="form-control">
+      </div>
+
+      <p class="label">Company Tagline</p>
+
+      <div class="form-group"
+           ng-class="{'has-error': companyForm.companyTagline.$invalid && (companyForm.$submitted || companyForm.companyTagline.$dirty)}">
+        <input name="companyIndustry" type="text" ng-model="newCompany.tagline"
+               class="form-control input-sm" id="companyTagline"
+               placeholder="Share a short statement">
+      </div>
+
+      <p class="label">Industry</p>
+
+      <div class="form-group"
+           ng-class="{'has-error': companyForm.companyIndustry.$invalid && (companyForm.$submitted || companyForm.companyIndustry.$dirty)}">
+        <input name="companyIndustry" type="text" ng-model="newCompany.industry" required
+               class="form-control input-sm" id="companyIndustry" placeholder="What is your company's industry?">
+
+        <div
+            ng-if="companyForm.companyIndustry.$invalid && (companyForm.$submitted || companyForm.companyIndustry.$dirty)"
+            ng-messages="companyForm.companyIndustry.$error">
+          <div class="help-block" ng-message="required">
+            Enter a company industry
+          </div>
+        </div>
+      </div>
+
+      <p class="label">Website</p>
+
+      <div class="form-group">
+        <input type="text" ng-model="employerCompany.site_url" class="form-control input-sm" id="siteUrl"
+               placeholder="What is you company's web page?" class="form-control">
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="col-xs-12 text-center">
+    <button class="btn btn-signup btn-back" ng-click="backToPersonal()">Back</button>
+    <button type="submit" class="btn btn-signup btn-next">Go to Profile</button>
+  </div>
+
+  <div class="col-xs-12 text-center">
+    <img src="/assets/signup/ic_circle_off.svg"/>
+    <img src="/assets/signup/ic_circle_on.svg"/>
+  </div>
+
+</form>
