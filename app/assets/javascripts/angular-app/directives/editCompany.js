@@ -1,9 +1,8 @@
 EditCompany = function (EmployerCompany, Utils, eventTracker) {
     return {
-        // NEEEED TO DO EVERYTHING
         scope: {
             user: '=data',
-            saveCompany: '=',
+            updateCompanyUser: '=',
             addCompanyEnabled: '='
         },
         templateUrl: 'angular-app/templates/directives/edit-company.html',
@@ -33,7 +32,8 @@ EditCompany = function (EmployerCompany, Utils, eventTracker) {
                     scope.user.company_name = scope.temporaryEmployerCompany.name;
                     scope.user.company_url = scope.temporaryEmployerCompany.site_url;
                     scope.user.company_industry = scope.temporaryEmployerCompany.industry;
-                    scope.$parent.updateUser();
+
+                    scope.updateCompanyUser();
 
                     eventTracker.saveCompanyInfo('Employer');
                 }

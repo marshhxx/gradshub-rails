@@ -55,31 +55,26 @@ angular.module('gradshub-ng.controllers').controller('employerProfileController'
                 $scope.descriptionEnable = false;
             }
 
-
-            $scope.updateEmployerCoverImage = function (coverImage){
-                // NOT IMPLEMENTED IN THE NEW PROFILE
-                /*$scope.user.cover_image = coverImage;
-                $scope.updateUser();
-
-                eventTracker.saveCoverPhoto('Employer');*/
-            }
-
             $scope.updateEmployerCompanyImage = function (companyImage){
                 $scope.user.company_logo = companyImage;
 
-                $scope.updateUser();
+                updateUser();
 
                 eventTracker.saveCompanyLogo('Employer');
             }
 
             $scope.updateEmployerProfileImage = function (profileImage) {
                 $scope.user.profile_image = profileImage;
-                $scope.updateUser();
+                updateUser();
 
                 eventTracker.saveProfilePhoto('Employer');
             }
-            
-            $scope.updateUser = function () {
+
+            $scope.updateCompanyUser = function() {
+                updateUser();
+            }
+
+            var updateUser = function () {
                 Utils.employerFromObject($scope.user).$update(function (response) { //Creates resource User from object $scope.user
                         $scope.user = response.employer;
                         initEmployerProfile(); //Update profile variables;
@@ -98,7 +93,7 @@ angular.module('gradshub-ng.controllers').controller('employerProfileController'
                 // Employer description is stored on employerCompany.
                 $scope.user.company.description = $scope.user.company_description;
 
-                $scope.updateUser();
+                updateUser();
                 $scope.disableDescriptionEditor();
 
                 eventTracker.saveAboutMe('Employer');
