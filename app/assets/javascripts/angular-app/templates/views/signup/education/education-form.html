@@ -1,0 +1,97 @@
+<form id="education-form" name="educationForm" ng-submit="validateAndCreate(educationForm.$valid)"
+      ng-init="setInnerScope(this)" novalidate autocomplete="off">
+  <div class="signup form-container col-md-8 col-md-offset-2">
+    <p class="title"> Education </p>
+
+    <p class="subtitle"> Tell us about your education background. </p>
+
+    <div class="signup form-box-cont">
+      <p class="label">School</p>
+
+      <div class="form-group"
+           ng-class="{'has-error': educationForm.school.$invalid && (educationForm.$submitted || educationForm.school.$touched)}">
+        <school-selector placeholder="What is your school name?" ng-model="school" on-select="onSchool"
+                         required></school-selector>
+        <div ng-if=" educationForm.school.$invalid && (educationForm.$submitted || educationForm.school.$touched)"
+             ng-messages="educationForm.school.$error">
+          <div class="help-block" ng-message="required">
+            Select a school
+          </div>
+          <div class="help-block" ng-message="school">
+            Select a valid school
+          </div>
+        </div>
+      </div>
+      <p class="label">Major</p>
+
+      <div class="form-group"
+           ng-class="{'has-error': educationForm.major.$invalid && (educationForm.$submitted || educationForm.major.$touched)}">
+        <major-selector placeholder="What is your field of study?" ng-model="major" on-select="onMajor"
+                        required></major-selector>
+        <div ng-if="educationForm.major.$invalid && (educationForm.$submitted || educationForm.major.$touched)"
+             ng-messages="educationForm.major.$error">
+          <div class="help-block" ng-message="required">
+            Select a major
+          </div>
+          <div class="help-block" ng-message="major">
+            Select a valid major
+          </div>
+        </div>
+      </div>
+      <p class="label">Degree</p>
+
+      <div class="form-group"
+           ng-class="{'has-error': educationForm.degree.$invalid && (educationForm.$submitted || educationForm.degree.$touched)}">
+        <degree-selector placeholder="What is your degree?" ng-model="degree" on-select="onDegree"
+                         required></degree-selector>
+        <div ng-if="educationForm.degree.$invalid && (educationForm.$submitted || educationForm.degree.$touched)"
+             ng-messages="educationForm.degree.$error">
+          <div class="help-block" ng-message="required">
+            Select a degree
+          </div>
+          <div class="help-block" ng-message="degree">
+            Select a valid degree
+          </div>
+        </div>
+      </div>
+
+      <p class="label">Country</p>
+
+      <div class="form-group">
+        <country-selector placeholder="School Country" ng-model="schoolCountry"
+                          on-select="onSchoolCountry"></country-selector>
+      </div>
+      <p class="label">State</p>
+
+      <div class="form-group">
+        <state-selector placeholder="School State" ng-model="schoolState" on-select="onSchoolState"
+                        country-id="education.country_id"></state-selector>
+      </div>
+
+      <div class="max-width margin-t15"
+           ng-class="{'has-error': educationForm.datepicker.$invalid && educationForm.$submitted}">
+        <span class="label">Graduation Date</span>
+        <simpledatepicker no-day="true" ng-model="education.end_date" future="true"
+                          name="'datepicker'"></simpledatepicker>
+      </div>
+
+      <div class="help-block" ng-messages="educationForm.datepicker.$error"
+           ng-if="educationForm.datepicker.$invalid && educationForm.$submitted">
+        <p ng-message="required">Select a graduation date</p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="col-xs-12 text-center">
+    <button class="btn btn-signup btn-back" ng-click="backToPersonal()">Back</button>
+    <button type="submit" class="btn btn-signup btn-next">Go to Profile</button>
+  </div>
+
+  <div class="col-xs-12 text-center">
+    <img src="/assets/signup/ic_circle_off.svg"/>
+    <img src="/assets/signup/ic_circle_on.svg"/>
+  </div>
+
+</form>

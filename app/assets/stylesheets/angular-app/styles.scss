@@ -123,6 +123,7 @@ html {
 
 body {
   min-height: 100% !important;
+  height: 100%;
   overflow-x: hidden !important;
   -webkit-overflow-scrolling: touch;
   -webkit-tap-highlight-color: transparent;
@@ -170,242 +171,227 @@ textarea {
   outline: 0;
 }
 
-.custom-placeholder {
-  color: #aaa;
-  font-size: 13px !important;
+select {
+  color: $text-inputs !important;
   font-family: Lato-Regular !important;
-  text-align: left;
-  padding: 5px 10px;
-}
-
-.align-left {
-  float: left !important;
-}
-
-.max-width {
-  width: 100%;
-}
-
-.padding-l35 {
-  padding-left: 35px !important;
-}
-
-.padding-5 {
-  padding: 0 5px !important;
-}
-
-.padding-right-0 {
-  padding-right: 0;
-}
-
-.padding-left-0 {
-  padding-left: 0 !important;
-}
-
-.padding-right-0 {
-  padding-right: 0 !important;
-}
-
-.padding-b-20 {
-  padding-bottom: 20px !important;
-}
-
-.padding-t-60 {
-  padding-top: 60px;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.overflow-auto {
-  overflow: auto;
-}
-
-.margin-l5 {
-  margin-left: 5px;
-}
-
-.margin-r5 {
-  margin-right: 5px;
-}
-
-.margin-l10 {
-  margin-left: 10px;
-}
-
-.margin-r10 {
-  margin-right: 10px;
-}
-
-.margin-rn1 {
-  margin-right: 6px;
-}
-
-.margin-lr10 {
-  margin: 0px 10px;
-}
-
-.margin-lr20 {
-  margin: 0px 20px;
-}
-
-.margin-lr30 {
-  margin: 0px 30px;
-}
-
-.margin-t5 {
-  margin-top: 5px;
-}
-
-.margin-t10 {
-  margin-top: 10px;
-}
-
-.margin-t15 {
-  margin-top: 15px;
-}
-
-.margin-t20 {
-  margin-top: 20px;
-}
-
-.margin-t30 {
-  margin-top: 30px;
-}
-
-.margin-t40 {
-  margin-top: 40px;
-}
-
-.margin-t50 {
-  margin-top: 50px;
-}
-
-.margin-t80 {
-  margin-top: 80px;
-}
-
-.margin-t90 {
-  margin-top: 90px;
-}
-
-.margin-b15 {
-  margin-bottom: 15px;
-}
-
-.margin-b20 {
-  margin-bottom: 20px;
-}
-
-.margin-b30 {
-  margin-bottom: 30px;
-}
-
-.margin-lt-7 {
-  margin: 7px 7px 0 !important;
-}
-
-.width15 {
-  width: 15% !important;
-  float: left;
-}
-
-.width85 {
-  width: 85%;
-  float: left;
-}
-
-.height25 {
-  height: 25px;
-}
-
-.height50 {
-  height: 50px;
-}
-
-.text-align-right {
-  text-align: right;
-}
-
-.align-vertical {
-  display: inherit;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.align-vertical-inverse {
-  display: inherit;
-  position: relative;
-  top: 50%;
-  transform: translateY(50%);
-}
-
-::-webkit-input-placeholder {
-  font: 13px Lato-Regular;
-}
-
-:-moz-placeholder {
-  /* Firefox 18- */
-  font: 13px Lato-Regular;
-}
-
-::-moz-placeholder {
-  /* Firefox 19+ */
-  font: 13px Lato-Regular;
-}
-
-:-ms-input-placeholder {
-  font: 13px Lato-Regular;
-}
-
-.button-primary {
-  background-color: rgb(255, 255, 255) !important;
-  border-color: $border-gray !important;
-  color: #555555 !important;
-  padding: 2px !important;
   font-size: 13px !important;
 
-  &:hover {
-    background-color: rgb(255, 255, 255) !important;
-    border-color: $border-gray-focus;
-    color: #555555 !important;
-  }
-
-  &.w75 {
-    width: 75px;
-  }
-
-  &.w100 {
-    width: 97px;
-  }
-
-  &.w120 {
-    width: 120px;
+  &:focus {
+    outline: 0 !important;
   }
 }
 
-.div-100 {
-  width: 100% !important;
-}
+  .custom-placeholder {
+    color: #aaa;
+    font-size: 13px !important;
+    font-family: Lato-Regular !important;
+    text-align: left;
+    padding: 5px 10px;
+  }
 
-.div-50 {
-  width: 49% !important;
-}
+  .align-left {
+    float: left !important;
+  }
 
-.div-25 {
-  width: 24% !important;
-}
+  .max-width {
+    width: 100%;
+  }
 
-.left {
-  float: left;
-}
+  .padding-l35 {
+    padding-left: 35px !important;
+  }
 
-.right {
-  float: right;
-}
+  .padding-5 {
+    padding: 0 5px !important;
+  }
 
-.min-height-150 {
-  min-height: 150px;
-}
+  .padding-right-0 {
+    padding-right: 0;
+  }
+
+  .padding-left-0 {
+    padding-left: 0 !important;
+  }
+
+  .padding-right-0 {
+    padding-right: 0 !important;
+  }
+
+  .padding-b-20 {
+    padding-bottom: 20px !important;
+  }
+
+  .padding-t-60 {
+    padding-top: 60px;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .overflow-auto {
+    overflow: auto;
+  }
+
+  .margin-l5 {
+    margin-left: 5px;
+  }
+
+  .margin-r5 {
+    margin-right: 5px;
+  }
+
+  .margin-l10 {
+    margin-left: 10px;
+  }
+
+  .margin-r10 {
+    margin-right: 10px;
+  }
+
+  .margin-rn1 {
+    margin-right: 6px;
+  }
+
+  .margin-lr10 {
+    margin: 0px 10px;
+  }
+
+  .margin-lr20 {
+    margin: 0px 20px;
+  }
+
+  .margin-lr30 {
+    margin: 0px 30px;
+  }
+
+  .margin-t5 {
+    margin-top: 5px;
+  }
+
+  .margin-t10 {
+    margin-top: 10px;
+  }
+
+  .margin-t15 {
+    margin-top: 15px;
+  }
+
+  .margin-t20 {
+    margin-top: 20px;
+  }
+
+  .margin-t30 {
+    margin-top: 30px;
+  }
+
+  .margin-t40 {
+    margin-top: 40px;
+  }
+
+  .margin-t50 {
+    margin-top: 50px;
+  }
+
+  .margin-t80 {
+    margin-top: 80px;
+  }
+
+  .margin-t90 {
+    margin-top: 90px;
+  }
+
+  .margin-b15 {
+    margin-bottom: 15px;
+  }
+
+  .margin-b20 {
+    margin-bottom: 20px;
+  }
+
+  .margin-b30 {
+    margin-bottom: 30px;
+  }
+
+  .margin-lt-7 {
+    margin: 7px 7px 0 !important;
+  }
+
+  .width15 {
+    width: 15% !important;
+    float: left;
+  }
+
+  .width85 {
+    width: 85%;
+    float: left;
+  }
+
+  .height25 {
+    height: 25px;
+  }
+
+  .height50 {
+    height: 50px;
+  }
+
+  .text-align-right {
+    text-align: right;
+  }
+
+  .align-vertical {
+    display: inherit;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .align-vertical-inverse {
+    display: inherit;
+    position: relative;
+    top: 50%;
+    transform: translateY(50%);
+  }
+
+  ::-webkit-input-placeholder {
+    font: 13px Lato-Regular;
+  }
+
+  :-moz-placeholder {
+    /* Firefox 18- */
+    font: 13px Lato-Regular;
+  }
+
+  ::-moz-placeholder {
+    /* Firefox 19+ */
+    font: 13px Lato-Regular;
+  }
+
+  :-ms-input-placeholder {
+    font: 13px Lato-Regular;
+  }
+
+  .div-100 {
+    width: 100% !important;
+  }
+
+  .div-50 {
+    width: 49% !important;
+  }
+
+  .div-25 {
+    width: 24% !important;
+  }
+
+  .left {
+    float: left;
+  }
+
+  .right {
+    float: right;
+  }
+
+  .min-height-150 {
+    min-height: 150px;
+  }
+

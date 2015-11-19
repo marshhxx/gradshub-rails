@@ -1,17 +1,11 @@
 angular.module('gradshub-ng.controllers').controller('employerProfileController',
     ['$scope', '$rootScope', '$http', '$upload', 'sessionService', '$state', '$stateParams','Skill', 'Country', 'State',
-        'Employer', 'EmployerSkills', 'EmployerCompany', 'Utils', 'EmployerInterests', 'alertService', 'errors', 'eventTracker',
+        'Employer', 'Utils', 'alertService', 'errors', 'eventTracker',
 
         function($scope, $rootScope,$httpProvider, $upload, sessionService, $state, $stateParams,Skill, Country, State,
-                 Employer, EmployerSkills, EmployerCompany, Utils, EmployerInterests, alertService, errors, eventTracker) {
+                 Employer, Utils, alertService, errors, eventTracker) {
             var init = function () {
                 getData();
-
-                /* SKILLS */
-                initSkills();
-
-                /* INTERESTS */
-                initInterests();
 
                 // returns true if the profile is from the logged user
                 $scope.notMe = Utils.notMe();
@@ -57,28 +51,14 @@ angular.module('gradshub-ng.controllers').controller('employerProfileController'
 
                 $scope.employerCompany = $scope.user.company;
 
-                $scope.selectedSkills = $scope.user.skills.map(function (skill) {
-                    return skill.name;
-                });
-                $scope.selectedInterests = $scope.user.interests.map(function (interest) {
-                    return interest.name;
-                });
-
                 // hide
                 $scope.descriptionEnable = false;
             }
 
-
-            $scope.updateEmployerCoverImage = function (coverImage){
-                $scope.user.cover_image = coverImage;
-                updateUser();
-
-                eventTracker.saveCoverPhoto('Employer');
-            }
-
             $scope.updateEmployerCompanyImage = function (companyImage){
-                $scope.employerCompany.image = companyImage;
-                $scope.saveEmployerCompany();
+                $scope.user.company_logo = companyImage;
+
+                updateUser();
 
                 eventTracker.saveCompanyLogo('Employer');
             }
@@ -89,7 +69,11 @@ angular.module('gradshub-ng.controllers').controller('employerProfileController'
 
                 eventTracker.saveProfilePhoto('Employer');
             }
-            
+
+            $scope.updateCompanyUser = function() {
+                updateUser();
+            }
+
             var updateUser = function () {
                 Utils.employerFromObject($scope.user).$update(function (response) { //Creates resource User from object $scope.user
                         $scope.user = response.employer;
@@ -106,9 +90,10 @@ angular.module('gradshub-ng.controllers').controller('employerProfileController'
             }
 
             $scope.saveDescription = function() {
-                // Description of employer is stored in employerCompany, a child obeject of employer user.
-                $scope.saveEmployerCompany();
-                
+                // Employer description is stored on employerCompany.
+                $scope.user.company.description = $scope.user.company_description;
+
+                updateUser();
                 $scope.disableDescriptionEditor();
 
                 eventTracker.saveAboutMe('Employer');
@@ -117,110 +102,6 @@ angular.module('gradshub-ng.controllers').controller('employerProfileController'
             $scope.disableDescriptionEditor = function() {
                 $scope.descriptionEnable = false;
                 $scope.editorDescriptionEnabled = false;
-            }
-
-            // Skills
-            var initSkills = function() {
-                $scope.employerSelectedSkills = [];
-                $scope.selectedSkills = [];
-                $scope.editorSkillsEnabled = false;
-
-                $scope.enableSkillsEditor = function() {
-                    $scope.editorSkillsEnabled = true;
-                    if($scope.selectedSkills.length > 0) {
-                        $scope.employerSelectedSkills = $scope.selectedSkills.slice();
-                    }
-                };
-
-                $scope.disableSkillsEditor = function() {
-                    $scope.editorSkillsEnabled = false;
-                };
-
-                $scope.saveSkills = saveSkills;
-            };
-
-            var saveSkills = function(){
-                $scope.disableSkillsEditor();
-                $scope.selectedSkills = $scope.employerSelectedSkills.slice();
-
-                var employerSkills = new EmployerSkills();
-                employerSkills.employer_id = $scope.user.uid;
-                employerSkills.skills = $scope.selectedSkills.map(function(skillName) {
-                    return {name: skillName}
-                });
-
-                // need to be updated in backend.
-                employerSkills.$update(
-                    function (response) {
-                        $scope.selectedSkills = response.skills.map(function (skill) {
-                            return skill.name;
-                        });
-                    },
-                    function(error) {
-                        console.log(error)
-                });
-            };
-
-            // interests
-            var initInterests = function() {
-                $scope.employerSelectedInterests = [];
-                $scope.selectedInterests = [];
-                $scope.editorInterestsEnabled = false;
-
-                $scope.enableInterestsEditor = function() {
-                    $scope.editorInterestsEnabled = true;
-                    if($scope.selectedInterests.length > 0) {
-                        $scope.employerSelectedInterests = $scope.selectedInterests.slice();
-                    }
-                };
-
-                $scope.disableInterestsEditor = function() {
-                    $scope.editorInterestsEnabled = false;
-                };
-
-                $scope.saveInterests = saveInterests;
-            };
-
-
-            var saveInterests = function() {
-                $scope.disableInterestsEditor();
-                $scope.selectedInterests = $scope.employerSelectedInterests.slice();
-                
-                var employerInterests = new EmployerInterests();
-                employerInterests.employer_id = $scope.user.uid;
-                employerInterests.interests = $scope.selectedInterests.map(function(skillName) {
-                    return {name: skillName}
-                });
-                // need to be updated in backend.
-                employerInterests.$update(
-                    function (response) {
-                    },
-                    function(error) {
-                        console.log(error)
-                });
-            };
-            
-            // company info
-            $scope.saveEmployerCompany = function() {
-                var empCom = $scope.employerCompany;
-
-                // save
-                var employerCompany = new EmployerCompany();
-                employerCompany.employer_id = $scope.user.uid;
-                employerCompany.company_id = empCom.company_id;
-                employerCompany.country_id = empCom.country.id;
-                employerCompany.state_id = empCom.state.id;
-                employerCompany.description = empCom.description;
-                employerCompany.image = empCom.image;
-                employerCompany.site_url = empCom.site_url;
-                
-                employerCompany.$update(
-                    function(employerCompanyUpdated) {
-                        $scope.user.company = employerCompanyUpdated.company;
-                    }, function(error) {
-                        console.log(error);
-                    }
-                );
             }
 
             init();

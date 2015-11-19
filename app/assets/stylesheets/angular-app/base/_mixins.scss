@@ -6,7 +6,7 @@
 }
 
 @mixin font-style($family, $size, $color) {
-  font-family: $family + px, "Times New Roman", Georgia, serif;
+  font-family: $family, "Times New Roman", Georgia, serif;
   font-size: $size;
   color: $color;
 }

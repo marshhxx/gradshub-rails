@@ -1,0 +1,100 @@
+<form id="personal-form" name="personalForm" ng-submit="validatePersonal(personalForm.$valid)" novalidate
+      autocomplete="off">
+  <div class="signup form-container col-md-8 col-md-offset-2">
+    <p class="title"> Personal </p>
+
+    <p class="subtitle"> Tell us about yourself. </p>
+
+    <div class="signup form-box-cont">
+      <p class="label">Country</p>
+
+      <div class="form-group"
+           ng-class="{'has-error': personalForm.country.$invalid && (personalForm.$submitted || personalForm.country.$touched)}">
+        <country-selector placeholder="What country do you live in?" ng-model="country" on-select="onCountry"
+                          required></country-selector>
+        <div ng-if="personalForm.country.$invalid && (personalForm.$submitted || personalForm.country.$touched)"
+             ng-messages="personalForm.country.$error">
+          <div class="help-block" ng-message="required">
+            Select a country!
+          </div>
+          <div class="help-block" ng-message="country">
+            Select a valid country
+          </div>
+        </div>
+      </div>
+      <p class="label">State</p>
+
+      <div class="form-group"
+           ng-class="{'has-error': personalForm.state.$invalid && (personalForm.$submitted || personalForm.state.$touched)}">
+        <state-selector placeholder="What state do you live in?" ng-model="state"
+                        on-select="onState" country-id="user.country_id" required></state-selector>
+        <div ng-if="personalForm.state.$invalid && (personalForm.$submitted || personalForm.state.$touched)"
+             ng-messages="personalForm.state.$error">
+          <div class="help-block" ng-message="required">
+            Select a state
+          </div>
+          <div class="help-block" ng-message="state">
+            Select a valid state
+          </div>
+        </div>
+      </div>
+      <p class="label">Birthday</p>
+
+      <div class="form-group" ng-class="{'has-error': personalForm.datepicker.$invalid && personalForm.$submitted}">
+        <simpledatepicker ng-model="user.birth" name="datepicker"></simpledatepicker>
+      </div>
+      <div class="help-block" ng-messages="personalForm.datepicker.$error"
+           ng-if="personalForm.datepicker.$invalid && personalForm.$submitted">
+        <p ng-message="required">Select a birth date</p>
+      </div>
+
+      <p class="label">Gender</p>
+
+      <div class="form-group" ng-class="{'has-error': !user.gender && personalForm.$submitted}">
+        <select ng-model="user.gender" name="gender" class="form-control input-sm" required>
+          <option selected disabled value="">Select Gender</option>
+          <option value="{{gender | lowercase}}" ng-repeat="gender in genders"> {{gender}}</option>
+        </select>
+
+        <div ng-if="personalForm.gender.$invalid && (personalForm.$submitted || personalForm.gender.$touched)"
+             ng-messages="personalForm.gender.$error">
+          <div class="help-block" ng-message="required">
+            Select a gender
+          </div>
+        </div>
+      </div>
+
+      <p class="label">Nationality</p>
+
+      <div class="form-group"
+           ng-class="{'has-error': personalForm.nationality.$invalid && (personalForm.$submitted || personalForm.nationality.$touched)}">
+        <nationality-selector ng-model="nationality" on-select="onNationality"></nationality-selector>
+        <div
+            ng-if="personalForm.nationality.$invalid && (personalForm.$submitted || personalForm.nationality.$touched)"
+            ng-messages="personalForm.nationality.$error">
+          <div class="help-block" ng-message="required">
+            Select a nationality
+          </div>
+          <div class="help-block" ng-message="nationality">
+            Select a valid nationality
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div>
+
+  </div>
+
+  <div class="col-xs-12 text-center">
+    <button type="submit" class="btn btn-signup btn-next">Next</button>
+  </div>
+
+  <div class="col-xs-12 text-center">
+    <img src="/assets/signup/ic_circle_off.svg"/>
+    <img src="/assets/signup/ic_circle_off.svg"/>
+  </div>
+
+</form>
