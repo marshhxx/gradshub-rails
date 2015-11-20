@@ -1,4 +1,4 @@
-SessionService = ($http, $q, $localStorage, oauthService, Candidate, Employer) ->
+SessionService = ($http, $q, $localStorage, oauthService, Candidate, Employer, presenceService) ->
 
   login = (email, password) ->
     deferred = $q.defer()
@@ -11,6 +11,7 @@ SessionService = ($http, $q, $localStorage, oauthService, Candidate, Employer) -
     deferred.promise
 
   logout = ->
+    presenceService.leave()
     delete $localStorage.token
     delete $localStorage.userInfo
 
@@ -79,6 +80,8 @@ SessionService = ($http, $q, $localStorage, oauthService, Candidate, Employer) -
       user_uid: session.uid,
       type: session.type
     })
+    presenceService.initialize(session.uid)
+    presenceService.join(session.uid)
 
   return {
     login: login,
