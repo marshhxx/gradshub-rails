@@ -2,9 +2,10 @@ angular
 .module('gradshub-ng.controllers')
 .controller('mainController',
   ['$scope', '$rootScope', '$q', 'sessionService', '$state','alertService', '$sce', '$location', 'eventTracker',
-   '$anchorScroll', 'stateWrapper', 'modalService', 'navbarService',
+   '$anchorScroll', 'stateWrapper', 'modalService', 'navbarService', '$interval',
     ($scope, $rootScope, $q, sessionService, $state, alertService, $sce, $location, eventTracker,
-     $anchorScroll, stateWrapper, modalService, navbarService) ->
+     $anchorScroll, stateWrapper, modalService, navbarService, $interval) ->
+      callSound = new Audio('/sounds/call_sound.mp3')
 
       init = ->
         $anchorScroll.yOffset = 0
@@ -49,6 +50,8 @@ angular
             $scope.type = sessionService.sessionType().toLowerCase()
             $scope.username = user[$scope.type].name
             $scope.profileSpinner = false
+            $scope.isEmployer = $scope.type == 'employer'
+            $scope.currentUser = if $scope.isEmployer then user.employer else user.candidate
             deferrred.resolve(user)
         ).catch (error) -> deferrred.reject(error)
         $scope.userPromise = deferrred.promise
@@ -73,6 +76,21 @@ angular
 
       gotToProfile = ->
         $state.go("main.#{$scope.type}_profile", {uid: 'me'}, { reload: true })
+
+      $rootScope.$on('calling-event', (event, args) ->
+        scheduled = $interval( ->
+          callSound.play()
+        , 2000);
+        callSound.play();
+        modalService.confirm('You are receving a call! \nWant to chat?', 'Respond', 'Snooze').then( ->
+          $interval.cancel(scheduled)
+          $state.go('main.communication', {
+            isCaller: false,
+            receiver: args.event.caller,
+            beingCalled: true
+          });
+        )
+      )
         
       init()
   ])

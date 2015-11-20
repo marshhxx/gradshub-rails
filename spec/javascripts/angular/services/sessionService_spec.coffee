@@ -5,17 +5,18 @@ describe 'Unit test for the session service', ->
 
   beforeEach ->
     @oauthService = @model('oauthService')
+    @presenceService = @model('presenceService')
     @candidate = @model('Candidate')
     @employer = @model('Employer')
     @localStorage = @model('$localStorage')
     @localStorage.$reset()
     @service = @model('sessionService')
 
-    @mockSessionCall = (method, url, status, sessionMock) ->
+    @mockSessionCall = (method, url, status, sessionMock = null) ->
       @http.when(method, url).respond(status, sessionMock)
 
     @failIfNotUndefined = (response) ->
-      expect(response).toBeUndefined
+      expect(response).toBeUndefined()
 
     @assertLocalStorage = (token, uid, type) ->
       # assert local storage for session
@@ -35,6 +36,18 @@ describe 'Unit test for the session service', ->
         }
       }
 
+    @createLocalSession = (token, uid, type) ->
+      @localStorage.token = token
+      @localStorage.userInfo = JSON.stringify({
+        user_uid: uid,
+        type: type
+      })
+
+    spyOn(@presenceService, 'initialize')
+    spyOn(@presenceService, 'join')
+    spyOn(@presenceService, 'leave')
+
+
   describe 'test login', ->
 
     it 'with right user', ->
@@ -49,6 +62,7 @@ describe 'Unit test for the session service', ->
       @http.flush()
       # assert local storage for session
       @assertLocalStorage('token', 'uid', 'someType')
+      expect(@presenceService.initialize).toHaveBeenCalled()
 
     it 'with wrong user', ->
       @mockSessionCall('POST', '/api/sessions', 400)
@@ -58,23 +72,21 @@ describe 'Unit test for the session service', ->
 
       @http.expectPOST('/api/sessions')
       @http.flush()
+      expect(@presenceService.initialize).not.toHaveBeenCalled()
+      expect(@presenceService.join).not.toHaveBeenCalled()
 
   describe 'test logout', ->
 
     it 'destroys local storage info', ->
-      expect(@localStorage.token).toBeUndefined
-      expect(@localStorage.userInfo).toBeUndefined
+      expect(@localStorage.token).toBeUndefined()
+      expect(@localStorage.userInfo).toBeUndefined()
 
-      @localStorage.token = "token"
-      @localStorage.userInfo = JSON.stringify({
-        user_uid: "uid",
-        type: "Type"
-      })
-
+      @createLocalSession("token", "uid", "Candidate")
       @service.logout()
 
-      expect(@localStorage.token).toBeUndefined
-      expect(@localStorage.userInfo).toBeUndefined
+      expect(@presenceService.leave).toHaveBeenCalled()
+      expect(@localStorage.token).toBeUndefined()
+      expect(@localStorage.userInfo).toBeUndefined()
 
     it 'normal login/logout flow', ->
       session = @createSessionMock('uid', 'email@google.com', 'token', 'someType')
@@ -83,8 +95,10 @@ describe 'Unit test for the session service', ->
       @http.flush()
       @service.logout()
 
-      expect(@localStorage.token).toBeUndefined
-      expect(@localStorage.userInfo).toBeUndefined
+      expect(@presenceService.initialize).toHaveBeenCalled()
+      expect(@presenceService.leave).toHaveBeenCalled()
+      expect(@localStorage.token).toBeUndefined()
+      expect(@localStorage.userInfo).toBeUndefined()
 
   describe 'test sessionType', ->
 
@@ -92,11 +106,7 @@ describe 'Unit test for the session service', ->
       expect(@service.sessionType()).toEqual ('undefined')
 
     it 'when session exists', ->
-      @localStorage.userInfo = JSON.stringify({
-        user_uid: "uid",
-        type: "type"
-      })
-
+      @createLocalSession("token", "uid", "type")
       expect(@service.sessionType()).toEqual('type')
 
     it 'after calling log in', ->
@@ -119,6 +129,7 @@ describe 'Unit test for the session service', ->
       .catch(@failIfNotUndefined)
 
       @scope.$digest()
+      expect(@presenceService.initialize).toHaveBeenCalled()
       # assert local storage for session
       @assertLocalStorage('token', 'uid', 'someType')
 
@@ -135,6 +146,7 @@ describe 'Unit test for the session service', ->
       @http.flush()
       # assert local storage for session
       @assertLocalStorage('token', 'uid', 'someType')
+      expect(@presenceService.initialize).toHaveBeenCalled()
 
     it 'with bad credentials', ->
       @mockSessionCall('GET', '/api/sessions/refresh', 401)
@@ -144,23 +156,7 @@ describe 'Unit test for the session service', ->
 
       @http.expectGET('/api/sessions/refresh')
       @http.flush()
-
-    it 'when session expired', ->
-      session = @createSessionMock('uid', 'email@google.com', 'token', 'someType')
-      @mockSessionCall('GET', '/api/sessions/refresh', 200, session)
-
-      # assert local storage for session
-      @service.refreshSession()
-      @http.flush()
-      @assertLocalStorage('token', 'uid', 'someType')
-
-      @mockSessionCall('GET', '/api/sessions/refresh', 401)
-      @service.refreshSession()
-      @http.flush()
-
-      # session should be deleted
-      expect(@localStorage.token).toBeUndefined
-      expect(@localStorage.userInfo).toBeUndefined
+      expect(@presenceService.initialize).not.toHaveBeenCalled()
 
   describe 'test request current user', ->
 
@@ -170,10 +166,8 @@ describe 'Unit test for the session service', ->
 
     it 'when candidate logged', ->
       mockUser = @mockUser('candidate')
-      @localStorage.userInfo = JSON.stringify({
-        user_uid: "uid",
-        type: "Candidate"
-      })
+      @createLocalSession("token", "uid", "Candidate")
+
       # mock the candidate response promise
       defer = @q.defer()
       defer.resolve({data: mockUser})
@@ -188,10 +182,8 @@ describe 'Unit test for the session service', ->
 
     it 'when employer logged', ->
       mockUser = @mockUser('employer')
-      @localStorage.userInfo = JSON.stringify({
-        user_uid: "uid",
-        type: "Employer"
-      })
+      @createLocalSession("token", "uid", "Employer")
+
       # mock the candidate response promise
       defer = @q.defer()
       defer.resolve({data: mockUser})
@@ -208,4 +200,22 @@ describe 'Unit test for the session service', ->
       @service.requestCurrentUser().then(@failIfNotUndefined).catch (error) ->
         expect(error).toEqual({error: {reasons: ['There is no active session']}})
 
+  describe 'test presence ', ->
 
+    it 'when user subscribes', ->
+      session = @createSessionMock('uid', 'email@google.com', 'token', 'Candidate')
+      @mockSessionCall('POST', '/api/sessions', 200, session)
+
+      @service.login('email@google.com','password').then (response) ->
+        expect(response).toEqual(session)
+      .catch(@failIfNotUndefined)
+      @http.flush()
+
+      expect(@presenceService.initialize).toHaveBeenCalled()
+      expect(@presenceService.join).toHaveBeenCalled()
+
+    it 'user unsubscribes', ->
+      @createLocalSession("token", "uid", "Candidate")
+      @service.logout()
+
+      expect(@presenceService.leave).toHaveBeenCalled()
