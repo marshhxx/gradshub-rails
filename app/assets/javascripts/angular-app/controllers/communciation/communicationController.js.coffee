@@ -1,7 +1,7 @@
 class CommunicationController extends BaseController
   @register()
   # inject the dependencies
-  @inject '$scope', '$stateParams', '$state', '$rootScope'
+  @inject '$scope', '$stateParams', '$state', '$rootScope', '$timeout'
 
   # initialize the controller
   initialize: ->
@@ -14,9 +14,14 @@ class CommunicationController extends BaseController
     )
 
   sendMessage: ->
-    @phone.send({ text : @$scope.message })
+    @session.send({ text : @$scope.message })
     displayMessage('ME', @$scope.message)
     @$scope.message = ''
+
+  call: ->
+    # notify of call started
+    @_callNotification.bind(@)()
+    displayVideos(@phone.video, @session.video)
 
   # private methods
   _initPhone: ->
@@ -34,18 +39,15 @@ class CommunicationController extends BaseController
 
     # As soon as the phone is ready we can make calls
     phone.ready ->
-      self.$scope.dial = self._dial.bind(self)
-
-    phone.debug (details) ->
-      console.log(details)
+      # for some reason it didn't like if we call immediately so we delay
+      # the call 100 ms.
+      self.$timeout(self._dial.bind(self), 100) if self.$stateParams.beingCalled
 
     # When Call Comes In or is to be Connected
     phone.receive (session) ->
       # Display Your Friend's Live Video
-      session.connected(connected)
-      session.ended (session) ->
-        phone.hangup()
-        console.log("Bye!")
+      session.connected(connected.bind(self))
+      session.ended(ended.bind(self))
 
     phone.unable (details) ->
       console.log("Phone is unable to initialize.");
@@ -53,6 +55,9 @@ class CommunicationController extends BaseController
       console.log('Unable to connect: ' + details)
 
     phone.message (session, message) ->
+      if message.text.charAt(0) == "\u0001"
+        displayVideos(self.phone.video, session.video)
+        return
       displayMessage(session.number, message.text)
 
     @phone = phone
@@ -63,15 +68,18 @@ class CommunicationController extends BaseController
         phone.disconnect()
     )
 
-  _dial: ->
+  _dial: () ->
     # Dial a Number and get the Call Session
     session = @phone.dial(@$stateParams.receiver)
 
+  _callNotification: ->
+    @session.send({ text : "\u0001" + "calling" + "\u0001" })
+
   connected = (session) ->
-    # Display their video
-    displayVideo('videoOut', session.video)
-    # Display own video
-    displayVideo('videoIn', @phone.video)
+    @session = session
+
+  ended = (session) ->
+    @phone.hangup()
 
   displayVideo = (div, video) ->
     ele = angular.element(document.querySelector("##{div}"))
@@ -79,9 +87,13 @@ class CommunicationController extends BaseController
     ele.append(video)
     return
 
+  displayVideos = (myVideo, otherVideo) ->
+    # Display their video
+    displayVideo('videoOut', otherVideo)
+    # Display own video
+    displayVideo('videoIn', myVideo)
+
   displayMessage = (who, message) ->
     display = angular.element(document.querySelector("#display"))
     display.append('<p><b>' + who + ': </b> ' + message + '</p>')
     return
-
-

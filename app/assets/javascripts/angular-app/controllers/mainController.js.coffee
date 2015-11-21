@@ -85,7 +85,6 @@ angular
         modalService.confirm('You are receving a call! \nWant to chat?', 'Respond', 'Snooze').then( ->
           $interval.cancel(scheduled)
           $state.go('main.communication', {
-            isCaller: false,
             receiver: args.event.caller,
             beingCalled: true
           });
