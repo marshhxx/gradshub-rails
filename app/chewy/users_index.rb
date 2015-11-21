@@ -35,7 +35,7 @@ class UsersIndex < Chewy::Index
     field :name, value: -> { user.name }
     field :lastname, value: -> { user.lastname }
     field :email, analyzer: 'email', value: -> { user.email }
-    field :tag, index: 'not_analyzed', value: -> { user.tag }
+    field :tag, value: -> { user.tag }
     field :type, index: 'not_analyzed', value: -> { user.meta_type }
     field :job_title # should we unboost this?
     # company

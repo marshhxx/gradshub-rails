@@ -22,6 +22,10 @@ class Employer < ActiveRecord::Base
     check_type User.find_by_uid!(id)
   end
 
+  def current_position
+    OpenStruct.new({ :job_title => self.job_title, :company_name => self.company_name })
+  end
+
   # Finds or create the employer for the give auth object. (Auth object
   # saves the information of the oauth integration)
   #
