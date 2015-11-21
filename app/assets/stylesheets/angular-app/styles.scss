@@ -181,11 +181,11 @@ select {
   }
 }
 
-form {
-  padding: 0px !important;
-  margin: 0px !important;
-  overflow: hidden;
-}
+//form {
+//  padding: 0px !important;
+//  margin: 0px !important;
+//  overflow: hidden;
+//}
 
   .custom-placeholder {
     color: #aaa;
@@ -243,9 +243,6 @@ form {
     margin-left: 5px;
   }
 
-  .margin-r5 {
-    margin-right: 5px;
-  }
 
   .margin-l10 {
     margin-left: 10px;
@@ -273,10 +270,6 @@ form {
 
   .margin-t5 {
     margin-top: 5px;
-  }
-
-  .margin-t10 {
-    margin-top: 10px;
   }
 
   .margin-t20 {
