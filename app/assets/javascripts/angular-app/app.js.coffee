@@ -1,6 +1,6 @@
 @app = angular.module("gradshub-ng",
   ["ui.router", "templates", "gradshub-ng.config", "gradshub-ng.services", "gradshub-ng.controllers", "ngSanitize", 'ngMessages',
-   'angulartics', 'angulartics.google.analytics'])
+   'angulartics', 'angulartics.google.analytics', 'pubnub.angular.service'])
 .config ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider, $analyticsProvider) ->
 #	$httpProvider.defaults.withCredentials = true;
 #	$httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
@@ -119,7 +119,15 @@
   }).state("main.terms", {
     url: "/terms",
     templateUrl: "angular-app/templates/terms.html"
+  }).state("main.communication", {
+    url: "/call/:receiver",
+    templateUrl: "angular-app/templates/communication/call.html",
+    controller: "CommunicationController",
+    params: {
+      beingCalled: false
+    }
   })
+
 .run (initializeApp) ->
   initializeApp.initialize()
 

@@ -1,0 +1,42 @@
+.comm-container {
+  margin-top: 50px;
+  overflow: auto;
+}
+
+.video-output {
+  z-index: -100;
+  height: 480px;
+  width: 640px;
+}
+
+.video-input {
+  z-index: 100;
+  float: left;
+  height: 180px;
+  width: 240px;
+  margin-top: -195px;
+}
+
+.chat {
+
+  .display {
+    height: 435px;
+    margin: 10px 10px 0 10px;
+    overflow: scroll;
+
+    p {
+      width: 100%;
+      overflow: auto;
+    }
+  }
+
+  .input-container {
+    width: 84%;
+
+    input {
+      width: 100%;
+    }
+
+  }
+
+}

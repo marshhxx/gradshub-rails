@@ -1,14 +1,11 @@
 angular.module('gradshub-ng.controllers').controller('candidateProfileController',
-        ['$scope', '$rootScope', '$http', '$upload', '$location', '$anchorScroll','sessionService', '$state', '$stateParams', 
-        'Country', 'State', 'Candidate', 'Employer', 'Skill', 'Interest', 'School', 'Major', 'Degree', 'Education', 
-        'CandidateSkills', 'CandidateInterests', 'CandidateLanguages', 'Utils', 'Experience', 'alertService', 'modalService', 
-        'ALERT_CONSTANTS', 'errors', 'eventTracker',
+        ['$scope', '$rootScope','sessionService', '$state', '$stateParams', 'Candidate', 'Employer', 'Skill', 'Interest',
+        'CandidateSkills', 'CandidateInterests', 'CandidateLanguages', 'Utils', 'alertService', 'modalService',
+        'ALERT_CONSTANTS', 'errors', 'eventTracker', 'presenceService',
 
-
-        function ($scope, $rootScope, $httpProvider, $upload, $location, $anchorScroll, sessionService, $state, $stateParams, Country,
-                  State, Candidate, Employer, Skill, Interest, School, Major, Degree, Education, CandidateSkills,
-                  CandidateInterests, CandidateLanguages, Utils, Experience, alertService, modalService, ALERT_CONSTANTS, errors, 
-                  eventTracker) {
+        function ($scope, $rootScope, sessionService, $state, $stateParams, Candidate, Employer, Skill, Interest,
+                  CandidateSkills, CandidateInterests, CandidateLanguages, Utils, alertService, modalService,
+                  ALERT_CONSTANTS, errors, eventTracker, presenceService) {
 
             $scope.defaultSummary = "Please add your career interests, skills, accomplishments in a concise 2-3 sentences.  The summary needs to grab the interest of the hiring manager. It will help to find the right job for you! ";
             $scope.defaultSkills = "Please list 3-5 skills that align with your desired role.";
@@ -41,15 +38,13 @@ angular.module('gradshub-ng.controllers').controller('candidateProfileController
                 /* LANGUAGE */
                 initLanguages();
 
+                $scope.candidateStatus = 'Offline';
+
                 $scope.updateUser = updateUser;
                 // returns true if the profile is from the logged user
                 $scope.notMe = Utils.notMe();
 
-                if ($scope.notMe) {
-                    Candidate.get({id: $stateParams.uid}, setUser, errors.userNotFound);
-                } else {
-                    $scope.userPromise.then(checkAndSetUser, errors.notLoggedIn);
-                }
+                $scope.userPromise.then(checkAndSetUser, errors.notLoggedIn);
             };
 
             /* INIT FUNCTIONS */
@@ -60,7 +55,9 @@ angular.module('gradshub-ng.controllers').controller('candidateProfileController
             };
 
             var checkAndSetUser = function (user) {
-                if (sessionService.sessionType() == 'Employer') {
+                if ($scope.notMe) {
+                    Candidate.get({id: $stateParams.uid}, setUser, errors.userNotFound);
+                } else if ($scope.isEmployer) {
                     $state.go('main.employer_profile', {uid: 'me'}, { reload: true })
                 } else {
                     setUser(user);
@@ -85,6 +82,17 @@ angular.module('gradshub-ng.controllers').controller('candidateProfileController
 
                 if ($scope.user.experiences.length == 0)
                     $scope.defaultExperienceEnable = true;
+
+                if ($scope.notMe && sessionService.isAuthenticated()) {
+                    presenceService.isOnline($scope.user.uid).then(function(resp) {
+                        $scope.candidateStatus = resp.isPresent ? 'Online' : 'Offline';
+                    });
+
+                    $rootScope.$on('gradshub_presence-' + $scope.user.uid + '-event', function (event, args) {
+                        $scope.candidateStatus = args.event.action == 'join' ? 'Online' : 'Offline';
+                        $scope.$apply();
+                    })
+                }
 
             };
 
@@ -301,7 +309,6 @@ angular.module('gradshub-ng.controllers').controller('candidateProfileController
                 if (!valid) return;
                 $scope.addEducationEnable = false;
                 var education = getEducation($scope.education); // Create Education Resource
-                $httpProvider.defaults.headers.common['Authorization'] = sessionService.authenticationToken();
                 education.$save(
                     function (response) {
                         addAndSort($scope.user.educations, response.education, Utils.sortByStartDate);
@@ -524,6 +531,10 @@ angular.module('gradshub-ng.controllers').controller('candidateProfileController
                 return hasFile ? "dragover" : "dragover-err";
             };
 
+            $scope.callCandidate = function () {
+                presenceService.call($scope.currentUser.uid, $scope.user.uid);
+                $state.go('main.communication', {isCaller: true, receiver: $scope.user.uid});
+            };
 
             /* OTHER FUNCTIONS */
 

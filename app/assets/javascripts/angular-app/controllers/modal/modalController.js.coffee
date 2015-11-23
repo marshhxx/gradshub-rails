@@ -1,14 +1,16 @@
-ModalController = ($scope, $modalInstance, message) ->
-	$scope.message = message
+ModalController = ($scope, $uibModalInstance, message, confirm, reject) ->
+  $scope.message = message
+  $scope.confirm = confirm
+  $scope.reject = reject
 
-	$scope.ok = () ->
-		$modalInstance.close();
+  $scope.ok = () ->
+    $uibModalInstance.close()
 
-	$scope.cancel = () ->
-		$modalInstance.dismiss('cancel');
+  $scope.cancel = () ->
+    $uibModalInstance.dismiss('cancel')
 
-#ModalController.$inject = ['$scope']
+ModalController.$inject = ['$scope', '$modalInstance', 'message', 'confirm', 'reject']
 
 angular
-	.module('gradshub-ng.controllers')
-	.controller('ModalController', ModalController)
+  .module('gradshub-ng.controllers')
+  .controller('ModalController', ModalController)
