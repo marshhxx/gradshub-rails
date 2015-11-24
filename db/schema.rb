@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151024183633) do
+ActiveRecord::Schema.define(version: 20151120000017) do
+
+  create_table "applications", force: true do |t|
+    t.string   "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "candidate_id"
+    t.integer  "job_post_id"
+  end
 
   create_table "candidate_interests", force: true do |t|
     t.integer "candidate_id"
@@ -119,6 +127,18 @@ ActiveRecord::Schema.define(version: 20151024183633) do
     t.string "name", null: false
   end
 
+  create_table "job_posts", force: true do |t|
+    t.string   "title",        null: false
+    t.string   "description"
+    t.string   "requirements"
+    t.string   "type"
+    t.string   "salary"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "state"
+    t.integer  "employer_id"
+  end
+
   create_table "languages", force: true do |t|
     t.string "name"
   end
@@ -143,7 +163,8 @@ ActiveRecord::Schema.define(version: 20151024183633) do
   end
 
   create_table "skills", force: true do |t|
-    t.string "name", null: false
+    t.string  "name",        null: false
+    t.integer "job_post_id"
   end
 
   add_index "skills", ["name"], name: "index_skills_on_name", unique: true, using: :btree
