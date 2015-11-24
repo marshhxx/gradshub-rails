@@ -33,6 +33,7 @@ GradshubRails::Application.routes.draw do
     # We are going to list our resources here
       devise_for :users, :only => []
       resources :employers, :only => [:show, :create, :update], concerns: [:password_changeable] do
+        resources :job_posts, :only => [:create, :index, :show]
         resources :nationalities, :only => [:index, :create, :show, :destroy]
       end
       resources :candidates, :only => [:show, :create, :update], concerns: [:skillable, :interestable, :password_changeable] do
@@ -40,6 +41,7 @@ GradshubRails::Application.routes.draw do
         resources :educations, :only => [:index, :create, :update, :destroy, :show]
         resources :nationalities, :only => [:index, :create, :show, :destroy]
         resources :languages, :controller => :candidate_languages, :only => [:index, :create, :update, :show, :destroy]
+        resources :applications, :only => [:index, :show]
       end
       resources :sessions, :only => [:create, :password_reset_request, :password_reset, :refresh] do
         collection do
@@ -64,6 +66,12 @@ GradshubRails::Application.routes.draw do
         post :upload, on: :member
         delete :delete, on: :member
       end
+
+      resources :job_posts, :only => [:update, :destroy, :show], concerns: [:skillable] do
+        resources :applications, :only => [:create, :index, :show]
+      end
+
+      resources :applications, :only => [:update, :show, :destroy]
 
       resource :search, controller: 'search',  :only => [:show]
     end

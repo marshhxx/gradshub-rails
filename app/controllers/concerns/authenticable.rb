@@ -10,11 +10,14 @@ module Authenticable
   end
 
   def authenticate_with_token!
-    authenticated = user_signed_in?
-    valid = session_from_header.valid?
-    @error = {:reasons => ['Bad credentials.'], :code => AUTH_ERROR} unless authenticated
-    @error = {:reasons => ['The session has expired.'], :code => SESSION_EXPIRED} unless valid
-    render 'api/v1/common/error', status: :unauthorized unless authenticated and valid
+    unless user_signed_in?
+      @error = {:reasons => ['Bad credentials.'], :code => AUTH_ERROR}
+      render 'api/v1/common/error', status: :unauthorized and return
+    end
+    unless session_from_header.valid?
+      @error = {:reasons => ['The session has expired.'], :code => SESSION_EXPIRED}
+      render 'api/v1/common/error', status: :unauthorized and return
+    end
   end
 
   def session_from_header

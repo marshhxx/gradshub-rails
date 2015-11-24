@@ -1,4 +1,5 @@
 class Education < ActiveRecord::Base
+
   belongs_to :candidate
   belongs_to :school
   belongs_to :major
@@ -44,5 +45,4 @@ class Education < ActiveRecord::Base
       end
     }
   end
-
 end

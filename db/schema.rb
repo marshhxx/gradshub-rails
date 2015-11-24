@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151024183633) do
+ActiveRecord::Schema.define(version: 20151120000017) do
+
+  create_table "applications", force: true do |t|
+    t.integer  "state",        null: false
+    t.integer  "candidate_id"
+    t.integer  "job_post_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "candidate_interests", force: true do |t|
     t.integer "candidate_id"
@@ -118,6 +126,37 @@ ActiveRecord::Schema.define(version: 20151024183633) do
   create_table "interests", force: true do |t|
     t.string "name", null: false
   end
+
+  create_table "job_post_skills", force: true do |t|
+    t.integer  "job_post_id"
+    t.integer  "skill_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "job_post_skills", ["job_post_id", "skill_id"], name: "index_job_post_skills_on_job_post_id_and_skill_id", unique: true, using: :btree
+
+  create_table "job_posts", force: true do |t|
+    t.string   "title",                        null: false
+    t.text     "description"
+    t.text     "requirements"
+    t.integer  "job_type",     default: 0
+    t.integer  "salary_unit",  default: 0
+    t.integer  "min_salary"
+    t.integer  "max_salary"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer  "job_state",    default: 0
+    t.boolean  "remote",       default: false
+    t.integer  "category"
+    t.integer  "employer_id"
+    t.integer  "country_id"
+    t.integer  "state_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "job_posts", ["employer_id"], name: "index_job_posts_on_employer_id", using: :btree
 
   create_table "languages", force: true do |t|
     t.string "name"

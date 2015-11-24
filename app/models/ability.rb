@@ -11,6 +11,15 @@ class Ability
       cannot :more_than_see, [Candidate, Employer] do |user|
         user.user.uid != current_user.uid
       end
+
+      # User can modify only their job posts
+      cannot :more_than_see, [JobPost] do |post|
+        post.employer.user.uid != current_user.uid
+      end
+
+      cannot :more_than_see, [Application] do |app|
+        current_user.meta_id != app.job_post.employer_id
+      end
     end
   end
 end
