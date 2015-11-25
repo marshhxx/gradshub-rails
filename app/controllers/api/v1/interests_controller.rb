@@ -12,7 +12,7 @@ class Api::V1::InterestsController < Api::NestedController
   end
 
   def query_params
-    params.permit(:candidate_id, :id)
+    params.permit(:candidate_id, :employer_id, :id)
   end
 
   def create_resource

@@ -38,5 +38,4 @@ GradshubRails::Application.configure do
   config.assets.debug = true
 
   config.log_level = :error
-  config.assets.paths << Rails.root.join('spec/karma')
 end
