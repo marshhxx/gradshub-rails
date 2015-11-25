@@ -1,10 +1,6 @@
 /** START forgot password **/
 .forgotpssw {
 
-  .row {
-    margin: 0px;
-  }
-
   &.background {
     background-size: cover;
     -webkit-background-size: cover;
@@ -14,26 +10,22 @@
     background: url("login/background.png") no-repeat center center;
   }
 
-  &.cont {
-    padding: 0px 50px;
-    width: 400px;
-    margin: 120px auto 0;
-  }
-
-  &.form {
-    margin-top: 5px;
-    padding: 10% 5% 10% 5%;
-    background-color: $primary-white;
-    min-height: 250px;
-    border-radius: 4px;
-  }
-
-  &.form-checkemail {
-    margin-top: 5px;
-    padding: 30px 30px 30px 30px;
-    background-color: #FFF;
-    min-height: 250px;
-    border-radius: 4px;
+  .forgot-container {
+    width: 100%;
+    .form {
+      padding: 35px 25px;
+      width: 100%;
+      margin-top: 10px;
+      background-color: $primary-white;
+      min-height: 220px;
+      border-radius: 4px;
+    }
+    .form-wrapper{
+      overflow: hidden;
+      margin: auto;
+      top: 0;
+      bottom: 0px
+    }
   }
 
   &.title-container {
@@ -41,68 +33,42 @@
     padding: 5px 0px;
   }
 
-  &.title {
-    font: 16px 'Montserrat-Regular', Georgia, "Times New Roman", Times, serif;
+  .title {
+    font: 22px Montserrat-Light;
     color: $primary-white;
     line-height: 27px;
   }
 
-  &.subtitle {
-    font: 16px 'Lato-Regular', Georgia, "Times New Roman", Times, serif;
-    color: #3f4752;
+  .subtitle-wrap {
+    margin-bottom: 30px;
   }
 
-  &.img {
-    // temporary while the logo is not ready
-    border-radius: 30px;
-    background-color: $primary-white;
-    text-align: center;
-    font-size: 20px;
-    font-weight: bolder;
-    color: $primary-blue;
-
-    width: 30px;
-    height: 30px;
+  .subtitle {
+    font: 17px 'Lato-Light', Georgia, "Times New Roman", Times, serif;
+    color: $text-title;
   }
 
-  &.btn-form {
-    width: 100%;
-    margin: 10px 0;
-    padding: 10px 0px;
-    background: $primary-blue;
-    color: $primary-white;
-    font: 14px 'Lato-Regular', Georgia, "Times New Roman", Times, serif;
-    border: 1px solid #3D9ED8;
-    border-radius: 4px !important;
-
-    &:hover {
-      padding: 10px 0px;
-      background: $primary-turquoise-hover;
-      color: $primary-white;
-    }
+  .form-btn {
+    margin-top: 15px;
   }
 
-  &.btn-form.reset {
-    margin: 0px 0;
-  }
-
-  &.text {
+  .text {
     color: #3f4752;
     font: 14px 'Lato-Regular', Georgia, "Times New Roman", Times, serif;
   }
 
-  &.text-blue {
+  .text-blue {
     color: #3D9ED8;
     font: 14px 'Lato-Regular', Georgia, "Times New Roman", Times, serif;
     cursor: pointer;
     text-decoration: none;
   }
 
-  &.hr {
+  .hr {
     background: #3D9ED8;
   }
 
-  &.spinner {
+  .spinner {
     width: 100px;
     margin: auto;
     margin-top: 10px;
@@ -112,30 +78,9 @@
 /* Small Devices, Tablets */
 @media only screen and (min-width: 768px) {
 
-  .forgotpssw {
-
-    &.cont {
-      padding: 0px 0px;
-      width: 400px;
-      margin: 120px auto 0;
-    }
-
-    &.form {
-      padding: 10% 10% 10% 10%;
-
-    }
-
-    &.form-checkemail {
-      padding: 30px 50px 30px 50px;
-    }
-  }
 }
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width: 992px) {
-
-  .forgotpssw.cont {
-    padding: 0px 0px;
-  }
 
 }

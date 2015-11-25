@@ -1,11 +1,18 @@
 class Employer < ActiveRecord::Base
   has_one :user, as: :meta, dependent: :destroy
   accepts_nested_attributes_for :user
+  belongs_to :employer_company
   # nationalities
   has_many :employer_nationalities
   has_many :nationalities, :through => :employer_nationalities
+  # interests
+  has_many :employer_interests
+  has_many :interests, :through => :employer_interests
+  # skills
+  has_many :employer_skills
+  has_many :skills, :through => :employer_skills
 
-  validates_associated :nationalities
+  validates_associated :nationalities, :interests, :skills
   # elasticsearch index update
   update_index 'users#employer', :self
 
@@ -22,10 +29,6 @@ class Employer < ActiveRecord::Base
     check_type User.find_by_uid!(id)
   end
 
-  def current_position
-    OpenStruct.new({ :job_title => self.job_title, :company_name => self.company_name })
-  end
-
   # Finds or create the employer for the give auth object. (Auth object
   # saves the information of the oauth integration)
   #
@@ -37,6 +40,17 @@ class Employer < ActiveRecord::Base
       employer.save!
     end
     user.meta
+  end
+
+  # Transient property for displaying the latest position while searching.
+  def current_position
+    @current_position ||= calculate_position
+  end
+
+  def calculate_position
+    title = self.job_title ? self.job_title : ''
+    company_name = self.employer_company ? self.employer_company.company.name : ''
+    OpenStruct.new({:job_title => title, :company_name => company_name})
   end
 
   private

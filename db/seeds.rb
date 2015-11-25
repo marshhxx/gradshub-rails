@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 %w{
-  countries users states nationalities schools degrees majors languages skills interests
+  countries users states nationalities schools degrees majors languages skills interests companies
 }.each do |part|
   require File.expand_path(File.dirname(__FILE__))+"/seeds/#{part}.rb"
 end

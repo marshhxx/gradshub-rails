@@ -10,6 +10,7 @@ class Experience < ActiveRecord::Base
   # Creates a experience from a linkedin position.
   # Should we also store the company?
   def self.from_linkedin(position)
+    Company.from_linkedin(position.company) if position.company
     self.new(
         company_name: position.company.name,
         job_title: position.title,

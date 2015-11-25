@@ -1,4 +1,5 @@
 @import "angular-app/base/colors";
+
 /* Search bar */
 
 $tl: 0.4s; // transition length
@@ -8,8 +9,8 @@ $tl: 0.4s; // transition length
 }
 
 .navbar-default {
-  background-color: $primary-blue !important;
-  border-color: $primary-blue !important;;
+  background-color: $primary-black-blue !important;
+  border-color: $primary-black-blue !important;;
 }
 
 .navbar-default .navbar-brand {
@@ -17,18 +18,19 @@ $tl: 0.4s; // transition length
   cursor: pointer;
 }
 
-.nav-logo {
-  background: url('logos/logotype-white.svg') no-repeat center center;
-  background-size: 95px;
-  float: left;
-  height: 50px;
-  width: 100px;
-  cursor: pointer;
+.navbar-right {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
 }
 
-.imago {
+.nav-logo {
   background: url('logos/imagotype-white.svg') no-repeat center center;
-  background-size: 30px;
+  background-size: 28px;
+  height: 50px;
+  width: 30px;
+  margin-left: 15px;
+  float: left;
+  cursor: pointer;
 }
 
 .navbar-default .navbar-nav > li > a {
@@ -51,25 +53,38 @@ $tl: 0.4s; // transition length
   padding-right: 10px !important;
 }
 
-.navbar-default .navbar-toggle{
-  display: block;
+.navbar-default {
+  .navbar-toggle {
+    display: block;
+    border-color: $border-gray;
+    &:hover, &:focus {
+      background-color: $primary-white;
+      .icon-bar {
+        background-color: $primary-black-blue;
+      }
+    }
+    .icon-bar {
+      background-color: $primary-white;
+    }
+  }
+
+  .navbar-collapse {
+    border-color: $primary-black-blue;
+  }
 }
 
-.navbar-default .navbar-toggle .icon-bar {
-  background-color: #FFF;
+.search-container {
+  margin-top: 9px;
+  overflow: hidden;
 }
-
-.search-container{ margin-top: 5px; float: left; }
 
 .search-box {
-  transition: width $tl, border-radius $tl, background $tl, box-shadow $tl;
   width: 200px;
-  height: 40px;
-  border-radius: 20px;
-  border: none;
+  height: 32px;
+  border-radius: 17px;
   border: 1px solid $border-gray !important;
   background: $primary-white;
-  font: 15px Lato-Regular !important;
+  font: 13px Lato-Regular !important;
   cursor: pointer;
   padding-left: 35px;
   padding-right: 28px;
@@ -79,60 +94,64 @@ $tl: 0.4s; // transition length
   &:hover {
     border: 1px solid $border-gray-focus !important;
   }
-  &:focus{
-    transition: width $tl, border-radius $tl, background $tl;
+  &:focus {
     box-shadow: none;
     cursor: text;
-    width: 200px;
     border-radius: auto;
-    border: 1px solid $border-gray-focus !important; outline: none;
+    border: 1px solid $border-gray-focus !important;
+    outline: none;
     background: $primary-white;
-    color: black;
-    &:not(:focus) { } // for more-graceful falling back (:not browsers likely support indent)
+    color: $text-inputs;
+    &:not(:focus) {
+    }
+    // for more-graceful falling back (:not browsers likely support indent)
   }
 }
 
 #search-submit {
-  display: none; position: relative; left: -5000px;
+  display: none;
+  position: relative;
+  left: -5000px;
 }
 
 .search-icon {
   position: relative;
   left: 30px;
-  top: 3px;
+  top: 2px;
   color: $secondary-gray;
   cursor: pointer;
 }
 
-.remove-icon{
+.remove-icon {
   position: relative;
-  left: -40px;
-  top: 3px;
+  margin-left: -40px;
+  top: 2px;
   color: $secondary-gray;
   cursor: pointer;
   z-index: 99;
-  padding: 10px;
+  padding: 7px;
+  visibility: hidden;
+}
+
+.remove-icon-status {
+  visibility: visible
 }
 
 /*** Login Button ***/
 
 .login-btn {
-  color: $primary-turquoise !important;
-  background-color: $primary-turquoise;
+  color: $primary-white !important;
   font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
-  font-size: 14px;
-  border: 2px solid $primary-turquoise;
+  font-size: 13px;
+  border: 1px solid $primary-white;
   border-radius: 4px !important;
   padding: 6px !important;
-  margin-left: 10px !important;
-  margin-right: 10px !important;
   cursor: pointer;
-  margin-top: 9px;
   text-align: center;
 
   &:hover {
-    color: $primary-turquoise-hover !important;
-    border: 2px solid $primary-turquoise-hover;
+    color: $primary-white !important;
+    border: 1px solid $primary-turquoise-hover;
     background-color: $primary-turquoise-hover !important;
   }
 }
@@ -151,7 +170,7 @@ $tl: 0.4s; // transition length
 .user-menu {
   label {
     color: $primary-white !important;
-    font: 14px Montserrat-Bold;
+    font: 14px Montserrat-Regular;
     padding-top: 15px;
     padding-bottom: 15px;
     margin: 0px;
@@ -171,7 +190,7 @@ $tl: 0.4s; // transition length
     height: 0;
     border-left: 7px solid transparent;
     border-right: 7px solid transparent;
-    border-top: 7px solid $primary-turquoise;
+    border-top: 7px solid $primary-white;
     margin: 7px 0px 0px 7px;
     cursor: pointer;
   }
@@ -238,9 +257,7 @@ $tl: 0.4s; // transition length
   margin-top: 5px;
 }
 
-.alert-top-fixed ul {
-  text-align: left;
-}
+.alert-top-fixed ul { text-align: left; }
 
 /***End General Alert ***/
 
@@ -271,7 +288,7 @@ footer#footer {
   }
   .link {
     color: $primary-white;
-    font: 1.1em Lato-Regular, Georgia, "Times New Roman", Times, serif;
+    font: 1em Lato-Light, Georgia, "Times New Roman", Times, serif;
     cursor: pointer;
     text-decoration: none;
     &:hover {
@@ -280,18 +297,20 @@ footer#footer {
     }
   }
   .sign {
-    font: 14px Lato-Light, Georgia, "Times New Roman", Times, serif;
+    font: 1em Lato-Light, Georgia, "Times New Roman", Times, serif;
     color: $primary-white;
   }
+
 }
 
 /*** End Footer ***/
-
 
 /*==========================> Responsive Design <=========================*/
 
 /* Mobile in portrait mode */
 @media only screen and (max-width: 320px) {
+
+  .search-box { width: 180px; }
 
 }
 
@@ -303,22 +322,27 @@ footer#footer {
 /* Tablets */
 @media only screen and (min-width: 768px) {
 
-  .navbar-default .navbar-toggle{
-    display: none;
-  }
+  .navbar-default .navbar-toggle { display: none; }
 
-  .search-box {
-    width: 200px;
-    &:focus {
-      width: 240px;
+  .topnav { padding: 0 20px; }
+
+  .nav-logo { margin-left: 0px; }
+
+  .search-container { padding-left: 25px; }
+
+  .search-box { width: 250px; }
+
+  .login-btn { margin-top: 8px; margin-left: 25px; }
+
+}
+
+@media only screen and (min-width: 1024px) {
+
+  footer#footer {
+    .sign {
+      float: right;
     }
   }
-
-  .login-btn {
-    margin-left: 0px;
-    margin-right: 0px;
-  }
-
 }
 
 /* Medium Devices, Desktops */
@@ -327,17 +351,6 @@ footer#footer {
   .navbar-nav > li > a {
     padding-left: 15px !important;
     padding-right: 15px !important;
-  }
-
-  .login-btn {
-    margin-left: 50px;
-  }
-
-  .search-box {
-    width: 220px;
-    &:focus {
-      width: 340px;
-    }
   }
 
 }
@@ -351,6 +364,7 @@ footer#footer {
 @media only screen and (min-width: 1824px) {
 
 }
+
 
 
 

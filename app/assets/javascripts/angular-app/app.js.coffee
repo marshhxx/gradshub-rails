@@ -26,9 +26,14 @@
     url: "/login",
     templateUrl: "angular-app/templates/login.html",
     controller: "loginController",
+    data: {
+      navOptions: {
+        login: true
+      }
+    }
   }).state("main.forgotpssw", {
     abstract: true,
-    templateUrl: "angular-app/templates/views/forgot_pssw.html",
+    templateUrl: "angular-app/templates/views/forgot/forgot_pssw.html",
   }).state("main.forgotpssw.email", {
     url: "/forgotpssw",
     templateUrl: "angular-app/templates/views/forgot/email.html",
@@ -58,10 +63,10 @@
     parent: 'main.signup_candidate',
     views: {
       'form': {
-        templateUrl: 'angular-app/templates/views/signup/personal/personal-form.html'
+       templateUrl: 'angular-app/templates/views/signup/personal/personal-form.html'
       },
       'img': {
-        templateUrl: 'angular-app/templates/views/signup/personal/personal-img.html',
+      templateUrl: 'angular-app/templates/views/signup/personal/personal-img.html',
       }
     }
   }).state("main.signup_candidate.education", {
@@ -74,11 +79,9 @@
         templateUrl: 'angular-app/templates/views/signup/education/education-img.html',
       }
     }
-  }).state("main.signup_candidate.interests", {
-    url: "/interests",
-    templateUrl: "angular-app/templates/views/signup/form-interests.html",
   }).state("main.signup_employer.personal", {
     url: "/info",
+    parent: 'main.signup_employer',
     views: {
       'form': {
         templateUrl: 'angular-app/templates/views/signup/personal/personal-form.html'

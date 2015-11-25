@@ -17,14 +17,8 @@
         <div class="img-col">
           <div class="profile-img company-name"></div>
         </div>
-        <div class="cont-col" ng-hide="editCompanyEnable">
-          <p class="header-highlight-txt">{{user.company.name}}</p>
-        </div>
-        <div class="form-group employer-company" ng-show="editCompanyEnable">
-          <div class="company-selector-wrapper">
-            <input name="company_name" type="text" ng-model="temporaryEmployerCompany.name"
-                   class="form-control input-sm" id="companyName" placeholder="Company Name">
-          </div>
+        <div class="cont-col">
+          <p class="header-highlight-txt">{{employerCompany.name}}</p>
         </div>
       </div>
 
@@ -32,13 +26,48 @@
         <div class="img-col">
           <div class="profile-img company-industry"></div>
         </div>
+        <div class="cont-col">
+          <p class="header-highlight-txt">{{employerCompany.industry}}</p>
+        </div>
+      </div>
+
+      <div class="profile-left" ng-class="{'width15' : editCompanyEnable}">
+        <div class="img-col">
+          <div class="profile-img company-location"></div>
+        </div>
         <div class="cont-col" ng-hide="editCompanyEnable">
-          <p class="header-highlight-txt">{{user.company.industry}}</p>
+            <p class="header-highlight-txt" ng-if="employerCompany.state.name && employerCompany.country.name">{{employerCompany.state.name}}, {{employerCompany.country.name}}</p>
+            <p class="header-highlight-placeholder"
+               ng-if="!employerCompany.state.name && !employerCompany.country.name">Company Location</p>
+          </div>
         </div>
         <div class="form-group employer-company" ng-show="editCompanyEnable">
+          <div class="country-selector-wrapper">
+            <country-selector placeholder="Country" ng-model="employerCompany.country.name" on-select="onCountry"
+                              required></country-selector>
+
+            <div ng-if="companyForm.country.$invalid && (companyForm.$submitted || companyForm.country.$dirty)"
+                 ng-messages="companyForm.country.$error">
+              <div class="help-block" ng-message="required">
+                Please select a country!
+              </div>
+              <div class="help-block" ng-message="country">
+                Please select a valid country!
+              </div>
+            </div>
+          </div>
           <div class="company-selector-wrapper">
-            <input name="company_industry" type="text" ng-model="temporaryEmployerCompany.industry"
-                   class="form-control input-sm" id="companyIndustry" placeholder="Company Industry">
+            <state-selector placeholder="Company's State" ng-model="employerCompany.state.name"
+                            on-select="onCompanyState" country-id="country_id" required></state-selector>
+            <div ng-if="companyForm.state.$invalid && (companyForm.$submitted || companyForm.state.$dirty)"
+                 ng-messages="companyForm.state.$error">
+              <div class="help-block" ng-message="required">
+                Please select a state!
+              </div>
+              <div class="help-block" ng-message="state">
+                Please select a valid state!
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -48,14 +77,14 @@
           <div class="profile-img company-url"></div>
         </div>
         <div class="cont-col" ng-hide="editCompanyEnable">
-            <p class="header-highlight-txt" ng-if="user.company.site_url">{{user.company.site_url}}</p>
-          <p class="header-highlight-placeholder" ng-if="!user.company.site_url">
+            <p class="header-highlight-txt" ng-if="employerCompany.site_url">{{employerCompany.site_url}}</p>
+          <p class="header-highlight-placeholder" ng-if="!employerCompany.site_url">
             Company url address</p>
         </div>
         <div class="form-group employer-company" ng-show="editCompanyEnable">
           <div class="company-selector-wrapper">
-          <input name="site_url" type="text" ng-model="temporaryEmployerCompany.site_url"
-                 class="form-control input-sm" id="companySiteUrl" placeholder="Site url">
+          <input name="site_url" type="text" ng-model="employerCompany.site_url"
+                 class="form-control input-sm" id="companyIndustry" placeholder="Site url">
             </div>
         </div>
       </div>
