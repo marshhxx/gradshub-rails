@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20151120000017) do
 
   create_table "applications", force: true do |t|
-    t.integer "state"
+    t.integer "state",        null: false
     t.integer "candidate_id"
     t.integer "job_post_id"
   end
@@ -137,13 +137,15 @@ ActiveRecord::Schema.define(version: 20151120000017) do
     t.text     "description"
     t.text     "requirements"
     t.integer  "type",         default: 0
-    t.string   "salary_units"
+    t.integer  "salary_units", default: 0
     t.integer  "salary"
     t.datetime "start_date"
     t.datetime "end_date"
     t.integer  "state",        default: 0
     t.integer  "employer_id"
   end
+
+  add_index "job_posts", ["employer_id"], name: "index_job_posts_on_employer_id", using: :btree
 
   create_table "languages", force: true do |t|
     t.string "name"

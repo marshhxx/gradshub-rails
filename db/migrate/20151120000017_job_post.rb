@@ -6,7 +6,7 @@ class JobPost < ActiveRecord::Migration
       t.text :description
       t.text :requirements
       t.integer :type, default: 0
-      t.string :salary_units
+      t.integer :salary_units, default: 0
       t.integer :salary
       t.timestamp :start_date
       t.timestamp :end_date
@@ -15,9 +15,10 @@ class JobPost < ActiveRecord::Migration
 
       t.timestamp
     end
+    add_index :job_posts, :employer_id
 
     create_table :applications do |t|
-      t.integer :state
+      t.integer :state, defualt: 0, null: false
       t.belongs_to :candidate
       t.belongs_to :job_post
 
