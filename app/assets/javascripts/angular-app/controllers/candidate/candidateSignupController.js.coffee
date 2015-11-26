@@ -93,7 +93,7 @@ angular
         ).catch(alertService.defaultErrorCallback)
 
       saveEducation = ->
-        angular.copy($scope.education).$save()
+        angular.copy($scope.education).$save() #Save a copy of education because variable is reseted on save and validation error is shown
 
       saveCandidateNationality = ->
         $scope.candidateNationality.$save() if $scope.candidateNationality.nationality_id

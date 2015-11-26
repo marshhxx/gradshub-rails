@@ -1,6 +1,6 @@
 angular.module('gradshub-ng.controllers').controller("HomeController", [
   '$http', '$scope', 'Candidate', 'Employer', '$state', '$anchorScroll', '$location', 'sessionService', '$sce',
-  '$stateParams', 'registerService', 'alertService', 'eventTracker', 'navbarService',
+  '$stateParams', 'registerService', 'alertService', 'eventTracker','navbarService',
   ($http, $scope, Candidate, Employer, $state, $anchorScroll, $location, sessionService, $sce, $stateParams,
    registerService, alertService, eventTracker, navbarService)->
     init = ->
@@ -16,7 +16,7 @@ angular.module('gradshub-ng.controllers').controller("HomeController", [
 
       $scope.registerUser = registerUser
 
-      navbarService.setOptions($state.current.data.navOptions) # Enable home navigation headers
+      navbarService.setOptions($state.current.data.navOptions) # Enable Navbar Options
 
       $scope.signupLinkedin = () ->
         type = getType()
@@ -58,7 +58,7 @@ angular.module('gradshub-ng.controllers').controller("HomeController", [
 
     slides = [
       {
-        image: "/assets/homepage/home-background.png"
+        image: "/assets/homepage/background7.png"
       }
       {
         image: "/assets/homepage/home-background.png"
