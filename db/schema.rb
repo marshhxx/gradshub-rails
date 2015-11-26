@@ -14,11 +14,9 @@
 ActiveRecord::Schema.define(version: 20151120000017) do
 
   create_table "applications", force: true do |t|
-    t.string   "state"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "candidate_id"
-    t.integer  "job_post_id"
+    t.integer "state"
+    t.integer "candidate_id"
+    t.integer "job_post_id"
   end
 
   create_table "candidate_interests", force: true do |t|
@@ -127,15 +125,23 @@ ActiveRecord::Schema.define(version: 20151120000017) do
     t.string "name", null: false
   end
 
+  create_table "job_post_skills", force: true do |t|
+    t.integer "job_post_id"
+    t.integer "skill_id"
+  end
+
+  add_index "job_post_skills", ["job_post_id", "skill_id"], name: "index_job_post_skills_on_job_post_id_and_skill_id", unique: true, using: :btree
+
   create_table "job_posts", force: true do |t|
-    t.string   "title",        null: false
-    t.string   "description"
-    t.string   "requirements"
-    t.string   "type"
-    t.string   "salary"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "state"
+    t.string   "title",                    null: false
+    t.text     "description"
+    t.text     "requirements"
+    t.integer  "type",         default: 0
+    t.string   "salary_units"
+    t.integer  "salary"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer  "state",        default: 0
     t.integer  "employer_id"
   end
 
@@ -163,8 +169,7 @@ ActiveRecord::Schema.define(version: 20151120000017) do
   end
 
   create_table "skills", force: true do |t|
-    t.string  "name",        null: false
-    t.integer "job_post_id"
+    t.string "name", null: false
   end
 
   add_index "skills", ["name"], name: "index_skills_on_name", unique: true, using: :btree
