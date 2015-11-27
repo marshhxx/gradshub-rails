@@ -4,6 +4,7 @@ class Employer < ActiveRecord::Base
   # nationalities
   has_many :employer_nationalities
   has_many :nationalities, :through => :employer_nationalities
+  has_many :job_posts
 
   validates_associated :nationalities
   # elasticsearch index update

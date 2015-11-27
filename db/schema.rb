@@ -137,8 +137,9 @@ ActiveRecord::Schema.define(version: 20151120000017) do
     t.text     "description"
     t.text     "requirements"
     t.integer  "type",         default: 0
-    t.integer  "salary_units", default: 0
-    t.integer  "salary"
+    t.integer  "salary_unit",  default: 0
+    t.integer  "min_salary"
+    t.integer  "max_salary"
     t.datetime "start_date"
     t.datetime "end_date"
     t.integer  "state",        default: 0

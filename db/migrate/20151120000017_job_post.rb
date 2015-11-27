@@ -6,8 +6,9 @@ class JobPost < ActiveRecord::Migration
       t.text :description
       t.text :requirements
       t.integer :type, default: 0
-      t.integer :salary_units, default: 0
-      t.integer :salary
+      t.integer :salary_unit, default: 0
+      t.integer :min_salary
+      t.integer :max_salary
       t.timestamp :start_date
       t.timestamp :end_date
       t.integer :state, default: 0
