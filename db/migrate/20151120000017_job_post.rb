@@ -5,14 +5,17 @@ class JobPost < ActiveRecord::Migration
       t.string :title, null: false
       t.text :description
       t.text :requirements
-      t.integer :type, default: 0
+      t.integer :job_post_type, default: 0
       t.integer :salary_unit, default: 0
       t.integer :min_salary
       t.integer :max_salary
       t.timestamp :start_date
       t.timestamp :end_date
       t.integer :state, default: 0
+      t.boolean :remote, default: false
       t.belongs_to :employer
+      t.belongs_to :country
+      t.belongs_to :state
 
       t.timestamp
     end

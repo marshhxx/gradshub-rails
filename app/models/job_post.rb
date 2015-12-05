@@ -1,16 +1,18 @@
 class JobPost < ActiveRecord::Base
   belongs_to :employer
-  enum type: [:internship, :full_time, :part_time, :project_based]
-  enum salary_unit: [:US]
-  enum state: [:in_progress, :stopped]
+  belongs_to :country
+  belongs_to :state
 
-  # update index
   update_index 'users#employer', :employer
 
+  enum job_post_type: { internship: 0, full_time: 1, part_time: 2, project_based: 3 }
+  enum salary_unit: { US: 0 }
+  enum state: { in_progress: 0, stopped: 1 , draft: 2 }
 
+  validates_presence_of :title
 
-  validates_presence_of :title, :employer_id
-
-
-
+  def self.where(params)
+    params[:employer_id] = User.find_by_uid!(params[:employer_id]).meta.id
+    super.where(params)
+  end
 end
