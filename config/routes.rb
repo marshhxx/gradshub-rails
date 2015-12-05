@@ -34,7 +34,6 @@ GradshubRails::Application.routes.draw do
       devise_for :users, :only => []
       resources :employers, :only => [:show, :create, :update], concerns: [:password_changeable] do
         resources :nationalities, :only => [:index, :create, :show, :destroy]
-        resources :job_posts, :only => [:index, :create, :update, :destroy, :show]
       end
       resources :candidates, :only => [:show, :create, :update], concerns: [:skillable, :interestable, :password_changeable] do
         resources :experiences, :only => [:index, :create, :update, :destroy, :show]
@@ -66,6 +65,7 @@ GradshubRails::Application.routes.draw do
         delete :delete, on: :member
       end
 
+      resources :job_posts, :only => [:index, :create, :update, :destroy, :show], concerns: [:skillable]
       resource :search, controller: 'search',  :only => [:show]
     end
   end

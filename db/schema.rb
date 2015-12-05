@@ -133,17 +133,17 @@ ActiveRecord::Schema.define(version: 20151120000017) do
   add_index "job_post_skills", ["job_post_id", "skill_id"], name: "index_job_post_skills_on_job_post_id_and_skill_id", unique: true, using: :btree
 
   create_table "job_posts", force: true do |t|
-    t.string   "title",                         null: false
+    t.string   "title",                        null: false
     t.text     "description"
     t.text     "requirements"
-    t.integer  "job_post_type", default: 0
-    t.integer  "salary_unit",   default: 0
+    t.integer  "job_type",     default: 0
+    t.integer  "salary_unit",  default: 0
     t.integer  "min_salary"
     t.integer  "max_salary"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.integer  "state",         default: 0
-    t.boolean  "remote",        default: false
+    t.integer  "job_state",    default: 0
+    t.boolean  "remote",       default: false
     t.integer  "employer_id"
     t.integer  "country_id"
     t.integer  "state_id"
