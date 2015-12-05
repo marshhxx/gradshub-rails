@@ -1,6 +1,6 @@
 class Api::V1::JobPostsController < Api::BaseController
   before_action :authenticate_with_token!, only: [:create, :update, :destroy]
-  before_action :modify_employer_id, only: [:create]
+  before_action :modify_employer_id, only: [:create, :update]
   private
 
   def query_params

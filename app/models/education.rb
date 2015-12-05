@@ -15,6 +15,7 @@ class Education < ActiveRecord::Base
   validates_uniqueness_of :candidate_id, scope: [:school_id, :major_id, :degree_id,
                                                  :country_id, :state_id],
                           :message => 'Education already exists.'
+  validate :start_date_cannot_be_greater_than_end_date
 
   def self.where(params)
     params[:candidate_id] = User.find_by_uid!(params[:candidate_id]).meta.id
@@ -45,4 +46,9 @@ class Education < ActiveRecord::Base
     }
   end
 
+  def start_date_cannot_be_greater_than_end_date
+    if end_date.present? and start_date.present? && start_date > end_date
+      errors.add(:base, "Start date cannot be greater than end date")
+    end
+  end
 end

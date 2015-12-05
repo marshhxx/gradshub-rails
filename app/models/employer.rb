@@ -6,7 +6,7 @@ class Employer < ActiveRecord::Base
   has_many :nationalities, :through => :employer_nationalities
   has_many :job_posts, dependent: :destroy
 
-  validates_associated :nationalities, :job_posts
+  validates_associated :nationalities
   # elasticsearch index update
   update_index 'users#employer', :self
 
