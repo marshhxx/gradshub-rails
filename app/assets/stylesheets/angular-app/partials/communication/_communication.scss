@@ -1,26 +1,42 @@
 .comm-container {
-  margin-top: 50px;
+  padding-top: 50px;
   overflow: auto;
+  height: 100%;
+  min-height: 100%;
+}
+
+.video-container {
+  overflow: auto;
+  height: 100%;
+  position: relative;
+  background-color: $primary-gray;
+
+  .videos {
+    height: 90%;
+    width: 100%;
+  }
+
+  .footer {
+    padding: 10px;
+    margin: auto;
+  }
 }
 
 .video-output {
   z-index: -100;
-  height: 480px;
-  width: 640px;
 }
 
 .video-input {
   z-index: 100;
-  float: left;
-  height: 180px;
-  width: 240px;
-  margin-top: -195px;
 }
 
-.chat {
+.chat-container {
+  overflow: auto;
+  height: 100%;
+  display: inline;
 
   .display {
-    height: 435px;
+    height: 86%;
     margin: 10px 10px 0 10px;
     overflow: scroll;
 
@@ -31,12 +47,22 @@
   }
 
   .input-container {
-    width: 84%;
+    width: 100%;
+    border-top: 2px solid $primary-turquoise;
 
     input {
+      margin-top: 15px;
       width: 100%;
-    }
+      border: none;
+      outline: none;
+      box-shadow:none;
 
+      &:hover, &:focus {
+        border: none !important;
+        outline: none;
+        box-shadow:none;
+      }
+    }
   }
 
 }

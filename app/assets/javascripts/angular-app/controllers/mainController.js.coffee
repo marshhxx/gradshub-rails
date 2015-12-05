@@ -2,9 +2,9 @@ angular
 .module('gradshub-ng.controllers')
 .controller('mainController',
   ['$scope', '$rootScope', '$q', 'sessionService', '$state','alertService', '$sce', '$location', 'eventTracker',
-   '$anchorScroll', 'stateWrapper', 'modalService', 'navbarService', '$interval',
+   '$anchorScroll', 'stateWrapper', 'modalService', 'navbarService', '$interval', '$timeout',
     ($scope, $rootScope, $q, sessionService, $state, alertService, $sce, $location, eventTracker,
-     $anchorScroll, stateWrapper, modalService, navbarService, $interval) ->
+     $anchorScroll, stateWrapper, modalService, navbarService, $interval, $timeout) ->
       callSound = new Audio('/sounds/call_sound.mp3')
 
       init = ->
@@ -84,10 +84,14 @@ angular
         callSound.play();
         modalService.confirm('You are receving a call! \nWant to chat?', 'Respond', 'Snooze').then( ->
           $interval.cancel(scheduled)
-          $state.go('main.communication', {
-            receiver: args.event.caller,
-            beingCalled: true
-          });
+          $timeout( ->
+            $state.go('main.communication', {
+              receiver: args.event.caller,
+              beingCalled: true
+            });
+          , 100)
+        ).catch( ->
+          $interval.cancel(scheduled)
         )
       )
         

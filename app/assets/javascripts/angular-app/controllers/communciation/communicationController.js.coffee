@@ -6,30 +6,47 @@ class CommunicationController extends BaseController
   # initialize the controller
   initialize: ->
     self = @
-    @$scope.userPromise.then( ->
-      if not self.$stateParams.beingCalled and not self.$scope.isEmployer
-        self.$state.go('main.candidate_profile', {uid: 'me'}, { reload: true })
-      else
-        self._initPhone()
-    )
+#    @$scope.userPromise.then( ->
+#      if not self.$stateParams.beingCalled and not self.$scope.isEmployer
+#        self.$state.go('main.candidate_profile', {uid: 'me'}, { reload: true })
+#      else
+#        self._initPhone()
+#    )
 
   sendMessage: ->
-    @session.send({ text : @$scope.message })
+    return if @$scope.message == ''
+    @phone.send({ text : @$scope.message }, @$stateParams.receiver)
     displayMessage('ME', @$scope.message)
     @$scope.message = ''
 
+  # starts the call
   call: ->
-    # notify of call started
-    @_callNotification.bind(@)()
-    displayVideos(@phone.video, @session.video)
+    # Dial a Number and get the Call Session.
+    @session = @phone.dial(@$stateParams.receiver)
+
+  # ends the call
+  hangup: ->
+    # finishes the session but foesn't hungup the phone.
+    @session.hangup()
+
+  # toggle the audio.
+  toggleMute: ->
+    @mediaConfig.audio = !@mediaConfig.audio
+    @phone.updateMedia(@mediaConfig)
+
+  # toggle de video
+  toggleVideo: ->
+    @mediaConfig.video = !@mediaConfig.video
+    @phone.updateMedia(@mediaConfig)
 
   # private methods
   _initPhone: ->
+    @mediaConfig = { audio : true, video : true }
     phone = PHONE({
       number        : @$scope.currentUser.uid,
       publish_key   : 'pub-c-23d6cfa9-2ab2-4dd8-97a0-47984369d1a4',
       subscribe_key : 'sub-c-7203d542-7782-11e5-8f88-02ee2ddab7fe',
-      media         : { audio : true, video : true },
+      media         : @mediaConfig,
       ssl           : true
     })
 
@@ -39,15 +56,14 @@ class CommunicationController extends BaseController
 
     # As soon as the phone is ready we can make calls
     phone.ready ->
-      # for some reason it didn't like if we call immediately so we delay
-      # the call 100 ms.
-      self.$timeout(self._dial.bind(self), 100) if self.$stateParams.beingCalled
+      # Display own video
+      displayVideo('videoIn', self.phone.video)
 
     # When Call Comes In or is to be Connected
     phone.receive (session) ->
       # Display Your Friend's Live Video
       session.connected(connected.bind(self))
-      session.ended(ended.bind(self))
+      session.ended(self.hangup.bind(self))
 
     phone.unable (details) ->
       console.log("Phone is unable to initialize.");
@@ -55,9 +71,6 @@ class CommunicationController extends BaseController
       console.log('Unable to connect: ' + details)
 
     phone.message (session, message) ->
-      if message.text.charAt(0) == "\u0001"
-        displayVideos(self.phone.video, session.video)
-        return
       displayMessage(session.number, message.text)
 
     @phone = phone
@@ -68,30 +81,16 @@ class CommunicationController extends BaseController
         phone.disconnect()
     )
 
-  _dial: () ->
-    # Dial a Number and get the Call Session
-    session = @phone.dial(@$stateParams.receiver)
-
-  _callNotification: ->
-    @session.send({ text : "\u0001" + "calling" + "\u0001" })
+  # some private methods
 
   connected = (session) ->
-    @session = session
-
-  ended = (session) ->
-    @phone.hangup()
+    displayVideo('videoOut', session.video)
 
   displayVideo = (div, video) ->
     ele = angular.element(document.querySelector("##{div}"))
     child.remove() for child in ele.children()
     ele.append(video)
     return
-
-  displayVideos = (myVideo, otherVideo) ->
-    # Display their video
-    displayVideo('videoOut', otherVideo)
-    # Display own video
-    displayVideo('videoIn', myVideo)
 
   displayMessage = (who, message) ->
     display = angular.element(document.querySelector("#display"))
