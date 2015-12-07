@@ -8,7 +8,7 @@ angular.module('gradshub-ng.controllers').controller("HomeController", [
       $scope.isCandidate = () -> $scope.candidate = true
       $scope.isEmployer = () -> $scope.candidate = false
       $scope.carouselInterval = 0 #4000
-      $scope.slides = slides
+      $scope.candidate = true #Select Grads btn default
 
       $scope.type = true
       $scope.showType = ->
@@ -55,18 +55,6 @@ angular.module('gradshub-ng.controllers').controller("HomeController", [
         )
       else
         $scope.submitted = true
-
-    slides = [
-      {
-        image: "/assets/homepage/background7.png"
-      }
-      {
-        image: "/assets/homepage/home-background.png"
-      }
-      {
-        image: "/assets/homepage/home-background.png"
-      }
-    ]
 
     login = (user) ->
       sessionService.login(user.email, user.password).then(

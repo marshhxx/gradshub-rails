@@ -1,34 +1,30 @@
 .privacy-terms-body {
   margin-top: 50px;
+  padding: 50px;
   font-family: Lato-Regular;
 
   .privacy-terms-title {    
-    h1 {
-      font: 30px Montserrat-Regular;
-      color: $primary-blue;
-      text-transform: uppercase;
+    .title {
+      @extend .g-title;
     }
   }
 
   .privacy-terms-wrapper {
     .bold {
       font-weight: bold;
+      margin-right: 5px;
     }
 
     .blue {
       color: $primary-blue;
     }
 
-    .privacy-terms-sub-title {
-      color: $primary-blue;
-      font-family: Montserrat-Light;
-      
-      h2 {
-        font-size: 20px;
-      }
+    .privacy-terms-sub-title p{
+      @extend .g-subtitle;
     }
 
     .text-section {
+      text-align: justify;
       margin: 15px 0px;
     }
   }

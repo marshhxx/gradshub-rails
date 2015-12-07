@@ -2,20 +2,21 @@
 
 section#home-signup {
   width: 100%;
-  height: auto;
+  height: 100%;
+  min-height: 620px;
   overflow: hidden;
   text-align: center;
   @extend %bg-image;
   background-image: url('homepage/home-background.png');
   background-attachment: fixed;
   margin-top: 50px;
-  #top{
+  #top {
     height: 100%;
+    position: relative;
   }
-}
-
-.center-align {
-   padding: 50px 0;
+  .form-height {
+    height: 452px;
+  }
 }
 
 .header-signup {
@@ -65,6 +66,10 @@ section#home-signup {
       background-color: $secondary-linkedin;
       border: 1px solid $secondary-linkedin;
       margin-top: 15px;
+      &:hover {
+        background-color: $secondary-linkedin-hover;
+        border-color: $secondary-linkedin-hover;
+      }
 
       &.linkedin > p {
         color: $primary-white;
@@ -187,9 +192,6 @@ section#home-signup {
 
 .section-container {
   width: 100%;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
 
   .heading {
     font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
@@ -308,9 +310,15 @@ section#section-how-it-works-employer {
   }
 }
 
+.row-height {
+  display: table;
+  table-layout: fixed;
+  height: 100%;
+  width: 100%;
+}
+
 .container-img {
-  padding-top: 50px;
-  display: none;
+  visibility: hidden;
   &.align-center {
     right: 0px;
   }
@@ -384,13 +392,9 @@ section#section-how-it-works-employer {
     height: 300px;
   }
   .parent-wrapper {
-    height: 100%;
-    position: relative;
+    width: 100%;
   }
   .wrapper {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
     padding: 0 20px;
   }
   .title {
@@ -439,13 +443,6 @@ section#section-how-it-works-employer {
     height: 100%;
   }
 
-  .center-align {
-    padding: 0;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
   .header-signup {
     .wrapper {
       width: 290px;
@@ -454,10 +451,22 @@ section#section-how-it-works-employer {
 
 }
 
+@media (min-width: 768px) {
+  .col-sm-height {
+    display: table-cell;
+    float: none;
+    height: 100%;
+  }
+  .col-sm-top {
+    vertical-align: top;
+  }
+}
+
 /* Tablets */
 @media only screen and (min-device-width: 1024px) {
+
   .container-img {
-    display: block;
+    visibility: visible;
     padding: 0px;
   }
 }

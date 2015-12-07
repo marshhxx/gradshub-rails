@@ -1,17 +1,20 @@
 .login {
   &.background {
     height: 100%;
-    min-height: 100vh;
-
+    min-height: 420px;
     position: relative;
     @extend %bg-image;
     &.one {
-      background-image: url("login/background.png");
+      background-image: url("login/login-background.png");
     }
 
     &.other {
-      background-image: url("login/background.png");
+      background-image: url("login/login-background.png");
     }
+  }
+
+  .form-height {
+    height: 255px;
   }
 
   .form-container {

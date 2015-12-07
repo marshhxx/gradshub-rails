@@ -1,11 +1,11 @@
 <section id="home-signup">
-  <div id="top" class="align">
-    <div class="col-lg-12 max-width center-align">
+  <div id="top">
+    <div class="col-lg-12 max-width form-height align-vertical">
       <div class="header-signup">
         <div class="logo-form"></div>
-        <div class="subtitle" ng-show="candidate">Create a compelling profile. Find the right job after graduation.
+        <div class="subtitle" ng-show="candidate">Get the right job after graduation.
         </div>
-        <div class="subtitle" ng-show="!candidate"> Hire the best students. Fast, Simple. Post a job now.
+        <div class="subtitle" ng-show="!candidate">Hire the best students. Post a job now.
         </div>
 
         <div class="wrapper text-center">
@@ -18,7 +18,7 @@
             </div>
             <div class="col-xs-6 padding-zero btn-right">
                              <span id="candidate-btn" class="type-btn" ng-click="isCandidate()"
-                                   ng-class="{'type-btn-active': candidate}">CANDIDATE</span>
+                                   ng-class="{'type-btn-active': candidate}">GRAD</span>
             </div>
           </div>
 
@@ -51,37 +51,37 @@
             <!-- Start Sign up Form Validation Errors Messages !-->
             <div ng-if="homeForm.name.$invalid && (homeForm.$submitted || homeForm.name.$dirty)"
                  ng-messages="homeForm.name.$error">
-              <div class="help-block" ng-message="required">
+              <div class="o-error" ng-message="required">
                 Enter your name.
               </div>
             </div>
 
-            <div ng-if="homeForm.lastname.$invalid && (homeForm.$submitted || homeForm.lastname.$dirty)"
+            <div ng-if="homeForm.lastname.$invalid && !homeForm.name.$invalid && (homeForm.$submitted || homeForm.lastname.$dirty)"
                  ng-messages="homeForm.lastname.$error">
-              <div class="help-block" ng-message="required">
+              <div class="o-error" ng-message="required">
                 Enter your last name.
               </div>
             </div>
 
-            <div ng-if="homeForm.email.$invalid && (homeForm.$submitted || homeForm.email.$touched)"
+            <div ng-if="homeForm.email.$invalid && !homeForm.name.$invalid && !homeForm.lastname.$invalid && (homeForm.$submitted || homeForm.email.$touched)"
                  ng-messages="homeForm.email.$error">
-              <div class="help-block" ng-message="required">
+              <div class="o-error" ng-message="required">
                 Enter your email.
               </div>
-              <div class="help-block" ng-message="email">
+              <div class="o-error" ng-message="email">
                 Enter a valid email.
               </div>
             </div>
 
-            <div ng-if="homeForm.password.$invalid && (homeForm.$submitted || homeForm.password.$touched)"
+            <div ng-if="homeForm.password.$invalid && !homeForm.name.$invalid && !homeForm.lastname.$invalid && !homeForm.email.$invalid && (homeForm.$submitted || homeForm.password.$touched)"
                  ng-messages="homeForm.password.$error">
-              <div class="help-block" ng-message="required">
+              <div class="o-error" ng-message="required">
                 Enter your password.
               </div>
-              <div class="help-block" ng-message="minlength">
+              <div class="o-error" ng-message="minlength">
                 Your password is too short.
               </div>
-              <div class="help-block" ng-message="maxlength">
+              <div class="o-error" ng-message="maxlength">
                 Your password is too long.
               </div>
             </div>
@@ -90,13 +90,13 @@
 
             <div class="form-btn-container">
               <div class="control-group has-error" ng-messages="serverErrors">
-                <div class="help-block" ng-repeat="error in serverErrors.reasons">
+                <div class="o-error" ng-repeat="error in serverErrors.reasons">
                   <div>{{ error }}</div>
                 </div>
               </div>
               <button type="submit" class="form-btn btn" ng-if="!candidate">Sign up as <strong>Employer</strong>
               </button>
-              <button type="submit" class="form-btn btn" ng-if="candidate">Sign up as <strong>Candidate</strong>
+              <button type="submit" class="form-btn btn" ng-if="candidate">Sign up as <strong>Grad</strong>
               </button>
               <div ng-click="signupLinkedin()" class="form-btn linkedin btn"><span class="icon"></span>
 
@@ -112,8 +112,8 @@
 </section>
 
 <!-- Section two -->
-<section id="explore" class="section-title section-two">
-  <div class="container section-container">
+<section id="explore" class="section-title section-two vertical-align-wr">
+  <div class="container section-container vertical-align-tb">
     <div class="col-lg-12 text-center">
       <p class="heading">EXPLORE</p>
 
@@ -139,7 +139,7 @@
         </div>
         <div class="col-md-4 text-center">
           <div class="features-image img-middle"></div>
-          <p class="features-txt">POWERFUL <br/> SEARCH</p>
+          <p class="features-txt">MATCHING <br/> ENGINE</p>
 
           <p class="features-detail-txt padding-b">Our multi-dimensional, one click search engine finds your next great
             job
@@ -148,7 +148,7 @@
         </div>
         <div class="col-md-4 text-center">
           <div class="features-image img-right"></div>
-          <p class="features-txt">COMMUNICATION PLATFORM</p>
+          <p class="features-txt">INSTANT INTERVIEW</p>
 
           <p class="features-detail-txt">Personalization engine creates meaningful
             connections, speeds up the hiring process and improves your chance of finding the best match.</p>
@@ -160,8 +160,8 @@
 
 </section>
 
-<section id="section-how-it-works" class="section-title section-how-it-works-header">
-  <div class="container section-container">
+<section id="section-how-it-works" class="section-title section-how-it-works-header vertical-align-wr">
+  <div class="container section-container vertical-align-tb">
     <div class="col-lg-12 text-center">
       <p class="heading section-how-it-works-header">How it works</p>
 
@@ -173,7 +173,7 @@
 <section id="section-how-it-works-candidate">
   <div class="container container-wrapper">
     <div class="container-top text-center">
-      <span class="type-btn type-btn-active large">CANDIDATE</span>
+      <span class="type-btn type-btn-active large">GRADS</span>
     </div>
 
     <div class="container-bottom align section-five">
@@ -189,9 +189,7 @@
           </div>
           <div class="wrapper col-xs-8">
             <p class="title">CREATE YOUR PROFILE</p>
-
-            <p class="detail">Build your powerful profile to market yourself
-              for the job that you want.</p>
+            <p class="detail">Sign up and build a great profile.  Showcase your skills to prospective hiring companies.</p>
           </div>
         </div>
         <div class="col-xs-12">
@@ -199,10 +197,8 @@
             <div class="row-img url-img-candidate"></div>
           </div>
           <div class="wrapper col-xs-8">
-            <p class="title">APPLY FOR A JOB</p>
-
-            <p class="detail">Our automated search finds the most ideal job opportunity
-              for you based on your education, skills and interests.</p>
+            <p class="title">OUR MATCHING ENGINE FINDS THE RIGHT JOB</p>
+            <p class="detail">Once your profile is complete and accepted we will make it public to employers. Our powerful matching engine MARZ will start recommending your profile to potential employers.</p>
           </div>
         </div>
         <div class="col-xs-12">
@@ -210,10 +206,8 @@
             <div class="row-img url-img-candidate"></div>
           </div>
           <div class="wrapper col-xs-8">
-            <p class="title">GET HIRED</p>
-
-            <p class="detail">Our personalization platform provides you with instant
-              communication, thereby making the hiring process pleasant.</p>
+            <p class="title">START WITH JOB INTERVIEWS</p>
+            <p class="detail">Employers will start reviewing your profile. If there is an interest, you will start receiving requests for online interviews through our INSTANT platform.</p>
           </div>
         </div>
         <div class="col-xs-12">
@@ -221,10 +215,8 @@
             <div class="row-img url-img-candidate"></div>
           </div>
           <div class="wrapper margin-zero col-xs-8">
-            <p class="title">DO A GREAT JOB</p>
-
-            <p class="detail">Excelling at your job is fulfilling, rewarding and
-              enriching with new experiences in life.</p>
+            <p class="title">GET HIRED</p>
+            <p class="detail">Evaluate the job offers and accept the right job for you</p>
           </div>
         </div>
       </div>
@@ -236,11 +228,12 @@
 <section id="section-how-it-works-employer">
   <div class="container container-wrapper">
     <div class="container-top text-center">
-      <span class="type-btn type-btn-active white large">EMPLOYER</span>
+      <span class="type-btn type-btn-active white large">EMPLOYERS</span>
     </div>
 
     <div class="container-bottom">
-      <div class="container-txt col-md-6">
+      <div class="row-height">
+      <div class="container-txt col-md-6 col-sm-height">
         <div class="col-xs-12">
           <div class="col-md-2 left">
             <div class="row-img url-img-employer"></div>
@@ -248,9 +241,7 @@
 
           <div class="wrapper col-xs-8">
             <p class="title">CREATE YOUR PROFILE</p>
-
-            <p class="detail">Build a power profile yo market your company with
-              current job openings, work culture to attract great talent.</p>
+            <p class="detail">Create your company’s profile. Showcase why your company is a great place to work and inspire Grads.</p>
           </div>
         </div>
         <div class="col-xs-12">
@@ -258,10 +249,8 @@
             <div class="row-img url-img-employer"></div>
           </div>
           <div class="wrapper col-xs-8">
-            <p class="title">FIND GREAT MINDS</p>
-
-            <p class="detail">Our automated search finds the most ideal candidate
-              for your company, based on your requirements.</p>
+            <p class="title">PUBLISH YOUR JOB</p>
+            <p class="detail">Start posting jobs. Our matching engine MARZ will start recommending the best Grads according to your requirements.</p>
           </div>
         </div>
         <div class="col-xs-12">
@@ -269,10 +258,8 @@
             <div class="row-img url-img-employer"></div>
           </div>
           <div class="wrapper col-xs-8">
-            <p class="title">HIRE FAST</p>
-
-            <p class="detail">Our personalization platform allows you to interact efficiently,
-              there by making the hiring process pleasant.</p>
+            <p class="title">INTERVIEW GRADS</p>
+            <p class="detail">Start using our simple hiring tool to manage graduates interview process. Connect graduates using our online INSTANT platform.</p>
           </div>
         </div>
         <div class="col-xs-12">
@@ -280,25 +267,23 @@
             <div class="row-img url-img-employer"></div>
           </div>
           <div class="wrapper col-xs-8 margin-zero">
-            <p class="title">BUILD A GREAT COMPANY</p>
-
-            <p class="detail">Hiring the best minds creates opportunities for growth,
-              leadership and success.</p>
+            <p class="title">BUILD A GREAT TEAM</p>
+            <p class="detail">Onboard a new generation of talent.</p>
           </div>
         </div>
       </div>
 
-      <div class="container-img col-md-6 align-center text-center vertical-align">
-        <div class="phone-image"></div>
+      <div class="container-img col-md-6 text-center col-sm-height">
+          <div class="phone-image align-vertical"></div>
       </div>
-
+    </div>
     </div>
 
   </div>
 </section>
 
-<section id="section-testimonials" class="section-title section-testimonials-header">
-  <div class="container section-container">
+<section id="section-testimonials" class="section-title section-testimonials-header vertical-align-wr">
+  <div class="container section-container testimonials vertical-align-tb">
     <div class="col-lg-12 text-center">
       <p class="heading"> REAL LIFE STORIES </p>
     </div>
@@ -311,14 +296,14 @@
       <div class="img testimonial-2"></div>
     </div>
     <div class="col-md-4 col-sm-12 text-center cont">
-      <div class="parent-wrapper">
-        <div class="wrapper">
-          <p class="title">Kate Coghlan</p>
+      <div class="parent-wrapper vertical-align-wr">
+        <div class="wrapper vertical-align-tb">
+          <p class="title">Mark Coghlan</p>
 
-          <p class="subtitle">Social Media Assistant, Boost Media</p>
+          <p class="subtitle">Social Media Assistant, Globant</p>
 
-          <p class="txt">I visited Project B job board almost every day and ended up finding my current
-            position here at Boost! They helped ease the anxiety of entering the job market for the first time.</p>
+          <p class="txt">I visited GradsHub job board almost every day and ended up finding my current
+            position here at Globant! They helped ease the anxiety of entering the job market for the first time.</p>
         </div>
       </div>
     </div>
@@ -331,14 +316,14 @@
 <section id="section-testimonials-bottom" class="section-testimonials">
   <div class="top">
     <div class="col-md-4 col-sm-12 text-center cont">
-      <div class="parent-wrapper">
-        <div class="wrapper">
-          <p class="title">Kate Coghlan</p>
+      <div class="parent-wrapper vertical-align-wr">
+        <div class="wrapper vertical-align-tb">
+          <p class="title">Marisa Parker</p>
 
-          <p class="subtitle">Social Media Assistant, Boost Media</p>
+          <p class="subtitle">Product Manager, Ideo</p>
 
-          <p class="txt">I visited Project B job board almost every day and ended up finding my current
-            position here at Boost! They helped ease the anxiety of entering the job market for the first time.</p>
+          <p class="txt">I visited GradsHub job board almost every day and ended up finding my current
+            position here at Ideo! They helped ease the anxiety of entering the job market for the first time.</p>
         </div>
       </div>
     </div>
@@ -347,14 +332,14 @@
     </div>
 
     <div class="col-md-4 col-sm-12 text-center cont">
-      <div class="parent-wrapper">
-        <div class="wrapper">
-          <p class="title">Kate Coghlan</p>
+      <div class="parent-wrapper vertical-align-wr">
+        <div class="wrapper vertical-align-tb">
+          <p class="title">John Smith</p>
 
-          <p class="subtitle">Social Media Assistant, Boost Media</p>
+          <p class="subtitle">VP Sales, Intel</p>
 
-          <p class="txt">I visited Project B job board almost every day and ended up finding my current
-            position here at Boost! They helped ease the anxiety of entering the job market for the first time.</p>
+          <p class="txt">I visited GradsHub job board almost every day and ended up finding my current
+            position here at Intel! They helped ease the anxiety of entering the job market for the first time.</p>
         </div>
       </div>
     </div>

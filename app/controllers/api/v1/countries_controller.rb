@@ -10,4 +10,9 @@ class Api::V1::CountriesController < Api::BaseController
   def query_params
     params.permit(:all)
   end
+
+
+  def list_resource
+    resource_class.all.order(name: :asc)
+  end
 end

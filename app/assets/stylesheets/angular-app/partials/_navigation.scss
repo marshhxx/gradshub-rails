@@ -30,7 +30,9 @@ $tl: 0.4s; // transition length
   width: 30px;
   margin-left: 15px;
   float: left;
-  cursor: pointer;
+  &.pointer {
+    cursor: pointer;
+  }
 }
 
 .navbar-default .navbar-nav > li > a {

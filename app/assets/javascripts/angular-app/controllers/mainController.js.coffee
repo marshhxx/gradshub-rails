@@ -7,8 +7,6 @@ angular
      $anchorScroll, stateWrapper, modalService, navbarService) ->
 
       init = ->
-        $anchorScroll.yOffset = 0
-        $anchorScroll()
         $scope.logged = sessionService.isAuthenticated();
         $scope.profileSpinner = false
         $scope.isOptionsVisible = false
@@ -75,4 +73,8 @@ angular
         $state.go("main.#{$scope.type}_profile", {uid: 'me'}, { reload: true })
         
       init()
+
+      $rootScope.$on '$stateChangeSuccess', ->
+        document.body.scrollTop = document.documentElement.scrollTop = 0
+
   ])

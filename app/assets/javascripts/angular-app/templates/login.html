@@ -1,53 +1,42 @@
 <div class="login background" ng-class="randomPhoto" xmlns="http://www.w3.org/1999/html">
-<div class="align max-height ">
-  <div class="child vertical-align center-align">
+<div class="max-height">
+  <div class="form-height align-vertical child center-align">
   <div class="form-container">
     <div class="logo-form"></div>
     <div class="form-box-cont text-center">
       <form name="loginForm" class="form-horizontal" ng-submit="login(loginForm.$valid)" novalidate>
         <div class="margin-t20">
-          <!--
-          Comment this out to get the icons
-          <div class="login ic left">-->
-          <!--<div class="ic-email"></div>-->
-          <!--</div>
-          -->
+
           <input type="email" name="email" class="login-input first-input" ng-model="email"
                  ng-class="{'has-error': loginForm.email.$invalid && (loginForm.$submitted || loginForm.email.$touched)}"
                  placeholder="Your Email" required>
-          <!--
-          Comment this out to get the icons
-          <!--<div class="login-ic left">-->
-          <!--<div class="ic-password"></div>-->
-          <!--</div>
-          -->
+
           <input type="password" name="password" ng-model="password" class="login-input last-input"
                  ng-class="{'has-error': loginForm.password.$invalid && (loginForm.$submitted || loginForm.password.$touched)}"
                  placeholder="Your Password" required ng-minlength="5" ng-maxlength="20">
 
         </div>
-        <div class="row">
-          <div ng-if="loginForm.email.$invalid && (loginForm.$submitted || loginForm.email.$touched)"
-               ng-messages="loginForm.email.$error">
-            <div class="help-block" ng-message="required">
-              Enter your email.
-            </div>
-            <div class="help-block" ng-message="email">
-              Enter a valid email.
-            </div>
-          </div>
 
-          <div ng-if="loginForm.password.$invalid && (loginForm.$submitted || loginForm.password.$touched)"
-               ng-messages="loginForm.password.$error">
-            <div class="help-block" ng-message="required">
-              Enter your password.
-            </div>
-            <div class="help-block" ng-message="minlength">
-              Your password is too short.
-            </div>
-            <div class="help-block" ng-message="maxlength">
-              Your password is too long.
-            </div>
+        <div ng-if="loginForm.email.$invalid && (loginForm.$submitted || loginForm.email.$touched)"
+             ng-messages="loginForm.email.$error">
+          <div class="o-error" ng-message="required">
+            Enter your email.
+          </div>
+          <div class="o-error" ng-message="email">
+            Enter a valid email.
+          </div>
+        </div>
+
+        <div ng-if="loginForm.password.$invalid && !loginForm.email.$invalid && (loginForm.$submitted || loginForm.password.$touched)"
+             ng-messages="loginForm.password.$error">
+          <div class="o-error" ng-message="required">
+            Enter your password.
+          </div>
+          <div class="o-error" ng-message="minlength">
+            Your password is too short.
+          </div>
+          <div class="o-error" ng-message="maxlength">
+            Your password is too long.
           </div>
         </div>
 

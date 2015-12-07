@@ -42,10 +42,6 @@
   float: right;
 }
 
-.vertical-align {
-  @include vertical-align();
-}
-
 .align {
   position: relative;
   .child {
@@ -57,11 +53,33 @@
     &.align-bottom{
       bottom:0;
     }
-    &.center-align{
-      left: 0;
-      right: 0;
-    }
   }
+}
+
+.center-align {
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin: auto;
+}
+
+.align-vertical {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.vertical-align-wr {
+  width: 100%;
+  height: 100%;
+  display: table;
+}
+
+.vertical-align-tb {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
 }
 
 /* Logos */
@@ -103,8 +121,8 @@ button:focus { outline:0 !important; }
   &:hover,
   &:focus,
   &:active {
-    background-color: $primary-dark-blue;
-    border-color: $primary-dark-blue;
+    background-color: $primary-blue-hover;
+    border-color: $primary-blue-hover;
     color: $primary-white;
   }
 }
@@ -135,5 +153,34 @@ button:focus { outline:0 !important; }
 /* Titles */
 
 .g-title {
-  @include font-style(Montserrat-Light, 32px, $primary-turquoise);
+  @include font-style(Montserrat-Regular, 22px, $primary-regular-blue);
+  letter-spacing: 2px;
 }
+
+.g-subtitle {
+  @include font-style(Montserrat-Light, 18px, $primary-regular-blue);
+  letter-spacing: 1.5px;
+}
+
+/* Errors */
+
+.o-error {
+  color: $primary-white;
+  margin: 5px 0;
+  padding: 10px 15px;
+  background: rgba(0,0,0,0.33);;
+}
+
+/*==========================> Responsive Design <=========================*/
+
+/* Tablets (portrait) */
+@media only screen and (min-device-width: 768px) {
+  .g-title {
+    font-size: 26px;
+  }
+  .g-subtitle {
+    font-size: 22px;
+  }
+}
+
+/*==========================> End Responsive Design <=========================*/

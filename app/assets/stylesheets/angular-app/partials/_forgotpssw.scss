@@ -7,7 +7,7 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     height: 100vh;
-    background: url("login/background.png") no-repeat center center;
+    background: url("login/login-background.png") no-repeat center center;
   }
 
   .forgot-container {
@@ -37,6 +37,7 @@
     font: 22px Montserrat-Light;
     color: $primary-white;
     line-height: 27px;
+    float: left;
   }
 
   .subtitle-wrap {

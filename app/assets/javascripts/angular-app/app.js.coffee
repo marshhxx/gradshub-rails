@@ -115,12 +115,12 @@
     url: "/settings",
     templateUrl: "angular-app/templates/settings.html",
     controller: "settingsController"
-  }).state("main.privacy", {
-    url: "/privacy",
-    templateUrl: "angular-app/templates/privacy.html"
+  }).state("main.about", {
+    url: "/about",
+    templateUrl: "angular-app/templates/about.html"
   }).state("main.terms", {
     url: "/terms",
-    templateUrl: "angular-app/templates/terms.html"
+    templateUrl: "angular-app/templates/terms_privacy.html"
   })
 .run (initializeApp) ->
   initializeApp.initialize()
