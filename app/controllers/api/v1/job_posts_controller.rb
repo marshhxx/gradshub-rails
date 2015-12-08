@@ -1,6 +1,7 @@
 class Api::V1::JobPostsController < Api::BaseController
   before_action :authenticate_with_token!, only: [:create, :update, :destroy]
   before_action :modify_employer_id, only: [:create, :update]
+
   private
 
   def query_params
@@ -10,7 +11,7 @@ class Api::V1::JobPostsController < Api::BaseController
   def job_post_params
     params.require(:job_post).permit(
         :title, :description, :requirements, :job_type, :salary_unit, :min_salary, :max_salary,
-        :start_date, :end_date, :job_state, :remote, :employer_id, :state_id, :country_id,
+        :start_date, :end_date, :job_state, :remote, :state_id, :country_id,
         :employer_id) if params[:job_post]
   end
 
