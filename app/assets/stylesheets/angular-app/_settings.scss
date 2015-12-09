@@ -14,7 +14,6 @@
   padding: 0px 0px 25px;
   overflow: hidden;
 
-
   .settings-section {
     width: 100%;
     float: left;
@@ -35,8 +34,9 @@
     border-bottom: 1px solid #e1e8ed;
 
     .title {
-      font: 20px Montserrat-Light, Georgia, "Times New Roman", Times, serif;
+      @extend .g-subtitle;
       color: #66757f;
+      letter-spacing: 1.2px;
       line-height: 40px;
       padding-left: 15px;
     }

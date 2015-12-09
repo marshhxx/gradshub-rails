@@ -2,20 +2,21 @@
 
 section#home-signup {
   width: 100%;
-  height: auto;
+  height: 100%;
+  min-height: 620px;
   overflow: hidden;
   text-align: center;
   @extend %bg-image;
   background-image: url('homepage/home-background.png');
   background-attachment: fixed;
-  margin-top: 50px;
-  #top{
+  padding-top: 50px;
+  #top {
     height: 100%;
+    position: relative;
   }
-}
-
-.center-align {
-   padding: 50px 0;
+  .form-height {
+    height: 452px;
+  }
 }
 
 .header-signup {
@@ -65,6 +66,10 @@ section#home-signup {
       background-color: $secondary-linkedin;
       border: 1px solid $secondary-linkedin;
       margin-top: 15px;
+      &:hover {
+        background-color: $secondary-linkedin-hover;
+        border-color: $secondary-linkedin-hover;
+      }
 
       &.linkedin > p {
         color: $primary-white;
@@ -187,9 +192,6 @@ section#home-signup {
 
 .section-container {
   width: 100%;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
 
   .heading {
     font-family: Montserrat-Regular, Georgia, "Times New Roman", Times, serif;
@@ -308,9 +310,15 @@ section#section-how-it-works-employer {
   }
 }
 
+.row-height {
+  display: table;
+  table-layout: fixed;
+  height: 100%;
+  width: 100%;
+}
+
 .container-img {
-  padding-top: 50px;
-  display: none;
+  visibility: hidden;
   &.align-center {
     right: 0px;
   }
@@ -384,13 +392,9 @@ section#section-how-it-works-employer {
     height: 300px;
   }
   .parent-wrapper {
-    height: 100%;
-    position: relative;
+    width: 100%;
   }
   .wrapper {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
     padding: 0 20px;
   }
   .title {
@@ -417,67 +421,39 @@ section#section-how-it-works-employer {
 
 /*==========================> Responsive Design <=========================*/
 
-/* Smartphones (portrait and landscape) ----------- */
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-  /* Styles */
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px) {
+
 }
 
-/* Smartphones (landscape) ----------- */
-@media only screen and (min-width: 321px) {
-  /* Styles */
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+
 }
 
-/* Smartphones (portrait) ----------- */
-@media only screen and (max-width: 320px) {
-  /* Styles */
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+
+
 }
 
-/*Media Query Mobile General*/
-@media (min-width: 650px) {
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
 
-  section#home-signup {
-    height: 100%;
-  }
 
-  .center-align {
-    padding: 0;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  .header-signup {
-    .wrapper {
-      width: 290px;
+    .col-sm-height {
+      display: table-cell;
+      float: none;
+      height: 100%;
     }
-  }
+    .col-sm-top {
+      vertical-align: top;
+    }
 
-}
-
-/* Tablets */
-@media only screen and (min-device-width: 1024px) {
   .container-img {
-    display: block;
+    visibility: visible;
     padding: 0px;
   }
-}
-
-/* iPads (portrait and landscape) ----------- */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-}
-
-/* iPads (landscape) ----------- */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-  /* Styles */
-}
-
-/* iPads (portrait) ----------- */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
-  /* Styles */
-}
-
-/* Desktops and laptops ----------- */
-@media only screen and (min-width: 1224px) {
 
   /* Section Title */
   .section-title {
@@ -526,15 +502,10 @@ section#section-how-it-works-employer {
   }
 }
 
-/* Large screens ----------- */
-@media only screen and (min-width: 1824px) {
-  /* Styles */
-}
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
 
-/* iPhone 4 ----------- */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-only screen and (min-device-pixel-ratio: 1.5) {
-  /* Styles */
 }
 
 /*==========================> End Responsive Design <=========================*/
+

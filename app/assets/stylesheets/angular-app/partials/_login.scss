@@ -1,17 +1,20 @@
 .login {
   &.background {
     height: 100%;
-    min-height: 100vh;
-
+    min-height: 420px;
     position: relative;
     @extend %bg-image;
     &.one {
-      background-image: url("login/background.png");
+      background-image: url("login/login-background.png");
     }
 
     &.other {
-      background-image: url("login/background.png");
+      background-image: url("login/login-background.png");
     }
+  }
+
+  .form-height {
+    height: 255px;
   }
 
   .form-container {
@@ -89,35 +92,36 @@
   }
 }
 
+/*==========================> Responsive Design <=========================*/
+
 /* Custom, iPhone Retina */
-@media only screen and (min-width: 320px) {
+@media only screen and (min-width : 320px) {
+
   .login.form-box {
     padding-top: 1px;
   }
+
 }
 
 /* Extra Small Devices, Phones */
-@media only screen and (min-width: 650px) {
+@media only screen and (min-width : 480px) {
+
 }
 
 /* Small Devices, Tablets */
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width : 768px) {
+
 
 }
 
 /* Medium Devices, Desktops */
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width : 992px) {
 
 }
 
-.ic-email {
-  background: url("login/email.svg") no-repeat;
-  width: 30px;
-  height: 30px;
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+
 }
 
-.ic-password {
-  background: url("login/password.svg") no-repeat;
-  width: 30px;
-  height: 30px;
-}
+/*==========================> End Responsive Design <=========================*/
