@@ -74,6 +74,7 @@ angular
         
       init()
 
+      #Autoscroll option
       $rootScope.$on '$stateChangeSuccess', ->
         document.body.scrollTop = document.documentElement.scrollTop = 0
 

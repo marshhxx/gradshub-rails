@@ -7,8 +7,9 @@ angular.module('gradshub-ng.controllers').controller("HomeController", [
       $scope.renderHtml = (htmlCode) -> $sce.trustAsHtml(htmlCode)
       $scope.isCandidate = () -> $scope.candidate = true
       $scope.isEmployer = () -> $scope.candidate = false
-      $scope.carouselInterval = 0 #4000
-      $scope.candidate = true #Select Grads btn default
+
+      #Select Grads home sign up btn by default
+      $scope.candidate = true
 
       $scope.type = true
       $scope.showType = ->
@@ -16,7 +17,8 @@ angular.module('gradshub-ng.controllers').controller("HomeController", [
 
       $scope.registerUser = registerUser
 
-      navbarService.setOptions($state.current.data.navOptions) # Enable Navbar Options
+      # Enable Navbar Options
+      navbarService.setOptions($state.current.data.navOptions)
 
       $scope.signupLinkedin = () ->
         type = getType()

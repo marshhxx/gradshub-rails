@@ -421,72 +421,39 @@ section#section-how-it-works-employer {
 
 /*==========================> Responsive Design <=========================*/
 
-/* Smartphones (portrait and landscape) ----------- */
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-  /* Styles */
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px) {
+
 }
 
-/* Smartphones (landscape) ----------- */
-@media only screen and (min-width: 321px) {
-  /* Styles */
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+
 }
 
-/* Smartphones (portrait) ----------- */
-@media only screen and (max-width: 320px) {
-  /* Styles */
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+
+
 }
 
-/*Media Query Mobile General*/
-@media (min-width: 650px) {
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
 
-  section#home-signup {
-    height: 100%;
-  }
 
-  .header-signup {
-    .wrapper {
-      width: 290px;
+    .col-sm-height {
+      display: table-cell;
+      float: none;
+      height: 100%;
     }
-  }
-
-}
-
-@media (min-width: 768px) {
-  .col-sm-height {
-    display: table-cell;
-    float: none;
-    height: 100%;
-  }
-  .col-sm-top {
-    vertical-align: top;
-  }
-}
-
-/* Tablets */
-@media only screen and (min-device-width: 1024px) {
+    .col-sm-top {
+      vertical-align: top;
+    }
 
   .container-img {
     visibility: visible;
     padding: 0px;
   }
-}
-
-/* iPads (portrait and landscape) ----------- */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-}
-
-/* iPads (landscape) ----------- */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-  /* Styles */
-}
-
-/* iPads (portrait) ----------- */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
-  /* Styles */
-}
-
-/* Desktops and laptops ----------- */
-@media only screen and (min-width: 1224px) {
 
   /* Section Title */
   .section-title {
@@ -535,15 +502,10 @@ section#section-how-it-works-employer {
   }
 }
 
-/* Large screens ----------- */
-@media only screen and (min-width: 1824px) {
-  /* Styles */
-}
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
 
-/* iPhone 4 ----------- */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-only screen and (min-device-pixel-ratio: 1.5) {
-  /* Styles */
 }
 
 /*==========================> End Responsive Design <=========================*/
+
