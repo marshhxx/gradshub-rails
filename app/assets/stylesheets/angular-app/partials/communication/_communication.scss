@@ -20,10 +20,9 @@
     padding: 10px;
     margin: auto;
 
-    .btn {
-      border: 0;
-      width: 100px;
-      height: 100px;
+    .btns {
+      width: 25px;
+      height: 25px;
 
       &.talk {
         background: url("communication/talk.svg") no-repeat center;
@@ -31,15 +30,12 @@
       }
 
       &.phone {
-        background: url("communication/phone.svg") no-repeat center;
       }
 
       &.mic {
-        background: url("communication/mic.svg") no-repeat center;
       }
 
       &.video {
-        background: url("communication/video.svg") no-repeat center;
       }
     }
   }
