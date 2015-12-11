@@ -2,6 +2,10 @@ class Api::V1::JobPostsController < Api::BaseController
   before_action :authenticate_with_token!, only: [:create, :update, :destroy]
   before_action :modify_employer_id, only: [:create, :update]
 
+  def index
+    @job_posts = JobPost.where employer_id: params['employer_id']
+  end
+
   private
 
   def query_params

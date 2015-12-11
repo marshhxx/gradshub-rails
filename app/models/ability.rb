@@ -13,6 +13,7 @@ class Ability
       end
 
       # User can modify only their job posts
+
       cannot :more_than_see, [JobPost] do |post|
         post.employer.user.uid != current_user.uid
       end
