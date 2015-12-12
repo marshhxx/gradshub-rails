@@ -18,7 +18,7 @@ class JobPost < ActiveRecord::Migration
       t.belongs_to :country
       t.belongs_to :state
 
-      t.timestamp
+      t.timestamps
     end
     add_index :job_posts, :employer_id
 
@@ -27,14 +27,14 @@ class JobPost < ActiveRecord::Migration
       t.belongs_to :candidate
       t.belongs_to :job_post
 
-      t.timestamp
+      t.timestamps
     end
 
     create_table :job_post_skills do |t|
       t.belongs_to :job_post
       t.belongs_to :skill
 
-      t.timestamp
+      t.timestamps
     end
     add_index(:job_post_skills, [:job_post_id, :skill_id], :unique => true)
   end

@@ -7,6 +7,7 @@ class JobPost < ActiveRecord::Base
 
   has_many :job_post_skills, dependent: :destroy
   has_many :skills, :through => :job_post_skills
+  has_many :applications, dependent: :destroy
 
   enum job_type: {internship: 0, full_time: 1, part_time: 2, project_based: 3}
   enum salary_unit: {US: 0}

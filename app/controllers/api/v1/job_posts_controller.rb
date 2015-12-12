@@ -1,14 +1,10 @@
 class Api::V1::JobPostsController < Api::NestedController
   before_action :authenticate_with_token!, only: [:create, :update, :destroy]
 
-  def index
-    @job_posts = JobPost.where employer_id: params['employer_id']
-  end
-
   private
 
   def query_params
-    params.permit(:e)
+    params.permit(:employer_id)
   end
 
   def job_post_params

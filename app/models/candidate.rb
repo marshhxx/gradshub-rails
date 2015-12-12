@@ -5,6 +5,7 @@ class Candidate < ActiveRecord::Base
   has_many :candidate_languages, dependent: :destroy
   has_many :experiences, dependent: :destroy
   has_many :educations, dependent: :destroy
+  has_many :applications, dependent: :destroy
   # interests
   has_many :candidate_interests
   has_many :interests, :through => :candidate_interests

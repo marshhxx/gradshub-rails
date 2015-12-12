@@ -14,9 +14,11 @@
 ActiveRecord::Schema.define(version: 20151120000017) do
 
   create_table "applications", force: true do |t|
-    t.integer "state",        null: false
-    t.integer "candidate_id"
-    t.integer "job_post_id"
+    t.integer  "state",        null: false
+    t.integer  "candidate_id"
+    t.integer  "job_post_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "candidate_interests", force: true do |t|
@@ -126,8 +128,10 @@ ActiveRecord::Schema.define(version: 20151120000017) do
   end
 
   create_table "job_post_skills", force: true do |t|
-    t.integer "job_post_id"
-    t.integer "skill_id"
+    t.integer  "job_post_id"
+    t.integer  "skill_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "job_post_skills", ["job_post_id", "skill_id"], name: "index_job_post_skills_on_job_post_id_and_skill_id", unique: true, using: :btree
@@ -148,6 +152,8 @@ ActiveRecord::Schema.define(version: 20151120000017) do
     t.integer  "employer_id"
     t.integer  "country_id"
     t.integer  "state_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "job_posts", ["employer_id"], name: "index_job_posts_on_employer_id", using: :btree

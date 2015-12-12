@@ -41,6 +41,7 @@ GradshubRails::Application.routes.draw do
         resources :educations, :only => [:index, :create, :update, :destroy, :show]
         resources :nationalities, :only => [:index, :create, :show, :destroy]
         resources :languages, :controller => :candidate_languages, :only => [:index, :create, :update, :show, :destroy]
+        resources :applications, :only => [:index, :show]
       end
       resources :sessions, :only => [:create, :password_reset_request, :password_reset, :refresh] do
         collection do
@@ -66,7 +67,12 @@ GradshubRails::Application.routes.draw do
         delete :delete, on: :member
       end
 
-      resources :job_posts, :only => [:update, :destroy, :show], concerns: [:skillable]
+      resources :job_posts, :only => [:update, :destroy, :show], concerns: [:skillable] do
+        resources :applications, :only => [:create, :index]
+      end
+
+      resources :applications, :only => [:update, :show, :destroy]
+
       resource :search, controller: 'search',  :only => [:show]
     end
   end
