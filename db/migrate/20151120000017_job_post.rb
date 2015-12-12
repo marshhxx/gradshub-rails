@@ -13,6 +13,7 @@ class JobPost < ActiveRecord::Migration
       t.timestamp :end_date
       t.integer :job_state, default: 0
       t.boolean :remote, default: false
+      t.integer :category
       t.belongs_to :employer
       t.belongs_to :country
       t.belongs_to :state
@@ -36,6 +37,5 @@ class JobPost < ActiveRecord::Migration
       t.timestamp
     end
     add_index(:job_post_skills, [:job_post_id, :skill_id], :unique => true)
-
   end
 end

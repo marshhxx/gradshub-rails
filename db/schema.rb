@@ -144,6 +144,7 @@ ActiveRecord::Schema.define(version: 20151120000017) do
     t.datetime "end_date"
     t.integer  "job_state",    default: 0
     t.boolean  "remote",       default: false
+    t.integer  "category"
     t.integer  "employer_id"
     t.integer  "country_id"
     t.integer  "state_id"
