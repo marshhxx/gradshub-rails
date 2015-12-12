@@ -1,5 +1,4 @@
 class Education < ActiveRecord::Base
-  include ActiveModel::Validations
 
   belongs_to :candidate
   belongs_to :school
@@ -17,7 +16,6 @@ class Education < ActiveRecord::Base
   validates_uniqueness_of :candidate_id, scope: [:school_id, :major_id, :degree_id,
                                                  :country_id, :state_id],
                           :message => 'Education already exists.'
-  validates_with DateValidation
 
   def self.where(params)
     params[:candidate_id] = User.find_by_uid!(params[:candidate_id]).meta.id
