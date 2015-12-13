@@ -90,9 +90,11 @@ class Api::NestedController < Api::BaseController
   def parent_resource_name
     if params[:candidate_id]
       name = 'candidate'
-    else
-      params[:employer_id]
+    elsif params[:employer_id]
       name = 'employer'
+    else
+      params[:job_post_id]
+      name = 'job_post'
     end
     @parent_resource_name ||= name
   end
