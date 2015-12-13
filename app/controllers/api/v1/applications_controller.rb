@@ -1,6 +1,6 @@
 class Api::V1::ApplicationsController < Api::NestedController
   before_action :authenticate_with_token!, only: [:create, :update, :destroy]
-  before_action :modify_candidate_id, only: [:create, :update]
+  before_action :modify_candidate_id, only: [:update]
 
   private
   def query_params
@@ -12,4 +12,7 @@ class Api::V1::ApplicationsController < Api::NestedController
         :state, :candidate_id) if params[:application]
   end
 
+  def modify_candidate_id
+    params[:application][:candidate_id] = Candidate.find_by_uid(params[:application][:candidate_id]).id
+  end
 end
