@@ -12,7 +12,7 @@ class Api::V1::SkillsController < Api::NestedController
   end
 
   def query_params
-    params.permit(:candidate_id, :id)
+    params.permit(:candidate_id, :job_post_id, :id)
   end
 
   def create_resource

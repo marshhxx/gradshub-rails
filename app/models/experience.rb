@@ -1,4 +1,6 @@
 class Experience < ActiveRecord::Base
+  include ActiveModel::Validations
+
   belongs_to :candidate
   # update index
   update_index 'users#candidate', :candidate
@@ -6,6 +8,7 @@ class Experience < ActiveRecord::Base
   validates_presence_of :company_name, :start_date, :job_title
   validates_uniqueness_of :company_name, scope: [:candidate_id, :job_title],
       :message => 'Experience already exists.'
+  validates_with DateValidation
 
   # Creates a experience from a linkedin position.
   # Should we also store the company?
